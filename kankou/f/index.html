@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>店魅偉屋大学 観光学部 | Misemi-ya Univ. Faculty of Tourism</title>
+    
+    <!-- ▼ Favicon設定（コンパスのアイコン） ▼ -->
+    <link rel="icon" href="favicon.ico">
+    <style>
+        /* --- 配色設定：旅とホスピタリティ --- */
+        :root {
+            --tour-orange: #ff7f50;   /* コーラルオレンジ：旅のワクワク感 */
+            --tour-yellow: #ffb74d;   /* 暖かみのある黄色 */
+            --tour-green: #8bc34a;    /* エコツーリズムの緑 */
+            --tour-bg: #fffbf0;       /* クリーム色の背景 */
+            --text-color: #4a4a4a;    /* 柔らかい黒 */
+        }
+
+        body {
+            font-family: "Hiragino Kaku Gothic ProN", "Meiryo", "Yu Gothic", sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: var(--tour-bg);
+            line-height: 1.7;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; padding: 0; margin: 0; }
+
+        /* --- ヘッダー --- */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo-icon { font-size: 2rem; animation: spin 10s linear infinite; }
+        @keyframes spin { 100% { transform: rotate(360deg); } } /* コンパスを回す遊び心 */
+
+        .logo h1 {
+            font-size: 1.5rem;
+            color: var(--tour-orange);
+            margin: 0;
+            font-family: "Futura", sans-serif; /* モダンで幾何学的なフォント */
+            font-weight: bold;
+        }
+        .logo span {
+            font-size: 0.8rem;
+            color: #888;
+            display: block;
+            letter-spacing: 0.1em;
+        }
+
+        nav ul { display: flex; gap: 25px; }
+        nav a {
+            font-weight: bold;
+            color: #666;
+            font-size: 0.95rem;
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+        nav a:hover {
+            background-color: var(--tour-orange);
+            color: #fff;
+        }
+
+        /* --- ヒーローセクション --- */
+        .hero {
+            height: 550px;
+            /* リゾートや観光地のイメージ */
+            background: linear-gradient(rgba(255, 127, 80, 0.2), rgba(255, 183, 77, 0.2)), url('kan.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            /* 写真の縁を少しポラロイド風に */
+            margin: 20px;
+            border-radius: 20px;
+        }
+        .hero-content {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px 60px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .hero-content h2 {
+            font-size: 2.5rem;
+            color: var(--tour-orange);
+            margin-bottom: 15px;
+            letter-spacing: 0.05em;
+        }
+        .hero-content p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 30px;
+        }
+        .btn-tour {
+            display: inline-block;
+            background-color: var(--tour-orange);
+            color: #fff;
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(255, 127, 80, 0.4);
+        }
+        .btn-tour:hover {
+            background-color: #ff6347;
+            transform: translateY(-2px);
+        }
+
+        /* --- コンテンツエリア --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--tour-orange);
+            display: inline-block;
+            border-bottom: 3px dashed var(--tour-green); /* ステッチのような線 */
+            padding-bottom: 10px;
+        }
+        .section-title p {
+            margin-top: 15px;
+            color: #888;
+        }
+
+        /* 学科カード（ガイドブック風） */
+        .dept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .dept-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            position: relative;
+        }
+        .dept-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        .dept-img {
+            height: 200px;
+            background-color: #eee;
+            position: relative;
+        }
+        .dept-tag {
+            position: absolute;
+            top: 15px; left: 15px;
+            background: var(--tour-orange);
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .dept-body { padding: 25px; }
+        .dept-body h3 {
+            margin: 0 0 10px;
+            font-size: 1.4rem;
+            color: #333;
+        }
+        .dept-body p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .icon-row {
+            display: flex;
+            gap: 10px;
+            font-size: 1.5rem;
+            opacity: 0.7;
+        }
+
+        /* フィールドワーク（写真グリッド） */
+        .fieldwork-section {
+            background-color: #fff;
+            padding: 80px 0;
+            margin-top: 60px;
+        }
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            padding: 0 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .photo-item {
+            height: 200px;
+            background-color: #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+        /* グリッドのレイアウト調整 */
+        .photo-item:nth-child(1) { grid-column: span 2; grid-row: span 2; height: 410px; }
+        .photo-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .photo-item:hover img { transform: scale(1.1); }
+        .photo-caption {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            padding: 10px;
+            font-size: 0.9rem;
+        }
+
+        /* ニュース（スタンプ風アイコン） */
+        .news-list {
+            margin-top: 30px;
+        }
+        .news-item {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            transition: 0.3s;
+        }
+        .news-item:hover { transform: translateX(5px); }
+        .news-stamp {
+            width: 50px;
+            height: 50px;
+            background: var(--tour-bg);
+            border: 2px solid var(--tour-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+            color: var(--tour-green);
+        }
+        .news-content h4 { margin: 0 0 5px; font-size: 1rem; color: #333; }
+        .news-date { font-size: 0.8rem; color: #999; }
+
+        /* フッター */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 50px 0;
+            text-align: center;
+        }
+        .footer-logo { font-size: 1.2rem; margin-bottom: 10px; }
+
+        @media (max-width: 768px) {
+            .header-inner { flex-direction: column; }
+            nav ul { margin-top: 15px; gap: 10px; flex-wrap: wrap; justify-content: center; }
+            .hero { margin: 0; border-radius: 0; height: 450px; }
+            .hero-content { padding: 30px; width: 85%; }
+            .photo-grid { grid-template-columns: 1fr; }
+            .photo-item:nth-child(1) { grid-column: auto; grid-row: auto; height: 200px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ヘッダー -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <div class="logo-icon">🧭</div>
+                <div>
+                    <h1>店魅偉屋大学 観光学部</h1>
+                    <span>Misemi-ya University Faculty of Tourism</span>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">学部紹介</a></li>
+                    <li><a href="#">学科・コース</a></li>
+                    <li><a href="#">フィールドワーク</a></li>
+                    <li><a href="#">キャリア</a></li>
+                    <li><a href="#">アクセス</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ヒーローエリア -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>世界を、おもてなしする。</h2>
+            <p>Tourism Design & Hospitality Management</p>
+            <p style="font-size: 0.9rem;">地域の魅力を発掘し、世界の架け橋となるプロフェッショナルへ。</p>
+            <a href="#" class="btn-tour">Open Campus 2025</a>
+        </div>
+    </section>
+
+    <!-- 学科紹介 -->
+    <div class="container">
+        <div class="section-title">
+            <h2>DEPARTMENTS</h2>
+            <p>観光を科学する、3つのアプローチ</p>
+        </div>
+
+        <div class="dept-grid">
+            <!-- 観光経営学科 -->
+            <div class="dept-card">
+                <div class="dept-img" style="background: url('https://placehold.co/600x400/ff7f50/ffffff?text=Management'); background-size: cover;">
+                    <span class="dept-tag">Business</span>
+                </div>
+                <div class="dept-body">
+                    <h3>観光経営学科</h3>
+                    <p>ホテル、航空、テーマパーク。観光産業のマネジメントとマーケティングを学び、ビジネスリーダーを育成します。</p>
+                    <div class="icon-row">🏨 ✈️ 🎢</div>
+                </div>
+            </div>
+
+            <!-- 地域デザイン学科 -->
+            <div class="dept-card">
+                <div class="dept-img" style="background: url('https://placehold.co/600x400/8bc34a/ffffff?text=Local+Design'); background-size: cover;">
+                    <span class="dept-tag">Community</span>
+                </div>
+                <div class="dept-body">
+                    <h3>地域デザイン学科</h3>
+                    <p>まちづくり、エコツーリズム、特産品開発。地域の眠れる資源を磨き上げ、持続可能な観光地をデザインします。</p>
+                    <div class="icon-row">🏞️ ⛩️ 🍱</div>
+                </div>
+            </div>
+
+            <!-- 観光文化学科 -->
+            <div class="dept-card">
+                <div class="dept-img" style="background: url('https://placehold.co/600x400/ffb74d/ffffff?text=Culture'); background-size: cover;">
+                    <span class="dept-tag">Culture</span>
+                </div>
+                <div class="dept-body">
+                    <h3>観光文化学科</h3>
+                    <p>世界遺産、宗教、食文化。旅の根底にある「文化」を深く理解し、異文化交流のスペシャリストを目指します。</p>
+                    <div class="icon-row">🏛️ 🎨 🗺️</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- フィールドワーク特集 -->
+    <section class="fieldwork-section">
+        <div class="section-title">
+            <h2>REAL EXPERIENCE</h2>
+            <p>教室は「世界」そのもの。<br>年間100以上の実習プログラム。</p>
+        </div>
+        
+        <div class="photo-grid">
+            <!-- 大きな写真 -->
+            <div class="photo-item">
+                <img src="https://placehold.co/800x800/ff7f50/ffffff?text=Overseas+Internship" alt="海外インターン">
+                <div class="photo-caption">ハワイ・ホスピタリティ研修（2週間）</div>
+            </div>
+            <!-- 小さな写真 -->
+            <div class="photo-item">
+                <img src="https://placehold.co/400x400/8bc34a/ffffff?text=Eco+Tour" alt="エコツアー">
+                <div class="photo-caption">屋久島エコツーリズム実習</div>
+            </div>
+            <div class="photo-item">
+                <img src="https://placehold.co/400x400/ffb74d/ffffff?text=Hotel+Work" alt="ホテル実習">
+                <div class="photo-caption">高級ホテル・フロント業務体験</div>
+            </div>
+            <div class="photo-item">
+                <img src="https://placehold.co/400x400/2196f3/ffffff?text=Festival" alt="祭り">
+                <div class="photo-caption">東北・地域のお祭り運営ボランティア</div>
+            </div>
+            <div class="photo-item">
+                <img src="https://placehold.co/400x400/9c27b0/ffffff?text=Guiding" alt="ガイド">
+                <div class="photo-caption">外国人観光客向けガイド実習</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ニュース -->
+    <div class="container">
+        <div class="section-title">
+            <h2>NEWS & EVENTS</h2>
+        </div>
+        <div class="news-list">
+            <a href="#" class="news-item">
+                <div class="news-stamp">🏆</div>
+                <div class="news-content">
+                    <span class="news-date">2024.12.03</span>
+                    <h4>「大学生 観光まちづくりコンテスト」で本学部チームが観光庁長官賞を受賞！</h4>
+                </div>
+            </a>
+            <a href="#" class="news-item">
+                <div class="news-stamp">✈️</div>
+                <div class="news-content">
+                    <span class="news-date">2024.11.20</span>
+                    <h4>JAL・ANAなどの航空業界へ就職した先輩による「キャリア座談会」開催</h4>
+                </div>
+            </a>
+            <a href="#" class="news-item">
+                <div class="news-stamp">🏨</div>
+                <div class="news-content">
+                    <span class="news-date">2024.11.05</span>
+                    <h4>学内ホテル実習室「ミセミーヤ・ラウンジ」がリニューアルオープンしました。</h4>
+                </div>
+            </a>
+            <a href="#" class="news-item">
+                <div class="news-stamp">📝</div>
+                <div class="news-content">
+                    <span class="news-date">2024.10.15</span>
+                    <h4>総合型選抜（ホスピタリティ重視型）の面接試験について</h4>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- フッター -->
+    <footer>
+        <div class="footer-logo">店魅偉屋大学 観光学部</div>
+        <p>Misemi-ya University Faculty of Tourism</p>
+        <p>〒113-8654 東京都文京区本郷 7-3-2</p>
+        <div style="margin-top: 30px; font-size: 0.8rem; color: #888;">
+            <a href="#">学部ポリシー</a> | <a href="#">教員紹介</a> | <a href="#">お問い合わせ</a>
+        </div>
+        <p style="margin-top: 20px; font-size: 0.8rem;">&copy; Misemi-ya University. Tourism. Enjoy your learning journey.</p>
+    </footer>
+
+</body>
+</html>

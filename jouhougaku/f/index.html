@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>店魅偉屋大学 情報学部 | Misemi-ya Univ. School of Informatics</title>
+    
+    <!-- ▼ Favicon設定（ターミナルのプロンプトアイコン） ▼ -->
+    <link rel="icon" href="favicon.ico">
+
+    <style>
+        /* --- 配色設定：ダークモード＆サイバーパンク --- */
+        :root {
+            --info-bg: #121212;       /* 背景：ほぼ黒 */
+            --info-card: #1e1e1e;     /* カード背景：ダークグレー */
+            --info-neon: #00ff41;     /* ネオングリーン：ターミナル色 */
+            --info-cyan: #00d8ff;     /* サイバーシアン：ネットワーク */
+            --info-purple: #bd00ff;   /* アクセント紫 */
+            --text-main: #e0e0e0;     /* 白に近いグレー */
+        }
+
+        body {
+            font-family: "Menlo", "Consolas", "Monaco", "Hiragino Kaku Gothic ProN", sans-serif; /* 等幅フォント優先 */
+            margin: 0;
+            padding: 0;
+            color: var(--text-main);
+            background-color: var(--info-bg);
+            line-height: 1.7;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; padding: 0; margin: 0; }
+
+        /* --- ヘッダー --- */
+        header {
+            background-color: rgba(18, 18, 18, 0.95);
+            border-bottom: 1px solid #333;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo h1 {
+            font-size: 1.4rem;
+            color: #fff;
+            margin: 0;
+            font-family: "Verdana", sans-serif;
+            font-weight: bold;
+        }
+        .logo span {
+            color: var(--info-neon);
+        }
+        .logo small {
+            display: block;
+            font-size: 0.7rem;
+            color: #888;
+            letter-spacing: 1px;
+        }
+
+        nav ul { display: flex; gap: 30px; }
+        nav a {
+            font-size: 0.9rem;
+            color: #aaa;
+            position: relative;
+        }
+        nav a:hover {
+            color: var(--info-cyan);
+        }
+        /* ナビのホバーエフェクト（アンダーライン） */
+        nav a::before {
+            content: '// ';
+            opacity: 0;
+            color: var(--info-neon);
+            transition: 0.3s;
+        }
+        nav a:hover::before { opacity: 1; }
+
+        /* --- ヒーローセクション --- */
+        .hero {
+            height: 550px;
+            background: 
+                linear-gradient(rgba(18,18,18,0.7), rgba(18,18,18,0.9)), 
+                url('jo.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+        /* 走査線エフェクト */
+        .hero::after {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 2px, 2px 100%;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            width: 100%;
+            padding: 0 20px;
+            z-index: 2;
+        }
+        .hero-title {
+            font-size: 4rem;
+            color: #fff;
+            margin: 0;
+            font-family: monospace;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+        }
+        /* カーソル点滅アニメーション */
+        .cursor {
+            display: inline-block;
+            width: 20px;
+            background-color: var(--info-neon);
+            animation: blink 1s infinite;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        .hero-sub {
+            font-size: 1.5rem;
+            color: var(--info-cyan);
+            margin-top: 10px;
+        }
+        .btn-code {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 30px;
+            border: 1px solid var(--info-neon);
+            color: var(--info-neon);
+            font-family: monospace;
+            font-weight: bold;
+            transition: 0.3s;
+            background: rgba(0, 255, 65, 0.1);
+        }
+        .btn-code:hover {
+            background: var(--info-neon);
+            color: #000;
+            box-shadow: 0 0 20px var(--info-neon);
+        }
+
+        /* --- コンテンツエリア --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+        .section-header {
+            margin-bottom: 50px;
+            border-left: 5px solid var(--info-cyan);
+            padding-left: 20px;
+        }
+        .section-header h2 {
+            margin: 0;
+            font-size: 2rem;
+            color: #fff;
+        }
+        .section-header span {
+            color: #666;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+
+        /* 学科カード */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .card {
+            background-color: var(--info-card);
+            border: 1px solid #333;
+            border-radius: 4px;
+            padding: 30px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, var(--info-neon), var(--info-cyan));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #555;
+        }
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--info-cyan);
+        }
+        .card h3 { margin: 0 0 15px; color: #fff; }
+        .card p { color: #aaa; font-size: 0.9rem; }
+        .card-code {
+            background: #000;
+            color: var(--info-neon);
+            padding: 10px;
+            font-size: 0.8rem;
+            margin-top: 15px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        /* 数字で見る情報学部 */
+        .stats-section {
+            background: #1a1a1a;
+            padding: 60px 0;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+        }
+        .stats-grid {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            text-align: center;
+            flex-wrap: wrap;
+        }
+        .stat-box h4 { margin: 0; color: #666; font-size: 0.9rem; }
+        .stat-box .num { font-size: 3rem; color: #fff; font-weight: bold; font-family: sans-serif; }
+        .stat-box .unit { font-size: 1rem; color: var(--info-purple); }
+
+        /* ニュース（ログ風） */
+        .news-log {
+            background: #000;
+            border: 1px solid #333;
+            padding: 20px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .log-entry {
+            margin-bottom: 10px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .log-entry:last-child { border-bottom: none; margin-bottom: 0; }
+        .log-time { color: var(--info-purple); margin-right: 15px; }
+        .log-type { 
+            color: #000; background: var(--info-neon); 
+            padding: 2px 6px; font-size: 0.75rem; margin-right: 15px; border-radius: 2px;
+        }
+        .log-msg { color: #ccc; }
+        .log-msg:hover { color: #fff; text-decoration: underline; cursor: pointer; }
+
+        /* フッター */
+        footer {
+            background-color: #000;
+            color: #666;
+            padding: 40px 0;
+            text-align: center;
+            font-size: 0.8rem;
+            border-top: 1px solid #333;
+        }
+        .footer-logo {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .header-inner { flex-direction: column; }
+            nav ul { margin-top: 15px; gap: 15px; font-size: 0.8rem; }
+            .hero-title { font-size: 2.5rem; }
+            .stats-grid { gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <h1>Misemi-ya <span>Informatics</span></h1>
+                <small>店魅偉屋大学 情報学部</small>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Academics</a></li>
+                    <li><a href="#">Laboratories</a></li>
+                    <li><a href="#">Admissions</a></li>
+                    <li><a href="#">Access</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ヒーローエリア -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2 class="hero-title">&gt; UPDATE THE WORLD<span class="cursor">_</span></h2>
+            <p class="hero-sub">「コード」で世界を書き換えろ。</p>
+            <a href="#" class="btn-code">EXECUTE_PROGRAM()</a>
+        </div>
+    </section>
+
+    <!-- 学科紹介 -->
+    <div class="container">
+        <div class="section-header">
+            <h2>DEPARTMENTS</h2>
+            <span>3つの専門領域</span>
+        </div>
+
+        <div class="grid-3">
+            <!-- コンピュータ科学科 -->
+            <div class="card">
+                <div class="card-icon">💻</div>
+                <h3>コンピュータ科学科</h3>
+                <p>Computer Science</p>
+                <div class="card-code">
+                    OS開発 / アルゴリズム /<br>
+                    セキュリティ / 量子計算
+                </div>
+                <p style="margin-top:15px;">コンピュータの原理から最新のソフトウェア工学まで。デジタル社会の基盤を作るエンジニアを育成します。</p>
+            </div>
+
+            <!-- データサイエンス学科 -->
+            <div class="card">
+                <div class="card-icon">📊</div>
+                <h3>データサイエンス学科</h3>
+                <p>Data Science</p>
+                <div class="card-code">
+                    AI・機械学習 / 統計学 /<br>
+                    ビッグデータ解析 / 金融工学
+                </div>
+                <p style="margin-top:15px;">膨大なデータから「価値」を発見する。統計とAIを駆使し、ビジネスや社会課題を解決するスペシャリストへ。</p>
+            </div>
+
+            <!-- メディア情報学科 -->
+            <div class="card">
+                <div class="card-icon">🎮</div>
+                <h3>メディア情報学科</h3>
+                <p>Digital Media</p>
+                <div class="card-code">
+                    CG・VR・AR / UI・UX /<br>
+                    ゲーム開発 / 映像・音響
+                </div>
+                <p style="margin-top:15px;">技術とアートの融合。人の心を動かすデジタルコンテンツや、次世代のインターフェースを創造します。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- スタッツ -->
+    <section class="stats-section">
+        <div class="container" style="padding: 0;">
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <h4>学生一人あたりのPC台数</h4>
+                    <span class="num">∞</span> <span class="unit">(BYOD推奨)</span>
+                </div>
+                <div class="stat-box">
+                    <h4>プログラミング言語習得数</h4>
+                    <span class="num">5</span> <span class="unit">+</span>
+                </div>
+                <div class="stat-box">
+                    <h4>Wi-Fiカバー率</h4>
+                    <span class="num">100</span> <span class="unit">%</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ニュース（システムログ風） -->
+    <div class="container">
+        <div class="section-header">
+            <h2>SYSTEM_LOG (NEWS)</h2>
+            <span>最新情報</span>
+        </div>
+        
+        <div class="news-log">
+            <div class="log-entry">
+                <span class="log-time">[2024-12-05 10:00]</span>
+                <span class="log-type">INFO</span>
+                <a href="#" class="log-msg">学生チームが「国際ハッカソン2024」で優勝しました。</a>
+            </div>
+            <div class="log-entry">
+                <span class="log-time">[2024-11-20 14:30]</span>
+                <span class="log-type">UPDATE</span>
+                <a href="#" class="log-msg">学内サーバーメンテナンスのお知らせ（12/1実施予定）</a>
+            </div>
+            <div class="log-entry">
+                <span class="log-time">[2024-11-15 09:00]</span>
+                <span class="log-type">EVENT</span>
+                <a href="#" class="log-msg">特別講演「生成AIがもたらす社会変革」のアーカイブ動画を公開</a>
+            </div>
+            <div class="log-entry">
+                <span class="log-time">[2024-10-30 11:15]</span>
+                <span class="log-type">ADMIT</span>
+                <a href="#" class="log-msg">総合型選抜（プログラミング能力重視型）の選考結果について</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- フッター -->
+    <footer>
+        <div class="footer-logo">Misemi-ya University School of Informatics</div>
+        <p>〒113-8654 東京都文京区本郷 7-3-2</p>
+        <div style="margin-top: 20px;">
+            <a href="#">Privacy Policy</a> | <a href="#">Site Map</a> | <a href="#">Contact</a>
+        </div>
+        <p style="margin-top: 30px; opacity: 0.5;">&copy; 2025 Misemi-ya University. Informatics. All Systems Operational.</p>
+    </footer>
+
+</body>
+</html>

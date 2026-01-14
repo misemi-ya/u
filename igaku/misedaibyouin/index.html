@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>店魅偉屋大学医学部附属病院</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        /* --- ここからスタイル設定（CSS） --- */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            color: #333;
+        }
+
+        /* ヘッダー全体 */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 下に薄い影をつける */
+            width: 100%;
+            position: fixed; /* ヘッダーを上に固定 */
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        /* ヘッダーの中身を整える枠 */
+        .header-content {
+            display: flex;
+            justify-content: space-between; /* ロゴとメニューを左右に離す */
+            align-items: center; /* 上下の中心を揃える */
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px 20px;
+            height: 80px; /* ヘッダーの高さを固定 */
+        }
+
+        /* ロゴエリア */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* 画像と文字の間隔 */
+            text-decoration: none; /* リンクの下線を消す */
+        }
+
+        .logo img {
+            height: 60px; /* ロゴ画像の高さ */
+            width: auto;
+        }
+
+        .logo h1 {
+            font-family: "Yu Mincho", "YuMincho", serif; /* 明朝体で権威ある雰囲気に */
+            color: #003366; /* 濃い青 */
+            font-size: 24px;
+            margin: 0;
+            line-height: 1.2;
+            white-space: nowrap; /* 勝手に改行させない */
+        }
+
+        /* ナビゲーションメニュー */
+        nav ul {
+            display: flex;
+            list-style: none; /* ・を消す */
+            margin: 0;
+            padding: 0;
+            gap: 20px; /* メニュー同士の間隔 */
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #003366; /* マウスを乗せた時の色 */
+        }
+
+        /* 職員ログインボタンのデザイン */
+        .login-btn {
+            background-color: #003366;
+            color: white !important; /* 文字色を白に強制 */
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        .login-btn:hover {
+            background-color: #002244; /* ホバー時に少し暗く */
+        }
+
+        /* メインコンテンツがヘッダーに隠れないように下げる */
+        main {
+            padding-top: 100px; 
+        }
+
+        /* --- その他のセクション用CSS（簡易版） --- */
+        .hero-section {
+            background-color: #eef2f6;
+            padding: 50px 20px;
+            text-align: center;
+        }
+        .hero-text h2 { color: #003366; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .news-section ul { list-style: none; padding: 0; }
+        .news-section li { border-bottom: 1px solid #ddd; padding: 10px 0; }
+        .department-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 20px; text-align: center; margin-top: 20px;}
+        .department-item img { width: 50px; height: 50px; margin-bottom: 10px; }
+        footer { background-color: #003366; color: white; text-align: center; padding: 20px; margin-top: 50px; }
+        footer a { color: #fff; text-decoration: none; margin: 0 10px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <!-- ロゴ部分はリンクにしてトップに戻れるように修正 -->
+            <a href="#" class="logo">
+                <img src="logo.png" alt="ロゴ">
+                <h1>店魅偉屋大学<br>医学部附属病院</h1>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#">病院概要</a></li>
+                    <li><a href="#">診療科・部門</a></li>
+                    <li><a href="#">受診案内</a></li>
+                    <li><a href="#">医療関係者の方へ</a></li>
+                    <li><a href="#">交通アクセス</a></li>
+                    <li><a href="#">お問い合わせ</a></li>
+                    <!-- クラスを追加してCSSでデザイン制御 -->
+                    <li><a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/login/index.html" class="login-btn">職員ログイン</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-text">
+                <h2>地域社会に貢献し、患者さん一人ひとりに最適な医療を提供します。</h2>
+                <p>信頼と安心の医療を、あなたに。</p>
+            </div>
+        </section>
+
+        <section class="news-section">
+            <div class="container">
+                <h2>お知らせ</h2>
+                <ul>
+                    <li><time datetime="2024-07-20">2024年7月20日</time>：内科の外来診療時間を変更しました。</li>
+                    <li><time datetime="2024-07-15">2024年7月15日</time>：【重要】年末年始休診のお知らせ。</li>
+                    <li><time datetime="2024-07-10">2024年7月10日</time>：ミセミーヤヘルスセンターが開設されました。</li>
+                </ul>
+                <div style="text-align: right; margin-top: 10px;">
+                    <a href="#" style="color: #003366; font-weight: bold;">一覧を見る &gt;</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="departments-section">
+            <div class="container">
+                <h2>主要な診療科</h2>
+                <div class="department-grid">
+                    <!-- 画像がない場合でも崩れないように仮設定しています -->
+                    <div class="department-item"><img src="icon-naika.png" alt="内科"><p>内科</p></div>
+                    <div class="department-item"><img src="icon-geka.png" alt="外科"><p>外科</p></div>
+                    <div class="department-item"><img src="icon-seikei.png" alt="整形外科"><p>整形外科</p></div>
+                    <div class="department-item"><img src="icon-shounika.png" alt="小児科"><p>小児科</p></div>
+                    <div class="department-item"><img src="icon-sanfujinka.png" alt="産婦人科"><p>産婦人科</p></div>
+                    <div class="department-item"><img src="icon-ganka.png" alt="眼科"><p>眼科</p></div>
+                    <div class="department-item"><img src="icon-jibika.png" alt="耳鼻咽喉科"><p>耳鼻咽喉科</p></div>
+                    <div class="department-item"><img src="icon-hifuka.png" alt="皮膚科"><p>皮膚科</p></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 店魅偉屋大学医学部附属病院 All Rights Reserved.</p>
+            <ul style="display: flex; justify-content: center; gap: 20px; list-style: none; padding: 0;">
+                <li><a href="#">プライバシーポリシー</a></li>
+                <li><a href="#">サイトマップ</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>店魅偉屋大学 国際学部 | Misemi-ya Univ. Faculty of International Studies</title>
+    
+    <!-- ▼ Favicon設定（地球のアイコン） ▼ -->
+    <link rel="icon" href="favicon.ico">
+    <style>
+        /* --- 配色設定：スカイブルー＆グローバル --- */
+        :root {
+            --int-blue: #0099ff;      /* スカイブルー：空と自由 */
+            --int-navy: #003366;      /* ネイビー：知性と海 */
+            --int-yellow: #ffcc00;    /* イエロー：希望と活気 */
+            --int-bg: #f0f8ff;        /* アリスブルー：薄い空色 */
+            --text-main: #333;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-main);
+            background-color: #fff;
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; padding: 0; margin: 0; }
+
+        /* --- ヘッダー --- */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .top-bar {
+            background-color: var(--int-navy);
+            color: #fff;
+            font-size: 0.8rem;
+            padding: 5px 0;
+            text-align: center;
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo h1 {
+            font-size: 1.5rem;
+            color: var(--int-navy);
+            margin: 0;
+            font-weight: 800;
+        }
+        .logo span {
+            font-size: 0.8rem;
+            color: var(--int-blue);
+            display: block;
+            letter-spacing: 1px;
+        }
+
+        nav ul { display: flex; gap: 30px; }
+        nav a {
+            font-weight: bold;
+            color: #555;
+            font-size: 0.95rem;
+            position: relative;
+        }
+        nav a::after {
+            content: '✈';
+            position: absolute;
+            top: -10px; right: -10px;
+            font-size: 0.7rem;
+            color: var(--int-blue);
+            opacity: 0;
+            transition: 0.3s;
+        }
+        nav a:hover { color: var(--int-blue); }
+        nav a:hover::after { opacity: 1; top: -5px; right: -5px; }
+
+        /* --- ヒーローセクション --- */
+        .hero {
+            height: 600px;
+            /* 空港や海外のイメージ */
+            background: linear-gradient(rgba(0, 51, 102, 0.3), rgba(0, 153, 255, 0.3)), url('ko.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+        }
+        .hero-content {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px 60px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 600px;
+        }
+        .hero-content h2 {
+            font-size: 2.5rem;
+            color: var(--int-navy);
+            margin: 0 0 15px;
+            line-height: 1.2;
+        }
+        .hero-content p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 30px;
+        }
+        .btn-main {
+            display: inline-block;
+            background-color: var(--int-blue);
+            color: #fff;
+            padding: 12px 35px;
+            border-radius: 30px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 153, 255, 0.3);
+        }
+        .btn-main:hover {
+            background-color: var(--int-navy);
+            transform: translateY(-2px);
+        }
+
+        /* --- コンテンツエリア --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--int-navy);
+            margin-bottom: 10px;
+        }
+        .section-title span {
+            color: var(--int-blue);
+            font-weight: bold;
+            display: inline-block;
+            border-bottom: 3px solid var(--int-yellow);
+            padding-bottom: 5px;
+        }
+
+        /* 学科・コース（ボーディングパス風デザイン） */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        .course-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-left: 10px solid var(--int-blue); /* チケットのミシン目イメージ */
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .course-card:hover {
+            transform: translateX(5px);
+        }
+        .card-header {
+            background-color: var(--int-bg);
+            padding: 20px;
+            border-bottom: 2px dashed #ccc; /* ミシン目 */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card-header h3 { margin: 0; color: var(--int-navy); font-size: 1.3rem; }
+        .card-icon { font-size: 2rem; }
+        .card-body {
+            padding: 20px;
+            flex: 1;
+        }
+        .card-body p { font-size: 0.9rem; color: #666; margin-bottom: 20px; }
+        .tag-list { display: flex; gap: 10px; flex-wrap: wrap; }
+        .tag {
+            background: #eee; color: #555;
+            padding: 4px 10px; font-size: 0.75rem; border-radius: 4px;
+        }
+
+        /* 留学・グローバル体験マップ */
+        .map-section {
+            background-color: var(--int-bg);
+            padding: 80px 0;
+            text-align: center;
+        }
+        .stats-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        .stat-circle {
+            width: 180px;
+            height: 180px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 5px solid var(--int-blue);
+        }
+        .stat-num { font-size: 2.5rem; font-weight: bold; color: var(--int-navy); }
+        .stat-label { font-size: 0.9rem; color: #666; }
+
+        /* ニュース（Flight Info風） */
+        .flight-board {
+            background: #333;
+            color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            font-family: monospace;
+        }
+        .flight-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #555;
+            align-items: center;
+        }
+        .flight-row:last-child { border-bottom: none; }
+        .flight-date { color: var(--int-yellow); width: 120px; }
+        .flight-dest { flex: 1; margin: 0 20px; }
+        .flight-status { 
+            color: var(--int-blue); font-weight: bold;
+            border: 1px solid var(--int-blue); padding: 2px 8px;
+        }
+        .flight-row a:hover { color: var(--int-yellow); text-decoration: underline; }
+
+        /* フッター */
+        footer {
+            background-color: var(--int-navy);
+            color: #fff;
+            padding: 50px 0;
+            margin-top: 60px;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .footer-links a { color: #ccc; margin: 0 15px; }
+
+        @media (max-width: 768px) {
+            .header-inner { flex-direction: column; }
+            nav ul { margin-top: 15px; gap: 15px; font-size: 0.8rem; }
+            .hero-content h2 { font-size: 1.8rem; }
+            .stats-wrapper { gap: 20px; }
+            .flight-row { flex-direction: column; align-items: flex-start; gap: 5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="top-bar">
+            Language: 日本語 | English | 中文 | 한국어
+        </div>
+        <div class="header-inner">
+            <div class="logo">
+                <h1>店魅偉屋大学 国際学部</h1>
+                <span>Faculty of International Studies</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">学部について</a></li>
+                    <li><a href="#">学科紹介</a></li>
+                    <li><a href="#">留学プログラム</a></li>
+                    <li><a href="#">Global Lounge</a></li>
+                    <li><a href="#">入試情報</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ヒーローエリア -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>国境を越え、<br>未来をつなぐ。</h2>
+            <p>1キャンパスに50カ国からの留学生。<br>日本にいながら、世界を生きる4年間。</p>
+            <a href="#" class="btn-main">View Programs (English)</a>
+        </div>
+    </section>
+
+    <!-- 学科紹介 -->
+    <div class="container">
+        <div class="section-title">
+            <h2>DEPARTMENTS</h2>
+            <span>3つの学びのフィールド</span>
+        </div>
+
+        <div class="course-grid">
+            <!-- 国際関係学科 -->
+            <div class="course-card">
+                <div class="card-header">
+                    <h3>国際関係学科</h3>
+                    <div class="card-icon">🇺🇳</div>
+                </div>
+                <div class="card-body">
+                    <p>政治、経済、法律の観点から国際社会の課題にアプローチ。外交官や国際機関職員、グローバル企業のリーダーを目指します。</p>
+                    <div class="tag-list">
+                        <span class="tag">国際政治</span>
+                        <span class="tag">SDGs</span>
+                        <span class="tag">国際協力</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 英語コミュニケーション学科 -->
+            <div class="course-card">
+                <div class="card-header">
+                    <h3>英語文化学科</h3>
+                    <div class="card-icon">🗣️</div>
+                </div>
+                <div class="card-body">
+                    <p>実践的な英語力と、言語の背景にある文化を深く理解します。3年次には全員必須の海外留学プログラムがあります。</p>
+                    <div class="tag-list">
+                        <span class="tag">通訳・翻訳</span>
+                        <span class="tag">異文化理解</span>
+                        <span class="tag">英語教育</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 国際観光学科 -->
+            <div class="course-card">
+                <div class="card-header">
+                    <h3>国際観光学科</h3>
+                    <div class="card-icon">✈️</div>
+                </div>
+                <div class="card-body">
+                    <p>観光をビジネスと文化の両面から学びます。インバウンド需要の創出や、持続可能な観光開発（サステナブルツーリズム）を研究します。</p>
+                    <div class="tag-list">
+                        <span class="tag">ホテル・航空</span>
+                        <span class="tag">地域創生</span>
+                        <span class="tag">ホスピタリティ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 留学・グローバル実績 -->
+    <section class="map-section">
+        <div class="container" style="padding-top: 0;">
+            <div class="section-title">
+                <h2>GLOBAL NETWORK</h2>
+                <span>世界とつながるミセミーヤ</span>
+            </div>
+            
+            <p style="max-width: 700px; margin: 0 auto;">
+                店魅偉屋大学は世界35カ国・120大学と協定を結んでいます。<br>
+                キャンパス内にある「Global Lounge」では、英語のみで過ごす時間が日常です。
+            </p>
+
+            <div class="stats-wrapper">
+                <div class="stat-circle">
+                    <span class="stat-label">協定校数</span>
+                    <span class="stat-num">120+</span>
+                </div>
+                <div class="stat-circle" style="border-color: var(--int-yellow);">
+                    <span class="stat-label">留学参加率</span>
+                    <span class="stat-num">85%</span>
+                </div>
+                <div class="stat-circle" style="border-color: #ff6b6b;">
+                    <span class="stat-label">外国人教員比率</span>
+                    <span class="stat-num">40%</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ニュース（フライトボード風） -->
+    <div class="container">
+        <div class="section-title">
+            <h2>LATEST INFO</h2>
+            <span>お知らせ</span>
+        </div>
+        
+        <div class="flight-board">
+            <div class="flight-row">
+                <span class="flight-date">2024.12.01</span>
+                <span class="flight-dest"><a href="#">2025年度 交換留学（秋派遣）の募集要項を公開しました。</a></span>
+                <span class="flight-status">NOW OPEN</span>
+            </div>
+            <div class="flight-row">
+                <span class="flight-date">2024.11.22</span>
+                <span class="flight-dest"><a href="#">【イベント】International Food Festival 開催のお知らせ</a></span>
+                <span class="flight-status">EVENT</span>
+            </div>
+            <div class="flight-row">
+                <span class="flight-date">2024.11.10</span>
+                <span class="flight-dest"><a href="#">「模擬国連 世界大会」への派遣学生が決定しました。</a></span>
+                <span class="flight-status">NEWS</span>
+            </div>
+            <div class="flight-row">
+                <span class="flight-date">2024.10.30</span>
+                <span class="flight-dest"><a href="#">総合型選抜（グローバル・リーダー型）の最終選考結果について</a></span>
+                <span class="flight-status">ADMISSION</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- フッター -->
+    <footer>
+        <div class="footer-content">
+            <h3 style="margin: 0 0 10px;">店魅偉屋大学 国際学部</h3>
+            <p style="opacity: 0.7; margin-bottom: 30px;">Misemi-ya University Faculty of International Studies</p>
+            <div class="footer-links">
+                <a href="#">Access</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Sitemap</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+            <p style="margin-top: 40px; font-size: 0.8rem;">&copy; Misemi-ya University. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

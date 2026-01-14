@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>店魅偉屋大学 国際文化学部 | Misemi-ya Univ. Faculty of International Culture</title>
+    
+    <!-- ▼ Favicon設定（文化・芸術のアイコン） ▼ -->
+    <link rel="icon" href="favicon.ico">
+
+    <style>
+        /* --- 配色設定：アート＆エスニック --- */
+        :root {
+            --cul-magenta: #c2185b;   /* ベリー：華やかさと情熱 */
+            --cul-dark: #4a1428;      /* 深いワインレッド */
+            --cul-gold: #ffb300;      /* マスタード：異国情緒 */
+            --cul-bg: #fff9f0;        /* 象牙色（アイボリー）：キャンバス */
+            --text-main: #3e2723;     /* 焦げ茶色：柔らかい文字色 */
+        }
+
+        body {
+            /* 游明朝などを使い、文学的・芸術的な雰囲気に */
+            font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-main);
+            background-color: var(--cul-bg);
+            line-height: 1.8;
+        }
+
+        /* 英語やナビはサンセリフで見やすく */
+        h1 span, nav, .btn-cul, .cat-label {
+            font-family: "Helvetica Neue", Arial, sans-serif;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; padding: 0; margin: 0; }
+
+        /* --- ヘッダー --- */
+        header {
+            background-color: #fff;
+            border-top: 5px solid var(--cul-magenta);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo h1 {
+            font-size: 1.5rem;
+            color: var(--cul-magenta);
+            margin: 0;
+        }
+        .logo span {
+            font-size: 0.8rem;
+            color: var(--text-main);
+            display: block;
+            letter-spacing: 0.05em;
+            margin-top: 5px;
+        }
+
+        nav ul { display: flex; gap: 30px; }
+        nav a {
+            font-size: 0.9rem;
+            color: #555;
+            font-weight: 500;
+        }
+        nav a:hover {
+            color: var(--cul-magenta);
+            border-bottom: 1px solid var(--cul-magenta);
+        }
+
+        /* --- ヒーローセクション --- */
+        .hero {
+            height: 580px;
+            /* 民族衣装やアートのコラージュ的イメージ */
+            background: linear-gradient(rgba(74, 20, 40, 0.4), rgba(194, 24, 91, 0.2)), url('koku.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        /* 幾何学模様の装飾枠 */
+        .hero-box {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 50px 70px;
+            text-align: center;
+            border: 1px solid var(--cul-gold);
+            outline: 5px solid rgba(255, 255, 255, 0.5);
+            max-width: 650px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        .hero-box h2 {
+            font-size: 2.8rem;
+            color: var(--cul-magenta);
+            margin: 0 0 20px;
+            font-feature-settings: "palt";
+        }
+        .hero-box p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 2;
+        }
+        .btn-cul {
+            display: inline-block;
+            background-color: var(--cul-magenta);
+            color: #fff;
+            padding: 12px 35px;
+            border-radius: 2px; /* 角を少しだけ丸く */
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+        .btn-cul:hover {
+            background-color: var(--cul-dark);
+        }
+
+        /* --- コンテンツエリア --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-header h2 {
+            font-size: 2rem;
+            color: var(--cul-dark);
+            margin-bottom: 15px;
+        }
+        .section-header span {
+            display: inline-block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--cul-gold);
+        }
+
+        /* 学科カード（アートギャラリー風） */
+        .dept-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .dept-card {
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            position: relative;
+            top: 0;
+        }
+        .dept-card:hover {
+            top: -10px;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+        }
+        .dept-img {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        .dept-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+        .dept-card:hover .dept-img img { transform: scale(1.1); }
+        
+        .dept-body { padding: 25px; text-align: center; }
+        .dept-body h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--cul-magenta);
+        }
+        .dept-body p {
+            font-size: 0.9rem;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        .dept-keywords {
+            font-size: 0.8rem;
+            color: #888;
+            font-family: sans-serif;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+
+        /* 学内ミュージアム特集 */
+        .museum-section {
+            background-color: var(--cul-dark);
+            color: #fff;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        /* 背景にうっすら模様 */
+        .museum-section::before {
+            content: '';
+            position: absolute;
+            top:0; left:0; width:100%; height:100%;
+            background-image: radial-gradient(#6d213c 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.3;
+        }
+        .museum-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        .museum-text { flex: 1; }
+        .museum-text h3 {
+            font-size: 2.2rem;
+            color: var(--cul-gold);
+            margin-bottom: 20px;
+            font-family: serif;
+        }
+        .museum-img {
+            flex: 1;
+        }
+        .museum-img img {
+            width: 100%;
+            border: 10px solid rgba(255,255,255,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* ニュースリスト */
+        .news-list {
+            margin-top: 40px;
+        }
+        .news-item {
+            display: flex;
+            align-items: baseline;
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .news-date {
+            width: 100px;
+            font-family: sans-serif;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        .cat-label {
+            background-color: var(--cul-magenta);
+            color: #fff;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            margin-right: 15px;
+            border-radius: 2px;
+        }
+        .news-title:hover {
+            color: var(--cul-magenta);
+            text-decoration: underline;
+        }
+
+        /* フッター */
+        footer {
+            background-color: #3e2723;
+            color: #d7ccc8;
+            padding: 50px 0;
+            text-align: center;
+            font-family: sans-serif;
+        }
+        .footer-logo { font-size: 1.3rem; color: #fff; margin-bottom: 15px; }
+
+        @media (max-width: 768px) {
+            .header-inner { flex-direction: column; }
+            nav ul { margin-top: 15px; gap: 15px; font-size: 0.85rem; }
+            .dept-grid { grid-template-columns: 1fr; }
+            .museum-container { flex-direction: column; }
+            .hero-box { padding: 30px; width: 85%; }
+            .hero-box h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ヘッダー -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <h1>店魅偉屋大学 国際文化学部</h1>
+                <span>Misemi-ya University Faculty of International Culture</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">学部について</a></li>
+                    <li><a href="#">学科紹介</a></li>
+                    <li><a href="#">留学・言語</a></li>
+                    <li><a href="#">民族学博物館</a></li>
+                    <li><a href="#">入試情報</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ヒーローエリア -->
+    <section class="hero">
+        <div class="hero-box">
+            <h2>世界は、<br>モザイクでできている。</h2>
+            <p>
+                言葉、芸術、信仰、暮らし。<br>
+                多様な色彩が織りなす「文化」を読み解き、<br>
+                心の国境を越える感性を磨く。
+            </p>
+            <a href="#" class="btn-cul">学部の学びを見る</a>
+        </div>
+    </section>
+
+    <!-- 学科紹介 -->
+    <div class="container">
+        <div class="section-header">
+            <h2>DEPARTMENTS</h2>
+            <span></span>
+            <p style="margin-top: 20px; font-family: sans-serif; font-size: 0.9rem; color: #666;">文化を多角的に捉える3つのアプローチ</p>
+        </div>
+
+        <div class="dept-grid">
+            <!-- 異文化コミュニケーション学科 -->
+            <div class="dept-card">
+                <div class="dept-img">
+                    <img src="https://placehold.co/400x300/c2185b/ffffff?text=Communication" alt="コミュニケーション">
+                </div>
+                <div class="dept-body">
+                    <h3>異文化<br>コミュニケーション学科</h3>
+                    <p>言語学、心理学、非言語コミュニケーション。言葉の壁だけでなく、価値観の違いを乗り越え、対話する力を養います。</p>
+                    <div class="dept-keywords">#多言語 #通訳翻訳 #心理学</div>
+                </div>
+            </div>
+
+            <!-- 比較文化学科 -->
+            <div class="dept-card">
+                <div class="dept-img">
+                    <img src="https://placehold.co/400x300/ffb300/ffffff?text=Comparative+Culture" alt="比較文化">
+                </div>
+                <div class="dept-body">
+                    <h3>比較文化学科</h3>
+                    <p>日本と世界、東洋と西洋。文学、映画、サブカルチャーなどを比較し、自文化と他文化の特質を浮き彫りにします。</p>
+                    <div class="dept-keywords">#映画 #アニメ #文学 #宗教</div>
+                </div>
+            </div>
+
+            <!-- 地域文化研究学科 -->
+            <div class="dept-card">
+                <div class="dept-img">
+                    <img src="https://placehold.co/400x300/4a1428/ffffff?text=Area+Studies" alt="地域文化研究">
+                </div>
+                <div class="dept-body">
+                    <h3>地域文化研究学科</h3>
+                    <p>アジア、ヨーロッパ、アメリカ。特定の地域に深く入り込み、その土地の歴史、衣食住、民族性を徹底的に探究します。</p>
+                    <div class="dept-keywords">#エスニック #フィールドワーク #歴史</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 学内博物館特集 -->
+    <section class="museum-section">
+        <div class="museum-container">
+            <div class="museum-text">
+                <p style="letter-spacing: 2px; opacity: 0.8; font-family: sans-serif;">ON CAMPUS MUSEUM</p>
+                <h3>店魅偉屋 民族学博物館<br><span style="font-size: 1.5rem;">Misemi-ya Museum of Ethnology</span></h3>
+                <p>
+                    キャンパス内には、世界各地から収集された約5万点の生活用具や仮面、民族衣装を収蔵する博物館があります。
+                </p>
+                <p>
+                    学生はここで、実物の資料に触れながら「モノ」が語る文化の物語を学びます。学芸員資格（キュレーター）の取得課程も充実しています。
+                </p>
+                <br>
+                <a href="#" style="color: var(--cul-gold); border-bottom: 1px solid var(--cul-gold);">博物館の展示を見る &rarr;</a>
+            </div>
+            <div class="museum-img">
+                <img src="https://placehold.co/600x400/3e2723/ffb300?text=Museum+Artifacts" alt="民族学博物館">
+            </div>
+        </div>
+    </section>
+
+    <!-- ニュース -->
+    <div class="container">
+        <div class="section-header">
+            <h2>NEWS & TOPICS</h2>
+            <span></span>
+        </div>
+        <div class="news-list">
+            <div class="news-item">
+                <span class="news-date">2024.12.04</span>
+                <span class="cat-label">イベント</span>
+                <a href="#" class="news-title">学内博物館 企画展「世界の仮面と祭り」開催中（〜1/31）</a>
+            </div>
+            <div class="news-item">
+                <span class="news-date">2024.11.20</span>
+                <span class="cat-label">留学</span>
+                <a href="#" class="news-title">イタリア・フィレンツェ芸術研修の参加者募集について</a>
+            </div>
+            <div class="news-item">
+                <span class="news-date">2024.11.12</span>
+                <span class="cat-label">学生活動</span>
+                <a href="#" class="news-title">比較文化学科の学生制作映画が「学生インディーズ映画祭」に入選しました。</a>
+            </div>
+            <div class="news-item">
+                <span class="news-date">2024.10.28</span>
+                <span class="cat-label">入試</span>
+                <a href="#" class="news-title">総合型選抜（多文化共生・プレゼン型）の合格発表</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- フッター -->
+    <footer>
+        <div class="footer-logo">店魅偉屋大学 国際文化学部</div>
+        <p>Misemi-ya University Faculty of International Culture</p>
+        <p>〒113-8654 東京都文京区本郷 7-3-2</p>
+        <div style="margin-top: 30px; font-size: 0.8rem; color: #a1887f;">
+            <a href="#" style="margin: 0 10px;">サイトポリシー</a> | 
+            <a href="#" style="margin: 0 10px;">お問い合わせ</a> | 
+            <a href="#" style="margin: 0 10px;">アクセス</a>
+        </div>
+        <p style="margin-top: 40px; opacity: 0.5; font-size: 0.8rem;">&copy; Misemi-ya University. International Culture.</p>
+    </footer>
+
+</body>
+</html>

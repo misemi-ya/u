@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>店魅偉屋大学 工学部 | Misemi-ya Univ. Engineering</title>
+    
+    <!-- ▼ Favicon設定（工学部らしい歯車アイコンを埋め込んでいます） ▼ -->
+    <link rel="icon" href="favicon.ico">
+    
+    <style>
+        /* --- 基本設定 --- */
+        :root {
+            --eng-blue: #0044cc;     /* 知的な青 */
+            --eng-dark: #0a192f;     /* 深海のような濃紺 */
+            --eng-cyan: #00d4ff;     /* 未来的なシアン */
+            --text-color: #333;
+            --bg-gray: #f0f2f5;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: var(--bg-gray);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; padding: 0; margin: 0; }
+
+        /* --- ヘッダー --- */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            color: var(--eng-dark);
+            font-weight: 800;
+            line-height: 1.2;
+        }
+        .logo span {
+            font-size: 0.85rem;
+            color: var(--eng-blue);
+            font-weight: bold;
+            display: block;
+            letter-spacing: 0.05em;
+        }
+        
+        /* ナビゲーション */
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+        nav a {
+            font-weight: 600;
+            color: var(--eng-dark);
+            font-size: 0.95rem;
+            position: relative;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--eng-blue);
+            transition: width 0.3s;
+        }
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* --- ヒーローセクション（トップ画像） --- */
+        .hero {
+            background: linear-gradient(135deg, rgba(10, 25, 47, 0.9), rgba(0, 68, 204, 0.8)), 
+                        url('kougaku.png');
+            background-size: cover;
+            background-position: center;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        /* 背景の装飾（回路図っぽいライン） */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+        }
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+            color: var(--eng-cyan);
+        }
+        .btn-cta {
+            background-color: var(--eng-cyan);
+            color: var(--eng-dark);
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+        }
+        .btn-cta:hover {
+            background-color: #fff;
+            transform: scale(1.05);
+        }
+
+        /* --- メインコンテンツ --- */
+        .container {
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: var(--eng-dark);
+            margin-bottom: 10px;
+        }
+        .section-header p {
+            color: #666;
+        }
+
+        /* 学科紹介カード */
+        .grid-departments {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            border-top: 5px solid var(--eng-blue);
+        }
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        .card-img {
+            height: 180px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .card-body {
+            padding: 25px;
+        }
+        .card-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--eng-dark);
+        }
+        .card-text {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .card-link {
+            color: var(--eng-blue);
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        /* ニュースエリア */
+        .news-section {
+            background-color: #fff;
+            padding: 60px 0;
+            margin-top: 80px;
+        }
+        .news-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .news-item {
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+            display: flex;
+            align-items: baseline;
+        }
+        .news-date {
+            width: 120px;
+            color: #888;
+            font-size: 0.9rem;
+            font-family: monospace;
+        }
+        .news-cat {
+            background-color: var(--eng-dark);
+            color: #fff;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-right: 15px;
+        }
+
+        /* フッター */
+        footer {
+            background-color: var(--eng-dark);
+            color: #fff;
+            padding: 50px 0;
+            margin-top: auto;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .footer-logo h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        .footer-logo p {
+            color: #8892b0;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+        .footer-links {
+            text-align: right;
+        }
+        .footer-links a {
+            color: #ccc;
+            margin-left: 20px;
+            font-size: 0.9rem;
+        }
+        .copyright {
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 40px;
+            padding-top: 20px;
+            color: #555;
+            font-size: 0.8rem;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .header-container { flex-direction: column; }
+            nav ul { margin-top: 15px; gap: 15px; font-size: 0.9rem; }
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+            .footer-links { text-align: center; margin-top: 20px; }
+            .footer-links a { margin: 0 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ヘッダー -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1>店魅偉屋大学 工学部</h1>
+                <span>Misemi-ya University Faculty of Engineering</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">大学概要</a></li>
+                    <li><a href="#">学科・研究</a></li>
+                    <li><a href="#">入試情報</a></li>
+                    <li><a href="#">産学連携</a></li>
+                    <li><a href="#">アクセス</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ヒーローエリア -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2 class="hero-title">「ミセミーヤ」から、<br>世界を変える技術を。</h2>
+            <p class="hero-subtitle">Innovation starts at Misemi-ya.</p>
+            <a href="#" class="btn-cta">WEBオープンキャンパス</a>
+        </div>
+    </section>
+
+    <!-- 学科紹介エリア -->
+    <div class="container">
+        <div class="section-header">
+            <h2>DEPARTMENTS</h2>
+            <p>未来を創造する5つの学科</p>
+        </div>
+
+        <div class="grid-departments">
+            <!-- 情報工学科 -->
+            <div class="card">
+                <div class="card-img" style="background: #e3f2fd; color: #0d47a1;">AI & DATA</div>
+                <div class="card-body">
+                    <h3 class="card-title">情報システム工学科</h3>
+                    <p class="card-text">AI、ビッグデータ、セキュリティ。最先端のIT技術でデジタル社会のインフラを構築するエンジニアを育てます。</p>
+                    <a href="#" class="card-link">詳細を見る &rarr;</a>
+                </div>
+            </div>
+
+            <!-- 機械工学科 -->
+            <div class="card">
+                <div class="card-img" style="background: #ffebee; color: #b71c1c;">ROBOTICS</div>
+                <div class="card-body">
+                    <h3 class="card-title">機械知能工学科</h3>
+                    <p class="card-text">次世代モビリティから宇宙開発まで。「動くもの」のすべてを創造し、ロボティクスで未来を切り拓きます。</p>
+                    <a href="#" class="card-link">詳細を見る &rarr;</a>
+                </div>
+            </div>
+
+            <!-- 建築学科 -->
+            <div class="card">
+                <div class="card-img" style="background: #e8f5e9; color: #1b5e20;">ARCHITECTURE</div>
+                <div class="card-body">
+                    <h3 class="card-title">都市環境建築学科</h3>
+                    <p class="card-text">持続可能な都市デザインと、人と環境に優しい建築設計。工学的知見に基づいた美しい空間をデザインします。</p>
+                    <a href="#" class="card-link">詳細を見る &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ニュースエリア -->
+    <section class="news-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>NEWS & TOPICS</h2>
+                <p>店魅偉屋大学工学部からのお知らせ</p>
+            </div>
+            
+            <div class="news-list">
+                <div class="news-item">
+                    <span class="news-date">2024.10.15</span>
+                    <span class="news-cat">入試</span>
+                    <a href="#">令和7年度 総合型選抜（ミセミーヤ方式）の出願受付を開始しました。</a>
+                </div>
+                <div class="news-item">
+                    <span class="news-date">2024.10.01</span>
+                    <span class="news-cat">研究</span>
+                    <a href="#">機械知能工学科のチームが「全日本ロボットコンテスト」で優勝しました。</a>
+                </div>
+                <div class="news-item">
+                    <span class="news-date">2024.09.20</span>
+                    <span class="news-cat">イベント</span>
+                    <a href="#">秋のオープンキャンパス「Touch the Future」開催決定！</a>
+                </div>
+                <div class="news-item">
+                    <span class="news-date">2024.09.10</span>
+                    <span class="news-cat">プレス</span>
+                    <a href="#">【Misemi-ya Tech Lab】次世代半導体素材の開発に成功しました。</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h2>店魅偉屋大学 工学部</h2>
+                <p>Misemi-ya University Faculty of Engineering</p>
+                <p style="margin-top: 20px; font-size: 0.9rem;">
+                    〒113-8654<br>
+                    東京都文京区本郷 7-3-2<br>
+                    MAIL: f.k.misemi-ya@mail.com
+                </p>
+            </div>
+            <div class="footer-links">
+                <a href="#">お問い合わせ</a>
+                <a href="#">サイトマップ</a>
+                <a href="#">プライバシーポリシー</a>
+                <a href="#">教員公募</a>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; Misemi-ya University Faculty of Engineering. All Rights Reserved.
+        </div>
+    </footer>
+
+</body>
+</html>

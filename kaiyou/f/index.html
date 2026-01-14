@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>店魅偉屋大学 海洋学部 | Misemi-ya Univ. Faculty of Marine Science</title>
+    
+    <!-- ▼ Favicon設定（波のアイコン） ▼ -->
+    <link rel="icon" href="favicon.ico">
+
+    <style>
+        /* --- 配色設定：海と探究 --- */
+        :root {
+            --sea-deep: #001e3c;      /* 深海のような濃紺 */
+            --sea-main: #006994;      /* 鮮やかなオーシャンブルー */
+            --sea-aqua: #4dd0e1;      /* 浅瀬や泡のシアン */
+            --sea-sand: #f5f5f5;      /* 砂浜のようなオフホワイト */
+            --text-color: #333;
+        }
+
+        body {
+            font-family: "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: var(--sea-sand);
+            line-height: 1.7;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; padding: 0; margin: 0; }
+
+        /* --- ヘッダー --- */
+        header {
+            background-color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 30, 60, 0.1);
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo h1 {
+            font-size: 1.5rem;
+            color: var(--sea-deep);
+            margin: 0;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+        }
+        .logo span {
+            font-size: 0.8rem;
+            color: var(--sea-main);
+            display: block;
+        }
+
+        nav ul { display: flex; gap: 30px; }
+        nav a {
+            font-weight: bold;
+            color: var(--sea-deep);
+            position: relative;
+        }
+        nav a:hover { color: var(--sea-main); }
+        /* 波線のアニメーション */
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; left: 0; width: 0; height: 3px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 5"><path d="M0,5 Q5,0 10,5 T20,5" fill="none" stroke="%23006994" stroke-width="2"/></svg>');
+            background-size: 10px 5px;
+            transition: width 0.3s;
+        }
+        nav a:hover::after { width: 100%; }
+
+        /* --- ヒーローセクション --- */
+        .hero {
+            height: 600px;
+            background: linear-gradient(to bottom, rgba(0,30,60,0.3), rgba(0,30,60,0.8)), url('kai.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        /* 泡のエフェクト（簡易アニメーション） */
+        .bubble {
+            position: absolute;
+            bottom: -20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            animation: rise 8s infinite ease-in;
+        }
+        @keyframes rise {
+            0% { bottom: -20px; transform: translateX(0); opacity: 0; }
+            50% { opacity: 1; }
+            100% { bottom: 600px; transform: translateX(20px); opacity: 0; }
+        }
+
+        .hero-content { z-index: 2; padding: 20px; }
+        .hero-content h2 {
+            font-size: 3.5rem;
+            font-family: serif;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 30px;
+        }
+        .btn-ocean {
+            background: transparent;
+            border: 2px solid #fff;
+            color: #fff;
+            padding: 12px 40px;
+            font-size: 1rem;
+            border-radius: 50px;
+            font-weight: bold;
+        }
+        .btn-ocean:hover {
+            background: #fff;
+            color: var(--sea-deep);
+        }
+
+        /* --- 波の区切り線 --- */
+        .wave-divider {
+            width: 100%;
+            height: 50px;
+            background-color: #fff;
+            /* SVGの波形 */
+            mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%23ffffff"/></svg>');
+            mask-size: cover;
+            -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%23ffffff"/></svg>');
+            -webkit-mask-size: cover;
+            margin-top: -50px;
+            position: relative;
+            z-index: 5;
+        }
+
+        /* --- コンテンツエリア --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--sea-deep);
+        }
+        .section-title h2 { font-size: 2rem; margin-bottom: 10px; }
+        .section-title span { color: var(--sea-main); font-weight: bold; letter-spacing: 2px; }
+
+        /* 学科カード */
+        .dept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .dept-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 30, 60, 0.05);
+            transition: transform 0.3s;
+            border-top: 5px solid var(--sea-main);
+        }
+        .dept-card:hover { transform: translateY(-10px); }
+        .dept-img {
+            height: 180px;
+            background-color: var(--sea-aqua);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #fff;
+        }
+        .dept-body { padding: 25px; }
+        .dept-body h3 { margin: 0 0 15px; color: var(--sea-deep); }
+        .dept-body p { color: #666; font-size: 0.9rem; line-height: 1.6; }
+
+        /* 練習船セクション */
+        .ship-section {
+            background-color: var(--sea-deep);
+            color: #fff;
+            padding: 80px 0;
+            position: relative;
+        }
+        .ship-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        .ship-img {
+            flex: 1;
+        }
+        .ship-img img {
+            width: 100%;
+            border-radius: 8px;
+            border: 5px solid rgba(255,255,255,0.1);
+        }
+        .ship-info { flex: 1; }
+        .ship-info h3 { font-size: 2rem; margin-bottom: 20px; color: var(--sea-aqua); }
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+        .spec-table td { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.2); }
+        .spec-table td:first-child { color: var(--sea-aqua); width: 100px; }
+
+        /* ニュース */
+        .news-list { max-width: 800px; margin: 0 auto; }
+        .news-item {
+            padding: 20px 0;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+        }
+        .news-date { color: var(--sea-main); font-weight: bold; width: 120px; }
+        .news-tag {
+            background-color: var(--sea-deep); color: #fff;
+            font-size: 0.7rem; padding: 3px 8px; border-radius: 4px;
+            margin-right: 15px;
+        }
+        .news-link:hover { color: var(--sea-main); text-decoration: underline; }
+
+        /* フッター */
+        footer {
+            background-color: #0a1520; /* 深海のような黒に近い青 */
+            color: #ccc;
+            padding: 50px 0;
+            text-align: center;
+        }
+        .footer-logo { font-size: 1.3rem; color: #fff; margin-bottom: 15px; }
+
+        @media (max-width: 768px) {
+            .hero-content h2 { font-size: 2.2rem; }
+            .ship-container { flex-direction: column; }
+            .header-inner { flex-direction: column; }
+            nav ul { margin-top: 15px; gap: 15px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <h1>店魅偉屋大学 海洋学部</h1>
+                <span>Misemi-ya University Faculty of Marine Science</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">学部案内</a></li>
+                    <li><a href="#">学科紹介</a></li>
+                    <li><a href="#">練習船</a></li>
+                    <li><a href="#">海洋研究所</a></li>
+                    <li><a href="#">入試情報</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ヒーローエリア -->
+    <section class="hero">
+        <!-- 泡アニメーション用の要素 -->
+        <div class="bubble" style="left: 10%; width: 20px; height: 20px; animation-duration: 7s;"></div>
+        <div class="bubble" style="left: 30%; width: 10px; height: 10px; animation-duration: 9s;"></div>
+        <div class="bubble" style="left: 70%; width: 30px; height: 30px; animation-duration: 6s;"></div>
+        <div class="bubble" style="left: 80%; width: 15px; height: 15px; animation-duration: 8s;"></div>
+
+        <div class="hero-content">
+            <h2>母なる海を、科学する。</h2>
+            <p>From the Deep Sea to the Future.</p>
+            <a href="#" class="btn-ocean">学部紹介ムービー</a>
+        </div>
+    </section>
+    
+    <!-- 波の装飾（白背景へのつなぎ） -->
+    <div class="wave-divider"></div>
+
+    <!-- 学科紹介 -->
+    <div class="container">
+        <div class="section-title">
+            <h2>DEPARTMENTS</h2>
+            <span>3つの学科</span>
+        </div>
+
+        <div class="dept-grid">
+            <!-- 海洋生物学科 -->
+            <div class="dept-card">
+                <div class="dept-img" style="background: #00acc1;">🐬</div>
+                <div class="dept-body">
+                    <h3>海洋生物学科</h3>
+                    <p>サンゴ礁から深海魚、鯨類まで。海洋生物の生態や進化を解明し、水産資源の保護や新しいバイオテクノロジーへの応用を学びます。</p>
+                </div>
+            </div>
+
+            <!-- 海洋環境学科 -->
+            <div class="dept-card">
+                <div class="dept-img" style="background: #039be5;">🌏</div>
+                <div class="dept-body">
+                    <h3>海洋環境学科</h3>
+                    <p>海洋物理学や化学の視点から、気候変動、海洋汚染、海底資源を探究。地球規模の環境問題を解決するエキスパートを育てます。</p>
+                </div>
+            </div>
+
+            <!-- 航海工学科 -->
+            <div class="dept-card">
+                <div class="dept-img" style="background: #001e3c;">🚢</div>
+                <div class="dept-body">
+                    <h3>航海工学科</h3>
+                    <p>大型船舶の運航技術、ロジスティクス、海上安全工学を修得。一級海技士（航海）の資格取得を目指し、世界の海を結ぶ船長を育成します。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 練習船紹介（海洋学部の目玉） -->
+    <section class="ship-section">
+        <div class="ship-container">
+            <div class="ship-info">
+                <span>Research Vessel</span>
+                <h3>海洋調査研修船<br>「深海ミセミーヤ丸」</h3>
+                <p>最新鋭の観測機器を搭載した本学部専用の練習船。1年次からの体験航海や、3年次の長期遠洋航海実習を通じて、実践的な海洋調査能力を養います。</p>
+                <table class="spec-table">
+                    <tr>
+                        <td>総トン数</td>
+                        <td>2,500トン</td>
+                    </tr>
+                    <tr>
+                        <td>全長</td>
+                        <td>95.0メートル</td>
+                    </tr>
+                    <tr>
+                        <td>定員</td>
+                        <td>120名（実習生含む）</td>
+                    </tr>
+                    <tr>
+                        <td>主要設備</td>
+                        <td>マルチビーム測深機、ROV（無人探査機）</td>
+                    </tr>
+                </table>
+                <br>
+                <a href="#" style="color: var(--sea-aqua); border-bottom: 1px solid var(--sea-aqua);">航海日誌（ブログ）を見る &rarr;</a>
+            </div>
+            <div class="ship-img">
+                <img src="https://placehold.co/600x400/003366/ffffff?text=RV+MISEMI-YA+MARU" alt="深海ミセミーヤ丸">
+            </div>
+        </div>
+    </section>
+
+    <!-- ニュース -->
+    <div class="container">
+        <div class="section-title">
+            <h2>NEWS & TOPICS</h2>
+        </div>
+        <div class="news-list">
+            <div class="news-item">
+                <span class="news-date">2024.12.01</span>
+                <span class="news-tag">研究</span>
+                <a href="#" class="news-link">【プレスリリース】日本海溝の超深海にて新種のヨコエビを発見しました。</a>
+            </div>
+            <div class="news-item">
+                <span class="news-date">2024.11.15</span>
+                <span class="news-tag">航海</span>
+                <a href="#" class="news-link">練習船「深海ミセミーヤ丸」が40日間の遠洋航海実習から帰港しました。</a>
+            </div>
+            <div class="news-item">
+                <span class="news-date">2024.11.05</span>
+                <span class="news-tag">イベント</span>
+                <a href="#" class="news-link">「海のおもしろ実験教室」開催のお知らせ（対象：高校生）</a>
+            </div>
+            <div class="news-item">
+                <span class="news-date">2024.10.20</span>
+                <span class="news-tag">入試</span>
+                <a href="#" class="news-link">総合型選抜（海洋リーダー育成枠）の出願受付を開始します。</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- フッター -->
+    <footer>
+        <div class="footer-logo">店魅偉屋大学 海洋学部</div>
+        <p>Misemi-ya University Faculty of Marine Science</p>
+        <p>〒113-8654 東京都文京区本郷 7-3-2</p>
+        <div style="margin-top: 20px;">
+            <a href="#" style="color: #888; margin: 0 10px;">お問い合わせ</a>
+            <a href="#" style="color: #888; margin: 0 10px;">サイトマップ</a>
+            <a href="#" style="color: #888; margin: 0 10px;">プライバシーポリシー</a>
+        </div>
+        <p style="margin-top: 40px; font-size: 0.8rem; opacity: 0.6;">&copy; Misemi-ya University. Marine Science. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

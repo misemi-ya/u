@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>店魅偉屋大学 経営学部 | Misemi-ya Univ. Faculty of Business Administration</title>
+    
+    <!-- ▼ Favicon設定（戦略の象徴・チェスの駒） ▼ -->
+    <link rel="icon" href="favicon.ico">
+
+    <style>
+        /* --- 配色設定：ビジネス・ストラテジー --- */
+        :root {
+            --biz-navy: #0f172a;      /* ミッドナイトネイビー：深い知性 */
+            --biz-blue: #1e40af;      /* ロイヤルブルー：信頼と行動 */
+            --biz-gold: #fbbf24;      /* アクセントゴールド：成功 */
+            --biz-gray: #f1f5f9;      /* クールグレーの背景 */
+            --text-main: #334155;     /* スレートグレーの文字 */
+        }
+
+        body {
+            font-family: "Helvetica Neue", "Arial", "Hiragino Kaku Gothic ProN", sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-main);
+            background-color: #fff;
+            line-height: 1.6;
+        }
+
+        /* ビジネスライクなサンセリフ体 */
+        h1, h2, h3, nav {
+            font-family: "Roboto", "Segoe UI", sans-serif;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; padding: 0; margin: 0; }
+
+        /* --- ヘッダー --- */
+        header {
+            background-color: #fff;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo h1 {
+            font-size: 1.4rem;
+            color: var(--biz-navy);
+            margin: 0;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+        .logo span {
+            font-size: 0.8rem;
+            color: var(--biz-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+        }
+
+        nav ul { display: flex; gap: 30px; }
+        nav a {
+            font-size: 0.9rem;
+            color: var(--text-main);
+            font-weight: 600;
+            position: relative;
+        }
+        nav a:hover { color: var(--biz-blue); }
+        .btn-entry {
+            background-color: var(--biz-navy);
+            color: #fff !important;
+            padding: 8px 20px;
+            border-radius: 2px;
+            font-size: 0.85rem;
+        }
+        .btn-entry:hover { background-color: var(--biz-blue); }
+
+        /* --- ヒーローセクション --- */
+        .hero {
+            height: 600px;
+            /* オフィス街や会議のイメージ */
+            background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.4)), url('kei.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .hero-content {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 30px;
+            color: #fff;
+        }
+        .hero-tag {
+            background: var(--biz-gold);
+            color: var(--biz-navy);
+            padding: 5px 15px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin: 0 0 20px;
+        }
+        .hero-desc {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        .btn-hero {
+            border: 1px solid #fff;
+            color: #fff;
+            padding: 12px 30px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn-hero:hover {
+            background: #fff;
+            color: var(--biz-navy);
+        }
+
+        /* --- コンテンツエリア --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+        .section-header {
+            margin-bottom: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 2px solid var(--biz-gray);
+            padding-bottom: 20px;
+        }
+        .section-header h2 {
+            font-size: 2rem;
+            color: var(--biz-navy);
+            margin: 0;
+        }
+        .section-header p {
+            margin: 0;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        /* 3つの学科（カードデザイン） */
+        .dept-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .dept-card {
+            background: var(--biz-gray);
+            padding: 40px 30px;
+            transition: 0.3s;
+            border-top: 4px solid transparent;
+        }
+        .dept-card:hover {
+            background: #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-top-color: var(--biz-blue);
+            transform: translateY(-5px);
+        }
+        .dept-icon {
+            font-size: 2.5rem;
+            color: var(--biz-blue);
+            margin-bottom: 20px;
+            display: block;
+        }
+        .dept-card h3 {
+            font-size: 1.4rem;
+            margin: 0 0 15px;
+            color: var(--biz-navy);
+        }
+        .dept-card p {
+            font-size: 0.95rem;
+            color: #64748b;
+            margin-bottom: 25px;
+        }
+        .dept-link {
+            color: var(--biz-navy);
+            font-weight: bold;
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--biz-navy);
+        }
+
+        /* 特集：ビジネスリーダー育成プログラム */
+        .program-section {
+            background-color: var(--biz-navy);
+            color: #fff;
+            padding: 80px 0;
+        }
+        .program-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 60px;
+            align-items: center;
+        }
+        .program-content { flex: 1; }
+        .program-content h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--biz-gold);
+        }
+        .program-img { flex: 1; }
+        .program-img img {
+            width: 100%;
+            border-radius: 4px;
+            box-shadow: -20px 20px 0 rgba(255,255,255,0.1);
+        }
+        .check-list li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .check-list li::before {
+            content: '✓';
+            color: var(--biz-gold);
+            position: absolute;
+            left: 0;
+        }
+
+        /* ニュース（リスト形式） */
+        .news-list { display: grid; gap: 20px; }
+        .news-item {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            transition: 0.3s;
+        }
+        .news-item:hover {
+            border-color: var(--biz-blue);
+            border-left: 5px solid var(--biz-blue);
+        }
+        .news-date {
+            color: #94a3b8;
+            font-weight: bold;
+            width: 100px;
+            flex-shrink: 0;
+        }
+        .news-cat {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            background: var(--biz-gray);
+            color: var(--biz-navy);
+            margin-right: 20px;
+            border-radius: 2px;
+            text-transform: uppercase;
+        }
+        .news-title { font-weight: 500; }
+
+        /* フッター */
+        footer {
+            background-color: #f8fafc;
+            color: var(--text-main);
+            padding: 60px 0;
+            border-top: 1px solid #e2e8f0;
+        }
+        .footer-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+        }
+        .footer-logo { font-weight: 800; font-size: 1.2rem; margin-bottom: 10px; color: var(--biz-navy); }
+        .footer-col h4 { margin-bottom: 20px; color: var(--biz-navy); }
+        .footer-col ul li { margin-bottom: 10px; color: #64748b; font-size: 0.9rem; }
+        .footer-col ul li a:hover { color: var(--biz-blue); }
+
+        @media (max-width: 768px) {
+            .header-inner { flex-direction: column; }
+            nav ul { margin-top: 15px; gap: 15px; font-size: 0.85rem; }
+            .hero-title { font-size: 2.5rem; }
+            .dept-grid { grid-template-columns: 1fr; }
+            .program-container { flex-direction: column; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ヘッダー -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <h1>店魅偉屋大学 経営学部</h1>
+                <span>Faculty of Business Administration</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">学部案内</a></li>
+                    <li><a href="#">学科紹介</a></li>
+                    <li><a href="#">カリキュラム</a></li>
+                    <li><a href="#">キャリア支援</a></li>
+                    <li><a href="#" class="btn-entry">資料請求</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ヒーローエリア -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-tag">NEXT LEADERS</span>
+            <h2 class="hero-title">理論を、<br>戦略に変える。</h2>
+            <p class="hero-desc">
+                変化の激しいビジネスシーンで勝ち抜くための「実践知」を学ぶ。<br>
+                店魅偉屋大学経営学部は、次世代のビジネスリーダーを育成します。
+            </p>
+            <a href="#" class="btn-hero">学部の特徴を見る</a>
+        </div>
+    </section>
+
+    <!-- 学科紹介 -->
+    <div class="container">
+        <div class="section-header">
+            <h2>DEPARTMENTS</h2>
+            <p>専門性を高める3つの学科</p>
+        </div>
+
+        <div class="dept-grid">
+            <!-- 経営学科 -->
+            <div class="dept-card">
+                <span class="dept-icon">🏢</span>
+                <h3>経営学科</h3>
+                <p>組織論、経営戦略、人的資源管理。企業経営の全体像を捉え、組織を動かすリーダーシップとマネジメント能力を養います。</p>
+                <a href="#" class="dept-link">詳しく見る &rarr;</a>
+            </div>
+
+            <!-- マーケティング学科 -->
+            <div class="dept-card">
+                <span class="dept-icon">🎯</span>
+                <h3>マーケティング学科</h3>
+                <p>消費者行動分析からブランド戦略、デジタルマーケティングまで。市場のニーズを読み解き、価値を創出する力を磨きます。</p>
+                <a href="#" class="dept-link">詳しく見る &rarr;</a>
+            </div>
+
+            <!-- 会計ファイナンス学科 -->
+            <div class="dept-card">
+                <span class="dept-icon">📊</span>
+                <h3>会計ファイナンス学科</h3>
+                <p>簿記・会計学と企業金融（コーポレート・ファイナンス）。数字を通して企業の健康状態を診断し、意思決定を支える専門家へ。</p>
+                <a href="#" class="dept-link">詳しく見る &rarr;</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 特集：BLP -->
+    <section class="program-section">
+        <div class="program-container">
+            <div class="program-img">
+                <img src="https://placehold.co/600x400/1e40af/ffffff?text=Business+Contest" alt="ビジネスコンテスト">
+            </div>
+            <div class="program-content">
+                <h3>Business Leader Program</h3>
+                <p>
+                    教室での学びを社会で実践する、経営学部独自の選抜制プログラム「BLP」。
+                    企業からの課題解決提案や、実際のビジネスプラン作成・起業体験を通じて、圧倒的な現場力を身につけます。
+                </p>
+                <ul class="check-list">
+                    <li>企業連携による実戦型プロジェクト</li>
+                    <li>徹底した少人数グループワーク</li>
+                    <li>現役コンサルタントによるメンタリング</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ニュース -->
+    <div class="container">
+        <div class="section-header">
+            <h2>NEWS & TOPICS</h2>
+            <p>最新情報</p>
+        </div>
+        
+        <div class="news-list">
+            <a href="#" class="news-item">
+                <div class="news-date">2024.12.05</div>
+                <div class="news-cat">Award</div>
+                <div class="news-title">「全国学生ビジネスコンテスト」にて本学部生チームがグランプリを受賞しました。</div>
+            </a>
+            <a href="#" class="news-item">
+                <div class="news-date">2024.11.18</div>
+                <div class="news-cat">Event</div>
+                <div class="news-title">ITベンチャー創業者による特別講演会「ゼロ・トゥ・ワンの思考法」開催のお知らせ</div>
+            </a>
+            <a href="#" class="news-item">
+                <div class="news-date">2024.11.02</div>
+                <div class="news-cat">Internship</div>
+                <div class="news-title">春季ビジネスインターンシップ（海外コース・国内コース）の募集を開始します。</div>
+            </a>
+            <a href="#" class="news-item">
+                <div class="news-date">2024.10.20</div>
+                <div class="news-cat">Admissions</div>
+                <div class="news-title">総合型選抜（アントレプレナーシップ型）の選考結果について</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- フッター -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="footer-logo">店魅偉屋大学 経営学部</div>
+                <p style="font-size: 0.9rem; color: #64748b;">
+                    〒100-0004 ○○県○○市ビジネスパーク 2-2<br>
+                    Misemi-ya University Faculty of Business Administration
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Academics</h4>
+                <ul>
+                    <li><a href="#">経営学科</a></li>
+                    <li><a href="#">マーケティング学科</a></li>
+                    <li><a href="#">会計ファイナンス学科</a></li>
+                    <li><a href="#">BLP (特別プログラム)</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Information</h4>
+                <ul>
+                    <li><a href="#">交通アクセス</a></li>
+                    <li><a href="#">お問い合わせ</a></li>
+                    <li><a href="#">プライバシーポリシー</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 50px; font-size: 0.8rem; color: #94a3b8;">
+            &copy; Misemi-ya University. Faculty of Business Administration.
+        </div>
+    </footer>
+
+</body>
+</html>

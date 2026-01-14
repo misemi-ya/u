@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>店魅偉屋大学 健康学部 | Misemi-ya Univ. Faculty of Health Studies</title>
+    
+    <!-- ▼ Favicon設定（健康の象徴・リンゴのアイコン） ▼ -->
+    <link rel="icon" href="favicon.ico">
+
+    <style>
+        /* --- 配色設定：ウェルビーイング＆フレッシュ --- */
+        :root {
+            --health-green: #66bb6a;   /* 新鮮な野菜のような緑 */
+            --health-lime: #dcedc8;    /* 薄いライム色（背景用） */
+            --health-accent: #fbc02d;  /* ビタミンイエロー */
+            --health-text: #4e4e4e;    /* 優しさのあるダークグレー */
+            --bg-organic: #fafcf9;     /* ほぼ白に近い緑 */
+        }
+
+        body {
+            /* 丸ゴシック体を優先して親しみやすく */
+            font-family: "Hiragino Maru Gothic ProN", "Rounded Mplus 1c", "Meiryo", sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--health-text);
+            background-color: var(--bg-organic);
+            line-height: 1.8;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; padding: 0; margin: 0; }
+
+        /* --- ヘッダー --- */
+        header {
+            background-color: #fff;
+            border-bottom: 3px solid var(--health-green);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo-icon { font-size: 2rem; }
+        .logo h1 {
+            font-size: 1.5rem;
+            color: var(--health-green);
+            margin: 0;
+            font-weight: bold;
+        }
+        .logo span {
+            font-size: 0.8rem;
+            color: #888;
+            display: block;
+            letter-spacing: 0.05em;
+        }
+
+        nav ul { display: flex; gap: 25px; }
+        nav a {
+            font-weight: bold;
+            color: #666;
+            padding: 5px 10px;
+            border-radius: 15px;
+        }
+        nav a:hover {
+            background-color: var(--health-lime);
+            color: var(--health-green);
+        }
+
+        /* --- ヒーローセクション --- */
+        .hero {
+            height: 550px;
+            /* 運動や料理、笑顔のイメージ */
+            background: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.3)), url('ken.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* 修正：左寄せから中央寄せに変更 */
+            padding: 0 5%;
+        }
+        .hero-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 30px 30px 30px 0; /* 葉っぱのような形状 */
+            max-width: 600px;
+            box-shadow: 0 10px 20px rgba(102, 187, 106, 0.15);
+        }
+        .hero-card h2 {
+            font-size: 2.8rem;
+            color: var(--health-green);
+            margin: 0 0 15px;
+            line-height: 1.2;
+        }
+        .hero-card p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: #555;
+        }
+        .btn-health {
+            display: inline-block;
+            background-color: var(--health-accent);
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 4px 0 #f9a825; /* 立体的なボタン */
+            transition: 0.2s;
+        }
+        .btn-health:hover {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #f9a825;
+        }
+
+        /* --- コンテンツエリア --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--health-green);
+            margin-bottom: 10px;
+            display: inline-block;
+            position: relative;
+        }
+        /* タイトルの装飾（双葉） */
+        .section-title h2::after {
+            content: '🌱';
+            position: absolute;
+            top: -20px; right: -20px;
+            font-size: 1.5rem;
+            transform: rotate(15deg);
+        }
+        .section-title p { color: #888; }
+
+        /* 3つのアプローチ（円形デザイン） */
+        .approach-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            text-align: center;
+        }
+        .approach-item {
+            background: #fff;
+            padding: 40px 20px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            border: 2px solid transparent;
+        }
+        .approach-item:hover {
+            border-color: var(--health-green);
+            transform: translateY(-5px);
+        }
+        .circle-icon {
+            width: 120px;
+            height: 120px;
+            background-color: var(--health-lime);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 3.5rem;
+            color: #fff;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+        }
+        .approach-item h3 {
+            color: var(--health-green);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+        .approach-item p { font-size: 0.95rem; line-height: 1.6; }
+
+        /* キャンパスライフ（ヘルシー食堂など） */
+        .campus-section {
+            background-color: #fff;
+            padding: 60px 0;
+            margin-top: 60px;
+        }
+        .photo-text-block {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .photo-text-block:nth-child(even) { flex-direction: row-reverse; margin-top: 60px; }
+        .pt-img {
+            flex: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .pt-img img { width: 100%; height: auto; display: block; }
+        .pt-text { flex: 1; }
+        .pt-text h3 {
+            font-size: 1.8rem;
+            color: var(--health-text);
+            margin-bottom: 20px;
+            border-bottom: 4px solid var(--health-accent);
+            display: inline-block;
+        }
+
+        /* ニュース */
+        .news-section { margin-top: 60px; }
+        .news-list {
+            background: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+        }
+        .news-item {
+            padding: 15px;
+            border-bottom: 1px dashed #ccc;
+            display: flex;
+            align-items: center;
+        }
+        .news-item:last-child { border-bottom: none; }
+        .news-date {
+            color: var(--health-green);
+            font-weight: bold;
+            width: 110px;
+        }
+        .news-badge {
+            background: var(--health-lime);
+            color: var(--health-green);
+            font-size: 0.8rem;
+            padding: 3px 10px;
+            border-radius: 10px;
+            margin-right: 15px;
+        }
+
+        /* フッター */
+        footer {
+            background-color: var(--health-green);
+            color: #fff;
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 80px;
+        }
+        .footer-logo { font-size: 1.2rem; margin-bottom: 10px; font-weight: bold; }
+        .footer-nav a { color: #e8f5e9; margin: 0 10px; }
+        .footer-nav a:hover { color: #fff; text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            .header-inner { flex-direction: column; }
+            nav ul { margin-top: 15px; gap: 10px; flex-wrap: wrap; justify-content: center; }
+            .approach-grid { grid-template-columns: 1fr; }
+            .photo-text-block { flex-direction: column !important; gap: 20px; }
+            .hero-card { padding: 25px; }
+            .hero-card h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ヘッダー -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <div class="logo-icon">🍎</div>
+                <div>
+                    <h1>店魅偉屋大学 健康学部</h1>
+                    <span>Misemi-ya University Faculty of Health Studies</span>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">学部について</a></li>
+                    <li><a href="#">学科・コース</a></li>
+                    <li><a href="#">施設・設備</a></li>
+                    <li><a href="#">資格・キャリア</a></li>
+                    <li><a href="#">アクセス</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ヒーローエリア -->
+    <section class="hero">
+        <div class="hero-card">
+            <h2>ココロとカラダを、<br>もっと元気に。</h2>
+            <p>
+                「食」「運動」「社会」の3つの視点から、<br>
+                人々のウェルビーイング（幸福）を支える<br>
+                健康のスペシャリストを育てます。
+            </p>
+            <a href="#" class="btn-health">Webオープンキャンパス</a>
+        </div>
+    </section>
+
+    <!-- 学びの3本柱 -->
+    <div class="container">
+        <div class="section-title">
+            <h2>3 PILLARS</h2>
+            <p>健康を支える3つのアプローチ</p>
+        </div>
+
+        <div class="approach-grid">
+            <!-- 健康栄養学科 -->
+            <div class="approach-item">
+                <div class="circle-icon">🥗</div>
+                <h3>健康栄養学科</h3>
+                <p>管理栄養士を目指すコース。医療・福祉からスポーツ栄養まで。エビデンスに基づいた「食」のマネジメントを学びます。</p>
+            </div>
+
+            <!-- 健康スポーツ学科 -->
+            <div class="approach-item">
+                <div class="circle-icon">🏃</div>
+                <h3>健康スポーツ学科</h3>
+                <p>健康運動指導士やスポーツトレーナーへ。トップアスリートのサポートから、高齢者の健康づくりまで幅広く実践します。</p>
+            </div>
+
+            <!-- 健康マネジメント学科 -->
+            <div class="approach-item">
+                <div class="circle-icon">🤝</div>
+                <h3>健康マネジメント学科</h3>
+                <p>公衆衛生、メンタルヘルス、社会福祉。地域社会や企業の「健康経営」をリードする企画力と調整力を養います。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- キャンパスライフ特集 -->
+    <section class="campus-section">
+        <div class="section-title" style="margin-bottom: 40px;">
+            <h2>HEALTHY CAMPUS</h2>
+            <p>学生自身が健康になれるキャンパス</p>
+        </div>
+
+        <!-- 施設1：学食 -->
+        <div class="photo-text-block">
+            <div class="pt-img">
+                <img src="https://placehold.co/600x400/fbc02d/ffffff?text=Organic+Kitchen" alt="学食">
+            </div>
+            <div class="pt-text">
+                <h3>オーガニック・カフェテリア</h3>
+                <p>
+                    健康栄養学科の学生がメニュー開発に参加した、地産地消の野菜たっぷりの学食です。
+                    カロリーや栄養価が表示されており、日々の食事から自分の健康管理を実践できます。朝食の無料提供サービスも実施中。
+                </p>
+            </div>
+        </div>
+
+        <!-- 施設2：ジム -->
+        <div class="photo-text-block">
+            <div class="pt-img">
+                <img src="https://placehold.co/600x400/66bb6a/ffffff?text=Fitness+Lab" alt="ジム">
+            </div>
+            <div class="pt-text">
+                <h3>アクティブ・フィットネスラボ</h3>
+                <p>
+                    最新の測定機器を備えたトレーニング施設です。授業で使用するほか、放課後は学生や教職員に開放されています。
+                    健康スポーツ学科の学生がインストラクター役を務めるプログラムも人気です。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ニュース -->
+    <div class="container news-section">
+        <div class="section-title">
+            <h2>NEWS & TOPICS</h2>
+        </div>
+        <div class="news-list">
+            <a href="#" class="news-item">
+                <span class="news-date">2024.12.01</span>
+                <span class="news-badge">入試</span>
+                <span>一般選抜の募集要項（願書）の配布を開始しました。</span>
+            </a>
+            <a href="#" class="news-item">
+                <span class="news-date">2024.11.22</span>
+                <span class="news-badge">イベント</span>
+                <span>地域の方とお餅つき！「ミセミーヤ健康フェスタ」開催報告。</span>
+            </a>
+            <a href="#" class="news-item">
+                <span class="news-date">2024.11.10</span>
+                <span class="news-badge">活動</span>
+                <span>健康栄養学科のチームが「学生オリジナルお弁当コンテスト」でグランプリを受賞！</span>
+            </a>
+            <a href="#" class="news-item">
+                <span class="news-date">2024.10.25</span>
+                <span class="news-badge">講座</span>
+                <span>市民公開講座「今日からできる！認知症予防の運動習慣」のお知らせ。</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- フッター -->
+    <footer>
+        <div class="footer-logo">店魅偉屋大学 健康学部</div>
+        <p>Misemi-ya University Faculty of Health Studies</p>
+        <p>〒113-8654 東京都文京区本郷 7-3-2</p>
+        
+        <div class="footer-nav" style="margin-top: 20px;">
+            <a href="#">サイトマップ</a>
+            <a href="#">プライバシーポリシー</a>
+            <a href="#">お問い合わせ</a>
+        </div>
+        <p style="margin-top: 30px; font-size: 0.8rem; opacity: 0.8;">&copy; Misemi-ya University. Health Studies. Be Healthy, Be Happy.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>店魅偉屋大学 経済学部 | Misemi-ya Univ. Faculty of Economics</title>
+    
+    <!-- ▼ Favicon設定（経済学部らしいチャートのアイコン） ▼ -->
+    <link rel="icon" href="favicon.ico">
+
+    <style>
+        /* --- 配色設定：トラッド＆ビジネス --- */
+        :root {
+            --econ-maroon: #800000;   /* えんじ色：伝統と情熱 */
+            --econ-dark: #2c2c2c;     /* ダークグレー：ビジネスライク */
+            --econ-gold: #c5a059;     /* 落ち着いた金：富と価値 */
+            --bg-light: #f9f9f9;
+            --text-main: #333;
+        }
+
+        body {
+            font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-main);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; padding: 0; margin: 0; }
+        
+        /* フォントの指定（Google Fonts風） */
+        h1, h2, h3 {
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            font-weight: 700;
+        }
+
+        /* --- ヘッダー --- */
+        header {
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-top {
+            background-color: var(--econ-dark);
+            color: #fff;
+            font-size: 0.8rem;
+            padding: 5px 0;
+            text-align: right;
+        }
+        .header-top span { margin-right: 20px; cursor: pointer; }
+
+        .header-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .logo h1 {
+            margin: 0;
+            font-size: 1.6rem;
+            color: var(--econ-maroon);
+            letter-spacing: -1px;
+        }
+        .logo span {
+            font-size: 0.8rem;
+            color: #888;
+            display: block;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* ナビゲーション */
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+        nav a {
+            color: var(--econ-dark);
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 5px;
+        }
+        nav a:hover {
+            color: var(--econ-maroon);
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 0; height: 2px;
+            background-color: var(--econ-maroon);
+            transition: width 0.3s;
+        }
+        nav a:hover::after { width: 100%; }
+
+        /* --- ヒーローセクション --- */
+        .hero {
+            height: 550px;
+            background: linear-gradient(rgba(44, 44, 44, 0.6), rgba(128, 0, 0, 0.4)), url('keizai.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* 左寄せではなく中央寄せに変更 */
+            color: #fff;
+            position: relative;
+        }
+        .hero-text {
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 40px 60px;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(5px);
+        }
+        .hero-text h2 {
+            font-size: 3rem;
+            margin: 0 0 20px;
+            letter-spacing: 0.05em;
+        }
+        .hero-text p {
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+        .btn-gold {
+            display: inline-block;
+            margin-top: 30px;
+            background: var(--econ-gold);
+            color: #fff;
+            padding: 12px 30px;
+            font-weight: bold;
+            border-radius: 2px;
+        }
+        .btn-gold:hover {
+            background: #b08d4b;
+        }
+
+        /* --- コンテンツ --- */
+        .section {
+            padding: 80px 5%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--econ-dark);
+        }
+        .section-title h2 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        .section-title span {
+            color: var(--econ-gold);
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        /* 3つの強み */
+        .features {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+        .feature-box {
+            flex: 1;
+            background: #fff;
+            padding: 30px;
+            border-top: 3px solid var(--econ-maroon);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--econ-maroon);
+        }
+        .feature-box h3 {
+            margin-bottom: 15px;
+            color: var(--econ-dark);
+        }
+        .feature-box p {
+            font-size: 0.9rem;
+            color: #666;
+            text-align: left;
+        }
+
+        /* 学科一覧（リストスタイル） */
+        .dept-section {
+            background-color: #fff;
+            padding: 80px 0;
+        }
+        .dept-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .dept-card {
+            position: relative;
+            height: 250px;
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            transition: 0.4s;
+        }
+        .dept-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .dept-bg {
+            position: absolute;
+            top:0; left:0; width:100%; height:100%;
+            background-size: cover;
+            opacity: 0.4;
+            transition: 0.4s;
+        }
+        .dept-card:hover .dept-bg { opacity: 0.2; transform: scale(1.1); }
+        .dept-content {
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+        }
+        .dept-content h3 { font-size: 1.5rem; border-bottom: 2px solid var(--econ-gold); padding-bottom: 10px; display: inline-block; }
+
+        /* 就職・キャリア（経済学部の強み） */
+        .career-section {
+            background-color: var(--econ-maroon);
+            color: #fff;
+            padding: 60px 5%;
+            text-align: center;
+        }
+        .career-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .stats-grid {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin: 40px 0;
+        }
+        .stat-item h4 { font-size: 1rem; opacity: 0.8; }
+        .stat-item .num { font-size: 3.5rem; font-weight: bold; color: var(--econ-gold); }
+        .stat-item .unit { font-size: 1.2rem; }
+
+        /* ニュース */
+        .news-container {
+            max-width: 900px;
+            margin: 60px auto;
+        }
+        .news-row {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+            align-items: center;
+        }
+        .news-row:hover { background-color: #fff; }
+        .news-date { width: 100px; color: #888; font-size: 0.9rem; }
+        .news-label { 
+            background: var(--econ-dark); color: #fff; 
+            padding: 2px 8px; font-size: 0.7rem; margin-right: 15px; 
+        }
+        .news-title { color: var(--text-main); font-weight: 500; }
+
+        /* フッター */
+        footer {
+            background-color: #222;
+            color: #999;
+            padding: 40px 0;
+            font-size: 0.85rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .footer-nav a { margin-right: 20px; color: #ccc; }
+        .footer-nav a:hover { color: #fff; }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .header-main { flex-direction: column; }
+            nav ul { margin-top: 20px; font-size: 0.8rem; gap: 15px; }
+            .features { flex-direction: column; }
+            .dept-grid { grid-template-columns: 1fr; }
+            .stats-grid { flex-direction: column; gap: 20px; }
+            .hero-text h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-top">
+            <div style="max-width: 1200px; margin: 0 auto; padding: 0 5%;">
+                <span>受験生の方</span>
+                <span>企業・一般の方</span>
+                <span>Language: JP/EN</span>
+            </div>
+        </div>
+        <div class="header-main">
+            <div class="logo">
+                <h1>店魅偉屋大学 経済学部</h1>
+                <span>Misemi-ya University Faculty of Economics</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">学部長挨拶</a></li>
+                    <li><a href="#">学科紹介</a></li>
+                    <li><a href="#">カリキュラム</a></li>
+                    <li><a href="#">就職・キャリア</a></li>
+                    <li><a href="#">入試情報</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ヒーローエリア -->
+    <section class="hero">
+        <div class="hero-text">
+            <h2>世界を読み解く、経済の眼。</h2>
+            <p>理論とデータで、激動の社会を切り拓くリーダーへ。</p>
+            <a href="#" class="btn-gold">学部案内を見る</a>
+        </div>
+    </section>
+
+    <!-- 3つの柱 -->
+    <section class="section">
+        <div class="section-title">
+            <span>OUR STRENGTHS</span>
+            <h2>学びの3つの柱</h2>
+        </div>
+        <div class="features">
+            <div class="feature-box">
+                <div class="feature-icon">📊</div>
+                <h3>Economic Theory</h3>
+                <p>ミクロ・マクロ経済学から行動経済学まで。社会現象を論理的に分析するための確固たる理論的枠組みを習得します。</p>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">💻</div>
+                <h3>Data Science</h3>
+                <p>プログラミングや統計解析ソフトを駆使し、ビッグデータを分析してビジネスの意思決定に活かすスキルを養います。</p>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">🌍</div>
+                <h3>Global Business</h3>
+                <p>英語による専門講義や海外インターンシップを通じ、国境を越えて活躍できるグローバルな視野を育成します。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 学科紹介 -->
+    <div class="dept-section">
+        <div class="section-title">
+            <span>DEPARTMENTS</span>
+            <h2>学科・専攻</h2>
+        </div>
+        <div class="dept-grid">
+            <!-- 経済学科 -->
+            <a href="#" class="dept-card">
+                <div class="dept-bg" style="background-image: url('https://placehold.co/400x300/800000/ffffff?text=Economics');"></div>
+                <div class="dept-content">
+                    <h3>経済学科</h3>
+                    <p>Department of Economics</p>
+                </div>
+            </a>
+            <!-- 国際経営学科 -->
+            <a href="#" class="dept-card">
+                <div class="dept-bg" style="background-image: url('https://placehold.co/400x300/2c2c2c/ffffff?text=Management');"></div>
+                <div class="dept-content">
+                    <h3>国際経営学科</h3>
+                    <p>Dept. of Global Management</p>
+                </div>
+            </a>
+            <!-- 金融学科 -->
+            <a href="#" class="dept-card">
+                <div class="dept-bg" style="background-image: url('https://placehold.co/400x300/c5a059/ffffff?text=Finance');"></div>
+                <div class="dept-content">
+                    <h3>金融学科</h3>
+                    <p>Department of Finance</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- キャリア・就職実績（経済学部の売り） -->
+    <section class="career-section">
+        <div class="career-container">
+            <h2>圧倒的な就職実績</h2>
+            <p>実学重視のミセミーヤ経済学部は、ビジネス界へ多数のリーダーを輩出しています。</p>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h4>実就職率</h4>
+                    <span class="num">98.4</span><span class="unit">%</span>
+                </div>
+                <div class="stat-item">
+                    <h4>上場企業比率</h4>
+                    <span class="num">62.1</span><span class="unit">%</span>
+                </div>
+            </div>
+            <p style="font-size: 0.9rem;">※ 2023年度卒業生実績</p>
+            <br>
+            <a href="#" style="border: 1px solid #fff; padding: 10px 30px; color: #fff; border-radius: 30px;">主な就職先を見る</a>
+        </div>
+    </section>
+
+    <!-- ニュース -->
+    <section class="section">
+        <div class="section-title">
+            <h2>NEWS & TOPICS</h2>
+        </div>
+        <div class="news-container">
+            <a href="#" class="news-row">
+                <span class="news-date">2024.12.01</span>
+                <span class="news-label">入試</span>
+                <span class="news-title">一般選抜（英語外部試験利用方式）の出願要件について</span>
+            </a>
+            <a href="#" class="news-row">
+                <span class="news-date">2024.11.20</span>
+                <span class="news-label">イベント</span>
+                <span class="news-title">「ミセミーヤ金融フォーラム2024」を開催しました。</span>
+            </a>
+            <a href="#" class="news-row">
+                <span class="news-date">2024.11.10</span>
+                <span class="news-label">講座</span>
+                <span class="news-title">公認会計士試験 合格者による学習相談会のお知らせ</span>
+            </a>
+            <a href="#" class="news-row">
+                <span class="news-date">2024.10.25</span>
+                <span class="news-label">留学</span>
+                <span class="news-title">短期海外研修（シリコンバレー・プログラム）の参加者募集</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">
+                <h3>店魅偉屋大学 経済学部</h3>
+                <p>Misemi-ya University Faculty of Economics</p>
+                <p>〒113-8654 東京都文京区本郷 7-3-2</p>
+            </div>
+            <div class="footer-right">
+                <div class="footer-nav">
+                    <a href="#">サイトマップ</a>
+                    <a href="#">アクセス</a>
+                    <a href="#">お問い合わせ</a>
+                </div>
+                <p style="margin-top: 15px;">&copy; Misemi-ya University Faculty of Economics. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

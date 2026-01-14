@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>店魅偉屋大学 医学部 | MISEMI-YA UNIVERSITY SCHOOL OF MEDICINE</title>
+    
+    <link rel="icon" href="favicon.ico">
+    
+    <style>
+        /* 基本設定 */
+        :root {
+            --primary-color: #003366; /* 濃紺：知性と信頼 */
+            --accent-color: #b8860b;  /* 金色：伝統と権威 */
+            --hospital-color: #cc0000; /* 赤：病院リンク用（緊急・目立たせる） */
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+        }
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            line-height: 1.6;
+        }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; padding: 0; }
+
+        /* ヘッダー */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .top-bar {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 5px 20px;
+            font-size: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+        }
+        .header-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+        }
+        .logo h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            font-family: "Times New Roman", serif;
+        }
+        .logo span {
+            font-size: 0.9rem;
+            display: block;
+            color: #666;
+            letter-spacing: 0.1em;
+        }
+
+        /* ナビゲーション */
+        nav ul {
+            display: flex;
+            gap: 20px;
+        }
+        nav li a {
+            font-weight: bold;
+            padding: 10px;
+            color: var(--primary-color);
+        }
+        nav li a:hover {
+            color: var(--accent-color);
+        }
+        /* 病院リンクボタン（ヘッダー内） */
+        .btn-hospital {
+            background-color: var(--hospital-color);
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .btn-hospital:hover {
+            background-color: #990000;
+        }
+
+        /* ヒーローセクション（メイン画像） */
+        .hero {
+            background: linear-gradient(rgba(0,51,102,0.7), rgba(0,51,102,0.7)), url('igaku.png');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+        }
+        .hero-content h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* 緊急・重要なお知らせ（病院リンク強調） */
+        .hospital-banner {
+            background-color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--primary-color);
+        }
+        .hospital-cta {
+            background-color: var(--hospital-color);
+            color: #fff;
+            padding: 20px 40px;
+            font-size: 1.5rem;
+            border-radius: 50px;
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .hospital-cta:hover {
+            transform: translateY(-2px);
+            background-color: #a00;
+        }
+        .hospital-desc {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* コンテンツエリア */
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+        
+        /* ニュースセクション */
+        .section-title {
+            border-left: 5px solid var(--primary-color);
+            padding-left: 15px;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .news-item {
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+        }
+        .date {
+            color: #888;
+            font-size: 0.9rem;
+            margin-right: 10px;
+        }
+
+        /* サイドバー */
+        .sidebar-menu a {
+            display: block;
+            background: #fff;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-left: 4px solid var(--accent-color);
+        }
+        .sidebar-menu a:hover {
+            background: var(--primary-color);
+            color: #fff;
+        }
+
+        /* 学部長挨拶エリア */
+        .dean-message {
+            background-color: #fff;
+            padding: 30px;
+            margin-top: 40px;
+            border-top: 3px solid var(--accent-color);
+        }
+
+        /* フッター */
+        footer {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 40px 0;
+            text-align: center;
+        }
+        .footer-links {
+            margin-bottom: 20px;
+        }
+        .footer-links a {
+            margin: 0 10px;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            .header-main { flex-direction: column; text-align: center; }
+            nav ul { flex-direction: column; gap: 10px; margin-top: 20px; }
+            .container { grid-template-columns: 1fr; }
+            .hero-content h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ヘッダー -->
+    <header>
+        <div class="top-bar">
+            <span>在学生の方へ</span>
+            <span>教職員の方へ</span>
+            <span>Language: English</span>
+        </div>
+        <div class="header-main">
+            <div class="logo">
+                <h1>店魅偉屋大学 医学部</h1>
+                <span>MISEMI-YA UNIVERSITY SCHOOL OF MEDICINE</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">大学紹介</a></li>
+                    <li><a href="#">入試情報</a></li>
+                    <li><a href="#">講座・研究</a></li>
+                    <li><a href="#">キャンパスライフ</a></li>
+                    <!-- ★要件：付属病院へのリンク -->
+                    <li><a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/igaku/f/m" class="btn-hospital">付属病院はこちら</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ヒーローエリア -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>仁術を極め、未来を創る。</h2>
+            <p>店魅偉屋大学医学部は、次世代の医療リーダーを育成します。</p>
+        </div>
+    </section>
+
+    <!-- ★特に目立たせた付属病院リンクエリア -->
+    <section class="hospital-banner">
+        <h3>診療・受診をご希望の方へ</h3>
+        <p>外来診療の予約、面会時間、救急対応については以下のサイトをご覧ください。</p>
+        <br>
+        <a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/igaku/f/m/" class="hospital-cta">店魅偉屋大学医学部付属病院</a>
+        <p class="hospital-desc">Misemi-ya University Hospital</p>
+    </section>
+
+    <!-- メインコンテンツ -->
+    <div class="container">
+        <!-- 左カラム：ニュース -->
+        <main>
+            <h3 class="section-title">News & Topics</h3>
+            <ul>
+                <li class="news-item">
+                    <span class="date">2023.12.01</span>
+                    <a href="#">令和6年度 一般選抜入学試験の募集要項を公開しました。</a>
+                </li>
+                <li class="news-item">
+                    <span class="date">2023.11.20</span>
+                    <a href="#">【プレスリリース】店魅偉屋式・新外科手術法の開発について</a>
+                </li>
+                <li class="news-item">
+                    <span class="date">2023.11.15</span>
+                    <a href="#">市民公開講座「冬の感染症対策」開催のお知らせ</a>
+                </li>
+                <li class="news-item">
+                    <span class="date">2023.11.01</span>
+                    <a href="#">オープンキャンパスの様子を動画で公開しました。</a>
+                </li>
+            </ul>
+
+            <div class="dean-message">
+                <h3 class="section-title">学部長メッセージ</h3>
+                <p>店魅偉屋大学医学部は、創立以来「患者の心に寄り添う医療」を理念に掲げてきました。高度化する現代医療において、技術だけでなく人間性豊かな医師の育成に全力を注いでいます……</p>
+                <div style="text-align: right; margin-top: 10px;">
+                    <strong>医学部長：西郷 清</strong>
+                </div>
+            </div>
+        </main>
+
+        <!-- 右カラム：サイドメニュー -->
+        <aside>
+            <h4 style="margin-bottom: 15px; color: var(--primary-color);">Menu</h4>
+            <div class="sidebar-menu">
+                <a href="#">受験生の方へ</a>
+                <a href="#">教育カリキュラム</a>
+                <a href="#">大学院医学研究科</a>
+                <a href="#">基礎医学講座一覧</a>
+                <a href="#">臨床医学講座一覧</a>
+                <a href="#">交通アクセス</a>
+                <a href="#">お問い合わせ</a>
+            </div>
+            
+            <!-- バナーエリア -->
+            <div style="margin-top: 30px; text-align: center;">
+                <img src="https://placehold.co/300x150/003366/ffffff?text=Web+Open+Campus" alt="Web Open Campus" style="max-width: 100%; border-radius: 4px;">
+            </div>
+        </aside>
+    </div>
+
+    <!-- フッター -->
+    <footer>
+        <div class="footer-links">
+            <a href="#">サイトマップ</a>
+            <a href="#">プライバシーポリシー</a>
+            <a href="#">採用情報</a>
+        </div>
+        <div class="address">
+            <p><strong>店魅偉屋大学 医学部</strong></p>
+            <p>〒113-8654 東京都文京区本郷7-3-2</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 0.8rem;">&copy; Misemi-ya University School of Medicine. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
