@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>店魅偉屋大学 文化社会学部 | Misemi-ya Univ. Faculty of Culture and Sociology</title>
+    
+    <!-- ▼ Favicon設定（文化の象徴・神殿のアイコン） ▼ -->
+    <link rel="icon" href="favicon.ico">
+    <style>
+        /* --- 配色設定：アカデミック・テラコッタ --- */
+        :root {
+            --soc-terracotta: #a0522d; /* 煉瓦色：歴史と人間味 */
+            --soc-slate: #4a5c6a;      /* スレート：社会の構造 */
+            --soc-sand: #fdfbf7;       /* 古紙のような背景色 */
+            --text-main: #2b2b2b;
+            --text-serif: "Yu Mincho", "Hiragino Mincho ProN", serif;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-main);
+            background-color: var(--soc-sand);
+            line-height: 1.8;
+        }
+
+        /* 見出しは明朝体で知的に */
+        h1, h2, h3, .hero-copy {
+            font-family: var(--text-serif);
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; padding: 0; margin: 0; }
+
+        /* --- ヘッダー --- */
+        header {
+            background-color: #fff;
+            border-top: 5px solid var(--soc-terracotta);
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo h1 {
+            font-size: 1.5rem;
+            color: var(--soc-terracotta);
+            margin: 0;
+            font-weight: bold;
+            letter-spacing: -0.5px;
+        }
+        .logo span {
+            font-size: 0.8rem;
+            color: var(--soc-slate);
+            display: block;
+            font-family: sans-serif;
+            letter-spacing: 0.05em;
+        }
+
+        nav ul { display: flex; gap: 30px; }
+        nav a {
+            font-size: 0.9rem;
+            color: #555;
+            position: relative;
+        }
+        nav a:hover { color: var(--soc-terracotta); }
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; left: 50%; transform: translateX(-50%);
+            width: 0; height: 1px;
+            background: var(--soc-terracotta);
+            transition: width 0.3s;
+        }
+        nav a:hover::after { width: 100%; }
+
+        /* --- ヒーローセクション --- */
+        .hero {
+            height: 550px;
+            /* 図書館や街並みのコラージュ的なイメージ */
+            background: linear-gradient(rgba(74, 92, 106, 0.7), rgba(160, 82, 45, 0.6)), url('bun.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        /* フレーム枠（額縁のような演出） */
+        .hero-frame {
+            border: 1px solid rgba(255,255,255,0.5);
+            padding: 60px 100px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            max-width: 700px;
+        }
+        .hero-copy {
+            font-size: 2.5rem;
+            color: var(--text-main);
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        .hero-sub {
+            font-size: 1rem;
+            color: var(--soc-slate);
+            margin-bottom: 30px;
+            font-family: sans-serif;
+        }
+        .btn-soc {
+            display: inline-block;
+            border: 1px solid var(--soc-terracotta);
+            color: var(--soc-terracotta);
+            padding: 10px 30px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .btn-soc:hover {
+            background-color: var(--soc-terracotta);
+            color: #fff;
+        }
+
+        /* --- コンテンツエリア --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-header h2 {
+            font-size: 2rem;
+            color: var(--soc-terracotta);
+            margin-bottom: 10px;
+        }
+        .section-header p {
+            font-size: 0.9rem;
+            color: #666;
+            font-family: sans-serif;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* 学科紹介（縦書き風デザインを取り入れる） */
+        .dept-list {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        .dept-item {
+            display: flex;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+            border-left: 5px solid var(--soc-terracotta);
+        }
+        /* 偶数番目は左右反転 */
+        .dept-item:nth-child(even) { flex-direction: row-reverse; border-left: none; border-right: 5px solid var(--soc-slate); }
+        
+        .dept-img {
+            flex: 1;
+            min-height: 300px;
+            background-color: #eee;
+        }
+        .dept-img img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .dept-content {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .dept-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+        .dept-content p {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+        .link-arrow {
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: var(--soc-terracotta);
+        }
+        .dept-item:nth-child(even) .link-arrow { color: var(--soc-slate); }
+
+        /* フィールドワーク・特集 */
+        .field-section {
+            background-color: #fff;
+            padding: 80px 0;
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+        }
+        .field-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        .field-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .field-box {
+            text-align: left;
+        }
+        .field-box img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border-radius: 2px;
+        }
+        .field-box h4 { margin-bottom: 10px; font-size: 1.1rem; }
+        .field-box p { font-size: 0.9rem; color: #666; }
+
+        /* ニュース（シンプルリスト） */
+        .news-section { margin-top: 60px; }
+        .news-row {
+            border-bottom: 1px solid #ccc;
+            padding: 15px 0;
+            display: flex;
+            align-items: baseline;
+        }
+        .news-date {
+            width: 100px;
+            font-family: sans-serif;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        .news-cat {
+            background: var(--soc-slate);
+            color: #fff;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            margin-right: 15px;
+        }
+        .news-title:hover { text-decoration: underline; color: var(--soc-terracotta); }
+
+        /* フッター */
+        footer {
+            background-color: var(--text-main);
+            color: #ccc;
+            padding: 50px 0;
+            text-align: center;
+        }
+        .footer-logo { font-size: 1.2rem; color: #fff; margin-bottom: 10px; }
+
+        @media (max-width: 768px) {
+            .hero-frame { padding: 30px; width: 85%; }
+            .hero-copy { font-size: 1.8rem; }
+            .header-inner { flex-direction: column; }
+            nav ul { margin-top: 15px; gap: 15px; font-size: 0.8rem; }
+            .dept-item { flex-direction: column !important; }
+            .dept-item:nth-child(even) { border-left: none; border-right: none; border-top: 5px solid var(--soc-slate); }
+            .dept-item { border-left: none; border-top: 5px solid var(--soc-terracotta); }
+            .field-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ヘッダー -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <h1>店魅偉屋大学 文化社会学部</h1>
+                <span>Faculty of Culture and Sociology</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">学部長メッセージ</a></li>
+                    <li><a href="#">学科紹介</a></li>
+                    <li><a href="#">フィールドワーク</a></li>
+                    <li><a href="#">学術アーカイブ</a></li>
+                    <li><a href="#">入試情報</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ヒーローエリア -->
+    <section class="hero">
+        <div class="hero-frame">
+            <h2 class="hero-copy">「あたりまえ」を、<br>疑う知性。</h2>
+            <p class="hero-sub">過去を知り、現在を見つめ、人間とは何かを問う。</p>
+            <a href="#" class="btn-soc">MORE ABOUT US</a>
+        </div>
+    </section>
+
+    <!-- 学科紹介 -->
+    <div class="container">
+        <div class="section-header">
+            <h2>DEPARTMENTS</h2>
+            <p>多様な視点から社会を読み解く3学科</p>
+        </div>
+
+        <div class="dept-list">
+            <!-- 社会学科 -->
+            <div class="dept-item">
+                <div class="dept-img">
+                    <img src="https://placehold.co/600x400/4a5c6a/ffffff?text=Sociology" alt="社会学科">
+                </div>
+                <div class="dept-content">
+                    <h3>社会学科</h3>
+                    <p>家族、格差、ジェンダー、都市問題。私たちを取り巻く社会の仕組みを、統計調査やインタビューを通じて実証的に分析します。</p>
+                    <a href="#" class="link-arrow">詳しく見る &rarr;</a>
+                </div>
+            </div>
+
+            <!-- 歴史文化学科 -->
+            <div class="dept-item">
+                <div class="dept-img">
+                    <img src="https://placehold.co/600x400/a0522d/ffffff?text=History+%26+Culture" alt="歴史文化学科">
+                </div>
+                <div class="dept-content">
+                    <h3>歴史文化学科</h3>
+                    <p>古文書の解読から民俗学のフィールドワークまで。地域に眠る歴史や文化遺産を掘り起こし、未来へ継承する知恵を学びます。</p>
+                    <a href="#" class="link-arrow">詳しく見る &rarr;</a>
+                </div>
+            </div>
+
+            <!-- メディア社会学科 -->
+            <div class="dept-item">
+                <div class="dept-img">
+                    <img src="https://placehold.co/600x400/708090/ffffff?text=Media+Studies" alt="メディア社会学科">
+                </div>
+                <div class="dept-content">
+                    <h3>メディア社会学科</h3>
+                    <p>SNS、マスメディア、ポピュラー文化。情報の伝わり方やメディアが人々に与える影響を、社会学的アプローチで解明します。</p>
+                    <a href="#" class="link-arrow">詳しく見る &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- フィールドワーク特集 -->
+    <section class="field-section">
+        <div class="field-container">
+            <div class="section-header">
+                <h2>FIELDWORK</h2>
+                <p>街と人が、生きた教科書</p>
+            </div>
+            <p style="margin-bottom: 40px;">
+                文化社会学部の学びは、教室の中だけでは完結しません。<br>
+                自らの足で歩き、聞き、記録する「フィールドワーク」を重視しています。
+            </p>
+            
+            <div class="field-grid">
+                <div class="field-box">
+                    <img src="https://placehold.co/400x300/e0e0e0/333?text=Urban+Research" alt="都市調査">
+                    <h4>商店街の変容調査</h4>
+                    <p>シャッター街の再生事例を調査し、地域住民への聞き取り調査を実施しました。</p>
+                </div>
+                <div class="field-box">
+                    <img src="https://placehold.co/400x300/e0e0e0/333?text=Folklore" alt="民俗調査">
+                    <h4>祭り・伝統芸能の記録</h4>
+                    <p>過疎化が進む山間部の集落で、継承が危ぶまれる伝統行事を映像アーカイブ化。</p>
+                </div>
+                <div class="field-box">
+                    <img src="https://placehold.co/400x300/e0e0e0/333?text=Subculture" alt="サブカルチャー">
+                    <h4>若者文化の参与観察</h4>
+                    <p>現代のファッションや推し活文化について、現場に入り込んでその構造を分析。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ニュース -->
+    <div class="container news-section">
+        <div class="section-header" style="margin-bottom: 30px; text-align: left;">
+            <h2 style="font-size: 1.5rem;">NEWS & EVENTS</h2>
+        </div>
+        <div class="news-list">
+            <div class="news-row">
+                <span class="news-date">2024.12.02</span>
+                <span class="news-cat">イベント</span>
+                <a href="#" class="news-title">公開シンポジウム「AI時代の人間と社会」を開催しました。</a>
+            </div>
+            <div class="news-row">
+                <span class="news-date">2024.11.18</span>
+                <span class="news-cat">研究</span>
+                <a href="#" class="news-title">歴史文化学科の学生が発見した古文書が、市の文化財に指定されました。</a>
+            </div>
+            <div class="news-row">
+                <span class="news-date">2024.11.05</span>
+                <span class="news-cat">入試</span>
+                <a href="#" class="news-title">総合型選抜（フィールドワーク探究型）の選考結果について</a>
+            </div>
+            <div class="news-row">
+                <span class="news-date">2024.10.20</span>
+                <span class="news-cat">出版</span>
+                <a href="#" class="news-title">教員の新刊『現代社会を歩く社会学』が出版されました。</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- フッター -->
+    <footer>
+        <div class="footer-logo">店魅偉屋大学 文化社会学部</div>
+        <p>Misemi-ya University Faculty of Culture and Sociology</p>
+        <p>〒113-8654 東京都文京区本郷 7-3-2</p>
+        <div style="margin-top: 20px; font-size: 0.8rem;">
+            <a href="#" style="margin: 0 10px; color: #aaa;">サイトマップ</a>
+            <a href="#" style="margin: 0 10px; color: #aaa;">お問い合わせ</a>
+            <a href="#" style="margin: 0 10px; color: #aaa;">プライバシーポリシー</a>
+        </div>
+        <p style="margin-top: 40px; opacity: 0.5; font-size: 0.8rem;">&copy; Misemi-ya University. Culture and Sociology.</p>
+    </footer>
+
+</body>
+</html>

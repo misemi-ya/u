@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>店魅偉屋大学 文理融合学部 | Misemi-ya Univ. Transdisciplinary Studies</title>
+    
+    <!-- ▼ Favicon設定（無限大のアイコン） ▼ -->
+    <link rel="icon" href="favicon.ico">
+
+    <style>
+        /* --- 配色設定：境界を溶かすグラデーション --- */
+        :root {
+            --grad-start: #4facfe;    /* 理系の知性（シアンブルー） */
+            --grad-end: #f093fb;      /* 文系の感性（ピンクパープル） */
+            --text-dark: #2d3436;
+            --bg-light: #fdfbfd;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; padding: 0; margin: 0; }
+
+        /* グラデーションテキスト用クラス */
+        .text-gradient {
+            background: linear-gradient(to right, var(--grad-start), var(--grad-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        /* --- ヘッダー --- */
+        header {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px); /* すりガラス効果 */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo h1 {
+            font-size: 1.4rem;
+            margin: 0;
+            font-weight: 800;
+        }
+        .logo span {
+            font-size: 0.8rem;
+            color: #888;
+            font-weight: normal;
+            margin-left: 10px;
+        }
+
+        nav ul { display: flex; gap: 30px; }
+        nav a {
+            font-weight: bold;
+            color: #555;
+            font-size: 0.9rem;
+        }
+        nav a:hover {
+            color: #a18cd1;
+        }
+        .btn-header {
+            background: linear-gradient(to right, var(--grad-start), var(--grad-end));
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+        }
+        .btn-header:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        /* --- ヒーローセクション --- */
+        .hero {
+            height: 600px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at 20% 20%, rgba(79, 172, 254, 0.1), transparent),
+                        radial-gradient(circle at 80% 80%, rgba(240, 147, 251, 0.1), transparent);
+        }
+        /* 背景に動く抽象的な円 */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: -1;
+            opacity: 0.6;
+        }
+        .orb-1 { width: 300px; height: 300px; background: var(--grad-start); top: 10%; left: 10%; animation: float 10s infinite alternate; }
+        .orb-2 { width: 400px; height: 400px; background: var(--grad-end); bottom: 10%; right: 10%; animation: float 12s infinite alternate-reverse; }
+
+        @keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(30px, 50px); } }
+
+        .hero-content h2 {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -0.05em;
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        /* --- コンテンツエリア --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-title h2 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        .section-title p { color: #888; font-size: 0.9rem; letter-spacing: 2px; }
+
+        /* 領域紹介（ドメイン） */
+        .domain-wrapper {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .domain-card {
+            background: rgba(255,255,255,0.7);
+            border: 1px solid rgba(255,255,255,0.8);
+            backdrop-filter: blur(10px);
+            padding: 40px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            text-align: center;
+        }
+        .domain-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .domain-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            background: -webkit-linear-gradient(45deg, var(--grad-start), var(--grad-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .domain-card h3 {
+            margin: 0 0 15px;
+            font-size: 1.2rem;
+        }
+        .domain-card p {
+            font-size: 0.9rem;
+            color: #666;
+            text-align: left;
+        }
+        .tag-box {
+            margin-top: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            justify-content: center;
+        }
+        .tag {
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            background: #f0f0f0;
+            color: #666;
+        }
+
+        /* プロジェクトベース学習（PBL） */
+        .pbl-section {
+            padding: 80px 0;
+            background-color: #fff;
+            position: relative;
+        }
+        .pbl-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .pbl-img img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        .pbl-text h3 { font-size: 1.8rem; margin-bottom: 20px; }
+        .pbl-text p { color: #666; margin-bottom: 20px; }
+        
+        /* ニュース */
+        .news-list { margin-top: 40px; }
+        .news-item {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        .news-item:hover { background-color: #f9f9f9; padding-left: 30px; }
+        .news-date { width: 100px; color: #aaa; font-size: 0.85rem; font-family: monospace; }
+        .news-tag {
+            font-size: 0.7rem;
+            padding: 2px 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            margin-right: 15px;
+            color: #555;
+        }
+
+        /* フッター */
+        footer {
+            background: linear-gradient(135deg, #fdfbfd 0%, #f5f7fa 100%);
+            border-top: 1px solid #eee;
+            padding: 60px 0;
+            text-align: center;
+        }
+        .footer-logo { font-weight: 800; font-size: 1.2rem; margin-bottom: 10px; }
+
+        @media (max-width: 768px) {
+            .hero-content h2 { font-size: 2.5rem; }
+            .domain-wrapper { grid-template-columns: 1fr; }
+            .pbl-grid { grid-template-columns: 1fr; }
+            .header-inner { flex-direction: column; }
+            nav ul { margin-top: 15px; gap: 15px; font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <h1>店魅偉屋大学<span>文理融合学部</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Concept</a></li>
+                    <li><a href="#">Domains</a></li>
+                    <li><a href="#">Projects</a></li>
+                    <li><a href="#">Admissions</a></li>
+                    <li><a href="#" class="btn-header">Open Campus</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ヒーローエリア -->
+    <section class="hero">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="hero-content">
+            <h2 class="text-gradient">Arts × Sciences<br>= Innovation</h2>
+            <p>「文系」も「理系」も、過去の言葉。<br>境界を溶かし、複雑な社会課題に挑む。</p>
+        </div>
+    </section>
+
+    <!-- 学びの領域（3つのドメイン） -->
+    <div class="container">
+        <div class="section-title">
+            <h2>3 DOMAINS</h2>
+            <p>融合から生まれる新しい知の領域</p>
+        </div>
+
+        <div class="domain-wrapper">
+            <!-- ソーシャル・イノベーション領域 -->
+            <div class="domain-card">
+                <span class="domain-icon">💡</span>
+                <h3>ソーシャル・<br>イノベーション領域</h3>
+                <p>経済学・経営学の知見と、IT・データサイエンスを融合。テクノロジーを活用して、新しいビジネスモデルや社会制度を設計します。</p>
+                <div class="tag-box">
+                    <span class="tag">経営学</span>
+                    <span class="tag">AI</span>
+                    <span class="tag">起業論</span>
+                </div>
+            </div>
+
+            <!-- 環境・サステナビリティ領域 -->
+            <div class="domain-card">
+                <span class="domain-icon">🌿</span>
+                <h3>環境・<br>サステナビリティ領域</h3>
+                <p>生物学・環境科学と、政策科学・倫理学を融合。科学的な根拠に基づき、持続可能な社会を実現するための政策立案能力を養います。</p>
+                <div class="tag-box">
+                    <span class="tag">環境科学</span>
+                    <span class="tag">法学</span>
+                    <span class="tag">都市計画</span>
+                </div>
+            </div>
+
+            <!-- ヒューマン・テクノロジー領域 -->
+            <div class="domain-card">
+                <span class="domain-icon">🧠</span>
+                <h3>ヒューマン・<br>テクノロジー領域</h3>
+                <p>心理学・認知科学と、情報工学・デザインを融合。人の心に寄り添うUI/UXデザインや、AIと人間の協調関係を探究します。</p>
+                <div class="tag-box">
+                    <span class="tag">心理学</span>
+                    <span class="tag">デザイン</span>
+                    <span class="tag">脳科学</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PBL（課題解決型学習） -->
+    <section class="pbl-section">
+        <div class="pbl-grid">
+            <div class="pbl-text">
+                <span style="color: #a18cd1; font-weight: bold; font-size: 0.9rem;">PROJECT BASED LEARNING</span>
+                <h3>教室を飛び出し、<br>正解のない問いに挑む。</h3>
+                <p>
+                    文理融合学部の中心は、企業や自治体と連携した「PBL（課題解決型学習）」です。
+                    1年次からチームを組み、文系・理系の異なる得意分野を持つ学生同士が協力して、リアルな社会課題の解決策を提案・実装します。
+                </p>
+                <a href="#" style="border-bottom: 2px solid #a18cd1; font-weight: bold;">プロジェクト事例を見る &rarr;</a>
+            </div>
+            <div class="pbl-img">
+                <img src="https://placehold.co/600x400/f093fb/ffffff?text=Active+Learning" alt="PBL授業風景">
+            </div>
+        </div>
+    </section>
+
+    <!-- ニュース -->
+    <div class="container">
+        <div class="section-title">
+            <h2>NEWS</h2>
+        </div>
+        <div class="news-list">
+            <a href="#" class="news-item">
+                <span class="news-date">2024.12.01</span>
+                <span class="news-tag">Research</span>
+                <span>「AIと著作権法」に関する学生チームの研究が、情報処理学会で奨励賞を受賞しました。</span>
+            </a>
+            <a href="#" class="news-item">
+                <span class="news-date">2024.11.15</span>
+                <span class="news-tag">Project</span>
+                <span>地元自治体と連携し、ビッグデータを活用した「観光防災マップ」アプリをリリースしました。</span>
+            </a>
+            <a href="#" class="news-item">
+                <span class="news-date">2024.10.30</span>
+                <span class="news-tag">Admissions</span>
+                <span>総合型選抜（探究学習評価型）の最終選考結果について</span>
+            </a>
+            <a href="#" class="news-item">
+                <span class="news-date">2024.10.10</span>
+                <span class="news-tag">Event</span>
+                <span>シンポジウム「文理融合が拓く未来のキャリア」開催のお知らせ</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- フッター -->
+    <footer>
+        <div class="footer-logo text-gradient">Misemi-ya University</div>
+        <p style="font-weight: bold; color: #555;">店魅偉屋大学 文理融合学部</p>
+        <p style="font-size: 0.9rem; color: #888;">Faculty of Transdisciplinary Studies</p>
+        <div style="margin-top: 30px;">
+            <a href="#" style="margin: 0 10px; color: #aaa;">Access</a>
+            <a href="#" style="margin: 0 10px; color: #aaa;">Contact</a>
+            <a href="#" style="margin: 0 10px; color: #aaa;">Site Policy</a>
+        </div>
+        <p style="margin-top: 40px; font-size: 0.8rem; color: #ccc;">&copy; Misemi-ya University. Transdisciplinary Studies.</p>
+    </footer>
+
+</body>
+</html>

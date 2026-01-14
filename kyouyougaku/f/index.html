@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>店魅偉屋大学 教養学部 | Misemi-ya Univ. Faculty of Liberal Arts</title>
+    
+    <!-- ▼ Favicon設定（教養学部らしい開いた本のアイコン） ▼ -->
+    <link rel="icon" href="favicon.ico">
+
+    <style>
+        /* --- 配色設定：知性と多様性のハーモニー --- */
+        :root {
+            --la-teal: #008080;       /* ティール：知性とバランス */
+            --la-coral: #f08080;      /* コーラル：人間性と感性 */
+            --la-beige: #fdfcf8;      /* 背景：紙のような温かみ */
+            --la-dark: #2f4f4f;       /* ダークスレートグレー：文字色 */
+            --text-main: #333;
+        }
+
+        body {
+            font-family: "Yu Mincho", "Hiragino Mincho ProN", "Times New Roman", serif; /* リベラルアーツはセリフ体で教養ある雰囲気に */
+            margin: 0;
+            padding: 0;
+            color: var(--text-main);
+            background-color: var(--la-beige);
+            line-height: 1.8;
+        }
+
+        /* 見出しやナビは視認性のためサンセリフ */
+        h1, h2, h3, nav, .btn-link {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; padding: 0; margin: 0; }
+
+        /* --- ヘッダー --- */
+        header {
+            background-color: #fff;
+            border-top: 5px solid var(--la-teal);
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo h1 {
+            font-size: 1.5rem;
+            color: var(--la-dark);
+            margin: 0;
+            font-weight: 700;
+        }
+        .logo span {
+            font-size: 0.8rem;
+            color: var(--la-teal);
+            display: block;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 25px;
+        }
+        nav a {
+            color: var(--la-dark);
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        nav a:hover {
+            color: var(--la-coral);
+        }
+
+        /* --- ヒーローセクション --- */
+        .hero {
+            height: 500px;
+            background: linear-gradient(120deg, rgba(0, 128, 128, 0.1), rgba(240, 128, 128, 0.1)), url('kyo.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+        .hero-content {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 50px 80px;
+            border-radius: 2px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .hero-content h2 {
+            font-size: 2.5rem;
+            color: var(--la-dark);
+            margin-bottom: 20px;
+            letter-spacing: 0.1em;
+            font-family: serif;
+        }
+        .hero-content p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 2;
+        }
+        .btn-hero {
+            background-color: var(--la-teal);
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .btn-hero:hover {
+            background-color: var(--la-dark);
+        }
+
+        /* --- コンテンツ共通 --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--la-dark);
+        }
+        .section-title h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        .section-title span {
+            display: block;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(to right, var(--la-teal), var(--la-coral));
+            margin: 0 auto;
+        }
+
+        /* 学びの領域（円形アイコンで柔らかさを表現） */
+        .areas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+        .area-item {
+            transition: transform 0.3s;
+        }
+        .area-item:hover {
+            transform: translateY(-10px);
+        }
+        .area-icon {
+            width: 120px;
+            height: 120px;
+            background-color: #fff;
+            border: 2px solid var(--la-teal);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 3rem;
+            color: var(--la-teal);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .area-item h3 {
+            font-size: 1.2rem;
+            color: var(--la-dark);
+            margin-bottom: 10px;
+        }
+        .area-item p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* 特集：リベラルアーツの強み */
+        .feature-section {
+            background-color: #fff;
+            padding: 80px 0;
+        }
+        .feature-box {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        .feature-box:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        .feature-text {
+            flex: 1;
+        }
+        .feature-text h3 {
+            font-size: 1.8rem;
+            color: var(--la-teal);
+            margin-bottom: 20px;
+        }
+        .feature-img {
+            flex: 1;
+            height: 300px;
+            background-color: #eee;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .feature-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ニュースリスト */
+        .news-list {
+            border-top: 1px solid #ddd;
+        }
+        .news-item {
+            border-bottom: 1px solid #ddd;
+            padding: 20px 0;
+            display: flex;
+            align-items: baseline;
+        }
+        .news-date {
+            width: 120px;
+            font-family: sans-serif;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        .news-tag {
+            display: inline-block;
+            padding: 3px 10px;
+            background-color: var(--la-beige);
+            border: 1px solid var(--la-teal);
+            color: var(--la-teal);
+            font-size: 0.75rem;
+            border-radius: 20px;
+            margin-right: 15px;
+            font-family: sans-serif;
+        }
+        .news-title:hover {
+            color: var(--la-coral);
+            text-decoration: underline;
+        }
+
+        /* フッター */
+        footer {
+            background-color: var(--la-dark);
+            color: #fff;
+            padding: 50px 0;
+            text-align: center;
+            font-family: sans-serif;
+        }
+        .footer-links a {
+            color: #ddd;
+            margin: 0 15px;
+            font-size: 0.9rem;
+        }
+        .footer-links a:hover { color: #fff; }
+
+        @media (max-width: 768px) {
+            .header-inner { flex-direction: column; }
+            nav ul { margin-top: 15px; font-size: 0.8rem; }
+            .feature-box { flex-direction: column; }
+            .feature-box:nth-child(even) { flex-direction: column; }
+            .hero-content { padding: 30px; width: 90%; }
+            .hero-content h2 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ヘッダー -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <h1>店魅偉屋大学 教養学部</h1>
+                <span>Misemi-ya University Faculty of Liberal Arts</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">学部について</a></li>
+                    <li><a href="#">メジャー(専攻)</a></li>
+                    <li><a href="#">グローバル教育</a></li>
+                    <li><a href="#">キャリア</a></li>
+                    <li><a href="#">入試情報</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ヒーローエリア -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>世界を、つなぐ知性。</h2>
+            <p>
+                文系の感性と、理系の論理。<br>
+                境界を越えて学ぶ「リベラルアーツ」が、<br>
+                複雑な現代社会の羅針盤となる。
+            </p>
+            <a href="#" class="btn-hero">学部の学びを見る</a>
+        </div>
+    </section>
+
+    <!-- 学びの領域（メジャー制） -->
+    <div class="container">
+        <div class="section-title">
+            <h2>4 FIELDS OF STUDY</h2>
+            <span></span>
+            <p style="margin-top: 20px; font-size: 0.95rem;">
+                既存の学問領域にとらわれない、4つの領域から自由に学ぶ。<br>
+                入学後に自分の興味に合わせて専攻（メジャー）を決定します。
+            </p>
+        </div>
+
+        <div class="areas-grid">
+            <!-- 人文科学 -->
+            <div class="area-item">
+                <div class="area-icon">📚</div>
+                <h3>Humanities</h3>
+                <p>哲学・歴史・文学・芸術。<br>人間の精神と文化を深く探究する。</p>
+            </div>
+            <!-- 社会科学 -->
+            <div class="area-item">
+                <div class="area-icon">⚖️</div>
+                <h3>Social Sciences</h3>
+                <p>法・政治・経済・社会学。<br>社会の仕組みと人間関係を解き明かす。</p>
+            </div>
+            <!-- 自然科学 -->
+            <div class="area-item">
+                <div class="area-icon">🔬</div>
+                <h3>Natural Sciences</h3>
+                <p>数学・物理・生命科学。<br>論理的思考と自然の法則を学ぶ。</p>
+            </div>
+            <!-- グローバル研究 -->
+            <div class="area-item">
+                <div class="area-icon">🌏</div>
+                <h3>Global Studies</h3>
+                <p>言語・平和研究・国際関係。<br>多文化共生社会の課題に挑む。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 特集セクション -->
+    <section class="feature-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>OUR EDUCATION</h2>
+                <span></span>
+            </div>
+
+            <div class="feature-box">
+                <div class="feature-text">
+                    <h3>少人数対話型セミナー</h3>
+                    <p>
+                        教養学部の授業の基本は「対話」です。一方的な講義ではなく、教員と学生、あるいは学生同士が議論を交わすことで、批判的思考力（クリティカル・シンキング）を養います。
+                    </p>
+                    <p>
+                        1年次からの「基礎演習」では、文献の読み方から論文の書き方まで、学問の作法を徹底的に学びます。
+                    </p>
+                </div>
+                <div class="feature-img">
+                    <img src="https://placehold.co/600x400/008080/ffffff?text=Seminar+Class" alt="セミナー風景">
+                </div>
+            </div>
+
+            <div class="feature-box">
+                <div class="feature-text">
+                    <h3>文理融合のカリキュラム</h3>
+                    <p>
+                        「AIと倫理」「環境問題と経済」「音楽と数学」。<br>
+                        現代の課題は単一の専門分野だけでは解決できません。店魅偉屋大学教養学部では、文系・理系の枠を超えた「学際的（インターディシプリナリー）」な科目を多数配置しています。
+                    </p>
+                </div>
+                <div class="feature-img">
+                    <img src="https://placehold.co/600x400/f08080/ffffff?text=Interdisciplinary" alt="文理融合">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ニュース -->
+    <div class="container">
+        <div class="section-title">
+            <h2>NEWS & TOPICS</h2>
+            <span></span>
+        </div>
+        <ul class="news-list">
+            <li class="news-item">
+                <span class="news-date">2024.11.30</span>
+                <span class="news-tag">イベント</span>
+                <a href="#" class="news-title">公開シンポジウム「AI時代の教養とは何か」を開催しました。</a>
+            </li>
+            <li class="news-item">
+                <span class="news-date">2024.11.12</span>
+                <span class="news-tag">留学</span>
+                <a href="#" class="news-title">2025年度 派遣交換留学生の募集要項（二次募集）</a>
+            </li>
+            <li class="news-item">
+                <span class="news-date">2024.10.28</span>
+                <span class="news-tag">入試</span>
+                <a href="#" class="news-title">総合型選抜（リベラルアーツ思考力型）の出願状況について</a>
+            </li>
+            <li class="news-item">
+                <span class="news-date">2024.10.15</span>
+                <span class="news-tag">学生の活躍</span>
+                <a href="#" class="news-title">模擬国連世界大会で本学部生チームが優秀賞を受賞しました。</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- フッター -->
+    <footer>
+        <div class="footer-inner">
+            <h3 style="margin-bottom: 10px;">店魅偉屋大学 教養学部</h3>
+            <p style="font-size: 0.9rem; opacity: 0.7; margin-bottom: 20px;">Misemi-ya University Faculty of Liberal Arts</p>
+            
+            <div class="footer-links">
+                <a href="#">カリキュラム・ポリシー</a>
+                <a href="#">ディプロマ・ポリシー</a>
+                <a href="#">交通アクセス</a>
+                <a href="#">お問い合わせ</a>
+            </div>
+            <p style="margin-top: 30px; font-size: 0.8rem; opacity: 0.5;">&copy; Misemi-ya University Faculty of Liberal Arts.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

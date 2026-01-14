@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>職員ポータル - 店魅偉屋大学医学部附属病院</title>
+    <!-- 必要なCSSをここにまとめて記述しています -->
+    <style>
+        /* 全体の設定 */
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* --- ポップアップ通知のスタイル --- */
+        #login-toast {
+            position: fixed;
+            top: -100px; /* 最初は画面外（上）に隠す */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50; /* 成功を示す緑色 */
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            font-weight: bold;
+            z-index: 1000;
+            transition: top 0.5s ease-in-out; /* アニメーション設定 */
+        }
+
+        /* --- ページ上部の認証成功メッセージエリア --- */
+        .auth-header {
+            background-color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+            border-bottom: 4px solid #003366;
+            margin-bottom: 30px;
+        }
+        .auth-header h1 {
+            color: #4CAF50;
+            font-size: 24px;
+            margin: 0 0 10px 0;
+        }
+        .auth-header h2 {
+            color: #003366;
+            font-size: 28px;
+            margin: 0 0 10px 0;
+            line-height: 1.4;
+        }
+        .auth-header p {
+            font-size: 18px;
+            color: #666;
+            margin: 0;
+        }
+
+        /* --- サイトマップ部分のスタイル --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px 50px;
+        }
+
+        /* 各セクションのボックス */
+        .site-section {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+        }
+
+        .site-section h2 {
+            color: #003366;
+            border-left: 5px solid #003366;
+            padding-left: 15px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+
+        .site-section h3 {
+            font-size: 18px;
+            color: #444;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+
+        /* リストのスタイル */
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #0056b3;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: #002a80;
+            text-decoration: underline;
+        }
+
+        /* カラム（横並び）レイアウト */
+        .university-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .column {
+            flex: 1;
+            min-width: 250px; /* スマホなどで狭くなりすぎないように */
+        }
+
+        /* 下向き矢印のデザイン */
+        .arrow-down {
+            width: 0; 
+            height: 0; 
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 20px solid #ccc;
+            margin: 10px auto 30px; /* 上下の余白 */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ポップアップ通知 -->
+    <div id="login-toast">あなたは正常にログインしました。</div>
+
+    <!-- 上部の認証成功メッセージ -->
+    <div class="auth-header">
+        <h1>認証成功</h1>
+        <h2>店魅偉屋大学医学部附属病院<br>職員ポータルへようこそ。</h2>
+        <p>以下のリンクより業務システムへアクセスしてください。</p>
+        <p style="margin-top: 10px; font-size: 14px;"><a href="index.html">ログアウト</a></p>
+    </div>
+
+    <!-- ここからサイトマップコンテンツ -->
+    <div class="container">
+        
+        <!-- セクション1: ミセミーヤ -->
+        <div class="site-section">
+            <h2>ミセミーヤ</h2>
+            <ul>
+                <li><a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/index.html">商品一覧</a></li>
+                <li><a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/homepage.html">ホームページ</a></li>
+                <li><a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/login">ログイン</a></li>
+            </ul>
+        </div>
+
+        <div class="arrow-down"></div>
+
+        <!-- セクション2: 大学関連 -->
+        <div class="site-section university-section">
+            <h2>店魅偉屋大学</h2>
+            <div class="university-content">
+                <div class="column">
+                    <h3>メインナビゲーション</h3>
+                    <ul>
+                        <li><a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/index.html">店魅偉屋大学</a></li>
+                        <li><a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/igaku/misedaibyouin/index.html">店魅偉屋大学医学部附属病院</a></li>
+                        <li><a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/university/university.html">大学について</a></li>
+                        <li><a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/faculty/faculty.html">学部・大学院</a></li>
+                        <li><a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/research/research.html">研究</a></li>
+                        <li><a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/admission/admission.html">入学案内</a></li>
+                        <li><a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/studentlife/studentlife.html">学生生活</a></li>
+                        <li><a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/society/society.html">社会連携</a></li>
+                        <li><a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/access/access.html">アクセス</a></li>
+                        <li><a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/universityguidance/universityguidance.html">大学案内</a></li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3>その他</h3>
+                    <ul>
+                        <li><a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/list/igaku.html">国際シンポジウム</a></li>
+                        <li><a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/list/join.html">入学試験</a></li>
+                        <li><a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/list/mrtanaka.html">研究チーム新発見</a></li>
+                        <li><a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/list/list.html">ニュース＆一覧</a></li>
+                        <li><a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/tokusyoku/1.html">最先端の研究</a></li>
+                        <li><a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/tokusyoku/2.html">質の高い教育</a></li>
+                        <li><a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/tokusyoku/3.html">国際交流</a></li>
+                        <li><a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/sitemap/index.html">サイトマップ</a></li>
+                        <li><a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/free/form.html">お問い合わせ</a></li>
+                        <li><a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/free/privacy.html">プライバシーポリシー</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="arrow-down"></div>
+
+        <!-- セクション3: 運営サイト・その他 -->
+        <div class="site-section">
+            <h2>株式会社ミセミーヤ運営サイト</h2>
+            <div class="university-content">
+                <div class="column">
+                    <h3>株式会社ミセミーヤ睡眠チーム</h3>
+                    <ul>
+                        <li><a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/sleep-portal/index.html">すいみんぽーたる</a></li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3>きちがいウェブ一覧</h3>
+                    <ul>
+                        <li><a href="https://kichigai-web-ichiran.github.io/www.kichigai-web-ichiran.com/index.html">きちがいweb一覧</a></li>
+                        <li><a href="https://sakakibara-mitio.github.io/www.sakakibara.mitio.co.jp/index.html">さかきばらみちお</a></li>
+                        <li><a href="https://ashiwarashiori.github.io/www.ashiwara-shiori.co.jp/index.html">あしわらしおり</a></li>
+                        <li><a href="https://satou-chihiro.github.io/www.satou-chihiro.co.jp/index.html">さとうちひろ</a></li>
+                        <li><a href="https://yamazaki-hamao.github.io/www.yamazaki-hamao.com/index.html">やまざきはまお</a></li>
+                        <li><a href="https://kichigai-web-ichiran.github.io/www.kanzaki-makoto.jp/index.html">かんざきまこと</a></li>
+                        <li><a href="https://kichigai-web-ichiran.github.io/www.takahashi-natsuki.jp/index.html">たかはしなつき</a></li>
+                        <li><a href="https://kichigai-web-ichiran.github.io/shimazaki-ayami.com/index.html">しまざきあやみ</a></li>
+                        <li><a href="https://kichigai-web-ichiran.github.io/www.kichigai-web-ichiran.com/hara.html">はらりおこ</a></li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3>株式会社武装変更取り式湯社</h3>
+                    <ul>
+                        <li><a href="https://kichigai-web-ichiran.github.io/www.busouhenkoutorishikiyu.co.jp/index.html">ホームページ</a></li>
+                    </ul>
+                </div>
+            </div>         
+        </div>
+    </div>
+
+    <!-- ポップアップ制御用のJavaScript -->
+    <script>
+        window.onload = function() {
+            var toast = document.getElementById("login-toast");
+            
+            // ページ読み込みから少しだけ待ってから表示（アニメーションのため）
+            setTimeout(function() {
+                toast.style.top = "20px"; // 画面上部から20pxの位置に下ろす
+            }, 100);
+
+            // 2.5秒後（表示から約2秒ちょっと）に隠す
+            setTimeout(function() {
+                toast.style.top = "-100px"; // 再び画面外へ戻す
+            }, 2600);
+        };
+    </script>
+</body>
+</html>

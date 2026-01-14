@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>店魅偉屋大学 教育学部 | Misemi-ya University</title>
+    <meta name="description" content="店魅偉屋大学 教育学部の公式サイトです。未来を創る教育者の育成を目指し、実践的なカリキュラムを提供しています。">
+    
+    <!-- ご要望のfaviconリンク -->
+    <link rel="icon" href="favicon.ico">
+
+    <style>
+        /* 基本スタイル設定 */
+        :root {
+            --primary-color: #004d40; /* 落ち着いたグリーン（教育・知性） */
+            --accent-color: #ffca28; /* 明るいイエロー（希望・未来） */
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+        }
+
+        /* ヘッダー */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            font-size: 0.9rem;
+            margin-left: 10px;
+            color: #666;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        /* ヒーローセクション */
+/* ヒーローセクション（画像を差し替えました） */
+        .hero {
+            /* Unsplashの「大学・教育・緑」の画像を背景に設定 */
+            background: linear-gradient(rgba(0, 77, 64, 0.7), rgba(0, 77, 64, 0.5)), url('edu.png') no-repeat center center/cover;
+            
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        /* 背景画像が動きをつけるパララックス効果（お好みで追加） */
+        .hero {
+            background-attachment: fixed;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #000;
+            padding: 10px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background-color: #ffb300;
+        }
+
+        /* コンテンツエリア共通 */
+        .container {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        h2 {
+            border-left: 5px solid var(--primary-color);
+            padding-left: 15px;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+        }
+
+        /* 学科紹介 */
+        .courses {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .course-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .course-card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        /* ニュース */
+        .news-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .news-list li {
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .news-date {
+            font-weight: bold;
+            color: #666;
+            width: 120px;
+        }
+
+        /* 学部長メッセージ */
+        .message-box {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+
+        .dean-img {
+            width: 150px;
+            height: 150px;
+            background-color: #ccc;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* フッター */
+        footer {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 5px 0;
+            font-size: 0.9rem;
+        }
+
+        /* スマホ対応 */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            nav ul {
+                margin-top: 15px;
+            }
+            nav ul li {
+                margin: 0 10px;
+                font-size: 0.9rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .message-box {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ヘッダー -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                店魅偉屋大学<span>教育学部</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">ホーム</a></li>
+                    <li><a href="#about">学部紹介</a></li>
+                    <li><a href="#courses">学科・専攻</a></li>
+                    <li><a href="#admissions">入試情報</a></li>
+                    <li><a href="#access">アクセス</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ヒーローエリア -->
+    <div class="hero">
+        <div>
+            <h1>「個」を魅き出し、<br>未来を創る教育者へ。</h1>
+            <p>Misemi-ya University Faculty of Education</p>
+            <a href="#admissions" class="btn">資料請求・お問い合わせ</a>
+        </div>
+    </div>
+
+    <!-- ニュース -->
+    <section class="container">
+        <h2>News & Topics</h2>
+        <ul class="news-list">
+            <li>
+                <span class="news-date">2024.10.01</span>
+                <span class="news-title">令和7年度 入学者選抜要項を公開しました</span>
+            </li>
+            <li>
+                <span class="news-date">2024.09.15</span>
+                <span class="news-title">【イベント】秋のオープンキャンパス開催のお知らせ</span>
+            </li>
+            <li>
+                <span class="news-date">2024.08.20</span>
+                <span class="news-title">教育実習報告会の様子をブログにアップしました</span>
+            </li>
+        </ul>
+    </section>
+
+    <!-- 学科紹介 -->
+    <section id="courses" class="container">
+        <h2>学科・コース紹介</h2>
+        <div class="courses">
+            <div class="course-card">
+                <h3>学校教育課程</h3>
+                <p>小学校・中学校の教員免許取得を目指します。実践的な模擬授業と理論を融合させ、現場で即戦力となる指導力を養います。</p>
+            </div>
+            <div class="course-card">
+                <h3>幼児教育課程</h3>
+                <p>幼稚園教諭・保育士資格に対応。「遊び」を通じた学びを科学的に研究し、子どもの感性を育むスペシャリストを育成します。</p>
+            </div>
+            <div class="course-card">
+                <h3>特別支援教育コース</h3>
+                <p>一人ひとりの個性に寄り添う教育を学びます。多様なニーズに対応できる専門知識と、豊かな人間性を育みます。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 学部長メッセージ -->
+    <section id="about" class="container">
+        <h2>学部長メッセージ</h2>
+        <div class="message-box">
+            <div class="dean-img" style="background: url('https://media.istockphoto.com/id/1142192548/ja/%E3%83%99%E3%82%AF%E3%82%BF%E3%83%BC/%E4%BA%BA%E9%96%93%E3%81%AE%E3%82%A2%E3%83%90%E3%82%BF%E3%83%BC%E3%81%AE%E3%83%97%E3%83%AD%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E7%99%BD%E3%81%84%E8%83%8C%E6%99%AF%E3%81%AB%E5%AD%A4%E7%AB%8B%E3%81%97%E3%81%9F%E7%94%B7%E6%80%A7%E3%81%AE%E9%A1%94%E3%81%AE%E3%82%B7%E3%83%AB%E3%82%A8%E3%83%83%E3%83%88%E3%81%BE%E3%81%9F%E3%81%AF%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3%E3%83%99%E3%82%AF%E3%82%BF%E3%83%BC%E3%82%A4%E3%83%A9%E3%82%B9%E3%83%88.jpg?s=612x612&w=0&k=20&c=0l5Kg1m68mPSmfLnwozTLfnPjUvCfLSV-N3ce5gXOxc=') center/cover;"></div>
+            <div>
+                <h3>「店魅偉屋」の精神で、教育の常識を変える</h3>
+                <p>
+                    本学教育学部は、伝統的な教育学に加え、店魅偉屋（みせみーや）独自の「魅力創造」の概念を取り入れています。
+                    教育とは単に知識を伝達することではなく、学習者の内なる魅力を引き出し、社会という店先（ステージ）で輝かせることです。
+                    情熱とユーモア、そして確かな専門性を持った教育者を、私たちは全力で応援します。
+                </p>
+                <p style="margin-top:10px; text-align:right;"><strong>教育学部長　重田 義教</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer id="access">
+        <div class="container" style="margin: 0 auto;">
+            <h3>店魅偉屋大学 教育学部</h3>
+            <p>〒113-8654 東京都文京区本郷 7-3-2</p>
+            <p>MAIL: f.e.misemi-ya@mail.com</p>
+            <div style="margin-top: 20px;">
+                <a href="#">サイトマップ</a> | <a href="#">プライバシーポリシー</a> | <a href="#">交通アクセス</a>
+            </div>
+            <p style="margin-top: 20px; opacity: 0.7;">&copy; 2025 Misemi-ya University. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

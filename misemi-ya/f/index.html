@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>店魅偉屋大学 店魅偉屋学部 | Misemi-ya University. Faculty of Misemi-ya Studies</title>
+    
+    <!-- ▼ Favicon設定（魅力を放つキラキラアイコン） ▼ -->
+    <link rel="icon" href="favicon.ico">
+
+    <style>
+        /* --- 配色設定：カリスマ＆レジェンド --- */
+        :root {
+            --tm-purple: #4a148c;     /* 高貴な紫：魅了 */
+            --tm-gold: #ffd700;       /* 黄金：偉大さ */
+            --tm-red: #b71c1c;        /* 深紅：情熱 */
+            --tm-dark: #1a1a1a;       /* 漆黒：威厳 */
+            --bg-pattern: #fdfdfd;
+        }
+
+        body {
+            font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif; /* 格調高い明朝体 */
+            margin: 0;
+            padding: 0;
+            color: var(--tm-dark);
+            background-color: var(--bg-pattern);
+            line-height: 1.8;
+            background-image: radial-gradient(#eee 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        /* 英語部分はサンセリフでモダンに */
+        h1 span, nav, .eng-text, .btn-tm {
+            font-family: "Helvetica Neue", Arial, sans-serif;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; padding: 0; margin: 0; }
+
+        /* --- ヘッダー --- */
+        header {
+            background-color: #fff;
+            border-bottom: 4px solid var(--tm-purple);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            text-align: left;
+        }
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--tm-purple);
+            margin: 0;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+        .logo span {
+            font-size: 0.8rem;
+            color: var(--tm-dark);
+            display: block;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        nav ul { display: flex; gap: 30px; }
+        nav a {
+            font-weight: bold;
+            color: var(--tm-dark);
+            font-size: 0.9rem;
+            position: relative;
+        }
+        nav a:hover { color: var(--tm-purple); }
+        /* 金色の下線アニメーション */
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; left: 0; width: 0; height: 2px;
+            background: var(--tm-gold);
+            transition: 0.4s;
+        }
+        nav a:hover::after { width: 100%; }
+
+        /* --- ヒーローセクション --- */
+        .hero {
+            height: 650px;
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.9), rgba(74, 20, 140, 0.8)), url('mise.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        /* 金粉が舞うようなエフェクト */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(var(--tm-gold) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.3;
+            animation: sparkle 10s linear infinite;
+        }
+        @keyframes sparkle { from { background-position: 0 0; } to { background-position: 0 100%; } }
+
+        .hero-content {
+            z-index: 2;
+            border: 2px solid rgba(255,215,0,0.3);
+            padding: 60px 80px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(3px);
+        }
+        .hero-title {
+            font-size: 4rem;
+            margin: 0 0 20px;
+            line-height: 1.2;
+            text-shadow: 0 0 20px rgba(74, 20, 140, 0.8);
+        }
+        .hero-title span {
+            color: var(--tm-gold);
+            font-size: 1.2em; /* 漢字を大きく */
+        }
+        .hero-sub {
+            font-size: 1.5rem;
+            letter-spacing: 0.2em;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+        .btn-tm {
+            display: inline-block;
+            background: linear-gradient(to right, var(--tm-purple), #7c43bd);
+            color: #fff;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+            border: 1px solid var(--tm-gold);
+            transition: 0.3s;
+        }
+        .btn-tm:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
+        }
+
+        /* --- 4つの精神（コンセプト） --- */
+        .concept-section {
+            padding: 100px 0;
+            background: #fff;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--tm-dark);
+            margin-bottom: 10px;
+        }
+        .section-title p {
+            color: var(--tm-purple);
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .kanji-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            gap: 20px;
+        }
+        .kanji-card {
+            text-align: center;
+            padding: 40px 20px;
+            border: 1px solid #eee;
+            transition: 0.4s;
+            position: relative;
+            background: #fff;
+        }
+        .kanji-card:hover {
+            background: var(--tm-purple);
+            color: #fff;
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(74, 20, 140, 0.3);
+        }
+        .kanji-char {
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            display: block;
+            color: var(--tm-purple);
+            transition: 0.4s;
+        }
+        .kanji-card:hover .kanji-char { color: var(--tm-gold); }
+        .kanji-meaning {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .kanji-desc {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            opacity: 0.8;
+        }
+
+        /* --- 学科紹介 --- */
+        .dept-section {
+            background-color: var(--tm-dark);
+            color: #fff;
+            padding: 100px 0;
+        }
+        .dept-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .dept-row {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 80px;
+        }
+        .dept-row:nth-child(even) { flex-direction: row-reverse; }
+        .dept-row:last-child { margin-bottom: 0; }
+        
+        .dept-img {
+            flex: 1;
+            position: relative;
+        }
+        .dept-img img {
+            width: 100%;
+            border-radius: 4px;
+            box-shadow: 10px 10px 0 var(--tm-gold);
+        }
+        .dept-info { flex: 1; }
+        .dept-info h3 {
+            font-size: 2rem;
+            color: var(--tm-gold);
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 10px;
+        }
+        .dept-info p {
+            color: #ccc;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+        .tag {
+            border: 1px solid var(--tm-gold);
+            color: var(--tm-gold);
+            padding: 5px 15px;
+            font-size: 0.8rem;
+            margin-right: 10px;
+            border-radius: 20px;
+        }
+
+        /* --- 学部長メッセージ --- */
+        .message-section {
+            padding: 100px 0;
+            background-image: linear-gradient(to right, #fdfdfd 0%, #f3e5f5 100%);
+        }
+        .message-box {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .dean-face {
+            width: 150px;
+            height: 150px;
+            background-color: #ddd;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            background-image: url('https://media.istockphoto.com/id/1142192548/ja/%E3%83%99%E3%82%AF%E3%82%BF%E3%83%BC/%E4%BA%BA%E9%96%93%E3%81%AE%E3%82%A2%E3%83%90%E3%82%BF%E3%83%BC%E3%81%AE%E3%83%97%E3%83%AD%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E7%99%BD%E3%81%84%E8%83%8C%E6%99%AF%E3%81%AB%E5%AD%A4%E7%AB%8B%E3%81%97%E3%81%9F%E7%94%B7%E6%80%A7%E3%81%AE%E9%A1%94%E3%81%AE%E3%82%B7%E3%83%AB%E3%82%A8%E3%83%83%E3%83%88%E3%81%BE%E3%81%9F%E3%81%AF%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3%E3%83%99%E3%82%AF%E3%82%BF%E3%83%BC%E3%82%A4%E3%83%A9%E3%82%B9%E3%83%88.jpg?s=612x612&w=0&k=20&c=0l5Kg1m68mPSmfLnwozTLfnPjUvCfLSV-N3ce5gXOxc=');
+            background-size: cover;
+            border: 5px solid #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .message-title {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--tm-purple);
+        }
+        .message-text {
+            font-size: 1.1rem;
+            line-height: 2;
+            margin-bottom: 30px;
+        }
+
+        /* フッター */
+        footer {
+            background-color: var(--tm-purple);
+            color: #fff;
+            padding: 60px 0;
+            text-align: center;
+        }
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--tm-gold);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .hero-content { padding: 30px; }
+            .kanji-grid { grid-template-columns: 1fr; }
+            .dept-row, .dept-row:nth-child(even) { flex-direction: column; gap: 30px; }
+            .header-inner { flex-direction: column; }
+            nav ul { margin-top: 20px; flex-wrap: wrap; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <h1>店魅偉屋学部</h1>
+                <span>Faculty of Misemi-ya Studies</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">建学の精神</a></li>
+                    <li><a href="#">3つの学科</a></li>
+                    <li><a href="#">カリスマ養成</a></li>
+                    <li><a href="#">研究・実績</a></li>
+                    <li><a href="#">入試情報</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ヒーローエリア -->
+    <section class="hero">
+        <div class="hero-content">
+            <p class="hero-sub eng-text">THE SOUL OF MISEMI-YA</p>
+            <h2 class="hero-title">
+                <span>店</span>・<span>魅</span>・<span>偉</span>・<span>屋</span><br>
+                その名を背負う、<br>覚悟はあるか。
+            </h2>
+            <a href="#" class="btn-tm">MISSON & VISION</a>
+        </div>
+    </section>
+
+    <!-- 4つの精神（コンセプト） -->
+    <section class="concept-section">
+        <div class="section-title">
+            <h2>THE 4 SPIRITS</h2>
+            <p>店魅偉屋（ミセミーヤ）を構成する4つの哲学</p>
+        </div>
+        <div class="kanji-grid">
+            <div class="kanji-card">
+                <span class="kanji-char">店</span>
+                <span class="kanji-meaning">Shop / Place</span>
+                <p class="kanji-desc">人が集う「場」を創造する力。ビジネス、空間デザイン、コミュニティ形成の原点を学ぶ。</p>
+            </div>
+            <div class="kanji-card">
+                <span class="kanji-char">魅</span>
+                <span class="kanji-meaning">Charm / Attraction</span>
+                <p class="kanji-desc">人心を惹きつける「魅力」の科学。自己プロデュース、心理学、美学を探究する。</p>
+            </div>
+            <div class="kanji-card">
+                <span class="kanji-char">偉</span>
+                <span class="kanji-meaning">Greatness</span>
+                <p class="kanji-desc">時代を切り拓く「偉大」なるリーダーシップ。帝王学、歴史、倫理観を養う。</p>
+            </div>
+            <div class="kanji-card">
+                <span class="kanji-char">屋</span>
+                <span class="kanji-meaning">Professional</span>
+                <p class="kanji-desc">一芸を極める「屋号」のプライド。専門性、職人精神、実学の精神を徹底する。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 学科紹介 -->
+    <section class="dept-section">
+        <div class="dept-container">
+            <div class="section-title">
+                <h2 style="color: #fff;">DEPARTMENTS</h2>
+                <p style="color: var(--tm-gold);">唯一無二の3学科</p>
+            </div>
+
+            <!-- 魅力創造学科 -->
+            <div class="dept-row">
+                <div class="dept-img">
+                    <img src="https://placehold.co/600x400/c2185b/ffffff?text=Charisma" alt="魅力創造学科">
+                </div>
+                <div class="dept-info">
+                    <h3>魅力創造学科</h3>
+                    <p class="eng-text">Dept. of Charm Creation</p>
+                    <p>
+                        「なぜ人は人に惹かれるのか」。心理学、ファッション、パフォーマンス学を融合し、圧倒的なカリスマ性と発信力を持つ人材を育成します。
+                        インフルエンサー、広報、プロデューサーを目指す者へ。
+                    </p>
+                    <span class="tag">自己表現</span>
+                    <span class="tag">ブランディング</span>
+                </div>
+            </div>
+
+            <!-- 空間演出経営学科 -->
+            <div class="dept-row">
+                <div class="dept-info">
+                    <h3>空間演出経営学科</h3>
+                    <p class="eng-text">Dept. of Space & Business</p>
+                    <p>
+                        「店（ミセ）」の本質は、人が集まる仕組みづくりにあります。
+                        店舗経営から都市開発、メタバース空間の設計まで、人々が熱狂する「場」をデザインし、収益化するノウハウを学びます。
+                    </p>
+                    <span class="tag">アントレプレナー</span>
+                    <span class="tag">空間デザイン</span>
+                </div>
+            </div>
+
+            <!-- 偉人リーダーシップ学科 -->
+            <div class="dept-row">
+                <div class="dept-img">
+                    <img src="https://placehold.co/600x400/1a237e/ffffff?text=Great+Leader" alt="偉人リーダーシップ学科">
+                </div>
+                <div class="dept-info">
+                    <h3>偉人リーダーシップ学科</h3>
+                    <p class="eng-text">Dept. of Great Leadership</p>
+                    <p>
+                        過去の偉人たちの思考法と行動原理を徹底的に研究。
+                        現代社会における「偉大さ」とは何かを問い続け、組織や国を導くトップリーダーとしての資質を磨き上げます。
+                    </p>
+                    <span class="tag">帝王学</span>
+                    <span class="tag">未来構想</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 学部長メッセージ -->
+    <section class="message-section">
+        <div class="message-box">
+            <div class="dean-face"></div>
+            <h2 class="message-title">「ミセミーヤ」になるということ。</h2>
+            <p class="message-text">
+                店魅偉屋学部は、本学の魂（ソウル）そのものです。<br>
+                ここでは既存の学問の枠組みは通用しません。<br>
+                <br>
+                自らを磨き（魅）、場を創り（店・屋）、<br>
+                そして偉大なる未来（偉）を描く。<br>
+                <br>
+                世界を魅了する準備はできていますか？<br>
+                キャンパスでお会いしましょう。
+            </p>
+            <div style="font-weight: bold; font-size: 1.2rem;">
+                初代学部長：三浦 玄（みうら げん）
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer>
+        <div class="footer-logo">店魅偉屋大学 店魅偉屋学部</div>
+        <p>Misemi-ya University Faculty of Temiiya Studies</p>
+        <p>〒113-8654 東京都文京区本郷 7-3-2</p>
+        <div style="margin-top: 30px;">
+            <a href="#" style="color: #ccc; margin: 0 10px;">お問い合わせ</a>
+            <a href="#" style="color: #ccc; margin: 0 10px;">アクセス</a>
+            <a href="#" style="color: #ccc; margin: 0 10px;">資料請求</a>
+        </div>
+        <p style="margin-top: 40px; font-size: 0.8rem; opacity: 0.6;">&copy; Misemi-ya University. Faculty of Misemi-ya Studies. The Legend Begins.</p>
+    </footer>
+
+</body>
+</html>

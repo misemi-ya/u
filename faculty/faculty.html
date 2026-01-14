@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学部一覧 | 店魅偉屋大学</title>
+    
+    <!-- 指定のファビコン -->
+    <link rel="icon" href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/images/favicon.ico">
+
+    <style>
+        /* 全体の設定 */
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            background-color: #f4f7f6; /* 薄いグレーの背景 */
+            margin: 0;
+            padding: 40px 20px;
+            color: #333;
+        }
+
+        /* コンテンツの枠 */
+        .container {
+            max-width: 600px; /* 幅を制限して読みやすく */
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* ほんのり影をつける */
+        }
+
+        /* タイトル */
+        h1 {
+            text-align: center;
+            color: #003366; /* 大学カラーの紺色 */
+            border-bottom: 2px solid #003366;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        /* リンクのリスト */
+        .faculty-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* 各リンクボタンのデザイン */
+        .faculty-link {
+            display: block;
+            padding: 15px 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        /* マウスを乗せた時の動き */
+        .faculty-link:hover {
+            background-color: #003366; /* 紺色背景に変化 */
+            color: #fff; /* 文字は白く */
+            border-color: #003366;
+            padding-left: 30px; /* 少し右に動く演出 */
+        }
+
+        /* 右矢印アイコン（CSSで作成） */
+        .faculty-link::after {
+            content: '>';
+            position: absolute;
+            right: 20px;
+            transition: color 0.3s;
+            color: #ccc;
+        }
+        
+        .faculty-link:hover::after {
+            color: #fff;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>学部一覧</h1>
+        
+        <div class="faculty-list">
+            <!-- href="#" の部分を実際のURLに書き換えてください -->
+            <a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/igaku/" class="faculty-link">医学部</a>
+            <a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/hougaku/" class="faculty-link">法学部</a>
+            <a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/edu/" class="faculty-link">教育学部</a>
+            <a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/kougaku/" class="faculty-link">工学部</a>
+            <a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/nougaku/" class="faculty-link">農学部</a>
+            <a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/rigaku/" class="faculty-link">理学部</a>
+            <a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/keizaigaku/" class="faculty-link">経済学部</a>
+            <a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/kyouyougaku/" class="faculty-link">教養学部</a>
+            <a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/yakugaku/" class="faculty-link">薬学部</a>
+            <a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/jouhougaku/" class="faculty-link">情報学部</a>
+            <a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/kokusai/" class="faculty-link">国際学部</a>
+            <a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/kaiyou/" class="faculty-link">海洋学部</a>
+            <a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/kankou/" class="faculty-link">観光学部</a>
+            <a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/kenkou/" class="faculty-link">健康学部</a>
+            <a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/bunka/" class="faculty-link">文化社会学部</a>
+            <a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/taiiku/" class="faculty-link">体育学部</a>
+            <a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/kokusai-bunka/" class="faculty-link">国際文化学部</a>
+            <a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/bunri/" class="faculty-link">文理融合学部</a>
+            <a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/keiei/" class="faculty-link">経営学部</a>
+            <a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/misemi-ya/" class="faculty-link">店魅偉屋学部</a>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>店魅偉屋大学 医学部附属病院 ログイン</title>
+    <style>
+        /* CSSは前回と同じです */
+        body { margin: 0; padding: 0; font-family: "Helvetica Neue", Arial, sans-serif; background-color: #f9f9f9; display: flex; justify-content: center; align-items: center; height: 100vh; color: #333; }
+        .container { text-align: center; width: 100%; max-width: 600px; padding: 20px; background-color: #fff; }
+        .logo-img { margin-bottom: 20px; }
+        .logo-img img { height: 120px; width: auto; object-fit: contain; }
+        .hospital-title { color: #003366; }
+        .hospital-title h1 { font-family: "Yu Mincho", serif; font-size: 32px; font-weight: bold; margin: 0; }
+        .hospital-title-en { color: #003366; font-family: "Times New Roman", serif; font-weight: bold; font-size: 18px; margin-top: 5px; margin-bottom: 40px; }
+        .login-form { display: flex; flex-direction: column; align-items: center; gap: 15px; }
+        .input-wrapper { position: relative; width: 320px; display: flex; align-items: center; }
+        .input-wrapper input { width: 100%; padding: 10px 40px 10px 10px; font-size: 16px; border: 2px solid #333; border-radius: 4px; outline: none; box-sizing: border-box; }
+        .input-wrapper button { position: absolute; right: 5px; background: #666; color: white; border: none; border-radius: 3px; width: 30px; height: 30px; cursor: pointer; display: flex; justify-content: center; align-items: center; }
+        .input-wrapper button:hover { background-color: #444; }
+        .arrow-right { width: 0; height: 0; border-top: 6px solid transparent; border-bottom: 6px solid transparent; border-left: 10px solid white; }
+        .divider { font-size: 16px; font-weight: bold; margin: 10px 0; }
+        .card-reader-area { display: flex; flex-direction: column; align-items: center; }
+        .card-img-box { width: 130px; height: 90px; border: 2px solid #000; display: flex; justify-content: center; align-items: center; margin-bottom: 10px; background-color: #fff; padding: 5px; }
+        .card-img-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .instruction-text { font-size: 18px; font-weight: normal; }
+        
+        /* エラーメッセージ用の赤字 */
+        #error-msg { color: red; font-size: 14px; display: none; margin-top: 5px;}
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="logo-img">
+            <img src="byouin.jpg" alt="病院ロゴ">
+        </div>
+
+        <div class="hospital-title">
+            <h1>店魅偉屋大学<br>医学部附属病院</h1>
+        </div>
+        <div class="hospital-title-en">Misemi-ya University Hospital</div>
+
+        <!-- フォーム送信時にJavaScriptの checkLogin関数 を実行します -->
+        <form class="login-form" onsubmit="checkLogin(event)">
+            <div class="input-wrapper">
+                <input type="password" id="passwordInput" placeholder="パスワードを入力してください" required>
+                <button type="submit">
+                    <div class="arrow-right"></div>
+                </button>
+            </div>
+            <!-- エラーメッセージ表示エリア -->
+            <div id="error-msg">パスワードが間違っています。</div>
+
+            <div class="divider">または</div>
+
+            <div class="card-reader-area">
+                <div class="card-img-box">
+                    <img src="id.jpg" alt="IDカードリーダー">
+                </div>
+                <div class="instruction-text">IDカードをかざしてください</div>
+            </div>
+        </form>
+    </div>
+
+    <!-- ログイン判定のスクリプト -->
+<!-- ログイン判定のスクリプト -->
+    <script>
+        function checkLogin(event) {
+            // フォームの通常送信（画面リロード）をキャンセル
+            event.preventDefault();
+
+            // 入力されたパスワードを取得
+            const inputPass = document.getElementById('passwordInput').value;
+            const errorMsg = document.getElementById('error-msg');
+
+            // --- ここでパスワードを複数設定します ---
+            // [] の中に "" で囲んでカンマ(,)で区切って記述します
+            const correctPasses = ["dr0626gs241", "ky0626th241", "adminuser", "ky0908th224"]; 
+            // ----------------------------------------
+
+            // 入力されたパスワードがリストの中に含まれているかチェック (includes)
+            if (correctPasses.includes(inputPass)) {
+                // 正解の場合：成功ページへ移動
+                window.location.href = "https://misemi-ya.github.io/www.misemi-ya.co.jp/university/login/home.html";
+            } else {
+                // 間違いの場合：エラーメッセージを表示
+                errorMsg.style.display = "block";
+                // 入力欄を空にする
+                document.getElementById('passwordInput').value = "";
+            }
+        }
+    </script>
+</body>
+</html>

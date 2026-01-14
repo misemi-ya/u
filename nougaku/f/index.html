@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>店魅偉屋大学 農学部 | Misemi-ya Univ. Faculty of Agriculture</title>
+    
+    <!-- ▼ Favicon設定（農学部らしい双葉のアイコン） ▼ -->
+    <link rel="icon" href="favicon.ico">
+
+    <style>
+        /* --- 配色設定：ネイチャー＆バイオ --- */
+        :root {
+            --agri-green: #2e7d32;     /* 濃い緑：森林・生命 */
+            --agri-leaf: #66bb6a;      /* 若草色：成長 */
+            --agri-earth: #795548;     /* 土色：大地 */
+            --agri-sun: #f9a825;       /* 太陽色：収穫 */
+            --bg-natural: #faf9f6;     /* オフホワイト：生成り */
+            --text-color: #333;
+        }
+
+        body {
+            font-family: "Hiragino Kaku Gothic ProN", "Meiryo", "Yu Gothic", sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: var(--bg-natural);
+            line-height: 1.7;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; padding: 0; margin: 0; }
+        img { max-width: 100%; height: auto; }
+
+        /* --- ヘッダー --- */
+        header {
+            background-color: #fff;
+            border-top: 5px solid var(--agri-green);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo-icon {
+            font-size: 2.5rem;
+            margin-right: 10px;
+            color: var(--agri-green);
+        }
+        .logo-text h1 {
+            margin: 0;
+            font-size: 1.6rem;
+            color: var(--agri-green);
+            font-family: serif; /* アカデミックな雰囲気 */
+        }
+        .logo-text span {
+            font-size: 0.8rem;
+            color: var(--agri-earth);
+            letter-spacing: 0.05em;
+            display: block;
+        }
+
+        /* ナビゲーション */
+        nav ul {
+            display: flex;
+            gap: 25px;
+        }
+        nav a {
+            color: #444;
+            font-weight: bold;
+            font-size: 0.95rem;
+            padding-bottom: 5px;
+        }
+        nav a:hover {
+            color: var(--agri-green);
+            border-bottom: 2px solid var(--agri-sun);
+        }
+
+        /* --- ヒーローセクション --- */
+        .hero {
+            position: relative;
+            height: 550px;
+            /* 背景画像：農場や自然のイメージ */
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url('nougaku.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        .hero-content h2 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            font-family: serif;
+        }
+        .hero-content p {
+            font-size: 1.4rem;
+            font-weight: 500;
+            background: rgba(46, 125, 50, 0.8);
+            padding: 5px 20px;
+            display: inline-block;
+        }
+
+        /* --- コンテンツエリア共通 --- */
+        .section {
+            padding: 80px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--agri-green);
+            margin-bottom: 50px;
+            font-family: serif;
+        }
+        .section-title::after {
+            content: "🌱";
+            display: block;
+            margin-top: 10px;
+            font-size: 1.5rem;
+        }
+
+        /* --- 学科紹介 --- */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .dept-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+            border-bottom: 5px solid var(--agri-green);
+        }
+        .dept-card:hover {
+            transform: translateY(-5px);
+        }
+        .card-img {
+            height: 180px;
+            background-color: #e8f5e9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--agri-green);
+            font-size: 3rem;
+        }
+        .card-body {
+            padding: 25px;
+        }
+        .card-body h3 {
+            margin: 0 0 15px;
+            color: var(--agri-earth);
+        }
+        .card-body p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .btn-more {
+            display: inline-block;
+            background-color: var(--agri-leaf);
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        .btn-more:hover {
+            background-color: var(--agri-green);
+        }
+
+        /* --- 付属農場・施設エリア --- */
+        .farm-section {
+            background-color: #eef5ee; /* 薄い緑の背景 */
+            padding: 80px 20px;
+        }
+        .farm-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        .farm-text {
+            flex: 1;
+        }
+        .farm-img {
+            flex: 1;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .tag {
+            background-color: var(--agri-sun);
+            color: #fff;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* --- ニュース --- */
+        .news-list {
+            list-style: none;
+        }
+        .news-item {
+            border-bottom: 1px dotted #ccc;
+            padding: 15px 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .news-date {
+            color: var(--agri-green);
+            font-weight: bold;
+            margin-right: 15px;
+            font-family: monospace;
+        }
+        .news-content:hover {
+            text-decoration: underline;
+            color: var(--agri-green);
+        }
+
+        /* --- フッター --- */
+        footer {
+            background-color: var(--agri-earth);
+            color: #f1f1f1;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .footer-logo {
+            font-size: 1.5rem;
+            font-family: serif;
+            margin-bottom: 10px;
+        }
+        .footer-address {
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            color: #d7ccc8;
+        }
+        .footer-links a {
+            margin: 0 10px;
+            color: #fff;
+            font-size: 0.85rem;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .header-inner { flex-direction: column; }
+            nav ul { margin-top: 15px; flex-wrap: wrap; justify-content: center; }
+            .farm-container { flex-direction: column; }
+            .hero-content h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ヘッダー -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <div class="logo-icon">🌿</div>
+                <div class="logo-text">
+                    <h1>店魅偉屋大学 農学部</h1>
+                    <span>Misemi-ya University Faculty of Agriculture</span>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">学部案内</a></li>
+                    <li><a href="#">学科紹介</a></li>
+                    <li><a href="#">研究・フィールド</a></li>
+                    <li><a href="#">入試情報</a></li>
+                    <li><a href="#">付属農場</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ヒーローエリア -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>大地と共に、未来を耕す。</h2>
+            <p>From Misemi-ya to the Global Table.</p>
+        </div>
+    </section>
+
+    <!-- 学科紹介 -->
+    <section class="section">
+        <h2 class="section-title">DEPARTMENTS</h2>
+        <div class="grid-cards">
+            <!-- 生物資源学科 -->
+            <div class="dept-card">
+                <div class="card-img">🌾</div>
+                <div class="card-body">
+                    <h3>生物資源科学科</h3>
+                    <p>作物の品種改良からスマート農業まで。持続可能な食料生産システムを構築し、世界の食料問題に挑みます。</p>
+                    <a href="#" class="btn-more">詳しく見る</a>
+                </div>
+            </div>
+
+            <!-- 応用生命科学科 -->
+            <div class="dept-card">
+                <div class="card-img">🧬</div>
+                <div class="card-body">
+                    <h3>応用生命科学科</h3>
+                    <p>微生物、発酵、食品機能。ミクロな視点から生命のメカニズムを解明し、医薬・食品分野へ応用します。</p>
+                    <a href="#" class="btn-more">詳しく見る</a>
+                </div>
+            </div>
+
+            <!-- 環境共生学科 -->
+            <div class="dept-card">
+                <div class="card-img">🌲</div>
+                <div class="card-body">
+                    <h3>環境共生学科</h3>
+                    <p>森林生態系、野生動物保護、地域計画。自然と人間が共生する豊かな環境をデザインする力を養います。</p>
+                    <a href="#" class="btn-more">詳しく見る</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 付属農場・特集エリア -->
+    <section class="farm-section">
+        <div class="farm-container">
+            <div class="farm-img">
+                <img src="n.png" alt="店魅偉屋大学付属農場">
+            </div>
+            <div class="farm-text">
+                <h2 style="color: var(--agri-green); font-size: 2rem; margin-top: 0;">Misemi-ya Farm<br><span style="font-size:1.2rem; color:#555;">店魅偉屋大学 付属農場</span></h2>
+                <p>キャンパスからバスで20分。東京ドーム10個分の広大な敷地を持つ「ミセミーヤ・ファーム」では、学生たちが日々泥にまみれながら実践的なフィールドワークを行っています。</p>
+                <p>採れたての野菜や、「ミセミーヤ・ミルク」などの加工品は、大学内のマルシェで定期的に販売されています。</p>
+                <br>
+                <a href="#" class="btn-more" style="background:var(--agri-sun);">農場実習の様子を見る</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ニュース -->
+    <section class="section">
+        <h2 class="section-title">NEWS & TOPICS</h2>
+        <ul class="news-list">
+            <li class="news-item">
+                <span class="news-date">2024.11.10</span>
+                <span class="tag">イベント</span>
+                <a href="#" class="news-content">秋の収穫祭「ミセミーヤ・ハーベストフェス」開催のお知らせ</a>
+            </li>
+            <li class="news-item">
+                <span class="news-date">2024.10.25</span>
+                <span class="tag">研究</span>
+                <a href="#" class="news-content">バイオサイエンス研究室が、乾燥に強い新品種の開発に成功しました。</a>
+            </li>
+            <li class="news-item">
+                <span class="news-date">2024.10.05</span>
+                <span class="tag">産学連携</span>
+                <a href="#" class="news-content">地元企業と共同開発した「ミセミーヤワイン」が金賞を受賞しました。</a>
+            </li>
+            <li class="news-item">
+                <span class="news-date">2024.09.15</span>
+                <span class="tag">入試</span>
+                <a href="#" class="news-content">令和7年度 学校推薦型選抜の募集要項を公開しました。</a>
+            </li>
+        </ul>
+    </section>
+
+    <!-- フッター -->
+    <footer>
+        <div class="footer-logo">店魅偉屋大学 農学部</div>
+        <p>Misemi-ya University Faculty of Agriculture</p>
+        <div class="footer-address">
+            〒113-8654 東京都文京区本郷 7-3-2
+        </div>
+        <div class="footer-links">
+            <a href="#">交通アクセス</a>
+            <a href="#">サイトマップ</a>
+            <a href="#">教員紹介</a>
+            <a href="#">お問い合わせ</a>
+        </div>
+        <p style="margin-top: 20px; font-size: 0.8rem; opacity: 0.7;">&copy; Misemi-ya University Faculty of Agriculture. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
