@@ -4,7 +4,7 @@ const msalConfig = {
         clientId: "cb393cd5-c329-40f3-96ae-6f5c943a4293", 
         authority: "https://login.microsoftonline.com/f26d3362-79fe-4262-817a-531c7cdbf597",
         // ログイン後のリダイレクト先（index.htmlのURL）
-        redirectUri: "https://misemi-ya.github.io/www.misemi-ya.co.jp/university/s/l.html"
+        redirectUri: window.location.href
     },
     cache: {
         cacheLocation: "sessionStorage", // セッションストレージに保存
