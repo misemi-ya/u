@@ -1,0 +1,501 @@
+/* ベーススタイル */
+:root {
+    --primary-color: #5C0000; /* 東京大学の赤門を意識した深い赤 */
+    --secondary-color: #003366; /* 知的な紺色 */
+    --text-color: #333;
+    --light-gray: #f8f8f8;
+    --dark-gray: #666;
+    --border-color: #eee;
+    --font-serif-jp: 'Noto Serif JP', serif;
+    --font-sans-jp: 'Noto Sans JP', sans-serif; /* 必要であれば */
+    --font-serif-en: 'Roboto', serif; /* 英語表記用 */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-serif-jp), sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: #fff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ヘッダー */
+.header {
+    background-color: #fff;
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 0;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.logo img {
+    height: 50px; /* 校章の高さ */
+    margin-right: 10px;
+}
+
+.logo h1 {
+    font-size: 1.8em;
+    font-weight: 700;
+    font-family: var(--font-serif-jp);
+}
+
+.nav ul {
+    display: flex;
+}
+
+.nav ul li {
+    margin-left: 30px;
+}
+
+.nav ul li a {
+    color: var(--secondary-color);
+    font-weight: 400;
+    font-size: 1.05em;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.nav ul li a:hover {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* ヒーローセクション */
+.hero {
+    background: url('hero-bg.jpg') no-repeat center center/cover; /* 背景画像を設定 */
+    color: #fff;
+    text-align: center;
+    padding: 150px 20px;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* オーバーレイ */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero h2 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-family: var(--font-serif-jp);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero p {
+    font-size: 1.3em;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: 700;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: 2px solid var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: darken(var(--primary-color), 10%);
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn-secondary {
+    background-color: #fff;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+    text-decoration: none;
+}
+
+/* セクション共通 */
+.section-padding {
+    padding: 80px 0;
+}
+
+.section-title {
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 50px;
+    color: var(--secondary-color);
+    position: relative;
+    font-weight: 700;
+    font-family: var(--font-serif-jp);
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+}
+
+.bg-light {
+    background-color: var(--light-gray);
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-4 {
+    margin-top: 40px;
+}
+
+/* ニュース＆イベント */
+.news-item {
+    background-color: #fff;
+    padding: 25px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease;
+}
+
+.news-item:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.news-item time {
+    display: block;
+    font-size: 0.9em;
+    color: var(--dark-gray);
+    margin-bottom: 10px;
+}
+
+.news-item h3 {
+    font-size: 1.3em;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.news-item h3 a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.news-item h3 a:hover {
+    color: var(--primary-color);
+}
+
+/* 特色セクション */
+.feature-item {
+    text-align: center;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.feature-item .icon {
+    font-size: 3em; /* アイコンのサイズ */
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    display: inline-block;
+    /* 実際にはFont Awesomeなどのアイコンライブラリを使用 */
+}
+
+/* アイコンのプレースホルダー（Font Awesomeを想定） */
+.icon-research::before { content: '🔬'; /* 仮のアイコン */ }
+.icon-education::before { content: '📚'; /* 仮のアイコン */ }
+.icon-global::before { content: '🌍'; /* 仮のアイコン */ }
+
+
+.feature-item h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+    font-weight: 700;
+}
+
+.feature-item p {
+    font-size: 1em;
+    margin-bottom: 20px;
+    color: var(--dark-gray);
+}
+
+.link-more {
+    color: var(--primary-color);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.link-more:hover {
+    text-decoration: underline;
+}
+
+/* フッター */
+.footer {
+    background-color: var(--secondary-color);
+    color: #fff;
+    padding: 40px 0;
+    font-size: 0.9em;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* レスポンシブ対応 */
+}
+
+.footer-col ul {
+    display: flex;
+}
+
+.footer-col ul li {
+    margin-left: 20px;
+}
+
+.footer-col ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-col ul li a:hover {
+    text-decoration: underline;
+}
+
+
+/* レスポンシブデザイン */
+@media (max-width: 992px) {
+    .nav ul {
+        display: none; /* 小さい画面ではナビを隠す（後でハンバーガーメニューを実装） */
+    }
+
+    .header-container {
+        justify-content: center; /* ロゴを中央に */
+    }
+
+    .logo h1 {
+        font-size: 1.5em;
+    }
+
+    .hero h2 {
+        font-size: 2.5em;
+    }
+
+    .hero p {
+        font-size: 1.1em;
+    }
+
+    .grid-3 {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-item {
+        margin-bottom: 20px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-col:first-child {
+        margin-bottom: 20px;
+    }
+
+    .footer-col ul {
+        flex-direction: column;
+    }
+
+    .footer-col ul li {
+        margin: 5px 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .logo img {
+        height: 40px;
+    }
+    .logo h1 {
+        font-size: 1.2em;
+    }
+    .hero {
+        padding: 100px 15px;
+    }
+    .hero h2 {
+        font-size: 2em;
+    }
+    .hero p {
+        font-size: 1em;
+    }
+    .section-title {
+        font-size: 2em;
+        margin-bottom: 30px;
+    }
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+}
+
+/* ... 既存のスタイル ... */
+
+/* 合格発表確認ページ用の追加スタイル */
+.info-box {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 40px;
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    text-align: center; /* info-box内のテキストは中央揃えを維持 */
+}
+
+.info-box p {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    line-height: 1.8;
+}
+
+.highlight-email {
+    margin: 30px auto; /* 上下30px、左右autoで中央揃え */
+    display: flex; /* メールアドレスとボタンを横並びにする */
+    justify-content: center; /* 主軸（横方向）の中央揃え */
+    align-items: center; /* 交差軸（縦方向）の中央揃え */
+    flex-wrap: wrap; /* 小さい画面で折り返す */
+    gap: 15px; /* 要素間の隙間 */
+    /* max-width: fit-content; は、場合によっては意図しない幅になることがあるので、一旦コメントアウト */
+    /* width: fit-content; を使うか、display:inline-flex と margin:auto を組み合わせる */
+}
+
+.email-display {
+    font-size: 1.4em; /* メールアドレスの文字を大きく */
+    font-weight: 700;
+    color: var(--primary-color); /* 目立つ色に */
+    background-color: #f0f0f0; /* 背景色をつけて見やすく */
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    white-space: nowrap; /* 折り返しを防ぐ */
+    /* flexアイテムとして均等にスペースを割り振られないように */
+    flex-shrink: 0; 
+    flex-grow: 0;
+}
+
+.copy-button {
+    padding: 12px 25px;
+    font-size: 1em;
+    /* btn-secondary のスタイルを継承しつつ微調整 */
+    flex-shrink: 0; /* 小さくならないように */
+}
+
+.small-text {
+    font-size: 0.9em;
+    color: var(--dark-gray);
+    margin-top: 10px;
+}
+
+/* レスポンシブデザインの調整 */
+@media (max-width: 576px) {
+    .highlight-email {
+        flex-direction: column; /* 小さい画面では縦に並べる */
+        gap: 10px;
+    }
+    .email-display {
+        font-size: 1.2em;
+        padding: 8px 15px;
+    }
+    .copy-button {
+        width: 100%; /* ボタンを全幅にする */
+        max-width: 250px; /* ボタンの最大幅を設定 */
+    }
+}
+
+/* ... 既存のスタイル ... */

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found | Misemi-ya University</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Roboto:wght@300;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #003366;
+            --accent-color: #c9a346;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', 'Noto Serif JP', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* 背景の装飾（薄い校章など） */
+        .bg-decoration {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 30rem;
+            color: rgba(0, 51, 102, 0.03);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 600px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-area {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        .logo-area img {
+            height: 60px;
+            margin-bottom: 10px;
+        }
+        .univ-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+        }
+
+        /* 404の文字デザイン */
+        .error-code {
+            font-size: 8rem;
+            font-weight: 900;
+            line-height: 1;
+            margin: 0;
+            background: linear-gradient(135deg, var(--primary-color), #00509e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 30px rgba(0, 51, 102, 0.2);
+        }
+
+        .error-title {
+            font-size: 1.8rem;
+            margin: 10px 0 20px;
+            font-weight: bold;
+        }
+
+        .error-msg {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        /* ボタン */
+        .btn-home {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 51, 102, 0.3);
+        }
+
+        .btn-home:hover {
+            background-color: #002244;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 51, 102, 0.4);
+        }
+
+        .footer-links {
+            margin-top: 40px;
+            font-size: 0.9rem;
+        }
+        .footer-links a {
+            color: #666;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        /* アニメーション */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 背景の装飾アイコン -->
+    <div class="bg-decoration">
+        <i class="fa-solid fa-university"></i>
+    </div>
+
+    <div class="container fade-in">
+        <div class="logo-area">
+            <!-- ロゴ画像がある場合はパスを指定、なければアイコンを表示 -->
+            <img src="校章.png" alt="校章" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+            <i class="fa-solid fa-graduation-cap" style="font-size: 3rem; color: #003366; display: none;"></i>
+            <div class="univ-name">Misemi-ya University</div>
+        </div>
+
+        <h1 class="error-code">404</h1>
+        <div class="error-title">Page Not Found</div>
+        
+        <p class="error-msg">
+            お探しのページは見つかりませんでした。<br>
+            削除されたか、URLが変更された可能性があります。<br>
+            正しいURLをご確認ください。
+        </p>
+
+        <a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/index.html" class="btn-home">
+            <i class="fa-solid fa-house"></i> トップページへ戻る
+        </a>
+
+        <div class="footer-links">
+            <a href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/form.html">お問い合わせ</a>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お問い合わせ - 店魅偉屋大学</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* === グラスモーフィズム & モダンデザイン設定 === */
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.5);
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            --primary-color: #003366;
+            --accent-color: #00509e;
+            --text-color: #333;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Roboto', 'Noto Serif JP', sans-serif;
+            color: var(--text-color);
+            /* 背景画像（ぼかした大学の写真などを想定したグラデーション） */
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex; flex-direction: column;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; padding: 0; margin: 0; }
+
+        /* === ヘッダー（おしゃれに修正） === */
+        .header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(255, 255, 255, 0.85); /* 半透明 */
+            backdrop-filter: blur(10px); /* すりガラス効果 */
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            padding: 15px 0;
+        }
+        .header-container {
+            max-width: 1000px; margin: 0 auto; padding: 0 20px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .logo a {
+            display: flex; align-items: center; gap: 15px; /* ロゴと文字の間隔 */
+        }
+        .logo img {
+            height: 50px; width: auto;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); /* 影をつけて立体的に */
+            transition: transform 0.3s;
+        }
+        .logo:hover img { transform: scale(1.05); }
+        .logo h1 {
+            font-size: 1.5rem; color: var(--primary-color); margin: 0;
+            font-weight: 700; letter-spacing: 1px;
+            text-shadow: 1px 1px 0 rgba(255,255,255,0.8);
+        }
+
+        /* === メインエリア === */
+        main { flex: 1; padding: 40px 20px; }
+
+        /* タイトルエリア */
+        .page-title {
+            text-align: center; margin-bottom: 40px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+        .page-title h2 {
+            font-size: 2.5rem; color: var(--primary-color); margin: 0;
+            position: relative; display: inline-block;
+        }
+        .page-title h2::after {
+            content: ''; display: block; width: 60px; height: 3px;
+            background: var(--accent-color); margin: 10px auto 0;
+            border-radius: 2px;
+        }
+        .page-title p { color: #666; margin-top: 10px; font-size: 0.95rem; }
+
+        /* フォームコンテナ (グラスモーフィズム) */
+        .container { max-width: 700px; margin: 0 auto; }
+        
+        .form-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px); /* すりガラス */
+            border-radius: 20px;
+            border: var(--glass-border);
+            box-shadow: var(--shadow);
+            padding: 50px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .form-group { margin-bottom: 25px; position: relative; }
+        
+        .form-label {
+            display: block; font-weight: bold; margin-bottom: 8px;
+            color: var(--primary-color); font-size: 0.95rem;
+        }
+        .form-required {
+            background: #ff6b6b; color: white; font-size: 0.7rem;
+            padding: 2px 6px; border-radius: 4px; margin-left: 8px; vertical-align: middle;
+        }
+
+        .form-control {
+            width: 100%; padding: 15px; border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 10px; font-size: 1rem; box-sizing: border-box;
+            background: rgba(255,255,255,0.8); transition: all 0.3s;
+            font-family: inherit;
+        }
+        .form-control:focus {
+            border-color: var(--primary-color); outline: none;
+            background: white; box-shadow: 0 0 0 4px rgba(0, 51, 102, 0.1);
+        }
+
+        /* 送信ボタン */
+        .btn-submit {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white; border: none; padding: 18px; width: 100%;
+            font-size: 1.1rem; font-weight: bold; border-radius: 50px;
+            cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0, 51, 102, 0.3);
+            letter-spacing: 1px; margin-top: 20px;
+        }
+        .btn-submit:hover {
+            transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0, 51, 102, 0.4);
+            filter: brightness(1.1);
+        }
+        .btn-submit:active { transform: translateY(1px); }
+
+        /* === フッター === */
+        .footer {
+            text-align: center; padding: 20px; color: #666; font-size: 0.8rem;
+            background: transparent;
+        }
+
+        /* アニメーション定義 */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* スマホ対応 */
+        @media (max-width: 600px) {
+            .form-card { padding: 30px 20px; }
+            .header-container { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                    <img src="校章.png" alt="Misemi-ya Logo">
+                    <h1>店魅偉屋大学</h1>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- タイトル -->
+        <div class="page-title">
+            <h2>Contact Us</h2>
+            <p>お問い合わせ</p>
+        </div>
+
+        <!-- フォームエリア -->
+        <div class="container">
+            <div class="form-card">
+                <p style="margin-bottom:30px; line-height:1.8; color:#555; text-align:center;">
+                    本学へのご質問・ご相談は以下のフォームよりお問い合わせください。<br>
+                    <small>※通常3営業日以内に担当者よりご連絡いたします。</small>
+                </p>
+
+                <!-- ▼▼▼ 送信設定 (あなたのメールアドレスを入れてください) ▼▼▼ -->
+                <form action="https://formsubmit.co/ms.university.share@gmail.com" method="POST">
+                    
+                    <!-- 送信後の戻り先 -->
+                    <input type="hidden" name="_next" value="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/index.html">
+                    <!-- 件名 -->
+                    <input type="hidden" name="_subject" value="【大学サイト】お問い合わせ">
+                    <input type="hidden" name="_template" value="table">
+
+                    <div class="form-group">
+                        <label class="form-label">お問い合わせ種別 <span class="form-required">必須</span></label>
+                        <select name="category" class="form-control" required>
+                            <option value="">選択してください</option>
+                            <option value="入試・入学">入試・入学について</option>
+                            <option value="学生生活">学生生活・授業について</option>
+                            <option value="証明書">証明書発行について</option>
+                            <option value="その他">その他</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">お名前 <span class="form-required">必須</span></label>
+                        <input type="text" name="name" class="form-control" placeholder="例：店魅 太郎" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">メールアドレス <span class="form-required">必須</span></label>
+                        <input type="email" name="email" class="form-control" placeholder="example@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">お問い合わせ内容 <span class="form-required">必須</span></label>
+                        <textarea name="message" class="form-control" rows="5" placeholder="ご自由にご記入ください" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">
+                        送信する <i class="fa-solid fa-paper-plane" style="margin-left:8px;"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Misemi-ya University. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
