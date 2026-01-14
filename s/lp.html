@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN CONSOLE | Misemi-ya University</title>
+    
+    <!-- MSAL.js -->
+    <script src="https://alcdn.msauth.net/browser/2.30.0/js/msal-browser.min.js"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Monospace for Admin feel) -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #1a1a1a;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff9d;
+            --danger-color: #ff4757;
+            --panel-bg: #2d2d2d;
+            --border-color: #444;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'JetBrains Mono', monospace;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            height: 100vh; overflow: hidden;
+        }
+
+        /* VPN Lock & Loading */
+        #lock-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: 9999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: opacity 0.5s;
+        }
+        .status-text { color: var(--accent-color); margin-top: 20px; animation: blink 1s infinite; }
+        .error-text { color: var(--danger-color); font-size: 2rem; font-weight: bold; }
+        @keyframes blink { 50% { opacity: 0.5; } }
+
+        /* Login Button */
+        #login-btn {
+            padding: 15px 30px; background: var(--primary-color); border: 2px solid var(--accent-color);
+            color: var(--accent-color); font-family: inherit; font-size: 1.2rem; cursor: pointer;
+            display: none; text-transform: uppercase; letter-spacing: 2px;
+        }
+        #login-btn:hover { background: var(--accent-color); color: #000; }
+
+        /* Main Dashboard */
+        #dashboard { display: none; height: 100vh; grid-template-rows: 60px 1fr; }
+
+        /* Header */
+        header {
+            background: #000; border-bottom: 1px solid var(--accent-color);
+            display: flex; align-items: center; justify-content: space-between; padding: 0 20px;
+        }
+        .logo { font-weight: bold; color: var(--accent-color); display: flex; align-items: center; gap: 10px; }
+        .admin-user { font-size: 0.9rem; color: #888; }
+        .logout-btn { border: 1px solid var(--danger-color); color: var(--danger-color); background: transparent; padding: 5px 15px; cursor: pointer; }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid; grid-template-columns: 300px 1fr; gap: 20px; padding: 20px; overflow: hidden;
+        }
+
+        /* Panels */
+        .panel {
+            background: var(--panel-bg); border: 1px solid var(--border-color);
+            border-radius: 5px; display: flex; flex-direction: column; overflow: hidden;
+        }
+        .panel-header {
+            background: #222; padding: 10px 15px; border-bottom: 1px solid #444;
+            font-size: 0.9rem; font-weight: bold; color: #fff;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .log-container {
+            flex: 1; overflow-y: auto; padding: 10px; font-size: 0.8rem;
+        }
+        
+        /* Log Items */
+        .log-entry {
+            border-bottom: 1px solid #333; padding: 8px 0; display: grid; grid-template-columns: 140px 150px 1fr;
+        }
+        .log-entry:last-child { border-bottom: none; }
+        .log-time { color: #888; }
+        .log-user { color: #4db8ff; font-weight: bold; }
+        .log-action { color: #ccc; }
+        .log-action.alert { color: var(--danger-color); }
+
+        /* Stat Box */
+        .stat-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px;
+        }
+        .stat-box {
+            background: #222; padding: 15px; border-left: 3px solid var(--accent-color);
+        }
+        .stat-label { font-size: 0.7rem; color: #888; }
+        .stat-val { font-size: 1.5rem; font-weight: bold; color: #fff; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1a1a1a; }
+        ::-webkit-scrollbar-thumb { background: #444; }
+    </style>
+</head>
+<body>
+
+    <!-- VPN & Auth Lock Screen -->
+    <div id="lock-screen">
+        <i class="fa-solid fa-shield-halved" style="font-size: 5rem; color: #444;"></i>
+        <div id="status-msg" class="status-text">INITIALIZING SECURE CONNECTION...</div>
+        <button id="login-btn" onclick="handleLogin()">ADMIN LOGIN</button>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="dashboard">
+        <header>
+            <div class="logo">
+                <i class="fa-solid fa-terminal"></i> MIS-ADMIN [LP]
+                <span style="font-size:0.7rem; background:red; color:white; padding:2px 5px; border-radius:3px;">SECRET</span>
+            </div>
+            <div class="admin-user">
+                <span id="current-admin">...</span>
+                <button class="logout-btn" onclick="signOut()">EXIT</button>
+            </div>
+        </header>
+
+        <div class="content-grid">
+            <!-- Left Column: Stats & Status -->
+            <div style="display:flex; flex-direction:column; gap:20px;">
+                <div class="panel" style="height: 200px;">
+                    <div class="panel-header">SYSTEM STATUS <div style="width:10px; height:10px; background:#0f0; border-radius:50%; box-shadow:0 0 10px #0f0;"></div></div>
+                    <div class="stat-grid">
+                        <div class="stat-box">
+                            <div class="stat-label">TOTAL ACCESS</div>
+                            <div class="stat-val" id="total-access">0</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">CURRENT USERS</div>
+                            <div class="stat-val">ACTIVE</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">DB STATUS</div>
+                            <div class="stat-val" style="color:#00ff9d">ONLINE</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">VPN GATE</div>
+                            <div class="stat-val">LOCKED</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel" style="flex:1;">
+                    <div class="panel-header">CURRENT PORTAL DATA</div>
+                    <div class="log-container">
+                        <pre id="json-viewer" style="color:#aaa; white-space: pre-wrap; font-size:0.75rem;">Waiting for stream...</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Logs -->
+            <div style="display:flex; flex-direction:column; gap:20px;">
+                <div class="panel" style="flex:1;">
+                    <div class="panel-header">
+                        <span><i class="fa-solid fa-list"></i> ACCESS & AUDIT LOGS</span>
+                        <button onclick="clearLogs()" style="background:none; border:none; color:#666; cursor:pointer;"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                    <div class="log-container" id="access-logs">
+                        <!-- Logs will appear here -->
+                    </div>
+                </div>
+
+                <div class="panel" style="height: 300px;">
+                    <div class="panel-header"><i class="fa-solid fa-clock"></i> ATTENDANCE MONITOR (REALTIME)</div>
+                    <div class="log-container" id="work-logs">
+                        <!-- Work logs -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Configuration -->
+    <script>
+        // ▼▼▼ ADMIN CONFIG ▼▼▼
+        const ALLOWED_ADMIN = "u0626241@edu-misemi-ya.ddo.jp";
+        const VPN_HOST = 'public-vpn-129.opengw.net';
+        
+        // Azure AD Config
+        const msalConfig = {
+            auth: {
+                clientId: "385803166778-kg041ijpug65vf8ir68tubl8v804ncef.apps.googleusercontent.com", // ※MSAL用IDが必要です。l.htmlと同じものを設定してください
+                // ここではデモ用に仮置きします。実際はl.htmlと同じmsalConfig.jsを使うか、ここに直接書きます。
+                // 便宜上、l.htmlで使っているであろう設定を想定して書きます。
+                clientId: "cb393cd5-c329-40f3-96ae-6f5c943a4293", 
+                authority: "https://login.microsoftonline.com/f26d3362-79fe-4262-817a-531c7cdbf597",
+                redirectUri: window.location.href // 現在のページに戻る
+            }
+        };
+    </script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, ref, onValue, query, limitToLast, remove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+        // Firebase Config
+        const firebaseConfig = {
+            apiKey: "AIzaSyAuj26lGBWGdcfiLoiCl8s0jTQN3UBu_iM",
+            authDomain: "misemiya-portal.firebaseapp.com",
+            databaseURL: "https://misemiya-portal-default-rtdb.firebaseio.com",
+            projectId: "misemiya-portal",
+            storageBucket: "misemiya-portal.firebasestorage.app",
+            messagingSenderId: "869803502016",
+            appId: "1:869803502016:web:341b0d0d9d6a4f88c00025",
+            measurementId: "G-6NQX4H60XC"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        // MSAL Instance
+        const myMSALObj = new msal.PublicClientApplication(msalConfig);
+
+        // Global Funcs
+        window.handleLogin = handleLogin;
+        window.signOut = signOut;
+        window.clearLogs = () => {
+            if(confirm("Clear local view? (Database is not deleted)")) {
+                document.getElementById('access-logs').innerHTML = '';
+            }
+        };
+
+        // 1. VPN Check
+        window.addEventListener('load', async () => {
+            await verifyVPN();
+        });
+
+        async function verifyVPN() {
+            const status = document.getElementById('status-msg');
+            try {
+                // User IP
+                const ipRes = await fetch('https://api.ipify.org?format=json');
+                const myIp = (await ipRes.json()).ip;
+                
+                // VPN IP
+                const dnsRes = await fetch(`https://dns.google/resolve?name=${VPN_HOST}&type=A`);
+                const dnsData = await dnsRes.json();
+                const vpnIp = dnsData.Answer ? dnsData.Answer[0].data : "Unresolved";
+
+                // Subnet Check
+                const mySub = myIp.split('.').slice(0,3).join('.');
+                const vpnSub = vpnIp.split('.').slice(0,3).join('.');
+
+                if(vpnIp !== "Unresolved" && mySub === vpnSub) {
+                    status.textContent = "VPN SECURE. ADMIN AUTH REQUIRED.";
+                    status.style.color = "#00ff9d";
+                    document.getElementById('login-btn').style.display = 'block';
+                    
+                    // すでにログイン済みなら自動チェック
+                    checkExistingSession();
+                } else {
+                    status.textContent = "ACCESS DENIED: VPN MISMATCH";
+                    status.style.color = "red";
+                    document.querySelector('.fa-shield-halved').style.color = "red";
+                    // 強制終了的な演出
+                    document.body.style.border = "5px solid red";
+                }
+            } catch (e) {
+                status.textContent = "NETWORK ERROR";
+                status.style.color = "red";
+            }
+        }
+
+        // 2. Auth Check
+        async function checkExistingSession() {
+            try {
+                await myMSALObj.handleRedirectPromise();
+                const accounts = myMSALObj.getAllAccounts();
+                if (accounts.length > 0) {
+                    validateAdmin(accounts[0]);
+                }
+            } catch (e) { console.error(e); }
+        }
+
+        async function handleLogin() {
+            try {
+                const res = await myMSALObj.loginPopup({ scopes: ["User.Read"] });
+                validateAdmin(res.account);
+            } catch (e) { console.error(e); }
+        }
+
+        function validateAdmin(account) {
+            // ★★★ 最重要：メールアドレスチェック ★★★
+            if (account.username.toLowerCase() === ALLOWED_ADMIN.toLowerCase()) {
+                // 許可
+                document.getElementById('current-admin').textContent = account.name;
+                unlockDashboard();
+            } else {
+                // 拒否
+                alert("SECURITY ALERT: UNAUTHORIZED ACCOUNT.\n" + account.username + " is not an admin.");
+                myMSALObj.logoutPopup(); // 強制ログアウト
+            }
+        }
+
+        function unlockDashboard() {
+            const lock = document.getElementById('lock-screen');
+            const dash = document.getElementById('dashboard');
+            
+            lock.style.opacity = 0;
+            setTimeout(() => {
+                lock.style.display = 'none';
+                dash.style.display = 'grid';
+                startMonitoring();
+            }, 500);
+        }
+
+        function signOut() {
+            myMSALObj.logoutPopup();
+            location.reload();
+        }
+
+        // 3. Monitoring Logic
+        function startMonitoring() {
+            // A. アクセスログ監視 (accessLogs)
+            const logsRef = query(ref(db, 'accessLogs'), limitToLast(50));
+            onValue(logsRef, (snapshot) => {
+                const container = document.getElementById('access-logs');
+                container.innerHTML = ''; // リフレッシュ
+                let count = 0;
+                
+                const logs = [];
+                snapshot.forEach(child => logs.push(child.val()));
+                logs.reverse(); // 新しい順
+
+                logs.forEach(log => {
+                    count++;
+                    const row = document.createElement('div');
+                    row.className = 'log-entry';
+                    row.innerHTML = `
+                        <div class="log-time">${log.timeString.split(' ')[1]}</div>
+                        <div class="log-user">${log.user}</div>
+                        <div class="log-action ${log.action==='LOGIN'?'alert':''}">${log.action}</div>
+                    `;
+                    container.appendChild(row);
+                });
+                document.getElementById('total-access').textContent = count;
+            });
+
+            // B. 勤怠ログ監視 (attendanceLogs - 全ユーザー)
+            // Firebaseの構造上、attendanceLogs/{email}/{date}/{id} となっているので
+            // 全体を監視するのは少し重いが、簡易的に実装
+            const attendRef = ref(db, 'attendanceLogs');
+            onValue(attendRef, (snapshot) => {
+                const container = document.getElementById('work-logs');
+                container.innerHTML = '';
+                
+                if(snapshot.exists()) {
+                    snapshot.forEach(userNode => {
+                        const emailKey = userNode.key;
+                        userNode.forEach(dateNode => {
+                            dateNode.forEach(logNode => {
+                                const log = logNode.val();
+                                const row = document.createElement('div');
+                                row.className = 'log-entry';
+                                row.innerHTML = `
+                                    <div class="log-time">${log.time}</div>
+                                    <div class="log-user">${emailKey.replace(/_/g, '.')}</div>
+                                    <div class="log-action" style="color:${log.type==='出勤'?'#0f0':'#f00'}">${log.type}</div>
+                                `;
+                                // 先頭に追加したいが、簡易的にappend
+                                container.prepend(row);
+                            });
+                        });
+                    });
+                }
+            });
+
+            // C. ポータルデータ監視
+            onValue(ref(db, 'portalData'), (snapshot) => {
+                const jsonBox = document.getElementById('json-viewer');
+                if(snapshot.exists()) {
+                    jsonBox.textContent = JSON.stringify(snapshot.val(), null, 2);
+                }
+            });
+        }
+    </script>
+</body>
+</html>

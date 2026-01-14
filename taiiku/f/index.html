@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>店魅偉屋大学 体育学部 | Misemi-ya Univ. Faculty of Physical Education</title>
+    
+    <!-- ▼ Favicon設定（ランナーのアイコン） ▼ -->
+    <link rel="icon" href="favicon.ico">
+    <style>
+        /* --- 配色設定：情熱と躍動 --- */
+        :root {
+            --sport-red: #e60012;      /* 情熱の赤 */
+            --sport-navy: #0c2340;     /* 伝統と集中のネイビー */
+            --sport-gold: #c9b037;     /* 勝利のゴールド */
+            --sport-bg: #f5f5f5;       /* ライトグレー */
+            --text-main: #333;
+        }
+
+        body {
+            font-family: "Roboto", "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-main);
+            background-color: var(--sport-bg);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; padding: 0; margin: 0; }
+
+        /* 斜体にしてスピード感を出すクラス */
+        .italic-font {
+            font-style: italic;
+        }
+
+        /* --- ヘッダー --- */
+        header {
+            background-color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-bottom: 3px solid var(--sport-red);
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo h1 {
+            font-size: 1.6rem;
+            color: var(--sport-navy);
+            margin: 0;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+        .logo span {
+            color: var(--sport-red);
+            font-style: italic;
+        }
+        .logo small {
+            font-size: 0.7rem;
+            display: block;
+            color: #666;
+            font-weight: normal;
+        }
+
+        nav ul { display: flex; gap: 20px; }
+        nav a {
+            font-weight: bold;
+            color: var(--sport-navy);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+        nav a:hover {
+            color: var(--sport-red);
+        }
+        .btn-access {
+            background: var(--sport-navy);
+            color: #fff !important;
+            padding: 8px 20px;
+            border-radius: 4px;
+            transform: skew(-10deg); /* ボタンを斜めにする */
+            display: inline-block;
+        }
+        .btn-access span {
+            display: block;
+            transform: skew(10deg); /* 文字は戻す */
+        }
+        .btn-access:hover {
+            background: var(--sport-red);
+        }
+
+        /* --- ヒーローセクション --- */
+        .hero {
+            height: 600px;
+            background: linear-gradient(45deg, rgba(12, 35, 64, 0.85), rgba(230, 0, 18, 0.7)), url('tai.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%); /* 下部を斜めにカット */
+        }
+        .hero-content {
+            text-align: center;
+            color: #fff;
+            max-width: 800px;
+            padding: 20px;
+        }
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 900;
+            font-style: italic;
+            line-height: 1;
+            margin-bottom: 20px;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        .hero-sub {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            color: var(--sport-gold);
+        }
+
+        /* --- コンテンツエリア --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--sport-navy);
+            font-style: italic;
+            font-weight: 900;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .section-header p {
+            color: var(--sport-red);
+            font-weight: bold;
+        }
+
+        /* 学科カード（ダイナミックなデザイン） */
+        .dept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .dept-card {
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            border-bottom: 5px solid var(--sport-navy);
+        }
+        .dept-card:hover {
+            transform: translateY(-10px);
+            border-bottom-color: var(--sport-red);
+        }
+        .dept-num {
+            position: absolute;
+            top: -20px; right: -10px;
+            font-size: 6rem;
+            font-weight: 900;
+            font-style: italic;
+            color: #f0f0f0;
+            z-index: 1;
+        }
+        .dept-content {
+            position: relative;
+            z-index: 2;
+            padding: 30px;
+        }
+        .dept-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            font-style: italic;
+            margin-bottom: 15px;
+            color: var(--sport-navy);
+        }
+        .dept-desc {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .dept-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* 施設紹介（ストライプ背景） */
+        .facilities-section {
+            background: repeating-linear-gradient(
+                45deg,
+                #fff,
+                #fff 10px,
+                #f0f0f0 10px,
+                #f0f0f0 20px
+            );
+            padding: 80px 0;
+            margin-top: -50px; /* ヒーローの斜めカットに合わせる */
+            padding-top: 100px;
+        }
+        .fac-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .fac-img img {
+            width: 100%;
+            border-radius: 4px;
+            box-shadow: 10px 10px 0 var(--sport-navy); /* 影をハードに */
+        }
+        .fac-text h3 {
+            font-size: 2rem;
+            font-style: italic;
+            color: var(--sport-navy);
+            border-left: 5px solid var(--sport-red);
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+
+        /* 試合結果・ニュース */
+        .news-section {
+            background-color: var(--sport-navy);
+            color: #fff;
+            padding: 80px 0;
+        }
+        .news-header h2 { color: #fff; border-bottom: 1px solid rgba(255,255,255,0.2); display: inline-block; padding-bottom: 10px; }
+        
+        .score-board {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-left: 5px solid var(--sport-gold);
+        }
+        .score-board:hover { background: rgba(255,255,255,0.2); }
+        .match-date { font-size: 0.8rem; color: #ccc; }
+        .match-title { font-weight: bold; font-size: 1.1rem; }
+        .match-result { 
+            font-size: 1.5rem; font-weight: bold; font-family: "Impact", sans-serif; 
+            color: var(--sport-gold);
+        }
+        .win-badge {
+            background: var(--sport-red); color: #fff;
+            padding: 2px 8px; font-size: 0.7rem; border-radius: 2px;
+            vertical-align: middle; margin-left: 10px;
+        }
+
+        /* フッター */
+        footer {
+            background-color: #000;
+            color: #888;
+            padding: 50px 0;
+            text-align: center;
+        }
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            font-style: italic;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .header-inner { flex-direction: column; }
+            nav ul { margin-top: 15px; gap: 10px; }
+            .fac-grid { grid-template-columns: 1fr; }
+            .hero-title { font-size: 2.5rem; }
+            .score-board { flex-direction: column; text-align: center; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <h1>Misemi-ya <span>Sport</span></h1>
+                <small>店魅偉屋大学 体育学部</small>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Academics</a></li>
+                    <li><a href="#">Athletics</a></li>
+                    <li><a href="#">Facilities</a></li>
+                    <li><a href="#" class="btn-access"><span>Access</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ヒーローエリア -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2 class="hero-title">PASSION &<br>PERFORMANCE</h2>
+            <p class="hero-sub">限界を超えろ。未来を掴め。</p>
+        </div>
+    </section>
+
+    <!-- 学科紹介 -->
+    <div class="container">
+        <div class="section-header">
+            <h2>DEPARTMENTS</h2>
+            <p>最強のアスリートと指導者を育てる3学科</p>
+        </div>
+
+        <div class="dept-grid">
+            <!-- 体育学科 -->
+            <div class="dept-card">
+                <span class="dept-num">01</span>
+                <div class="dept-content">
+                    <span class="dept-icon">🎓</span>
+                    <h3 class="dept-title">体育学科</h3>
+                    <p class="dept-desc">
+                        学校教育の現場で活躍する保健体育教員や、社会体育の指導者を育成します。教育学と身体運動科学の両面から指導法を学びます。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 競技スポーツ学科 -->
+            <div class="dept-card">
+                <span class="dept-num">02</span>
+                <div class="dept-content">
+                    <span class="dept-icon">🏆</span>
+                    <h3 class="dept-title">競技スポーツ学科</h3>
+                    <p class="dept-desc">
+                        世界を目指すトップアスリートを育成。バイオメカニクスやスポーツ心理学を駆使し、自らのパフォーマンスを極限まで高めます。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 武道学科 -->
+            <div class="dept-card">
+                <span class="dept-num">03</span>
+                <div class="dept-content">
+                    <span class="dept-icon">🥋</span>
+                    <h3 class="dept-title">武道学科</h3>
+                    <p class="dept-desc">
+                        柔道・剣道・空手道。日本の精神文化である武道を、実技と理論の両面から探究し、国際的に活躍できる指導者を育てます。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 施設紹介 -->
+    <section class="facilities-section">
+        <div class="fac-grid">
+            <div class="fac-text">
+                <h3>OLYMPIC LEVEL<br>FACILITIES</h3>
+                <p>
+                    店魅偉屋大学には、国際大会基準を満たしたスタジアム、アリーナ、屋内プール、武道館が完備されています。
+                </p>
+                <p>
+                    「ハイパフォーマンス・センター」では、動作解析カメラや低酸素トレーニング室を備え、科学的なトレーニングをサポートします。
+                </p>
+                <br>
+                <a href="#" style="background:var(--sport-red); color:#fff; padding:10px 20px; font-weight:bold; display:inline-block; border-radius:4px;">施設一覧を見る</a>
+            </div>
+            <div class="fac-img">
+                <img src="https://placehold.co/600x400/0c2340/ffffff?text=Misemi-ya+Arena" alt="ミセミーヤ・アリーナ">
+            </div>
+        </div>
+    </section>
+
+    <!-- 試合結果・ニュース -->
+    <section class="news-section">
+        <div class="container" style="padding-top:0; padding-bottom:0;">
+            <div class="section-header news-header">
+                <h2>GAME RESULTS</h2>
+                <p style="color:var(--sport-gold);">体育会 最新試合結果</p>
+            </div>
+            
+            <div class="score-board">
+                <div>
+                    <span class="match-date">2024.12.03 | 硬式野球部</span>
+                    <div class="match-title">全日本大学野球選手権 決勝 <span class="win-badge">WIN!</span></div>
+                    <div>vs ○○大学</div>
+                </div>
+                <div class="match-result">4 - 2</div>
+            </div>
+
+            <div class="score-board">
+                <div>
+                    <span class="match-date">2024.11.25 | ラグビー部</span>
+                    <div class="match-title">関東大学ラグビー対抗戦</div>
+                    <div>vs △△大学</div>
+                </div>
+                <div class="match-result">28 - 24</div>
+            </div>
+
+            <div class="score-board">
+                <div>
+                    <span class="match-date">2024.11.10 | 陸上競技部</span>
+                    <div class="match-title">日本学生対校選手権（インカレ）</div>
+                </div>
+                <div class="match-result" style="font-size:1rem;">男子100m 優勝 / 女子リレー 準優勝</div>
+            </div>
+
+            <div style="text-align:center; margin-top:30px;">
+                <a href="#" style="border:1px solid #fff; padding:10px 30px; color:#fff;">もっと見る</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer>
+        <div class="footer-logo">Misemi-ya Sport</div>
+        <p>店魅偉屋大学 体育学部</p>
+        <p>〒113-8654 東京都文京区本郷 7-3-2</p>
+        <div style="margin-top:30px;">
+            <a href="#" style="margin:0 10px;">サイトマップ</a>
+            <a href="#" style="margin:0 10px;">お問い合わせ</a>
+            <a href="#" style="margin:0 10px;">プライバシーポリシー</a>
+        </div>
+        <p style="margin-top:40px; font-size:0.8rem; opacity:0.5;">&copy; Misemi-ya University Faculty of Physical Education.</p>
+    </footer>
+
+</body>
+</html>

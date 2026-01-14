@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在学生ポータル ログイン - 店魅偉屋大学</title>
+    <script src="https://alcdn.msauth.net/browser/2.30.0/js/msal-browser.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Roboto', 'Noto Serif JP', sans-serif;
+            background-color: #f4f7f6;
+            display: flex; justify-content: center; align-items: center;
+            height: 100vh; color: #333;
+        }
+        .login-container {
+            background-color: white; padding: 40px;
+            border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            text-align: center; width: 100%; max-width: 400px;
+        }
+        .logo-area img { max-height: 60px; margin-bottom: 15px; }
+        .logo-area h1 { font-size: 1.1rem; margin: 0; color: #666; font-weight: normal; }
+        .login-title { font-size: 1.6rem; font-weight: 700; margin-bottom: 30px; color: #0056b3; }
+        
+        .ms-signin-btn {
+            display: flex; align-items: center; justify-content: center; width: 100%;
+            background-color: #2f2f2f; color: white; border: none;
+            padding: 12px; font-size: 15px; font-weight: 600; cursor: pointer;
+            transition: background-color 0.2s; border-radius: 6px;
+        }
+        .ms-signin-btn:hover { background-color: #4a4a4a; }
+        .ms-icon { margin-right: 12px; width: 21px; height: 21px; }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="logo-area">
+            <img src="../校章.png" alt="校章" onerror="this.style.display='none'">
+            <h1>店魅偉屋大学</h1>
+        </div>
+        <h2 class="login-title">在学生ポータル</h2>
+
+        <button id="loginButton" class="ms-signin-btn" onclick="signIn()">
+            <svg class="ms-icon" viewBox="0 0 21 21"><rect x="1" y="1" width="9" height="9" fill="#f25022"/><rect x="11" y="1" width="9" height="9" fill="#7fba00"/><rect x="1" y="11" width="9" height="9" fill="#00a4ef"/><rect x="11" y="11" width="9" height="9" fill="#ffb900"/></svg>
+            Microsoftアカウントでサインイン
+        </button>
+
+        <p style="margin-top:20px; font-size:0.85rem; color:#666;">
+            大学発行のアカウント(@edu-misemi-ya.ddo.jp)を使用してください。<br>
+            ※ポータルへのアクセスには学内ネットワーク(VPN)が必要です。
+        </p>
+        <a href="../index.html" style="display:block; margin-top:30px; font-size:0.9rem; color:#0056b3; text-decoration:none;">大学トップページへ戻る</a>
+    </div>
+
+    <script>
+        const msalConfig = {
+            auth: {
+                clientId: "40568e89-c868-42c9-8a06-5874c6c0acc1", 
+                authority: "https://login.microsoftonline.com/f26d3362-79fe-4262-817a-531c7cdbf597",
+                redirectUri: window.location.href
+            }
+        };
+        const myMSALObj = new msal.PublicClientApplication(msalConfig);
+
+        window.addEventListener('load', async () => {
+            try {
+                await myMSALObj.handleRedirectPromise();
+                const currentAccounts = myMSALObj.getAllAccounts();
+                if (currentAccounts.length > 0) {
+                    // ログイン済みならポータルへ移動
+                    window.location.href = "a/index.html";
+                }
+            } catch (error) { console.error(error); }
+        });
+
+        async function signIn() {
+            try {
+                const res = await myMSALObj.loginPopup({scopes:["User.Read"]});
+                if(res) {
+                    window.location.href = "a/index.html";
+                }
+            } catch (error) { alert("ログイン失敗: " + error.message); }
+        }
+    </script>
+</body>
+</html>

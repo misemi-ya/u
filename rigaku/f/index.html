@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>店魅偉屋大学 理学部 | Misemi-ya Univ. Faculty of Science</title>
+    
+    <!-- ▼ Favicon設定（理学部らしい原子モデルのアイコン） ▼ -->
+    <link rel="icon" href="favicon.ico">
+
+    <style>
+        /* --- 配色設定：アカデミック・コスモス --- */
+        :root {
+            --sci-purple: #3f3c6e;    /* 知性と深淵のパープル */
+            --sci-dark: #1a1a2e;      /* 宇宙のような暗い青 */
+            --sci-accent: #00b4d8;    /* 論理と光のシアン */
+            --sci-gray: #f4f4f8;      /* 清潔な背景色 */
+            --text-main: #2b2b2b;
+        }
+
+        body {
+            font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "HGS Mincho E", serif; /* 理学部は明朝体で知的に */
+            margin: 0;
+            padding: 0;
+            background-color: var(--sci-gray);
+            color: var(--text-main);
+            line-height: 1.8;
+        }
+
+        /* 英語フォントはサンセリフで見やすく */
+        h1, h2, h3, nav, .en-text {
+            font-family: "Helvetica Neue", Arial, sans-serif;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; padding: 0; margin: 0; }
+
+        /* --- ヘッダー --- */
+        header {
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo h1 {
+            font-size: 1.5rem;
+            color: var(--sci-purple);
+            margin: 0;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        .logo span {
+            font-size: 0.8rem;
+            color: #666;
+            letter-spacing: 0.1em;
+            display: block;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+        nav a {
+            font-size: 0.9rem;
+            color: var(--sci-dark);
+            font-weight: 500;
+            position: relative;
+        }
+        nav a::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 1px;
+            background: var(--sci-purple);
+            transition: width 0.3s;
+            margin-top: 5px;
+        }
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* --- ヒーローセクション --- */
+        .hero {
+            height: 600px;
+            background: radial-gradient(circle at center, #2e2b5e 0%, #1a1a2e 100%), url('rigaku.jpg');
+            background-blend-mode: overlay;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+        }
+        /* 幾何学的な装飾線 */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%; height: 85%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-content {
+            z-index: 2;
+        }
+        .hero-content h2 {
+            font-size: 3.5rem;
+            font-weight: 100; /* 細いフォントで洗練さを表現 */
+            margin-bottom: 20px;
+            letter-spacing: 0.1em;
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--sci-accent);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        /* --- メインコンテンツ --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-header h2 {
+            font-size: 2rem;
+            color: var(--sci-purple);
+            margin-bottom: 10px;
+        }
+        .section-header p {
+            font-family: "Yu Mincho", serif;
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        /* 学科リスト（シンプルかつ整然と） */
+        .dept-list {
+            display: grid;
+            gap: 20px;
+        }
+        .dept-item {
+            background: #fff;
+            padding: 30px;
+            border-left: 5px solid var(--sci-purple);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            transition: 0.3s;
+        }
+        .dept-item:hover {
+            transform: translateX(10px);
+            background-color: #fcfcff;
+        }
+        .dept-info h3 {
+            margin: 0 0 5px;
+            color: var(--sci-dark);
+            font-size: 1.4rem;
+        }
+        .dept-info span {
+            font-size: 0.9rem;
+            color: #888;
+            font-family: sans-serif;
+        }
+        .dept-arrow {
+            font-size: 1.5rem;
+            color: var(--sci-accent);
+        }
+
+        /* 研究ハイライト */
+        .research-section {
+            background-color: #fff;
+            padding: 80px 0;
+        }
+        .research-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .research-img img {
+            width: 100%;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .research-text h3 {
+            font-size: 1.8rem;
+            color: var(--sci-purple);
+            margin-bottom: 20px;
+        }
+
+        /* ニュース（アカデミック版） */
+        .news-section {
+            padding: 80px 20px;
+            background-color: var(--sci-gray);
+        }
+        .news-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: sans-serif;
+        }
+        .news-table tr {
+            border-bottom: 1px solid #ddd;
+        }
+        .news-table td {
+            padding: 20px 10px;
+        }
+        .news-date {
+            width: 120px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .news-cat {
+            width: 100px;
+        }
+        .cat-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            border: 1px solid var(--sci-purple);
+            color: var(--sci-purple);
+            border-radius: 2px;
+        }
+        .news-link a:hover {
+            color: var(--sci-accent);
+            text-decoration: underline;
+        }
+
+        /* フッター */
+        footer {
+            background-color: var(--sci-dark);
+            color: #ccc;
+            padding: 60px 0;
+            font-size: 0.9rem;
+        }
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .footer-logo {
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .header-inner { flex-direction: column; }
+            nav ul { margin-top: 15px; flex-wrap: wrap; justify-content: center; gap: 15px; }
+            .hero-content h2 { font-size: 2rem; }
+            .research-grid { grid-template-columns: 1fr; }
+            .footer-inner { flex-direction: column; text-align: center; gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ヘッダー -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <h1>店魅偉屋大学 理学部</h1>
+                <span>Misemi-ya University Faculty of Science</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">学部長挨拶</a></li>
+                    <li><a href="#">学科・専攻</a></li>
+                    <li><a href="#">研究・業績</a></li>
+                    <li><a href="#">入学案内</a></li>
+                    <li><a href="#">サイエンスコモンズ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ヒーローエリア -->
+    <section class="hero">
+        <div class="hero-content">
+            <p>Pursuing the Truth</p>
+            <h2>真理を、解き明かす。</h2>
+            <div style="margin-top: 30px; font-size: 0.9rem; opacity: 0.8; font-family: serif;">
+                「なぜ」という問いが、科学の出発点である。
+            </div>
+        </div>
+    </section>
+
+    <!-- 学科紹介リスト -->
+    <div class="container">
+        <div class="section-header">
+            <h2>DEPARTMENTS</h2>
+            <p>5つの知の領域</p>
+        </div>
+
+        <div class="dept-list">
+            <!-- 数学科 -->
+            <a href="#" class="dept-item">
+                <div class="dept-info">
+                    <h3>数学科</h3>
+                    <span>Department of Mathematics</span>
+                </div>
+                <div class="dept-arrow">∞</div>
+            </a>
+
+            <!-- 物理学科 -->
+            <a href="#" class="dept-item">
+                <div class="dept-info">
+                    <h3>物理学科</h3>
+                    <span>Department of Physics</span>
+                </div>
+                <div class="dept-arrow">⚛</div>
+            </a>
+
+            <!-- 化学科 -->
+            <a href="#" class="dept-item">
+                <div class="dept-info">
+                    <h3>化学科</h3>
+                    <span>Department of Chemistry</span>
+                </div>
+                <div class="dept-arrow">⚗</div>
+            </a>
+
+            <!-- 生物学科 -->
+            <a href="#" class="dept-item">
+                <div class="dept-info">
+                    <h3>生物科学科</h3>
+                    <span>Department of Biological Sciences</span>
+                </div>
+                <div class="dept-arrow">🧬</div>
+            </a>
+
+            <!-- 地球惑星科学科 -->
+            <a href="#" class="dept-item">
+                <div class="dept-info">
+                    <h3>地球惑星科学科</h3>
+                    <span>Department of Earth and Planetary Sciences</span>
+                </div>
+                <div class="dept-arrow">🌍</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- 研究紹介エリア -->
+    <section class="research-section">
+        <div class="container">
+            <div class="research-grid">
+                <div class="research-text">
+                    <h3>未知への挑戦。<br>基礎研究の最前線。</h3>
+                    <p style="margin-bottom: 20px;">
+                        店魅偉屋大学理学部では、直近の役に立つかどうかではなく、「世界がどうなっているのか」という純粋な知的好奇心を原動力に研究を行っています。
+                    </p>
+                    <p>
+                        素粒子の振る舞いから宇宙の進化、生命の起源まで。ここには、教科書を書き換える発見を目指す研究者たちが集っています。
+                    </p>
+                    <br>
+                    <a href="#" style="border-bottom: 1px solid var(--sci-purple); color: var(--sci-purple);">最新の研究成果を見る &rarr;</a>
+                </div>
+                <div class="research-img">
+                    <img src="https://placehold.co/600x400/1a1a2e/ffffff?text=Fundamental+Research" alt="研究風景">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ニュース -->
+    <section class="news-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>NEWS & EVENTS</h2>
+            </div>
+            <table class="news-table">
+                <tr>
+                    <td class="news-date">2024.11.28</td>
+                    <td class="news-cat"><span class="cat-badge">受賞</span></td>
+                    <td class="news-link"><a href="#">店魅偉屋 物理学賞の授賞式が行われました。</a></td>
+                </tr>
+                <tr>
+                    <td class="news-date">2024.11.15</td>
+                    <td class="news-cat"><span class="cat-badge">研究</span></td>
+                    <td class="news-link"><a href="#">【Nature掲載】化学科の研究グループが新しい結晶構造を発見しました。</a></td>
+                </tr>
+                <tr>
+                    <td class="news-date">2024.10.30</td>
+                    <td class="news-cat"><span class="cat-badge">講演会</span></td>
+                    <td class="news-link"><a href="#">市民科学講座「ブラックホールの謎に迫る」開催のお知らせ</a></td>
+                </tr>
+                <tr>
+                    <td class="news-date">2024.10.01</td>
+                    <td class="news-cat"><span class="cat-badge">入試</span></td>
+                    <td class="news-link"><a href="#">大学院理学研究科 修士課程の募集要項を配布開始しました。</a></td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-left">
+                <div class="footer-logo">店魅偉屋大学 理学部</div>
+                <p>Misemi-ya University Faculty of Science</p>
+                <p>〒113-8654 東京都文京区本郷7-3-2</p>
+            </div>
+            <div class="footer-right">
+                <ul style="display: flex; gap: 20px; list-style: none;">
+                    <li><a href="#">サイトポリシー</a></li>
+                    <li><a href="#">プライバシーポリシー</a></li>
+                    <li><a href="#">アクセス</a></li>
+                    <li><a href="#">お問い合わせ</a></li>
+                </ul>
+                <p style="text-align: right; margin-top: 20px;">&copy; Misemi-ya University Faculty of Science.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

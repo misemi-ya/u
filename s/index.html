@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>職員ポータル ログイン - 店魅偉屋大学</title>
+    <!-- MSAL.js (Azure認証ライブラリ) の読み込み -->
+    <script src="https://alcdn.msauth.net/browser/2.30.0/js/msal-browser.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Roboto', 'Noto Serif JP', sans-serif;
+            background-color: #f0f2f5;
+            display: flex; justify-content: center; align-items: center;
+            height: 100vh; color: #333;
+        }
+        .login-container {
+            background-color: white; padding: 40px;
+            border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: center; width: 100%; max-width: 400px;
+        }
+        .logo-area img { max-height: 60px; margin-bottom: 10px; }
+        .logo-area h1 { font-size: 1.2rem; margin: 0; color: #555; font-weight: normal; }
+        .login-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 30px; }
+        
+        .ms-signin-btn {
+            display: flex; align-items: center; justify-content: center; width: 100%;
+            background-color: #2f2f2f; color: white; border: none;
+            padding: 12px; font-size: 15px; font-weight: 600; cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .ms-signin-btn:hover { background-color: #4a4a4a; }
+        .ms-icon { margin-right: 12px; width: 21px; height: 21px; }
+        .error-msg { color: red; margin-top: 10px; font-size: 0.9rem; display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="logo-area">
+            <img src="../校章.png" alt="校章" onerror="this.style.display='none'">
+            <h1>店魅偉屋大学</h1>
+        </div>
+        <h2 class="login-title">職員ポータル</h2>
+
+        <button id="loginButton" class="ms-signin-btn" onclick="signIn()">
+            <svg class="ms-icon" viewBox="0 0 21 21"><rect x="1" y="1" width="9" height="9" fill="#f25022"/><rect x="11" y="1" width="9" height="9" fill="#7fba00"/><rect x="1" y="11" width="9" height="9" fill="#00a4ef"/><rect x="11" y="11" width="9" height="9" fill="#ffb900"/></svg>
+            Microsoftアカウントでサインイン
+        </button>
+        <p class="error-msg" id="errorMessage"></p>
+
+        <p style="margin-top:20px; font-size:0.85rem; color:#666;">
+            大学発行のMicrosoftアカウントを使用してください。<br>
+            (@edu-misemi-ya.ddo.jp)<br>
+            (@edu-misemi-ya.eu.org)
+        </p>
+        <a href="../index.html" style="display:block; margin-top:30px; font-size:0.9rem; color:#0078d4; text-decoration:none;">大学トップページへ戻る</a>
+    </div>
+
+    <!-- 設定ファイルの読み込み -->
+    <script src="msal-config.js"></script>
+
+    <script>
+        // ★★★ 端末判定＆遷移関数 (新規追加) ★★★
+        function redirectUser() {
+            // 画面幅が768px以下ならスマホ版へ、それ以外はPC版へ
+            if (window.innerWidth <= 768) {
+                window.location.href = "sp/l.html";
+            } else {
+                window.location.href = "l.html";
+            }
+        }
+
+        // ページ読み込み時にログイン状態を確認
+        window.addEventListener('load', async () => {
+            try {
+                // リダイレクト処理の完了待ち
+                await myMSALObj.handleRedirectPromise();
+                
+                // すでにログイン済みなら振り分け実行
+                const currentAccounts = myMSALObj.getAllAccounts();
+                if (currentAccounts.length > 0) {
+                    redirectUser(); // ★ここを変更
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        });
+
+        // ログインボタンの処理
+        async function signIn() {
+            try {
+                // ポップアップでログイン画面を開く
+                const loginResponse = await myMSALObj.loginPopup(loginRequest);
+                if(loginResponse) {
+                    // ログイン成功したら振り分け実行
+                    redirectUser(); // ★ここを変更
+                }
+            } catch (error) {
+                console.error(error);
+                const errorMsg = document.getElementById("errorMessage");
+                errorMsg.style.display = "block";
+                errorMsg.textContent = "ログインに失敗しました: " + error.message;
+            }
+        }
+    </script>
+</body>
+</html>

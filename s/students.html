@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>学生検索 | Misemi-ya University</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Roboto', sans-serif; background: #f5f7fa; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; }
+        h1 { color: #003366; }
+        .search-box { display: flex; gap: 10px; margin-bottom: 20px; }
+        input { flex: 1; padding: 10px; font-size: 1rem; border: 1px solid #ddd; border-radius: 5px; }
+        button { padding: 10px 20px; background: #003366; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 12px; border-bottom: 1px solid #eee; text-align: left; }
+        th { background: #f8f9fa; color: #555; }
+        tr:hover { background: #f1f1f1; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="l.html" style="text-decoration:none; color:#003366;">← ダッシュボードに戻る</a>
+        <h1>学生情報検索</h1>
+        <div class="search-box">
+            <input type="text" id="query" placeholder="学生番号 または 氏名で検索...">
+            <button onclick="search()">検索</button>
+        </div>
+        <table>
+            <thead>
+                <tr><th>学籍番号</th><th>氏名</th><th>学部</th><th>学年</th><th>状態</th></tr>
+            </thead>
+            <tbody id="result">
+                <!-- 結果 -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // ダミーデータ
+        const students = [
+            { id: "2024001", name: "田中 太郎", dept: "経済学部", grade: 2, status: "在学" },
+            { id: "2024002", name: "佐藤 花子", dept: "法学部", grade: 3, status: "在学" },
+            { id: "2024003", name: "鈴木 一郎", dept: "工学部", grade: 1, status: "在学" },
+            { id: "2024004", name: "高橋 次郎", dept: "文学部", grade: 4, status: "休学" },
+            { id: "2024005", name: "店魅 偉屋", dept: "経営学部", grade: 2, status: "留学中" },
+        ];
+
+        function search() {
+            const q = document.getElementById('query').value;
+            const res = document.getElementById('result');
+            res.innerHTML = '';
+            
+            const filtered = students.filter(s => s.name.includes(q) || s.id.includes(q));
+            
+            if(filtered.length === 0) {
+                res.innerHTML = '<tr><td colspan="5" style="text-align:center;">該当する学生は見つかりませんでした</td></tr>';
+                return;
+            }
+
+            filtered.forEach(s => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td>${s.id}</td><td>${s.name}</td><td>${s.dept}</td><td>${s.grade}年</td><td>${s.status}</td>`;
+                res.appendChild(tr);
+            });
+        }
+        // 初回表示
+        search();
+    </script>
+</body>
+</html>

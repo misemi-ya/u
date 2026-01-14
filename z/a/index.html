@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STUDENT PORTAL | Misemi-ya University</title>
+    
+    <script src="https://alcdn.msauth.net/browser/2.30.0/js/msal-browser.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --accent-color: #ff9800;
+            --bg-color: #f4f7f6;
+        }
+        body { margin: 0; padding: 0; font-family: 'Roboto', 'Noto Sans JP', sans-serif; background-color: var(--bg-color); color: #333; }
+        
+        /* VPNロック画面 */
+        #vpn-lock-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: white; z-index: 10000;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+        }
+        #vpn-checking { font-size: 1.2rem; color: #555; }
+        #vpn-error { display: none; text-align: center; }
+        .error-code { font-size: 6rem; font-weight: bold; color: #333; margin: 0; }
+        .error-msg { font-size: 1.5rem; color: #666; margin-bottom: 20px; }
+        .status-box { background: #f0f0f0; padding: 10px 20px; border-radius: 8px; font-family: monospace; font-size: 0.8rem; color: #555; margin-top: 20px; }
+
+        /* ローディング */
+        #loading-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255,255,255,0.95); z-index: 9000; display: none;
+            justify-content: center; align-items: center; flex-direction: column;
+        }
+
+        /* アプリ本体 */
+        #app { display: none; opacity: 0; transition: opacity 0.5s; }
+        
+        header {
+            background: var(--primary-color); color: white; padding: 15px 30px;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .user-area { display: flex; align-items: center; gap: 15px; }
+        .avatar { width: 35px; height: 35px; background: white; color: var(--primary-color); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; }
+
+        .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; display: grid; grid-template-columns: 250px 1fr; gap: 30px; }
+        .sidebar { display: flex; flex-direction: column; gap: 10px; }
+        .menu-item {
+            background: white; padding: 15px 20px; border-radius: 8px; cursor: pointer;
+            display: flex; align-items: center; gap: 15px; color: #555; text-decoration: none;
+            transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .menu-item:hover { transform: translateX(5px); color: var(--primary-color); }
+
+        .id-card {
+            background: linear-gradient(135deg, #0056b3, #003366); color: white;
+            padding: 20px; border-radius: 12px; margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2); position: relative; overflow: hidden;
+        }
+        .id-number { font-family: monospace; font-size: 1.1rem; letter-spacing: 2px; }
+        .id-name { font-size: 1.2rem; font-weight: bold; margin: 5px 0 15px 0; }
+        .barcode { background: white; height: 30px; width: 100%; border-radius: 4px; }
+
+        .content { display: flex; flex-direction: column; gap: 20px; }
+        .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .section-title { border-left: 5px solid var(--accent-color); padding-left: 10px; font-weight: bold; font-size: 1.1rem; margin-bottom: 15px; }
+        .dashboard-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+        /* 時間割 */
+        .timetable { width: 100%; border-collapse: collapse; }
+        .timetable th { background: #f0f2f5; padding: 8px; font-size: 0.8rem; color: #666; }
+        .timetable td { border: 1px solid #eee; padding: 10px; text-align: center; height: 50px; font-size: 0.9rem; }
+        .class-cell { background: #e3f2fd; border-radius: 5px; padding: 5px; color: var(--primary-color); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <!-- VPNロック -->
+    <div id="vpn-lock-screen">
+        <div id="vpn-checking">Security Checking...</div>
+        <div id="vpn-error">
+            <div class="error-code">403</div>
+            <div class="error-msg">Access Denied</div>
+            <p>Your connection is not secure.</p>
+            <!-- 具体的なVPN名は出さない -->
+            <div class="status-box">Your IP: <span id="user-ip">...</span></div>
+        </div>
+    </div>
+    
+    <!-- ローディング -->
+    <div id="loading-screen">
+        <i class="fa-solid fa-circle-notch fa-spin fa-2x" style="color:#0056b3;"></i>
+    </div>
+
+    <!-- アプリ本体 -->
+    <div id="app">
+        <header>
+            <div style="font-weight:bold; font-size:1.2rem; display:flex; align-items:center; gap:10px;">
+                <img src="../../校章.png" alt="Logo" style="height:30px;"> Misemi-ya Univ.
+            </div>
+            <div class="user-area">
+                <span id="header-name">Student</span>
+                <div class="avatar" id="header-avatar">S</div>
+                <i class="fa-solid fa-right-from-bracket" onclick="signOut()" style="cursor:pointer;" title="ログアウト"></i>
+            </div>
+        </header>
+
+        <div class="container">
+            <aside class="sidebar">
+                <div class="id-card">
+                    <div style="font-size:0.8rem; opacity:0.8;">STUDENT ID CARD</div>
+                    <div class="id-number" id="card-id">00000000</div>
+                    <div class="id-name" id="card-name">Student</div>
+                    <div class="barcode">
+                        <div style="height:100%; background:repeating-linear-gradient(90deg, #333 0, #333 2px, transparent 2px, transparent 4px);"></div>
+                    </div>
+                </div>
+                <a href="../../index.html" class="menu-item"><i class="fa-solid fa-house"></i> トップページ</a>
+                <a href="#" class="menu-item"><i class="fa-solid fa-chalkboard-user"></i> LMS</a>
+                <a href="#" class="menu-item"><i class="fa-solid fa-chart-bar"></i> 成績照会</a>
+                <a href="#" class="menu-item"><i class="fa-solid fa-book-open"></i> シラバス</a>
+            </aside>
+
+            <main class="content">
+                <div class="card">
+                    <div class="section-title">Today's Classes</div>
+                    <table class="timetable">
+                        <tr><th>1限</th><th>2限</th><th>3限</th><th>4限</th></tr>
+                        <tr>
+                            <td><div class="class-cell">英語 Ia</div></td>
+                            <td></td>
+                            <td><div class="class-cell">経済学概論</div></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="card" style="grid-column: span 2;">
+                        <div class="section-title">News</div>
+                        <ul style="list-style:none; padding:0;">
+                            <li style="padding:10px 0; border-bottom:1px solid #eee;">
+                                <span style="background:#ffcdd2; color:#c62828; padding:2px 6px; border-radius:4px; font-size:0.8rem;">休講</span> 1/14 社会学
+                            </li>
+                            <li style="padding:10px 0;">
+                                <span style="background:#eee; padding:2px 6px; border-radius:4px; font-size:0.8rem;">通知</span> 定期試験について
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <div class="section-title">Tasks</div>
+                        <div style="font-size:0.9rem;">英語レポート (明日)</div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        const VPN_HOST = 'public-vpn-129.opengw.net';
+
+        // 1. VPNチェック
+        window.onload = async () => {
+            await checkVPN();
+        };
+
+        function getSubnet(ip) { return ip ? ip.split('.').slice(0, 3).join('.') : ""; }
+
+        async function checkVPN() {
+            try {
+                const ipRes = await fetch('https://api.ipify.org?format=json');
+                const myIp = (await ipRes.json()).ip;
+                const dnsRes = await fetch(`https://dns.google/resolve?name=${VPN_HOST}&type=A`);
+                const vpnIp = (await dnsRes.json()).Answer?.[0]?.data;
+
+                const mySub = getSubnet(myIp);
+                const vpnSub = getSubnet(vpnIp);
+
+                if (vpnIp && mySub === vpnSub) {
+                    // VPN OK -> ロック解除して認証へ
+                    document.getElementById('vpn-lock-screen').style.display = 'none';
+                    initAuth();
+                } else {
+                    // VPN NG
+                    document.getElementById('vpn-checking').style.display = 'none';
+                    document.getElementById('vpn-error').style.display = 'block';
+                    document.getElementById('user-ip').textContent = myIp;
+                }
+            } catch (e) {
+                document.getElementById('vpn-checking').innerText = "Network Error";
+            }
+        }
+
+        // 2. 認証チェック
+        const msalConfig = {
+            auth: {
+                clientId: "40568e89-c868-42c9-8a06-5874c6c0acc1",
+                authority: "https://login.microsoftonline.com/f26d3362-79fe-4262-817a-531c7cdbf597",
+                redirectUri: window.location.href // 現在のページで処理
+            }
+        };
+        const myMSALObj = new msal.PublicClientApplication(msalConfig);
+
+        async function initAuth() {
+            document.getElementById('loading-screen').style.display = 'flex';
+            try {
+                // リダイレクト処理待ち
+                await myMSALObj.handleRedirectPromise();
+                const accounts = myMSALObj.getAllAccounts();
+                
+                if (accounts.length > 0) {
+                    // ログイン済みなら表示
+                    showApp(accounts[0]);
+                } else {
+                    // 未ログインならログイン画面(z/index.html)へ戻す
+                    window.location.href = "../index.html";
+                }
+            } catch (e) { console.error(e); }
+        }
+
+        function showApp(user) {
+            document.getElementById('loading-screen').style.display = 'none';
+            document.getElementById('app').style.display = 'block';
+            setTimeout(() => document.getElementById('app').style.opacity = 1, 50);
+
+            document.getElementById('header-name').textContent = user.name;
+            document.getElementById('header-avatar').textContent = user.name.charAt(0);
+            document.getElementById('card-name').textContent = user.name.toUpperCase();
+            
+            const id = user.username.split('@')[0].toUpperCase();
+            document.getElementById('card-id').textContent = id.length > 8 ? id.substring(0,8) : id;
+        }
+
+        function signOut() {
+            sessionStorage.clear();
+            // ログアウト後はトップへ
+            window.location.href = "../../index.html";
+        }
+    </script>
+</body>
+</html>

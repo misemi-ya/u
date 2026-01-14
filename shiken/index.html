@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link rel="icon" type="image/x-icon" href="https://misemi-ya.github.io/www.misemi-ya.co.jp/university/images/favicon.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>合格発表確認 - 店魅偉屋大学</title>
+    <link rel="stylesheet" href="../style.css"> <!-- スタイルシートのパスを調整 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../校章.png" alt="店魅偉屋大学ロゴ">
+                    <h1>店魅偉屋大学</h1>
+                </a>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="shiken/index.html">入試試験結果</a></li>
+                    <li><a href="../university/university.html">大学について</a></li>
+                    <li><a href="../faculty/faculty.html">学部・大学院</a></li>
+                    <li><a href="../research/research.html">研究</a></li>
+                    <li><a href="../admission/admission.html">入学案内</a></li>
+                    <li><a href="../studentlife/studentlife.html">学生生活</a></li>
+                    <li><a href="../society/society.html">社会連携</a></li>
+                    <li><a href="../access/access.html">アクセス</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section-padding">
+            <div class="container">
+                <h2 class="section-title">合格発表確認</h2>
+                <div class="info-box">
+                    <p class="text-center">入試試験合格発表メールの受信をご希望の方は、下記メールアドレス宛てに**氏名**と**「合格発表希望」**を明記して送信してください。</p>
+                    <div class="highlight-email">
+                        <span id="copyEmail" class="email-display">misemi-ya-u-i@mail.com</span>
+                        <button id="copyButton" class="btn btn-secondary copy-button">メールアドレスをコピー</button>
+                    </div>
+                    <p class="text-center small-text">※上記メールアドレスをコピーして、普段お使いのメールソフトで送信してください。</p>
+                    <p class="text-center small-text">※メール送信後、合否結果をお送りします。</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-col">
+                <p>&copy; 2025 Misemi-ya University.</p>
+            </div>
+            <div class="footer-col">
+                <ul>
+                    <li><a href="../sitemap/index.html">サイトマップ</a></li>
+                    <li><a href="form.html">お問い合わせ</a></li>
+                    <li><a href="privacy.html">プライバシーポリシー</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- メールアドレスをコピーするJavaScriptを追加 -->
+    <script>
+        document.getElementById('copyButton').addEventListener('click', function() {
+            const emailAddress = document.getElementById('copyEmail').textContent;
+            navigator.clipboard.writeText(emailAddress).then(function() {
+                alert('メールアドレスがコピーされました: ' + emailAddress);
+            }, function(err) {
+                console.error('メールアドレスのコピーに失敗しました:', err);
+                alert('メールアドレスのコピーに失敗しました。手動でコピーしてください: ' + emailAddress);
+            });
+        });
+    </script>
+</body>
+</html>

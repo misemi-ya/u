@@ -1,0 +1,75 @@
+/* ... 既存のスタイル ... */
+
+/* 合格発表確認ページ用の追加スタイル */
+.info-box {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 40px;
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    text-align: center; /* info-box内のテキストは中央揃えを維持 */
+}
+
+.info-box p {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    line-height: 1.8;
+}
+
+.highlight-email {
+    margin: 30px auto; /* 上下30px、左右autoで中央揃え */
+    display: flex; /* メールアドレスとボタンを横並びにする */
+    justify-content: center; /* 主軸（横方向）の中央揃え */
+    align-items: center; /* 交差軸（縦方向）の中央揃え */
+    flex-wrap: wrap; /* 小さい画面で折り返す */
+    gap: 15px; /* 要素間の隙間 */
+    /* max-width: fit-content; は、場合によっては意図しない幅になることがあるので、一旦コメントアウト */
+    /* width: fit-content; を使うか、display:inline-flex と margin:auto を組み合わせる */
+}
+
+.email-display {
+    font-size: 1.4em; /* メールアドレスの文字を大きく */
+    font-weight: 700;
+    color: var(--primary-color); /* 目立つ色に */
+    background-color: #f0f0f0; /* 背景色をつけて見やすく */
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    white-space: nowrap; /* 折り返しを防ぐ */
+    /* flexアイテムとして均等にスペースを割り振られないように */
+    flex-shrink: 0; 
+    flex-grow: 0;
+}
+
+.copy-button {
+    padding: 12px 25px;
+    font-size: 1em;
+    /* btn-secondary のスタイルを継承しつつ微調整 */
+    flex-shrink: 0; /* 小さくならないように */
+}
+
+.small-text {
+    font-size: 0.9em;
+    color: var(--dark-gray);
+    margin-top: 10px;
+}
+
+/* レスポンシブデザインの調整 */
+@media (max-width: 576px) {
+    .highlight-email {
+        flex-direction: column; /* 小さい画面では縦に並べる */
+        gap: 10px;
+    }
+    .email-display {
+        font-size: 1.2em;
+        padding: 8px 15px;
+    }
+    .copy-button {
+        width: 100%; /* ボタンを全幅にする */
+        max-width: 250px; /* ボタンの最大幅を設定 */
+    }
+}
+
+/* ... 既存のスタイル ... */

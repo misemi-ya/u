@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>店魅偉屋大学 薬学部 | Misemi-ya Univ. Faculty of Pharmacy</title>
+    
+    <!-- ▼ Favicon設定（薬学部らしいカプセルのアイコン） ▼ -->
+    <link rel="icon" href="favicon.ico">
+
+    <style>
+        /* --- 配色設定：ヘルスケア＆ケミストリー --- */
+        :root {
+            --ph-orange: #f39c12;     /* ビタミンオレンジ：活力と温かみ */
+            --ph-light-orange: #fff5e6; /* 薄いオレンジ：背景用 */
+            --ph-teal: #16a085;       /* 医療グリーン：癒やしと清潔感 */
+            --ph-gray: #f4f6f7;       /* クリーンな背景 */
+            --text-main: #2c3e50;
+        }
+
+        body {
+            font-family: "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-main);
+            background-color: #fff;
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; padding: 0; margin: 0; }
+
+        /* --- ヘッダー --- */
+        header {
+            background-color: #fff;
+            border-bottom: 4px solid var(--ph-orange);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo-icon { font-size: 2rem; }
+        .logo h1 {
+            font-size: 1.5rem;
+            color: var(--text-main);
+            margin: 0;
+        }
+        .logo span {
+            font-size: 0.8rem;
+            color: var(--ph-orange);
+            display: block;
+            font-weight: bold;
+        }
+
+        nav ul { display: flex; gap: 25px; }
+        nav a {
+            font-weight: bold;
+            color: #555;
+            padding: 5px 0;
+        }
+        nav a:hover {
+            color: var(--ph-orange);
+            border-bottom: 2px solid var(--ph-orange);
+        }
+
+        /* --- ヒーローセクション --- */
+        .hero {
+            height: 500px;
+            /* 薬局や実験室のイメージ */
+            background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.6)), url('yaku.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+        .hero-content h2 {
+            font-size: 3rem;
+            color: var(--text-main);
+            margin-bottom: 15px;
+            letter-spacing: 0.05em;
+        }
+        .hero-content p {
+            font-size: 1.3rem;
+            color: var(--ph-teal);
+            font-weight: bold;
+            background: #fff;
+            padding: 5px 20px;
+            border-radius: 50px;
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* --- コンテンツ共通 --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2rem;
+            color: var(--text-main);
+        }
+        .section-title span {
+            color: var(--ph-orange);
+            font-size: 1rem;
+            display: block;
+            margin-bottom: 5px;
+            letter-spacing: 2px;
+        }
+
+        /* 2つの学科（6年制と4年制） */
+        .dept-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .dept-card {
+            border: 1px solid #eee;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            background: #fff;
+        }
+        .dept-card:hover { transform: translateY(-5px); border-color: var(--ph-orange); }
+        
+        .dept-header {
+            padding: 20px;
+            background-color: var(--ph-gray);
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        .dept-header h3 { margin: 0; font-size: 1.6rem; color: var(--text-main); }
+        .dept-header span { display: block; margin-top: 5px; font-weight: bold; }
+        
+        .badge-6y { color: #fff; background: var(--ph-teal); padding: 3px 10px; border-radius: 4px; font-size: 0.8rem; }
+        .badge-4y { color: #fff; background: var(--ph-orange); padding: 3px 10px; border-radius: 4px; font-size: 0.8rem; }
+
+        .dept-body { padding: 30px; }
+        .dept-body p { margin-bottom: 20px; font-size: 0.95rem; }
+        .dept-link {
+            display: block;
+            text-align: center;
+            padding: 10px;
+            background: var(--text-main);
+            color: #fff;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+        .dept-link:hover { opacity: 0.8; }
+
+        /* 特徴（国家試験対策など） */
+        .features {
+            background-color: var(--ph-light-orange);
+            padding: 80px 0;
+        }
+        .feature-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .feature-item {
+            background: #fff;
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(243, 156, 18, 0.1);
+        }
+        .feature-icon { font-size: 3rem; margin-bottom: 15px; display: block; }
+        .feature-item h4 { margin-bottom: 10px; font-size: 1.2rem; color: var(--ph-orange); }
+        .feature-item p { font-size: 0.9rem; color: #666; }
+
+        /* 薬用植物園バナー */
+        .garden-banner {
+            max-width: 1000px;
+            margin: 60px auto;
+            background: #27ae60;
+            color: #fff;
+            border-radius: 15px;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            overflow: hidden;
+            position: relative;
+        }
+        .garden-content { z-index: 2; flex: 1; }
+        .garden-content h3 { font-size: 1.8rem; margin: 0 0 10px; }
+        .garden-icon { font-size: 5rem; opacity: 0.3; position: absolute; right: 20px; top: 10px; }
+
+        /* ニュース */
+        .news-section { padding: 60px 20px; }
+        .news-list { max-width: 800px; margin: 0 auto; }
+        .news-row {
+            display: flex;
+            padding: 15px 0;
+            border-bottom: 1px dashed #ccc;
+            align-items: baseline;
+        }
+        .news-date { width: 100px; color: #888; font-size: 0.9rem; }
+        .news-label {
+            background: #eee; color: #555;
+            padding: 2px 8px; font-size: 0.75rem;
+            border-radius: 4px; margin-right: 15px;
+        }
+
+        /* フッター */
+        footer {
+            background-color: var(--text-main);
+            color: #fff;
+            padding: 40px 0;
+            text-align: center;
+        }
+        .footer-logo { font-size: 1.2rem; margin-bottom: 10px; }
+
+        @media (max-width: 768px) {
+            .hero-content h2 { font-size: 2rem; }
+            .dept-wrapper { grid-template-columns: 1fr; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .header-inner { flex-direction: column; }
+            nav ul { margin-top: 10px; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ヘッダー -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <div class="logo-icon">💊</div>
+                <div>
+                    <h1>店魅偉屋大学 薬学部</h1>
+                    <span>Faculty of Pharmaceutical Sciences</span>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">学部長メッセージ</a></li>
+                    <li><a href="#">学科紹介</a></li>
+                    <li><a href="#">研究室一覧</a></li>
+                    <li><a href="#">入試情報</a></li>
+                    <li><a href="#">地域連携</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ヒーローエリア -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>くすりの力、<br>いのちへの優しさ。</h2>
+            <p>Chemistry for Life, Heart for Patients.</p>
+        </div>
+    </section>
+
+    <!-- 学科紹介（6年制・4年制の比較） -->
+    <div class="container">
+        <div class="section-title">
+            <span>DEPARTMENTS</span>
+            <h2>2つの学科</h2>
+            <p style="font-size:0.9rem; margin-top:10px;">薬剤師を目指す6年制と、創薬研究者を目指す4年制</p>
+        </div>
+
+        <div class="dept-wrapper">
+            <!-- 薬学科 -->
+            <div class="dept-card">
+                <div class="dept-header">
+                    <span class="badge-6y">6年制</span>
+                    <h3>薬学科</h3>
+                </div>
+                <div class="dept-body">
+                    <p>
+                        高度な専門知識と豊かな人間性を兼ね備えた、チーム医療の担い手となる「薬剤師」を養成します。病院・薬局での長期実務実習を通じて、臨床現場で活きる実践力を磨きます。
+                    </p>
+                    <ul style="margin-bottom: 20px; font-size: 0.9rem; color: #555; list-style: disc; padding-left: 20px;">
+                        <li>薬剤師国家試験受験資格</li>
+                        <li>臨床薬学・医療薬学</li>
+                    </ul>
+                    <a href="#" class="dept-link">カリキュラムを見る</a>
+                </div>
+            </div>
+
+            <!-- 創薬科学科 -->
+            <div class="dept-card">
+                <div class="dept-header">
+                    <span class="badge-4y">4年制</span>
+                    <h3>創薬科学科</h3>
+                </div>
+                <div class="dept-body">
+                    <p>
+                        新しい「くすり」を創り出す研究者・技術者を育成します。化学・生物学を基盤に、最先端の創薬研究に触れ、大学院進学を見据えた研究重視のカリキュラムです。
+                    </p>
+                    <ul style="margin-bottom: 20px; font-size: 0.9rem; color: #555; list-style: disc; padding-left: 20px;">
+                        <li>研究職・MR・開発職</li>
+                        <li>生命科学・創薬化学</li>
+                    </ul>
+                    <a href="#" class="dept-link">カリキュラムを見る</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 薬学部の特徴 -->
+    <section class="features">
+        <div class="section-title">
+            <span>FEATURES</span>
+            <h2>ミセミーヤ薬学部の強み</h2>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <span class="feature-icon">📝</span>
+                <h4>国家試験対策</h4>
+                <p>1年次からの段階的な学習サポートと、独自の模擬試験システムにより、全国トップクラスの薬剤師国家試験合格率を維持しています。</p>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">🔬</span>
+                <h4>最先端の研究センター</h4>
+                <p>学内に「創薬研究センター」を設置。学生も早期からプロジェクトに参加し、学会発表などの経験を積むことができます。</p>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">🏥</span>
+                <h4>付属病院との連携</h4>
+                <p>店魅偉屋大学付属病院の薬剤部と連携し、現役薬剤師による講義や、充実した事前実習（プレ教育）を行っています。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 薬用植物園バナー -->
+    <div class="garden-banner">
+        <div class="garden-content">
+            <h3>🌿 店魅偉屋大学 薬用植物園</h3>
+            <p>キャンパス内に約1,000種の薬用植物を栽培・保存しています。<br>一般の方への公開講座や見学会も定期的に開催中。</p>
+            <br>
+            <a href="#" style="background:#fff; color:#27ae60; padding:8px 20px; border-radius:20px; font-weight:bold;">植物園サイトへ</a>
+        </div>
+        <div class="garden-icon">🌿</div>
+    </div>
+
+    <!-- ニュース -->
+    <div class="news-section">
+        <div class="section-title">
+            <h2>News & Topics</h2>
+        </div>
+        <div class="news-list">
+            <div class="news-row">
+                <span class="news-date">2024.11.25</span>
+                <span class="news-label">入試</span>
+                <a href="#">令和7年度 学校推薦型選抜の合格発表について</a>
+            </div>
+            <div class="news-row">
+                <span class="news-date">2024.11.10</span>
+                <span class="news-label">研究</span>
+                <a href="#">生薬学教室の研究論文が国際誌『Journal of Natural Medicines』に掲載されました。</a>
+            </div>
+            <div class="news-row">
+                <span class="news-date">2024.10.30</span>
+                <span class="news-label">重要</span>
+                <a href="#">第110回 薬剤師国家試験の出願手続きガイダンスを開催します。</a>
+            </div>
+            <div class="news-row">
+                <span class="news-date">2024.10.15</span>
+                <span class="news-label">地域</span>
+                <a href="#">市民公開講座「お薬手帳の活用法とジェネリック医薬品」のお知らせ</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- フッター -->
+    <footer>
+        <div class="footer-logo">店魅偉屋大学 薬学部</div>
+        <p>Misemi-ya University Faculty of Pharmaceutical Sciences</p>
+        <p style="font-size:0.9rem; margin-top:10px;">〒113-8654 東京都文京区本郷 7-3-2</p>
+        <div style="margin-top:20px; font-size:0.85rem; color:#bdc3c7;">
+            <a href="#" style="margin:0 10px;">サイトマップ</a> | 
+            <a href="#" style="margin:0 10px;">お問い合わせ</a> | 
+            <a href="#" style="margin:0 10px;">プライバシーポリシー</a>
+        </div>
+        <p style="margin-top:30px; opacity:0.6; font-size:0.8rem;">&copy; Misemi-ya Univ. Pharmacy. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

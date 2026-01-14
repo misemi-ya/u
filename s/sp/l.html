@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MOBILE PORTAL | Misemi-ya Univ.</title>
+    
+    <!-- 必須ライブラリ (PC版と同じセット) -->
+    <script src="https://alcdn.msauth.net/browser/2.30.0/js/msal-browser.min.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #003366;
+            --accent-color: #c9a346;
+            --bg-color: #f0f2f5;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Roboto', 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-color);
+            color: #333;
+            -webkit-tap-highlight-color: transparent;
+            padding-bottom: 80px; /* 下部余白 */
+        }
+
+        /* --- ヘッダー --- */
+        header {
+            background-color: var(--primary-color);
+            color: white; padding: 15px 20px;
+            display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        .header-title { font-weight: bold; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
+        .menu-btn { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+
+        /* --- サイドメニュー (オーバーレイ) --- */
+        #mobile-menu {
+            position: fixed; top: 0; left: -100%; width: 85%; height: 100%;
+            background: white; z-index: 2000; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 2px 0 15px rgba(0,0,0,0.3); overflow-y: auto;
+            display: flex; flex-direction: column;
+        }
+        #mobile-menu.open { left: 0; }
+        .menu-header {
+            background: var(--primary-color); color: white; padding: 30px 20px;
+            display: flex; align-items: center; gap: 15px;
+        }
+        .menu-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); z-index: 1500; display: none;
+            backdrop-filter: blur(2px);
+        }
+        .menu-overlay.open { display: block; }
+        
+        .nav-list { list-style: none; padding: 0; margin: 0; flex: 1; }
+        .nav-item { border-bottom: 1px solid #f0f0f0; }
+        .nav-link {
+            display: block; padding: 16px 20px; text-decoration: none; color: #333; font-weight: 500;
+            display: flex; align-items: center; gap: 15px; font-size: 1rem;
+        }
+        .nav-link:active { background: #f5f5f5; }
+        .nav-link i { width: 25px; text-align: center; color: var(--primary-color); }
+        .nav-category { background: #f9f9f9; color: #888; font-size: 0.8rem; padding: 12px 20px; font-weight: bold; letter-spacing: 1px; }
+
+        /* --- メインコンテンツ --- */
+        .container { padding: 15px; }
+
+        /* 挨拶カード */
+        .welcome-card {
+            background: linear-gradient(135deg, #003366, #00509e);
+            color: white; padding: 25px; border-radius: 16px; margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,51,102,0.25); position: relative; overflow: hidden;
+        }
+        .welcome-card::after {
+            content: ''; position: absolute; top: -20px; right: -20px; width: 100px; height: 100px;
+            background: rgba(255,255,255,0.1); border-radius: 50%;
+        }
+        .welcome-msg { font-size: 1.4rem; font-weight: bold; margin-bottom: 5px; }
+        .date-display { font-size: 0.9rem; opacity: 0.9; }
+
+        /* 勤怠カード (PC版と同等の機能) */
+        .attendance-card {
+            background: white; padding: 25px; border-radius: 16px; margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;
+        }
+        .time-display { font-size: 2.8rem; font-weight: bold; color: #333; font-family: monospace; margin: 15px 0; letter-spacing: 2px; }
+        .punch-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+        .btn-punch {
+            padding: 16px; border: none; border-radius: 12px; font-weight: bold; font-size: 1.1rem; color: white; cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.1s;
+        }
+        .btn-punch:active { transform: scale(0.96); }
+        .btn-in { background: #28a745; }
+        .btn-out { background: #dc3545; }
+        .status-badge { display: inline-block; background: #eee; padding: 6px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; color: #555; }
+        .attendance-log {
+            margin-top: 15px; font-size: 0.85rem; color: #666; border-top: 1px dashed #eee; padding-top: 15px; text-align: left;
+        }
+        .log-tag { display: inline-block; background: #f0f2f5; padding: 3px 8px; border-radius: 4px; margin-right: 8px; margin-bottom: 5px; border: 1px solid #ddd; }
+
+        /* グリッドメニュー (アプリランチャー) */
+        .grid-menu {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 25px;
+        }
+        .grid-item {
+            background: white; border-radius: 12px; padding: 20px 5px;
+            text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-decoration: none; color: #333; font-size: 0.8rem; font-weight: 500;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+        }
+        .grid-item:active { background: #f9f9f9; transform: scale(0.98); }
+        .grid-icon { font-size: 2rem; color: var(--primary-color); margin-bottom: 10px; }
+
+        /* リストカード (お知らせ・Gmail) */
+        .list-card { background: white; border-radius: 16px; padding: 20px; margin-bottom: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .card-header { font-weight: bold; border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 1.1rem; }
+        .news-item { padding: 12px 0; border-bottom: 1px dashed #eee; font-size: 0.95rem; line-height: 1.5; }
+        .news-item:last-child { border-bottom: none; }
+        .news-badge { background: #eee; padding: 2px 6px; font-size: 0.75rem; border-radius: 4px; margin-right: 8px; font-weight: bold; color: #555; }
+        .gmail-btn { color: #0b57d0; font-weight: bold; background: rgba(11, 87, 208, 0.1); padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; border: none; }
+
+        /* グラフカード */
+        .chart-card { background: white; border-radius: 16px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .chart-container { height: 250px; width: 100%; }
+
+        /* モーダル (下からスライド) */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6); z-index: 3000; display: none;
+            justify-content: center; align-items: flex-end;
+        }
+        .modal-sheet {
+            background: white; width: 100%; max-height: 90vh;
+            border-radius: 20px 20px 0 0; padding: 25px; box-sizing: border-box;
+            overflow-y: auto; animation: slideUp 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            display: flex; flex-direction: column;
+        }
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+        .close-bar { width: 50px; height: 5px; background: #e0e0e0; border-radius: 5px; margin: 0 auto 25px auto; }
+        .modal-title { margin: 0 0 20px 0; font-size: 1.3rem; color: var(--primary-color); border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; }
+        .modal-content { flex: 1; font-size: 1rem; line-height: 1.6; }
+        .modal-btn { width: 100%; padding: 15px; background: var(--primary-color); color: white; border: none; border-radius: 12px; font-weight: bold; font-size: 1rem; margin-top: 20px; }
+
+        /* ロック画面 & ローディング */
+        #vpn-lock-screen, #loading-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 9999; display: flex; justify-content: center; align-items: center; flex-direction: column; font-family: sans-serif; }
+        #loading-screen { display: none; background: rgba(255,255,255,0.95); }
+        #app { display: none; opacity: 0; transition: opacity 0.5s; }
+        .error-code { font-size: 6rem; font-weight: bold; color: #333; margin: 0; line-height: 1; }
+        .error-msg { font-size: 1.5rem; color: #666; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+    <!-- 1. VPNロック画面 -->
+    <div id="vpn-lock-screen">
+        <div id="vpn-checking">
+            <i class="fa-solid fa-circle-notch fa-spin fa-2x" style="color:#003366;"></i>
+            <p style="margin-top:15px; color:#666;">Security Checking...</p>
+        </div>
+        <div id="vpn-error" style="display:none; text-align:center; padding:20px;">
+            <div class="error-code">403</div>
+            <div class="error-msg">Access Denied</div>
+            <p style="color:#888; font-size:0.9rem;">
+                安全な接続が確認できませんでした。<br>
+                指定されたVPNに接続してください。
+            </p>
+            <div style="background:#f5f5f5; padding:10px; border-radius:8px; margin-top:20px; font-family:monospace;">
+                Your IP: <span id="user-ip">...</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 2. ローディング画面 -->
+    <div id="loading-screen">
+        <i class="fa-solid fa-circle-notch fa-spin fa-2x" style="color:#003366;"></i>
+        <h3 style="margin-top:20px; color:#333;">認証中...</h3>
+        <p style="color:#888; font-size:0.8rem;">ログイン情報を確認しています</p>
+    </div>
+
+    <!-- 3. アプリ本体 -->
+    <div id="app">
+        <!-- ヘッダー -->
+        <header>
+            <div class="header-title">
+                <img src="../../校章.png" alt="logo" style="height:28px;"> Misemi-ya Univ.
+            </div>
+            <button class="menu-btn" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
+        </header>
+
+        <!-- サイドメニュー -->
+        <div class="menu-overlay" onclick="toggleMenu()"></div>
+        <nav id="mobile-menu">
+            <div class="menu-header">
+                <div style="width:50px; height:50px; background:white; border-radius:50%; color:var(--primary-color); display:flex; justify-content:center; align-items:center; font-weight:bold; font-size:1.5rem;" id="menu-avatar">U</div>
+                <div>
+                    <div style="font-weight:bold; font-size:1.1rem;" id="menu-name">User</div>
+                    <div style="font-size:0.8rem; opacity:0.8;" id="menu-email">STAFF ACCOUNT</div>
+                </div>
+            </div>
+            <ul class="nav-list">
+                <li class="nav-item"><a href="#" onclick="toggleMenu()" class="nav-link"><i class="fa-solid fa-house"></i> ホーム</a></li>
+                <li class="nav-item"><a href="../mail.html" class="nav-link"><i class="fa-solid fa-envelope"></i> Webメール</a></li>
+                <li class="nav-item"><a href="../reserve.html" class="nav-link"><i class="fa-solid fa-calendar-check"></i> 施設予約</a></li>
+                <li class="nav-item"><a onclick="location.href='../share.html'" class="nav-link"><i class="fa-solid fa-share-nodes"></i> Share Portal (VPN)</a></li>
+                
+                <li class="nav-category">コミュニケーション</li>
+                <li class="nav-item"><a onclick="openApp('discord')" class="nav-link"><i class="fa-brands fa-discord"></i> 講義室</a></li>
+                <li class="nav-item"><a onclick="window.open('https://slack.com/signin')" class="nav-link"><i class="fa-brands fa-slack"></i> 業務連絡</a></li>
+                <li class="nav-item"><a onclick="openApp('bbs')" class="nav-link"><i class="fa-solid fa-comments"></i> 学内掲示板</a></li>
+
+                <li class="nav-category">管理・申請</li>
+                <li class="nav-item"><a onclick="openApp('hr')" class="nav-link"><i class="fa-solid fa-user-tie"></i> 人事・総務</a></li>
+                <li class="nav-item"><a href="../students.html" class="nav-link"><i class="fa-solid fa-graduation-cap"></i> 教務・学生支援</a></li>
+                <li class="nav-item"><a onclick="openApp('approval')" class="nav-link"><i class="fa-solid fa-file-signature"></i> 電子決裁</a></li>
+                
+                <!-- 管理者のみ -->
+                <li class="nav-item" id="adminLink" style="display:none; border-top:1px solid #eee;">
+                    <a href="../lp.html" class="nav-link" style="color:#d9534f; background:#fff5f5;"><i class="fa-solid fa-lock"></i> Admin Console</a>
+                </li>
+                
+                <li class="nav-item"><a onclick="signOut()" class="nav-link" style="color:#666;"><i class="fa-solid fa-right-from-bracket"></i> ログアウト</a></li>
+            </ul>
+        </nav>
+
+        <div class="container">
+            <!-- 挨拶 -->
+            <div class="welcome-card">
+                <div class="welcome-msg" id="greeting">Hello!</div>
+                <div class="date-display" id="dateDisplay">Loading...</div>
+            </div>
+
+            <!-- 勤怠管理 (Firebase連動) -->
+            <div class="attendance-card">
+                <div class="status-badge" id="status-badge">未出勤</div>
+                <div class="time-display" id="timeDisplay">00:00</div>
+                <div class="punch-btns">
+                    <button class="btn-punch btn-in" onclick="punch('出勤')"><i class="fa-solid fa-sun"></i> 出勤</button>
+                    <button class="btn-punch btn-out" onclick="punch('退勤')"><i class="fa-solid fa-moon"></i> 退勤</button>
+                </div>
+                <div id="attendance-log" class="attendance-log">履歴を読み込み中...</div>
+            </div>
+
+            <!-- 業務ショートカット -->
+            <div class="grid-menu">
+                <a onclick="openApp('payroll')" class="grid-item"><i class="fa-solid fa-file-invoice-dollar grid-icon"></i>給与明細</a>
+                <a onclick="openApp('expense')" class="grid-item"><i class="fa-solid fa-receipt grid-icon"></i>経費精算</a>
+                <a onclick="openApp('approval')" class="grid-item"><i class="fa-solid fa-stamp grid-icon"></i>電子決裁</a>
+                <a onclick="openApp('crisis')" class="grid-item"><i class="fa-solid fa-triangle-exclamation grid-icon" style="color:#dc3545;"></i>危機管理</a>
+                <a href="../students.html" class="grid-item"><i class="fa-solid fa-graduation-cap grid-icon"></i>学生検索</a>
+                <a onclick="openApp('it')" class="grid-item"><i class="fa-solid fa-desktop grid-icon"></i>IT申請</a>
+                <a onclick="openApp('recruit')" class="grid-item"><i class="fa-solid fa-user-plus grid-icon"></i>採用管理</a>
+                <a onclick="openApp('assets')" class="grid-item"><i class="fa-solid fa-laptop grid-icon"></i>資産管理</a>
+                <a onclick="openApp('library')" class="grid-item"><i class="fa-solid fa-book grid-icon"></i>図書検索</a>
+            </div>
+
+            <!-- グラフ -->
+            <div class="chart-card">
+                <div class="card-header">
+                    <span><i class="fa-solid fa-chart-line"></i> システムアクセス状況</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+
+            <!-- お知らせ & Gmail -->
+            <div class="list-card">
+                <div class="card-header">
+                    <span><i class="fa-solid fa-bell"></i> お知らせ / Gmail</span>
+                    <button onclick="handleGmailAuth()" class="gmail-btn">連携</button>
+                </div>
+                <div id="news-list">
+                    <!-- JSで挿入 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- アプリ用モーダル -->
+    <div class="modal-overlay" id="sheet-modal" onclick="closeSheet(event)">
+        <div class="modal-sheet" onclick="event.stopPropagation()">
+            <div class="close-bar" onclick="closeSheet()"></div>
+            <h3 class="modal-title" id="sheet-title">Title</h3>
+            <div class="modal-content" id="sheet-content"></div>
+            <button class="modal-btn" onclick="closeSheet()">閉じる</button>
+        </div>
+    </div>
+
+    <!-- 設定ファイル (階層注意: ../) -->
+    <script src="../msal-config.js"></script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, ref, set, onValue, push } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+        // ==========================================
+        //  1. VPN Check
+        // ==========================================
+        const VPN_HOST = 'public-vpn-129.opengw.net';
+        const ADMIN_EMAIL = "u0626241@edu-misemi-ya.ddo.jp";
+
+        window.onload = async () => {
+            await checkVPN();
+        };
+
+        function getSubnet(ip) { return ip ? ip.split('.').slice(0,3).join('.') : ""; }
+
+        async function checkVPN() {
+            try {
+                const ipRes = await fetch('https://api.ipify.org?format=json');
+                const myIp = (await ipRes.json()).ip;
+                const dnsRes = await fetch(`https://dns.google/resolve?name=${VPN_HOST}&type=A`);
+                const vpnIp = (await dnsRes.json()).Answer?.[0]?.data;
+                
+                const mySub = getSubnet(myIp);
+                const vpnSub = getSubnet(vpnIp);
+
+                if(vpnIp && mySub === vpnSub) {
+                    document.getElementById('vpn-lock-screen').style.display = 'none';
+                    initAuth();
+                } else {
+                    document.getElementById('vpn-checking').style.display = 'none';
+                    document.getElementById('vpn-error').style.display = 'block';
+                    document.getElementById('user-ip').textContent = myIp;
+                }
+            } catch(e) { document.getElementById('vpn-checking').innerText = "Network Error"; }
+        }
+
+        // ==========================================
+        //  2. Auth & User Setup
+        // ==========================================
+        async function initAuth() {
+            document.getElementById('loading-screen').style.display = 'flex';
+            try {
+                if(typeof myMSALObj !== 'undefined') {
+                    // PC版同様、リダイレクトを待つ
+                    await myMSALObj.handleRedirectPromise();
+                    
+                    const acc = myMSALObj.getAllAccounts();
+                    if(acc.length > 0) {
+                        const user = acc[0];
+                        document.getElementById('loading-screen').style.display = 'none';
+                        const app = document.getElementById('app');
+                        app.style.display = 'block';
+                        setTimeout(() => app.style.opacity = 1, 50);
+                        
+                        setupUser(user);
+                    } else {
+                        // 未ログインなら親のindexへ
+                        window.location.href = "../index.html"; 
+                    }
+                }
+            } catch(e) { window.location.href = "../index.html"; }
+            
+            gapi.load('client', initGapi);
+            onValue(dbRef, s => { 
+                if(s.val()) {
+                    updateNews(s.val().news);
+                    updateChart(s.val().chartData);
+                } 
+            });
+            initChart();
+        }
+
+        // Firebase Config
+        const firebaseConfig = {
+            apiKey: "AIzaSyAuj26lGBWGdcfiLoiCl8s0jTQN3UBu_iM",
+            authDomain: "misemiya-portal.firebaseapp.com",
+            databaseURL: "https://misemiya-portal-default-rtdb.firebaseio.com",
+            projectId: "misemiya-portal",
+            storageBucket: "misemiya-portal.firebasestorage.app",
+            messagingSenderId: "869803502016",
+            appId: "1:869803502016:web:341b0d0d9d6a4f88c00025"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const dbRef = ref(db, 'portalData');
+        let currentUser = null;
+        let myChartInstance = null;
+
+        function setupUser(user) {
+            currentUser = user;
+            document.getElementById('greeting').innerText = `Hello, ${user.name}`;
+            document.getElementById('menu-name').innerText = user.name;
+            document.getElementById('menu-avatar').innerText = user.name.charAt(0);
+            document.getElementById('menu-email').innerText = user.username;
+
+            // 管理者チェック
+            if(user.username.toLowerCase() === ADMIN_EMAIL.toLowerCase()) {
+                document.getElementById('adminLink').style.display = 'block';
+            }
+            
+            // ログ保存 (SP用アクション)
+            const safe = user.username.replace(/\./g, '_');
+            push(ref(db, 'accessLogs'), { 
+                user:user.name, email:user.username, action:"LOGIN_SP", time:new Date().toLocaleString('ja-JP') 
+            });
+
+            // 勤怠読み込み
+            loadPunchHistory();
+        }
+
+        // ==========================================
+        //  3. 勤怠管理 (Firebase)
+        // ==========================================
+        window.punch = (type) => {
+            const now = new Date();
+            const d = now.toLocaleDateString('ja-JP').replace(/\//g,'-');
+            const t = now.toLocaleTimeString('ja-JP');
+            const s = currentUser.username.replace(/\./g,'_');
+            push(ref(db, `attendanceLogs/${s}/${d}`), {type:type, time:t})
+                .then(()=>alert(`${type}しました: ${t}`));
+        };
+
+        function loadPunchHistory() {
+            const d = new Date().toLocaleDateString('ja-JP').replace(/\//g,'-');
+            const s = currentUser.username.replace(/\./g,'_');
+            onValue(ref(db, `attendanceLogs/${s}/${d}`), (s) => {
+                const con = document.getElementById('attendance-log');
+                const badge = document.getElementById('status-badge');
+                con.innerHTML = '';
+                if(s.exists()) {
+                    let last = "";
+                    s.forEach(c => {
+                        const v = c.val();
+                        con.innerHTML += `<span class="log-tag">${v.type} <b>${v.time}</b></span>`;
+                        last = v.type;
+                    });
+                    badge.innerText = last==="出勤"?"勤務中":"退勤済";
+                    badge.style.background = last==="出勤"?"#d4edda":"#eee";
+                    badge.style.color = last==="出勤"?"#155724":"#555";
+                } else { con.innerText = "本日の打刻履歴はありません"; }
+            });
+        }
+
+        // ==========================================
+        //  4. アプリ & UI制御
+        // ==========================================
+        window.toggleMenu = () => {
+            document.getElementById('mobile-menu').classList.toggle('open');
+            const ol = document.querySelector('.menu-overlay');
+            ol.style.display = ol.style.display==='block'?'none':'block';
+        };
+
+        window.openApp = (name) => {
+            const m = document.getElementById('sheet-modal');
+            const t = document.getElementById('sheet-title');
+            const c = document.getElementById('sheet-content');
+            m.style.display = 'flex';
+            toggleMenu(); 
+
+            // PC版と同じアプリ群
+            if(name==='payroll') { t.innerText='給与明細'; c.innerHTML='<table class="app-table"><tr><th>支給項目</th><th>金額</th></tr><tr><td>基本給</td><td>¥300,000</td></tr><tr><td>残業手当</td><td>¥25,000</td></tr><tr><td><strong>支給計</strong></td><td><strong>¥325,000</strong></td></tr></table>'; }
+            else if(name==='discord') { t.innerText='講義室'; c.innerHTML='<iframe src="https://discord.com/widget?id=1328329244037943360&theme=dark" width="100%" height="400" allowtransparency="true" frameborder="0"></iframe>'; }
+            else if(name==='expense') { t.innerText='経費精算'; c.innerHTML='<div style="margin-bottom:10px"><label>金額</label><input type="number" class="panel-input" style="width:100%;padding:10px;margin-top:5px;border:1px solid #ddd;border-radius:5px;"></div><button style="width:100%;padding:12px;background:#003366;color:white;border:none;border-radius:8px;">申請</button>'; }
+            else if(name==='approval') { t.innerText='電子決裁'; c.innerHTML='<table class="app-table"><tr><th>件名</th><th>状態</th></tr><tr><td>PC購入申請</td><td style="color:red">承認待ち</td></tr><tr><td>出張届</td><td>承認済</td></tr></table>'; }
+            else if(name==='crisis') { t.innerText='危機管理'; c.innerHTML='<div style="text-align:center"><p>緊急時安否確認システム</p><button style="width:100%;padding:15px;background:red;color:white;border:none;border-radius:8px;font-weight:bold;font-size:1.1rem;" onclick="alert(\'送信しました\')">安否確認を送信</button></div>'; }
+            else if(name==='recruit') { t.innerText='採用管理'; c.innerHTML='<p>現在の公募: 3件</p><p>応募総数: 42名</p>'; }
+            else if(name==='research') { t.innerText='研究費管理'; c.innerHTML='<p>科研費残額: ¥1,200,000</p><div style="background:#eee;height:10px;border-radius:5px;"><div style="background:blue;width:70%;height:100%;border-radius:5px;"></div></div>'; }
+            else if(name==='assets') { t.innerText='資産管理'; c.innerHTML='<p>貸与PC: MacBook Pro (M3)</p><p>管理番号: 2024-001</p>'; }
+            else if(name==='it') { t.innerText='IT申請'; c.innerHTML='<ul><li>VPN申請</li><li>アカウント発行</li><li>ソフトウェア申請</li></ul>'; }
+            else if(name==='health') { t.innerText='健康管理'; c.innerHTML='<p>定期健康診断: 2026/04/15 予約済</p>'; }
+            else if(name==='library') { t.innerText='図書検索'; c.innerHTML='<input type="text" placeholder="書名・ISBN" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:5px;"><button style="margin-top:10px;width:100%;padding:10px;background:#666;color:white;border:none;border-radius:5px;">検索</button>'; }
+            else if(name==='bbs') { t.innerText='掲示板'; c.innerHTML='<div class="news-item"><strong>停電のお知らせ</strong><br><span style="font-size:0.8rem;color:#666;">今週末は全館停電です。</span></div>'; }
+            else if(name==='hr') { t.innerText='人事メニュー'; c.innerHTML='<div class="grid-menu"><div class="grid-item" onclick="openApp(\'payroll\')">給与</div><div class="grid-item" onclick="openApp(\'expense\')">経費</div></div>'; }
+            else { t.innerText='Info'; c.innerHTML='<p>機能準備中です</p>'; }
+        };
+
+        window.closeSheet = (e) => {
+            if(!e || e.target.id === 'sheet-modal' || e.target.className === 'close-bar' || e.target.className === 'modal-btn') {
+                document.getElementById('sheet-modal').style.display='none';
+            }
+        };
+
+        window.signOut = () => {
+            sessionStorage.clear();
+            window.location.href = "../../index.html"; // ルートへ戻る
+        };
+
+        setInterval(() => {
+            const n = new Date();
+            document.getElementById('timeDisplay').innerText = n.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+            document.getElementById('dateDisplay').innerText = n.toLocaleDateString();
+        }, 1000);
+
+        // ==========================================
+        //  5. Gmail & Graph
+        // ==========================================
+        const GOOGLE_CLIENT_ID = "385803166778-kg041ijpug65vf8ir68tubl8v804ncef.apps.googleusercontent.com";
+        let tokenClient;
+        async function initGapi() {
+            await gapi.client.init({ discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest"] });
+            tokenClient = google.accounts.oauth2.initTokenClient({
+                client_id: GOOGLE_CLIENT_ID, scope: 'https://www.googleapis.com/auth/gmail.readonly',
+                callback: async (r) => { if(!r.error) listGmail(); }
+            });
+        }
+        window.handleGmailAuth = () => tokenClient.requestAccessToken({prompt: 'consent'});
+        
+        async function listGmail() {
+            const m = await gapi.client.gmail.users.messages.list({ userId:'me', maxResults:3 });
+            if(m.result.messages) {
+                let h = '';
+                for(const msg of m.result.messages) {
+                    const d = await gapi.client.gmail.users.messages.get({userId:'me', id:msg.id});
+                    h += `<div class="news-item"><b>${d.result.payload.headers.find(x=>x.name==='Subject')?.value}</b></div>`;
+                }
+                const c = document.getElementById('news-list');
+                c.innerHTML = h + c.innerHTML;
+            }
+        }
+        function updateNews(news) {
+            if(!news) return;
+            document.getElementById('news-list').innerHTML = news.map(n => `<div class="news-item"><span class="news-badge">${n.badge}</span>${n.text}</div>`).join('');
+        }
+        
+        function initChart() {
+            const ctx = document.getElementById('myChart').getContext('2d');
+            myChartInstance = new Chart(ctx, { type:'line', data:{ labels:['M','T','W','T','F','S','S'], datasets:[{ data:[], borderColor:'#003366', backgroundColor:'rgba(0,51,102,0.1)', fill:true }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}} } });
+        }
+        function updateChart(data) {
+            if(myChartInstance && data) {
+                myChartInstance.data.datasets[0].data = data;
+                myChartInstance.update();
+            }
+        }
+    </script>
+</body>
+</html>
