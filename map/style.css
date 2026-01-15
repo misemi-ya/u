@@ -1,0 +1,122 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f7fa;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #e0e6ed;
+    padding-bottom: 20px;
+}
+
+.logo {
+    font-size: 3em;
+    font-weight: bold;
+    color: #007bff;
+    margin-right: 15px;
+}
+
+h1 {
+    font-size: 2.2em;
+    color: #333;
+    margin: 0;
+}
+
+h2 {
+    font-size: 1.6em;
+    color: #007bff;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #e0e6ed;
+    padding-bottom: 5px;
+}
+
+h3 {
+    font-size: 1.2em;
+    color: #555;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.site-section {
+    background-color: #eaf4ff;
+    border: 1px solid #007bff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.site-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.site-section li {
+    margin-bottom: 8px;
+}
+
+.site-section a {
+    text-decoration: none;
+    color: #0056b3;
+    font-weight: normal;
+    transition: color 0.3s ease;
+}
+
+.site-section a:hover {
+    color: #003d80;
+    text-decoration: underline;
+}
+
+.arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 20px solid #007bff;
+    margin: 10px auto;
+    display: block;
+}
+
+.university-section {
+    background-color: #eaf4ff;
+    display: flex;
+    flex-direction: column; /* Changed to column to stack title and content */
+}
+
+.university-content {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.university-section .column {
+    flex: 1;
+    min-width: 250px; /* Adjust as needed */
+}
+
+@media (max-width: 768px) {
+    .university-content {
+        flex-direction: column;
+    }
+}
