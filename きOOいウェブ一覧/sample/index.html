@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>きちうぇぶジェネレーター</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <!-- Google Fontsからフォントを読み込み -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- デザインシステムの定義 --- */
+        :root {
+            --bg-gradient-start: #2a2a72;
+            --bg-gradient-end: #009ffd;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-color: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.7);
+            --primary-color: #82aaff;
+            --secondary-color: #c792ea;
+            --danger-color: #ff5370;
+            --success-color: #c3e88d;
+            --font-main: 'Inter', 'Noto Sans JP', sans-serif;
+        }
+
+        /* --- 基本レイアウトと背景 --- */
+        body {
+            display: flex;
+            font-family: var(--font-main);
+            color: var(--text-color);
+            margin: 0;
+            height: 100vh;
+            overflow: hidden; /* PCではスクロールを禁止 */
+            background: linear-gradient(45deg, var(--bg-gradient-start), var(--bg-gradient-end));
+            background-size: 200% 200%;
+            animation: gradient-animation 15s ease infinite;
+        }
+
+        /* 背景グラデーションのアニメーション */
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- 左側：編集エリア --- */
+        .editor {
+            width: 50%;
+            padding: 30px;
+            box-sizing: border-box;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        .editor-header {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .editor-header h2 {
+            font-size: 2.5em;
+            margin: 0;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        /* --- グラスモーフィズム・カードのデザイン --- */
+        .input-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px); /* Safari対応 */
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+        .input-card label {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+        .input-card span {
+            font-size: 0.9em;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        /* --- 入力欄のデザイン --- */
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            background-color: rgba(0, 0, 0, 0.2);
+            color: var(--text-color);
+            font-size: 1em;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+        input[type="text"]:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(130, 170, 255, 0.3);
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+        textarea {
+            resize: vertical;
+        }
+
+        /* --- ボタンのデザイン --- */
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255,255,255,0.2), rgba(255,255,255,0));
+            transition: transform 0.4s ease;
+            transform: translateX(-100%);
+            z-index: -1;
+        }
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        button:hover::before {
+            transform: translateX(0);
+        }
+        /* 各種ボタンの色 */
+        .add-btn { background-color: var(--secondary-color); }
+        .remove-btn { background-color: var(--danger-color); padding: 8px 12px; margin-left: 10px; flex-shrink: 0; }
+        #copy-btn { width: 100%; background-color: var(--primary-color); padding: 15px; font-size: 1.2em; }
+
+        /* --- 動的入力欄のレイアウト --- */
+        .dynamic-input-container { display: flex; flex-direction: column; gap: 10px; }
+        .dynamic-input { display: flex; align-items: center; }
+        .dynamic-input > * { flex-grow: 1; }
+
+        /* --- 右側：プレビューエリア --- */
+        .preview {
+            width: 50%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        /* --- スマートフォン対応 (レスポンシブデザイン) --- */
+        @media (max-width: 800px) {
+            body {
+                flex-direction: column; /* 縦並びに変更 */
+                overflow: auto; /* スクロールを許可 */
+                height: auto;
+            }
+            .editor, .preview {
+                width: 100%;
+                height: auto;
+            }
+            .editor {
+                padding: 20px 15px;
+            }
+            .preview {
+                height: 70vh; /* プレビューの高さを確保 */
+                padding: 15px;
+            }
+            .editor-header h2 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 編集エリア -->
+    <div class="editor">
+        <div class="editor-header">
+            <h2>きちうぇぶGenerator</h2>
+        </div>
+
+        <div class="input-card">
+            <label for="page-title">ページのタイトル</label>
+            <span>ブラウザのタブに表示されるテキストです。</span>
+            <input type="text" id="page-title" value="ページのタイトル">
+        </div>
+
+        <div class="input-card">
+            <label>見出し (h1)</label>
+            <span>ページ内で一番大きな見出しです。</span>
+            <div id="h1-inputs" class="dynamic-input-container"></div>
+            <button id="add-h1" class="add-btn">見出しを追加</button>
+        </div>
+
+        <div class="input-card">
+            <label>段落 (p)</label>
+            <span>本文のテキストです。</span>
+            <div id="p-inputs" class="dynamic-input-container"></div>
+            <button id="add-p" class="add-btn">段落を追加</button>
+        </div>
+        
+        <div class="input-card">
+            <label>コードのエクスポート</label>
+            <span>完成したHTMLコードをクリップボードにコピーします。</span>
+            <button id="copy-btn">コードをコピー</button>
+        </div>
+    </div>
+
+    <!-- プレビューエリア -->
+    <div class="preview">
+        <iframe id="preview-frame"></iframe>
+    </div>
+
+    <script>
+        // --- JavaScript (機能は前回と同じですが、一部微調整) ---
+        const titleInput = document.getElementById('page-title');
+        const h1InputsContainer = document.getElementById('h1-inputs');
+        const pInputsContainer = document.getElementById('p-inputs');
+        const addH1Btn = document.getElementById('add-h1');
+        const addPBtn = document.getElementById('add-p');
+        const copyBtn = document.getElementById('copy-btn');
+        const previewFrame = document.getElementById('preview-frame');
+        
+        let fullHtmlContent = '';
+
+        function updatePreview() {
+            const title = titleInput.value;
+            // XSS対策として簡単なサニタイズを追加
+            const sanitize = (str) => str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+            const h1Elements = Array.from(h1InputsContainer.querySelectorAll('input')).map(input => `    <h1>${sanitize(input.value)}</h1>`).join('\n');
+            const pElements = Array.from(pInputsContainer.querySelectorAll('textarea')).map(textarea => `    <p>${sanitize(textarea.value)}</p>`).join('\n');
+
+            fullHtmlContent = `<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>${sanitize(title)}</title>
+    <style>
+        /* ここは変更できない固定のスタイルです */
+        body { font-family: sans-serif; padding: 1em; }
+        h1 {
+            background-color: rgb(255, 255, 255);
+            color: black;
+            font-size: 48px;
+        }
+        p {
+            font-size: 30px;
+        }
+        h2 {
+            background-color: rgb(255, 255, 255);
+            color: black;
+            font-size: 64px;
+        }
+    </style>
+</head>
+<body>
+${h1Elements}
+${pElements}
+</body>
+</html>`;
+            previewFrame.srcdoc = fullHtmlContent;
+        }
+
+        function createDynamicInput(elementType, container, initialValue) {
+            const div = document.createElement('div');
+            div.className = 'dynamic-input';
+            const inputElement = document.createElement(elementType);
+            inputElement.value = initialValue;
+            if (elementType === 'textarea') inputElement.rows = 2;
+            else inputElement.type = 'text';
+            inputElement.addEventListener('input', updatePreview);
+            const removeBtn = document.createElement('button');
+            removeBtn.textContent = '削除';
+            removeBtn.className = 'remove-btn';
+            removeBtn.onclick = () => { div.remove(); updatePreview(); };
+            div.appendChild(inputElement);
+            div.appendChild(removeBtn);
+            container.appendChild(div);
+        }
+        
+        copyBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(fullHtmlContent).then(() => {
+                const originalText = copyBtn.textContent;
+                const originalColor = copyBtn.style.backgroundColor;
+                copyBtn.textContent = 'コピー完了！';
+                copyBtn.style.backgroundColor = 'var(--success-color)';
+                setTimeout(() => {
+                    copyBtn.textContent = originalText;
+                    copyBtn.style.backgroundColor = originalColor;
+                }, 2000);
+            }).catch(err => {
+                alert('コードのコピーに失敗しました。');
+            });
+        });
+
+        addH1Btn.addEventListener('click', () => { createDynamicInput('input', h1InputsContainer, '新しい見出し'); updatePreview(); });
+        addPBtn.addEventListener('click', () => { createDynamicInput('textarea', pInputsContainer, '新しい段落のテキスト。'); updatePreview(); });
+        titleInput.addEventListener('input', updatePreview);
+
+        // 初期表示
+        function initialize() {
+            createDynamicInput('input', h1InputsContainer, '見出し的な');
+            createDynamicInput('textarea', pInputsContainer, 'テキスト');
+            createDynamicInput('textarea', pInputsContainer, 'テキスト');
+            updatePreview();
+        }
+        
+        initialize();
+    </script>
+
+</body>
+</html>
