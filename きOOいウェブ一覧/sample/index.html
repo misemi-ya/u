@@ -321,16 +321,10 @@ ${pElements}
         addPBtn.addEventListener('click', () => { createDynamicInput('textarea', pInputsContainer, '新しい段落のテキスト。'); updatePreview(); });
         titleInput.addEventListener('input', updatePreview);
 
-        // 初期表示
-        function initialize() {
-            createDynamicInput('input', h1InputsContainer, '見出し的な');
-            createDynamicInput('textarea', pInputsContainer, 'テキスト');
-            createDynamicInput('textarea', pInputsContainer, 'テキスト');
-            updatePreview();
-        }
         
         initialize();
     </script>
 
 </body>
+
 </html>
