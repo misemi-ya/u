@@ -317,7 +317,13 @@ ${pElements}
             });
         });
 
-
+        // 初期表示
+        function initialize() {
+            createDynamicInput('input', h1InputsContainer, '見出し的な');
+            createDynamicInput('textarea', pInputsContainer, 'テキスト');
+            createDynamicInput('textarea', pInputsContainer, 'テキスト');
+            updatePreview();
+        }
 
         addH1Btn.addEventListener('click', () => { createDynamicInput('input', h1InputsContainer, '新しい見出し'); updatePreview(); });
         addPBtn.addEventListener('click', () => { createDynamicInput('textarea', pInputsContainer, '新しい段落のテキスト。'); updatePreview(); });
@@ -328,5 +334,6 @@ ${pElements}
 </body>
 
 </html>
+
 
 
