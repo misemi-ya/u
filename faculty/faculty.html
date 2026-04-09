@@ -3,114 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>学部一覧 | 店魅偉屋大学</title>
-    
-    <!-- 指定のファビコン -->
-    <link rel="icon" href="https://u.misemi-ya.net/images/favicon.ico">
-
-    <style>
-        /* 全体の設定 */
-        body {
-            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-            background-color: #f4f7f6; /* 薄いグレーの背景 */
-            margin: 0;
-            padding: 40px 20px;
-            color: #333;
-        }
-
-        /* コンテンツの枠 */
-        .container {
-            max-width: 600px; /* 幅を制限して読みやすく */
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* ほんのり影をつける */
-        }
-
-        /* タイトル */
-        h1 {
-            text-align: center;
-            color: #003366; /* 大学カラーの紺色 */
-            border-bottom: 2px solid #003366;
-            padding-bottom: 15px;
-            margin-bottom: 30px;
-            font-size: 24px;
-        }
-
-        /* リンクのリスト */
-        .faculty-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        /* 各リンクボタンのデザイン */
-        .faculty-link {
-            display: block;
-            padding: 15px 20px;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        /* マウスを乗せた時の動き */
-        .faculty-link:hover {
-            background-color: #003366; /* 紺色背景に変化 */
-            color: #fff; /* 文字は白く */
-            border-color: #003366;
-            padding-left: 30px; /* 少し右に動く演出 */
-        }
-
-        /* 右矢印アイコン（CSSで作成） */
-        .faculty-link::after {
-            content: '>';
-            position: absolute;
-            right: 20px;
-            transition: color 0.3s;
-            color: #ccc;
-        }
-        
-        .faculty-link:hover::after {
-            color: #fff;
-        }
-
-    </style>
+    <title>学部・大学院 | 店魅偉屋大学</title>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&family=Noto+Serif+JP:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-
-    <div class="container">
-        <h1>学部一覧</h1>
-        
-        <div class="faculty-list">
-            <!-- href="#" の部分を実際のURLに書き換えてください -->
-            <a href="https://u.misemi-ya.net/igaku/" class="faculty-link">医学部</a>
-            <a href="https://u.misemi-ya.net/hougaku/" class="faculty-link">法学部</a>
-            <a href="https://u.misemi-ya.net/edu/" class="faculty-link">教育学部</a>
-            <a href="https://u.misemi-ya.net/kougaku/" class="faculty-link">工学部</a>
-            <a href="https://u.misemi-ya.net/nougaku/" class="faculty-link">農学部</a>
-            <a href="https://u.misemi-ya.net/rigaku/" class="faculty-link">理学部</a>
-            <a href="https://u.misemi-ya.net/keizaigaku/" class="faculty-link">経済学部</a>
-            <a href="https://u.misemi-ya.net/kyouyougaku/" class="faculty-link">教養学部</a>
-            <a href="https://u.misemi-ya.net/yakugaku/" class="faculty-link">薬学部</a>
-            <a href="https://u.misemi-ya.net/jouhougaku/" class="faculty-link">情報学部</a>
-            <a href="https://u.misemi-ya.net/kokusai/" class="faculty-link">国際学部</a>
-            <a href="https://u.misemi-ya.net/kaiyou/" class="faculty-link">海洋学部</a>
-            <a href="https://u.misemi-ya.net/kankou/" class="faculty-link">観光学部</a>
-            <a href="https://u.misemi-ya.net/kenkou/" class="faculty-link">健康学部</a>
-            <a href="https://u.misemi-ya.net/bunka/" class="faculty-link">文化社会学部</a>
-            <a href="https://u.misemi-ya.net/taiiku/" class="faculty-link">体育学部</a>
-            <a href="https://u.misemi-ya.net/kokusai-bunka/" class="faculty-link">国際文化学部</a>
-            <a href="https://u.misemi-ya.net/bunri/" class="faculty-link">文理融合学部</a>
-            <a href="https://u.misemi-ya.net/keiei/" class="faculty-link">経営学部</a>
-            <a href="https://u.misemi-ya.net/misemi-ya/" class="faculty-link">店魅偉屋学部</a>
-        </div>
-    </div>
-
+    <header class="site-header" data-header><div class="container site-header__main"><a class="brand" href="../index.html"><span class="brand__mark"><img src="../校章.png" alt="店魅偉屋大学 校章"></span><span class="brand__copy"><strong>店魅偉屋大学</strong><small>Misemi-ya University</small></span></a></div></header>
+    <section class="page-hero"><div class="container page-hero__inner"><nav class="breadcrumbs" aria-label="パンくずリスト"><a href="../index.html">トップ</a><span>学部・大学院</span></nav><p class="eyebrow eyebrow--light">Faculties & Graduate Schools</p><h1>学部・大学院</h1><p>多彩な専門分野と学際的な学びを展開する学部・大学院の一覧です。</p></div></section>
+    <main class="page-main"><div class="container"><section class="content-card archive-list"><h2>学びの分野から探す</h2><div class="archive-grid"><article class="archive-card"><h3><a href="../igaku/index.html">医学部</a></h3><p>臨床と研究を往還しながら次世代医療人を育成します。</p></article><article class="archive-card"><h3><a href="../hougaku/index.html">法学部</a></h3><p>法制度、公共政策、社会課題を多角的に学びます。</p></article><article class="archive-card"><h3><a href="../edu/index.html">教育学部</a></h3><p>教育実践と学習支援の理論を往還しながら学びます。</p></article><article class="archive-card"><h3><a href="../kougaku/index.html">工学部</a></h3><p>医工連携や社会実装も視野に入れた工学教育を行います。</p></article><article class="archive-card"><h3><a href="../nougaku/index.html">農学部</a></h3><p>生命・環境・食の未来を支える学びを展開します。</p></article><article class="archive-card"><h3><a href="../rigaku/index.html">理学部</a></h3><p>自然科学の基礎を探究し、研究力を育てます。</p></article><article class="archive-card"><h3><a href="../keizaigaku/index.html">経済学部</a></h3><p>経済、政策、地域社会の課題を多面的に考えます。</p></article><article class="archive-card"><h3><a href="../kyouyougaku/index.html">教養学部</a></h3><p>分野横断の学びを通じて広い視野と分析力を培います。</p></article><article class="archive-card"><h3><a href="../yakugaku/index.html">薬学部</a></h3><p>創薬、薬物治療、薬学研究の基盤を学びます。</p></article><article class="archive-card"><h3><a href="../jouhougaku/index.html">情報学部</a></h3><p>AI、データサイエンス、情報基盤を実践的に学びます。</p></article><article class="archive-card"><h3><a href="../kokusai/index.html">国際学部</a></h3><p>国際社会の多様な課題を言語と文化の両面から考えます。</p></article><article class="archive-card"><h3><a href="../kaiyou/index.html">海洋学部</a></h3><p>海洋資源、海洋環境、海洋生命科学を探究します。</p></article><article class="archive-card"><h3><a href="../kankou/index.html">観光学部</a></h3><p>観光政策、地域振興、サービスデザインを学びます。</p></article><article class="archive-card"><h3><a href="../kenkou/index.html">健康学部</a></h3><p>健康増進、予防、地域支援に関する実践知を身につけます。</p></article><article class="archive-card"><h3><a href="../bunka/index.html">文化社会学部</a></h3><p>文化と社会の関係を読み解き、現代社会を考察します。</p></article><article class="archive-card"><h3><a href="../taiiku/index.html">体育学部</a></h3><p>スポーツ科学、身体教育、健康支援を総合的に学びます。</p></article><article class="archive-card"><h3><a href="../kokusai-bunka/index.html">国際文化学部</a></h3><p>多文化理解と国際協働の力を育てます。</p></article><article class="archive-card"><h3><a href="../bunri/index.html">文理融合学部</a></h3><p>人文社会と自然科学を横断し、複合課題に挑みます。</p></article><article class="archive-card"><h3><a href="../keiei/index.html">経営学部</a></h3><p>経営戦略、組織、会計、事業創造を実践的に学びます。</p></article><article class="archive-card"><h3><a href="../misemi-ya/index.html">店魅偉屋学部</a></h3><p>本学独自の学際テーマに取り組む特色ある学びの場です。</p></article></div></section></div></main>
+    <footer class="site-footer"><div class="container site-footer__grid"><div><a class="brand brand--footer" href="../index.html"><span class="brand__mark"><img src="../校章.png" alt="店魅偉屋大学 校章"></span><span class="brand__copy"><strong>店魅偉屋大学</strong><small>Misemi-ya University</small></span></a><p class="site-footer__copy">Copyright © 2026 Misemi-ya University. All Rights Reserved.</p></div></div></footer>
+    <script src="../script.js"></script>
 </body>
 </html>
