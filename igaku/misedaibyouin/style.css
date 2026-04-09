@@ -22,19 +22,20 @@ img { display: block; max-width: 100%; }
 .hospital-header__utility-inner { display: flex; justify-content: space-between; gap: 20px; padding: 10px 0; font-size: 0.9rem; color: var(--hospital-muted); }
 .hospital-header__utility-inner p { margin: 0; }
 .hospital-header__utility-links { display: flex; gap: 18px; flex-wrap: wrap; }
-.hospital-header__main { display: flex; align-items: center; justify-content: space-between; gap: 28px; padding: 18px 0; }
+.hospital-header__main { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 18px 0; }
 .hospital-brand { display: inline-flex; align-items: center; gap: 16px; }
 .hospital-brand__mark { width: 72px; height: 72px; display: grid; place-items: center; border-radius: 22px; background: #fff; box-shadow: inset 0 0 0 1px rgba(215,226,234,0.95); }
 .hospital-brand__mark img { width: 58px; height: 58px; object-fit: contain; }
-.hospital-brand__copy { display: grid; gap: 4px; }
-.hospital-brand__copy strong { color: var(--hospital-navy); font-size: 1.45rem; }
+.hospital-brand__copy { display: grid; gap: 4px; min-width: 0; }
+.hospital-brand__copy strong { color: var(--hospital-navy); font-size: 1.45rem; white-space: nowrap; }
 .hospital-brand__copy small { color: var(--hospital-muted); letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.8rem; }
 .hospital-menu-toggle { display: none; border: 1px solid var(--hospital-line); background: #fff; border-radius: 16px; padding: 12px 14px; }
 .hospital-menu-toggle span { display: block; width: 22px; height: 2px; margin: 4px 0; background: var(--hospital-navy); }
 .hospital-menu-toggle em { display: block; margin-top: 8px; font-style: normal; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.12em; color: var(--hospital-navy); }
-.hospital-nav { display: flex; align-items: center; gap: 22px; }
-.hospital-nav__list, .hospital-nav__actions { display: flex; align-items: center; gap: 18px; list-style: none; margin: 0; padding: 0; }
+.hospital-nav { display: flex; align-items: center; gap: 16px; }
+.hospital-nav__list, .hospital-nav__actions { display: flex; align-items: center; gap: 14px; list-style: none; margin: 0; padding: 0; }
 .hospital-nav__list a { position: relative; color: var(--hospital-text); font-weight: 700; padding: 10px 0; }
+.hospital-nav__actions .hospital-button { padding: 0 16px; }
 .hospital-nav__list a::after { content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background: linear-gradient(90deg, var(--hospital-gold), var(--hospital-blue)); transform: scaleX(0); transform-origin: left; transition: transform .25s ease; }
 .hospital-nav__list a:hover::after { transform: scaleX(1); }
 .hospital-button { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 20px; border-radius: 999px; border: 1px solid transparent; font-weight: 700; transition: .25s ease; }
