@@ -601,15 +601,55 @@ button, input, textarea, select { font: inherit; }
 
 @media (max-width: 720px) {
     .container { width: min(var(--container), calc(100% - 28px)); }
-    .utility-nav, .section-heading, .hero__buttons, .site-header__main { flex-direction: column; align-items: start; }
-    .site-header__main { gap: 18px; }
-    .menu-toggle { align-self: end; }
+    .section-heading, .hero__buttons { flex-direction: column; align-items: start; }
+    .site-header__top { border-bottom: 0; }
+    .utility-nav {
+        gap: 8px;
+        padding: 6px 0 2px;
+        font-size: 0.76rem;
+    }
+    .utility-nav__text { display: none; }
+    .utility-nav__links {
+        gap: 8px 12px;
+        width: 100%;
+    }
+    .site-header__main {
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 0 12px;
+    }
+    .brand {
+        flex: 1;
+        min-width: 0;
+        gap: 10px;
+    }
+    .menu-toggle {
+        align-self: center;
+        flex-shrink: 0;
+        padding: 8px 10px;
+        border-radius: 14px;
+    }
+    .menu-toggle span {
+        width: 18px;
+        margin: 3px 0;
+    }
+    .menu-toggle__label {
+        margin-top: 4px;
+        font-size: 0.58rem;
+    }
+    .global-nav {
+        left: 14px;
+        right: 14px;
+        top: calc(100% + 6px);
+    }
     .hero--home, .page-hero, .detail-hero { padding: 56px 0 44px; }
     .hero__stats, .quick-links__grid, .program-grid, .news-grid, .feature-grid, .cta-grid, .life-grid, .archive-grid, .site-footer__links { grid-template-columns: 1fr; }
     .news-card--featured { grid-column: auto; }
     .tab-panel, .content-card, .detail-body, .contact-panel, .contact-panel__box, .detail-sidebar__section { padding: 24px; }
     .hero__stats div { padding: 16px; }
-    .brand__mark { width: 62px; height: 62px; }
-    .brand img { width: 48px; height: 48px; }
-    .brand__copy strong { font-size: 1.2rem; }
+    .brand__mark { width: 48px; height: 48px; border-radius: 14px; }
+    .brand img { width: 34px; height: 34px; }
+    .brand__copy strong { font-size: 1rem; }
+    .brand__copy small { font-size: 0.62rem; letter-spacing: 0.08em; }
 }
