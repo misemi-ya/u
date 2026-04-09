@@ -134,14 +134,23 @@ img { display: block; max-width: 100%; }
 }
 @media (max-width: 720px) {
     .hospital-container { width: min(1240px, calc(100% - 28px)); }
-    .hospital-header__utility-inner, .hospital-section-heading, .hospital-header__main { flex-direction: column; align-items: start; }
+    .hospital-header__utility { display: none; }
+    .hospital-section-heading { flex-direction: column; align-items: start; }
+    .hospital-header__main { gap: 12px; padding: 12px 0; }
     .hospital-hero, .hospital-page-hero { padding: 56px 0 42px; }
     .hospital-quick-grid, .hospital-news-grid, .hospital-panel-grid, .hospital-department-grid, .hospital-card-grid, .hospital-footer__links, .archive-grid { grid-template-columns: 1fr; }
     .hospital-news-card--featured { grid-column: auto; }
     .hospital-content, .hospital-sidebar__section, .hospital-contact-panel, .hospital-contact-box { padding: 24px; }
-    .hospital-brand__mark { width: 64px; height: 64px; }
-    .hospital-brand__mark img { width: 50px; height: 50px; }
-    .hospital-brand__copy strong { font-size: 1.2rem; }
+    .hospital-brand { gap: 10px; min-width: 0; }
+    .hospital-brand__mark { width: 52px; height: 52px; border-radius: 16px; }
+    .hospital-brand__mark img { width: 40px; height: 40px; }
+    .hospital-brand__copy { gap: 2px; }
+    .hospital-brand__copy strong { font-size: 0.98rem; line-height: 1.25; white-space: normal; }
+    .hospital-brand__copy small { font-size: 0.64rem; letter-spacing: 0.08em; }
+    .hospital-menu-toggle { padding: 9px 10px; border-radius: 14px; }
+    .hospital-menu-toggle span { width: 18px; margin: 3px 0; }
+    .hospital-menu-toggle em { margin-top: 6px; font-size: 0.58rem; }
+    .hospital-nav { left: 14px; right: 14px; top: calc(100% + 6px); padding: 14px; border-radius: 18px; }
     .hospital-cookie-banner { left: 12px; right: 12px; bottom: 12px; grid-template-columns: 1fr; padding: 16px; border-radius: 18px; }
     .hospital-cookie-banner__actions { width: 100%; }
     .hospital-cookie-banner__button { flex: 1 1 160px; }
