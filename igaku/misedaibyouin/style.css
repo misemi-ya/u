@@ -109,11 +109,19 @@ img { display: block; max-width: 100%; }
 .archive-card { padding: 24px; border-radius: 24px; background: #fff; border: 1px solid rgba(215,226,234,0.95); box-shadow: var(--hospital-shadow); }
 .archive-card__meta { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; color: var(--hospital-muted); font-size: 0.9rem; }
 .badge { display: inline-flex; align-items: center; padding: 6px 12px; border-radius: 999px; background: #eef5fb; color: var(--hospital-blue); font-size: 0.78rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+.hospital-cookie-banner { position: fixed; left: 24px; right: 24px; bottom: 24px; z-index: 2000; padding: 20px 22px; display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 16px 20px; align-items: center; background: rgba(8,51,95,0.96); color: #fff; border: 1px solid rgba(255,255,255,0.14); border-radius: 24px; box-shadow: 0 28px 60px rgba(8,40,76,0.22); }
+.hospital-cookie-banner p { margin: 0; line-height: 1.8; color: rgba(255,255,255,0.9); font-size: 0.95rem; }
+.hospital-cookie-banner__actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.hospital-cookie-banner__button { min-height: 42px; padding: 0 18px; border: 1px solid transparent; border-radius: 999px; font-weight: 700; cursor: pointer; }
+.hospital-cookie-banner__button--accept { background: linear-gradient(135deg, #3f7fbc, #6aa2d0); color: #fff; }
+.hospital-cookie-banner__button--reject { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.22); color: #fff; }
 .hospital-footer { margin-top: 84px; padding: 42px 0 56px; color: #dfe8f1; background: linear-gradient(180deg, var(--hospital-navy), #05223f); }
 .hospital-footer__grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(260px,420px); gap: 28px; }
 .hospital-brand--footer .hospital-brand__mark { background: rgba(255,255,255,0.1); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.14); }
 .hospital-brand--footer .hospital-brand__copy strong, .hospital-brand--footer .hospital-brand__copy small, .hospital-footer__links a, .hospital-footer p { color: #dfe8f1; }
 .hospital-footer__links { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px 18px; }
+.hospital-footer-reset { padding: 0; border: 0; background: none; color: #dfe8f1; text-align: left; cursor: pointer; font: inherit; }
+.hospital-footer-reset:hover { text-decoration: underline; }
 @media (max-width: 1080px) {
     .hospital-menu-toggle { display: inline-block; }
     .hospital-nav { position: absolute; top: calc(100% + 10px); left: 20px; right: 20px; display: none; padding: 18px; background: rgba(255,255,255,0.98); border: 1px solid rgba(215,226,234,0.96); border-radius: 24px; box-shadow: var(--hospital-shadow); flex-direction: column; align-items: stretch; }
@@ -133,4 +141,7 @@ img { display: block; max-width: 100%; }
     .hospital-brand__mark { width: 64px; height: 64px; }
     .hospital-brand__mark img { width: 50px; height: 50px; }
     .hospital-brand__copy strong { font-size: 1.2rem; }
+    .hospital-cookie-banner { left: 12px; right: 12px; bottom: 12px; grid-template-columns: 1fr; padding: 16px; border-radius: 18px; }
+    .hospital-cookie-banner__actions { width: 100%; }
+    .hospital-cookie-banner__button { flex: 1 1 160px; }
 }
