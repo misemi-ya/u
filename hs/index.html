@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>店魅偉屋大学 - ログイン</title>
+    <style>
+        /* 全体のレイアウト設定 */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        /* 画像と大学名を横に並べる設定 */
+        .header-container {
+            display: flex;
+            align-items: center;
+            gap: 20px; /* 画像と文字の隙間 */
+            margin-bottom: 40px;
+        }
+
+        /* 画像のスタイル */
+        .logo-img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border: 1px solid #ccc; /* 枠線（不要なら消してください） */
+        }
+
+        /* 大学名のスタイル（紺色・明朝体） */
+        .university-name {
+            font-family: "Noto Serif JP", "Yu Mincho", "MS Mincho", serif; /* 明朝体 */
+            color: #001f43; /* 紺っぽい色 */
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        /* 入力フォーム周りのスタイル */
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* パスワード入力欄 */
+        #password-input {
+            padding: 10px;
+            font-size: 1.2rem;
+            width: 250px;
+            text-align: center;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* 完了ボタン */
+        #submit-btn {
+            padding: 10px 40px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            background-color: #f0f0f0;
+            border: 1px solid #333;
+            border-radius: 5px;
+        }
+
+        #submit-btn:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 上部：画像と大学名 -->
+    <div class="header-container">
+        <img src="m.png" alt="ロゴ画像" class="logo-img">
+        <h1 class="university-name">店魅偉屋大学</h1>
+    </div>
+
+    <!-- 下部：パスワードとボタン -->
+    <div class="login-form">
+        <input type="password" id="password-input" placeholder="パスワード">
+        <button id="submit-btn" onclick="checkPassword()">完了</button>
+    </div>
+
+    <!-- 動作させるためのスクリプト -->
+    <script>
+        function checkPassword() {
+            // 入力されたパスワードを取得
+            const inputPass = document.getElementById("password-input").value;
+            
+            // 未入力の場合は警告
+            if(inputPass === "") {
+                alert("パスワードを入力してください。");
+                return;
+            }
+
+            // 【セキュリティ対策】
+            // ソースコードにパスワードを書かないため、
+            // 「入力された文字のフォルダ」の中にあるPDFへ強制的に移動させます。
+            // 正しいパスワードならPDFが開き、間違っていればエラー画面になります。
+            window.location.href = inputPass + "/hs1-11.pdf";
+        }
+
+        // Enterキーを押しても完了ボタンが反応するようにする処理
+        document.getElementById("password-input").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                checkPassword();
+            }
+        });
+    </script>
+
+</body>
+</html>
