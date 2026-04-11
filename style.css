@@ -680,6 +680,8 @@ button, input, textarea, select { font: inherit; }
     .menu-toggle {
         align-self: center;
         flex-shrink: 0;
+        min-width: 42px;
+        min-height: 42px;
         padding: 8px 10px;
         border-radius: 14px;
     }
@@ -688,8 +690,7 @@ button, input, textarea, select { font: inherit; }
         margin: 3px 0;
     }
     .menu-toggle__label {
-        margin-top: 4px;
-        font-size: 0.58rem;
+        display: none;
     }
     .global-nav {
         left: 14px;
