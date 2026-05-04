@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>MOBILE PORTAL | Misemi-ya Univ.</title>
     
-    <!-- 必須ライブラリ (PC版と同じセット) -->
+    <!-- 蠢・医Λ繧､繝悶Λ繝ｪ (PC迚医→蜷後§繧ｻ繝・ヨ) -->
     <script src="https://alcdn.msauth.net/browser/2.30.0/js/msal-browser.min.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://apis.google.com/js/api.js"></script>
@@ -27,10 +27,10 @@
             background-color: var(--bg-color);
             color: #333;
             -webkit-tap-highlight-color: transparent;
-            padding-bottom: 80px; /* 下部余白 */
+            padding-bottom: 80px; /* 荳矩Κ菴咏區 */
         }
 
-        /* --- ヘッダー --- */
+        /* --- 繝倥ャ繝繝ｼ --- */
         header {
             background-color: var(--primary-color);
             color: white; padding: 15px 20px;
@@ -41,7 +41,7 @@
         .header-title { font-weight: bold; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
         .menu-btn { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
 
-        /* --- サイドメニュー (オーバーレイ) --- */
+        /* --- 繧ｵ繧､繝峨Γ繝九Η繝ｼ (繧ｪ繝ｼ繝舌・繝ｬ繧､) --- */
         #mobile-menu {
             position: fixed; top: 0; left: -100%; width: 85%; height: 100%;
             background: white; z-index: 2000; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -70,10 +70,10 @@
         .nav-link i { width: 25px; text-align: center; color: var(--primary-color); }
         .nav-category { background: #f9f9f9; color: #888; font-size: 0.8rem; padding: 12px 20px; font-weight: bold; letter-spacing: 1px; }
 
-        /* --- メインコンテンツ --- */
+        /* --- 繝｡繧､繝ｳ繧ｳ繝ｳ繝・Φ繝・--- */
         .container { padding: 15px; }
 
-        /* 挨拶カード */
+        /* 謖ｨ諡ｶ繧ｫ繝ｼ繝・*/
         .welcome-card {
             background: linear-gradient(135deg, #003366, #00509e);
             color: white; padding: 25px; border-radius: 16px; margin-bottom: 20px;
@@ -86,7 +86,7 @@
         .welcome-msg { font-size: 1.4rem; font-weight: bold; margin-bottom: 5px; }
         .date-display { font-size: 0.9rem; opacity: 0.9; }
 
-        /* 勤怠カード (PC版と同等の機能) */
+        /* 蜍､諤繧ｫ繝ｼ繝・(PC迚医→蜷檎ｭ峨・讖溯・) */
         .attendance-card {
             background: white; padding: 25px; border-radius: 16px; margin-bottom: 20px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;
@@ -106,7 +106,7 @@
         }
         .log-tag { display: inline-block; background: #f0f2f5; padding: 3px 8px; border-radius: 4px; margin-right: 8px; margin-bottom: 5px; border: 1px solid #ddd; }
 
-        /* グリッドメニュー (アプリランチャー) */
+        /* 繧ｰ繝ｪ繝・ラ繝｡繝九Η繝ｼ (繧｢繝励Μ繝ｩ繝ｳ繝√Ε繝ｼ) */
         .grid-menu {
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 25px;
         }
@@ -119,7 +119,7 @@
         .grid-item:active { background: #f9f9f9; transform: scale(0.98); }
         .grid-icon { font-size: 2rem; color: var(--primary-color); margin-bottom: 10px; }
 
-        /* リストカード (お知らせ・Gmail) */
+        /* 繝ｪ繧ｹ繝医き繝ｼ繝・(縺顔衍繧峨○繝ｻGmail) */
         .list-card { background: white; border-radius: 16px; padding: 20px; margin-bottom: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
         .card-header { font-weight: bold; border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 1.1rem; }
         .news-item { padding: 12px 0; border-bottom: 1px dashed #eee; font-size: 0.95rem; line-height: 1.5; }
@@ -127,11 +127,11 @@
         .news-badge { background: #eee; padding: 2px 6px; font-size: 0.75rem; border-radius: 4px; margin-right: 8px; font-weight: bold; color: #555; }
         .gmail-btn { color: #0b57d0; font-weight: bold; background: rgba(11, 87, 208, 0.1); padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; border: none; }
 
-        /* グラフカード */
+        /* 繧ｰ繝ｩ繝輔き繝ｼ繝・*/
         .chart-card { background: white; border-radius: 16px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
         .chart-container { height: 250px; width: 100%; }
 
-        /* モーダル (下からスライド) */
+        /* 繝｢繝ｼ繝繝ｫ (荳九°繧峨せ繝ｩ繧､繝・ */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.6); z-index: 3000; display: none;
@@ -149,7 +149,7 @@
         .modal-content { flex: 1; font-size: 1rem; line-height: 1.6; }
         .modal-btn { width: 100%; padding: 15px; background: var(--primary-color); color: white; border: none; border-radius: 12px; font-weight: bold; font-size: 1rem; margin-top: 20px; }
 
-        /* ロック画面 & ローディング */
+        /* 繝ｭ繝・け逕ｻ髱｢ & 繝ｭ繝ｼ繝・ぅ繝ｳ繧ｰ */
         #vpn-lock-screen, #loading-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 9999; display: flex; justify-content: center; align-items: center; flex-direction: column; font-family: sans-serif; }
         #loading-screen { display: none; background: rgba(255,255,255,0.95); }
         #app { display: none; opacity: 0; transition: opacity 0.5s; }
@@ -159,7 +159,7 @@
 </head>
 <body>
 
-    <!-- 1. VPNロック画面 -->
+    <!-- 1. VPN繝ｭ繝・け逕ｻ髱｢ -->
     <div id="vpn-lock-screen">
         <div id="vpn-checking">
             <i class="fa-solid fa-circle-notch fa-spin fa-2x" style="color:#003366;"></i>
@@ -169,8 +169,8 @@
             <div class="error-code">403</div>
             <div class="error-msg">Access Denied</div>
             <p style="color:#888; font-size:0.9rem;">
-                安全な接続が確認できませんでした。<br>
-                指定されたVPNに接続してください。
+                螳牙・縺ｪ謗･邯壹′遒ｺ隱阪〒縺阪∪縺帙ｓ縺ｧ縺励◆縲・br>
+                謖・ｮ壹＆繧後◆VPN縺ｫ謗･邯壹＠縺ｦ縺上□縺輔＞縲・
             </p>
             <div style="background:#f5f5f5; padding:10px; border-radius:8px; margin-top:20px; font-family:monospace;">
                 Your IP: <span id="user-ip">...</span>
@@ -178,24 +178,24 @@
         </div>
     </div>
     
-    <!-- 2. ローディング画面 -->
+    <!-- 2. 繝ｭ繝ｼ繝・ぅ繝ｳ繧ｰ逕ｻ髱｢ -->
     <div id="loading-screen">
         <i class="fa-solid fa-circle-notch fa-spin fa-2x" style="color:#003366;"></i>
-        <h3 style="margin-top:20px; color:#333;">認証中...</h3>
-        <p style="color:#888; font-size:0.8rem;">ログイン情報を確認しています</p>
+        <h3 style="margin-top:20px; color:#333;">隱崎ｨｼ荳ｭ...</h3>
+        <p style="color:#888; font-size:0.8rem;">繝ｭ繧ｰ繧､繝ｳ諠・ｱ繧堤｢ｺ隱阪＠縺ｦ縺・∪縺・/p>
     </div>
 
-    <!-- 3. アプリ本体 -->
+    <!-- 3. 繧｢繝励Μ譛ｬ菴・-->
     <div id="app">
-        <!-- ヘッダー -->
+        <!-- 繝倥ャ繝繝ｼ -->
         <header>
             <div class="header-title">
-                <img src="../../校章.png" alt="logo" style="height:28px;"> Misemi-ya Univ.
+                <img src="../../譬｡遶.png" alt="logo" style="height:28px;"> Misemi-ya Univ.
             </div>
             <button class="menu-btn" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
         </header>
 
-        <!-- サイドメニュー -->
+        <!-- 繧ｵ繧､繝峨Γ繝九Η繝ｼ -->
         <div class="menu-overlay" onclick="toggleMenu()"></div>
         <nav id="mobile-menu">
             <div class="menu-header">
@@ -206,96 +206,97 @@
                 </div>
             </div>
             <ul class="nav-list">
-                <li class="nav-item"><a href="#" onclick="toggleMenu()" class="nav-link"><i class="fa-solid fa-house"></i> ホーム</a></li>
-                <li class="nav-item"><a href="../mail.html" class="nav-link"><i class="fa-solid fa-envelope"></i> Webメール</a></li>
-                <li class="nav-item"><a href="../reserve.html" class="nav-link"><i class="fa-solid fa-calendar-check"></i> 施設予約</a></li>
+                <li class="nav-item"><a href="#" onclick="toggleMenu()" class="nav-link"><i class="fa-solid fa-house"></i> 繝帙・繝</a></li>
+                <li class="nav-item"><a href="../mail.html" class="nav-link"><i class="fa-solid fa-envelope"></i> Web繝｡繝ｼ繝ｫ</a></li>
+                <li class="nav-item"><a href="../reserve.html" class="nav-link"><i class="fa-solid fa-calendar-check"></i> 譁ｽ險ｭ莠育ｴ・/a></li>
                 <li class="nav-item"><a onclick="location.href='../share.html'" class="nav-link"><i class="fa-solid fa-share-nodes"></i> Share Portal (VPN)</a></li>
                 <li class="nav-item"><a onclick="location.href='https://u-share.misemi-ya.net'" class="nav-link"><i class="fa-solid fa-share-nodes"></i> U-Share Portal (VPN)</a></li>
                 
-                <li class="nav-category">コミュニケーション</li>
-                <li class="nav-item"><a onclick="openApp('discord')" class="nav-link"><i class="fa-brands fa-discord"></i> 講義室</a></li>
-                <li class="nav-item"><a onclick="window.open('https://slack.com/signin')" class="nav-link"><i class="fa-brands fa-slack"></i> 業務連絡</a></li>
-                <li class="nav-item"><a onclick="openApp('bbs')" class="nav-link"><i class="fa-solid fa-comments"></i> 学内掲示板</a></li>
+                <li class="nav-category">繧ｳ繝溘Η繝九こ繝ｼ繧ｷ繝ｧ繝ｳ</li>
+                <li class="nav-item"><a onclick="openApp('discord')" class="nav-link"><i class="fa-brands fa-discord"></i> 隰帷ｾｩ螳､</a></li>
+                <li class="nav-item"><a onclick="window.open('https://slack.com/signin')" class="nav-link"><i class="fa-brands fa-slack"></i> 讌ｭ蜍咎｣邨｡</a></li>
+                <li class="nav-item"><a onclick="openApp('bbs')" class="nav-link"><i class="fa-solid fa-comments"></i> 蟄ｦ蜀・軸遉ｺ譚ｿ</a></li>
+                <li class="nav-item"><a href="../r.html" class="nav-link"><i class="fa-solid fa-book-open-reader"></i> 論文掲載</a></li>
 
-                <li class="nav-category">管理・申請</li>
-                <li class="nav-item"><a onclick="openApp('hr')" class="nav-link"><i class="fa-solid fa-user-tie"></i> 人事・総務</a></li>
-                <li class="nav-item"><a href="../students.html" class="nav-link"><i class="fa-solid fa-graduation-cap"></i> 教務・学生支援</a></li>
-                <li class="nav-item"><a onclick="openApp('approval')" class="nav-link"><i class="fa-solid fa-file-signature"></i> 電子決裁</a></li>
+                <li class="nav-category">邂｡逅・・逕ｳ隲・/li>
+                <li class="nav-item"><a onclick="openApp('hr')" class="nav-link"><i class="fa-solid fa-user-tie"></i> 莠ｺ莠九・邱丞漁</a></li>
+                <li class="nav-item"><a href="../students.html" class="nav-link"><i class="fa-solid fa-graduation-cap"></i> 謨吝漁繝ｻ蟄ｦ逕滓髪謠ｴ</a></li>
+                <li class="nav-item"><a onclick="openApp('approval')" class="nav-link"><i class="fa-solid fa-file-signature"></i> 髮ｻ蟄先ｱｺ陬・/a></li>
                 
-                <!-- 管理者のみ -->
+                <!-- 邂｡逅・・・縺ｿ -->
                 <li class="nav-item" id="adminLink" style="display:none; border-top:1px solid #eee;">
                     <a href="../lp.html" class="nav-link" style="color:#d9534f; background:#fff5f5;"><i class="fa-solid fa-lock"></i> Admin Console</a>
                 </li>
                 
-                <li class="nav-item"><a onclick="signOut()" class="nav-link" style="color:#666;"><i class="fa-solid fa-right-from-bracket"></i> ログアウト</a></li>
+                <li class="nav-item"><a onclick="signOut()" class="nav-link" style="color:#666;"><i class="fa-solid fa-right-from-bracket"></i> 繝ｭ繧ｰ繧｢繧ｦ繝・/a></li>
             </ul>
         </nav>
 
         <div class="container">
-            <!-- 挨拶 -->
+            <!-- 謖ｨ諡ｶ -->
             <div class="welcome-card">
                 <div class="welcome-msg" id="greeting">Hello!</div>
                 <div class="date-display" id="dateDisplay">Loading...</div>
             </div>
 
-            <!-- 勤怠管理 (Firebase連動) -->
+            <!-- 蜍､諤邂｡逅・(Firebase騾｣蜍・ -->
             <div class="attendance-card">
-                <div class="status-badge" id="status-badge">未出勤</div>
+                <div class="status-badge" id="status-badge">譛ｪ蜃ｺ蜍､</div>
                 <div class="time-display" id="timeDisplay">00:00</div>
                 <div class="punch-btns">
-                    <button class="btn-punch btn-in" onclick="punch('出勤')"><i class="fa-solid fa-sun"></i> 出勤</button>
-                    <button class="btn-punch btn-out" onclick="punch('退勤')"><i class="fa-solid fa-moon"></i> 退勤</button>
+                    <button class="btn-punch btn-in" onclick="punch('蜃ｺ蜍､')"><i class="fa-solid fa-sun"></i> 蜃ｺ蜍､</button>
+                    <button class="btn-punch btn-out" onclick="punch('騾蜍､')"><i class="fa-solid fa-moon"></i> 騾蜍､</button>
                 </div>
-                <div id="attendance-log" class="attendance-log">履歴を読み込み中...</div>
+                <div id="attendance-log" class="attendance-log">螻･豁ｴ繧定ｪｭ縺ｿ霎ｼ縺ｿ荳ｭ...</div>
             </div>
 
-            <!-- 業務ショートカット -->
+            <!-- 讌ｭ蜍吶す繝ｧ繝ｼ繝医き繝・ヨ -->
             <div class="grid-menu">
-                <a onclick="openApp('payroll')" class="grid-item"><i class="fa-solid fa-file-invoice-dollar grid-icon"></i>給与明細</a>
-                <a onclick="openApp('expense')" class="grid-item"><i class="fa-solid fa-receipt grid-icon"></i>経費精算</a>
-                <a onclick="openApp('approval')" class="grid-item"><i class="fa-solid fa-stamp grid-icon"></i>電子決裁</a>
-                <a onclick="openApp('crisis')" class="grid-item"><i class="fa-solid fa-triangle-exclamation grid-icon" style="color:#dc3545;"></i>危機管理</a>
-                <a href="../students.html" class="grid-item"><i class="fa-solid fa-graduation-cap grid-icon"></i>学生検索</a>
-                <a onclick="openApp('it')" class="grid-item"><i class="fa-solid fa-desktop grid-icon"></i>IT申請</a>
-                <a onclick="openApp('recruit')" class="grid-item"><i class="fa-solid fa-user-plus grid-icon"></i>採用管理</a>
-                <a onclick="openApp('assets')" class="grid-item"><i class="fa-solid fa-laptop grid-icon"></i>資産管理</a>
-                <a onclick="openApp('library')" class="grid-item"><i class="fa-solid fa-book grid-icon"></i>図書検索</a>
+                <a onclick="openApp('payroll')" class="grid-item"><i class="fa-solid fa-file-invoice-dollar grid-icon"></i>邨ｦ荳取・邏ｰ</a>
+                <a onclick="openApp('expense')" class="grid-item"><i class="fa-solid fa-receipt grid-icon"></i>邨瑚ｲｻ邊ｾ邂・/a>
+                <a onclick="openApp('approval')" class="grid-item"><i class="fa-solid fa-stamp grid-icon"></i>髮ｻ蟄先ｱｺ陬・/a>
+                <a onclick="openApp('crisis')" class="grid-item"><i class="fa-solid fa-triangle-exclamation grid-icon" style="color:#dc3545;"></i>蜊ｱ讖溽ｮ｡逅・/a>
+                <a href="../students.html" class="grid-item"><i class="fa-solid fa-graduation-cap grid-icon"></i>蟄ｦ逕滓､懃ｴ｢</a>
+                <a onclick="openApp('it')" class="grid-item"><i class="fa-solid fa-desktop grid-icon"></i>IT逕ｳ隲・/a>
+                <a onclick="openApp('recruit')" class="grid-item"><i class="fa-solid fa-user-plus grid-icon"></i>謗｡逕ｨ邂｡逅・/a>
+                <a onclick="openApp('assets')" class="grid-item"><i class="fa-solid fa-laptop grid-icon"></i>雉・肇邂｡逅・/a>
+                <a onclick="openApp('library')" class="grid-item"><i class="fa-solid fa-book grid-icon"></i>蝗ｳ譖ｸ讀懃ｴ｢</a>
             </div>
 
-            <!-- グラフ -->
+            <!-- 繧ｰ繝ｩ繝・-->
             <div class="chart-card">
                 <div class="card-header">
-                    <span><i class="fa-solid fa-chart-line"></i> システムアクセス状況</span>
+                    <span><i class="fa-solid fa-chart-line"></i> 繧ｷ繧ｹ繝・Β繧｢繧ｯ繧ｻ繧ｹ迥ｶ豕・/span>
                 </div>
                 <div class="chart-container">
                     <canvas id="myChart"></canvas>
                 </div>
             </div>
 
-            <!-- お知らせ & Gmail -->
+            <!-- 縺顔衍繧峨○ & Gmail -->
             <div class="list-card">
                 <div class="card-header">
-                    <span><i class="fa-solid fa-bell"></i> お知らせ / Gmail</span>
-                    <button onclick="handleGmailAuth()" class="gmail-btn">連携</button>
+                    <span><i class="fa-solid fa-bell"></i> 縺顔衍繧峨○ / Gmail</span>
+                    <button onclick="handleGmailAuth()" class="gmail-btn">騾｣謳ｺ</button>
                 </div>
                 <div id="news-list">
-                    <!-- JSで挿入 -->
+                    <!-- JS縺ｧ謖ｿ蜈･ -->
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- アプリ用モーダル -->
+    <!-- 繧｢繝励Μ逕ｨ繝｢繝ｼ繝繝ｫ -->
     <div class="modal-overlay" id="sheet-modal" onclick="closeSheet(event)">
         <div class="modal-sheet" onclick="event.stopPropagation()">
             <div class="close-bar" onclick="closeSheet()"></div>
             <h3 class="modal-title" id="sheet-title">Title</h3>
             <div class="modal-content" id="sheet-content"></div>
-            <button class="modal-btn" onclick="closeSheet()">閉じる</button>
+            <button class="modal-btn" onclick="closeSheet()">髢峨§繧・/button>
         </div>
     </div>
 
-    <!-- 設定ファイル (階層注意: ../) -->
+    <!-- 險ｭ螳壹ヵ繧｡繧､繝ｫ (髫主ｱ､豕ｨ諢・ ../) -->
     <script src="../msal-config.js"></script>
 
     <script type="module">
@@ -342,7 +343,7 @@
             document.getElementById('loading-screen').style.display = 'flex';
             try {
                 if(typeof myMSALObj !== 'undefined') {
-                    // PC版同様、リダイレクトを待つ
+                    // PC迚亥酔讒倥√Μ繝繧､繝ｬ繧ｯ繝医ｒ蠕・▽
                     await myMSALObj.handleRedirectPromise();
                     
                     const acc = myMSALObj.getAllAccounts();
@@ -355,7 +356,7 @@
                         
                         setupUser(user);
                     } else {
-                        // 未ログインなら親のindexへ
+                        // 譛ｪ繝ｭ繧ｰ繧､繝ｳ縺ｪ繧芽ｦｪ縺ｮindex縺ｸ
                         window.location.href = "../index.html"; 
                     }
                 }
@@ -394,23 +395,23 @@
             document.getElementById('menu-avatar').innerText = user.name.charAt(0);
             document.getElementById('menu-email').innerText = user.username;
 
-            // 管理者チェック
+            // 邂｡逅・・メ繧ｧ繝・け
             if(user.username.toLowerCase() === ADMIN_EMAIL.toLowerCase()) {
                 document.getElementById('adminLink').style.display = 'block';
             }
             
-            // ログ保存 (SP用アクション)
+            // 繝ｭ繧ｰ菫晏ｭ・(SP逕ｨ繧｢繧ｯ繧ｷ繝ｧ繝ｳ)
             const safe = user.username.replace(/\./g, '_');
             push(ref(db, 'accessLogs'), { 
                 user:user.name, email:user.username, action:"LOGIN_SP", time:new Date().toLocaleString('ja-JP') 
             });
 
-            // 勤怠読み込み
+            // 蜍､諤隱ｭ縺ｿ霎ｼ縺ｿ
             loadPunchHistory();
         }
 
         // ==========================================
-        //  3. 勤怠管理 (Firebase)
+        //  3. 蜍､諤邂｡逅・(Firebase)
         // ==========================================
         window.punch = (type) => {
             const now = new Date();
@@ -418,7 +419,7 @@
             const t = now.toLocaleTimeString('ja-JP');
             const s = currentUser.username.replace(/\./g,'_');
             push(ref(db, `attendanceLogs/${s}/${d}`), {type:type, time:t})
-                .then(()=>alert(`${type}しました: ${t}`));
+                .then(()=>alert(`${type}縺励∪縺励◆: ${t}`));
         };
 
         function loadPunchHistory() {
@@ -435,15 +436,15 @@
                         con.innerHTML += `<span class="log-tag">${v.type} <b>${v.time}</b></span>`;
                         last = v.type;
                     });
-                    badge.innerText = last==="出勤"?"勤務中":"退勤済";
-                    badge.style.background = last==="出勤"?"#d4edda":"#eee";
-                    badge.style.color = last==="出勤"?"#155724":"#555";
-                } else { con.innerText = "本日の打刻履歴はありません"; }
+                    badge.innerText = last==="蜃ｺ蜍､"?"蜍､蜍吩ｸｭ":"騾蜍､貂・;
+                    badge.style.background = last==="蜃ｺ蜍､"?"#d4edda":"#eee";
+                    badge.style.color = last==="蜃ｺ蜍､"?"#155724":"#555";
+                } else { con.innerText = "譛ｬ譌･縺ｮ謇灘綾螻･豁ｴ縺ｯ縺ゅｊ縺ｾ縺帙ｓ"; }
             });
         }
 
         // ==========================================
-        //  4. アプリ & UI制御
+        //  4. 繧｢繝励Μ & UI蛻ｶ蠕｡
         // ==========================================
         window.toggleMenu = () => {
             document.getElementById('mobile-menu').classList.toggle('open');
@@ -458,21 +459,21 @@
             m.style.display = 'flex';
             toggleMenu(); 
 
-            // PC版と同じアプリ群
-            if(name==='payroll') { t.innerText='給与明細'; c.innerHTML='<table class="app-table"><tr><th>支給項目</th><th>金額</th></tr><tr><td>基本給</td><td>¥300,000</td></tr><tr><td>残業手当</td><td>¥25,000</td></tr><tr><td><strong>支給計</strong></td><td><strong>¥325,000</strong></td></tr></table>'; }
-            else if(name==='discord') { t.innerText='講義室'; c.innerHTML='<iframe src="https://discord.com/widget?id=1328329244037943360&theme=dark" width="100%" height="400" allowtransparency="true" frameborder="0"></iframe>'; }
-            else if(name==='expense') { t.innerText='経費精算'; c.innerHTML='<div style="margin-bottom:10px"><label>金額</label><input type="number" class="panel-input" style="width:100%;padding:10px;margin-top:5px;border:1px solid #ddd;border-radius:5px;"></div><button style="width:100%;padding:12px;background:#003366;color:white;border:none;border-radius:8px;">申請</button>'; }
-            else if(name==='approval') { t.innerText='電子決裁'; c.innerHTML='<table class="app-table"><tr><th>件名</th><th>状態</th></tr><tr><td>PC購入申請</td><td style="color:red">承認待ち</td></tr><tr><td>出張届</td><td>承認済</td></tr></table>'; }
-            else if(name==='crisis') { t.innerText='危機管理'; c.innerHTML='<div style="text-align:center"><p>緊急時安否確認システム</p><button style="width:100%;padding:15px;background:red;color:white;border:none;border-radius:8px;font-weight:bold;font-size:1.1rem;" onclick="alert(\'送信しました\')">安否確認を送信</button></div>'; }
-            else if(name==='recruit') { t.innerText='採用管理'; c.innerHTML='<p>現在の公募: 3件</p><p>応募総数: 42名</p>'; }
-            else if(name==='research') { t.innerText='研究費管理'; c.innerHTML='<p>科研費残額: ¥1,200,000</p><div style="background:#eee;height:10px;border-radius:5px;"><div style="background:blue;width:70%;height:100%;border-radius:5px;"></div></div>'; }
-            else if(name==='assets') { t.innerText='資産管理'; c.innerHTML='<p>貸与PC: MacBook Pro (M3)</p><p>管理番号: 2024-001</p>'; }
-            else if(name==='it') { t.innerText='IT申請'; c.innerHTML='<ul><li>VPN申請</li><li>アカウント発行</li><li>ソフトウェア申請</li></ul>'; }
-            else if(name==='health') { t.innerText='健康管理'; c.innerHTML='<p>定期健康診断: 2026/04/15 予約済</p>'; }
-            else if(name==='library') { t.innerText='図書検索'; c.innerHTML='<input type="text" placeholder="書名・ISBN" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:5px;"><button style="margin-top:10px;width:100%;padding:10px;background:#666;color:white;border:none;border-radius:5px;">検索</button>'; }
-            else if(name==='bbs') { t.innerText='掲示板'; c.innerHTML='<div class="news-item"><strong>停電のお知らせ</strong><br><span style="font-size:0.8rem;color:#666;">今週末は全館停電です。</span></div>'; }
-            else if(name==='hr') { t.innerText='人事メニュー'; c.innerHTML='<div class="grid-menu"><div class="grid-item" onclick="openApp(\'payroll\')">給与</div><div class="grid-item" onclick="openApp(\'expense\')">経費</div></div>'; }
-            else { t.innerText='Info'; c.innerHTML='<p>機能準備中です</p>'; }
+            // PC迚医→蜷後§繧｢繝励Μ鄒､
+            if(name==='payroll') { t.innerText='邨ｦ荳取・邏ｰ'; c.innerHTML='<table class="app-table"><tr><th>謾ｯ邨ｦ鬆・岼</th><th>驥鷹｡・/th></tr><tr><td>蝓ｺ譛ｬ邨ｦ</td><td>ﾂ･300,000</td></tr><tr><td>谿区･ｭ謇句ｽ・/td><td>ﾂ･25,000</td></tr><tr><td><strong>謾ｯ邨ｦ險・/strong></td><td><strong>ﾂ･325,000</strong></td></tr></table>'; }
+            else if(name==='discord') { t.innerText='隰帷ｾｩ螳､'; c.innerHTML='<iframe src="https://discord.com/widget?id=1328329244037943360&theme=dark" width="100%" height="400" allowtransparency="true" frameborder="0"></iframe>'; }
+            else if(name==='expense') { t.innerText='邨瑚ｲｻ邊ｾ邂・; c.innerHTML='<div style="margin-bottom:10px"><label>驥鷹｡・/label><input type="number" class="panel-input" style="width:100%;padding:10px;margin-top:5px;border:1px solid #ddd;border-radius:5px;"></div><button style="width:100%;padding:12px;background:#003366;color:white;border:none;border-radius:8px;">逕ｳ隲・/button>'; }
+            else if(name==='approval') { t.innerText='髮ｻ蟄先ｱｺ陬・; c.innerHTML='<table class="app-table"><tr><th>莉ｶ蜷・/th><th>迥ｶ諷・/th></tr><tr><td>PC雉ｼ蜈･逕ｳ隲・/td><td style="color:red">謇ｿ隱榊ｾ・■</td></tr><tr><td>蜃ｺ蠑ｵ螻・/td><td>謇ｿ隱肴ｸ・/td></tr></table>'; }
+            else if(name==='crisis') { t.innerText='蜊ｱ讖溽ｮ｡逅・; c.innerHTML='<div style="text-align:center"><p>邱頑･譎ょｮ牙凄遒ｺ隱阪す繧ｹ繝・Β</p><button style="width:100%;padding:15px;background:red;color:white;border:none;border-radius:8px;font-weight:bold;font-size:1.1rem;" onclick="alert(\'騾∽ｿ｡縺励∪縺励◆\')">螳牙凄遒ｺ隱阪ｒ騾∽ｿ｡</button></div>'; }
+            else if(name==='recruit') { t.innerText='謗｡逕ｨ邂｡逅・; c.innerHTML='<p>迴ｾ蝨ｨ縺ｮ蜈ｬ蜍・ 3莉ｶ</p><p>蠢懷供邱乗焚: 42蜷・/p>'; }
+            else if(name==='research') { t.innerText='遐皮ｩｶ雋ｻ邂｡逅・; c.innerHTML='<p>遘醍碑ｲｻ谿矩｡・ ﾂ･1,200,000</p><div style="background:#eee;height:10px;border-radius:5px;"><div style="background:blue;width:70%;height:100%;border-radius:5px;"></div></div>'; }
+            else if(name==='assets') { t.innerText='雉・肇邂｡逅・; c.innerHTML='<p>雋ｸ荳傘C: MacBook Pro (M3)</p><p>邂｡逅・分蜿ｷ: 2024-001</p>'; }
+            else if(name==='it') { t.innerText='IT逕ｳ隲・; c.innerHTML='<ul><li>VPN逕ｳ隲・/li><li>繧｢繧ｫ繧ｦ繝ｳ繝育匱陦・/li><li>繧ｽ繝輔ヨ繧ｦ繧ｧ繧｢逕ｳ隲・/li></ul>'; }
+            else if(name==='health') { t.innerText='蛛･蠎ｷ邂｡逅・; c.innerHTML='<p>螳壽悄蛛･蠎ｷ險ｺ譁ｭ: 2026/04/15 莠育ｴ・ｸ・/p>'; }
+            else if(name==='library') { t.innerText='蝗ｳ譖ｸ讀懃ｴ｢'; c.innerHTML='<input type="text" placeholder="譖ｸ蜷阪・ISBN" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:5px;"><button style="margin-top:10px;width:100%;padding:10px;background:#666;color:white;border:none;border-radius:5px;">讀懃ｴ｢</button>'; }
+            else if(name==='bbs') { t.innerText='謗ｲ遉ｺ譚ｿ'; c.innerHTML='<div class="news-item"><strong>蛛憺崕縺ｮ縺顔衍繧峨○</strong><br><span style="font-size:0.8rem;color:#666;">莉企ｱ譛ｫ縺ｯ蜈ｨ鬢ｨ蛛憺崕縺ｧ縺吶・/span></div>'; }
+            else if(name==='hr') { t.innerText='莠ｺ莠九Γ繝九Η繝ｼ'; c.innerHTML='<div class="grid-menu"><div class="grid-item" onclick="openApp(\'payroll\')">邨ｦ荳・/div><div class="grid-item" onclick="openApp(\'expense\')">邨瑚ｲｻ</div></div>'; }
+            else { t.innerText='Info'; c.innerHTML='<p>讖溯・貅門ｙ荳ｭ縺ｧ縺・/p>'; }
         };
 
         window.closeSheet = (e) => {
@@ -483,7 +484,7 @@
 
         window.signOut = () => {
             sessionStorage.clear();
-            window.location.href = "../../index.html"; // ルートへ戻る
+            window.location.href = "../../index.html"; // 繝ｫ繝ｼ繝医∈謌ｻ繧・
         };
 
         setInterval(() => {
@@ -536,3 +537,4 @@
     </script>
 </body>
 </html>
+

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Portal Entry | Misemi-ya University</title>
+    <meta http-equiv="refresh" content="0; url=sp/l.html">
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(180deg, #f5f8fb, #e9f0f6);
+            font-family: "Noto Sans JP", sans-serif;
+            color: #17314f;
+        }
+        .panel {
+            width: min(560px, calc(100% - 32px));
+            padding: 32px;
+            border-radius: 24px;
+            background: #fff;
+            box-shadow: 0 18px 42px rgba(14, 45, 78, 0.08);
+            text-align: center;
+        }
+        h1 { margin: 0 0 12px; font-size: 1.6rem; }
+        p { margin: 0 0 18px; line-height: 1.8; color: #4f6378; }
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+        a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 46px;
+            padding: 0 18px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 700;
+        }
+        .primary { background: #0a2f57; color: #fff; }
+        .ghost { background: #fff; color: #17314f; border: 1px solid #d6e0e8; }
+    </style>
+</head>
+<body>
+    <div class="panel">
+        <h1>スマホポータルへ移動します</h1>
+        <p>`s/s.html` はスマホ用ポータル入口として `s/sp/l.html` に転送しています。移動しない場合は下のリンクから開けます。</p>
+        <div class="actions">
+            <a class="primary" href="sp/l.html">スマホポータル</a>
+            <a class="ghost" href="r.html">論文掲載</a>
+        </div>
+    </div>
+</body>
+</html>
