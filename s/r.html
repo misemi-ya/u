@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>論文掲載 | Misemi-ya University Portal</title>
+    <meta name="description" content="店魅偉屋大学ポータルの論文掲載ページです。VPN 接続時のみ閲覧できます。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&family=Noto+Serif+JP:wght@500;700;900&display=swap" rel="stylesheet">
@@ -20,7 +21,6 @@
             --card: #ffffff;
             --shadow: 0 18px 42px rgba(9, 40, 77, 0.08);
         }
-
         * { box-sizing: border-box; }
         body {
             margin: 0;
@@ -32,6 +32,37 @@
         }
         a { color: inherit; text-decoration: none; }
         .container { width: min(1380px, calc(100% - 40px)); margin: 0 auto; }
+
+        #vpn-lock-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255,255,255,0.98);
+            text-align: center;
+            transition: opacity .45s ease;
+            padding: 24px;
+        }
+        #vpn-checking { color: #4d6178; }
+        #vpn-checking i { color: var(--navy); }
+        #vpn-error { display: none; max-width: 540px; }
+        .error-code { margin: 0; font-size: 5rem; color: var(--navy); }
+        .error-msg { margin: 0 0 12px; font-size: 1.4rem; color: var(--ink); font-weight: 700; }
+        .status-box {
+            margin-top: 18px;
+            padding: 14px 16px;
+            border-radius: 16px;
+            background: #f5f8fb;
+            border: 1px solid var(--line);
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            color: #526579;
+        }
+
+        #securedApp { display: none; }
+
         .page-header {
             position: sticky;
             top: 0;
@@ -61,7 +92,6 @@
             padding: 6px;
             box-shadow: inset 0 0 0 1px rgba(216, 226, 234, 0.95);
         }
-        .brand__copy { min-width: 0; }
         .brand__copy strong {
             display: block;
             color: var(--navy);
@@ -89,7 +119,7 @@
             padding: 0 18px;
             border-radius: 999px;
             border: 1px solid var(--line);
-            background: rgba(255, 255, 255, 0.86);
+            background: rgba(255,255,255,0.86);
             color: var(--ink);
             font-weight: 700;
         }
@@ -98,9 +128,8 @@
             background: linear-gradient(135deg, var(--navy), var(--blue));
             color: #fff;
         }
-        .hero {
-            padding: 54px 0 34px;
-        }
+
+        .hero { padding: 54px 0 34px; }
         .hero-panel {
             display: grid;
             grid-template-columns: minmax(0, 1.2fr) minmax(320px, 420px);
@@ -145,35 +174,17 @@
             background: rgba(255,255,255,0.1);
             border: 1px solid rgba(255,255,255,0.12);
         }
-        .hero-stats strong {
-            display: block;
-            font-size: 1.4rem;
-        }
-        .hero-stats span {
-            display: block;
-            margin-top: 6px;
-            font-size: 0.84rem;
-            color: rgba(255,255,255,0.78);
-        }
+        .hero-stats strong { display: block; font-size: 1.4rem; }
+        .hero-stats span { display: block; margin-top: 6px; font-size: 0.84rem; color: rgba(255,255,255,0.78); }
         .search-panel {
             padding: 22px;
             border-radius: 28px;
             background: rgba(255,255,255,0.12);
             border: 1px solid rgba(255,255,255,0.14);
         }
-        .search-panel h2 {
-            margin: 0 0 14px;
-            font-size: 1.2rem;
-        }
-        .search-stack {
-            display: grid;
-            gap: 14px;
-        }
-        .external-form {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) auto;
-            gap: 10px;
-        }
+        .search-panel h2 { margin: 0 0 14px; font-size: 1.2rem; }
+        .search-stack { display: grid; gap: 14px; }
+        .external-form { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; }
         .external-form input {
             width: 100%;
             min-height: 48px;
@@ -194,14 +205,14 @@
             font-weight: 800;
             cursor: pointer;
         }
+
         .layout {
             display: grid;
             grid-template-columns: 300px minmax(0, 1fr);
             gap: 24px;
             padding: 8px 0 56px;
         }
-        .sidebar-card,
-        .content-card {
+        .sidebar-card, .content-card {
             background: var(--card);
             border: 1px solid rgba(216, 226, 234, 0.92);
             border-radius: 28px;
@@ -213,17 +224,12 @@
             padding: 22px;
             align-self: start;
         }
-        .sidebar-card h2,
-        .content-card h2 {
+        .sidebar-card h2, .content-card h2 {
             margin: 0 0 14px;
             color: var(--navy);
             font-size: 1.2rem;
         }
-        .category-list {
-            display: grid;
-            gap: 8px;
-            margin-top: 16px;
-        }
+        .category-list { display: grid; gap: 8px; margin-top: 16px; }
         .category-button {
             width: 100%;
             padding: 12px 14px;
@@ -236,8 +242,7 @@
             cursor: pointer;
             transition: .22s ease;
         }
-        .category-button:hover,
-        .category-button.is-active {
+        .category-button:hover, .category-button.is-active {
             transform: translateX(4px);
             border-color: rgba(30, 91, 152, 0.35);
             background: linear-gradient(135deg, rgba(30, 91, 152, 0.12), rgba(190, 155, 82, 0.12));
@@ -250,13 +255,8 @@
             line-height: 1.8;
             font-size: 0.92rem;
         }
-        .content-stack {
-            display: grid;
-            gap: 18px;
-        }
-        .content-card {
-            padding: 24px;
-        }
+        .content-stack { display: grid; gap: 18px; }
+        .content-card { padding: 24px; }
         .featured-card {
             display: grid;
             grid-template-columns: minmax(0, 1fr) auto;
@@ -267,20 +267,25 @@
             background: linear-gradient(145deg, rgba(10, 47, 87, 0.98), rgba(30, 91, 152, 0.9));
             color: #fff;
         }
-        .featured-card .badge {
-            background: rgba(255,255,255,0.14);
-            color: #fff;
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            min-height: 28px;
+            padding: 0 10px;
+            border-radius: 999px;
+            background: rgba(30, 91, 152, 0.1);
+            color: var(--blue);
+            font-size: 0.74rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
         }
+        .featured-card .badge { background: rgba(255,255,255,0.14); color: #fff; }
         .featured-card h3 {
             margin: 10px 0 8px;
             font-family: "Noto Serif JP", serif;
             font-size: clamp(1.4rem, 2vw, 1.9rem);
         }
-        .featured-card p {
-            margin: 0;
-            line-height: 1.85;
-            color: rgba(255,255,255,0.86);
-        }
+        .featured-card p { margin: 0; line-height: 1.85; color: rgba(255,255,255,0.86); }
         .featured-card a {
             display: inline-flex;
             align-items: center;
@@ -301,13 +306,8 @@
             gap: 16px;
             margin-bottom: 8px;
         }
-        .toolbar__meta {
-            color: var(--muted);
-            font-size: 0.92rem;
-        }
-        .toolbar__search {
-            width: min(360px, 100%);
-        }
+        .toolbar__meta { color: var(--muted); font-size: 0.92rem; }
+        .toolbar__search { width: min(360px, 100%); }
         .toolbar__search input {
             width: 100%;
             min-height: 46px;
@@ -317,23 +317,7 @@
             font: inherit;
             background: #f8fbfe;
         }
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            min-height: 28px;
-            padding: 0 10px;
-            border-radius: 999px;
-            background: rgba(30, 91, 152, 0.1);
-            color: var(--blue);
-            font-size: 0.74rem;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-        }
-        .paper-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 16px;
-        }
+        .paper-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
         .paper-card {
             display: grid;
             gap: 12px;
@@ -342,33 +326,16 @@
             border: 1px solid var(--line);
             background: linear-gradient(180deg, #fff, #fbfdff);
         }
-        .paper-card h3 {
-            margin: 0;
-            font-size: 1.05rem;
-            line-height: 1.6;
-            color: var(--navy);
-        }
-        .paper-card p {
-            margin: 0;
-            color: var(--muted);
-            line-height: 1.75;
-            font-size: 0.92rem;
-        }
-        .paper-card__meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
+        .paper-card h3 { margin: 0; font-size: 1.05rem; line-height: 1.6; color: var(--navy); }
+        .paper-card p { margin: 0; color: var(--muted); line-height: 1.75; font-size: 0.92rem; }
+        .paper-card__meta { display: flex; flex-wrap: wrap; gap: 8px; }
         .paper-card__footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
             gap: 12px;
         }
-        .paper-card__footer a {
-            color: var(--blue);
-            font-weight: 800;
-        }
+        .paper-card__footer a { color: var(--blue); font-weight: 800; }
         .empty-state {
             padding: 26px;
             border-radius: 24px;
@@ -382,155 +349,172 @@
             color: var(--muted);
             font-size: 0.92rem;
         }
-        .page-footer a {
-            color: var(--blue);
-            font-weight: 700;
+        .page-footer a { color: var(--blue); font-weight: 700; }
+        .notice-box {
+            margin-top: 14px;
+            padding: 14px 16px;
+            border-radius: 18px;
+            background: #f8fbfe;
+            border: 1px solid var(--line);
+            color: var(--muted);
+            line-height: 1.8;
+            font-size: 0.92rem;
         }
 
         @media (max-width: 1080px) {
-            .hero-panel,
-            .layout,
-            .paper-grid {
-                grid-template-columns: 1fr;
-            }
-            .sidebar-card {
-                position: static;
-            }
+            .hero-panel, .layout, .paper-grid { grid-template-columns: 1fr; }
+            .sidebar-card { position: static; }
         }
-
         @media (max-width: 720px) {
             .container { width: min(1380px, calc(100% - 28px)); }
-            .page-header__inner,
-            .featured-card,
-            .toolbar {
-                grid-template-columns: 1fr;
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .brand img {
-                width: 50px;
-                height: 50px;
-                border-radius: 14px;
-            }
-            .brand__copy strong {
-                font-size: 1rem;
-                white-space: normal;
-            }
-            .header-actions {
-                width: 100%;
-            }
-            .header-link {
-                flex: 1 1 100%;
-            }
-            .hero-panel,
-            .content-card,
-            .sidebar-card {
-                padding: 20px;
-                border-radius: 22px;
-            }
-            .hero-stats {
-                grid-template-columns: 1fr;
-            }
-            .external-form {
-                grid-template-columns: 1fr;
-            }
-            .featured-card a {
-                width: 100%;
-            }
-            .paper-card__footer {
-                flex-direction: column;
-                align-items: flex-start;
-            }
+            .page-header__inner, .featured-card, .toolbar { flex-direction: column; align-items: stretch; }
+            .brand img { width: 50px; height: 50px; border-radius: 14px; }
+            .brand__copy strong { font-size: 1rem; white-space: normal; }
+            .header-actions { width: 100%; }
+            .header-link { flex: 1 1 100%; }
+            .hero-panel, .content-card, .sidebar-card { padding: 20px; border-radius: 22px; }
+            .hero-stats { grid-template-columns: 1fr; }
+            .external-form { grid-template-columns: 1fr; }
+            .featured-card a { width: 100%; }
+            .paper-card__footer { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
 <body>
-    <header class="page-header">
-        <div class="container page-header__inner">
-            <a class="brand" href="l.html">
-                <img src="https://u.misemi-ya.net/%E6%A0%A1%E7%AB%A0.png" alt="店魅偉屋大学">
-                <span class="brand__copy">
-                    <strong>店魅偉屋大学 論文掲載</strong>
-                    <small>Misemi-ya Research Archive</small>
-                </span>
-            </a>
-            <div class="header-actions">
-                <a class="header-link" href="l.html">職員ポータルへ戻る</a>
-                <a class="header-link header-link--primary" href="sp/l.html">スマホポータル</a>
-            </div>
+    <div id="vpn-lock-screen">
+        <div id="vpn-checking">
+            <i class="fa-solid fa-circle-notch fa-spin fa-2x"></i>
+            <p>VPN 接続を確認しています...</p>
         </div>
-    </header>
+        <div id="vpn-error">
+            <p class="error-code">403</p>
+            <p class="error-msg">Access Denied</p>
+            <p>このページは学内ポータルと同じ VPN 接続が必要です。指定された VPN に接続したうえで再読み込みしてください。</p>
+            <div class="status-box">Your IP: <span id="user-ip">...</span></div>
+        </div>
+    </div>
 
-    <main>
-        <section class="hero">
-            <div class="container hero-panel">
-                <div>
-                    <p class="eyebrow">Research Library</p>
-                    <h1>学内研究導線と J-STAGE 論文を<br>まとめて見られる論文掲載ページ</h1>
-                    <p>一番上に学内 PDF を固定し、その下に J-STAGE から収集した論文を掲載しています。上部の外部検索から Google Scholar と J-STAGE の検索もそのまま使えます。</p>
-                    <div class="hero-stats">
-                        <article><strong id="heroTotalCount">200</strong><span>掲載論文数</span></article>
-                        <article><strong>25</strong><span>分野タブ</span></article>
-                        <article><strong>2026.05.04</strong><span>J-STAGE 取得基準日</span></article>
-                    </div>
+    <div id="securedApp">
+        <header class="page-header">
+            <div class="container page-header__inner">
+                <a class="brand" href="l.html">
+                    <img src="../譬｡遶.png" alt="店魅偉屋大学">
+                    <span class="brand__copy">
+                        <strong>店魅偉屋大学 論文掲載</strong>
+                        <small>Misemi-ya Research Archive</small>
+                    </span>
+                </a>
+                <div class="header-actions">
+                    <a class="header-link" href="l.html">職員ポータルへ戻る</a>
+                    <a class="header-link header-link--primary" href="sp/l.html">スマホポータル</a>
                 </div>
-                <aside class="search-panel">
-                    <h2>外部検索</h2>
-                    <div class="search-stack">
-                        <form class="external-form" action="https://scholar.google.com/scholar" method="get" target="_blank" rel="noopener noreferrer">
-                            <input type="hidden" name="hl" value="ja">
-                            <input type="search" name="q" placeholder="Google Scholar で論文を検索">
-                            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i> Scholar 検索</button>
-                        </form>
-                        <form class="external-form" action="https://www.jstage.jst.go.jp/result/global/-char/ja" method="get" target="_blank" rel="noopener noreferrer">
-                            <input type="search" name="globalSearchKey" placeholder="J-STAGE 上の記事を検索">
-                            <button type="submit"><i class="fa-solid fa-book"></i> J-STAGE 検索</button>
-                        </form>
-                    </div>
-                </aside>
             </div>
-        </section>
+        </header>
 
-        <section class="container layout">
-            <aside class="sidebar-card">
-                <h2>分野タブ</h2>
-                <div class="category-list" id="categoryList"></div>
-                <p class="sidebar-note">左の分野で絞り込みできます。誌数表記は案内用のまま置き、掲載論文は本ページ用に横断表示しています。</p>
-            </aside>
-
-            <div class="content-stack">
-                <section class="featured-card">
+        <main>
+            <section class="hero">
+                <div class="container hero-panel">
                     <div>
-                        <span class="badge">特集論文</span>
-                        <h3>代替方程式における簡単について</h3>
-                        <p>学内配布用の固定 PDF です。最上段に置いて、すぐ開けるようにしています。</p>
+                        <p class="eyebrow">Research Library</p>
+                        <h1>学内向け論文掲載ページ</h1>
+                        <p>このページは職員ポータルと同じ VPN 制限で保護されています。学内 PDF と、J-STAGE 論文データをまとめて閲覧できます。</p>
+                        <div class="hero-stats">
+                            <article><strong id="heroTotalCount">0</strong><span>現在の掲載件数</span></article>
+                            <article><strong>25</strong><span>分野タブ</span></article>
+                            <article><strong>VPN</strong><span>学内接続限定</span></article>
+                        </div>
                     </div>
-                    <a href="daitai.pdf" target="_blank" rel="noopener noreferrer">PDF を開く</a>
-                </section>
+                    <aside class="search-panel">
+                        <h2>外部検索</h2>
+                        <div class="search-stack">
+                            <form class="external-form" action="https://scholar.google.com/scholar" method="get" target="_blank" rel="noopener noreferrer">
+                                <input type="hidden" name="hl" value="ja">
+                                <input type="search" name="q" placeholder="Google Scholar で論文を検索">
+                                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i> Scholar 検索</button>
+                            </form>
+                            <form class="external-form" action="https://www.jstage.jst.go.jp/result/global/-char/ja" method="get" target="_blank" rel="noopener noreferrer">
+                                <input type="search" name="globalSearchKey" placeholder="J-STAGE 上の記事を検索">
+                                <button type="submit"><i class="fa-solid fa-book"></i> J-STAGE 検索</button>
+                            </form>
+                        </div>
+                        <div class="notice-box">
+                            Google Scholar と J-STAGE の全件をこの静的ページ内へ完全ミラーすることはできないため、外部検索導線もあわせて設けています。
+                        </div>
+                    </aside>
+                </div>
+            </section>
 
-                <section class="content-card">
-                    <div class="toolbar">
+            <section class="container layout">
+                <aside class="sidebar-card">
+                    <h2>分野タブ</h2>
+                    <div class="category-list" id="categoryList"></div>
+                    <p class="sidebar-note">誌数の表記は分野案内として残し、このページではカテゴリ絞り込みに使えるようにしています。</p>
+                </aside>
+
+                <div class="content-stack">
+                    <section class="featured-card">
                         <div>
-                            <h2>論文一覧</h2>
-                            <div class="toolbar__meta"><span id="resultCount">0</span> 件を表示中</div>
+                            <span class="badge">学内資料</span>
+                            <h3>代替方程式における簡単について</h3>
+                            <p>PDF は直接リンクではなく、VPN 通過後に閲覧ページから開く導線に変更しています。</p>
                         </div>
-                        <div class="toolbar__search">
-                            <input type="search" id="localSearch" placeholder="このページ内の論文タイトル・掲載誌で絞り込み">
-                        </div>
-                    </div>
-                    <div class="paper-grid" id="paperGrid"></div>
-                    <div class="empty-state" id="emptyState" hidden>該当する論文が見つかりませんでした。キーワードか分野を変えてみてください。</div>
-                </section>
-            </div>
-        </section>
-    </main>
+                        <a href="daitai.html">閲覧ページへ</a>
+                    </section>
 
-    <footer class="container page-footer">
-        <p>検索導線: <a href="https://scholar.google.com/?hl=ja" target="_blank" rel="noopener noreferrer">Google Scholar</a> / <a href="https://www.jstage.jst.go.jp/browse/-char/ja" target="_blank" rel="noopener noreferrer">J-STAGE</a></p>
-    </footer>
+                    <section class="content-card">
+                        <div class="toolbar">
+                            <div>
+                                <h2>論文一覧</h2>
+                                <div class="toolbar__meta"><span id="resultCount">0</span> 件を表示中</div>
+                            </div>
+                            <div class="toolbar__search">
+                                <input type="search" id="localSearch" placeholder="このページ内の論文タイトル・掲載誌で絞り込み">
+                            </div>
+                        </div>
+                        <div class="paper-grid" id="paperGrid"></div>
+                        <div class="empty-state" id="emptyState" hidden>該当する論文が見つかりませんでした。キーワードか分野を変えてみてください。</div>
+                    </section>
+                </div>
+            </section>
+        </main>
+
+        <footer class="container page-footer">
+            <p>検索導線: <a href="https://scholar.google.com/?hl=ja" target="_blank" rel="noopener noreferrer">Google Scholar</a> / <a href="https://www.jstage.jst.go.jp/browse/-char/ja" target="_blank" rel="noopener noreferrer">J-STAGE</a></p>
+        </footer>
+    </div>
 
     <script src="papers-data.js"></script>
     <script>
+        const VPN_HOST = "public-vpn-202.opengw.net";
+        const getSubnet = (ip) => ip ? ip.split(".").slice(0, 3).join(".") : "";
+
+        async function verifyConnection() {
+            try {
+                const ipRes = await fetch("https://api.ipify.org?format=json");
+                const myIp = (await ipRes.json()).ip;
+                const dnsRes = await fetch(`https://dns.google/resolve?name=${VPN_HOST}&type=A`);
+                const vpnIp = (await dnsRes.json()).Answer?.[0]?.data || "Unresolved";
+
+                if (vpnIp !== "Unresolved" && getSubnet(myIp) === getSubnet(vpnIp)) {
+                    const lock = document.getElementById("vpn-lock-screen");
+                    lock.style.opacity = "0";
+                    setTimeout(() => {
+                        lock.style.display = "none";
+                        document.getElementById("securedApp").style.display = "block";
+                        initializePage();
+                    }, 450);
+                } else {
+                    document.getElementById("vpn-checking").style.display = "none";
+                    document.getElementById("vpn-error").style.display = "block";
+                    document.getElementById("user-ip").textContent = myIp;
+                }
+            } catch (error) {
+                document.getElementById("vpn-checking").style.display = "none";
+                document.getElementById("vpn-error").style.display = "block";
+                document.getElementById("user-ip").textContent = "Error";
+            }
+        }
+
         const categoryDefinitions = [
             "数学 (269 誌)",
             "物理学 (539 誌)",
@@ -558,98 +542,84 @@
             "社会学 (925 誌)",
             "心理学・教育学 (1147 誌)"
         ];
-
         const stripCount = (label) => label.replace(/\s*\(\d+\s*誌\)\s*$/, "");
-        const papers = [
-            {
-                title: "代替方程式における簡単について",
-                url: "daitai.pdf",
-                journal: "店魅偉屋大学 学内配布資料",
-                category: "学際科学",
-                source: "Internal PDF",
-                isFeaturedInternal: true
-            },
-            ...((window.JSTAGE_PAPERS || []).map((paper) => ({
-                ...paper,
-                source: "J-STAGE"
-            })))
-        ];
-
-        const categoryList = document.getElementById("categoryList");
-        const paperGrid = document.getElementById("paperGrid");
-        const resultCount = document.getElementById("resultCount");
-        const localSearch = document.getElementById("localSearch");
-        const emptyState = document.getElementById("emptyState");
-        const heroTotalCount = document.getElementById("heroTotalCount");
+        const papers = (window.JSTAGE_PAPERS || []).map((paper) => ({
+            ...paper,
+            source: "J-STAGE"
+        }));
 
         let activeCategory = "all";
         let keyword = "";
 
-        const renderCategories = () => {
-            const buttons = [
-                { label: "すべて", value: "all" },
-                ...categoryDefinitions.map((label) => ({
-                    label,
-                    value: stripCount(label)
-                }))
-            ];
+        function initializePage() {
+            const categoryList = document.getElementById("categoryList");
+            const paperGrid = document.getElementById("paperGrid");
+            const resultCount = document.getElementById("resultCount");
+            const localSearch = document.getElementById("localSearch");
+            const emptyState = document.getElementById("emptyState");
+            const heroTotalCount = document.getElementById("heroTotalCount");
 
-            categoryList.innerHTML = buttons.map((button) => `
-                <button
-                    type="button"
-                    class="category-button ${button.value === activeCategory ? "is-active" : ""}"
-                    data-category="${button.value}">
-                    ${button.label}
-                </button>
-            `).join("");
+            const renderCategories = () => {
+                const buttons = [
+                    { label: "すべて", value: "all" },
+                    ...categoryDefinitions.map((label) => ({ label, value: stripCount(label) }))
+                ];
 
-            categoryList.querySelectorAll("[data-category]").forEach((button) => {
-                button.addEventListener("click", () => {
-                    activeCategory = button.dataset.category || "all";
-                    renderCategories();
-                    renderPapers();
+                categoryList.innerHTML = buttons.map((button) => `
+                    <button type="button" class="category-button ${button.value === activeCategory ? "is-active" : ""}" data-category="${button.value}">
+                        ${button.label}
+                    </button>
+                `).join("");
+
+                categoryList.querySelectorAll("[data-category]").forEach((button) => {
+                    button.addEventListener("click", () => {
+                        activeCategory = button.dataset.category || "all";
+                        renderCategories();
+                        renderPapers();
+                    });
                 });
+            };
+
+            const filterPapers = () => {
+                return papers.filter((paper) => {
+                    const matchCategory = activeCategory === "all" || paper.category === activeCategory;
+                    const haystack = `${paper.title} ${paper.journal} ${paper.category} ${paper.source}`.toLowerCase();
+                    const matchKeyword = !keyword || haystack.includes(keyword);
+                    return matchCategory && matchKeyword;
+                });
+            };
+
+            const renderPapers = () => {
+                const filtered = filterPapers();
+                resultCount.textContent = String(filtered.length);
+                heroTotalCount.textContent = String(papers.length);
+                emptyState.hidden = filtered.length !== 0;
+                paperGrid.innerHTML = filtered.map((paper) => `
+                    <article class="paper-card">
+                        <div class="paper-card__meta">
+                            <span class="badge">${paper.source}</span>
+                            <span class="badge">${paper.category}</span>
+                        </div>
+                        <h3>${paper.title}</h3>
+                        <p>${paper.journal || "J-STAGE掲載論文"}</p>
+                        <div class="paper-card__footer">
+                            <span>掲載先を開く</span>
+                            <a href="${paper.url}" target="_blank" rel="noopener noreferrer">論文を見る <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </article>
+                `).join("");
+            };
+
+            localSearch.addEventListener("input", () => {
+                keyword = localSearch.value.trim().toLowerCase();
+                renderPapers();
             });
-        };
 
-        const filterPapers = () => {
-            return papers.filter((paper) => {
-                const matchCategory = activeCategory === "all" || paper.category === activeCategory;
-                const haystack = `${paper.title} ${paper.journal} ${paper.category} ${paper.source}`.toLowerCase();
-                const matchKeyword = !keyword || haystack.includes(keyword);
-                return matchCategory && matchKeyword && !paper.isFeaturedInternal;
-            });
-        };
-
-        const renderPapers = () => {
-            const filtered = filterPapers();
-            resultCount.textContent = String(filtered.length + 1);
-            heroTotalCount.textContent = String(papers.length);
-            emptyState.hidden = filtered.length !== 0;
-
-            paperGrid.innerHTML = filtered.map((paper) => `
-                <article class="paper-card">
-                    <div class="paper-card__meta">
-                        <span class="badge">${paper.source}</span>
-                        <span class="badge">${paper.category}</span>
-                    </div>
-                    <h3>${paper.title}</h3>
-                    <p>${paper.journal || "J-STAGE掲載論文"}</p>
-                    <div class="paper-card__footer">
-                        <span>掲載先を開く</span>
-                        <a href="${paper.url}" target="_blank" rel="noopener noreferrer">論文を見る <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </article>
-            `).join("");
-        };
-
-        localSearch.addEventListener("input", () => {
-            keyword = localSearch.value.trim().toLowerCase();
+            renderCategories();
             renderPapers();
-        });
+        }
 
-        renderCategories();
-        renderPapers();
+        window.addEventListener("load", verifyConnection);
     </script>
 </body>
 </html>
