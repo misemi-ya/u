@@ -75,7 +75,11 @@
         window.addEventListener('load', async () => {
             try {
                 // リダイレクト処理の完了待ち
-                await myMSALObj.handleRedirectPromise();
+                const redirectResponse = await myMSALObj.handleRedirectPromise();
+                if (redirectResponse && redirectResponse.account) {
+                    redirectUser();
+                    return;
+                }
                 
                 // すでにログイン済みなら振り分け実行
                 const currentAccounts = myMSALObj.getAllAccounts();
@@ -89,15 +93,27 @@
 
         // ログインボタンの処理
         async function signIn() {
+            const loginButton = document.getElementById("loginButton");
+            const errorMsg = document.getElementById("errorMessage");
             try {
                 // ポップアップでログイン画面を開く
-                const loginResponse = await myMSALObj.loginPopup(loginRequest);
-                if(loginResponse) {
+                if (loginButton) {
+                    loginButton.disabled = true;
+                }
+                if (errorMsg) {
+                    errorMsg.style.display = "none";
+                    errorMsg.textContent = "";
+                }
+                await myMSALObj.loginRedirect(loginRequest);
+                if (false) {
                     // ログイン成功したら振り分け実行
                     redirectUser(); // ★ここを変更
                 }
             } catch (error) {
                 console.error(error);
+                if (loginButton) {
+                    loginButton.disabled = false;
+                }
                 const errorMsg = document.getElementById("errorMessage");
                 errorMsg.style.display = "block";
                 errorMsg.textContent = "ログインに失敗しました: " + error.message;
