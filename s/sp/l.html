@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -347,7 +347,7 @@
                     await myMSALObj.handleRedirectPromise();
                     
                     const acc = myMSALObj.getAllAccounts();
-                    if(acc.length > 0) {
+if(acc.length > 0) {
                         const user = acc[0];
                         document.getElementById('loading-screen').style.display = 'none';
                         const app = document.getElementById('app');
@@ -356,11 +356,15 @@
                         
                         setupUser(user);
                     } else {
-                        // 譛ｪ繝ｭ繧ｰ繧､繝ｳ縺ｪ繧芽ｦｪ縺ｮindex縺ｸ
-                        window.location.href = "../index.html"; 
+                        // 未ログインの場合はMicrosoftのログイン画面へリダイレクト
+                        myMSALObj.loginRedirect({ scopes: ["user.read"] }); 
                     }
                 }
-            } catch(e) { window.location.href = "../index.html"; }
+            } catch(e) { 
+                console.error(e);
+                // エラー時もログイン画面へリダイレクト
+                myMSALObj.loginRedirect({ scopes: ["user.read"] }); 
+            }
             
             gapi.load('client', initGapi);
             onValue(dbRef, s => { 
@@ -482,9 +486,16 @@
             }
         };
 
-        window.signOut = () => {
+window.signOut = () => {
             sessionStorage.clear();
-            window.location.href = "../../index.html"; // 繝ｫ繝ｼ繝医∈謌ｻ繧・
+            
+            // 現在ログイン中のアカウントを指定してログアウト
+            const logoutRequest = {
+                account: myMSALObj.getAllAccounts()[0],
+                postLogoutRedirectUri: window.location.origin // ログアウト後に戻るページのURL（ルート）
+            };
+            
+            myMSALObj.logoutRedirect(logoutRequest);
         };
 
         setInterval(() => {
