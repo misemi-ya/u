@@ -16,9 +16,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-
-    <link rel="icon" href="https://u.misemi-ya.net/s/favicon.ico">
-    <link rel="shortcut icon" href="https://u.misemi-ya.net/s/favicon.ico">
     
     <style>
         :root {
@@ -483,10 +480,18 @@
                             <div class="service-name">学内掲示板</div>
                             <div class="service-desc">全学周知・連絡</div>
                         </a>
-                        <a href="r.html" class="service-card">
-                            <i class="fa-solid fa-book-open-reader service-icon"></i>
-                            <div class="service-name">論文掲載</div>
-                            <div class="service-desc">J-STAGE 論文一覧・PDF</div>
+                        <!-- ここから追加：店魅偉屋大学 CAM-1 -->
+                        <a onclick="openApp('cam1')" class="service-card">
+                          <i class="fa-solid fa-video service-icon" style="color: #c9a346;"></i>
+                          <div class="service-name">店魅偉屋大学 CAM-1</div>
+                          <div class="service-desc">YouTube ライブ</div>
+                        </a>
+
+                        <!-- ここから追加：店魅偉屋大学 CAM-2 -->
+                        <a onclick="openApp('cam2')" class="service-card">
+                          <i class="fa-solid fa-camera service-icon" style="color: #c9a346;"></i>
+                            <div class="service-name">店魅偉屋大学 CAM-2</div>
+                            <div class="service-desc">学内カメラシステム</div>
                         </a>
                     </div>
                 </div>
@@ -829,15 +834,15 @@
 
         function signOut() { sessionStorage.clear(); window.location.href = "https://u.misemi-ya.net"; }
 
-        function openApp(name) {
+function openApp(name) {
             if (name === 'share') { window.location.href = 'share.html'; return; }
             const m = document.getElementById('appModal');
             const t = document.getElementById('appTitle');
             const c = document.getElementById('appContent');
             const p = document.getElementById('appPanel');
             
-            // Discord用ワイド
-            if(name==='discord') { p.style.width='90%'; p.style.height='80vh'; }
+            // ★修正ポイント1：カメラ画面も大きく開くように条件を追加
+            if(name==='discord' || name==='cam1' || name==='cam2') { p.style.width='90%'; p.style.height='80vh'; }
             else { p.style.width='700px'; p.style.height='auto'; }
 
             m.style.display = 'flex';
@@ -862,8 +867,18 @@
                 discord: {
                     t: '講義室・チャット (Discord)',
                     c: '<iframe src="https://discord.com/widget?id=1328329244037943360&theme=dark" width="100%" height="100%" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>'
+                },
+                cam1: {
+                    t: '店魅偉屋大学 CAM-1 (YouTube)',
+                    c: '<div style="display:flex; justify-content:center; align-items:center; width:100%; height:100%; min-height:500px;"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/BuBj2F_jtpo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>'
+                },
+                cam2: {
+                    t: '店魅偉屋大学 CAM-2 (Live Camera)',
+                    c: '<div style="width:100%; height:100%; min-height:500px;"><iframe src="https://eyeplus.closeli.com/device/player?deviceId=xxxxS_e051d8e328a9" width="100%" height="100%" frameborder="0" allowfullscreen></iframe></div>'
                 }
             };
+            
+            // ★修正ポイント2：消えてしまっていた「画面に反映させるプログラム」を復活
             const item = apps[name] || {t:'Info', c:'準備中です'};
             t.textContent = item.t; c.innerHTML = item.c;
         }
@@ -871,6 +886,3 @@
     </script>
 </body>
 </html>
-
-
-
