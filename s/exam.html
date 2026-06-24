@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CBT入学試験 - 店魅偉屋大学付属幼小中高一貫教育校</title>
+    <title>CBT入学試験 - 店魅偉屋大学付属</title>
     <style>
         :root { --p-color: #0f172a; --s-color: #1e293b; --a-color: #b45309; --danger: #dc2626; --bg: #f1f5f9; }
         * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
@@ -30,7 +30,8 @@
         header { background: var(--p-color); color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--a-color); }
         .subject-badge { background: var(--a-color); padding: 4px 12px; border-radius: 20px; font-weight: bold; margin-left: 15px; }
         .timer { background: var(--danger); padding: 5px 15px; border-radius: 4px; font-weight: bold; font-size: 1.2rem; font-family: monospace; }
-        .staff-login { background: transparent; border: 1px solid #475569; color: #94a3b8; cursor: pointer; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; margin-left: 15px; }
+        .staff-login { background: transparent; border: 1px solid #475569; color: #94a3b8; cursor: pointer; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; margin-left: 15px; transition: 0.2s; }
+        .staff-login:hover { color: white; border-color: white; }
 
         /* Main Test Area */
         .test-container { display: flex; flex: 1; overflow: hidden; }
@@ -49,7 +50,7 @@
         .tool-btn.active { background: #e0e7ff; border-color: #6366f1; color: #4338ca; font-weight: bold; }
         .color-dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 5px; }
 
-        /* 問題・解答エリア (Canvas含む) */
+        /* 問題・解答エリア */
         .content-wrapper { flex: 1; position: relative; overflow-y: auto; padding: 40px; }
         .question-content { position: relative; z-index: 1; }
         .canvas-layer { position: absolute; top: 0; left: 0; z-index: 5; pointer-events: none; }
@@ -64,37 +65,67 @@
 
         .footer-nav { padding: 15px 30px; background: #f8fafc; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; z-index: 10; }
 
-        /* モーダル・警告 */
-        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 9999; display: none; color: white; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        .admin-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; color: #333; padding: 30px; border-radius: 8px; z-index: 10000; display: none; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+        /* 警告・BANオーバーレイ */
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; display: none; color: white; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        
+        /* 教職員モーダル */
+        .admin-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; color: #333; padding: 30px; border-radius: 8px; z-index: 99999; display: none; box-shadow: 0 0 30px rgba(0,0,0,0.8); width: 400px; max-width: 90%; }
+        
+        /* カスタムダイアログ (alert/confirm/prompt代用) */
+        .dialog-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 100000; display: none; justify-content: center; align-items: center; backdrop-filter: blur(3px); }
+        .dialog-box { background: white; color: #333; padding: 25px; border-radius: 8px; width: 400px; max-width: 90%; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.5); animation: popIn 0.2s ease-out; }
+        @keyframes popIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .dialog-title { font-size: 1.2rem; font-weight: bold; margin-bottom: 15px; color: var(--p-color); }
+        .dialog-msg { margin-bottom: 25px; line-height: 1.6; }
+        .dialog-input { width: 100%; padding: 10px; border: 2px solid #cbd5e1; border-radius: 4px; margin-bottom: 20px; font-size: 1rem; text-align: center; }
+        .dialog-btns { display: flex; justify-content: center; gap: 15px; }
+        .dialog-btn { padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; border: none; }
+        .btn-primary { background: var(--p-color); color: white; }
+        .btn-danger-dialog { background: var(--danger); color: white; }
+        .btn-cancel { background: #e2e8f0; color: #333; }
     </style>
 </head>
 <body>
 
+    <!-- カスタムダイアログ群 -->
+    <div id="custom-dialog" class="dialog-overlay">
+        <div class="dialog-box">
+            <div id="dialog-title" class="dialog-title">通知</div>
+            <div id="dialog-msg" class="dialog-msg">メッセージ</div>
+            <input type="password" id="dialog-input" class="dialog-input" style="display:none;" autocomplete="new-password">
+            <div class="dialog-btns">
+                <button id="dialog-btn-cancel" class="dialog-btn btn-cancel" style="display:none;">キャンセル</button>
+                <button id="dialog-btn-ok" class="dialog-btn btn-primary">OK</button>
+            </div>
+        </div>
+    </div>
+
     <!-- 不正警告・追放画面 -->
     <div id="ban-overlay" class="overlay">
         <h1 style="color: var(--danger); font-size: 3rem; margin-bottom: 20px;">[ 深刻なセキュリティ違反 ]</h1>
-        <p style="font-size: 1.2rem; max-width: 600px; line-height: 1.8;">
-            試験規定に反する行為（全画面の度重なる解除、別プロセスの起動等）が検出されました。<br>
+        <p id="ban-reason" style="font-size: 1.2rem; max-width: 600px; line-height: 1.8;">
+            試験規定に反する行為が検出されました。<br>
             試験は強制終了され、本機の受験資格は永久に無効化されました。直ちに試験監督の指示に従ってください。
         </p>
+        <button class="staff-login" style="margin-top: 50px; font-size:1rem; padding: 10px 20px; border-color:#64748b;" onclick="openAdmin()">⚙ 教職員メニューを開く</button>
     </div>
 
     <!-- 全画面復帰警告 -->
-    <div id="fs-warning" class="overlay" style="background: rgba(15,23,42,0.95);">
+    <div id="fs-warning" class="overlay">
         <h2 style="color: #f59e0b; font-size: 2rem; margin-bottom: 20px;">全画面表示が解除されました</h2>
-        <p style="margin-bottom: 20px;">不正行為防止のため、全画面表示に戻るまで試験を続行できません。<br>（残り警告可能回数: <span id="warn-left">3</span>回）</p>
-        <button class="btn" style="background: #f59e0b; color: black;" onclick="restoreFullscreen()">全画面に復帰する</button>
+        <p style="margin-bottom: 20px;">不正行為防止のため、全画面表示に戻るまで試験を続行できません。<br>（残り警告可能回数: <strong id="warn-left" style="color:#f59e0b; font-size:1.5rem;">3</strong> 回）</p>
+        <button class="btn" style="background: #f59e0b; color: black; margin-bottom: 30px;" onclick="restoreFullscreen()">全画面に復帰する</button>
+        <button class="staff-login" style="font-size:0.9rem; padding: 5px 15px; border-color:#64748b;" onclick="openAdmin()">⚙ 教職員メニューを開く</button>
     </div>
 
     <!-- 教職員管理モーダル -->
     <div id="admin-modal" class="admin-modal">
-        <h2>教職員管理コンソール</h2>
-        <div style="margin: 20px 0; display:flex; flex-direction:column; gap:10px;">
+        <h2 style="margin-bottom: 20px; border-bottom: 2px solid #cbd5e1; padding-bottom: 10px;">⚙ 教職員管理コンソール</h2>
+        <div style="display:flex; flex-direction:column; gap:12px;">
             <button class="btn" onclick="window.open('answers.html', '_blank')">模範解答ページを開く</button>
-            <button class="btn" style="background: #f59e0b;" onclick="resetTimer()">現在の科目の制限時間をリセット</button>
+            <button class="btn" style="background: #f59e0b; color:black;" onclick="resetTimer()">タイマーをリセット (50分)</button>
             <button class="btn" style="background: var(--danger);" onclick="resetBan()">受験不可・BAN状態を解除</button>
-            <button class="btn btn-outline" onclick="document.getElementById('admin-modal').style.display='none'">閉じる</button>
+            <button class="btn btn-outline" style="margin-top: 10px;" onclick="closeAdmin()">閉じる</button>
         </div>
     </div>
 
@@ -132,7 +163,7 @@
             <div>
                 <span style="font-weight: bold;">CBT SYSTEM</span>
                 <span id="subject-label" class="subject-badge">国語</span>
-                <button class="staff-login" onclick="openAdmin()">教職員</button>
+                <button class="staff-login" onclick="openAdmin()">⚙ 教職員</button>
             </div>
             <div style="display: flex; align-items: center; gap: 20px;">
                 <div>受験番号: <strong id="disp-id">---</strong></div>
@@ -148,12 +179,11 @@
                     <label style="display:flex; align-items:center; gap:5px; cursor:pointer; margin-bottom:15px; font-weight:bold; color:#b45309;">
                         <input type="checkbox" id="review-check" onchange="toggleReview()"> 🚩 あとで見直す
                     </label>
-                    <button class="btn" style="width: 100%; background: #10b981;" onclick="submitSubject()">この科目を提出する</button>
+                    <button class="btn" style="width: 100%; background: #10b981;" onclick="submitSubject(false)">この科目を提出する</button>
                 </div>
             </div>
 
             <div class="main-area">
-                <!-- ペンツールバー -->
                 <div class="toolbar">
                     <button class="tool-btn" id="tool-cursor" onclick="setTool('cursor')" class="active">👆 操作</button>
                     <div style="width:1px; height:20px; background:#cbd5e1; margin:0 5px;"></div>
@@ -161,13 +191,11 @@
                     <button class="tool-btn" id="tool-pen-red" onclick="setTool('pen', '#dc2626')"><span class="color-dot" style="background:#dc2626;"></span>ペン</button>
                     <button class="tool-btn" id="tool-marker" onclick="setTool('marker', 'rgba(250,204,21,0.5)')"><span class="color-dot" style="background:#facc15;"></span>マーカー</button>
                     <button class="tool-btn" id="tool-eraser" onclick="setTool('eraser')">🧽 消しゴム</button>
-                    <button class="tool-btn" style="margin-left:auto; color:var(--danger);" onclick="clearCanvas()">🗑 全消去</button>
+                    <button class="tool-btn" style="margin-left:auto; color:var(--danger);" onclick="clearCanvasPrompt()">🗑 全消去</button>
                 </div>
 
                 <div class="content-wrapper" id="content-wrapper">
-                    <!-- 描画キャンバス -->
                     <canvas id="canvas" class="canvas-layer"></canvas>
-                    
                     <div class="question-content">
                         <div class="q-title" id="q-title">問題</div>
                         <div class="q-text" id="q-text"></div>
@@ -193,29 +221,69 @@
     </div>
 
 <script>
-    // ======= データ構造 (東大・慶應レベルのダミー問題) =======
+    // ======= カスタムダイアログ処理 =======
+    let dialogResolve = null;
+
+    function showDialog(opts) {
+        return new Promise(resolve => {
+            dialogResolve = resolve;
+            document.getElementById('custom-dialog').style.display = 'flex';
+            document.getElementById('dialog-title').textContent = opts.title || '通知';
+            document.getElementById('dialog-msg').innerHTML = opts.msg;
+            
+            const inputEl = document.getElementById('dialog-input');
+            const btnCancel = document.getElementById('dialog-btn-cancel');
+            const btnOk = document.getElementById('dialog-btn-ok');
+
+            inputEl.style.display = 'none';
+            inputEl.value = '';
+            btnCancel.style.display = 'none';
+            btnOk.className = 'dialog-btn btn-primary';
+            btnOk.textContent = opts.okText || 'OK';
+
+            if(opts.type === 'prompt') {
+                inputEl.style.display = 'block';
+                setTimeout(() => inputEl.focus(), 50); // モーダル表示後のフォーカス
+                btnCancel.style.display = 'block';
+            } else if(opts.type === 'confirm') {
+                btnCancel.style.display = 'block';
+                if(opts.danger) btnOk.className = 'dialog-btn btn-danger-dialog';
+            }
+
+            btnOk.onclick = () => {
+                document.getElementById('custom-dialog').style.display = 'none';
+                resolve(opts.type === 'prompt' ? inputEl.value : true);
+            };
+
+            btnCancel.onclick = () => {
+                document.getElementById('custom-dialog').style.display = 'none';
+                resolve(opts.type === 'prompt' ? null : false);
+            };
+            
+            // EnterキーでOK
+            inputEl.onkeyup = (e) => { if(e.key === 'Enter') btnOk.click(); };
+        });
+    }
+
+    const customAlert = (msg, title="通知") => showDialog({ type: 'alert', msg, title });
+    const customConfirm = (msg, title="確認", danger=false) => showDialog({ type: 'confirm', msg, title, danger });
+    const customPrompt = (msg, title="入力") => showDialog({ type: 'prompt', msg, title });
+
+    // ======= データ構造 =======
     const subjects = ['国語', '数学', '英語', '社会', '理科'];
     const timeLimit = 50 * 60; // 50分
-    
-    // 超高難易度を想定したサンプル。長文・数式等の表現
     const testData = {
         '国語': [
             { id: 1, type: 'essay', title: "第1問 現代文読解（哲学）", text: "【課題文】\n近代における「主体」の誕生は、同時に「他者」を客体化する暴力性を内包していた。デカルト的コギトは、世界を認識可能な対象へと還元することで、自然科学の発展を促したが、それは同時に人間を自然から切り離す決定的な断絶を生んだ。（中略）\n\n問. 筆者の言う「『他者』を客体化する暴力性」とは具体的にどのような事態を指しているか。現代のテクノロジー社会の事象を1つ挙げ、250字以内で論じなさい。" },
-            { id: 2, type: 'radio', title: "第2問 古文（源氏物語 派生）", text: "次の和歌の修辞法として最も適切なものを一つ選べ。\n「見渡せば 花も紅葉も なかりけり 浦の苫屋の 秋の夕暮れ」\n\n（※本問は慶應文系レベルの文学的解釈を問う）", options: ["体言止めによる余韻の強調", "縁語を用いた掛詞の重層的表現", "本歌取りによる歴史的背景の暗喩", "序詞による情景の導入"] }
+            { id: 2, type: 'radio', title: "第2問 古文", text: "次の和歌の修辞法として最も適切なものを一つ選べ。\n「見渡せば 花も紅葉も なかりけり 浦の苫屋の 秋の夕暮れ」", options: ["体言止めによる余韻の強調", "縁語を用いた掛詞の重層的表現", "本歌取りによる歴史的背景の暗喩", "序詞による情景の導入"] }
         ],
         '数学': [
-            { id: 1, type: 'essay', title: "第1問 微分積分と極限", text: "自然数 n に対し、関数 f_n(x) を f_n(x) = ∫[0→x] (t^n * e^(-t)) dt と定義する。\n(1) 任意の x > 0 において、0 < f_n(x) < n! が成り立つことを示せ。\n(2) lim(n→∞) {f_n(n) / n!} を求めよ。\n\n※解答欄には証明と計算過程を論理的に記述すること。" },
-            { id: 2, type: 'text', title: "第2問 整数問題", text: "p を 5 以上の素数とする。p^2 を 24 で割った余りを求めよ。\n半角数字のみで入力せよ。" }
+            { id: 1, type: 'essay', title: "第1問 微分積分と極限", text: "自然数 n に対し、関数 f_n(x) を f_n(x) = ∫[0→x] (t^n * e^(-t)) dt と定義する。\n(1) 任意の x > 0 において、0 < f_n(x) < n! が成り立つことを示せ。\n(2) lim(n→∞) {f_n(n) / n!} を求めよ。\n\n※解答欄には証明と計算過程を記述すること。" },
+            { id: 2, type: 'text', title: "第2問 整数問題", text: "p を 5 以上の素数とする。p^2 を 24 で割った余りを求めよ。" }
         ],
-        '英語': [
-            { id: 1, type: 'essay', title: "Question 1. Reading Comprehension", text: "Read the following passage and answer the question in English.\n\nQuantum entanglement, a phenomenon famously dubbed \"spooky action at a distance\" by Albert Einstein, challenges the core principles of classical mechanics. It implies that two particles can become inextricably linked such that the state of one instantaneously influences the other, regardless of the distance separating them...\n\nQ. Explain why Einstein was skeptical about quantum entanglement based on the passage. (within 50 words)" }
-        ],
-        '社会': [
-            { id: 1, type: 'essay', title: "第1問 日本史論述", text: "19世紀後半、日本が急速な近代化（明治維新）を成し遂げた要因について、「条約改正」「殖産興業」「富国強兵」の3つのキーワードをすべて用いて、当時の国際的背景と関連付けながら300字以内で論述せよ。" }
-        ],
-        '理科': [
-            { id: 1, type: 'essay', title: "第1問 物理（力学・電磁気学融合）", text: "質量 m、電荷 q (>0) の小球が、長さ L の絶縁体の糸で天井から吊るされている。この空間には、水平右向きに一様な電場 E と、紙面奥に向かって一様な磁場 B がかかっている。小球が静止している状態から糸を静かに切った直後の、小球の加速度ベクトルの大きさと向きを数式で記述しなさい。" }
-        ]
+        '英語': [ { id: 1, type: 'essay', title: "Question 1. Reading", text: "Explain why Einstein was skeptical about quantum entanglement based on the passage. (within 50 words)" } ],
+        '社会': [ { id: 1, type: 'essay', title: "第1問 日本史論述", text: "19世紀後半、日本が急速な近代化を成し遂げた要因について、「条約改正」「殖産興業」「富国強兵」の3つの語を用いて300字以内で論述せよ。" } ],
+        '理科': [ { id: 1, type: 'essay', title: "第1問 物理（電磁気）", text: "質量 m、電荷 q (>0) の小球が電場 E と磁場 B の中にある。静止状態から糸を切った直後の加速度を数式で示せ。" } ]
     };
 
     // ======= 状態管理 =======
@@ -225,25 +293,24 @@
     let timerInterval = null;
     let studentInfo = { id: "", name: "" };
     
-    // セキュリティ管理
     let fsErrors = 0;
     const MAX_FS_ERRORS = 3;
     let isTestActive = false;
+    let adminPwdFails = 0; // 3回ミスでBAN
 
-    // キャンバス・ペンツール管理
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
     let isDrawing = false;
-    let currentTool = 'cursor'; // cursor, pen, marker, eraser
+    let currentTool = 'cursor';
     let currentColor = '#000';
     let currentLineWidth = 2;
-    let drawingData = {}; // 問題IDごとのキャンバスデータ保存用
+    let drawingData = {};
 
-    // ======= 初期化・セキュリティ =======
+    // ======= 初期化 =======
     window.onload = () => {
         if(localStorage.getItem('exam_banned') === 'true' || localStorage.getItem('exam_finished') === 'true') {
             document.getElementById('ban-overlay').style.display = 'flex';
-            document.getElementById('ban-overlay').innerHTML = "<h1 style='color:red;'>受験資格がありません</h1><p>すでに受験済み、または不正により無効化されています。</p>";
+            document.getElementById('ban-reason').innerHTML = "すでに受験済み、または不正により無効化されています。";
             return;
         }
     };
@@ -251,38 +318,32 @@
     // ======= ログイン処理 =======
     function moveFocus(idx) {
         const val = document.getElementById(`c${idx}`).value;
-        if(val.length === 1 && idx < 6) { document.getElementById(`c${idx+1}`).focus(); }
+        if(val.length === 1 && idx < 6) document.getElementById(`c${idx+1}`).focus();
     }
 
-    function verifyLogin() {
+    async function verifyLogin() {
         let code = "";
-        for(let i=1; i<=6; i++) { code += document.getElementById(`c${i}`).value; }
+        for(let i=1; i<=6; i++) code += document.getElementById(`c${i}`).value;
         const name = document.getElementById('student-name').value.trim();
 
-        if(!/^\d{6}$/.test(code)) { alert("受験番号は6桁の数字を入力してください。"); return; }
-        if(!/^[\u3040-\u309F\s]+$/.test(name)) { alert("氏名は「ひらがな」とスペースのみで入力してください。"); return; }
+        if(!/^\d{6}$/.test(code)) { await customAlert("受験番号は6桁の数字を入力してください。"); return; }
+        if(!/^[\u3040-\u309F\s]+$/.test(name)) { await customAlert("氏名は「ひらがな」とスペースのみで入力してください。"); return; }
 
         studentInfo.id = "MMU-" + code;
         studentInfo.name = name;
-        
         document.getElementById('disp-id').textContent = studentInfo.id;
         
-        // ローカルストレージに「受験開始」フラグを立てる（二度見防止の第一歩）
         localStorage.setItem('exam_started', 'true');
-        
         startTest();
     }
 
-    // ======= 試験制御 =======
+    // ======= 試験制御・セキュリティ =======
     function startTest() {
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
         document.getElementById('screen-test').classList.add('active');
-        
-        // 全画面化要求
         try { document.documentElement.requestFullscreen(); } catch(e){}
         isTestActive = true;
         
-        // セキュリティイベント
         document.addEventListener('fullscreenchange', handleFSChange);
         window.addEventListener('blur', () => { if(isTestActive) penalize("ウィンドウからフォーカスが外れました"); });
 
@@ -290,12 +351,12 @@
     }
 
     function handleFSChange() {
-        if(!document.fullscreenElement && isTestActive) {
+        // adminモーダルやダイアログが開いている時はFSチェックを一時バイパスする処理も可能だが、
+        // 厳密なCBTなので、FS解除＝即警告とする。
+        if(!document.fullscreenElement && isTestActive && document.getElementById('admin-modal').style.display !== 'block') {
             fsErrors++;
             if(fsErrors >= MAX_FS_ERRORS) {
-                localStorage.setItem('exam_banned', 'true');
-                document.getElementById('ban-overlay').style.display = 'flex';
-                isTestActive = false;
+                banStudent("全画面表示の意図的な解除が制限回数を超えました。");
             } else {
                 document.getElementById('warn-left').textContent = MAX_FS_ERRORS - fsErrors;
                 document.getElementById('fs-warning').style.display = 'flex';
@@ -303,19 +364,74 @@
         }
     }
 
-    function restoreFullscreen() {
-        document.documentElement.requestFullscreen().then(() => {
+    async function restoreFullscreen() {
+        try {
+            await document.documentElement.requestFullscreen();
             document.getElementById('fs-warning').style.display = 'none';
-        }).catch(()=>alert("全画面化がブロックされました。ブラウザの設定を確認してください。"));
+        } catch(e) {
+            await customAlert("全画面化がブロックされました。ブラウザの設定を確認してください。");
+        }
     }
 
-    function penalize(msg) {
+    async function penalize(msg) {
         fsErrors++;
-        alert(`【警告】${msg}\nこれ以上の不正操作は受験資格喪失となります。`);
         if(fsErrors >= MAX_FS_ERRORS) {
-            localStorage.setItem('exam_banned', 'true');
-            document.getElementById('ban-overlay').style.display = 'flex';
-            isTestActive = false;
+            banStudent(msg + "<br>制限回数を超えたため、受験資格を喪失しました。");
+        } else {
+            await customAlert(`【警告】${msg}\nこれ以上の不正操作は受験資格喪失となります。`, "セキュリティ警告");
+        }
+    }
+
+    function banStudent(reason = "不正なアクセスまたは操作を検知しました。") {
+        localStorage.setItem('exam_banned', 'true');
+        isTestActive = false;
+        clearInterval(timerInterval);
+        document.getElementById('ban-reason').innerHTML = reason;
+        document.getElementById('ban-overlay').style.display = 'flex';
+        document.getElementById('fs-warning').style.display = 'none';
+        if(document.exitFullscreen) document.exitFullscreen().catch(()=>{});
+    }
+
+    // ======= 教職員管理機能 =======
+    async function openAdmin() {
+        const pwd = await customPrompt("教職員用パスワードを入力してください", "教職員認証");
+        if(pwd === null) return; // キャンセル
+
+        if(pwd === "admin") {
+            adminPwdFails = 0; // 成功でリセット
+            document.getElementById('admin-modal').style.display = 'block';
+        } else {
+            adminPwdFails++;
+            if(adminPwdFails >= 3) {
+                await customAlert("パスワードの誤入力が3回に達しました。セキュリティ保護のためシステムをロックします。", "認証失敗 (BAN)");
+                banStudent("教職員メニューへの不正アクセスの試行が検出されました。");
+            } else {
+                await customAlert(`パスワードが違います。（残り試行可能回数: ${3 - adminPwdFails}回）`, "エラー");
+            }
+        }
+    }
+
+    function closeAdmin() {
+        document.getElementById('admin-modal').style.display = 'none';
+        // FS警告中でなければ全画面復帰を試みる
+        if(isTestActive && document.getElementById('fs-warning').style.display !== 'flex') {
+            try{ document.documentElement.requestFullscreen(); }catch(e){}
+        }
+    }
+
+    async function resetTimer() {
+        timeLeft = timeLimit;
+        await customAlert("現在の科目の制限時間をリセットしました。", "完了");
+    }
+
+    async function resetBan() {
+        const ok = await customConfirm("BAN（追放）状態と全記録を解除し、初期状態に戻しますか？", "BAN解除確認", true);
+        if(ok) {
+            localStorage.removeItem('exam_banned');
+            localStorage.removeItem('exam_finished');
+            localStorage.removeItem('exam_started');
+            await customAlert("制限フラグを解除しました。ページをリロードします。");
+            location.reload();
         }
     }
 
@@ -326,7 +442,6 @@
         currentQIdx = 0;
         timeLeft = timeLimit;
         
-        // データ初期化（見直しフラグや解答保持領域）
         testData[subj].forEach(q => { if(q.ans === undefined) { q.ans = ""; q.review = false; } });
         
         buildNav();
@@ -359,8 +474,8 @@
     }
 
     function loadQuestion() {
-        resizeCanvas(); // Canvasサイズをコンテナに合わせる
-        restoreCanvas(); // 前回の描画を復元
+        resizeCanvas();
+        restoreCanvas();
 
         const subj = subjects[currentSubjIdx];
         const q = testData[subj][currentQIdx];
@@ -402,7 +517,7 @@
         document.getElementById('btn-prev').disabled = currentQIdx === 0;
         document.getElementById('btn-next').disabled = currentQIdx === testData[subj].length - 1;
         
-        buildNav(); // ナビの色更新
+        buildNav();
     }
 
     function changeQ(dir) {
@@ -410,28 +525,26 @@
         currentQIdx += dir;
         loadQuestion();
     }
-
     function updateNavUI() { buildNav(); }
-
     function toggleReview() {
-        const subj = subjects[currentSubjIdx];
-        testData[subj][currentQIdx].review = document.getElementById('review-check').checked;
+        testData[subjects[currentSubjIdx]][currentQIdx].review = document.getElementById('review-check').checked;
         buildNav();
     }
 
-    function submitSubject(auto = false) {
+    async function submitSubject(auto = false) {
         const subj = subjects[currentSubjIdx];
         const unans = testData[subj].some(q => q.ans === "");
-        if(!auto && unans) {
-            if(!confirm("未解答の問題があります。本当に提出しますか？")) return;
-        } else if(!auto) {
-            if(!confirm(`${subj}の解答を提出して次の科目へ進みますか？`)) return;
+        
+        if(!auto) {
+            let msg = unans ? "未解答の問題があります。本当に提出しますか？" : `${subj}の解答を提出して次の科目へ進みますか？`;
+            const ok = await customConfirm(msg, "提出確認", unans);
+            if(!ok) return;
         }
 
         saveCanvas();
         currentSubjIdx++;
         if(currentSubjIdx < subjects.length) {
-            alert(`${subj}の試験が終了しました。続いて「${subjects[currentSubjIdx]}」を開始します。`);
+            await customAlert(`${subj}の試験が終了しました。続いて「${subjects[currentSubjIdx]}」を開始します。`, "科目終了");
             initSubject();
         } else {
             finishAll();
@@ -446,8 +559,6 @@
         
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
         document.getElementById('screen-finish').classList.add('active');
-        
-        // MMU- + IDの後半
         document.getElementById('cert-code').textContent = studentInfo.id;
     }
 
@@ -470,17 +581,15 @@
             ctx.globalCompositeOperation = (tool === 'eraser') ? 'destination-out' : 'source-over';
             if(tool === 'pen') { currentColor = color; currentLineWidth = 2; }
             if(tool === 'marker') { currentColor = color; currentLineWidth = 15; }
-            if(tool === 'eraser') { currentLineWidth = 20; }
+            if(tool === 'eraser') { currentLineWidth = 30; }
         }
     }
 
-    function clearCanvas() {
-        if(confirm('書き込みをすべて消去しますか？')) {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-        }
+    async function clearCanvasPrompt() {
+        const ok = await customConfirm('現在の問題の書き込みをすべて消去しますか？', '全消去確認', true);
+        if(ok) ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
 
-    // 描画イベント
     function getPos(e) {
         const rect = canvas.getBoundingClientRect();
         return { x: e.clientX - rect.left, y: e.clientY - rect.top };
@@ -489,8 +598,7 @@
     canvas.addEventListener('mousedown', (e) => {
         isDrawing = true;
         const p = getPos(e);
-        ctx.beginPath();
-        ctx.moveTo(p.x, p.y);
+        ctx.beginPath(); ctx.moveTo(p.x, p.y);
     });
     canvas.addEventListener('mousemove', (e) => {
         if(!isDrawing) return;
@@ -498,14 +606,12 @@
         ctx.lineTo(p.x, p.y);
         ctx.strokeStyle = currentColor;
         ctx.lineWidth = currentLineWidth;
-        ctx.lineCap = 'round';
-        ctx.lineJoin = 'round';
+        ctx.lineCap = 'round'; ctx.lineJoin = 'round';
         ctx.stroke();
     });
     canvas.addEventListener('mouseup', () => { isDrawing = false; });
     canvas.addEventListener('mouseleave', () => { isDrawing = false; });
 
-    // キャンバスデータの保存・復元（科目名＋問題IDキー）
     function saveCanvas() {
         const key = `${subjects[currentSubjIdx]}_${currentQIdx}`;
         drawingData[key] = canvas.toDataURL();
@@ -518,30 +624,6 @@
             img.onload = () => ctx.drawImage(img, 0, 0);
             img.src = drawingData[key];
         }
-    }
-
-    // ======= 教職員管理機能 =======
-    function openAdmin() {
-        const pwd = prompt("教職員用パスワードを入力してください:");
-        if(pwd === "admin") {
-            document.getElementById('admin-modal').style.display = 'block';
-        } else if (pwd !== null) {
-            alert("パスワードが違います。");
-        }
-    }
-
-    function resetTimer() {
-        timeLeft = timeLimit;
-        alert("現在の科目の制限時間をリセットしました。");
-    }
-
-    function resetBan() {
-        localStorage.removeItem('exam_banned');
-        localStorage.removeItem('exam_finished');
-        localStorage.removeItem('exam_started');
-        fsErrors = 0;
-        alert("制限・完了フラグを解除しました。ページをリロードすると最初から開始できます。");
-        location.reload();
     }
 </script>
 </body>
