@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBT入試システム - 店魅偉屋大学付属幼小中高一貫教育校</title>
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2b6cb0;
+            --background-color: #f7fafc;
+            --border-color: #cbd5e0;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* ヘッダーエリア */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .school-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .timer-area {
+            background-color: #e53e3e;
+            padding: 5px 15px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* メインコンテンツエリア */
+        .main-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* 左側：問題ナビゲーション */
+        .sidebar {
+            width: 250px;
+            border-right: 2px solid var(--border-color);
+            background-color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .nav-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .question-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .q-btn {
+            background-color: #edf2f7;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 10px 0;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .q-btn.active {
+            background-color: var(--secondary-color);
+            color: white;
+            border-color: var(--secondary-color);
+        }
+
+        .q-btn.answered {
+            border: 2px solid #48bb78;
+            background-color: #f0fff4;
+        }
+
+        .q-btn.answered.active {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        /* 右側：問題・解答エリア */
+        .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            margin: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .question-container {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .question-header {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .question-body {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .answer-input-area {
+            background-color: #f7fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+        }
+
+        /* 解答形式ごとのスタイル */
+        .option-item {
+            display: block;
+            margin-bottom: 12px;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .option-item:hover {
+            background-color: #ebf8ff;
+        }
+
+        .option-item input {
+            margin-right: 10px;
+        }
+
+        .text-input {
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        /* 下部ナビゲーション */
+        .footer-nav {
+            background-color: #edf2f7;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .btn {
+            padding: 10px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-prev {
+            background-color: #cbd5e0;
+            color: #4a5568;
+        }
+
+        .btn-next {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-submit {
+            background-color: #48bb78;
+            color: white;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ヘッダー -->
+    <header>
+        <div>
+            <span class="school-title">店魅偉屋大学付属幼小中高一貫教育校</span>
+            <span style="margin-left: 20px;">令和X年度 総合選抜適性検査 (CBT版)</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 20px;">
+            <div>受験番号: <strong id="student-id">TEM-2024-089</strong></div>
+            <div class="timer-area">残り時間 <span id="timer">45:00</span></div>
+        </div>
+    </header>
+
+    <!-- メインエリア -->
+    <div class="main-container">
+        <!-- 左サイドバー -->
+        <div class="sidebar">
+            <div>
+                <div class="nav-title">問題一覧</div>
+                <div class="question-grid" id="question-nav-grid">
+                    <!-- JSで動的にボタンを生成 -->
+                </div>
+            </div>
+            <div>
+                <button class="btn btn-submit" onclick="submitExam()">試験を終了する</button>
+            </div>
+        </div>
+
+        <!-- 右コンテンツエリア -->
+        <div class="content-area">
+            <div class="question-container" id="question-container">
+                <div class="question-header" id="question-title">問題</div>
+                <div class="question-body" id="question-text">読み込み中...</div>
+                <div class="answer-input-area" id="answer-area">
+                    <!-- 解答UIがここに動的に入ります -->
+                </div>
+            </div>
+
+            <!-- フッターナビゲーション -->
+            <div class="footer-nav">
+                <button class="btn btn-prev" id="btn-prev" onclick="prevQuestion()">前の問題へ</button>
+                <button class="btn btn-next" id="btn-next" onclick="nextQuestion()">次の問題へ</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 模擬問題データ (一貫校を想定した総合的な問題)
+        const questions = [
+            {
+                id: 1,
+                title: "問題 1（総合適性・図形論理）",
+                text: "ある規則に従って並んでいる記号があります。<br><strong>「○ △ □ ○ △ □ ？」</strong><br>この規則に基づいたとき、？に入る記号として最も適切なものを1つ選択してください。",
+                type: "single",
+                options: ["○", "△", "□", "☆"],
+                userAnswer: null
+            },
+            {
+                id: 2,
+                title: "問題 2（算数・数学的思考）",
+                text: "店魅偉屋大学付属校の食堂では、A定食とB定食があります。ある日、食堂を利用した生徒120人のうち、A定食を選んだ人はB定食を選んだ人の2倍より15人少なかったです。このとき、A定食を選んだ人数を半角数字で入力してください。",
+                type: "text",
+                placeholder: "例: 45",
+                userAnswer: ""
+            },
+            {
+                id: 3,
+                title: "問題 3（社会・一般教養）",
+                text: "環境問題において言及される「3R」に該当するものを、以下の中から<strong>すべて</strong>選んでください。",
+                type: "multiple",
+                options: ["Reduce（リデュース）", "Reuse（リユース）", "Recycle（リサイクル）", "Reform（リフォーム）"],
+                userAnswer: [] // 複数選択時は配列で保持
+            },
+            {
+                id: 4,
+                title: "問題 4（国語・表現力）",
+                text: "次の言葉遣いのうち、敬語の使い方として<strong>誤っているもの</strong>を1つ選んでください。",
+                type: "single",
+                options: [
+                    "先生が資料を拝見されました。",
+                    "こちらで少々お待ちください。",
+                    "お荷物をお持ちいたします。",
+                    "先輩にお聞きしたいことがあります。"
+                ],
+                userAnswer: null
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let timeLeft = 45 * 60; // 45分（秒換算）
+
+        // タイマー制御
+        function startTimer() {
+            const timerElement = document.getElementById('timer');
+            const interval = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(interval);
+                    alert("試験時間が終了しました。自動的に解答を提出します。");
+                    submitExam();
+                    return;
+                }
+                timeLeft--;
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            }, 1000);
+        }
+
+        // ナビゲーションボタンの生成
+        function initNavigation() {
+            const grid = document.getElementById('question-nav-grid');
+            grid.innerHTML = '';
+            questions.forEach((q, index) => {
+                const btn = document.createElement('button');
+                btn.className = `q-btn ${index === currentQuestionIndex ? 'active' : ''}`;
+                btn.id = `nav-btn-${index}`;
+                btn.textContent = q.id;
+                btn.onclick = () => jumpToQuestion(index);
+                grid.appendChild(btn);
+            });
+            updateNavStatus();
+        }
+
+        // ナビゲーションの未回答・回答済ステータス更新
+        function updateNavStatus() {
+            questions.forEach((q, index) => {
+                const btn = document.getElementById(`nav-btn-${index}`);
+                if (!btn) return;
+
+                // 回答があるかどうかのチェック
+                let isAnswered = false;
+                if (q.type === 'single' && q.userAnswer !== null) {
+                    isAnswered = true;
+                } else if (q.type === 'text' && q.userAnswer.trim() !== "") {
+                    isAnswered = true;
+                } else if (q.type === 'multiple' && q.userAnswer.length > 0) {
+                    isAnswered = true;
+                }
+
+                if (isAnswered) {
+                    btn.classList.add('answered');
+                } else {
+                    btn.classList.remove('answered');
+                }
+
+                // アクティブ状態の切り替え
+                if (index === currentQuestionIndex) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+        // 問題の表示
+        function renderQuestion() {
+            const q = questions[currentQuestionIndex];
+            document.getElementById('question-title').textContent = q.title;
+            document.getElementById('question-text').innerHTML = q.text;
+
+            const answerArea = document.getElementById('answer-area');
+            answerArea.innerHTML = '';
+
+            // 前後ボタンの制御
+            document.getElementById('btn-prev').disabled = currentQuestionIndex === 0;
+            document.getElementById('btn-next').disabled = currentQuestionIndex === questions.length - 1;
+
+            if (q.type === 'single') {
+                // 単一選択（ラジオボタン）
+                q.options.forEach((option, idx) => {
+                    const label = document.createElement('label');
+                    label.className = 'option-item';
+                    
+                    const radio = document.createElement('input');
+                    radio.type = 'radio';
+                    radio.name = `question-${q.id}`;
+                    radio.value = idx;
+                    radio.checked = q.userAnswer === idx;
+                    radio.onchange = () => {
+                        q.userAnswer = idx;
+                        updateNavStatus();
+                    };
+
+                    label.appendChild(radio);
+                    label.appendChild(document.createTextNode(option));
+                    answerArea.appendChild(label);
+                });
+            } else if (q.type === 'multiple') {
+                // 複数選択（チェックボックス）
+                q.options.forEach((option, idx) => {
+                    const label = document.createElement('label');
+                    label.className = 'option-item';
+                    
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.name = `question-${q.id}`;
+                    checkbox.value = idx;
+                    checkbox.checked = q.userAnswer.includes(idx);
+                    checkbox.onchange = () => {
+                        if (checkbox.checked) {
+                            if (!q.userAnswer.includes(idx)) q.userAnswer.push(idx);
+                        } else {
+                            q.userAnswer = q.userAnswer.filter(item => item !== idx);
+                        }
+                        updateNavStatus();
+                    };
+
+                    label.appendChild(checkbox);
+                    label.appendChild(document.createTextNode(option));
+                    answerArea.appendChild(label);
+                });
+            } else if (q.type === 'text') {
+                // 記述式テキスト
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.className = 'text-input';
+                input.placeholder = q.placeholder;
+                input.value = q.userAnswer;
+                input.oninput = (e) => {
+                    q.userAnswer = e.target.value;
+                    updateNavStatus();
+                };
+                answerArea.appendChild(input);
+            }
+
+            updateNavStatus();
+        }
+
+        // ボタン遷移
+        function nextQuestion() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                renderQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                renderQuestion();
+            }
+        }
+
+        function jumpToQuestion(index) {
+            currentQuestionIndex = index;
+            renderQuestion();
+        }
+
+        // 試験終了処理
+        function submitExam() {
+            let confirmation = confirm("試験を終了し、解答を送信しますか？（送信後は修正できません）");
+            if (confirmation) {
+                let summary = "【解答結果の確認】\n\n";
+                questions.forEach(q => {
+                    let ansStr = "未回答";
+                    if (q.type === 'single' && q.userAnswer !== null) {
+                        ansStr = `選択肢 [${q.userAnswer + 1}] : ${q.options[q.userAnswer]}`;
+                    } else if (q.type === 'text' && q.userAnswer.trim() !== "") {
+                        ansStr = q.userAnswer;
+                    } else if (q.type === 'multiple' && q.userAnswer.length > 0) {
+                        ansStr = q.userAnswer.map(idx => `[${idx + 1}] ${q.options[idx]}`).join(", ");
+                    }
+                    summary += `${q.title}: ${ansStr}\n`;
+                });
+                alert(summary + "\n以上の内容で送信を完了しました。お疲れ様でした。");
+                window.close(); // タブを閉じる（ブラウザ制限で動作しない場合もあります）
+            }
+        }
+
+        // 初期化処理
+        window.onload = () => {
+            initNavigation();
+            renderQuestion();
+            startTimer();
+        };
+    </script>
+</body>
+</html>
