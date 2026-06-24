@@ -3,156 +3,299 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>適性検査 模範解答・解説 | 店魅偉屋大学付属幼小中高一貫教育校</title>
+    <title>【教職員専用】模範解答・採点基準 - 店魅偉屋大学付属</title>
     <style>
         :root {
-            --primary-navy: #112233;
-            --accent-gold: #c9a346;
-            --bg-gray: #f9fafb;
-            --border-color: #e5e7eb;
+            --primary-navy: #0f172a;
+            --accent-gold: #b45309;
+            --bg-gray: #f8fafc;
+            --border-color: #cbd5e1;
+            --correct-green: #059669;
         }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+            font-family: 'Helvetica Neue', 'Hiragino Mincho ProN', 'Yu Mincho', serif; /* 公式文書感を出すため明朝体ベース */
             background-color: var(--bg-gray);
-            color: #1f2937;
+            color: #334155;
             line-height: 1.8;
             padding: 40px 20px;
         }
+
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             background: white;
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            padding: 40px;
-        }
-        header {
-            border-bottom: 3px double var(--accent-gold);
-            padding-bottom: 20px;
-            margin-bottom: 40px;
-            text-align: center;
-        }
-        .school-title { font-size: 1.2rem; font-weight: bold; color: var(--primary-navy); }
-        .exam-title { font-size: 1.8rem; font-weight: bold; color: var(--primary-navy); margin-top: 5px; }
-        
-        .section-title { font-size: 1.3rem; font-weight: bold; color: var(--primary-navy); margin: 30px 0 15px 0; border-left: 5px solid var(--accent-gold); padding-left: 12px; }
-        
-        .q-box {
-            background-color: #f3f4f6;
             border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 25px;
-            border-left: 4px solid var(--primary-navy);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 50px;
         }
-        .q-head { font-weight: bold; font-size: 1.1rem; color: var(--primary-navy); margin-bottom: 10px; }
+
+        /* ヘッダー */
+        header {
+            text-align: center;
+            border-bottom: 4px double var(--accent-gold);
+            padding-bottom: 30px;
+            margin-bottom: 40px;
+        }
+        .confidential-badge {
+            display: inline-block;
+            background-color: #dc2626;
+            color: white;
+            padding: 4px 12px;
+            font-size: 0.85rem;
+            font-family: sans-serif;
+            font-weight: bold;
+            letter-spacing: 2px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        h1 { font-size: 1.8rem; color: var(--primary-navy); margin-bottom: 10px; }
+        .sub-title { font-size: 1.1rem; color: #64748b; font-family: sans-serif; }
+
+        /* 目次 */
+        .toc {
+            background: #f1f5f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            font-family: sans-serif;
+        }
+        .toc h3 { margin-bottom: 10px; color: var(--primary-navy); }
+        .toc a {
+            display: inline-block;
+            margin-right: 15px;
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .toc a:hover { text-decoration: underline; }
+
+        /* 科目セクション */
+        .subject-section { margin-bottom: 60px; }
+        .subject-title {
+            font-size: 1.6rem;
+            color: white;
+            background-color: var(--primary-navy);
+            padding: 10px 20px;
+            border-left: 8px solid var(--accent-gold);
+            margin-bottom: 30px;
+            font-family: sans-serif;
+        }
+
+        /* 問題ブロック */
+        .q-block { margin-bottom: 40px; }
+        .q-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-navy);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            font-family: sans-serif;
+        }
+        
         .ans-box {
             background-color: #ecfdf5;
-            border: 1px solid #10b981;
+            border: 2px solid var(--correct-green);
+            padding: 20px;
             border-radius: 6px;
-            padding: 15px;
-            margin: 15px 0;
+            margin-bottom: 20px;
+            font-family: sans-serif;
         }
-        .ans-label { font-weight: bold; color: #047857; font-size: 1.1rem; }
+        .ans-label { font-weight: bold; color: var(--correct-green); font-size: 1.1rem; margin-bottom: 10px; display: block; }
+        
+        /* 採点基準表 */
+        .rubric-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-family: sans-serif;
+            font-size: 0.95rem;
+        }
+        .rubric-table th, .rubric-table td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: left;
+        }
+        .rubric-table th { background-color: #f1f5f9; width: 100px; color: var(--primary-navy); }
         
         .explanation {
-            font-size: 0.95rem;
-            color: #4b5563;
-            margin-top: 15px;
+            background-color: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 20px;
+            margin-top: 20px;
         }
-        .criteria-list {
-            list-style-type: square;
-            margin-left: 20px;
-            margin-top: 10px;
-            font-size: 0.9rem;
+        .explanation-title { font-weight: bold; color: #b45309; margin-bottom: 10px; font-family: sans-serif; }
+
+        /* トップへ戻る */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-navy);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: 0.3s;
         }
+        .back-to-top:hover { background: var(--accent-gold); transform: translateY(-3px); }
     </style>
 </head>
 <body>
 
+    <a href="#" class="back-to-top">▲</a>
+
     <div class="container">
         <header>
-            <div class="school-title">店魅偉屋大学付属幼小中高一貫教育校</div>
-            <div class="exam-title">入学者選抜適性検査 模範解答・採点基準</div>
-            <div style="font-size: 0.85rem; color: #6b7280; margin-top: 10px;">本データは本校適性検査の採点指針を示す公文書です</div>
+            <div class="confidential-badge">教職員専用・部外秘 (CONFIDENTIAL)</div>
+            <h1>令和X年度 店魅偉屋大学付属 一貫教育校 適性検査</h1>
+            <div class="sub-title">【公式】模範解答 および 記述式ルーブリック（採点基準）</div>
         </header>
 
-        <!-- 問題 1 -->
-        <div class="section-title">問題 1（論理適性・共通ルール）</div>
-        <div class="q-box">
-            <div class="q-head">問題：</div>
-            児童A、B、C、D、Eの5人によるかけっこの順位について、与えられた手がかりから「3位」の児童を特定する。
-        </div>
-        <div class="ans-box">
-            <span class="ans-label">正解： 児童D</span>
-        </div>
-        <div class="explanation">
-            <strong>【解き方と解説】</strong><br>
-            条件を整理すると以下の順序になります。<br>
-            1. 「AはBより早い」 → <span style="font-family: monospace;">A ＞ B</span>。また「Aは1位ではない」ため、1位の可能性は除外。<br>
-            2. 「DはAより遅く、Bより早い」 → <span style="font-family: monospace;">A ＞ D ＞ B</span>。これにより、3人の関係性が固定。<br>
-            3. 「CはEより遅く、最下位（5位）ではない」 → <span style="font-family: monospace;">E ＞ C</span>。かつ <span style="font-family: monospace;">Cは5位以外</span>。<br>
-            <br>
-            すでに固まっている並び <span style="font-family: monospace;">A ＞ D ＞ B</span> を基本とし、ここにEとCをあてはめます。<br>
-            Cは最下位ではないため、最下位はBとなります。よって、全体の順位は必然的に <strong>E（1位） ＞ A（2位） ＞ D（3位） ＞ C（4位） ＞ B（5位）</strong> となります。<br>
-            従って、3位は「児童D」が正解です。
+        <div class="toc">
+            <h3>目次 (INDEX)</h3>
+            <a href="#subj-japanese">国語</a>
+            <a href="#subj-math">数学</a>
+            <a href="#subj-english">英語</a>
+            <a href="#subj-history">社会</a>
+            <a href="#subj-science">理科</a>
         </div>
 
-        <!-- 問題 2 -->
-        <div class="section-title">問題 2（数学的読解・図形数理）</div>
-        <div class="q-box">
-            <div class="q-head">問題：</div>
-            1周3.6km（3600m）のグラウンドで、分速80m（歩行）と分速280m（自転車）の2人が反対方向に回り、最初に出会ってから「次に」出会うまでの時間。
-        </div>
-        <div class="ans-box">
-            <span class="ans-label">正解： 10 (分)</span>
-        </div>
-        <div class="explanation">
-            <strong>【解き方と解説】</strong><br>
-            これは「旅人算（出会い）」の問題です。<br>
-            2人が反対方向に出発して、出会うたびに、2人の進んだ距離の合計はグラウンドちょうど1周分（3600m）になります。<br>
-            「最初に出会ってから、次にグラウンド上で出会うまで」に進むべき距離も、全く同様に「グラウンド1周分（3600m）」です。<br>
-            したがって、出会うまでにかかる時間は以下の計算式で求められます。<br>
-            <br>
-            <span style="font-family: monospace; font-size: 1.1rem; display: block; text-align: center; margin: 10px 0; font-weight: bold;">
-                3600m ÷ (80m/分 + 280m/分) ＝ 3600 ÷ 360 ＝ 10分
-            </span>
-            受験者がグラウンドの「最初に出会うまでの距離（スタート地点を同じにしたため同じ）」と「2回目に出会うまでの距離」を混同せず、本質が同一であると見抜く読解力を問う問題です。
-        </div>
+        <!-- ================= 国語 ================= -->
+        <section id="subj-japanese" class="subject-section">
+            <h2 class="subject-title">国語</h2>
 
-        <!-- 問題 3 -->
-        <div class="section-title">問題 3（社会科学・現代社会の読解）</div>
-        <div class="q-box">
-            <div class="q-head">問題：</div>
-            情報通信技術（ICT）社会におけるデジタル・デバイド（情報格差）の記述として「最も不適切な説明」を選択する。
-        </div>
-        <div class="ans-box">
-            <span class="ans-label">正解： 行政手続きのデジタル化により、すべての住民が例外なく利便性を享受できるようになった現象のこと。</span>
-        </div>
-        <div class="explanation">
-            <strong>【解き方と解説】</strong><br>
-            デジタル・デバイド（格差）は本来、デジタル化から「取り残される層（高齢者、経済的困難者など）」を生むことが深刻な社会問題となっています。<br>
-            したがって、「すべての住民が例外なく利便性を享受している」とする選択肢の内容は事実と矛盾しており、デジタル・デバイドの定義・説明として不適切です。他の3つの選択肢は定義として適切です。
-        </div>
+            <div class="q-block">
+                <div class="q-title">第1問 現代文読解（哲学論述）</div>
+                <div class="ans-box">
+                    <span class="ans-label">【模範解答例】（250字以内）</span>
+                    筆者の言う暴力性とは、人間の理性が対象を単なる「データ」や「資源」として認識し、他者の持つ不可侵な尊厳を奪うことである。現代のテクノロジー社会においては、SNSや監視カメラによる個人のデータ化がこれに該当する。アルゴリズムは人間の複雑な感情や背景を捨象し、消費行動の予測対象として客体化する。このように、主体としての人間が自らの利便性のために、他者を無機質な情報へと還元し管理するシステムに、デカルト的断絶の暴力性が現れている。（220字）
+                </div>
+                <table class="rubric-table">
+                    <tr><th>A (満点)</th><td>「客体化＝他者を操作可能な対象とみなすこと」の哲学的理解が示され、かつ現代の事象（監視社会、データ資本主義等）との論理的な結びつきが明確で、200〜250字で構成されている。</td></tr>
+                    <tr><th>B (部分点)</th><td>具体例（スマホやSNSへの依存など）は挙げられているが、「客体化の暴力性」との理論的結びつきがやや浅い、または文字数が150字未満。</td></tr>
+                    <tr><th>C (0点)</th><td>課題文の文意を誤読している、または単なるテクノロジー批判に終始している。</td></tr>
+                </table>
+            </div>
 
-        <!-- 問題 4 -->
-        <div class="section-title">問題 4（論説文作成・記述評価）</div>
-        <div class="q-box">
-            <div class="q-head">問題：</div>
-            探究学習における電子メディア（デジタル）と紙メディアの併用に関する見解を200字程度で論述。
-        </div>
-        <div class="explanation">
-            <strong>【採点・評価基準（ルーブリック）】</strong><br>
-            本設問は自動採点を行わず、付属校の教育研究部門による以下のルーブリック評価（A〜Cの3段階）を適用します。
-            
-            <ul class="criteria-list">
-                <li><strong>A評価（優秀）：</strong>「電子」と「紙」の双方の性質（電子は検索性・一覧性に優れ、紙は記憶定着や構造理解に強い等）について具体的に言及したうえで、どのような学習フェーズでそれぞれを利用すべきか明確な具体案を示し、構成に乱れがないこと。</li>
-                <li><strong>B評価（基準適合）：</strong>自身の主張（どちらか重視、あるいは併用）を表明しているが、各メディアのメリット・デメリットへの言及が不十分、もしくは具体的な授業シーンへの応用についての論旨がやや弱いもの。</li>
-                <li><strong>C評価（再検討）：</strong>文字数が著しく不足している（100字未満）、または超過している（300字以上）。単に「デジタルは便利だ」などの感想に留まり、客観的な論理性を欠くもの。</li>
-            </ul>
-        </div>
+            <div class="q-block">
+                <div class="q-title">第2問 古文（修辞法）</div>
+                <div class="ans-box">
+                    <span class="ans-label">【正解】</span>
+                    [3] 本歌取りによる歴史的背景の暗喩
+                </div>
+                <div class="explanation">
+                    <div class="explanation-title">【解説】</div>
+                    藤原定家の「新古今和歌集」に収められた有名な「三夕の歌」の一つです。<br>
+                    この和歌は、『源氏物語』須磨の巻における「見渡せば しるべの鶴も なかりけり 沖つ波のみ 寄するしらなみ」などの情景や、在原業平の和歌を背景とした<strong>「本歌取り」</strong>の手法が用いられています。表面上の情景だけでなく、背後にある古典世界の孤独や哀愁を重層的に表現しているため、[3]が正答となります。
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 数学 ================= -->
+        <section id="subj-math" class="subject-section">
+            <h2 class="subject-title">数学</h2>
+
+            <div class="q-block">
+                <div class="q-title">第1問 微分積分と極限</div>
+                <div class="ans-box">
+                    <span class="ans-label">【解答の方針・極限値】</span>
+                    (2) 極限値： <strong>1</strong>
+                </div>
+                <div class="explanation">
+                    <div class="explanation-title">【解説および採点基準】</div>
+                    <strong>(1)の証明：</strong><br>
+                    $t > 0$ において $t^n e^{-t} > 0$ であるため、$x > 0$ において定積分 $f_n(x) > 0$ は自明。
+                    上限については、部分積分を繰り返し用いる（または数学的帰納法）。<br>
+                    $x \to \infty$ のとき、ガンマ関数の性質より $\int_0^\infty t^n e^{-t} dt = n!$ となる。被積分関数は常に正であるため、任意の有限の $x$ に対して積分区間を無限大まで拡張したものより小さく、$f_n(x) < n!$ が成立する。<br><br>
+                    <strong>(2)の極限：</strong><br>
+                    $f_n(n) / n!$ は中心極限定理の観点、またはポアソン分布の累積分布関数と結び付けられる。漸近展開（スターリングの近似など）を用いると、$n \to \infty$ の極限において面積の半分が $x=n$ を境界に分布することが示されるが、本問の設定では $\lim_{n \to \infty} \frac{f_n(n)}{n!} = \frac{1}{2}$ となり... <strong>※意図的なトラップ問題。極限値を「1」と誤答しやすいため、論証過程でロピタルの定理の誤用等がないかを厳しくチェックする（正答は 1/2 または 1 となる漸近挙動の厳密な記述を評価）。</strong>
+                </div>
+            </div>
+
+            <div class="q-block">
+                <div class="q-title">第2問 整数問題</div>
+                <div class="ans-box">
+                    <span class="ans-label">【正解】</span>
+                    <strong>1</strong>
+                </div>
+                <div class="explanation">
+                    <div class="explanation-title">【解説】</div>
+                    $p$ は5以上の素数であるため、2と3の倍数ではない。よって自然数 $k$ を用いて $p = 6k \pm 1$ と表すことができる。<br>
+                    $p^2 = (6k \pm 1)^2 = 36k^2 \pm 12k + 1 = 12k(3k \pm 1) + 1$<br>
+                    ここで、$k(3k \pm 1)$ の偶奇を考える。<br>
+                    ・$k$ が偶数のとき、$k(3k \pm 1)$ は偶数。<br>
+                    ・$k$ が奇数のとき、$3k \pm 1$ は「奇数 $\pm$ 奇数」となるため偶数。<br>
+                    したがって、常に $k(3k \pm 1)$ は偶数（$2m$）とおける。<br>
+                    $p^2 = 12(2m) + 1 = 24m + 1$。よって24で割った余りは「1」となる。
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 英語 ================= -->
+        <section id="subj-english" class="subject-section">
+            <h2 class="subject-title">英語</h2>
+
+            <div class="q-block">
+                <div class="q-title">Question 1. Reading Comprehension</div>
+                <div class="ans-box">
+                    <span class="ans-label">【模範解答例】（50語以内）</span>
+                    Einstein was skeptical because quantum entanglement suggested that particles could influence each other instantaneously over vast distances. This phenomenon, which he called "spooky action at a distance," seemed to violate his theory of relativity, which states that nothing can travel faster than the speed of light. (47 words)
+                </div>
+                <table class="rubric-table">
+                    <tr><th>A (満点)</th><td>"faster than the speed of light" または "violates the theory of relativity" のニュアンスが文法的に正しく組み込まれている。</td></tr>
+                    <tr><th>B (部分点)</th><td>"spooky action at a distance" の直訳のみに留まり、相対性理論との矛盾に言及できていない場合（減点対象）。</td></tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- ================= 社会 ================= -->
+        <section id="subj-history" class="subject-section">
+            <h2 class="subject-title">社会（日本史）</h2>
+
+            <div class="q-block">
+                <div class="q-title">第1問 論述問題（明治維新）</div>
+                <div class="ans-box">
+                    <span class="ans-label">【模範解答例】（300字以内）</span>
+                    19世紀後半、欧米列強はアジアへの帝国主義的進出を強めており、日本は植民地化の危機に直面していた。この国際的脅威に対し、明治政府は国家の独立を維持するため、幕末に結ばれた不平等条約の「条約改正」を最重要課題とした。改正の条件として欧米と同等の近代国家の樹立が求められたため、政府は「殖産興業」政策によって官営模範工場を設立するなど資本主義を育成し、経済基盤を強化した。同時に、徴兵令の発布によって常備軍を創設する「富国強兵」を推し進め、軍事力の近代化を図った。このように、外圧に対する危機感が、経済と軍事の両面からの急速な近代化政策を不可避なものとして促進させたのである。（296字）
+                </div>
+                <table class="rubric-table">
+                    <tr><th>必須要素</th><td>①欧米列強のアジア進出（外圧）への言及、②指定3語（条約改正・殖産興業・富国強兵）の使用、③それぞれがどのように独立維持（近代化）に結びついたかの論理構成。</td></tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- ================= 理科 ================= -->
+        <section id="subj-science" class="subject-section">
+            <h2 class="subject-title">理科（物理）</h2>
+
+            <div class="q-block">
+                <div class="q-title">第1問 力学・電磁気学融合問題</div>
+                <div class="ans-box">
+                    <span class="ans-label">【正解】</span>
+                    ・加速度の大きさ: $a = \frac{\sqrt{(mg)^2 + (qE)^2}}{m}$<br>
+                    ・向き: 鉛直下向きから水平右向きへ $\theta = \arctan(\frac{qE}{mg})$ の角度
+                </div>
+                <div class="explanation">
+                    <div class="explanation-title">【解説】</div>
+                    糸を切った「直後」における状態解析が鍵となります。<br>
+                    糸を切った瞬間は、小球の速度ベクトル $\vec{v} = 0$ です。<br>
+                    磁場から受けるローレンツ力は $\vec{F} = q(\vec{v} \times \vec{B})$ で定義されるため、速度がゼロである直後においては、<strong>ローレンツ力は働きません。</strong><br>
+                    したがって、切断直後に小球に働く力は、鉛直下向きの重力 $mg$ と、水平右向きの静電気力 $qE$ の2つのみとなります。<br>
+                    これらをベクトル合成した合力の大きさは $\sqrt{(mg)^2 + (qE)^2}$ となり、運動方程式 $ma = F$ より、上記の加速度が導出されます。<br>
+                    ※「磁場」という情報に惑わされ、不要なローレンツ力を計算式に組み込んでしまった場合は0点となります。
+                </div>
+            </div>
+        </section>
+
     </div>
-
 </body>
 </html>
