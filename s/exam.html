@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CBT入学試験 - 店魅偉屋大学付属</title>
+    <title>CBT入学試験 - 店魅偉屋大学付属幼小中高一貫教育校高等学部</title>
     <style>
         :root { --p-color: #0f172a; --s-color: #1e293b; --a-color: #b45309; --danger: #dc2626; --bg: #f1f5f9; }
-        * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
-        body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; background: var(--bg); color: #333; height: 100vh; overflow: hidden; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        /* 問題文テキストは選択可能(マーカー用)、それ以外は選択不可 */
+        body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; background: var(--bg); color: #333; height: 100vh; overflow: hidden; user-select: none; }
+        .selectable-text { user-select: text; -webkit-user-select: text; }
         
         .screen { display: none; width: 100%; height: 100%; position: absolute; top: 0; left: 0; overflow: auto; }
         .screen.active { display: flex; flex-direction: column; }
@@ -19,7 +21,7 @@
 
         /* Login Screen */
         .bg-dark { justify-content: center; align-items: center; background: linear-gradient(135deg, #0f172a, #334155); }
-        .login-card { background: white; padding: 40px; border-radius: 8px; width: 500px; max-width: 90%; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+        .login-card { background: white; padding: 40px; border-radius: 8px; width: 550px; max-width: 95%; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
         .auth-blocks { display: flex; justify-content: center; align-items: center; gap: 8px; margin: 20px 0; }
         .auth-prefix { font-size: 1.5rem; font-weight: bold; font-family: monospace; color: var(--p-color); }
         .code-box { width: 40px; height: 50px; font-size: 1.5rem; text-align: center; border: 2px solid #cbd5e1; border-radius: 6px; text-transform: uppercase; font-family: monospace; }
@@ -35,7 +37,7 @@
 
         /* 待機（黄色）画面 */
         #screen-standby { justify-content: center; align-items: center; background-color: #fef08a; color: #854d0e; text-align: center; padding: 20px; }
-        .standby-box { background: white; padding: 50px; border-radius: 12px; box-shadow: 0 10px 30px rgba(133, 77, 14, 0.2); max-width: 600px; border: 2px solid #eab308; }
+        .standby-box { background: white; padding: 50px; border-radius: 12px; box-shadow: 0 10px 30px rgba(133, 77, 14, 0.2); max-width: 650px; border: 2px solid #eab308; }
         .standby-title { font-size: 2.2rem; font-weight: bold; margin-bottom: 20px; color: #b45309; }
         .standby-msg { font-size: 1.2rem; line-height: 1.8; margin-bottom: 40px; color: #713f12; font-weight: bold; }
 
@@ -56,6 +58,8 @@
         .q-btn.review::after { content: '🚩'; position: absolute; top: -5px; right: -5px; font-size: 0.8rem; }
         
         .main-area { flex: 1; display: flex; flex-direction: column; position: relative; background: white; }
+        
+        /* ツールバー */
         .toolbar { background: #f1f5f9; border-bottom: 1px solid #e2e8f0; padding: 10px; display: flex; gap: 10px; align-items: center; }
         .tool-btn { padding: 5px 10px; cursor: pointer; border: 1px solid #cbd5e1; background: white; border-radius: 4px; font-size: 0.9rem; }
         .tool-btn.active { background: #e0e7ff; border-color: #6366f1; color: #4338ca; font-weight: bold; }
@@ -63,11 +67,17 @@
 
         .content-wrapper { flex: 1; position: relative; overflow-y: auto; padding: 40px; }
         .question-content { position: relative; z-index: 1; }
+        
+        /* ペン用キャンバス */
         .canvas-layer { position: absolute; top: 0; left: 0; z-index: 5; pointer-events: none; }
-        .canvas-layer.drawable { pointer-events: auto; cursor: crosshair; }
+        .canvas-layer.drawable { pointer-events: auto; cursor: crosshair; touch-action: none; } /* スマホスクロール防止 */
 
         .q-title { font-size: 1.4rem; font-weight: bold; margin-bottom: 20px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; }
+        
+        /* 問題文（マーカー対応） */
         .q-text { font-size: 1.1rem; line-height: 2; margin-bottom: 30px; white-space: pre-wrap; }
+        .highlighted-text { background-color: rgba(250, 204, 21, 0.6); padding: 0 2px; border-radius: 2px; }
+
         .textarea-ans { width: 100%; height: 200px; padding: 15px; font-size: 1.1rem; border: 1px solid #cbd5e1; border-radius: 4px; resize: vertical; position: relative; z-index: 10; }
         .radio-ans { display: flex; flex-direction: column; gap: 10px; position: relative; z-index: 10; }
         .radio-label { padding: 15px; border: 1px solid #cbd5e1; border-radius: 4px; cursor: pointer; background: white; }
@@ -129,7 +139,7 @@
         <div style="display:flex; flex-direction:column; gap:12px;">
             <button class="btn" style="background: #2563eb;" onclick="showTerminalResults()">📝 端末の解答履歴と合否を見る</button>
             <button class="btn" onclick="window.open('answers.html', '_blank')">📖 模範解答ページを開く</button>
-            <button class="btn" style="background: #f59e0b; color:black;" onclick="resetTimer()">⏱ タイマーをリセット (50分)</button>
+            <button class="btn" style="background: #f59e0b; color:black;" onclick="resetTimer()">⏱ タイマーをリセット (10分)</button>
             <button class="btn" style="background: var(--danger);" onclick="resetBan()">🔓 受験不可・BAN状態を解除</button>
             <button class="btn btn-outline" style="margin-top: 10px;" onclick="closeAdmin()">閉じる</button>
         </div>
@@ -150,7 +160,7 @@
     <div id="screen-login" class="screen bg-dark active">
         <div class="login-card">
             <h2 style="color: var(--p-color); margin-bottom: 10px;">CBT 入学試験システム</h2>
-            <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 30px;">店魅偉屋大学付属幼小中高一貫教育校</p>
+            <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 30px;">店魅偉屋大学付属幼小中高一貫教育校高等学部</p>
             
             <div style="text-align: left; margin-bottom: 20px;">
                 <label style="font-weight: bold; font-size: 0.9rem;">受験番号 (MMU- 続く6桁)</label>
@@ -179,13 +189,13 @@
         <div class="instruction-container">
             <h2 class="instruction-title">受験者注意事項説明</h2>
             <div class="instruction-body">
-                <p>店魅偉屋大学付属のCBT適性検査を開始します。以下の注意事項を熟読のうえ、試験に臨んでください。</p>
+                <p>店魅偉屋大学付属幼小中高一貫教育校高等学部のCBT適性検査を開始します。以下の注意事項を熟読のうえ、試験に臨んでください。</p>
                 <div class="warning-box">
                     <strong>【重要・不正受験対策について】</strong><br>
                     1. <strong>全画面表示の固定：</strong>試験開始後、意図的に全画面を解除することは禁止されています。<br>
                     2. <strong>画面移動・離脱の禁止：</strong>試験中に他のタブやアプリに切り替えた場合、自動的に不正行為判定プログラムが作動します。<strong>複数回の警告で自動的に受験資格を永久喪失（BAN）します。</strong>
                 </div>
-                <p>3. 各科目の試験時間は <strong>50分間</strong> です。制限時間が経過すると解答は自動提出されます。</p>
+                <p>3. 各科目の試験時間は <strong>10分間</strong> です。制限時間が経過すると解答は自動提出されます。</p>
                 <p>4. 電卓や他のウェブサイトの利用は認められません。</p>
             </div>
             <div style="text-align: center;">
@@ -225,7 +235,7 @@
             </div>
             <div style="display: flex; align-items: center; gap: 20px;">
                 <div>受験番号: <strong id="disp-id">---</strong></div>
-                <div class="timer" id="timer">50:00</div>
+                <div class="timer" id="timer">10:00</div>
             </div>
         </header>
 
@@ -243,20 +253,27 @@
 
             <div class="main-area">
                 <div class="toolbar">
-                    <button class="tool-btn" id="tool-cursor" onclick="setTool('cursor')" class="active">👆 操作</button>
+                    <button class="tool-btn" id="tool-cursor" onclick="setTool('cursor')" class="active">👆 操作 (文字選択)</button>
                     <div style="width:1px; height:20px; background:#cbd5e1; margin:0 5px;"></div>
-                    <button class="tool-btn" id="tool-pen-black" onclick="setTool('pen', '#000000')"><span class="color-dot" style="background:#000;"></span>ペン</button>
-                    <button class="tool-btn" id="tool-pen-red" onclick="setTool('pen', '#dc2626')"><span class="color-dot" style="background:#dc2626;"></span>ペン</button>
-                    <button class="tool-btn" id="tool-marker" onclick="setTool('marker', 'rgba(250,204,21,0.5)')"><span class="color-dot" style="background:#facc15;"></span>マーカー</button>
-                    <button class="tool-btn" id="tool-eraser" onclick="setTool('eraser')">🧽 消しゴム</button>
-                    <button class="tool-btn" style="margin-left:auto; color:var(--danger);" onclick="clearCanvasPrompt()">🗑 全消去</button>
+                    <!-- テキストハイライト機能としてのマーカー -->
+                    <button class="tool-btn" onclick="applyHighlight()"><span class="color-dot" style="background:#facc15;"></span>文字にマーカーを引く</button>
+                    <button class="tool-btn" onclick="clearHighlight()" style="margin-right: 15px;">🧽 マーカー消去</button>
+                    
+                    <div style="width:1px; height:20px; background:#cbd5e1; margin:0 5px;"></div>
+                    <!-- Canvasへのペン描画ツール -->
+                    <button class="tool-btn" id="tool-pen-black" onclick="setTool('pen', '#000000')"><span class="color-dot" style="background:#000;"></span>ペン(黒)</button>
+                    <button class="tool-btn" id="tool-pen-red" onclick="setTool('pen', '#dc2626')"><span class="color-dot" style="background:#dc2626;"></span>ペン(赤)</button>
+                    <button class="tool-btn" id="tool-eraser" onclick="setTool('eraser')">消しゴム</button>
+                    <button class="tool-btn" style="margin-left:auto; color:var(--danger);" onclick="clearCanvasPrompt()">🗑 ペン全消去</button>
                 </div>
 
                 <div class="content-wrapper" id="content-wrapper">
+                    <!-- タッチ対応キャンバス -->
                     <canvas id="canvas" class="canvas-layer"></canvas>
                     <div class="question-content">
                         <div class="q-title" id="q-title">問題</div>
-                        <div class="q-text" id="q-text"></div>
+                        <!-- マーカーを引く対象の文章 (selectable-text) -->
+                        <div class="q-text selectable-text" id="q-text"></div>
                         <div id="ans-area"></div>
                     </div>
                 </div>
@@ -272,7 +289,7 @@
     <!-- Screen 3: 終了 -->
     <div id="screen-finish" class="screen" style="justify-content:center; align-items:center; background:var(--p-color); color:white;">
         <h1 style="color:#10b981; margin-bottom:20px;">全科目の試験が終了しました</h1>
-        <p>解答は暗号化され、本校サーバーに正常に送信されました。</p>
+        <p>解答は暗号化され、店魅偉屋大学付属幼小中高一貫教育校高等学部のサーバーに正常に送信されました。</p>
         <div style="margin-top:30px; font-family:monospace; background:rgba(255,255,255,0.1); padding:20px; border-radius:8px;">
             証明コード: <span id="cert-code" style="font-size:1.5rem; font-weight:bold; color:var(--a-color);"></span>
         </div>
@@ -306,7 +323,7 @@
     function switchScreen(id) { document.querySelectorAll('.screen').forEach(s => s.classList.remove('active')); document.getElementById(id).classList.add('active'); }
 
     const subjects = ['国語', '数学', '英語', '社会', '理科'];
-    const timeLimit = 50 * 60;
+    const timeLimit = 10 * 60; // 10分に変更
     
     let testData = {
         '国語': [
@@ -362,7 +379,10 @@
         if(!/^[\u3040-\u309F\s]+$/.test(name)) { await customAlert("氏名は「ひらがな」とスペースのみで入力してください。"); return; }
 
         studentInfo.id = "MMU-" + code; studentInfo.name = name;
-        Object.keys(testData).forEach(s => testData[s].forEach(q => { if(q.ans===undefined){q.ans=""; q.review=false;} }));
+        Object.keys(testData).forEach(s => testData[s].forEach(q => { 
+            if(q.ans===undefined){q.ans=""; q.review=false;} 
+            if(q.highlightedText===undefined) q.highlightedText = null; 
+        }));
         saveState();
         switchScreen('screen-instruction');
     }
@@ -423,7 +443,7 @@
 
     function closeAdmin() { document.getElementById('admin-modal').style.display = 'none'; if(isTestActive && document.getElementById('fs-warning').style.display !== 'flex') try{ document.documentElement.requestFullscreen(); }catch(e){} }
 
-    async function resetTimer() { timeLeft = timeLimit; saveState(); await customAlert("制限時間をリセットしました。"); }
+    async function resetTimer() { timeLeft = timeLimit; saveState(); await customAlert("制限時間をリセットしました (10分)。"); }
 
     async function resetBan() {
         const ok = await customConfirm("BAN状態と全記録を解除し、初期化しますか？", "BAN解除", true);
@@ -475,7 +495,14 @@
     function loadQuestion() {
         resizeCanvas(); restoreCanvas();
         const subj = subjects[currentSubjIdx]; const q = testData[subj][currentQIdx];
-        document.getElementById('q-title').textContent = q.title; document.getElementById('q-text').textContent = q.text;
+        
+        document.getElementById('q-title').textContent = q.title; 
+        
+        // テキストハイライト状態の復元
+        const qTextNode = document.getElementById('q-text');
+        if (q.highlightedText) { qTextNode.innerHTML = q.highlightedText; } 
+        else { qTextNode.textContent = q.text; }
+
         const ansArea = document.getElementById('ans-area'); ansArea.innerHTML = "";
         
         if(q.type === 'essay') {
@@ -520,7 +547,7 @@
             currentQIdx = 0; timeLeft = timeLimit; saveState();
             await customAlert(`${subj}の試験が終了しました。`);
             if(document.exitFullscreen) document.exitFullscreen().catch(()=>{});
-            goStandby(); // 次の科目の待機画面へ
+            goStandby(); 
         } else finishAll();
     }
 
@@ -531,19 +558,71 @@
         switchScreen('screen-finish'); document.getElementById('cert-code').textContent = studentInfo.id;
     }
 
-    // ======= Canvas・ペンツール =======
+    // ======= テキストマーカー機能 (文章専用) =======
+    function applyHighlight() {
+        const selection = window.getSelection();
+        if (!selection.rangeCount || selection.isCollapsed) return;
+
+        const range = selection.getRangeAt(0);
+        const qTextNode = document.getElementById('q-text');
+        
+        // 選択範囲が問題文エリア内かチェック
+        if (!qTextNode.contains(range.commonAncestorContainer)) {
+            customAlert("マーカーは問題文のテキストにのみ使用できます。"); return;
+        }
+
+        const span = document.createElement('span');
+        span.className = 'highlighted-text';
+        try {
+            range.surroundContents(span);
+        } catch(e) {
+            customAlert("段落をまたいだ選択はできません。細かく分けて引いてください。"); return;
+        }
+        selection.removeAllRanges();
+
+        // 状態保存
+        testData[subjects[currentSubjIdx]][currentQIdx].highlightedText = qTextNode.innerHTML;
+        saveState();
+    }
+
+    async function clearHighlight() {
+        const ok = await customConfirm('現在の問題のマーカーをすべて消去しますか？');
+        if (ok) {
+            const q = testData[subjects[currentSubjIdx]][currentQIdx];
+            q.highlightedText = null;
+            document.getElementById('q-text').textContent = q.text; // 元のテキストに戻す
+            saveState();
+        }
+    }
+
+    // ======= Canvas・ペンツール (タッチ対応) =======
     function resizeCanvas() { const cw = document.getElementById('content-wrapper'); canvas.width = cw.scrollWidth; canvas.height = cw.scrollHeight > cw.clientHeight ? cw.scrollHeight : cw.clientHeight; }
     function setTool(tool, color=null) {
-        currentTool = tool; document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('active')); document.getElementById(`tool-${tool === 'pen' ? (color==='#000000'?'pen-black':'pen-red') : tool}`).classList.add('active');
+        currentTool = tool; document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('active')); 
+        document.getElementById(`tool-${tool === 'pen' ? (color==='#000000'?'pen-black':'pen-red') : tool}`).classList.add('active');
         if(tool === 'cursor') canvas.classList.remove('drawable');
-        else { canvas.classList.add('drawable'); ctx.globalCompositeOperation = (tool === 'eraser') ? 'destination-out' : 'source-over'; if(tool === 'pen') { currentColor = color; currentLineWidth = 2; } if(tool === 'marker') { currentColor = color; currentLineWidth = 15; } if(tool === 'eraser') { currentLineWidth = 30; } }
+        else { canvas.classList.add('drawable'); ctx.globalCompositeOperation = (tool === 'eraser') ? 'destination-out' : 'source-over'; if(tool === 'pen') { currentColor = color; currentLineWidth = 2; } if(tool === 'eraser') { currentLineWidth = 30; } }
     }
-    async function clearCanvasPrompt() { const ok = await customConfirm('書き込みをすべて消去しますか？', '全消去', true); if(ok) { ctx.clearRect(0, 0, canvas.width, canvas.height); saveCanvas(); } }
+    async function clearCanvasPrompt() { const ok = await customConfirm('ペン書き込みをすべて消去しますか？', '全消去', true); if(ok) { ctx.clearRect(0, 0, canvas.width, canvas.height); saveCanvas(); } }
 
-    function getPos(e) { const r = canvas.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; }
+    function getPos(e) { 
+        const r = canvas.getBoundingClientRect(); 
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        return { x: clientX - r.left, y: clientY - r.top }; 
+    }
+    
+    // マウスイベント
     canvas.addEventListener('mousedown', (e) => { isDrawing = true; const p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); });
     canvas.addEventListener('mousemove', (e) => { if(!isDrawing) return; const p = getPos(e); ctx.lineTo(p.x, p.y); ctx.strokeStyle = currentColor; ctx.lineWidth = currentLineWidth; ctx.lineCap='round'; ctx.lineJoin='round'; ctx.stroke(); });
-    canvas.addEventListener('mouseup', () => { if(isDrawing) { isDrawing = false; saveCanvas(); } }); canvas.addEventListener('mouseleave', () => { if(isDrawing) { isDrawing = false; saveCanvas(); } });
+    canvas.addEventListener('mouseup', () => { if(isDrawing) { isDrawing = false; saveCanvas(); } }); 
+    canvas.addEventListener('mouseleave', () => { if(isDrawing) { isDrawing = false; saveCanvas(); } });
+
+    // タッチイベント (スマホ・タブレット用)
+    canvas.addEventListener('touchstart', (e) => { if(currentTool!=='cursor') e.preventDefault(); isDrawing = true; const p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); }, {passive: false});
+    canvas.addEventListener('touchmove', (e) => { if(currentTool!=='cursor') e.preventDefault(); if(!isDrawing) return; const p = getPos(e); ctx.lineTo(p.x, p.y); ctx.strokeStyle = currentColor; ctx.lineWidth = currentLineWidth; ctx.lineCap='round'; ctx.lineJoin='round'; ctx.stroke(); }, {passive: false});
+    canvas.addEventListener('touchend', () => { if(isDrawing) { isDrawing = false; saveCanvas(); } });
+    canvas.addEventListener('touchcancel', () => { if(isDrawing) { isDrawing = false; saveCanvas(); } });
 
     function saveCanvas() { drawingData[`${subjects[currentSubjIdx]}_${currentQIdx}`] = canvas.toDataURL(); saveState(); }
     function restoreCanvas() { ctx.clearRect(0, 0, canvas.width, canvas.height); const key = `${subjects[currentSubjIdx]}_${currentQIdx}`; if(drawingData[key]) { const img = new Image(); img.onload = () => ctx.drawImage(img, 0, 0); img.src = drawingData[key]; } }
