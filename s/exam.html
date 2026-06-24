@@ -3,541 +3,546 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CBT総合適性検査 - 店魅偉屋大学付属幼小中高一貫教育校</title>
+    <title>CBT入学試験 - 店魅偉屋大学付属幼小中高一貫教育校</title>
     <style>
-        :root {
-            --primary-navy: #112233;
-            --accent-gold: #c9a346;
-            --bg-gray: #f5f6f8;
-            --border-color: #d1d5db;
-            --danger-red: #dc2626;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
-            background-color: var(--bg-gray);
-            color: #1f2937;
-            height: 100vh;
-            overflow: hidden;
-            user-select: none; /* 問題テキストのコピー防止 */
-        }
-
-        /* 画面セクション管理 */
-        .screen {
-            display: none;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0; left: 0;
-            overflow-y: auto;
-        }
+        :root { --p-color: #0f172a; --s-color: #1e293b; --a-color: #b45309; --danger: #dc2626; --bg: #f1f5f9; }
+        * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+        body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; background: var(--bg); color: #333; height: 100vh; overflow: hidden; }
+        
+        .screen { display: none; width: 100%; height: 100%; position: absolute; top: 0; left: 0; overflow: auto; }
         .screen.active { display: flex; flex-direction: column; }
+        
+        .btn { background: var(--p-color); color: white; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; transition: 0.2s; }
+        .btn:hover { background: var(--s-color); }
+        .btn:disabled { background: #94a3b8; cursor: not-allowed; }
+        .btn-outline { background: transparent; border: 1px solid var(--p-color); color: var(--p-color); }
 
-        /* 共通ボタン */
-        .btn {
-            background-color: var(--primary-navy);
-            color: white;
-            border: 1px solid var(--primary-navy);
-            padding: 12px 30px;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .btn:hover { background-color: #1d3557; }
-        .btn:disabled { background-color: #9ca3af; cursor: not-allowed; }
+        /* Login Screen */
+        #screen-login { justify-content: center; align-items: center; background: linear-gradient(135deg, #0f172a, #334155); }
+        .login-card { background: white; padding: 40px; border-radius: 8px; width: 500px; max-width: 90%; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+        .auth-blocks { display: flex; justify-content: center; align-items: center; gap: 8px; margin: 20px 0; }
+        .auth-prefix { font-size: 1.5rem; font-weight: bold; font-family: monospace; color: var(--p-color); }
+        .code-box { width: 40px; height: 50px; font-size: 1.5rem; text-align: center; border: 2px solid #cbd5e1; border-radius: 6px; text-transform: uppercase; font-family: monospace; }
+        .code-box:focus { border-color: var(--a-color); outline: none; }
+        .input-text { width: 100%; padding: 12px; border: 2px solid #cbd5e1; border-radius: 6px; font-size: 1.2rem; text-align: center; margin-top: 5px; }
 
-        /* 1. 受験番号入力画面 */
-        #screen-login {
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #112233 0%, #1d3557 100%);
-            color: white;
-        }
-        .login-card {
-            background: white;
-            color: #1f2937;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            width: 450px;
-            max-width: 90%;
-            text-align: center;
-        }
-        .school-logo-area { margin-bottom: 20px; }
-        .school-logo-title { font-size: 1.3rem; font-weight: bold; color: var(--primary-navy); margin-bottom: 5px; }
-        .input-group { text-align: left; margin-bottom: 20px; }
-        .input-group label { display: block; font-size: 0.85rem; font-weight: bold; margin-bottom: 8px; color: #4b5563; }
-        .input-field { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 1.1rem; text-align: center; font-family: monospace; }
+        /* Header */
+        header { background: var(--p-color); color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--a-color); }
+        .subject-badge { background: var(--a-color); padding: 4px 12px; border-radius: 20px; font-weight: bold; margin-left: 15px; }
+        .timer { background: var(--danger); padding: 5px 15px; border-radius: 4px; font-weight: bold; font-size: 1.2rem; font-family: monospace; }
+        .staff-login { background: transparent; border: 1px solid #475569; color: #94a3b8; cursor: pointer; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; margin-left: 15px; }
 
-        /* 2. 試験ガイダンス画面 */
-        #screen-instruction { padding: 40px 20px; align-items: center; justify-content: center; }
-        .instruction-container { background: white; max-width: 800px; width: 100%; padding: 40px; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .instruction-title { font-size: 1.5rem; font-weight: bold; color: var(--primary-navy); border-bottom: 2px solid var(--accent-gold); padding-bottom: 10px; margin-bottom: 20px; }
-        .instruction-body { line-height: 1.8; margin-bottom: 30px; font-size: 0.95rem; }
-        .warning-box { background-color: #fee2e2; border-left: 4px solid var(--danger-red); padding: 15px; margin: 20px 0; border-radius: 4px; color: #991b1b; }
+        /* Main Test Area */
+        .test-container { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 250px; background: white; border-right: 1px solid #e2e8f0; padding: 15px; display: flex; flex-direction: column; }
+        .q-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 15px 0; overflow-y: auto; }
+        .q-btn { border: 1px solid #cbd5e1; background: #f8fafc; border-radius: 4px; padding: 10px 0; cursor: pointer; font-weight: bold; position: relative; }
+        .q-btn.active { background: var(--s-color); color: white; border-color: var(--s-color); }
+        .q-btn.answered { border-bottom: 4px solid #10b981; }
+        .q-btn.review::after { content: '🚩'; position: absolute; top: -5px; right: -5px; font-size: 0.8rem; }
+        
+        .main-area { flex: 1; display: flex; flex-direction: column; position: relative; background: white; }
+        
+        /* ペンツールバー */
+        .toolbar { background: #f1f5f9; border-bottom: 1px solid #e2e8f0; padding: 10px; display: flex; gap: 10px; align-items: center; }
+        .tool-btn { padding: 5px 10px; cursor: pointer; border: 1px solid #cbd5e1; background: white; border-radius: 4px; font-size: 0.9rem; }
+        .tool-btn.active { background: #e0e7ff; border-color: #6366f1; color: #4338ca; font-weight: bold; }
+        .color-dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 5px; }
 
-        /* 3. 本番試験画面 (MEXCBTレイアウト) */
-        header {
-            background-color: var(--primary-navy);
-            color: white;
-            padding: 12px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.9rem;
-            border-bottom: 3px solid var(--accent-gold);
-        }
-        .timer-badge { background-color: var(--danger-red); padding: 6px 14px; border-radius: 4px; font-weight: bold; font-size: 1.1rem; }
-        .test-body { display: flex; flex: 1; overflow: hidden; }
-        .sidebar { width: 260px; background: white; border-right: 1px solid var(--border-color); padding: 20px; display: flex; flex-direction: column; justify-content: space-between; }
-        .question-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 15px 0; }
-        .q-num-btn { background: #f3f4f6; border: 1px solid var(--border-color); border-radius: 4px; padding: 12px 0; font-weight: bold; cursor: pointer; text-align: center; }
-        .q-num-btn.active { background: var(--primary-navy); color: white; border-color: var(--primary-navy); }
-        .q-num-btn.answered { border: 2px solid #10b981; background: #ecfdf5; }
-        .q-num-btn.answered.active { background: var(--primary-navy); color: white; }
-        .main-test-area { flex: 1; display: flex; flex-direction: column; background: #fff; margin: 15px; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
-        .question-view { flex: 1; padding: 40px; overflow-y: auto; }
-        .answer-selector { margin-top: 25px; display: flex; flex-direction: column; gap: 12px; }
-        .option-label { display: flex; align-items: center; padding: 15px; border: 1px solid var(--border-color); border-radius: 6px; cursor: pointer; transition: background 0.1s; }
-        .option-label:hover { background-color: #f9fafb; }
-        .option-label input { margin-right: 15px; transform: scale(1.2); }
-        .text-input-large { width: 100%; height: 150px; padding: 15px; font-size: 1rem; border: 1px solid var(--border-color); border-radius: 6px; resize: none; }
-        .test-footer { background-color: #f3f4f6; padding: 15px 30px; display: flex; justify-content: space-between; border-top: 1px solid var(--border-color); }
+        /* 問題・解答エリア (Canvas含む) */
+        .content-wrapper { flex: 1; position: relative; overflow-y: auto; padding: 40px; }
+        .question-content { position: relative; z-index: 1; }
+        .canvas-layer { position: absolute; top: 0; left: 0; z-index: 5; pointer-events: none; }
+        .canvas-layer.drawable { pointer-events: auto; cursor: crosshair; }
 
-        /* 全画面解除ロック警告レイアウト */
-        #fullscreen-warning-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(17, 34, 51, 0.98);
-            z-index: 99999;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
+        .q-title { font-size: 1.4rem; font-weight: bold; margin-bottom: 20px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; }
+        .q-text { font-size: 1.1rem; line-height: 2; margin-bottom: 30px; white-space: pre-wrap; }
+        .textarea-ans { width: 100%; height: 200px; padding: 15px; font-size: 1.1rem; border: 1px solid #cbd5e1; border-radius: 4px; resize: vertical; position: relative; z-index: 10; }
+        .radio-ans { display: flex; flex-direction: column; gap: 10px; position: relative; z-index: 10; }
+        .radio-label { padding: 15px; border: 1px solid #cbd5e1; border-radius: 4px; cursor: pointer; background: white; }
+        .radio-label:hover { background: #f8fafc; }
 
-        /* 不正検出ポップアップ */
-        .violation-popup {
-            position: fixed;
-            top: 20px; left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--danger-red);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            z-index: 100000;
-            font-weight: bold;
-            display: none;
-            animation: slideDown 0.3s ease;
-        }
-        @keyframes slideDown { from { top: -50px; opacity: 0; } to { top: 20px; opacity: 1; } }
+        .footer-nav { padding: 15px 30px; background: #f8fafc; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; z-index: 10; }
+
+        /* モーダル・警告 */
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 9999; display: none; color: white; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .admin-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; color: #333; padding: 30px; border-radius: 8px; z-index: 10000; display: none; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
     </style>
 </head>
 <body>
 
-    <!-- 不正検知警告 -->
-    <div id="violation-alert" class="violation-popup">⚠️ 警告: ウインドウ移動、またはタブ切り替えを検知しました。</div>
-
-    <!-- 全画面表示の強制ロックカバー -->
-    <div id="fullscreen-warning-overlay">
-        <h2 style="font-size: 2rem; color: var(--accent-gold); margin-bottom: 15px;">全画面表示が解除されました</h2>
-        <p style="margin-bottom: 30px; max-width: 500px; line-height: 1.6;">本試験は不正受験を防止するため全画面での受検が必須です。下記のボタンを押して全画面表示に復帰してください。</p>
-        <button class="btn" style="background-color: var(--accent-gold); color: #112233; border: none;" onclick="forceRestoreFullscreen()">全画面に復帰する</button>
+    <!-- 不正警告・追放画面 -->
+    <div id="ban-overlay" class="overlay">
+        <h1 style="color: var(--danger); font-size: 3rem; margin-bottom: 20px;">[ 深刻なセキュリティ違反 ]</h1>
+        <p style="font-size: 1.2rem; max-width: 600px; line-height: 1.8;">
+            試験規定に反する行為（全画面の度重なる解除、別プロセスの起動等）が検出されました。<br>
+            試験は強制終了され、本機の受験資格は永久に無効化されました。直ちに試験監督の指示に従ってください。
+        </p>
     </div>
 
-    <!-- Screen 1: 受験番号入力画面 -->
+    <!-- 全画面復帰警告 -->
+    <div id="fs-warning" class="overlay" style="background: rgba(15,23,42,0.95);">
+        <h2 style="color: #f59e0b; font-size: 2rem; margin-bottom: 20px;">全画面表示が解除されました</h2>
+        <p style="margin-bottom: 20px;">不正行為防止のため、全画面表示に戻るまで試験を続行できません。<br>（残り警告可能回数: <span id="warn-left">3</span>回）</p>
+        <button class="btn" style="background: #f59e0b; color: black;" onclick="restoreFullscreen()">全画面に復帰する</button>
+    </div>
+
+    <!-- 教職員管理モーダル -->
+    <div id="admin-modal" class="admin-modal">
+        <h2>教職員管理コンソール</h2>
+        <div style="margin: 20px 0; display:flex; flex-direction:column; gap:10px;">
+            <button class="btn" onclick="window.open('answers.html', '_blank')">模範解答ページを開く</button>
+            <button class="btn" style="background: #f59e0b;" onclick="resetTimer()">現在の科目の制限時間をリセット</button>
+            <button class="btn" style="background: var(--danger);" onclick="resetBan()">受験不可・BAN状態を解除</button>
+            <button class="btn btn-outline" onclick="document.getElementById('admin-modal').style.display='none'">閉じる</button>
+        </div>
+    </div>
+
+    <!-- Screen 1: ログイン -->
     <div id="screen-login" class="screen active">
         <div class="login-card">
-            <div class="school-logo-area">
-                <div class="school-logo-title">店魅偉屋大学付属幼小中高一貫教育校</div>
-                <div style="font-size:0.75rem; color:#6b7280; letter-spacing:1px;">COMPUTER BASED TESTING (CBT)</div>
-            </div>
-            <h2 style="margin-bottom: 25px; font-size: 1.4rem; color: #112233;">入学者選抜適性検査</h2>
+            <h2 style="color: var(--p-color); margin-bottom: 10px;">CBT 入学試験システム</h2>
+            <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 30px;">店魅偉屋大学付属幼小中高一貫教育校</p>
             
-            <div class="input-group">
-                <label for="student-id">受験番号 (半角数字8桁)</label>
-                <input type="text" id="student-id" class="input-field" placeholder="12345678" maxlength="8">
-            </div>
-            <div class="input-group">
-                <label for="student-name">氏名</label>
-                <input type="text" id="student-name" class="input-field" placeholder="店魅偉屋 太郎">
-            </div>
-            <button class="btn" style="width: 100%; margin-top: 10px;" onclick="proceedToInstruction()">次へ進む</button>
-        </div>
-    </div>
-
-    <!-- Screen 2: 試験説明画面 -->
-    <div id="screen-instruction" class="screen">
-        <div class="instruction-container">
-            <h2 class="instruction-title">受験者注意事項説明</h2>
-            <div class="instruction-body">
-                <p>店魅偉屋大学付属幼小中高一貫教育校の適性検査（CBT版）を開始します。以下の注意事項を熟読のうえ、試験に臨んでください。</p>
-                
-                <div class="warning-box">
-                    <strong>【重要・不正受験対策について】</strong><br>
-                    1. <strong>全画面表示の固定：</strong>「試験開始」ボタンを押すと、自動的に全画面表示に切り替わります。試験終了まで意図的に全画面を解除することは禁止されています。<br>
-                    2. <strong>画面移動・離脱の禁止：</strong>試験中に他のタブに切り替えたり、他アプリを起動したり、デスクトップをクリックした場合、自動的に不正行為判定プログラムが作動し、<strong>警告ログが記録されます。（複数回の警告で自動的に受験資格を喪失します）</strong>
+            <div style="text-align: left; margin-bottom: 20px;">
+                <label style="font-weight: bold; font-size: 0.9rem;">受験番号 (MMU- 続く6桁)</label>
+                <div class="auth-blocks">
+                    <span class="auth-prefix">MMU-</span>
+                    <input type="text" maxlength="1" class="code-box" id="c1" oninput="moveFocus(1)">
+                    <input type="text" maxlength="1" class="code-box" id="c2" oninput="moveFocus(2)">
+                    <input type="text" maxlength="1" class="code-box" id="c3" oninput="moveFocus(3)">
+                    <input type="text" maxlength="1" class="code-box" id="c4" oninput="moveFocus(4)">
+                    <input type="text" maxlength="1" class="code-box" id="c5" oninput="moveFocus(5)">
+                    <input type="text" maxlength="1" class="code-box" id="c6">
                 </div>
-                <p>3. 試験時間は <strong>10分間</strong> です。制限時間が経過すると解答は自動的に送信されます。</p>
-                <p>4. 電卓や他のウェブサイトの利用は認められません。</p>
             </div>
-            <div style="text-align: center;">
-                <button class="btn" onclick="startExam()">同意して試験を開始する</button>
+            
+            <div style="text-align: left; margin-bottom: 30px;">
+                <label style="font-weight: bold; font-size: 0.9rem;">氏名 (ひらがな・スペースのみ)</label>
+                <input type="text" id="student-name" class="input-text" placeholder="みせみや たろう">
             </div>
+
+            <button class="btn" style="width: 100%; font-size: 1.1rem; padding: 15px;" onclick="verifyLogin()">認証して試験開始</button>
         </div>
     </div>
 
-    <!-- Screen 3: 試験本番画面 -->
+    <!-- Screen 2: 本番試験 -->
     <div id="screen-test" class="screen">
         <header>
             <div>
-                <span style="font-weight: bold; font-size: 1.1rem;">店魅偉屋大付属 一貫選抜適性検査 (CBT)</span>
+                <span style="font-weight: bold;">CBT SYSTEM</span>
+                <span id="subject-label" class="subject-badge">国語</span>
+                <button class="staff-login" onclick="openAdmin()">教職員</button>
             </div>
-            <div style="display: flex; align-items: center; gap: 25px;">
-                <div>受験番号: <strong id="display-id">00000000</strong></div>
-                <div>氏名: <strong id="display-name">---</strong></div>
-                <div class="timer-badge">制限時間 <span id="timer">10:00</span></div>
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <div>受験番号: <strong id="disp-id">---</strong></div>
+                <div class="timer" id="timer">50:00</div>
             </div>
         </header>
 
-        <div class="test-body">
-            <!-- ナビゲーションバー -->
+        <div class="test-container">
             <div class="sidebar">
-                <div>
-                    <h3 style="font-size: 0.9rem; border-bottom: 2px solid var(--accent-gold); padding-bottom: 5px; margin-bottom: 10px;">問題一覧</h3>
-                    <div class="question-grid" id="question-nav">
-                        <!-- JSで動的にボタン生成 -->
-                    </div>
-                </div>
-                <div>
-                    <div style="font-size: 0.75rem; color: #ef4444; margin-bottom: 10px;" id="warning-counter">画面外クリック警告回数: 0</div>
-                    <button class="btn" style="width: 100%; background-color:#10b981; border:none;" onclick="submitExam(false)">試験を終了して提出</button>
+                <div style="font-weight:bold; border-bottom:1px solid #cbd5e1; padding-bottom:10px;">問題ナビゲーション</div>
+                <div class="q-grid" id="q-grid"></div>
+                <div style="margin-top:auto;">
+                    <label style="display:flex; align-items:center; gap:5px; cursor:pointer; margin-bottom:15px; font-weight:bold; color:#b45309;">
+                        <input type="checkbox" id="review-check" onchange="toggleReview()"> 🚩 あとで見直す
+                    </label>
+                    <button class="btn" style="width: 100%; background: #10b981;" onclick="submitSubject()">この科目を提出する</button>
                 </div>
             </div>
 
-            <!-- 問題表示エリア -->
-            <div class="main-test-area">
-                <div class="question-view" id="question-view">
-                    <h2 id="q-title" style="font-size: 1.3rem; margin-bottom: 20px;">問題タイトル</h2>
-                    <div id="q-text" style="line-height: 1.8; font-size: 1.05rem; margin-bottom: 30px;">問題文がここに入ります。</div>
-                    <div id="q-answer-container">
-                        <!-- 解答エリア（動的に切り替え） -->
+            <div class="main-area">
+                <!-- ペンツールバー -->
+                <div class="toolbar">
+                    <button class="tool-btn" id="tool-cursor" onclick="setTool('cursor')" class="active">👆 操作</button>
+                    <div style="width:1px; height:20px; background:#cbd5e1; margin:0 5px;"></div>
+                    <button class="tool-btn" id="tool-pen-black" onclick="setTool('pen', '#000000')"><span class="color-dot" style="background:#000;"></span>ペン</button>
+                    <button class="tool-btn" id="tool-pen-red" onclick="setTool('pen', '#dc2626')"><span class="color-dot" style="background:#dc2626;"></span>ペン</button>
+                    <button class="tool-btn" id="tool-marker" onclick="setTool('marker', 'rgba(250,204,21,0.5)')"><span class="color-dot" style="background:#facc15;"></span>マーカー</button>
+                    <button class="tool-btn" id="tool-eraser" onclick="setTool('eraser')">🧽 消しゴム</button>
+                    <button class="tool-btn" style="margin-left:auto; color:var(--danger);" onclick="clearCanvas()">🗑 全消去</button>
+                </div>
+
+                <div class="content-wrapper" id="content-wrapper">
+                    <!-- 描画キャンバス -->
+                    <canvas id="canvas" class="canvas-layer"></canvas>
+                    
+                    <div class="question-content">
+                        <div class="q-title" id="q-title">問題</div>
+                        <div class="q-text" id="q-text"></div>
+                        <div id="ans-area"></div>
                     </div>
                 </div>
-                <div class="test-footer">
-                    <button class="btn" style="background:#6b7280; border:none;" id="btn-prev" onclick="changeQuestion(-1)">前の問題へ</button>
-                    <button class="btn" id="btn-next" onclick="changeQuestion(1)">次の問題へ</button>
+
+                <div class="footer-nav">
+                    <button class="btn btn-outline" id="btn-prev" onclick="changeQ(-1)">前の問題</button>
+                    <button class="btn" id="btn-next" onclick="changeQ(1)">次の問題</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Screen 4: 終了画面 -->
-    <div id="screen-result" class="screen" style="justify-content: center; align-items: center; background: white;">
-        <div style="text-align: center; max-width: 500px; padding: 20px;">
-            <div style="font-size: 4rem; color: #10b981; margin-bottom: 20px;">✓</div>
-            <h2 style="font-size: 1.8rem; color: var(--primary-navy); margin-bottom: 15px;">解答データ送信完了</h2>
-            <p style="color: #4b5563; line-height: 1.6; margin-bottom: 30px;">
-                店魅偉屋大学付属校の適性検査データは、本校サーバーへ正常に送信されました。受験者は速やかに全画面表示を終了し、試験室から退室してください。
-            </p>
-            <div style="background-color: #f3f4f6; padding: 15px; border-radius: 6px; font-family: monospace; font-size: 0.9rem;">
-                試験完了証明コード: <span id="receipt-code">---</span>
-            </div>
+    <!-- Screen 3: 終了 -->
+    <div id="screen-finish" class="screen" style="justify-content:center; align-items:center; background:var(--p-color); color:white;">
+        <h1 style="color:#10b981; margin-bottom:20px;">全科目の試験が終了しました</h1>
+        <p>解答は暗号化され、本校サーバーに正常に送信されました。</p>
+        <div style="margin-top:30px; font-family:monospace; background:rgba(255,255,255,0.1); padding:20px; border-radius:8px;">
+            証明コード: <span id="cert-code" style="font-size:1.5rem; font-weight:bold; color:var(--a-color);"></span>
         </div>
     </div>
 
-    <script>
-        // 厳選したリアルな出題内容
-        const examQuestions = [
-            {
-                id: 1,
-                title: "問題 1（論理適性・共通ルール）",
-                text: "店魅偉屋大学附属小学校の児童A、B、C、D、Eの5人がかけっこをしました。5人の順位について次のことが分かっています。<br>・AはBより早くゴールしたが、1位ではなかった。<br>・CはEより遅くゴールしたが、最下位ではなかった。<br>・DはAより遅く、Bより早くゴールした。<br>このとき、3位になった児童は誰ですか。正しいものを選択しなさい。",
-                type: "single",
-                options: ["児童A", "児童B", "児童C", "児童D", "児童E"],
-                userAnswer: null
-            },
-            {
-                id: 2,
-                title: "問題 2（数学的読解・図形数理）",
-                text: "外周の長さが3.6kmの円形の中等部グラウンドがあります。Aさんは徒歩で毎分80m、Bさんは自転車で毎分280mの速さで、同じ地点から同時に出発し、それぞれ反対方向に回ります。2人が最初に出会ってから、次にグラウンド上で出会うまでに何分かかりますか。半角数字のみで入力しなさい。",
-                type: "text",
-                placeholder: "（例: 15）",
-                userAnswer: ""
-            },
-            {
-                id: 3,
-                title: "問題 3（社会科学・現代社会の読解）",
-                text: "情報通信技術（ICT）の普及が進む現代におけるデジタル・デバイド（情報格差）の記述として、**最も不適切な説明**を次のうちから1つ選びなさい。",
-                type: "single",
-                options: [
-                    "地理的条件や所得の差によって、情報技術へのアクセス能力に格差が生じること。",
-                    "行政手続きのデジタル化により、すべての住民が例外なく利便性を享受できるようになった現象のこと。",
-                    "高齢層と若年層の間で、インターネットの利用スキルや活用方法に顕著な差が生まれること。",
-                    "格差が雇用機会や収入の差に直結し、社会全体の経済的格差を拡大させる要因となること"
-                ],
-                userAnswer: null
-            },
-            {
-                id: 4,
-                title: "問題 4（論説文作成・記述評価）",
-                text: "店魅偉屋大学付属の高等部では「探究学習における電子メディアと紙メディアの併用」が議論されています。あなたがどちらのメディアをより重視すべきか、または両者をどのように組み合わせて活用すべきか、自身の見解を **200字程度** で論述しなさい。（※解答欄に入力した文字数も判定対象となります）",
-                type: "essay",
-                userAnswer: ""
-            }
-        ];
+<script>
+    // ======= データ構造 (東大・慶應レベルのダミー問題) =======
+    const subjects = ['国語', '数学', '英語', '社会', '理科'];
+    const timeLimit = 50 * 60; // 50分
+    
+    // 超高難易度を想定したサンプル。長文・数式等の表現
+    const testData = {
+        '国語': [
+            { id: 1, type: 'essay', title: "第1問 現代文読解（哲学）", text: "【課題文】\n近代における「主体」の誕生は、同時に「他者」を客体化する暴力性を内包していた。デカルト的コギトは、世界を認識可能な対象へと還元することで、自然科学の発展を促したが、それは同時に人間を自然から切り離す決定的な断絶を生んだ。（中略）\n\n問. 筆者の言う「『他者』を客体化する暴力性」とは具体的にどのような事態を指しているか。現代のテクノロジー社会の事象を1つ挙げ、250字以内で論じなさい。" },
+            { id: 2, type: 'radio', title: "第2問 古文（源氏物語 派生）", text: "次の和歌の修辞法として最も適切なものを一つ選べ。\n「見渡せば 花も紅葉も なかりけり 浦の苫屋の 秋の夕暮れ」\n\n（※本問は慶應文系レベルの文学的解釈を問う）", options: ["体言止めによる余韻の強調", "縁語を用いた掛詞の重層的表現", "本歌取りによる歴史的背景の暗喩", "序詞による情景の導入"] }
+        ],
+        '数学': [
+            { id: 1, type: 'essay', title: "第1問 微分積分と極限", text: "自然数 n に対し、関数 f_n(x) を f_n(x) = ∫[0→x] (t^n * e^(-t)) dt と定義する。\n(1) 任意の x > 0 において、0 < f_n(x) < n! が成り立つことを示せ。\n(2) lim(n→∞) {f_n(n) / n!} を求めよ。\n\n※解答欄には証明と計算過程を論理的に記述すること。" },
+            { id: 2, type: 'text', title: "第2問 整数問題", text: "p を 5 以上の素数とする。p^2 を 24 で割った余りを求めよ。\n半角数字のみで入力せよ。" }
+        ],
+        '英語': [
+            { id: 1, type: 'essay', title: "Question 1. Reading Comprehension", text: "Read the following passage and answer the question in English.\n\nQuantum entanglement, a phenomenon famously dubbed \"spooky action at a distance\" by Albert Einstein, challenges the core principles of classical mechanics. It implies that two particles can become inextricably linked such that the state of one instantaneously influences the other, regardless of the distance separating them...\n\nQ. Explain why Einstein was skeptical about quantum entanglement based on the passage. (within 50 words)" }
+        ],
+        '社会': [
+            { id: 1, type: 'essay', title: "第1問 日本史論述", text: "19世紀後半、日本が急速な近代化（明治維新）を成し遂げた要因について、「条約改正」「殖産興業」「富国強兵」の3つのキーワードをすべて用いて、当時の国際的背景と関連付けながら300字以内で論述せよ。" }
+        ],
+        '理科': [
+            { id: 1, type: 'essay', title: "第1問 物理（力学・電磁気学融合）", text: "質量 m、電荷 q (>0) の小球が、長さ L の絶縁体の糸で天井から吊るされている。この空間には、水平右向きに一様な電場 E と、紙面奥に向かって一様な磁場 B がかかっている。小球が静止している状態から糸を静かに切った直後の、小球の加速度ベクトルの大きさと向きを数式で記述しなさい。" }
+        ]
+    };
 
-        let currentIdx = 0;
-        let testStarted = false;
-        let examSubmitted = false;
-        let countdownTimer;
-        let secondsLeft = 10 * 60; // 10分
-        let violationCount = 0;
+    // ======= 状態管理 =======
+    let currentSubjIdx = 0;
+    let currentQIdx = 0;
+    let timeLeft = timeLimit;
+    let timerInterval = null;
+    let studentInfo = { id: "", name: "" };
+    
+    // セキュリティ管理
+    let fsErrors = 0;
+    const MAX_FS_ERRORS = 3;
+    let isTestActive = false;
 
-        // 画面遷移：ログイン -> 説明
-        function proceedToInstruction() {
-            const id = document.getElementById('student-id').value;
-            const name = document.getElementById('student-name').value;
-            if (id.length !== 8 || isNaN(id)) {
-                alert("受験番号は8桁の半角数字で正しく入力してください。");
-                return;
-            }
-            if (!name.trim()) {
-                alert("氏名を入力してください。");
-                return;
-            }
-            document.getElementById('display-id').textContent = id;
-            document.getElementById('display-name').textContent = name;
-            
-            switchScreen('screen-instruction');
+    // キャンバス・ペンツール管理
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    let isDrawing = false;
+    let currentTool = 'cursor'; // cursor, pen, marker, eraser
+    let currentColor = '#000';
+    let currentLineWidth = 2;
+    let drawingData = {}; // 問題IDごとのキャンバスデータ保存用
+
+    // ======= 初期化・セキュリティ =======
+    window.onload = () => {
+        if(localStorage.getItem('exam_banned') === 'true' || localStorage.getItem('exam_finished') === 'true') {
+            document.getElementById('ban-overlay').style.display = 'flex';
+            document.getElementById('ban-overlay').innerHTML = "<h1 style='color:red;'>受験資格がありません</h1><p>すでに受験済み、または不正により無効化されています。</p>";
+            return;
         }
+    };
 
-        // 画面切り替えユーティリティ
-        function switchScreen(screenId) {
-            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            document.getElementById(screenId).classList.add('active');
-        }
+    // ======= ログイン処理 =======
+    function moveFocus(idx) {
+        const val = document.getElementById(`c${idx}`).value;
+        if(val.length === 1 && idx < 6) { document.getElementById(`c${idx+1}`).focus(); }
+    }
 
-        // 試験開始（全画面起動をトリガー）
-        function startExam() {
-            testStarted = true;
-            switchScreen('screen-test');
-            requestFullscreen();
-            buildNavigation();
-            showQuestion();
-            startTimer();
+    function verifyLogin() {
+        let code = "";
+        for(let i=1; i<=6; i++) { code += document.getElementById(`c${i}`).value; }
+        const name = document.getElementById('student-name').value.trim();
 
-            // 不正対策イベントリスナーの有効化
-            document.addEventListener('fullscreenchange', checkFullscreenState);
-            window.addEventListener('blur', triggerTabOutViolation);
-            document.addEventListener('visibilitychange', triggerVisibilityViolation);
-        }
+        if(!/^\d{6}$/.test(code)) { alert("受験番号は6桁の数字を入力してください。"); return; }
+        if(!/^[\u3040-\u309F\s]+$/.test(name)) { alert("氏名は「ひらがな」とスペースのみで入力してください。"); return; }
 
-        // 全画面起動
-        function requestFullscreen() {
-            const de = document.documentElement;
-            if (de.requestFullscreen) { de.requestFullscreen(); }
-            else if (de.mozRequestFullScreen) { de.mozRequestFullScreen(); }
-            else if (de.webkitRequestFullscreen) { de.webkitRequestFullscreen(); }
-            else if (de.msRequestFullscreen) { de.msRequestFullscreen(); }
-        }
+        studentInfo.id = "MMU-" + code;
+        studentInfo.name = name;
+        
+        document.getElementById('disp-id').textContent = studentInfo.id;
+        
+        // ローカルストレージに「受験開始」フラグを立てる（二度見防止の第一歩）
+        localStorage.setItem('exam_started', 'true');
+        
+        startTest();
+    }
 
-        // 全画面状態の常時チェック
-        function checkFullscreenState() {
-            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-                if (testStarted && !examSubmitted) {
-                    document.getElementById('fullscreen-warning-overlay').style.display = 'flex';
-                }
+    // ======= 試験制御 =======
+    function startTest() {
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.getElementById('screen-test').classList.add('active');
+        
+        // 全画面化要求
+        try { document.documentElement.requestFullscreen(); } catch(e){}
+        isTestActive = true;
+        
+        // セキュリティイベント
+        document.addEventListener('fullscreenchange', handleFSChange);
+        window.addEventListener('blur', () => { if(isTestActive) penalize("ウィンドウからフォーカスが外れました"); });
+
+        initSubject();
+    }
+
+    function handleFSChange() {
+        if(!document.fullscreenElement && isTestActive) {
+            fsErrors++;
+            if(fsErrors >= MAX_FS_ERRORS) {
+                localStorage.setItem('exam_banned', 'true');
+                document.getElementById('ban-overlay').style.display = 'flex';
+                isTestActive = false;
             } else {
-                document.getElementById('fullscreen-warning-overlay').style.display = 'none';
+                document.getElementById('warn-left').textContent = MAX_FS_ERRORS - fsErrors;
+                document.getElementById('fs-warning').style.display = 'flex';
             }
         }
+    }
 
-        // 全画面強制復旧ボタン
-        function forceRestoreFullscreen() {
-            requestFullscreen();
+    function restoreFullscreen() {
+        document.documentElement.requestFullscreen().then(() => {
+            document.getElementById('fs-warning').style.display = 'none';
+        }).catch(()=>alert("全画面化がブロックされました。ブラウザの設定を確認してください。"));
+    }
+
+    function penalize(msg) {
+        fsErrors++;
+        alert(`【警告】${msg}\nこれ以上の不正操作は受験資格喪失となります。`);
+        if(fsErrors >= MAX_FS_ERRORS) {
+            localStorage.setItem('exam_banned', 'true');
+            document.getElementById('ban-overlay').style.display = 'flex';
+            isTestActive = false;
         }
+    }
 
-        // 不正検出：他タブや別アプリに切り替えられた際のイベント
-        function triggerTabOutViolation() {
-            if (testStarted && !examSubmitted) {
-                recordViolation("ウィンドウのアクティブ状態が解除されました。");
-            }
-        }
+    // ======= 科目・問題ロジック =======
+    function initSubject() {
+        const subj = subjects[currentSubjIdx];
+        document.getElementById('subject-label').textContent = subj;
+        currentQIdx = 0;
+        timeLeft = timeLimit;
+        
+        // データ初期化（見直しフラグや解答保持領域）
+        testData[subj].forEach(q => { if(q.ans === undefined) { q.ans = ""; q.review = false; } });
+        
+        buildNav();
+        loadQuestion();
+        
+        clearInterval(timerInterval);
+        timerInterval = setInterval(updateTimer, 1000);
+        updateTimer();
+    }
 
-        function triggerVisibilityViolation() {
-            if (document.hidden && testStarted && !examSubmitted) {
-                recordViolation("他のタブまたはアプリに切り替えられました。");
-            }
-        }
+    function updateTimer() {
+        if(timeLeft <= 0) { submitSubject(true); return; }
+        timeLeft--;
+        const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+        const s = (timeLeft % 60).toString().padStart(2, '0');
+        document.getElementById('timer').textContent = `${m}:${s}`;
+    }
 
-        // 不正ペナルティログ記録
-        function recordViolation(reason) {
-            violationCount++;
-            document.getElementById('warning-counter').textContent = `画面外クリック警告回数: ${violationCount}`;
-            
-            const alertEl = document.getElementById('violation-alert');
-            alertEl.style.display = 'block';
-            
-            if (violationCount >= 3) {
-                alert("不正操作の検出が制限値（3回）を超えたため、試験を強制終了し採点処理に回します。");
-                submitExam(true);
-            } else {
-                setTimeout(() => { alertEl.style.display = 'none'; }, 4000);
-            }
-        }
+    function buildNav() {
+        const grid = document.getElementById('q-grid');
+        grid.innerHTML = "";
+        const subj = subjects[currentSubjIdx];
+        testData[subj].forEach((q, i) => {
+            const btn = document.createElement('button');
+            btn.className = `q-btn ${i === currentQIdx ? 'active' : ''} ${q.ans ? 'answered' : ''} ${q.review ? 'review' : ''}`;
+            btn.textContent = `問 ${i+1}`;
+            btn.onclick = () => { saveCanvas(); currentQIdx = i; loadQuestion(); };
+            grid.appendChild(btn);
+        });
+    }
 
-        // タイマー開始
-        function startTimer() {
-            const display = document.getElementById('timer');
-            countdownTimer = setInterval(() => {
-                if (secondsLeft <= 0) {
-                    clearInterval(countdownTimer);
-                    alert("試験時間が終了しました。システムが自動で解答を提出します。");
-                    submitExam(true);
-                    return;
-                }
-                secondsLeft--;
-                const min = Math.floor(secondsLeft / 60);
-                const sec = secondsLeft % 60;
-                display.textContent = `${String(min).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
-            }, 1000);
-        }
+    function loadQuestion() {
+        resizeCanvas(); // Canvasサイズをコンテナに合わせる
+        restoreCanvas(); // 前回の描画を復元
 
-        // ナビゲーションの構築
-        function buildNavigation() {
-            const container = document.getElementById('question-nav');
-            container.innerHTML = '';
-            examQuestions.forEach((q, idx) => {
-                const btn = document.createElement('button');
-                btn.className = 'q-num-btn';
-                btn.id = `q-btn-${idx}`;
-                btn.textContent = q.id;
-                btn.onclick = () => { currentIdx = idx; showQuestion(); };
-                container.appendChild(btn);
+        const subj = subjects[currentSubjIdx];
+        const q = testData[subj][currentQIdx];
+        
+        document.getElementById('q-title').textContent = q.title;
+        document.getElementById('q-text').textContent = q.text;
+        
+        const ansArea = document.getElementById('ans-area');
+        ansArea.innerHTML = "";
+        
+        if(q.type === 'essay') {
+            const ta = document.createElement('textarea');
+            ta.className = 'textarea-ans';
+            ta.placeholder = "論述解答をここに入力...";
+            ta.value = q.ans;
+            ta.oninput = (e) => { q.ans = e.target.value; updateNavUI(); };
+            ansArea.appendChild(ta);
+        } else if(q.type === 'text') {
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.className = 'input-text';
+            input.value = q.ans;
+            input.oninput = (e) => { q.ans = e.target.value; updateNavUI(); };
+            ansArea.appendChild(input);
+        } else if(q.type === 'radio') {
+            const wrap = document.createElement('div');
+            wrap.className = 'radio-ans';
+            q.options.forEach((opt, idx) => {
+                const lbl = document.createElement('label');
+                lbl.className = 'radio-label';
+                lbl.innerHTML = `<input type="radio" name="r_ans" value="${idx}" ${q.ans===idx.toString() ? 'checked':''} style="margin-right:10px;"> ${opt}`;
+                lbl.querySelector('input').onchange = (e) => { q.ans = e.target.value; updateNavUI(); };
+                wrap.appendChild(lbl);
             });
+            ansArea.appendChild(wrap);
         }
 
-        // 設問表示
-        function showQuestion() {
-            const q = examQuestions[currentIdx];
-            document.getElementById('q-title').textContent = q.title;
-            document.getElementById('q-text').innerHTML = q.text;
+        document.getElementById('review-check').checked = q.review;
+        document.getElementById('btn-prev').disabled = currentQIdx === 0;
+        document.getElementById('btn-next').disabled = currentQIdx === testData[subj].length - 1;
+        
+        buildNav(); // ナビの色更新
+    }
 
-            const ansContainer = document.getElementById('q-answer-container');
-            ansContainer.innerHTML = '';
+    function changeQ(dir) {
+        saveCanvas();
+        currentQIdx += dir;
+        loadQuestion();
+    }
 
-            // 前後ボタンの制御
-            document.getElementById('btn-prev').disabled = (currentIdx === 0);
-            document.getElementById('btn-next').disabled = (currentIdx === examQuestions.length - 1);
+    function updateNavUI() { buildNav(); }
 
-            if (q.type === 'single') {
-                q.options.forEach((opt, idx) => {
-                    const label = document.createElement('label');
-                    label.className = 'option-label';
-                    const radio = document.createElement('input');
-                    radio.type = 'radio';
-                    radio.name = `ans-${q.id}`;
-                    radio.value = idx;
-                    radio.checked = q.userAnswer === idx;
-                    radio.onchange = () => { q.userAnswer = idx; updateNavStatus(); };
+    function toggleReview() {
+        const subj = subjects[currentSubjIdx];
+        testData[subj][currentQIdx].review = document.getElementById('review-check').checked;
+        buildNav();
+    }
 
-                    label.appendChild(radio);
-                    label.appendChild(document.createTextNode(opt));
-                    ansContainer.appendChild(label);
-                });
-            } else if (q.type === 'text') {
-                const input = document.createElement('input');
-                input.type = 'text';
-                input.className = 'input-field';
-                input.style.width = '300px';
-                input.placeholder = q.placeholder;
-                input.value = q.userAnswer;
-                input.oninput = (e) => { q.userAnswer = e.target.value; updateNavStatus(); };
-                ansContainer.appendChild(input);
-            } else if (q.type === 'essay') {
-                const area = document.createElement('textarea');
-                area.className = 'text-input-large';
-                area.placeholder = "ここに解答を200字程度で記入してください。";
-                area.value = q.userAnswer;
-                area.oninput = (e) => { q.userAnswer = e.target.value; updateNavStatus(); };
-                ansContainer.appendChild(area);
-                
-                const charCount = document.createElement('div');
-                charCount.style.fontSize = '0.85rem';
-                charCount.style.marginTop = '5px';
-                charCount.style.textAlign = 'right';
-                charCount.id = 'char-count-display';
-                charCount.textContent = `現在の文字数: ${q.userAnswer.length}文字`;
-                ansContainer.appendChild(charCount);
-
-                area.addEventListener('input', () => {
-                    charCount.textContent = `現在の文字数: ${area.value.length}文字`;
-                });
-            }
-
-            // ナビボタンのアクティブ状態更新
-            document.querySelectorAll('.q-num-btn').forEach((btn, i) => {
-                if (i === currentIdx) btn.classList.add('active');
-                else btn.classList.remove('active');
-            });
+    function submitSubject(auto = false) {
+        const subj = subjects[currentSubjIdx];
+        const unans = testData[subj].some(q => q.ans === "");
+        if(!auto && unans) {
+            if(!confirm("未解答の問題があります。本当に提出しますか？")) return;
+        } else if(!auto) {
+            if(!confirm(`${subj}の解答を提出して次の科目へ進みますか？`)) return;
         }
 
-        // 解答有無によるナビボタン色のアップデート
-        function updateNavStatus() {
-            examQuestions.forEach((q, idx) => {
-                const btn = document.getElementById(`q-btn-${idx}`);
-                if (!btn) return;
-
-                let isFilled = false;
-                if (q.type === 'single' && q.userAnswer !== null) isFilled = true;
-                if (q.type === 'text' && q.userAnswer.trim() !== "") isFilled = true;
-                if (q.type === 'essay' && q.userAnswer.trim() !== "") isFilled = true;
-
-                if (isFilled) btn.classList.add('answered');
-                else btn.classList.remove('answered');
-            });
+        saveCanvas();
+        currentSubjIdx++;
+        if(currentSubjIdx < subjects.length) {
+            alert(`${subj}の試験が終了しました。続いて「${subjects[currentSubjIdx]}」を開始します。`);
+            initSubject();
+        } else {
+            finishAll();
         }
+    }
 
-        // 次へ、前へ
-        function changeQuestion(dir) {
-            const target = currentIdx + dir;
-            if (target >= 0 && target < examQuestions.length) {
-                currentIdx = target;
-                showQuestion();
-            }
+    function finishAll() {
+        isTestActive = false;
+        clearInterval(timerInterval);
+        localStorage.setItem('exam_finished', 'true');
+        if(document.exitFullscreen) document.exitFullscreen().catch(()=>{});
+        
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.getElementById('screen-finish').classList.add('active');
+        
+        // MMU- + IDの後半
+        document.getElementById('cert-code').textContent = studentInfo.id;
+    }
+
+    // ======= Canvas・ペンツールロジック =======
+    function resizeCanvas() {
+        const cw = document.getElementById('content-wrapper');
+        canvas.width = cw.scrollWidth;
+        canvas.height = cw.scrollHeight > cw.clientHeight ? cw.scrollHeight : cw.clientHeight;
+    }
+
+    function setTool(tool, color=null) {
+        currentTool = tool;
+        document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(`tool-${tool === 'pen' ? (color==='#000000'?'pen-black':'pen-red') : tool}`).classList.add('active');
+        
+        if(tool === 'cursor') {
+            canvas.classList.remove('drawable');
+        } else {
+            canvas.classList.add('drawable');
+            ctx.globalCompositeOperation = (tool === 'eraser') ? 'destination-out' : 'source-over';
+            if(tool === 'pen') { currentColor = color; currentLineWidth = 2; }
+            if(tool === 'marker') { currentColor = color; currentLineWidth = 15; }
+            if(tool === 'eraser') { currentLineWidth = 20; }
         }
+    }
 
-        // 送信
-        function submitExam(force = false) {
-            if (!force) {
-                const unfilled = examQuestions.some(q => 
-                    (q.type === 'single' && q.userAnswer === null) || 
-                    ((q.type === 'text' || q.type === 'essay') && q.userAnswer.trim() === "")
-                );
-                const msg = unfilled ? "未入力の設問があります。本当に終了して提出しますか？" : "すべての設問に対する解答を本校サーバーに送信します。よろしいですか？";
-                if (!confirm(msg)) return;
-            }
-
-            examSubmitted = true;
-            clearInterval(countdownTimer);
-
-            // フルスクリーン終了
-            if (document.exitFullscreen) { document.exitFullscreen().catch(()=>{}); }
-
-            // 証明書受領番号のシミュレーション生成
-            const receipt = "TMU-" + Math.floor(10000000 + Math.random() * 90000000);
-            document.getElementById('receipt-code').textContent = receipt;
-
-            switchScreen('screen-result');
+    function clearCanvas() {
+        if(confirm('書き込みをすべて消去しますか？')) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
-    </script>
+    }
+
+    // 描画イベント
+    function getPos(e) {
+        const rect = canvas.getBoundingClientRect();
+        return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+    }
+    
+    canvas.addEventListener('mousedown', (e) => {
+        isDrawing = true;
+        const p = getPos(e);
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+    });
+    canvas.addEventListener('mousemove', (e) => {
+        if(!isDrawing) return;
+        const p = getPos(e);
+        ctx.lineTo(p.x, p.y);
+        ctx.strokeStyle = currentColor;
+        ctx.lineWidth = currentLineWidth;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.stroke();
+    });
+    canvas.addEventListener('mouseup', () => { isDrawing = false; });
+    canvas.addEventListener('mouseleave', () => { isDrawing = false; });
+
+    // キャンバスデータの保存・復元（科目名＋問題IDキー）
+    function saveCanvas() {
+        const key = `${subjects[currentSubjIdx]}_${currentQIdx}`;
+        drawingData[key] = canvas.toDataURL();
+    }
+    function restoreCanvas() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const key = `${subjects[currentSubjIdx]}_${currentQIdx}`;
+        if(drawingData[key]) {
+            const img = new Image();
+            img.onload = () => ctx.drawImage(img, 0, 0);
+            img.src = drawingData[key];
+        }
+    }
+
+    // ======= 教職員管理機能 =======
+    function openAdmin() {
+        const pwd = prompt("教職員用パスワードを入力してください:");
+        if(pwd === "admin") {
+            document.getElementById('admin-modal').style.display = 'block';
+        } else if (pwd !== null) {
+            alert("パスワードが違います。");
+        }
+    }
+
+    function resetTimer() {
+        timeLeft = timeLimit;
+        alert("現在の科目の制限時間をリセットしました。");
+    }
+
+    function resetBan() {
+        localStorage.removeItem('exam_banned');
+        localStorage.removeItem('exam_finished');
+        localStorage.removeItem('exam_started');
+        fsErrors = 0;
+        alert("制限・完了フラグを解除しました。ページをリロードすると最初から開始できます。");
+        location.reload();
+    }
+</script>
 </body>
 </html>
