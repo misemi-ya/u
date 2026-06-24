@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>適性検査 模範解答・解説 | 店魅偉屋大学付属幼小中高一貫教育校</title>
+    <style>
+        :root {
+            --primary-navy: #112233;
+            --accent-gold: #c9a346;
+            --bg-gray: #f9fafb;
+            --border-color: #e5e7eb;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+            background-color: var(--bg-gray);
+            color: #1f2937;
+            line-height: 1.8;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            padding: 40px;
+        }
+        header {
+            border-bottom: 3px double var(--accent-gold);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .school-title { font-size: 1.2rem; font-weight: bold; color: var(--primary-navy); }
+        .exam-title { font-size: 1.8rem; font-weight: bold; color: var(--primary-navy); margin-top: 5px; }
+        
+        .section-title { font-size: 1.3rem; font-weight: bold; color: var(--primary-navy); margin: 30px 0 15px 0; border-left: 5px solid var(--accent-gold); padding-left: 12px; }
+        
+        .q-box {
+            background-color: #f3f4f6;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-left: 4px solid var(--primary-navy);
+        }
+        .q-head { font-weight: bold; font-size: 1.1rem; color: var(--primary-navy); margin-bottom: 10px; }
+        .ans-box {
+            background-color: #ecfdf5;
+            border: 1px solid #10b981;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .ans-label { font-weight: bold; color: #047857; font-size: 1.1rem; }
+        
+        .explanation {
+            font-size: 0.95rem;
+            color: #4b5563;
+            margin-top: 15px;
+        }
+        .criteria-list {
+            list-style-type: square;
+            margin-left: 20px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="school-title">店魅偉屋大学付属幼小中高一貫教育校</div>
+            <div class="exam-title">入学者選抜適性検査 模範解答・採点基準</div>
+            <div style="font-size: 0.85rem; color: #6b7280; margin-top: 10px;">本データは本校適性検査の採点指針を示す公文書です</div>
+        </header>
+
+        <!-- 問題 1 -->
+        <div class="section-title">問題 1（論理適性・共通ルール）</div>
+        <div class="q-box">
+            <div class="q-head">問題：</div>
+            児童A、B、C、D、Eの5人によるかけっこの順位について、与えられた手がかりから「3位」の児童を特定する。
+        </div>
+        <div class="ans-box">
+            <span class="ans-label">正解： 児童D</span>
+        </div>
+        <div class="explanation">
+            <strong>【解き方と解説】</strong><br>
+            条件を整理すると以下の順序になります。<br>
+            1. 「AはBより早い」 → <span style="font-family: monospace;">A ＞ B</span>。また「Aは1位ではない」ため、1位の可能性は除外。<br>
+            2. 「DはAより遅く、Bより早い」 → <span style="font-family: monospace;">A ＞ D ＞ B</span>。これにより、3人の関係性が固定。<br>
+            3. 「CはEより遅く、最下位（5位）ではない」 → <span style="font-family: monospace;">E ＞ C</span>。かつ <span style="font-family: monospace;">Cは5位以外</span>。<br>
+            <br>
+            すでに固まっている並び <span style="font-family: monospace;">A ＞ D ＞ B</span> を基本とし、ここにEとCをあてはめます。<br>
+            Cは最下位ではないため、最下位はBとなります。よって、全体の順位は必然的に <strong>E（1位） ＞ A（2位） ＞ D（3位） ＞ C（4位） ＞ B（5位）</strong> となります。<br>
+            従って、3位は「児童D」が正解です。
+        </div>
+
+        <!-- 問題 2 -->
+        <div class="section-title">問題 2（数学的読解・図形数理）</div>
+        <div class="q-box">
+            <div class="q-head">問題：</div>
+            1周3.6km（3600m）のグラウンドで、分速80m（歩行）と分速280m（自転車）の2人が反対方向に回り、最初に出会ってから「次に」出会うまでの時間。
+        </div>
+        <div class="ans-box">
+            <span class="ans-label">正解： 10 (分)</span>
+        </div>
+        <div class="explanation">
+            <strong>【解き方と解説】</strong><br>
+            これは「旅人算（出会い）」の問題です。<br>
+            2人が反対方向に出発して、出会うたびに、2人の進んだ距離の合計はグラウンドちょうど1周分（3600m）になります。<br>
+            「最初に出会ってから、次にグラウンド上で出会うまで」に進むべき距離も、全く同様に「グラウンド1周分（3600m）」です。<br>
+            したがって、出会うまでにかかる時間は以下の計算式で求められます。<br>
+            <br>
+            <span style="font-family: monospace; font-size: 1.1rem; display: block; text-align: center; margin: 10px 0; font-weight: bold;">
+                3600m ÷ (80m/分 + 280m/分) ＝ 3600 ÷ 360 ＝ 10分
+            </span>
+            受験者がグラウンドの「最初に出会うまでの距離（スタート地点を同じにしたため同じ）」と「2回目に出会うまでの距離」を混同せず、本質が同一であると見抜く読解力を問う問題です。
+        </div>
+
+        <!-- 問題 3 -->
+        <div class="section-title">問題 3（社会科学・現代社会の読解）</div>
+        <div class="q-box">
+            <div class="q-head">問題：</div>
+            情報通信技術（ICT）社会におけるデジタル・デバイド（情報格差）の記述として「最も不適切な説明」を選択する。
+        </div>
+        <div class="ans-box">
+            <span class="ans-label">正解： 行政手続きのデジタル化により、すべての住民が例外なく利便性を享受できるようになった現象のこと。</span>
+        </div>
+        <div class="explanation">
+            <strong>【解き方と解説】</strong><br>
+            デジタル・デバイド（格差）は本来、デジタル化から「取り残される層（高齢者、経済的困難者など）」を生むことが深刻な社会問題となっています。<br>
+            したがって、「すべての住民が例外なく利便性を享受している」とする選択肢の内容は事実と矛盾しており、デジタル・デバイドの定義・説明として不適切です。他の3つの選択肢は定義として適切です。
+        </div>
+
+        <!-- 問題 4 -->
+        <div class="section-title">問題 4（論説文作成・記述評価）</div>
+        <div class="q-box">
+            <div class="q-head">問題：</div>
+            探究学習における電子メディア（デジタル）と紙メディアの併用に関する見解を200字程度で論述。
+        </div>
+        <div class="explanation">
+            <strong>【採点・評価基準（ルーブリック）】</strong><br>
+            本設問は自動採点を行わず、付属校の教育研究部門による以下のルーブリック評価（A〜Cの3段階）を適用します。
+            
+            <ul class="criteria-list">
+                <li><strong>A評価（優秀）：</strong>「電子」と「紙」の双方の性質（電子は検索性・一覧性に優れ、紙は記憶定着や構造理解に強い等）について具体的に言及したうえで、どのような学習フェーズでそれぞれを利用すべきか明確な具体案を示し、構成に乱れがないこと。</li>
+                <li><strong>B評価（基準適合）：</strong>自身の主張（どちらか重視、あるいは併用）を表明しているが、各メディアのメリット・デメリットへの言及が不十分、もしくは具体的な授業シーンへの応用についての論旨がやや弱いもの。</li>
+                <li><strong>C評価（再検討）：</strong>文字数が著しく不足している（100字未満）、または超過している（300字以上）。単に「デジタルは便利だ」などの感想に留まり、客観的な論理性を欠くもの。</li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>
