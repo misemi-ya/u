@@ -3,499 +3,541 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CBT入試システム - 店魅偉屋大学付属幼小中高一貫教育校</title>
+    <title>CBT総合適性検査 - 店魅偉屋大学付属幼小中高一貫教育校</title>
     <style>
         :root {
-            --primary-color: #1a365d;
-            --secondary-color: #2b6cb0;
-            --background-color: #f7fafc;
-            --border-color: #cbd5e0;
-            --text-color: #2d3748;
+            --primary-navy: #112233;
+            --accent-gold: #c9a346;
+            --bg-gray: #f5f6f8;
+            --border-color: #d1d5db;
+            --danger-red: #dc2626;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            background-color: var(--background-color);
-            color: var(--text-color);
-            display: flex;
-            flex-direction: column;
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+            background-color: var(--bg-gray);
+            color: #1f2937;
             height: 100vh;
             overflow: hidden;
+            user-select: none; /* 問題テキストのコピー防止 */
         }
 
-        /* ヘッダーエリア */
-        header {
-            background-color: var(--primary-color);
+        /* 画面セクション管理 */
+        .screen {
+            display: none;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0; left: 0;
+            overflow-y: auto;
+        }
+        .screen.active { display: flex; flex-direction: column; }
+
+        /* 共通ボタン */
+        .btn {
+            background-color: var(--primary-navy);
             color: white;
-            padding: 10px 20px;
+            border: 1px solid var(--primary-navy);
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn:hover { background-color: #1d3557; }
+        .btn:disabled { background-color: #9ca3af; cursor: not-allowed; }
+
+        /* 1. 受験番号入力画面 */
+        #screen-login {
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #112233 0%, #1d3557 100%);
+            color: white;
+        }
+        .login-card {
+            background: white;
+            color: #1f2937;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            width: 450px;
+            max-width: 90%;
+            text-align: center;
+        }
+        .school-logo-area { margin-bottom: 20px; }
+        .school-logo-title { font-size: 1.3rem; font-weight: bold; color: var(--primary-navy); margin-bottom: 5px; }
+        .input-group { text-align: left; margin-bottom: 20px; }
+        .input-group label { display: block; font-size: 0.85rem; font-weight: bold; margin-bottom: 8px; color: #4b5563; }
+        .input-field { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 1.1rem; text-align: center; font-family: monospace; }
+
+        /* 2. 試験ガイダンス画面 */
+        #screen-instruction { padding: 40px 20px; align-items: center; justify-content: center; }
+        .instruction-container { background: white; max-width: 800px; width: 100%; padding: 40px; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .instruction-title { font-size: 1.5rem; font-weight: bold; color: var(--primary-navy); border-bottom: 2px solid var(--accent-gold); padding-bottom: 10px; margin-bottom: 20px; }
+        .instruction-body { line-height: 1.8; margin-bottom: 30px; font-size: 0.95rem; }
+        .warning-box { background-color: #fee2e2; border-left: 4px solid var(--danger-red); padding: 15px; margin: 20px 0; border-radius: 4px; color: #991b1b; }
+
+        /* 3. 本番試験画面 (MEXCBTレイアウト) */
+        header {
+            background-color: var(--primary-navy);
+            color: white;
+            padding: 12px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-size: 0.9rem;
+            border-bottom: 3px solid var(--accent-gold);
         }
+        .timer-badge { background-color: var(--danger-red); padding: 6px 14px; border-radius: 4px; font-weight: bold; font-size: 1.1rem; }
+        .test-body { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 260px; background: white; border-right: 1px solid var(--border-color); padding: 20px; display: flex; flex-direction: column; justify-content: space-between; }
+        .question-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 15px 0; }
+        .q-num-btn { background: #f3f4f6; border: 1px solid var(--border-color); border-radius: 4px; padding: 12px 0; font-weight: bold; cursor: pointer; text-align: center; }
+        .q-num-btn.active { background: var(--primary-navy); color: white; border-color: var(--primary-navy); }
+        .q-num-btn.answered { border: 2px solid #10b981; background: #ecfdf5; }
+        .q-num-btn.answered.active { background: var(--primary-navy); color: white; }
+        .main-test-area { flex: 1; display: flex; flex-direction: column; background: #fff; margin: 15px; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+        .question-view { flex: 1; padding: 40px; overflow-y: auto; }
+        .answer-selector { margin-top: 25px; display: flex; flex-direction: column; gap: 12px; }
+        .option-label { display: flex; align-items: center; padding: 15px; border: 1px solid var(--border-color); border-radius: 6px; cursor: pointer; transition: background 0.1s; }
+        .option-label:hover { background-color: #f9fafb; }
+        .option-label input { margin-right: 15px; transform: scale(1.2); }
+        .text-input-large { width: 100%; height: 150px; padding: 15px; font-size: 1rem; border: 1px solid var(--border-color); border-radius: 6px; resize: none; }
+        .test-footer { background-color: #f3f4f6; padding: 15px 30px; display: flex; justify-content: space-between; border-top: 1px solid var(--border-color); }
 
-        .school-title {
-            font-size: 1.1rem;
-            font-weight: bold;
-        }
-
-        .timer-area {
-            background-color: #e53e3e;
-            padding: 5px 15px;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
-        /* メインコンテンツエリア */
-        .main-container {
-            display: flex;
-            flex: 1;
-            overflow: hidden;
-        }
-
-        /* 左側：問題ナビゲーション */
-        .sidebar {
-            width: 250px;
-            border-right: 2px solid var(--border-color);
-            background-color: white;
-            padding: 20px;
-            display: flex;
+        /* 全画面解除ロック警告レイアウト */
+        #fullscreen-warning-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(17, 34, 51, 0.98);
+            z-index: 99999;
             flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .nav-title {
-            font-weight: bold;
-            margin-bottom: 15px;
-            padding-bottom: 5px;
-            border-bottom: 2px solid var(--secondary-color);
-        }
-
-        .question-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .q-btn {
-            background-color: #edf2f7;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            padding: 10px 0;
-            font-weight: bold;
-            cursor: pointer;
-            text-align: center;
-            transition: all 0.2s;
-        }
-
-        .q-btn.active {
-            background-color: var(--secondary-color);
-            color: white;
-            border-color: var(--secondary-color);
-        }
-
-        .q-btn.answered {
-            border: 2px solid #48bb78;
-            background-color: #f0fff4;
-        }
-
-        .q-btn.answered.active {
-            background-color: var(--secondary-color);
-            color: white;
-        }
-
-        /* 右側：問題・解答エリア */
-        .content-area {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            background-color: white;
-            margin: 15px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            overflow: hidden;
-        }
-
-        .question-container {
-            flex: 1;
-            padding: 30px;
-            overflow-y: auto;
-        }
-
-        .question-header {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px dashed var(--border-color);
-        }
-
-        .question-body {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 30px;
-        }
-
-        .answer-input-area {
-            background-color: #f7fafc;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 20px;
-        }
-
-        /* 解答形式ごとのスタイル */
-        .option-item {
-            display: block;
-            margin-bottom: 12px;
-            padding: 10px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            background-color: white;
-            cursor: pointer;
-        }
-
-        .option-item:hover {
-            background-color: #ebf8ff;
-        }
-
-        .option-item input {
-            margin-right: 10px;
-        }
-
-        .text-input {
-            width: 100%;
-            padding: 12px;
-            font-size: 1rem;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-        }
-
-        /* 下部ナビゲーション */
-        .footer-nav {
-            background-color: #edf2f7;
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            border-top: 1px solid var(--border-color);
+            color: white;
+            text-align: center;
+            padding: 20px;
         }
 
-        .btn {
-            padding: 10px 25px;
-            font-size: 1rem;
+        /* 不正検出ポップアップ */
+        .violation-popup {
+            position: fixed;
+            top: 20px; left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--danger-red);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 100000;
             font-weight: bold;
-            border-radius: 4px;
-            cursor: pointer;
-            border: none;
+            display: none;
+            animation: slideDown 0.3s ease;
         }
-
-        .btn-prev {
-            background-color: #cbd5e0;
-            color: #4a5568;
-        }
-
-        .btn-next {
-            background-color: var(--secondary-color);
-            color: white;
-        }
-
-        .btn-submit {
-            background-color: #48bb78;
-            color: white;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        .btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
+        @keyframes slideDown { from { top: -50px; opacity: 0; } to { top: 20px; opacity: 1; } }
     </style>
 </head>
 <body>
 
-    <!-- ヘッダー -->
-    <header>
-        <div>
-            <span class="school-title">店魅偉屋大学付属幼小中高一貫教育校</span>
-            <span style="margin-left: 20px;">令和X年度 総合選抜適性検査 (CBT版)</span>
-        </div>
-        <div style="display: flex; align-items: center; gap: 20px;">
-            <div>受験番号: <strong id="student-id">TEM-2024-089</strong></div>
-            <div class="timer-area">残り時間 <span id="timer">45:00</span></div>
-        </div>
-    </header>
+    <!-- 不正検知警告 -->
+    <div id="violation-alert" class="violation-popup">⚠️ 警告: ウインドウ移動、またはタブ切り替えを検知しました。</div>
 
-    <!-- メインエリア -->
-    <div class="main-container">
-        <!-- 左サイドバー -->
-        <div class="sidebar">
+    <!-- 全画面表示の強制ロックカバー -->
+    <div id="fullscreen-warning-overlay">
+        <h2 style="font-size: 2rem; color: var(--accent-gold); margin-bottom: 15px;">全画面表示が解除されました</h2>
+        <p style="margin-bottom: 30px; max-width: 500px; line-height: 1.6;">本試験は不正受験を防止するため全画面での受検が必須です。下記のボタンを押して全画面表示に復帰してください。</p>
+        <button class="btn" style="background-color: var(--accent-gold); color: #112233; border: none;" onclick="forceRestoreFullscreen()">全画面に復帰する</button>
+    </div>
+
+    <!-- Screen 1: 受験番号入力画面 -->
+    <div id="screen-login" class="screen active">
+        <div class="login-card">
+            <div class="school-logo-area">
+                <div class="school-logo-title">店魅偉屋大学付属幼小中高一貫教育校</div>
+                <div style="font-size:0.75rem; color:#6b7280; letter-spacing:1px;">COMPUTER BASED TESTING (CBT)</div>
+            </div>
+            <h2 style="margin-bottom: 25px; font-size: 1.4rem; color: #112233;">入学者選抜適性検査</h2>
+            
+            <div class="input-group">
+                <label for="student-id">受験番号 (半角数字8桁)</label>
+                <input type="text" id="student-id" class="input-field" placeholder="12345678" maxlength="8">
+            </div>
+            <div class="input-group">
+                <label for="student-name">氏名</label>
+                <input type="text" id="student-name" class="input-field" placeholder="店魅偉屋 太郎">
+            </div>
+            <button class="btn" style="width: 100%; margin-top: 10px;" onclick="proceedToInstruction()">次へ進む</button>
+        </div>
+    </div>
+
+    <!-- Screen 2: 試験説明画面 -->
+    <div id="screen-instruction" class="screen">
+        <div class="instruction-container">
+            <h2 class="instruction-title">受験者注意事項説明</h2>
+            <div class="instruction-body">
+                <p>店魅偉屋大学付属幼小中高一貫教育校の適性検査（CBT版）を開始します。以下の注意事項を熟読のうえ、試験に臨んでください。</p>
+                
+                <div class="warning-box">
+                    <strong>【重要・不正受験対策について】</strong><br>
+                    1. <strong>全画面表示の固定：</strong>「試験開始」ボタンを押すと、自動的に全画面表示に切り替わります。試験終了まで意図的に全画面を解除することは禁止されています。<br>
+                    2. <strong>画面移動・離脱の禁止：</strong>試験中に他のタブに切り替えたり、他アプリを起動したり、デスクトップをクリックした場合、自動的に不正行為判定プログラムが作動し、<strong>警告ログが記録されます。（複数回の警告で自動的に受験資格を喪失します）</strong>
+                </div>
+                <p>3. 試験時間は <strong>10分間</strong> です。制限時間が経過すると解答は自動的に送信されます。</p>
+                <p>4. 電卓や他のウェブサイトの利用は認められません。</p>
+            </div>
+            <div style="text-align: center;">
+                <button class="btn" onclick="startExam()">同意して試験を開始する</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 3: 試験本番画面 -->
+    <div id="screen-test" class="screen">
+        <header>
             <div>
-                <div class="nav-title">問題一覧</div>
-                <div class="question-grid" id="question-nav-grid">
-                    <!-- JSで動的にボタンを生成 -->
+                <span style="font-weight: bold; font-size: 1.1rem;">店魅偉屋大付属 一貫選抜適性検査 (CBT)</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 25px;">
+                <div>受験番号: <strong id="display-id">00000000</strong></div>
+                <div>氏名: <strong id="display-name">---</strong></div>
+                <div class="timer-badge">制限時間 <span id="timer">10:00</span></div>
+            </div>
+        </header>
+
+        <div class="test-body">
+            <!-- ナビゲーションバー -->
+            <div class="sidebar">
+                <div>
+                    <h3 style="font-size: 0.9rem; border-bottom: 2px solid var(--accent-gold); padding-bottom: 5px; margin-bottom: 10px;">問題一覧</h3>
+                    <div class="question-grid" id="question-nav">
+                        <!-- JSで動的にボタン生成 -->
+                    </div>
+                </div>
+                <div>
+                    <div style="font-size: 0.75rem; color: #ef4444; margin-bottom: 10px;" id="warning-counter">画面外クリック警告回数: 0</div>
+                    <button class="btn" style="width: 100%; background-color:#10b981; border:none;" onclick="submitExam(false)">試験を終了して提出</button>
                 </div>
             </div>
-            <div>
-                <button class="btn btn-submit" onclick="submitExam()">試験を終了する</button>
-            </div>
-        </div>
 
-        <!-- 右コンテンツエリア -->
-        <div class="content-area">
-            <div class="question-container" id="question-container">
-                <div class="question-header" id="question-title">問題</div>
-                <div class="question-body" id="question-text">読み込み中...</div>
-                <div class="answer-input-area" id="answer-area">
-                    <!-- 解答UIがここに動的に入ります -->
+            <!-- 問題表示エリア -->
+            <div class="main-test-area">
+                <div class="question-view" id="question-view">
+                    <h2 id="q-title" style="font-size: 1.3rem; margin-bottom: 20px;">問題タイトル</h2>
+                    <div id="q-text" style="line-height: 1.8; font-size: 1.05rem; margin-bottom: 30px;">問題文がここに入ります。</div>
+                    <div id="q-answer-container">
+                        <!-- 解答エリア（動的に切り替え） -->
+                    </div>
+                </div>
+                <div class="test-footer">
+                    <button class="btn" style="background:#6b7280; border:none;" id="btn-prev" onclick="changeQuestion(-1)">前の問題へ</button>
+                    <button class="btn" id="btn-next" onclick="changeQuestion(1)">次の問題へ</button>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <!-- フッターナビゲーション -->
-            <div class="footer-nav">
-                <button class="btn btn-prev" id="btn-prev" onclick="prevQuestion()">前の問題へ</button>
-                <button class="btn btn-next" id="btn-next" onclick="nextQuestion()">次の問題へ</button>
+    <!-- Screen 4: 終了画面 -->
+    <div id="screen-result" class="screen" style="justify-content: center; align-items: center; background: white;">
+        <div style="text-align: center; max-width: 500px; padding: 20px;">
+            <div style="font-size: 4rem; color: #10b981; margin-bottom: 20px;">✓</div>
+            <h2 style="font-size: 1.8rem; color: var(--primary-navy); margin-bottom: 15px;">解答データ送信完了</h2>
+            <p style="color: #4b5563; line-height: 1.6; margin-bottom: 30px;">
+                店魅偉屋大学付属校の適性検査データは、本校サーバーへ正常に送信されました。受験者は速やかに全画面表示を終了し、試験室から退室してください。
+            </p>
+            <div style="background-color: #f3f4f6; padding: 15px; border-radius: 6px; font-family: monospace; font-size: 0.9rem;">
+                試験完了証明コード: <span id="receipt-code">---</span>
             </div>
         </div>
     </div>
 
     <script>
-        // 模擬問題データ (一貫校を想定した総合的な問題)
-        const questions = [
+        // 厳選したリアルな出題内容
+        const examQuestions = [
             {
                 id: 1,
-                title: "問題 1（総合適性・図形論理）",
-                text: "ある規則に従って並んでいる記号があります。<br><strong>「○ △ □ ○ △ □ ？」</strong><br>この規則に基づいたとき、？に入る記号として最も適切なものを1つ選択してください。",
+                title: "問題 1（論理適性・共通ルール）",
+                text: "店魅偉屋大学附属小学校の児童A、B、C、D、Eの5人がかけっこをしました。5人の順位について次のことが分かっています。<br>・AはBより早くゴールしたが、1位ではなかった。<br>・CはEより遅くゴールしたが、最下位ではなかった。<br>・DはAより遅く、Bより早くゴールした。<br>このとき、3位になった児童は誰ですか。正しいものを選択しなさい。",
                 type: "single",
-                options: ["○", "△", "□", "☆"],
+                options: ["児童A", "児童B", "児童C", "児童D", "児童E"],
                 userAnswer: null
             },
             {
                 id: 2,
-                title: "問題 2（算数・数学的思考）",
-                text: "店魅偉屋大学付属校の食堂では、A定食とB定食があります。ある日、食堂を利用した生徒120人のうち、A定食を選んだ人はB定食を選んだ人の2倍より15人少なかったです。このとき、A定食を選んだ人数を半角数字で入力してください。",
+                title: "問題 2（数学的読解・図形数理）",
+                text: "外周の長さが3.6kmの円形の中等部グラウンドがあります。Aさんは徒歩で毎分80m、Bさんは自転車で毎分280mの速さで、同じ地点から同時に出発し、それぞれ反対方向に回ります。2人が最初に出会ってから、次にグラウンド上で出会うまでに何分かかりますか。半角数字のみで入力しなさい。",
                 type: "text",
-                placeholder: "例: 45",
+                placeholder: "（例: 15）",
                 userAnswer: ""
             },
             {
                 id: 3,
-                title: "問題 3（社会・一般教養）",
-                text: "環境問題において言及される「3R」に該当するものを、以下の中から<strong>すべて</strong>選んでください。",
-                type: "multiple",
-                options: ["Reduce（リデュース）", "Reuse（リユース）", "Recycle（リサイクル）", "Reform（リフォーム）"],
-                userAnswer: [] // 複数選択時は配列で保持
+                title: "問題 3（社会科学・現代社会の読解）",
+                text: "情報通信技術（ICT）の普及が進む現代におけるデジタル・デバイド（情報格差）の記述として、**最も不適切な説明**を次のうちから1つ選びなさい。",
+                type: "single",
+                options: [
+                    "地理的条件や所得の差によって、情報技術へのアクセス能力に格差が生じること。",
+                    "行政手続きのデジタル化により、すべての住民が例外なく利便性を享受できるようになった現象のこと。",
+                    "高齢層と若年層の間で、インターネットの利用スキルや活用方法に顕著な差が生まれること。",
+                    "格差が雇用機会や収入の差に直結し、社会全体の経済的格差を拡大させる要因となること"
+                ],
+                userAnswer: null
             },
             {
                 id: 4,
-                title: "問題 4（国語・表現力）",
-                text: "次の言葉遣いのうち、敬語の使い方として<strong>誤っているもの</strong>を1つ選んでください。",
-                type: "single",
-                options: [
-                    "先生が資料を拝見されました。",
-                    "こちらで少々お待ちください。",
-                    "お荷物をお持ちいたします。",
-                    "先輩にお聞きしたいことがあります。"
-                ],
-                userAnswer: null
+                title: "問題 4（論説文作成・記述評価）",
+                text: "店魅偉屋大学付属の高等部では「探究学習における電子メディアと紙メディアの併用」が議論されています。あなたがどちらのメディアをより重視すべきか、または両者をどのように組み合わせて活用すべきか、自身の見解を **200字程度** で論述しなさい。（※解答欄に入力した文字数も判定対象となります）",
+                type: "essay",
+                userAnswer: ""
             }
         ];
 
-        let currentQuestionIndex = 0;
-        let timeLeft = 45 * 60; // 45分（秒換算）
+        let currentIdx = 0;
+        let testStarted = false;
+        let examSubmitted = false;
+        let countdownTimer;
+        let secondsLeft = 10 * 60; // 10分
+        let violationCount = 0;
 
-        // タイマー制御
+        // 画面遷移：ログイン -> 説明
+        function proceedToInstruction() {
+            const id = document.getElementById('student-id').value;
+            const name = document.getElementById('student-name').value;
+            if (id.length !== 8 || isNaN(id)) {
+                alert("受験番号は8桁の半角数字で正しく入力してください。");
+                return;
+            }
+            if (!name.trim()) {
+                alert("氏名を入力してください。");
+                return;
+            }
+            document.getElementById('display-id').textContent = id;
+            document.getElementById('display-name').textContent = name;
+            
+            switchScreen('screen-instruction');
+        }
+
+        // 画面切り替えユーティリティ
+        function switchScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(screenId).classList.add('active');
+        }
+
+        // 試験開始（全画面起動をトリガー）
+        function startExam() {
+            testStarted = true;
+            switchScreen('screen-test');
+            requestFullscreen();
+            buildNavigation();
+            showQuestion();
+            startTimer();
+
+            // 不正対策イベントリスナーの有効化
+            document.addEventListener('fullscreenchange', checkFullscreenState);
+            window.addEventListener('blur', triggerTabOutViolation);
+            document.addEventListener('visibilitychange', triggerVisibilityViolation);
+        }
+
+        // 全画面起動
+        function requestFullscreen() {
+            const de = document.documentElement;
+            if (de.requestFullscreen) { de.requestFullscreen(); }
+            else if (de.mozRequestFullScreen) { de.mozRequestFullScreen(); }
+            else if (de.webkitRequestFullscreen) { de.webkitRequestFullscreen(); }
+            else if (de.msRequestFullscreen) { de.msRequestFullscreen(); }
+        }
+
+        // 全画面状態の常時チェック
+        function checkFullscreenState() {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                if (testStarted && !examSubmitted) {
+                    document.getElementById('fullscreen-warning-overlay').style.display = 'flex';
+                }
+            } else {
+                document.getElementById('fullscreen-warning-overlay').style.display = 'none';
+            }
+        }
+
+        // 全画面強制復旧ボタン
+        function forceRestoreFullscreen() {
+            requestFullscreen();
+        }
+
+        // 不正検出：他タブや別アプリに切り替えられた際のイベント
+        function triggerTabOutViolation() {
+            if (testStarted && !examSubmitted) {
+                recordViolation("ウィンドウのアクティブ状態が解除されました。");
+            }
+        }
+
+        function triggerVisibilityViolation() {
+            if (document.hidden && testStarted && !examSubmitted) {
+                recordViolation("他のタブまたはアプリに切り替えられました。");
+            }
+        }
+
+        // 不正ペナルティログ記録
+        function recordViolation(reason) {
+            violationCount++;
+            document.getElementById('warning-counter').textContent = `画面外クリック警告回数: ${violationCount}`;
+            
+            const alertEl = document.getElementById('violation-alert');
+            alertEl.style.display = 'block';
+            
+            if (violationCount >= 3) {
+                alert("不正操作の検出が制限値（3回）を超えたため、試験を強制終了し採点処理に回します。");
+                submitExam(true);
+            } else {
+                setTimeout(() => { alertEl.style.display = 'none'; }, 4000);
+            }
+        }
+
+        // タイマー開始
         function startTimer() {
-            const timerElement = document.getElementById('timer');
-            const interval = setInterval(() => {
-                if (timeLeft <= 0) {
-                    clearInterval(interval);
-                    alert("試験時間が終了しました。自動的に解答を提出します。");
-                    submitExam();
+            const display = document.getElementById('timer');
+            countdownTimer = setInterval(() => {
+                if (secondsLeft <= 0) {
+                    clearInterval(countdownTimer);
+                    alert("試験時間が終了しました。システムが自動で解答を提出します。");
+                    submitExam(true);
                     return;
                 }
-                timeLeft--;
-                const minutes = Math.floor(timeLeft / 60);
-                const seconds = timeLeft % 60;
-                timerElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                secondsLeft--;
+                const min = Math.floor(secondsLeft / 60);
+                const sec = secondsLeft % 60;
+                display.textContent = `${String(min).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
             }, 1000);
         }
 
-        // ナビゲーションボタンの生成
-        function initNavigation() {
-            const grid = document.getElementById('question-nav-grid');
-            grid.innerHTML = '';
-            questions.forEach((q, index) => {
+        // ナビゲーションの構築
+        function buildNavigation() {
+            const container = document.getElementById('question-nav');
+            container.innerHTML = '';
+            examQuestions.forEach((q, idx) => {
                 const btn = document.createElement('button');
-                btn.className = `q-btn ${index === currentQuestionIndex ? 'active' : ''}`;
-                btn.id = `nav-btn-${index}`;
+                btn.className = 'q-num-btn';
+                btn.id = `q-btn-${idx}`;
                 btn.textContent = q.id;
-                btn.onclick = () => jumpToQuestion(index);
-                grid.appendChild(btn);
-            });
-            updateNavStatus();
-        }
-
-        // ナビゲーションの未回答・回答済ステータス更新
-        function updateNavStatus() {
-            questions.forEach((q, index) => {
-                const btn = document.getElementById(`nav-btn-${index}`);
-                if (!btn) return;
-
-                // 回答があるかどうかのチェック
-                let isAnswered = false;
-                if (q.type === 'single' && q.userAnswer !== null) {
-                    isAnswered = true;
-                } else if (q.type === 'text' && q.userAnswer.trim() !== "") {
-                    isAnswered = true;
-                } else if (q.type === 'multiple' && q.userAnswer.length > 0) {
-                    isAnswered = true;
-                }
-
-                if (isAnswered) {
-                    btn.classList.add('answered');
-                } else {
-                    btn.classList.remove('answered');
-                }
-
-                // アクティブ状態の切り替え
-                if (index === currentQuestionIndex) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
+                btn.onclick = () => { currentIdx = idx; showQuestion(); };
+                container.appendChild(btn);
             });
         }
 
-        // 問題の表示
-        function renderQuestion() {
-            const q = questions[currentQuestionIndex];
-            document.getElementById('question-title').textContent = q.title;
-            document.getElementById('question-text').innerHTML = q.text;
+        // 設問表示
+        function showQuestion() {
+            const q = examQuestions[currentIdx];
+            document.getElementById('q-title').textContent = q.title;
+            document.getElementById('q-text').innerHTML = q.text;
 
-            const answerArea = document.getElementById('answer-area');
-            answerArea.innerHTML = '';
+            const ansContainer = document.getElementById('q-answer-container');
+            ansContainer.innerHTML = '';
 
             // 前後ボタンの制御
-            document.getElementById('btn-prev').disabled = currentQuestionIndex === 0;
-            document.getElementById('btn-next').disabled = currentQuestionIndex === questions.length - 1;
+            document.getElementById('btn-prev').disabled = (currentIdx === 0);
+            document.getElementById('btn-next').disabled = (currentIdx === examQuestions.length - 1);
 
             if (q.type === 'single') {
-                // 単一選択（ラジオボタン）
-                q.options.forEach((option, idx) => {
+                q.options.forEach((opt, idx) => {
                     const label = document.createElement('label');
-                    label.className = 'option-item';
-                    
+                    label.className = 'option-label';
                     const radio = document.createElement('input');
                     radio.type = 'radio';
-                    radio.name = `question-${q.id}`;
+                    radio.name = `ans-${q.id}`;
                     radio.value = idx;
                     radio.checked = q.userAnswer === idx;
-                    radio.onchange = () => {
-                        q.userAnswer = idx;
-                        updateNavStatus();
-                    };
+                    radio.onchange = () => { q.userAnswer = idx; updateNavStatus(); };
 
                     label.appendChild(radio);
-                    label.appendChild(document.createTextNode(option));
-                    answerArea.appendChild(label);
-                });
-            } else if (q.type === 'multiple') {
-                // 複数選択（チェックボックス）
-                q.options.forEach((option, idx) => {
-                    const label = document.createElement('label');
-                    label.className = 'option-item';
-                    
-                    const checkbox = document.createElement('input');
-                    checkbox.type = 'checkbox';
-                    checkbox.name = `question-${q.id}`;
-                    checkbox.value = idx;
-                    checkbox.checked = q.userAnswer.includes(idx);
-                    checkbox.onchange = () => {
-                        if (checkbox.checked) {
-                            if (!q.userAnswer.includes(idx)) q.userAnswer.push(idx);
-                        } else {
-                            q.userAnswer = q.userAnswer.filter(item => item !== idx);
-                        }
-                        updateNavStatus();
-                    };
-
-                    label.appendChild(checkbox);
-                    label.appendChild(document.createTextNode(option));
-                    answerArea.appendChild(label);
+                    label.appendChild(document.createTextNode(opt));
+                    ansContainer.appendChild(label);
                 });
             } else if (q.type === 'text') {
-                // 記述式テキスト
                 const input = document.createElement('input');
                 input.type = 'text';
-                input.className = 'text-input';
+                input.className = 'input-field';
+                input.style.width = '300px';
                 input.placeholder = q.placeholder;
                 input.value = q.userAnswer;
-                input.oninput = (e) => {
-                    q.userAnswer = e.target.value;
-                    updateNavStatus();
-                };
-                answerArea.appendChild(input);
-            }
+                input.oninput = (e) => { q.userAnswer = e.target.value; updateNavStatus(); };
+                ansContainer.appendChild(input);
+            } else if (q.type === 'essay') {
+                const area = document.createElement('textarea');
+                area.className = 'text-input-large';
+                area.placeholder = "ここに解答を200字程度で記入してください。";
+                area.value = q.userAnswer;
+                area.oninput = (e) => { q.userAnswer = e.target.value; updateNavStatus(); };
+                ansContainer.appendChild(area);
+                
+                const charCount = document.createElement('div');
+                charCount.style.fontSize = '0.85rem';
+                charCount.style.marginTop = '5px';
+                charCount.style.textAlign = 'right';
+                charCount.id = 'char-count-display';
+                charCount.textContent = `現在の文字数: ${q.userAnswer.length}文字`;
+                ansContainer.appendChild(charCount);
 
-            updateNavStatus();
-        }
-
-        // ボタン遷移
-        function nextQuestion() {
-            if (currentQuestionIndex < questions.length - 1) {
-                currentQuestionIndex++;
-                renderQuestion();
-            }
-        }
-
-        function prevQuestion() {
-            if (currentQuestionIndex > 0) {
-                currentQuestionIndex--;
-                renderQuestion();
-            }
-        }
-
-        function jumpToQuestion(index) {
-            currentQuestionIndex = index;
-            renderQuestion();
-        }
-
-        // 試験終了処理
-        function submitExam() {
-            let confirmation = confirm("試験を終了し、解答を送信しますか？（送信後は修正できません）");
-            if (confirmation) {
-                let summary = "【解答結果の確認】\n\n";
-                questions.forEach(q => {
-                    let ansStr = "未回答";
-                    if (q.type === 'single' && q.userAnswer !== null) {
-                        ansStr = `選択肢 [${q.userAnswer + 1}] : ${q.options[q.userAnswer]}`;
-                    } else if (q.type === 'text' && q.userAnswer.trim() !== "") {
-                        ansStr = q.userAnswer;
-                    } else if (q.type === 'multiple' && q.userAnswer.length > 0) {
-                        ansStr = q.userAnswer.map(idx => `[${idx + 1}] ${q.options[idx]}`).join(", ");
-                    }
-                    summary += `${q.title}: ${ansStr}\n`;
+                area.addEventListener('input', () => {
+                    charCount.textContent = `現在の文字数: ${area.value.length}文字`;
                 });
-                alert(summary + "\n以上の内容で送信を完了しました。お疲れ様でした。");
-                window.close(); // タブを閉じる（ブラウザ制限で動作しない場合もあります）
+            }
+
+            // ナビボタンのアクティブ状態更新
+            document.querySelectorAll('.q-num-btn').forEach((btn, i) => {
+                if (i === currentIdx) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+        }
+
+        // 解答有無によるナビボタン色のアップデート
+        function updateNavStatus() {
+            examQuestions.forEach((q, idx) => {
+                const btn = document.getElementById(`q-btn-${idx}`);
+                if (!btn) return;
+
+                let isFilled = false;
+                if (q.type === 'single' && q.userAnswer !== null) isFilled = true;
+                if (q.type === 'text' && q.userAnswer.trim() !== "") isFilled = true;
+                if (q.type === 'essay' && q.userAnswer.trim() !== "") isFilled = true;
+
+                if (isFilled) btn.classList.add('answered');
+                else btn.classList.remove('answered');
+            });
+        }
+
+        // 次へ、前へ
+        function changeQuestion(dir) {
+            const target = currentIdx + dir;
+            if (target >= 0 && target < examQuestions.length) {
+                currentIdx = target;
+                showQuestion();
             }
         }
 
-        // 初期化処理
-        window.onload = () => {
-            initNavigation();
-            renderQuestion();
-            startTimer();
-        };
+        // 送信
+        function submitExam(force = false) {
+            if (!force) {
+                const unfilled = examQuestions.some(q => 
+                    (q.type === 'single' && q.userAnswer === null) || 
+                    ((q.type === 'text' || q.type === 'essay') && q.userAnswer.trim() === "")
+                );
+                const msg = unfilled ? "未入力の設問があります。本当に終了して提出しますか？" : "すべての設問に対する解答を本校サーバーに送信します。よろしいですか？";
+                if (!confirm(msg)) return;
+            }
+
+            examSubmitted = true;
+            clearInterval(countdownTimer);
+
+            // フルスクリーン終了
+            if (document.exitFullscreen) { document.exitFullscreen().catch(()=>{}); }
+
+            // 証明書受領番号のシミュレーション生成
+            const receipt = "TMU-" + Math.floor(10000000 + Math.random() * 90000000);
+            document.getElementById('receipt-code').textContent = receipt;
+
+            switchScreen('screen-result');
+        }
     </script>
 </body>
 </html>
