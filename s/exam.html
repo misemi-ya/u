@@ -7,8 +7,8 @@
     <style>
         :root { --p-color: #0f172a; --s-color: #1e293b; --a-color: #b45309; --danger: #dc2626; --bg: #f1f5f9; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        /* 問題文テキストは選択可能(マーカー用)、それ以外は選択不可 */
-        body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; background: var(--bg); color: #333; height: 100vh; overflow: hidden; user-select: none; }
+        /* コピペ防止基盤 */
+        body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; background: var(--bg); color: #333; height: 100vh; overflow: hidden; user-select: none; -webkit-user-select: none; }
         .selectable-text { user-select: text; -webkit-user-select: text; }
         
         .screen { display: none; width: 100%; height: 100%; position: absolute; top: 0; left: 0; overflow: auto; }
@@ -58,8 +58,6 @@
         .q-btn.review::after { content: '🚩'; position: absolute; top: -5px; right: -5px; font-size: 0.8rem; }
         
         .main-area { flex: 1; display: flex; flex-direction: column; position: relative; background: white; }
-        
-        /* ツールバー */
         .toolbar { background: #f1f5f9; border-bottom: 1px solid #e2e8f0; padding: 10px; display: flex; gap: 10px; align-items: center; }
         .tool-btn { padding: 5px 10px; cursor: pointer; border: 1px solid #cbd5e1; background: white; border-radius: 4px; font-size: 0.9rem; }
         .tool-btn.active { background: #e0e7ff; border-color: #6366f1; color: #4338ca; font-weight: bold; }
@@ -68,13 +66,10 @@
         .content-wrapper { flex: 1; position: relative; overflow-y: auto; padding: 40px; }
         .question-content { position: relative; z-index: 1; }
         
-        /* ペン用キャンバス */
         .canvas-layer { position: absolute; top: 0; left: 0; z-index: 5; pointer-events: none; }
-        .canvas-layer.drawable { pointer-events: auto; cursor: crosshair; touch-action: none; } /* スマホスクロール防止 */
+        .canvas-layer.drawable { pointer-events: auto; cursor: crosshair; touch-action: none; } 
 
         .q-title { font-size: 1.4rem; font-weight: bold; margin-bottom: 20px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; }
-        
-        /* 問題文（マーカー対応） */
         .q-text { font-size: 1.1rem; line-height: 2; margin-bottom: 30px; white-space: pre-wrap; }
         .highlighted-text { background-color: rgba(250, 204, 21, 0.6); padding: 0 2px; border-radius: 2px; }
 
@@ -88,7 +83,7 @@
         /* オーバーレイ群 */
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; display: none; color: white; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
         .admin-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; color: #333; padding: 30px; border-radius: 8px; z-index: 99999; display: none; box-shadow: 0 0 30px rgba(0,0,0,0.8); width: 450px; max-width: 90%; }
-        .result-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; color: #333; padding: 30px; border-radius: 8px; z-index: 100000; display: none; box-shadow: 0 0 40px rgba(0,0,0,0.9); width: 650px; max-width: 95%; max-height: 90vh; flex-direction: column; }
+        .result-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; color: #333; padding: 30px; border-radius: 8px; z-index: 100000; display: none; box-shadow: 0 0 40px rgba(0,0,0,0.9); width: 850px; max-width: 95%; max-height: 90vh; flex-direction: column; }
         .result-header { text-align: center; border-bottom: 2px solid #cbd5e1; margin-bottom: 15px; padding-bottom: 15px; }
         .result-content { flex: 1; overflow-y: auto; background: #f8fafc; padding: 15px; border: 1px solid #cbd5e1; border-radius: 6px; }
 
@@ -122,7 +117,10 @@
     <!-- 警告・追放画面 -->
     <div id="ban-overlay" class="overlay">
         <h1 style="color: var(--danger); font-size: 3rem; margin-bottom: 20px;">[ 深刻なセキュリティ違反 ]</h1>
-        <p id="ban-reason" style="font-size: 1.2rem; max-width: 600px; line-height: 1.8;">試験規定に反する行為が検出されました。<br>試験は強制終了され、本機の受験資格は永久に無効化されました。</p>
+        <p style="font-size: 1.2rem; max-width: 600px; line-height: 1.8;">
+            試験規定に反する行為が検出されたため、受験資格が永久に無効化されました。<br>
+            <strong style="color:#f87171; display:block; margin-top:10px;">検知内容：<span id="ban-reason">不正操作</span></strong>
+        </p>
         <button class="staff-login" style="margin-top: 50px; font-size:1rem; padding: 10px 20px; border-color:#64748b;" onclick="openAdmin()">⚙ 教職員メニューを開く</button>
     </div>
 
@@ -192,11 +190,10 @@
                 <p>店魅偉屋大学付属幼小中高一貫教育校高等学部のCBT適性検査を開始します。以下の注意事項を熟読のうえ、試験に臨んでください。</p>
                 <div class="warning-box">
                     <strong>【重要・不正受験対策について】</strong><br>
-                    1. <strong>全画面表示の固定：</strong>試験開始後、意図的に全画面を解除することは禁止されています。<br>
-                    2. <strong>画面移動・離脱の禁止：</strong>試験中に他のタブやアプリに切り替えた場合、自動的に不正行為判定プログラムが作動します。<strong>複数回の警告で自動的に受験資格を永久喪失（BAN）します。</strong>
+                    1. <strong>全画面・画面離脱の禁止：</strong>待機画面へ移行した時点から監視が開始されます。全画面の解除、他タブ・アプリへの切り替えは禁止です。<br>
+                    2. <strong>外部操作の禁止：</strong>コピー・ペースト、スクリーンショット、およびブラウザのデベロッパーツール等を開くショートカット操作は検知され、<strong>複数回の警告で自動的に受験資格を永久喪失（BAN）します。</strong>
                 </div>
                 <p>3. 各科目の試験時間は <strong>10分間</strong> です。制限時間が経過すると解答は自動提出されます。</p>
-                <p>4. 電卓や他のウェブサイトの利用は認められません。</p>
             </div>
             <div style="text-align: center;">
                 <button class="btn" style="padding: 15px 40px; font-size: 1.1rem;" onclick="goStandby()">同意して待機画面へ進む</button>
@@ -255,12 +252,10 @@
                 <div class="toolbar">
                     <button class="tool-btn" id="tool-cursor" onclick="setTool('cursor')" class="active">👆 操作 (文字選択)</button>
                     <div style="width:1px; height:20px; background:#cbd5e1; margin:0 5px;"></div>
-                    <!-- テキストハイライト機能としてのマーカー -->
                     <button class="tool-btn" onclick="applyHighlight()"><span class="color-dot" style="background:#facc15;"></span>文字にマーカーを引く</button>
                     <button class="tool-btn" onclick="clearHighlight()" style="margin-right: 15px;">🧽 マーカー消去</button>
                     
                     <div style="width:1px; height:20px; background:#cbd5e1; margin:0 5px;"></div>
-                    <!-- Canvasへのペン描画ツール -->
                     <button class="tool-btn" id="tool-pen-black" onclick="setTool('pen', '#000000')"><span class="color-dot" style="background:#000;"></span>ペン(黒)</button>
                     <button class="tool-btn" id="tool-pen-red" onclick="setTool('pen', '#dc2626')"><span class="color-dot" style="background:#dc2626;"></span>ペン(赤)</button>
                     <button class="tool-btn" id="tool-eraser" onclick="setTool('eraser')">消しゴム</button>
@@ -268,11 +263,9 @@
                 </div>
 
                 <div class="content-wrapper" id="content-wrapper">
-                    <!-- タッチ対応キャンバス -->
                     <canvas id="canvas" class="canvas-layer"></canvas>
                     <div class="question-content">
                         <div class="q-title" id="q-title">問題</div>
-                        <!-- マーカーを引く対象の文章 (selectable-text) -->
                         <div class="q-text selectable-text" id="q-text"></div>
                         <div id="ans-area"></div>
                     </div>
@@ -297,6 +290,36 @@
     </div>
 
 <script>
+    // ======= コピペ・スクショ・DevTools 防止基盤 =======
+    document.addEventListener('copy', e => { e.preventDefault(); customAlert("コピー機能は禁止されています。"); penalize("テキストのコピー試行"); });
+    document.addEventListener('cut', e => { e.preventDefault(); });
+    document.addEventListener('paste', e => { e.preventDefault(); customAlert("外部からのペーストは禁止されています。"); penalize("ペースト試行"); });
+    document.addEventListener('contextmenu', e => { e.preventDefault(); });
+
+    document.addEventListener('keydown', e => {
+        // F12 or DevTools shortcuts
+        if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key)) || (e.ctrlKey && e.key === 'u')) {
+            e.preventDefault();
+            penalize("開発者ツールの起動を検知しました。");
+        }
+        // PrintScreen
+        if (e.key === 'PrintScreen') {
+            navigator.clipboard.writeText(''); 
+            penalize("スクリーンショットの撮影を検知しました。");
+        }
+    });
+
+    // 簡易的なDevTools阻止ループ (重すぎない程度に)
+    setInterval(() => {
+        const t1 = new Date().getTime();
+        debugger;
+        const t2 = new Date().getTime();
+        if (t2 - t1 > 100 && isTestActive) {
+            // debuggerで止まった = DevToolsが開いている
+            penalize("開発者ツールによる不正な解析を検知しました。");
+        }
+    }, 2000);
+
     // ======= ダイアログ処理 =======
     let dialogResolve = null;
     function showDialog(opts) {
@@ -323,7 +346,7 @@
     function switchScreen(id) { document.querySelectorAll('.screen').forEach(s => s.classList.remove('active')); document.getElementById(id).classList.add('active'); }
 
     const subjects = ['国語', '数学', '英語', '社会', '理科'];
-    const timeLimit = 10 * 60; // 10分に変更
+    const timeLimit = 10 * 60; // 10分
     
     let testData = {
         '国語': [
@@ -351,7 +374,8 @@
     window.onload = () => {
         if(localStorage.getItem('exam_banned') === 'true' || localStorage.getItem('exam_finished') === 'true') {
             document.getElementById('ban-overlay').style.display = 'flex';
-            document.getElementById('ban-reason').innerHTML = "すでに受験済み、または不正により無効化されています。";
+            let reason = localStorage.getItem('exam_ban_reason') || "すでに受験済み、または不正により無効化されています。";
+            document.getElementById('ban-reason').innerHTML = reason;
         } else if(localStorage.getItem('exam_state')) {
             try {
                 const state = JSON.parse(localStorage.getItem('exam_state'));
@@ -390,18 +414,32 @@
     function goStandby() {
         document.getElementById('standby-subj-text').innerHTML = `この先、「${subjects[currentSubjIdx]}」の試験が開始されます。<br><br>試験監督の「始めてください」の合図があるまで、<br>この画面のまま絶対に操作しないで待機してください。`;
         switchScreen('screen-standby');
+        
+        // 待機画面の時点で全画面化・監視をスタートさせる
+        if(!isTestActive) {
+            try { document.documentElement.requestFullscreen(); } catch(e){}
+            isTestActive = true;
+            document.addEventListener('fullscreenchange', handleFSChange);
+            window.addEventListener('blur', () => { if(isTestActive) penalize("ウィンドウからフォーカスが外れました"); });
+        }
     }
 
-    function resumeTest() { document.getElementById('disp-id').textContent = studentInfo.id; startTest(); }
+    function resumeTest() { 
+        document.getElementById('disp-id').textContent = studentInfo.id; 
+        if(!isTestActive) {
+            try { document.documentElement.requestFullscreen(); } catch(e){}
+            isTestActive = true;
+            document.addEventListener('fullscreenchange', handleFSChange);
+            window.addEventListener('blur', () => { if(isTestActive) penalize("ウィンドウからフォーカスが外れました"); });
+        }
+        loadSubjectState(); 
+        switchScreen('screen-test');
+    }
 
     // ======= 試験制御 =======
     function startTest() {
         switchScreen('screen-test');
         document.getElementById('disp-id').textContent = studentInfo.id;
-        try { document.documentElement.requestFullscreen(); } catch(e){}
-        isTestActive = true;
-        document.addEventListener('fullscreenchange', handleFSChange);
-        window.addEventListener('blur', () => { if(isTestActive) penalize("ウィンドウからフォーカスが外れました"); });
         loadSubjectState();
     }
 
@@ -420,13 +458,17 @@
 
     async function penalize(msg) {
         fsErrors++;
-        if(fsErrors >= MAX_FS_ERRORS) banStudent(msg + "<br>制限回数を超えたため、受験資格を喪失しました。");
+        if(fsErrors >= MAX_FS_ERRORS) banStudent(msg + "（制限回数超過により受験資格喪失）");
         else await customAlert(`【警告】${msg}\nこれ以上の不正操作は受験資格喪失となります。`, "セキュリティ警告");
     }
 
     function banStudent(reason) {
-        localStorage.setItem('exam_banned', 'true'); isTestActive = false; clearInterval(timerInterval);
-        document.getElementById('ban-reason').innerHTML = reason; document.getElementById('ban-overlay').style.display = 'flex'; document.getElementById('fs-warning').style.display = 'none';
+        localStorage.setItem('exam_banned', 'true'); 
+        localStorage.setItem('exam_ban_reason', reason); // 理由を保存
+        isTestActive = false; clearInterval(timerInterval);
+        document.getElementById('ban-reason').innerHTML = reason; 
+        document.getElementById('ban-overlay').style.display = 'flex'; 
+        document.getElementById('fs-warning').style.display = 'none';
         if(document.exitFullscreen) document.exitFullscreen().catch(()=>{});
     }
 
@@ -456,12 +498,40 @@
             detailHTML += `<h3 style="color:#0f172a; margin-top:15px; border-bottom:1px solid #cbd5e1; padding-bottom:5px;">${subj}</h3>`;
             testData[subj].forEach((q) => {
                 totalQ++; let isCorrect = false; let ansDisp = q.ans || "(未回答)";
-                if (q.type === 'radio') { isCorrect = (q.ans === q.correct); if(q.ans !== "") ansDisp = q.options[parseInt(q.ans)]; } 
-                else if (q.type === 'text') { isCorrect = (q.ans.trim() === q.correct); } 
-                else if (q.type === 'essay') { if(q.ans.trim() !== "") { isCorrect = q.allReq ? q.reqKeys.every(k => q.ans.includes(k)) : q.reqKeys.some(k => q.ans.includes(k)); } }
+                let correctDisp = "";
+                
+                if (q.type === 'radio') { 
+                    isCorrect = (q.ans === q.correct); 
+                    if(q.ans !== "") ansDisp = q.options[parseInt(q.ans)]; 
+                    correctDisp = q.options[parseInt(q.correct)];
+                } 
+                else if (q.type === 'text') { 
+                    isCorrect = (q.ans.trim() === q.correct); 
+                    correctDisp = q.correct;
+                } 
+                else if (q.type === 'essay') { 
+                    if(q.ans.trim() !== "") { isCorrect = q.allReq ? q.reqKeys.every(k => q.ans.includes(k)) : q.reqKeys.some(k => q.ans.includes(k)); } 
+                    correctDisp = q.reqKeys.join(", ") + (q.allReq ? " (すべて含む)" : " (いずれか含む)");
+                }
+                
                 if(isCorrect) correctQ++;
                 let mark = isCorrect ? '<span style="color:#10b981; font-weight:bold;">⭕ 正解</span>' : '<span style="color:#dc2626; font-weight:bold;">❌ 不正解</span>';
-                detailHTML += `<div style="margin-top:10px; font-size:0.95rem; background:white; padding:10px; border:1px solid #e2e8f0; border-radius:4px;"><div style="margin-bottom:5px;"><strong>${q.title}</strong> - ${mark}</div><div style="color:#64748b; font-size:0.85rem;">解答:</div><div style="white-space:pre-wrap;">${ansDisp}</div></div>`;
+                
+                // 左右に分割して比較表示
+                detailHTML += `
+                <div style="margin-top:10px; font-size:0.95rem; background:white; padding:15px; border:1px solid #e2e8f0; border-radius:4px;">
+                    <div style="margin-bottom:10px;"><strong>${q.title}</strong> - ${mark}</div>
+                    <div style="display:flex; gap:15px;">
+                        <div style="flex:1;">
+                            <div style="color:#64748b; font-size:0.85rem;">受験者の解答:</div>
+                            <div style="white-space:pre-wrap; font-weight:bold; color:#333;">${ansDisp}</div>
+                        </div>
+                        <div style="flex:1; border-left:1px dashed #cbd5e1; padding-left:15px;">
+                            <div style="color:#64748b; font-size:0.85rem;">模範解答・判定基準:</div>
+                            <div style="white-space:pre-wrap; color:#10b981;">${correctDisp}</div>
+                        </div>
+                    </div>
+                </div>`;
             });
         });
 
@@ -497,11 +567,8 @@
         const subj = subjects[currentSubjIdx]; const q = testData[subj][currentQIdx];
         
         document.getElementById('q-title').textContent = q.title; 
-        
-        // テキストハイライト状態の復元
         const qTextNode = document.getElementById('q-text');
-        if (q.highlightedText) { qTextNode.innerHTML = q.highlightedText; } 
-        else { qTextNode.textContent = q.text; }
+        if (q.highlightedText) { qTextNode.innerHTML = q.highlightedText; } else { qTextNode.textContent = q.text; }
 
         const ansArea = document.getElementById('ans-area'); ansArea.innerHTML = "";
         
@@ -543,11 +610,9 @@
         
         saveCanvas(); currentSubjIdx++;
         if(currentSubjIdx < subjects.length) { 
-            isTestActive = false; clearInterval(timerInterval);
             currentQIdx = 0; timeLeft = timeLimit; saveState();
             await customAlert(`${subj}の試験が終了しました。`);
-            if(document.exitFullscreen) document.exitFullscreen().catch(()=>{});
-            goStandby(); 
+            goStandby(); // 次の科目の待機画面へ (監視継続)
         } else finishAll();
     }
 
@@ -558,41 +623,20 @@
         switchScreen('screen-finish'); document.getElementById('cert-code').textContent = studentInfo.id;
     }
 
-    // ======= テキストマーカー機能 (文章専用) =======
+    // ======= テキストマーカー機能 =======
     function applyHighlight() {
-        const selection = window.getSelection();
-        if (!selection.rangeCount || selection.isCollapsed) return;
-
-        const range = selection.getRangeAt(0);
-        const qTextNode = document.getElementById('q-text');
-        
-        // 選択範囲が問題文エリア内かチェック
-        if (!qTextNode.contains(range.commonAncestorContainer)) {
-            customAlert("マーカーは問題文のテキストにのみ使用できます。"); return;
-        }
-
-        const span = document.createElement('span');
-        span.className = 'highlighted-text';
-        try {
-            range.surroundContents(span);
-        } catch(e) {
-            customAlert("段落をまたいだ選択はできません。細かく分けて引いてください。"); return;
-        }
+        const selection = window.getSelection(); if (!selection.rangeCount || selection.isCollapsed) return;
+        const range = selection.getRangeAt(0); const qTextNode = document.getElementById('q-text');
+        if (!qTextNode.contains(range.commonAncestorContainer)) { customAlert("マーカーは問題文のテキストにのみ使用できます。"); return; }
+        const span = document.createElement('span'); span.className = 'highlighted-text';
+        try { range.surroundContents(span); } catch(e) { customAlert("段落をまたいだ選択はできません。細かく分けて引いてください。"); return; }
         selection.removeAllRanges();
-
-        // 状態保存
-        testData[subjects[currentSubjIdx]][currentQIdx].highlightedText = qTextNode.innerHTML;
-        saveState();
+        testData[subjects[currentSubjIdx]][currentQIdx].highlightedText = qTextNode.innerHTML; saveState();
     }
 
     async function clearHighlight() {
         const ok = await customConfirm('現在の問題のマーカーをすべて消去しますか？');
-        if (ok) {
-            const q = testData[subjects[currentSubjIdx]][currentQIdx];
-            q.highlightedText = null;
-            document.getElementById('q-text').textContent = q.text; // 元のテキストに戻す
-            saveState();
-        }
+        if (ok) { const q = testData[subjects[currentSubjIdx]][currentQIdx]; q.highlightedText = null; document.getElementById('q-text').textContent = q.text; saveState(); }
     }
 
     // ======= Canvas・ペンツール (タッチ対応) =======
@@ -605,24 +649,15 @@
     }
     async function clearCanvasPrompt() { const ok = await customConfirm('ペン書き込みをすべて消去しますか？', '全消去', true); if(ok) { ctx.clearRect(0, 0, canvas.width, canvas.height); saveCanvas(); } }
 
-    function getPos(e) { 
-        const r = canvas.getBoundingClientRect(); 
-        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-        return { x: clientX - r.left, y: clientY - r.top }; 
-    }
+    function getPos(e) { const r = canvas.getBoundingClientRect(); const clientX = e.touches ? e.touches[0].clientX : e.clientX; const clientY = e.touches ? e.touches[0].clientY : e.clientY; return { x: clientX - r.left, y: clientY - r.top }; }
     
-    // マウスイベント
     canvas.addEventListener('mousedown', (e) => { isDrawing = true; const p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); });
     canvas.addEventListener('mousemove', (e) => { if(!isDrawing) return; const p = getPos(e); ctx.lineTo(p.x, p.y); ctx.strokeStyle = currentColor; ctx.lineWidth = currentLineWidth; ctx.lineCap='round'; ctx.lineJoin='round'; ctx.stroke(); });
-    canvas.addEventListener('mouseup', () => { if(isDrawing) { isDrawing = false; saveCanvas(); } }); 
-    canvas.addEventListener('mouseleave', () => { if(isDrawing) { isDrawing = false; saveCanvas(); } });
+    canvas.addEventListener('mouseup', () => { if(isDrawing) { isDrawing = false; saveCanvas(); } }); canvas.addEventListener('mouseleave', () => { if(isDrawing) { isDrawing = false; saveCanvas(); } });
 
-    // タッチイベント (スマホ・タブレット用)
     canvas.addEventListener('touchstart', (e) => { if(currentTool!=='cursor') e.preventDefault(); isDrawing = true; const p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); }, {passive: false});
     canvas.addEventListener('touchmove', (e) => { if(currentTool!=='cursor') e.preventDefault(); if(!isDrawing) return; const p = getPos(e); ctx.lineTo(p.x, p.y); ctx.strokeStyle = currentColor; ctx.lineWidth = currentLineWidth; ctx.lineCap='round'; ctx.lineJoin='round'; ctx.stroke(); }, {passive: false});
-    canvas.addEventListener('touchend', () => { if(isDrawing) { isDrawing = false; saveCanvas(); } });
-    canvas.addEventListener('touchcancel', () => { if(isDrawing) { isDrawing = false; saveCanvas(); } });
+    canvas.addEventListener('touchend', () => { if(isDrawing) { isDrawing = false; saveCanvas(); } }); canvas.addEventListener('touchcancel', () => { if(isDrawing) { isDrawing = false; saveCanvas(); } });
 
     function saveCanvas() { drawingData[`${subjects[currentSubjIdx]}_${currentQIdx}`] = canvas.toDataURL(); saveState(); }
     function restoreCanvas() { ctx.clearRect(0, 0, canvas.width, canvas.height); const key = `${subjects[currentSubjIdx]}_${currentQIdx}`; if(drawingData[key]) { const img = new Image(); img.onload = () => ctx.drawImage(img, 0, 0); img.src = drawingData[key]; } }
