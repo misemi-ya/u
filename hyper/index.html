@@ -1,0 +1,1188 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ハイパータイパー</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --text: #f8fbff;
+      --muted: #b5c6d8;
+      --panel: rgba(13, 22, 31, 0.82);
+      --panel-strong: rgba(20, 34, 46, 0.94);
+      --line: rgba(248, 251, 255, 0.16);
+      --accent: #ffcf5a;
+      --accent-2: #55d7aa;
+      --danger: #ff6262;
+      --ink: #081119;
+      --shadow: 0 22px 70px rgba(0, 0, 0, 0.42);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", Meiryo, system-ui, sans-serif;
+      color: var(--text);
+      background:
+        linear-gradient(rgba(8, 17, 25, 0.7), rgba(8, 17, 25, 0.72)),
+        var(--custom-bg, linear-gradient(135deg, #11263a 0%, #163f3b 48%, #3b2635 100%));
+      background-size: cover;
+      background-position: center;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background: radial-gradient(circle at 20% 15%, rgba(255, 207, 90, 0.24), transparent 26rem),
+                  radial-gradient(circle at 78% 16%, rgba(85, 215, 170, 0.18), transparent 24rem);
+      pointer-events: none;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    .youtube-bg,
+    .youtube-bg iframe {
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .youtube-bg iframe {
+      width: 120vw;
+      height: 120vh;
+      left: -10vw;
+      top: -10vh;
+      opacity: 0.36;
+      border: 0;
+    }
+
+    .app {
+      width: min(1180px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 22px 0 28px;
+    }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .brand {
+      display: flex;
+      gap: 13px;
+      align-items: center;
+      min-width: 0;
+    }
+
+    .logo {
+      display: grid;
+      width: 54px;
+      height: 54px;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: linear-gradient(145deg, #ff6c57, #ffcf5a);
+      color: #241407;
+      box-shadow: var(--shadow);
+      font-weight: 900;
+      flex: 0 0 auto;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.9rem, 4vw, 3.2rem);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .subtitle,
+    .status-text {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .btn {
+      min-height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(248, 251, 255, 0.09);
+      color: var(--text);
+      padding: 0 13px;
+      cursor: pointer;
+    }
+
+    .btn.primary {
+      border-color: transparent;
+      background: var(--accent);
+      color: #231707;
+      font-weight: 800;
+    }
+
+    .btn.warn {
+      background: rgba(255, 98, 98, 0.16);
+      color: var(--text);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--panel);
+      box-shadow: 0 10px 34px rgba(0, 0, 0, 0.24);
+      backdrop-filter: blur(12px);
+    }
+
+    .settings {
+      padding: 14px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .section-title {
+      margin: 0 0 8px;
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .choices {
+      display: grid;
+      gap: 8px;
+    }
+
+    .choice {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 9px;
+      align-items: start;
+      padding: 11px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(248, 251, 255, 0.07);
+      cursor: pointer;
+    }
+
+    .choice input {
+      margin-top: 4px;
+    }
+
+    .choice strong {
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .choice span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+    }
+
+    .field label {
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .field input {
+      width: 100%;
+      min-height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(248, 251, 255, 0.95);
+      color: var(--ink);
+      padding: 9px 11px;
+      outline: none;
+    }
+
+    .split-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .hud {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .stat {
+      min-width: 0;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      backdrop-filter: blur(12px);
+    }
+
+    .label {
+      display: block;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .value {
+      display: block;
+      margin-top: 2px;
+      font-size: clamp(1.18rem, 2.6vw, 1.82rem);
+      font-weight: 900;
+      line-height: 1;
+      overflow-wrap: anywhere;
+    }
+
+    .stage {
+      position: relative;
+      overflow: hidden;
+      min-height: 530px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(248, 251, 255, 0.08), rgba(8, 17, 25, 0.22)), var(--panel-strong);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .stage-head {
+      display: flex;
+      gap: 10px;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 16px 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 4px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--accent);
+      background: rgba(248, 251, 255, 0.07);
+      font-weight: 800;
+    }
+
+    .lane {
+      position: relative;
+      height: 300px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, transparent 0 38%, rgba(0, 0, 0, 0.18) 38% 69%, transparent 69%),
+        repeating-linear-gradient(90deg, transparent 0 34px, rgba(248, 251, 255, 0.05) 34px 36px);
+    }
+
+    .belt {
+      position: absolute;
+      left: -80px;
+      right: -80px;
+      top: 122px;
+      height: 96px;
+      transform: skewX(-10deg);
+      border-top: 8px solid rgba(248, 251, 255, 0.12);
+      border-bottom: 8px solid rgba(0, 0, 0, 0.24);
+      background: repeating-linear-gradient(90deg, #2a6668 0 42px, #234e59 42px 84px);
+    }
+
+    .belt::after {
+      content: "";
+      position: absolute;
+      inset: 15px 0;
+      background: repeating-linear-gradient(90deg, rgba(248, 251, 255, 0.16) 0 10px, transparent 10px 50px);
+      animation: beltMove 1.6s linear infinite;
+    }
+
+    @keyframes beltMove {
+      from { background-position-x: 0; }
+      to { background-position-x: 60px; }
+    }
+
+    .plate {
+      position: absolute;
+      left: 50%;
+      top: 58px;
+      width: min(700px, calc(100% - 28px));
+      min-height: 200px;
+      display: grid;
+      grid-template-columns: 116px 1fr;
+      gap: 17px;
+      align-items: center;
+      padding: 18px;
+      border-radius: 15px;
+      background: rgba(248, 251, 255, 0.96);
+      color: var(--ink);
+      box-shadow: 0 22px 44px rgba(0, 0, 0, 0.32);
+      transform: translateX(-50%);
+      transition: transform 120ms ease;
+    }
+
+    .plate.hit {
+      transform: translateX(-50%) scale(1.018);
+    }
+
+    .plate.miss {
+      animation: shake 150ms linear 1;
+    }
+
+    @keyframes shake {
+      0%, 100% { margin-left: 0; }
+      25% { margin-left: -7px; }
+      75% { margin-left: 7px; }
+    }
+
+    .mark {
+      display: grid;
+      width: 104px;
+      height: 104px;
+      place-items: center;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ffcf5a 0 49%, #e55252 50% 64%, #f8fbff 65%);
+      color: #2b1606;
+      font-size: 2.6rem;
+      font-weight: 900;
+    }
+
+    .prompt {
+      min-width: 0;
+    }
+
+    .jp {
+      margin-bottom: 10px;
+      font-size: clamp(1.45rem, 3vw, 2.45rem);
+      font-weight: 900;
+      line-height: 1.25;
+      letter-spacing: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .roma {
+      font-family: Consolas, "Courier New", monospace;
+      font-size: clamp(1rem, 2.3vw, 1.42rem);
+      color: #526d7d;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+
+    .done { color: #0b8f6a; }
+    .cursor {
+      color: #d33636;
+      text-decoration: underline;
+      text-decoration-thickness: 3px;
+    }
+
+    .bonus {
+      height: 26px;
+      padding: 0 16px;
+      color: var(--accent-2);
+      font-weight: 900;
+    }
+
+    .input-zone {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      padding: 14px 16px 16px;
+      border-top: 1px solid var(--line);
+      background: rgba(8, 17, 25, 0.2);
+    }
+
+    .type-input {
+      width: 100%;
+      min-height: 58px;
+      border: 2px solid rgba(248, 251, 255, 0.18);
+      border-radius: 8px;
+      background: rgba(248, 251, 255, 0.96);
+      color: var(--ink);
+      padding: 13px 15px;
+      font-size: 1.28rem;
+      outline: none;
+    }
+
+    .type-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(255, 207, 90, 0.18);
+    }
+
+    .result {
+      display: none;
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      padding: 16px;
+      border-radius: 10px;
+      background: rgba(248, 251, 255, 0.96);
+      color: var(--ink);
+      box-shadow: var(--shadow);
+    }
+
+    .result.show { display: block; }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      margin: 12px 0;
+    }
+
+    .result-tile {
+      padding: 10px;
+      border-radius: 8px;
+      background: rgba(8, 17, 25, 0.08);
+    }
+
+    .result-tile strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 1.35rem;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 10;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      background: rgba(8, 17, 25, 0.76);
+      backdrop-filter: blur(10px);
+    }
+
+    .modal.hidden { display: none; }
+
+    .dialog {
+      width: min(680px, 100%);
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--panel-strong);
+      box-shadow: var(--shadow);
+    }
+
+    .dialog h2 {
+      margin: 0 0 7px;
+      font-size: clamp(1.6rem, 4vw, 2.5rem);
+      line-height: 1.1;
+    }
+
+    .dialog p {
+      margin: 0 0 16px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 920px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .hud {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 620px) {
+      .app {
+        width: min(100% - 18px, 1180px);
+        padding-top: 12px;
+      }
+
+      .topbar,
+      .input-zone {
+        grid-template-columns: 1fr;
+      }
+
+      .toolbar {
+        justify-content: flex-start;
+      }
+
+      .hud {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .stage {
+        min-height: 620px;
+      }
+
+      .lane {
+        height: 360px;
+      }
+
+      .plate {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .mark {
+        margin: 0 auto;
+      }
+
+      .result-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="youtube-bg" id="youtubeBg" aria-hidden="true"></div>
+
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">速</div>
+        <div>
+          <h1>ハイパータイパー</h1>
+          <div class="subtitle">単語も文章も、好きな背景と音でひたすら打つ。</div>
+        </div>
+      </div>
+      <div class="toolbar">
+        <button class="btn" id="openMusic" type="button">曲</button>
+        <button class="btn" id="openVisual" type="button">背景</button>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="panel settings">
+        <section>
+          <p class="section-title">難易度</p>
+          <div class="choices">
+            <label class="choice">
+              <input type="radio" name="level" value="beginner" checked>
+              <span><strong>初心者</strong><span>短い単語。まずは指ならし。</span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="level" value="normal">
+              <span><strong>中級者</strong><span>短めの文章。テンポよく続く。</span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="level" value="expert">
+              <span><strong>上級者</strong><span>長めの文章。集中力勝負。</span></span>
+            </label>
+          </div>
+        </section>
+
+        <section>
+          <p class="section-title">YouTube検索</p>
+          <div class="field">
+            <label for="youtubeSearch">曲や動画を検索</label>
+            <input id="youtubeSearch" type="search" placeholder="lofi 勉強用 など">
+          </div>
+          <div class="split-buttons">
+            <button class="btn" id="searchMusic" type="button">曲を検索</button>
+            <button class="btn" id="searchBgVideo" type="button">背景を検索</button>
+          </div>
+          <p class="status-text" id="searchStatus">検索結果で動画を選んで、共有URLか動画IDを下に入れて再生できます。</p>
+        </section>
+
+        <section>
+          <p class="section-title">曲</p>
+          <div class="field">
+            <label for="musicSource">動画URLまたはID</label>
+            <input id="musicSource" type="text" placeholder="動画URLまたはID">
+          </div>
+          <div class="split-buttons">
+            <button class="btn primary" id="playMusic" type="button">流す</button>
+            <button class="btn" id="stopMusic" type="button">止める</button>
+          </div>
+        </section>
+
+        <section>
+          <p class="section-title">背景</p>
+          <div class="field">
+            <label for="bgImage">背景画像URL</label>
+            <input id="bgImage" type="url" placeholder="https://...">
+          </div>
+          <div class="split-buttons">
+            <button class="btn" id="applyBgImage" type="button">画像変更</button>
+            <button class="btn" id="resetBg" type="button">初期に戻す</button>
+          </div>
+          <div class="field">
+            <label for="bgVideo">背景YouTube URLまたはID</label>
+            <input id="bgVideo" type="text" placeholder="動画IDか共有URL">
+          </div>
+          <div class="split-buttons">
+            <button class="btn" id="applyBgVideo" type="button">動画背景</button>
+            <button class="btn" id="clearBgVideo" type="button">動画停止</button>
+          </div>
+        </section>
+      </aside>
+
+      <main>
+        <section class="hud" aria-label="成績">
+          <div class="stat"><span class="label">残り時間</span><span class="value" id="time">60</span></div>
+          <div class="stat"><span class="label">スコア</span><span class="value" id="score">0</span></div>
+          <div class="stat"><span class="label">タイプ</span><span class="value" id="typedCount">0</span></div>
+          <div class="stat"><span class="label">正確率</span><span class="value" id="accuracy">100%</span></div>
+          <div class="stat"><span class="label">コンボ</span><span class="value" id="combo">0</span></div>
+          <div class="stat"><span class="label">正解数</span><span class="value" id="cleared">0</span></div>
+        </section>
+
+        <section class="stage" aria-label="タイピング">
+          <div class="stage-head">
+            <span class="badge" id="modeText">開店準備中</span>
+            <span class="status-text" id="bestText">最高コンボ 0</span>
+          </div>
+          <div class="lane">
+            <div class="belt" aria-hidden="true"></div>
+            <article class="plate" id="plate" aria-live="polite">
+              <div class="mark" aria-hidden="true">打</div>
+              <div class="prompt">
+                <div class="jp" id="promptText">曲と背景を選んだらスタート</div>
+                <div class="roma" id="romaText"></div>
+              </div>
+            </article>
+          </div>
+          <div class="bonus" id="bonusText"></div>
+          <div class="input-zone">
+            <input class="type-input" id="typeInput" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="ここにローマ字を入力" disabled>
+            <button class="btn primary" id="startButton" type="button">スタート</button>
+          </div>
+          <section class="result" id="result" aria-live="polite">
+            <strong>終了</strong>
+            <div class="result-grid">
+              <div class="result-tile">スコア<strong id="finalScore">0</strong></div>
+              <div class="result-tile">正確率<strong id="finalAccuracy">0%</strong></div>
+              <div class="result-tile">WPM<strong id="finalWpm">0</strong></div>
+              <div class="result-tile">最高コンボ<strong id="finalCombo">0</strong></div>
+              <div class="result-tile">正解数<strong id="finalCleared">0</strong></div>
+            </div>
+            <button class="btn primary" id="againButton" type="button">もう一回</button>
+          </section>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div class="modal" id="intro">
+    <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="introTitle">
+      <h2 id="introTitle">曲を流しますか？</h2>
+      <p>あとから左の「YouTube検索」で曲も背景動画も探せます。まず音ありか音なしか選んでください。</p>
+      <div class="split-buttons">
+        <button class="btn primary" id="introMusic" type="button">曲あり</button>
+        <button class="btn" id="introSilent" type="button">曲なし</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="musicHost" aria-hidden="true"></div>
+
+  <script>
+    const decks = {
+      beginner: [
+        ["あさ", "asa"], ["いす", "isu"], ["うみ", "umi"], ["えき", "eki"], ["おと", "oto"],
+        ["かぜ", "kaze"], ["くも", "kumo"], ["そら", "sora"], ["やま", "yama"], ["かわ", "kawa"],
+        ["はな", "hana"], ["みず", "mizu"], ["つき", "tsuki"], ["ほし", "hoshi"], ["ゆき", "yuki"],
+        ["まど", "mado"], ["とけい", "tokei"], ["でんわ", "denwa"], ["かばん", "kaban"], ["ほん", "hon"],
+        ["えんぴつ", "enpitsu"], ["つくえ", "tsukue"], ["いえ", "ie"], ["へや", "heya"], ["みち", "michi"],
+        ["くるま", "kuruma"], ["じてんしゃ", "jitensha"], ["でんしゃ", "densha"], ["こうえん", "kouen"], ["まち", "machi"],
+        ["ひかり", "hikari"], ["かげ", "kage"], ["こえ", "koe"], ["おんがく", "ongaku"], ["しゃしん", "shashin"],
+        ["ちず", "chizu"], ["にもつ", "nimotsu"], ["てがみ", "tegami"], ["しんぶん", "shinbun"], ["あめ", "ame"],
+        ["はれ", "hare"], ["くつ", "kutsu"], ["ぼうし", "boushi"], ["めがね", "megane"], ["からだ", "karada"],
+        ["こころ", "kokoro"], ["ことば", "kotoba"], ["じかん", "jikan"], ["きおく", "kioku"], ["みらい", "mirai"],
+        ["ちから", "chikara"], ["きもち", "kimochi"], ["りょこう", "ryokou"], ["せかい", "sekai"], ["ともだち", "tomodachi"],
+        ["しごと", "shigoto"], ["あそび", "asobi"], ["べんきょう", "benkyou"], ["れんしゅう", "renshuu"], ["せいこう", "seikou"]
+      ],
+      normal: [
+        ["今日は早く家に帰る", "kyou wa hayaku ie ni kaeru"],
+        ["朝の光が部屋に入る", "asa no hikari ga heya ni hairu"],
+        ["新しい本を一冊買った", "atarashii hon wo issatsu katta"],
+        ["駅まで歩いて十分です", "eki made aruite juppun desu"],
+        ["小さな目標を毎日続ける", "chiisana mokuhyou wo mainichi tsuzukeru"],
+        ["机の上をきれいにした", "tsukue no ue wo kirei ni shita"],
+        ["静かな音楽を聞いている", "shizukana ongaku wo kiite iru"],
+        ["雨のあと空が明るくなった", "ame no ato sora ga akaruku natta"],
+        ["友だちと週末に出かける", "tomodachi to shuumatsu ni dekakeru"],
+        ["電車の中で予定を考える", "densha no naka de yotei wo kangaeru"],
+        ["少し休んでから作業する", "sukoshi yasunde kara sagyou suru"],
+        ["読みやすい文字でメモを書く", "yomiyasui moji de memo wo kaku"],
+        ["風が強いので窓を閉めた", "kaze ga tsuyoi node mado wo shimeta"],
+        ["新しい道を試してみる", "atarashii michi wo tameshite miru"],
+        ["集中すると時間が早く進む", "shuuchuu suru to jikan ga hayaku susumu"],
+        ["画面を見ながら指を動かす", "gamen wo minagara yubi wo ugokasu"],
+        ["予定より早く準備できた", "yotei yori hayaku junbi dekita"],
+        ["短い休憩で気分を変える", "mijikai kyuukei de kibun wo kaeru"],
+        ["最後まで落ち着いて進める", "saigo made ochitsuite susumeru"],
+        ["知らない言葉をすぐ調べる", "shiranai kotoba wo sugu shiraberu"],
+        ["明日のために早めに眠る", "ashita no tame ni hayame ni nemuru"],
+        ["深呼吸してもう一度始める", "shinkokyuu shite mou ichido hajimeru"],
+        ["丁寧に確認してから送る", "teinei ni kakunin shite kara okuru"],
+        ["部屋の空気を入れ替える", "heya no kuuki wo irekaeru"],
+        ["小さな変化に気づける", "chiisana henka ni kizukeru"],
+        ["今できることから始める", "ima dekiru koto kara hajimeru"],
+        ["使いやすい道具を選ぶ", "tsukaiyasui dougu wo erabu"],
+        ["言葉のリズムを大切にする", "kotoba no rizumu wo taisetsu ni suru"],
+        ["一歩ずつ前に進んでいく", "ippo zutsu mae ni susunde iku"],
+        ["落ち着いた声で話してみる", "ochitsuita koe de hanashite miru"],
+        ["頭の中を紙に書き出す", "atama no naka wo kami ni kakidasu"],
+        ["新しい習慣を軽く始める", "atarashii shuukan wo karuku hajimeru"],
+        ["ゆっくり読めば意味が見える", "yukkuri yomeba imi ga mieru"],
+        ["長い道でも足元から進む", "nagai michi demo ashimoto kara susumu"],
+        ["気になる場所を写真に残す", "ki ni naru basho wo shashin ni nokosu"],
+        ["やさしい言葉で説明する", "yasashii kotoba de setsumei suru"],
+        ["準備ができたら合図を出す", "junbi ga dekitara aizu wo dasu"],
+        ["同じ失敗を次に生かす", "onaji shippai wo tsugi ni ikasu"],
+        ["必要なものだけ机に置く", "hitsuyou na mono dake tsukue ni oku"],
+        ["見えないところも整えておく", "mienai tokoro mo totonoete oku"]
+      ],
+      expert: [
+        ["静かな朝に窓を開けると、冷たい空気が部屋の奥までゆっくり流れ込んできた", "shizukana asa ni mado wo akeru to tsumetai kuuki ga heya no oku made yukkuri nagarekonde kita"],
+        ["新しい計画を立てるときは、最初から完璧を目指すより小さく試すほうが続けやすい", "atarashii keikaku wo tateru toki wa saisho kara kanpeki wo mezasu yori chiisaku tamesu hou ga tsuzukeyasui"],
+        ["慌ただしい一日でも、短い休憩をはさむだけで考えが整理されて次の動きが見えてくる", "awatadashii ichinichi demo mijikai kyuukei wo hasamu dake de kangae ga seiri sarete tsugi no ugoki ga miete kuru"],
+        ["読みにくい文章を直すには、声に出して流れを確かめるのがいちばん早いことが多い", "yominikui bunshou wo naosu ni wa koe ni dashite nagare wo tashikameru no ga ichiban hayai koto ga ooi"],
+        ["予定が変わったとしても、目的がはっきりしていれば落ち着いて別の道を選ぶことができる", "yotei ga kawatta to shite mo mokuteki ga hakkiri shite ireba ochitsuite betsu no michi wo erabu koto ga dekiru"],
+        ["机の上に残った小さなメモには、その日の自分が何を大切にしていたのかがよく表れる", "tsukue no ue ni nokotta chiisana memo ni wa sono hi no jibun ga nani wo taisetsu ni shite ita no ka ga yoku arawareru"],
+        ["難しい問題ほど、いきなり答えを探すより条件を分けて眺めたほうが手がかりを見つけやすい", "muzukashii mondai hodo ikinari kotae wo sagasu yori jouken wo wakete nagameta hou ga tegakari wo mitsukeyasui"],
+        ["夕方の駅前は人の流れが複雑で、それぞれの目的地へ向かう小さな物語が重なっている", "yuugata no ekimae wa hito no nagare ga fukuzatsu de sorezore no mokutekichi e mukau chiisana monogatari ga kasanatte iru"],
+        ["丁寧に作られた道具は説明が少なくても手になじみ、使う人の集中を邪魔しない", "teinei ni tsukurareta dougu wa setsumei ga sukunakute mo te ni najimi tsukau hito no shuuchuu wo jama shinai"],
+        ["知らない場所を歩くときは、遠くの目印と足元の変化を同時に見ると迷いにくくなる", "shiranai basho wo aruku toki wa tooku no mejirushi to ashimoto no henka wo douji ni miru to mayoinikuku naru"],
+        ["短い言葉で本質を伝えるには、何を言うかと同じくらい何を削るかが大切になる", "mijikai kotoba de honshitsu wo tsutaeru ni wa nani wo iu ka to onaji kurai nani wo kezuru ka ga taisetsu ni naru"],
+        ["うまくいかなかった経験も、あとから見直せば次に進むための地図のように役立つことがある", "umaku ikanakatta keiken mo ato kara minaoseba tsugi ni susumu tame no chizu no you ni yakudatsu koto ga aru"],
+        ["長い文章を打つときは、先を急ぐより今見えている音のまとまりを正確に追うほうが速くなる", "nagai bunshou wo utsu toki wa saki wo isogu yori ima miete iru oto no matomari wo seikaku ni ou hou ga hayaku naru"],
+        ["同じ景色でも、時間帯や気分が少し変わるだけでまったく違う表情に見えることがある", "onaji keshiki demo jikantai ya kibun ga sukoshi kawaru dake de mattaku chigau hyoujou ni mieru koto ga aru"],
+        ["誰かに説明するつもりで考えると、自分でも気づいていなかった曖昧な部分がはっきりする", "dareka ni setsumei suru tsumori de kangaeru to jibun demo kizuite inakatta aimai na bubun ga hakkiri suru"],
+        ["少し遠回りに見える方法でも、確実に積み重ねられるなら最後には大きな力になる", "sukoshi toomawari ni mieru houhou demo kakujitsu ni tsumikasanerareru nara saigo ni wa ookina chikara ni naru"],
+        ["考えすぎて止まってしまったときは、まず一行だけ書いてみると流れが戻ることがある", "kangaesugite tomatte shimatta toki wa mazu ichigyou dake kaite miru to nagare ga modoru koto ga aru"],
+        ["速さだけを追いかけるより、間違えた場所を覚えて次に直せるほうが練習としては強い", "hayasa dake wo oikakeru yori machigaeta basho wo oboete tsugi ni naoseru hou ga renshuu to shite wa tsuyoi"],
+        ["見た目が派手ではなくても、毎日使う画面は読みやすさと反応の気持ちよさがとても重要だ", "mitame ga hade de wa nakute mo mainichi tsukau gamen wa yomiyasusa to hannou no kimochiyosa ga totemo juuyou da"],
+        ["集中している時間は短く感じるが、そのあとに残る達成感は思ったより長く続いてくれる", "shuuchuu shite iru jikan wa mijikaku kanjiru ga sono ato ni nokoru tasseikan wa omotta yori nagaku tsuzuite kureru"]
+      ]
+    };
+
+    const romajiUnits = [
+      ["きゃ", ["kya"]], ["きゅ", ["kyu"]], ["きょ", ["kyo"]],
+      ["しゃ", ["sha", "sya"]], ["しゅ", ["shu", "syu"]], ["しょ", ["sho", "syo"]],
+      ["ちゃ", ["cha", "tya", "cya"]], ["ちゅ", ["chu", "tyu", "cyu"]], ["ちょ", ["cho", "tyo", "cyo"]],
+      ["にゃ", ["nya"]], ["にゅ", ["nyu"]], ["にょ", ["nyo"]],
+      ["ひゃ", ["hya"]], ["ひゅ", ["hyu"]], ["ひょ", ["hyo"]],
+      ["みゃ", ["mya"]], ["みゅ", ["myu"]], ["みょ", ["myo"]],
+      ["りゃ", ["rya"]], ["りゅ", ["ryu"]], ["りょ", ["ryo"]],
+      ["ぎゃ", ["gya"]], ["ぎゅ", ["gyu"]], ["ぎょ", ["gyo"]],
+      ["じゃ", ["ja", "jya", "zya"]], ["じゅ", ["ju", "jyu", "zyu"]], ["じょ", ["jo", "jyo", "zyo"]],
+      ["びゃ", ["bya"]], ["びゅ", ["byu"]], ["びょ", ["byo"]],
+      ["ぴゃ", ["pya"]], ["ぴゅ", ["pyu"]], ["ぴょ", ["pyo"]],
+      ["あ", ["a"]], ["い", ["i"]], ["う", ["u"]], ["え", ["e"]], ["お", ["o"]],
+      ["か", ["ka"]], ["き", ["ki"]], ["く", ["ku"]], ["け", ["ke"]], ["こ", ["ko"]],
+      ["さ", ["sa"]], ["し", ["shi", "si"]], ["す", ["su"]], ["せ", ["se"]], ["そ", ["so"]],
+      ["た", ["ta"]], ["ち", ["chi", "ti"]], ["つ", ["tsu", "tu"]], ["て", ["te"]], ["と", ["to"]],
+      ["な", ["na"]], ["に", ["ni"]], ["ぬ", ["nu"]], ["ね", ["ne"]], ["の", ["no"]],
+      ["は", ["ha"]], ["ひ", ["hi"]], ["ふ", ["fu", "hu"]], ["へ", ["he"]], ["ほ", ["ho"]],
+      ["ま", ["ma"]], ["み", ["mi"]], ["む", ["mu"]], ["め", ["me"]], ["も", ["mo"]],
+      ["や", ["ya"]], ["ゆ", ["yu"]], ["よ", ["yo"]],
+      ["ら", ["ra"]], ["り", ["ri"]], ["る", ["ru"]], ["れ", ["re"]], ["ろ", ["ro"]],
+      ["わ", ["wa"]], ["を", ["wo", "o"]], ["ん", ["n", "nn"]],
+      ["が", ["ga"]], ["ぎ", ["gi"]], ["ぐ", ["gu"]], ["げ", ["ge"]], ["ご", ["go"]],
+      ["ざ", ["za"]], ["じ", ["ji", "zi"]], ["ず", ["zu"]], ["ぜ", ["ze"]], ["ぞ", ["zo"]],
+      ["だ", ["da"]], ["ぢ", ["ji", "di"]], ["づ", ["zu", "du"]], ["で", ["de"]], ["ど", ["do"]],
+      ["ば", ["ba"]], ["び", ["bi"]], ["ぶ", ["bu"]], ["べ", ["be"]], ["ぼ", ["bo"]],
+      ["ぱ", ["pa"]], ["ぴ", ["pi"]], ["ぷ", ["pu"]], ["ぺ", ["pe"]], ["ぽ", ["po"]],
+      ["ぁ", ["a"]], ["ぃ", ["i"]], ["ぅ", ["u"]], ["ぇ", ["e"]], ["ぉ", ["o"]],
+      ["ー", ["-", ""]], ["、", [",", ""]], ["。", [".", ""]], [" ", [" "]]
+    ];
+
+    const els = {
+      time: document.getElementById("time"),
+      score: document.getElementById("score"),
+      typedCount: document.getElementById("typedCount"),
+      accuracy: document.getElementById("accuracy"),
+      combo: document.getElementById("combo"),
+      cleared: document.getElementById("cleared"),
+      bestText: document.getElementById("bestText"),
+      modeText: document.getElementById("modeText"),
+      promptText: document.getElementById("promptText"),
+      romaText: document.getElementById("romaText"),
+      input: document.getElementById("typeInput"),
+      start: document.getElementById("startButton"),
+      again: document.getElementById("againButton"),
+      result: document.getElementById("result"),
+      finalScore: document.getElementById("finalScore"),
+      finalAccuracy: document.getElementById("finalAccuracy"),
+      finalWpm: document.getElementById("finalWpm"),
+      finalCombo: document.getElementById("finalCombo"),
+      finalCleared: document.getElementById("finalCleared"),
+      plate: document.getElementById("plate"),
+      bonusText: document.getElementById("bonusText"),
+      musicHost: document.getElementById("musicHost"),
+      youtubeBg: document.getElementById("youtubeBg"),
+      intro: document.getElementById("intro"),
+      musicSource: document.getElementById("musicSource"),
+      bgImage: document.getElementById("bgImage"),
+      bgVideo: document.getElementById("bgVideo"),
+      youtubeSearch: document.getElementById("youtubeSearch"),
+      searchStatus: document.getElementById("searchStatus")
+    };
+
+    const state = {
+      level: "beginner",
+      deck: [],
+      deckIndex: 0,
+      current: null,
+      typed: "",
+      candidates: [],
+      displayTarget: "",
+      score: 0,
+      keys: 0,
+      misses: 0,
+      combo: 0,
+      maxCombo: 0,
+      cleared: 0,
+      remaining: 60,
+      running: false,
+      timer: null,
+      audio: null
+    };
+
+    function normalizeKana(value) {
+      return value.replace(/[ァ-ン]/g, (char) => String.fromCharCode(char.charCodeAt(0) - 0x60)).toLowerCase();
+    }
+
+    function variantsFromKana(kana) {
+      const source = normalizeKana(kana);
+      const memo = new Map();
+      function walk(index) {
+        if (index >= source.length) return [""];
+        if (memo.has(index)) return memo.get(index);
+        if (source[index] === "っ") {
+          const tails = walk(index + 1);
+          const doubled = tails.flatMap((tail) => {
+            const first = tail[0] || "";
+            return first && !"aeioun".includes(first) ? [first + tail] : [tail];
+          });
+          memo.set(index, doubled);
+          return doubled;
+        }
+        for (const [kanaUnit, romanUnits] of romajiUnits) {
+          if (source.startsWith(kanaUnit, index)) {
+            const tails = walk(index + kanaUnit.length);
+            const result = romanUnits.flatMap((unit) => tails.map((tail) => unit + tail));
+            memo.set(index, [...new Set(result)].slice(0, 1200));
+            return memo.get(index);
+          }
+        }
+        const fallback = walk(index + 1).map((tail) => source[index] + tail);
+        memo.set(index, fallback);
+        return fallback;
+      }
+      return [...new Set(walk(0).map((item) => item.replace(/\s+/g, " ").trim()))];
+    }
+
+    const romanVariantUnits = [
+      ["shi", ["shi", "si"]], ["si", ["si", "shi"]],
+      ["chi", ["chi", "ti"]], ["ti", ["ti", "chi"]],
+      ["tsu", ["tsu", "tu"]], ["tu", ["tu", "tsu"]],
+      ["fu", ["fu", "hu"]], ["hu", ["hu", "fu"]],
+      ["ji", ["ji", "zi"]], ["zi", ["zi", "ji"]],
+      ["cha", ["cha", "tya", "cya"]], ["tya", ["tya", "cha", "cya"]], ["cya", ["cya", "cha", "tya"]],
+      ["chu", ["chu", "tyu", "cyu"]], ["tyu", ["tyu", "chu", "cyu"]], ["cyu", ["cyu", "chu", "tyu"]],
+      ["cho", ["cho", "tyo", "cyo"]], ["tyo", ["tyo", "cho", "cyo"]], ["cyo", ["cyo", "cho", "tyo"]],
+      ["sha", ["sha", "sya"]], ["sya", ["sya", "sha"]],
+      ["shu", ["shu", "syu"]], ["syu", ["syu", "shu"]],
+      ["sho", ["sho", "syo"]], ["syo", ["syo", "sho"]],
+      ["ja", ["ja", "jya", "zya"]], ["jya", ["jya", "ja", "zya"]], ["zya", ["zya", "ja", "jya"]],
+      ["ju", ["ju", "jyu", "zyu"]], ["jyu", ["jyu", "ju", "zyu"]], ["zyu", ["zyu", "ju", "jyu"]],
+      ["jo", ["jo", "jyo", "zyo"]], ["jyo", ["jyo", "jo", "zyo"]], ["zyo", ["zyo", "jo", "jyo"]],
+      ["wo", ["wo", "o"]]
+    ];
+
+    function variantsFromRoman(roman) {
+      const source = roman.toLowerCase();
+      const memo = new Map();
+      function walk(index) {
+        if (index >= source.length) return [""];
+        if (memo.has(index)) return memo.get(index);
+        for (const [unit, alternatives] of romanVariantUnits) {
+          if (source.startsWith(unit, index)) {
+            const tails = walk(index + unit.length);
+            const result = alternatives.flatMap((alt) => tails.map((tail) => alt + tail));
+            memo.set(index, [...new Set(result)].slice(0, 2400));
+            return memo.get(index);
+          }
+        }
+        const result = walk(index + 1).map((tail) => source[index] + tail);
+        memo.set(index, result);
+        return result;
+      }
+      return walk(0);
+    }
+
+    function makeCandidates(item) {
+      const manual = item[1].toLowerCase();
+      const generated = variantsFromKana(item[0]);
+      const romanGenerated = variantsFromRoman(manual);
+      return [...new Set([manual, ...romanGenerated, ...generated])].filter(Boolean).sort((a, b) => a.length - b.length);
+    }
+
+    function shuffle(items) {
+      const list = [...items];
+      for (let index = list.length - 1; index > 0; index -= 1) {
+        const other = Math.floor(Math.random() * (index + 1));
+        [list[index], list[other]] = [list[other], list[index]];
+      }
+      return list;
+    }
+
+    function rebuildDeck() {
+      state.deck = shuffle(decks[state.level]);
+      state.deckIndex = 0;
+    }
+
+    function nextPrompt() {
+      if (state.deckIndex >= state.deck.length) rebuildDeck();
+      const item = state.deck[state.deckIndex];
+      state.deckIndex += 1;
+      state.current = item;
+      state.typed = "";
+      state.candidates = makeCandidates(item);
+      state.displayTarget = state.candidates.includes(item[1].toLowerCase()) ? item[1].toLowerCase() : state.candidates[0];
+      els.input.value = "";
+      renderPrompt();
+    }
+
+    function renderPrompt() {
+      const done = state.displayTarget.slice(0, state.typed.length);
+      const cursor = state.displayTarget.slice(state.typed.length, state.typed.length + 1);
+      const rest = state.displayTarget.slice(state.typed.length + 1);
+      els.promptText.textContent = state.current ? state.current[0] : "曲と背景を選んだらスタート";
+      els.romaText.innerHTML = `<span class="done">${escapeHtml(done)}</span><span class="cursor">${escapeHtml(cursor)}</span>${escapeHtml(rest)}`;
+      els.input.value = state.typed;
+    }
+
+    function escapeHtml(value) {
+      return value.replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" }[char]));
+    }
+
+    function ensureAudio() {
+      if (!state.audio) state.audio = new (window.AudioContext || window.webkitAudioContext)();
+      if (state.audio.state === "suspended") state.audio.resume();
+      return state.audio;
+    }
+
+    function tone(type) {
+      const audio = ensureAudio();
+      const oscillator = audio.createOscillator();
+      const gain = audio.createGain();
+      oscillator.connect(gain);
+      gain.connect(audio.destination);
+      if (type === "miss") {
+        oscillator.type = "sawtooth";
+        oscillator.frequency.setValueAtTime(120, audio.currentTime);
+        oscillator.frequency.exponentialRampToValueAtTime(70, audio.currentTime + 0.16);
+        gain.gain.setValueAtTime(0.11, audio.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audio.currentTime + 0.18);
+        oscillator.start();
+        oscillator.stop(audio.currentTime + 0.18);
+        return;
+      }
+      oscillator.type = type === "bonus" ? "triangle" : "square";
+      oscillator.frequency.setValueAtTime(type === "bonus" ? 720 : 520, audio.currentTime);
+      gain.gain.setValueAtTime(type === "bonus" ? 0.08 : 0.035, audio.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audio.currentTime + (type === "bonus" ? 0.22 : 0.045));
+      oscillator.start();
+      oscillator.stop(audio.currentTime + (type === "bonus" ? 0.22 : 0.045));
+    }
+
+    function accuracy() {
+      if (state.keys === 0) return 100;
+      return Math.max(0, Math.round(((state.keys - state.misses) / state.keys) * 100));
+    }
+
+    function updateHud() {
+      els.time.textContent = state.remaining;
+      els.score.textContent = state.score;
+      els.typedCount.textContent = state.keys;
+      els.accuracy.textContent = `${accuracy()}%`;
+      els.combo.textContent = state.combo;
+      els.cleared.textContent = state.cleared;
+      els.bestText.textContent = `最高コンボ ${state.maxCombo}`;
+    }
+
+    function levelBonusBase() {
+      if (state.level === "expert") return 430;
+      if (state.level === "normal") return 230;
+      return 100;
+    }
+
+    function completePrompt() {
+      const lengthBonus = state.displayTarget.replace(/\s/g, "").length * 8;
+      state.combo += 1;
+      state.maxCombo = Math.max(state.maxCombo, state.combo);
+      state.cleared += 1;
+      state.score += levelBonusBase() + lengthBonus + state.combo * 12;
+      if (state.cleared % 5 === 0) {
+        const added = state.level === "expert" ? 5 : state.level === "normal" ? 4 : 3;
+        state.remaining += added;
+        els.bonusText.textContent = `+${added}秒`;
+        tone("bonus");
+      } else {
+        els.bonusText.textContent = "";
+      }
+      els.plate.classList.add("hit");
+      setTimeout(() => els.plate.classList.remove("hit"), 120);
+      nextPrompt();
+      updateHud();
+    }
+
+    function startGame() {
+      ensureAudio();
+      clearInterval(state.timer);
+      state.level = document.querySelector("input[name='level']:checked").value;
+      rebuildDeck();
+      state.score = 0;
+      state.keys = 0;
+      state.misses = 0;
+      state.combo = 0;
+      state.maxCombo = 0;
+      state.cleared = 0;
+      state.remaining = state.level === "expert" ? 75 : state.level === "normal" ? 65 : 60;
+      state.running = true;
+      els.result.classList.remove("show");
+      els.input.disabled = false;
+      els.start.textContent = "やり直し";
+      els.modeText.textContent = state.level === "expert" ? "上級者" : state.level === "normal" ? "中級者" : "初心者";
+      els.bonusText.textContent = "";
+      nextPrompt();
+      updateHud();
+      els.input.focus();
+      state.timer = setInterval(() => {
+        state.remaining -= 1;
+        updateHud();
+        if (state.remaining <= 0) endGame();
+      }, 1000);
+    }
+
+    function endGame() {
+      clearInterval(state.timer);
+      state.running = false;
+      els.input.disabled = true;
+      els.start.textContent = "スタート";
+      els.modeText.textContent = "終了";
+      els.finalScore.textContent = state.score;
+      els.finalAccuracy.textContent = `${accuracy()}%`;
+      els.finalWpm.textContent = Math.round(state.keys / 5);
+      els.finalCombo.textContent = state.maxCombo;
+      els.finalCleared.textContent = state.cleared;
+      els.result.classList.add("show");
+    }
+
+    function handleTyping(event) {
+      if (!state.running || !state.current) return;
+      if (event.key === "Backspace") {
+        state.typed = state.typed.slice(0, -1);
+        renderPrompt();
+        event.preventDefault();
+        return;
+      }
+      if (event.key.length !== 1) return;
+      const key = event.key.toLowerCase();
+      const next = state.typed + key;
+      state.keys += 1;
+      const matching = state.candidates.filter((candidate) => candidate.startsWith(next));
+      if (matching.length > 0) {
+        state.typed = next;
+        state.displayTarget = matching.find((candidate) => candidate.startsWith(next) && candidate.length >= state.displayTarget.length) || matching[0];
+        tone("key");
+        renderPrompt();
+        if (matching.some((candidate) => candidate === next)) completePrompt();
+      } else {
+        state.misses += 1;
+        state.combo = 0;
+        els.bonusText.textContent = "";
+        els.plate.classList.add("miss");
+        setTimeout(() => els.plate.classList.remove("miss"), 160);
+        tone("miss");
+      }
+      updateHud();
+      event.preventDefault();
+    }
+
+    function youtubeId(value) {
+      const text = value.trim();
+      if (/^[a-zA-Z0-9_-]{11}$/.test(text)) return text;
+      const match = text.match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([a-zA-Z0-9_-]{11})/);
+      return match ? match[1] : "";
+    }
+
+    function playMusic() {
+      const id = youtubeId(els.musicSource.value) || "";
+      els.musicHost.innerHTML = `<iframe width="1" height="1" src="https://www.youtube.com/embed/${id}?autoplay=1&loop=1&playlist=${id}&controls=0&modestbranding=1" allow="autoplay; encrypted-media" title="BGM"></iframe>`;
+    }
+
+    function setBgVideo() {
+      const id = youtubeId(els.bgVideo.value);
+      if (!id) return;
+      document.body.style.removeProperty("--custom-bg");
+      els.youtubeBg.innerHTML = `<iframe src="https://www.youtube.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}&controls=0&modestbranding=1" allow="autoplay; encrypted-media" title="背景動画"></iframe>`;
+    }
+
+    function openSearch(kind) {
+      const query = encodeURIComponent(els.youtubeSearch.value.trim() || (kind === "music" ? "作業用 bgm" : "loop background video"));
+      window.open(`https://www.youtube.com/results?search_query=${query}`, "_blank", "noopener,noreferrer");
+      els.searchStatus.textContent = kind === "music" ? "曲の検索結果を開きました。選んだ動画の共有URLを曲欄に入れてください。" : "背景動画の検索結果を開きました。選んだ動画の共有URLを背景欄に入れてください。";
+    }
+
+    els.input.addEventListener("keydown", handleTyping);
+    els.input.addEventListener("paste", (event) => event.preventDefault());
+    els.start.addEventListener("click", startGame);
+    els.again.addEventListener("click", startGame);
+    document.getElementById("introMusic").addEventListener("click", () => {
+      els.intro.classList.add("hidden");
+      playMusic();
+    });
+    document.getElementById("introSilent").addEventListener("click", () => els.intro.classList.add("hidden"));
+    document.getElementById("openMusic").addEventListener("click", () => els.musicSource.focus());
+    document.getElementById("openVisual").addEventListener("click", () => els.bgImage.focus());
+    document.getElementById("playMusic").addEventListener("click", playMusic);
+    document.getElementById("stopMusic").addEventListener("click", () => { els.musicHost.innerHTML = ""; });
+    document.getElementById("applyBgImage").addEventListener("click", () => {
+      const value = els.bgImage.value.trim();
+      if (!value) return;
+      els.youtubeBg.innerHTML = "";
+      document.body.style.setProperty("--custom-bg", `url("${value}")`);
+    });
+    document.getElementById("resetBg").addEventListener("click", () => {
+      els.youtubeBg.innerHTML = "";
+      els.bgImage.value = "";
+      els.bgVideo.value = "";
+      document.body.style.removeProperty("--custom-bg");
+    });
+    document.getElementById("applyBgVideo").addEventListener("click", setBgVideo);
+    document.getElementById("clearBgVideo").addEventListener("click", () => { els.youtubeBg.innerHTML = ""; });
+    document.getElementById("searchMusic").addEventListener("click", () => openSearch("music"));
+    document.getElementById("searchBgVideo").addEventListener("click", () => openSearch("video"));
+
+    rebuildDeck();
+    updateHud();
+    renderPrompt();
+  </script>
+</body>
+</html>
