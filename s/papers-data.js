@@ -1,1100 +1,1412 @@
 window.JSTAGE_PAPERS = [
   {
-    "title": "雪山横孔全空気式雪冷房の特性とこの施設に適した止水シートを有する雪山の築造",
-    "url": "https://www.jstage.jst.go.jp/article/jsej/42/3/42_13/_article/-char/ja",
-    "journal": "日本雪工学会論文集",
+    "title": "在宅看護にとっての地域",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/13/1/13_1/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "数学"
   },
   {
-    "title": "第４報：米籾の「氷室貯蔵」の提案 ―雪国の米生産者のための籾の低温乾燥貯蔵技術“氷室１９の春”―",
-    "url": "https://www.jstage.jst.go.jp/article/jsej/42/3/42_20/_article/-char/ja",
-    "journal": "日本雪工学会論文集",
+    "title": "訪問看護師における他機関・他職種との関係と職業継続意思との関連",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/13/1/13_2/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "物理学"
   },
   {
-    "title": "陳旧性遠位上腕二頭筋腱断裂修復術を行った1症例のセラピィ経験",
-    "url": "https://www.jstage.jst.go.jp/article/jjhts/18/4/18_198/_article/-char/ja",
-    "journal": "日本ハンドセラピィ学会誌",
+    "title": "在宅でのがん終末期療養者の看取りにおける有効な振り返り－訪問看護師の視点から－",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/13/1/13_12/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "化学"
   },
   {
-    "title": "橈骨遠位端骨折に対する掌側ロッキングプレート抜釘後の臨床的改善効果",
-    "url": "https://www.jstage.jst.go.jp/article/jjhts/18/4/18_204/_article/-char/ja",
-    "journal": "日本ハンドセラピィ学会誌",
+    "title": "臓器不全を抱えるひとり暮らし高齢者の在宅看取り過程における専門職の認識とかかわり",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/13/1/13_20/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "地球科学・天文学"
   },
   {
-    "title": "橈骨遠位端骨折患者におけるHand20の項目特性分析 －項目反応理論を用いた検討－",
-    "url": "https://www.jstage.jst.go.jp/article/jjhts/18/4/18_212/_article/-char/ja",
-    "journal": "日本ハンドセラピィ学会誌",
+    "title": "慢性閉塞性肺疾患患者の急性増悪後を生きる体験",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/13/1/13_29/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "生物学・生命科学・基礎医学"
   },
   {
-    "title": "Floating elbowに橈骨神経麻痺を合併した症例の術後療法経験",
-    "url": "https://www.jstage.jst.go.jp/article/jjhts/18/4/18_219/_article/-char/ja",
-    "journal": "日本ハンドセラピィ学会誌",
+    "title": "訪問看護師On-The-Job Training教育評価項目の認識に関連する要因",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/13/1/13_41/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "農学・食品科学"
   },
   {
-    "title": "示指外傷性PIP関節変形性関節症に対して側方アプローチによる人工関節置換術を施行した1例 －術後ハンドセラピィの経験－",
-    "url": "https://www.jstage.jst.go.jp/article/jjhts/18/4/18_224/_article/-char/ja",
-    "journal": "日本ハンドセラピィ学会誌",
+    "title": "訪問看護師と訪問介護員の療養者へのコミュニケーションおよびそれぞれのコミュニケーションに対する相互認識の差異",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/13/1/13_51/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "一般医学・社会医学・看護学"
   },
   {
-    "title": "手指伸筋腱皮下断裂腱移行術後における減張位テーピングとRelative motion splintの2段階治療 －事例報告－",
-    "url": "https://www.jstage.jst.go.jp/article/jjhts/18/4/18_232/_article/-char/ja",
-    "journal": "日本ハンドセラピィ学会誌",
+    "title": "Impact of Maternal Underweight on Infant and Maternal Outcomes in Japanese Women: A Systematic Review and Meta-analysis",
+    "url": "https://www.jstage.jst.go.jp/article/jea/36/8/36_JE20250483/_article/-char/ja",
+    "journal": "Journal of Epidemiology",
     "category": "臨床医学"
   },
   {
-    "title": "炎症症状改善下に上腕部異所性骨化が生じた同側上肢多発骨折の1例 －リスク因子を踏まえた早期発見の重要性－",
-    "url": "https://www.jstage.jst.go.jp/article/jjhts/18/4/18_238/_article/-char/ja",
-    "journal": "日本ハンドセラピィ学会誌",
+    "title": "Epidemiology and Prognostic Factors of Herpes Simplex Virus Encephalitis in Japan: A Nationwide Database Study",
+    "url": "https://www.jstage.jst.go.jp/article/jea/36/8/36_JE20250228/_article/-char/ja",
+    "journal": "Journal of Epidemiology",
     "category": "歯学"
   },
   {
-    "title": "舟状骨骨折を合併した橈骨遠位端骨折に対する術後ハンドセラピィ －保存療法下での経験的報告－",
-    "url": "https://www.jstage.jst.go.jp/article/jjhts/18/4/18_243/_article/-char/ja",
-    "journal": "日本ハンドセラピィ学会誌",
+    "title": "Cohort Profile: Shanghai University of Sport (SUS) Longitudinal Cohort Study of Alumni Health Tracking",
+    "url": "https://www.jstage.jst.go.jp/article/jea/36/8/36_JE20240494/_article/-char/ja",
+    "journal": "Journal of Epidemiology",
     "category": "薬学"
   },
   {
-    "title": "Unity を用いたデジタル・ハンズオンコンテンツの試行 テシオコククジラ化石発掘ゲームの内製開発事例",
-    "url": "https://www.jstage.jst.go.jp/article/jjme/6/0/6_1/_article/-char/ja",
-    "journal": "博物館教育学研究",
+    "title": "Reconsidering the Perinatal Risks of Maternal Underweight in Japan",
+    "url": "https://www.jstage.jst.go.jp/article/jea/36/8/36_JE20260021/_article/-char/ja",
+    "journal": "Journal of Epidemiology",
     "category": "一般工学・総合工学"
   },
   {
-    "title": "50巻2号査読者一覧",
-    "url": "https://www.jstage.jst.go.jp/article/jcar/50/2/50_0_1/_article/-char/ja",
-    "journal": "原価計算研究",
+    "title": "Response to “Reconsidering the Perinatal Risks of Maternal Underweight in Japan”",
+    "url": "https://www.jstage.jst.go.jp/article/jea/36/8/36_JE20260098/_article/-char/ja",
+    "journal": "Journal of Epidemiology",
     "category": "ナノ・材料科学"
   },
   {
-    "title": "50巻2号目次",
-    "url": "https://www.jstage.jst.go.jp/article/jcar/50/2/50_0_2/_article/-char/ja",
-    "journal": "原価計算研究",
+    "title": "目次",
+    "url": "https://www.jstage.jst.go.jp/article/japtl/18/2/18_Contents1/_article/-char/ja",
+    "journal": "教授学習心理学研究",
     "category": "建築学・土木工学"
   },
   {
-    "title": "ファミリー企業におけるコストの下方硬直性",
-    "url": "https://www.jstage.jst.go.jp/article/jcar/50/2/50_1/_article/-char/ja",
-    "journal": "原価計算研究",
+    "title": "過去経験の妥当性を認める短い言語表現の挿入が誤概念反応の リバウンド抑制に及ぼす効果",
+    "url": "https://www.jstage.jst.go.jp/article/japtl/18/2/18_63/_article/-char/ja",
+    "journal": "教授学習心理学研究",
     "category": "機械工学"
   },
   {
-    "title": "サプライチェーンの持続可能性とオープンブック会計 ―前田建設工業株式会社の原価開示方式の事例研究―",
-    "url": "https://www.jstage.jst.go.jp/article/jcar/50/2/50_15/_article/-char/ja",
-    "journal": "原価計算研究",
+    "title": "幼児の造形表現の共同制作における合意形成の援助が見立ての学習に及ぼす効果",
+    "url": "https://www.jstage.jst.go.jp/article/japtl/18/2/18_75/_article/-char/ja",
+    "journal": "教授学習心理学研究",
     "category": "電気電子工学"
   },
   {
-    "title": "ハイブリッド・プロフェッショナル組織のコミットメントに着目した文献レビュー ―会計事務所の管理会計研究への示唆―",
-    "url": "https://www.jstage.jst.go.jp/article/jcar/50/2/50_29/_article/-char/ja",
-    "journal": "原価計算研究",
+    "title": "鳥類の食性と体のかたちとの関係認識の形成を図る 授業内容の構想と実践 教科の知識理解を目的とする教授学習に資する学校図書館の活用方法",
+    "url": "https://www.jstage.jst.go.jp/article/japtl/18/2/18_86/_article/-char/ja",
+    "journal": "教授学習心理学研究",
     "category": "情報科学"
   },
   {
-    "title": "売上高変動とコスト・ビヘイビアの関係 ―売上高連続低下の減少幅に着目して―",
-    "url": "https://www.jstage.jst.go.jp/article/jcar/50/2/50_42/_article/-char/ja",
-    "journal": "原価計算研究",
+    "title": "サステナビリティ（持続可能性）",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/9/2/9_1/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "環境学"
   },
   {
-    "title": "編集後記・奥付",
-    "url": "https://www.jstage.jst.go.jp/article/jcar/50/2/50_64/_article/-char/ja",
-    "journal": "原価計算研究",
+    "title": "多様化するニーズに応える在宅看護－自律して看護すること－",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/9/2/9_4/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "学際科学"
   },
   {
-    "title": "50巻1号査読者一覧",
-    "url": "https://www.jstage.jst.go.jp/article/jcar/50/1/50_0_1/_article/-char/ja",
-    "journal": "原価計算研究",
+    "title": "訪問看護ステーションにおける新任看護師の教育ニーズと職業的アイデンティティの関連とその要因",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/9/2/9_10/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "哲学・宗教"
   },
   {
-    "title": "50巻1号目次",
-    "url": "https://www.jstage.jst.go.jp/article/jcar/50/1/50_0_2/_article/-char/ja",
-    "journal": "原価計算研究",
+    "title": "医療職配置のないサービス付き高齢者向け住宅の介護職員が捉える入居者・家族が満足する看取りに寄与する要因",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/9/2/9_20/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "文学・言語学・芸術学"
   },
   {
-    "title": "2025年度日本原価計算研究学会全国大会の統一論題の設定意図について",
-    "url": "https://www.jstage.jst.go.jp/article/jcar/50/1/50_1/_article/-char/ja",
-    "journal": "原価計算研究",
+    "title": "熟練訪問看護師が高齢者の訪問看護を通して感じるやりがい",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/9/2/9_31/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "人類学・史学・地理学"
   },
   {
-    "title": "外食産業を対象とした管理会計研究の可能性 ―研究機会と実務への貢献―",
-    "url": "https://www.jstage.jst.go.jp/article/jcar/50/1/50_5/_article/-char/ja",
-    "journal": "原価計算研究",
+    "title": "在宅ケアの多職種連携における訪問看護師の役割認識：他職種からの認識との比較による検討",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/9/2/9_41/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "法学・政治学"
   },
   {
-    "title": "外食産業におけるアメーバ経営 ―文献レビューを通じた論点整理―",
-    "url": "https://www.jstage.jst.go.jp/article/jcar/50/1/50_16/_article/-char/ja",
-    "journal": "原価計算研究",
+    "title": "訪問看護師の困難感と職務満足感との関連",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/9/2/9_49/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "経済学・経営学"
   },
   {
-    "title": "診断型・対話型コントロールの併用は業績不振下で逆効果となるのか ―マネジャーの注意集中を介したメカニズムの検証―",
-    "url": "https://www.jstage.jst.go.jp/article/jcar/50/1/50_28/_article/-char/ja",
-    "journal": "原価計算研究",
+    "title": "学生の訪問看護実習に看護師と伴に同行している教員が捉える同行訪問の意味",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/9/2/9_58/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "社会学"
   },
   {
-    "title": "レベニューマネジメントのオンラインゲームにおける活用 ―課金システムがKPIに与える影響―",
-    "url": "https://www.jstage.jst.go.jp/article/jcar/50/1/50_42/_article/-char/ja",
-    "journal": "原価計算研究",
+    "title": "在宅看護学実習におけるルーブリック評価表を導入した効果の検証",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/9/2/9_67/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "心理学・教育学"
   },
   {
-    "title": "製品開発プロセスにおける品質工学とみなし利益",
-    "url": "https://www.jstage.jst.go.jp/article/jcar/50/1/50_55/_article/-char/ja",
-    "journal": "原価計算研究",
+    "title": "重度要介護高齢者を支援している訪問看護師と訪問介護員の協働の認識",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/9/2/9_77/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "数学"
   },
   {
-    "title": "決算説明資料における会計情報の表示形式選択要因",
-    "url": "https://www.jstage.jst.go.jp/article/jcar/50/1/50_68/_article/-char/ja",
-    "journal": "原価計算研究",
+    "title": "国内外の一人暮らしがん療養者の療養生活の様相に関する文献レビュー",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/9/2/9_88/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "物理学"
   },
   {
-    "title": "『日本原価計算研究学会』第51回大会後記",
-    "url": "https://www.jstage.jst.go.jp/article/jcar/50/1/50_81/_article/-char/ja",
-    "journal": "原価計算研究",
+    "title": "就任のご挨拶",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/9/1/9_1/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "化学"
   },
   {
-    "title": "編集後記・奥付",
-    "url": "https://www.jstage.jst.go.jp/article/jcar/50/1/50_98/_article/-char/ja",
-    "journal": "原価計算研究",
+    "title": "在宅要介護高齢者における睡眠薬の関連が推察される有害事象と訪問看護師のケアに関する質的事例研究",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/9/1/9_2/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "地球科学・天文学"
   },
   {
-    "title": "On the Usefulness of Open Data for Constructing Forecasting Models of International Tourist Demand in Hokkaido",
-    "url": "https://www.jstage.jst.go.jp/article/ijams/18/1/18_1/_article/-char/ja",
-    "journal": "International Journal of Japan Association for Management Systems",
+    "title": "訪問看護師の実習指導の実態と同行訪問看護師の選定指標の提案",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/9/1/9_12/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "生物学・生命科学・基礎医学"
   },
   {
-    "title": "Ingredient Branding for Livestock Feed: Proof of Concept for Translating Animal Welfare into Consumer Value",
-    "url": "https://www.jstage.jst.go.jp/article/ijams/18/1/18_8/_article/-char/ja",
-    "journal": "International Journal of Japan Association for Management Systems",
+    "title": "認知症男性高齢者の独居生活継続を支える保健師の支援",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/9/1/9_21/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "農学・食品科学"
   },
   {
-    "title": "Formation Conditions of Autonomous Nighttime Economies in Urban Residential Areas",
-    "url": "https://www.jstage.jst.go.jp/article/ijams/18/1/18_17/_article/-char/ja",
-    "journal": "International Journal of Japan Association for Management Systems",
+    "title": "訪問看護認定看護師が療養者と関係を築くために実施している初回訪問時の言動とその意図",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/9/1/9_32/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "一般医学・社会医学・看護学"
   },
   {
-    "title": "A Fuzzy Entropy Model Considering Average Reach Distance in Communication Networks",
-    "url": "https://www.jstage.jst.go.jp/article/ijams/18/1/18_24/_article/-char/ja",
-    "journal": "International Journal of Japan Association for Management Systems",
+    "title": "訪問看護師の補聴器推奨の現状と難聴高齢者との会話における困難と工夫について",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/9/1/9_45/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "臨床医学"
   },
   {
-    "title": "Target-Specific Intergroup Anxiety in Multicultural Engineering Laboratories: Associations with Information Elaboration and Perceived Laboratory Entrepreneurial Orientation",
-    "url": "https://www.jstage.jst.go.jp/article/ijams/18/1/18_32/_article/-char/ja",
-    "journal": "International Journal of Japan Association for Management Systems",
+    "title": "訪問看護師が看護実践の中で感じている“やりがい”",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/9/1/9_53/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "歯学"
   },
   {
-    "title": "Structural Classification of Contingency as a Trigger for Emergence: A Theoretical Framework of Contingency in Emergence Phenomena",
-    "url": "https://www.jstage.jst.go.jp/article/ijams/18/1/18_47/_article/-char/ja",
-    "journal": "International Journal of Japan Association for Management Systems",
+    "title": "日本の看護の未来像を創造する",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/8/2/8_1/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "薬学"
   },
   {
-    "title": "Exploratory Study of the Speed of Resolving Dual-Loop Learning States in Large Corporations Facing Strategic Change: Focusing on the Clarification of Roles and Tasks",
-    "url": "https://www.jstage.jst.go.jp/article/ijams/18/1/18_77/_article/-char/ja",
-    "journal": "International Journal of Japan Association for Management Systems",
+    "title": "看護サービスの質を良くする－看護記録の標準化ツールMEDIS マスター－",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/8/2/8_4/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "一般工学・総合工学"
   },
   {
-    "title": "女子学生の月経異常症状とTranstheoretical Modelに基づく受診行動変容ステージの分類およびその有用性の検討",
-    "url": "https://www.jstage.jst.go.jp/article/jjahcs/19/2/19_2025003-E/_article/-char/ja",
-    "journal": "日本ヒューマンケア科学会誌",
+    "title": "在宅看護でつなぐ共生社会：あなたもわたしもできること～東京都訪問看護ステーション協会の活動から～",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/8/2/8_9/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "ナノ・材料科学"
   },
   {
-    "title": "A New Species of Calliostoma (Gastropoda: Calliostomatidae) from the Ogasawara Islands, Japan",
-    "url": "https://www.jstage.jst.go.jp/article/venus/84/1-4/84_1/_article/-char/ja",
-    "journal": "Venus (Journal of the Malacological Society of Japan)",
+    "title": "新卒訪問看護師のプリセプターが経験した困難",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/8/2/8_13/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "建築学・土木工学"
   },
   {
-    "title": "Buccinum tsushimanum n. sp. (Gastropoda: Buccinidae) from Near Tsushima, Southwesternmost Sea of Japan",
-    "url": "https://www.jstage.jst.go.jp/article/venus/84/1-4/84_11/_article/-char/ja",
-    "journal": "Venus (Journal of the Malacological Society of Japan)",
+    "title": "終末期高齢者を自宅で看取った家族への訪問看護師の支援",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/8/2/8_22/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "機械工学"
   },
   {
-    "title": "Extreme Divergence in Mitochondrial DNA Sequences in the Intertidal Slug Wallaconchis melanesiensis (Gastropoda: Heterobranchia: Onchidiidae)",
-    "url": "https://www.jstage.jst.go.jp/article/venus/84/1-4/84_19/_article/-char/ja",
-    "journal": "Venus (Journal of the Malacological Society of Japan)",
+    "title": "高齢介護者の社会的孤立予防における訪問看護師の支援",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/8/2/8_32/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "電気電子工学"
   },
   {
-    "title": "A New Species of the Genus Gyraulus (Hygrophila: Planorbidae) from Chichijima Island, Japan",
-    "url": "https://www.jstage.jst.go.jp/article/venus/84/1-4/84_39/_article/-char/ja",
-    "journal": "Venus (Journal of the Malacological Society of Japan)",
+    "title": "A短期大学における退院支援部門で在宅看護論実習を行った看護学生の学びの評価",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/8/2/8_41/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "情報科学"
   },
   {
-    "title": "A New Species of Saccella Woodring, 1925 (Bivalvia: Nuculanidae) Dredged off Western Kyushu, with Remarks on Neilonella kirai Habe, 1953",
-    "url": "https://www.jstage.jst.go.jp/article/venus/84/1-4/84_51/_article/-char/ja",
-    "journal": "Venus (Journal of the Malacological Society of Japan)",
+    "title": "新卒訪問看護師の就業上の困難",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/8/2/8_51/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "環境学"
   },
   {
-    "title": "Two Vesicomyid Species from Cold Seeps in the Nankai Trough and Sagami Bay, Including a New Species of Isorropodon",
-    "url": "https://www.jstage.jst.go.jp/article/venus/84/1-4/84_63/_article/-char/ja",
-    "journal": "Venus (Journal of the Malacological Society of Japan)",
+    "title": "訪問看護を利用している終末期がん療養者の在宅看取りに関連する要因～訪問看護ステーションの看護記録による後方視的検討～",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/8/2/8_60/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "学際科学"
   },
   {
-    "title": "Necrophilia in Benthic Decapodiformid Cephalopods",
-    "url": "https://www.jstage.jst.go.jp/article/venus/84/1-4/84_75/_article/-char/ja",
-    "journal": "Venus (Journal of the Malacological Society of Japan)",
+    "title": "行動・心理症状の薬物療法を受けている認知症高齢者に対する訪問看護師の判断の視点",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/8/2/8_70/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "哲学・宗教"
   },
   {
-    "title": "Feeding on the Green Alga Rhipidosiphon lewmanomontiae by the Kleptoplastic Sea Slug Plakobranchus ocellatus Type Black (Gastropoda: Sacoglossa)",
-    "url": "https://www.jstage.jst.go.jp/article/venus/84/1-4/84_81/_article/-char/ja",
-    "journal": "Venus (Journal of the Malacological Society of Japan)",
+    "title": "訪問看護師の2.5人称の立ち位置～「利用者・家族への親近感」と「専門職としての客観性」の尺度化の試み～",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/8/2/8_79/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "文学・言語学・芸術学"
   },
   {
-    "title": "Obituary – Takashi Okutani (1931–2025)",
-    "url": "https://www.jstage.jst.go.jp/article/venus/84/1-4/84_91/_article/-char/ja",
-    "journal": "Venus (Journal of the Malacological Society of Japan)",
+    "title": "家族介護者が介護肯定感を得るための訪問看護師による援助",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/8/2/8_87/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "人類学・史学・地理学"
   },
   {
-    "title": "ERRATUM",
-    "url": "https://www.jstage.jst.go.jp/article/venus/84/1-4/84_93/_article/-char/ja",
-    "journal": "Venus (Journal of the Malacological Society of Japan)",
+    "title": "在宅看護実践から学びとるもの",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/8/1/8_1/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "法学・政治学"
   },
   {
-    "title": "名古屋市科学館の現状と展望 ボランティア活動からみえるもののむこう",
-    "url": "https://www.jstage.jst.go.jp/article/jjme/1/0/1_1/_article/-char/ja",
-    "journal": "博物館教育学研究",
+    "title": "訪問看護ステーションにおけるリフレクション志向型カンファレンスの学習指標の開発",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/8/1/8_2/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "経済学・経営学"
   },
   {
-    "title": "探究的な問い（Why）を組み込んだ博学連携授業モデルの開発 「問いの性質」と「学芸員の専門的知識」に着目して",
-    "url": "https://www.jstage.jst.go.jp/article/jjme/2/0/2_1/_article/-char/ja",
-    "journal": "博物館教育学研究",
+    "title": "訪問看護師の新任期における職務上の困難感と対処方法",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/8/1/8_11/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "社会学"
   },
   {
-    "title": "わくわく博物館体験 ‘20 実践報告 「さわらなくても楽しい」ゲーム型展示の工夫",
-    "url": "https://www.jstage.jst.go.jp/article/jjme/3/0/3_1/_article/-char/ja",
-    "journal": "博物館教育学研究",
+    "title": "在宅看護実習ではじめて学生の受け持ちを経験した重症心身障害児を療育する母親の思い－グラウンデッド・セオリー法を参考に分析した1事例を通して－",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/8/1/8_20/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "心理学・教育学"
   },
   {
-    "title": "博物館における研究、資料収集保管、教育普及の有機的連携が⽰す可能性 ⼤阪市⽴⾃然史博物館における7年間の実践として",
-    "url": "https://www.jstage.jst.go.jp/article/jjme/4/0/4_1/_article/-char/ja",
-    "journal": "博物館教育学研究",
+    "title": "訪問看護師による気管切開下陽圧換気療法を行う筋萎縮性側索硬化症療養者の意向を捉えるためのかかわり",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/8/1/8_31/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "数学"
   },
   {
-    "title": "文系大学生の博物館利用実態 大学入学前の経験に関するアンケート調査",
-    "url": "https://www.jstage.jst.go.jp/article/jjme/5/0/5_1/_article/-char/ja",
-    "journal": "博物館教育学研究",
+    "title": "訪問看護師が受ける苦情の実態～インタビュー内容の主観的分類から～",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/8/1/8_40/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "物理学"
   },
   {
-    "title": "タイポグラフィの近代様式と近代社会性",
-    "url": "https://www.jstage.jst.go.jp/article/tsotj/13/0/13_7/_article/-char/ja",
-    "journal": "タイポグラフィ学会誌",
+    "title": "がん終末期独居療養者のエンド・オブ・ライフケアにおける訪問看護師の看護実践に関する文献検討",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/8/1/8_48/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "化学"
   },
   {
-    "title": "1 リスボン地震と神の代理人の退場",
-    "url": "https://www.jstage.jst.go.jp/article/psaj/66/0/66_660101/_article/-char/ja",
-    "journal": "平和研究",
+    "title": "在宅看護の大地として訪問看護の未来へ向けて",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/7/2/7_1/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "地球科学・天文学"
   },
   {
-    "title": "2 モア・ザン・ヒューマンの世界における有害な類縁関係",
-    "url": "https://www.jstage.jst.go.jp/article/psaj/66/0/66_660102/_article/-char/ja",
-    "journal": "平和研究",
+    "title": "療養生活のクオリティを支え高める実践・教育・研究",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/7/2/7_4/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "生物学・生命科学・基礎医学"
   },
   {
-    "title": "1 緩慢な暴力としての「汚染の政治」——ヒトならざるものとの戦争と平和",
-    "url": "https://www.jstage.jst.go.jp/article/psaj/66/0/66_660103/_article/-char/ja",
-    "journal": "平和研究",
+    "title": "看護学研究の実践への還元 日本在宅看護学会のこれまでとこれから",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/7/2/7_9/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "農学・食品科学"
   },
   {
-    "title": "2 母なる大地を守る者たち——インドネシア・クンデンにおける抵抗と実践——",
-    "url": "https://www.jstage.jst.go.jp/article/psaj/66/0/66_660105/_article/-char/ja",
-    "journal": "平和研究",
+    "title": "身近に精神科医師がいない精神科看護未経験の訪問看護師が捉える精神科医師との連携実践",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/7/2/7_15/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "一般医学・社会医学・看護学"
   },
   {
-    "title": "1 脱動員としての平和——平和主義のアナーキズム的転回に向けて——",
-    "url": "https://www.jstage.jst.go.jp/article/psaj/66/0/66_660106/_article/-char/ja",
-    "journal": "平和研究",
+    "title": "小児入院患者が退院困難となる要因－患者・家族要因－",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/7/2/7_25/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "臨床医学"
   },
   {
-    "title": "国際法・国際法学の批判的再検討最上敏樹『国際法以後』みすず書房，2024年",
-    "url": "https://www.jstage.jst.go.jp/article/psaj/66/0/66_660107/_article/-char/ja",
-    "journal": "平和研究",
+    "title": "慢性疾患をもつ在宅高齢者の災害時の治療継続に関する備えの実態と課題－地域包括支援センターを利用している在宅高齢者を対象にした調査から－",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/7/2/7_36/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "歯学"
   },
   {
-    "title": "解放の線をめぐるグローバル・ヒストリー小山田紀子，吉澤文寿，ウォルター・ブリュイエール=オステル編著『植民地化・脱植民地化の比較史——フランス–アルジェリアと日本–朝鮮関係を中心に』藤原書店，2023年",
-    "url": "https://www.jstage.jst.go.jp/article/psaj/66/0/66_660108/_article/-char/ja",
-    "journal": "平和研究",
+    "title": "呼吸困難を抱えた看取り期の在宅療養がん患者と家族への訪問看護師による支援の実施状況と先行事例経験との関連",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/7/2/7_44/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "薬学"
   },
   {
-    "title": "公益事業としての農業を目指す林公則『農業を市場から取りもどす——農地・農産品・種苗・貨幣』日本経済評論社，2024年",
-    "url": "https://www.jstage.jst.go.jp/article/psaj/66/0/66_660109/_article/-char/ja",
-    "journal": "平和研究",
+    "title": "在宅での臨終をめぐる死亡確認・死亡診断の現状に関する文献検討",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/7/2/7_53/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "一般工学・総合工学"
   },
   {
-    "title": "「被爆国」は何を語ってこなかったのか——戦後日本の核にまつわる「タブー」を再考する梅原季哉『核の戦後日本政治史——非核アイデンティティと日米安保の80年』ミネルヴァ書房，2025年",
-    "url": "https://www.jstage.jst.go.jp/article/psaj/66/0/66_660110/_article/-char/ja",
-    "journal": "平和研究",
+    "title": "わが国の訪問看護に関わる臨床判断研究のシステマティックレビュー",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/7/2/7_62/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "ナノ・材料科学"
   },
   {
-    "title": "不確かな「グローバル正義」をとらえる方途阿部利洋編『グローバル正義の変容——グローバルサウスの台頭と新たなポリティクス』ナカニシヤ出版，2025年",
-    "url": "https://www.jstage.jst.go.jp/article/psaj/66/0/66_660111/_article/-char/ja",
-    "journal": "平和研究",
+    "title": "訪問看護の「可視化」「見える化」",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/7/1/7_1/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "建築学・土木工学"
   },
   {
-    "title": "日本原子力学会「2025年秋の大会」企画セッション：次世代革新炉の開発に向けたJENDLの現状と展望 （１）高速炉開発と核データ",
-    "url": "https://www.jstage.jst.go.jp/article/ndnews/142/0/142_1/_article/-char/ja",
-    "journal": "核データニュース",
+    "title": "新規開設した訪問看護事業所における地域に対する取り組みの実態とその関連要因",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/7/1/7_196/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "機械工学"
   },
   {
-    "title": "日本原子力学会「2025年秋の大会」企画セッション：次世代革新炉の開発に向けたJENDLの現状と展望 （２）JENDL-5における核データ評価および今後の展望",
-    "url": "https://www.jstage.jst.go.jp/article/ndnews/142/0/142_2/_article/-char/ja",
-    "journal": "核データニュース",
+    "title": "学士課程卒業時の到達目標に対する訪問看護師の期待度調査",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/7/1/7_206/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "電気電子工学"
   },
   {
-    "title": "nBHEAM 2025ワークショップに参加して〜高エネルギー中性子ビームの応用と計測技術〜",
-    "url": "https://www.jstage.jst.go.jp/article/ndnews/142/0/142_3/_article/-char/ja",
-    "journal": "核データニュース",
+    "title": "重複障害をもつ子どもに対する母親の思い",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/7/1/7_215/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "情報科学"
   },
   {
-    "title": "科学と技術のための核データ国際会議(ND2025)",
-    "url": "https://www.jstage.jst.go.jp/article/ndnews/142/0/142_4/_article/-char/ja",
-    "journal": "核データニュース",
+    "title": "家族主導で在宅看取りの意思決定が進む中で訪問看護師が行った看取りまでの看護実践〜慢性呼吸不全高齢者の在宅看取り事例を通して〜",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/7/1/7_225/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "環境学"
   },
   {
-    "title": "核物理からその応用へ―核変換用核データ測定研究を中心に―",
-    "url": "https://www.jstage.jst.go.jp/article/ndnews/142/0/142_5/_article/-char/ja",
-    "journal": "核データニュース",
+    "title": "知的障害者の医療機関受診の実態－保護者を対象とした全国調査－",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/7/1/7_235/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "学際科学"
   },
   {
-    "title": "研究室だより：九州大学大学院総合理工学研究院粒子線物理工学研究室「渡辺研究室」",
-    "url": "https://www.jstage.jst.go.jp/article/ndnews/142/0/142_6/_article/-char/ja",
-    "journal": "核データニュース",
+    "title": "地域包括支援センター保健師のコンピテンシー",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/7/1/7_242/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "哲学・宗教"
   },
   {
-    "title": "ISTC/SAC議長が行く―アルメニア編―",
-    "url": "https://www.jstage.jst.go.jp/article/ndnews/142/0/142_7/_article/-char/ja",
-    "journal": "核データニュース",
+    "title": "ホームホスピスへの入居理由と看取った遺族の思い– 自宅で看取った遺族の思いとの比較 –",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/7/1/7_252/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "文学・言語学・芸術学"
   },
   {
-    "title": "行事予定",
-    "url": "https://www.jstage.jst.go.jp/article/ndnews/142/0/142_8/_article/-char/ja",
-    "journal": "核データニュース",
+    "title": "重度障害をもって生きる人の生活体験の語りを取り入れた当事者参加型の講義の効果",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/7/1/7_258/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "人類学・史学・地理学"
   },
   {
-    "title": "あとがき",
-    "url": "https://www.jstage.jst.go.jp/article/ndnews/142/0/142_9/_article/-char/ja",
-    "journal": "核データニュース",
+    "title": "実践×教育×研究のコラボレーションでつくる在宅看護",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/6/2/6_1/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "法学・政治学"
   },
   {
-    "title": "Soluble tumor necrosis factor receptors in diabetes: risk sensing and receptor-resolved targeting",
-    "url": "https://www.jstage.jst.go.jp/article/endocrj/73/8/73_EJ26-0050/_article/-char/ja",
-    "journal": "Endocrine Journal",
+    "title": "地域包括ケアのなかで在宅看護を担う看護職の強みを活かす",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/6/2/6_4/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "経済学・経営学"
   },
   {
-    "title": "ZFP36-ferroptosis axis as a key renal protective pathway in diabetic kidney disease",
-    "url": "https://www.jstage.jst.go.jp/article/endocrj/73/8/73_EJ25-0648/_article/-char/ja",
-    "journal": "Endocrine Journal",
+    "title": "在宅医療を要する療養者の支援における看護職と介護職の連携指標の開発－信頼性・妥当性の検討－",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/6/2/6_35/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "社会学"
   },
   {
-    "title": "From cross-section to prognosis: risk factors for renal function deterioration in primary hyperparathyroidism",
-    "url": "https://www.jstage.jst.go.jp/article/endocrj/73/8/73_EJ25-0616/_article/-char/ja",
-    "journal": "Endocrine Journal",
+    "title": "緊急電話受信時における訪問看護師の看護判断－看護判断プロセスに焦点を当てて－",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/6/2/6_45/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "心理学・教育学"
   },
   {
-    "title": "γ-Secretase inhibitor ameliorates thyroid autoimmune damage via blocking Notch1 signaling and reducing γδT17 cells in EAT mice",
-    "url": "https://www.jstage.jst.go.jp/article/endocrj/73/8/73_EJ25-0663/_article/-char/ja",
-    "journal": "Endocrine Journal",
+    "title": "仕事と介護の両立を継続してきた介護者の体験",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/6/2/6_56/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "数学"
   },
   {
-    "title": "Machine learning-based prediction of impaired arginine vasopressin secretion during hypertonic saline test",
-    "url": "https://www.jstage.jst.go.jp/article/endocrj/73/8/73_EJ26-0094/_article/-char/ja",
-    "journal": "Endocrine Journal",
+    "title": "在宅緩和ケアへの移行における看護師の援助－終末期がん患者と家族が体験した困難と安心して移行するために有効であった援助－",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/6/2/6_65/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "物理学"
   },
   {
-    "title": "Long-term survival in MIRAGE syndrome: Insights into systemic manifestations and management with review of literature",
-    "url": "https://www.jstage.jst.go.jp/article/endocrj/73/8/73_EJ25-0656/_article/-char/ja",
-    "journal": "Endocrine Journal",
+    "title": "訪問看護師が考える在宅脊髄損傷者の看護支援ニーズとQOL向上をめざす看護実践の分析",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/6/2/6_75/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "化学"
   },
   {
-    "title": "Acanthosis nigricans as a diagnostic clue for familial partial lipodystrophy type 2: a case report with review of literature on Japanese cases",
-    "url": "https://www.jstage.jst.go.jp/article/endocrj/73/8/73_EJ25-0487/_article/-char/ja",
-    "journal": "Endocrine Journal",
+    "title": "訪問看護師に対する暴力と暴力対策に関する文献レビュー",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/6/2/6_83/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "地球科学・天文学"
   },
   {
-    "title": "Overlap syndrome between sarcoidosis and Sjögren’s disease presenting as hypopituitarism: case report and review of literature",
-    "url": "https://www.jstage.jst.go.jp/article/endocrj/73/8/73_EJ26-0063/_article/-char/ja",
-    "journal": "Endocrine Journal",
+    "title": "未来へ紡ぐ在宅看護の「知」",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/6/1/6_1/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "生物学・生命科学・基礎医学"
   },
   {
-    "title": "定期的運動・スポーツ実施率の減少要因",
-    "url": "https://www.jstage.jst.go.jp/article/ssfsportslifesurvey/2016/0/2016_18/_article/-char/ja",
-    "journal": "スポーツライフ・データ",
+    "title": "在宅高齢者のきこえに関する評価プロセスと精神的健康度への影響について",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/6/1/6_156/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "農学・食品科学"
   },
   {
-    "title": "トレンド分析による運動・スポーツ実施動態 内閣府「東京オリンピック・パラリンピックに関する世論調査」（2015）における週1日以上実施率7.1ポイント減を探る",
-    "url": "https://www.jstage.jst.go.jp/article/ssfsportslifesurvey/2016/0/2016_24/_article/-char/ja",
-    "journal": "スポーツライフ・データ",
+    "title": "在宅維持期において重度障害のある学童を訪問する看護師の実践",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/6/1/6_166/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "一般医学・社会医学・看護学"
   },
   {
-    "title": "現在の実施種目からみる過去のスポーツ経験と今後の希望",
-    "url": "https://www.jstage.jst.go.jp/article/ssfsportslifesurvey/2016/0/2016_30/_article/-char/ja",
-    "journal": "スポーツライフ・データ",
+    "title": "災害発生緊急時に訪問看護師が考える対策の準備状況トラフ地域、被災地、一般地域の解析結果から",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/6/1/6_177/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "臨床医学"
   },
   {
-    "title": "オリンピック・パラリンピックのイメージ",
-    "url": "https://www.jstage.jst.go.jp/article/ssfsportslifesurvey/2016/0/2016_35/_article/-char/ja",
-    "journal": "スポーツライフ・データ",
+    "title": "在宅看護の想いを繋いで",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/5/2/5_1/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "歯学"
   },
   {
-    "title": "メンタルヘルスの実態とその関連要因",
-    "url": "https://www.jstage.jst.go.jp/article/ssfsportslifesurvey/2016/0/2016_42/_article/-char/ja",
-    "journal": "スポーツライフ・データ",
+    "title": "地域の平穏をつくる在宅看護管理",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/5/2/5_3/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "薬学"
   },
   {
-    "title": "身近なスポーツ観戦の実態と可能性",
-    "url": "https://www.jstage.jst.go.jp/article/ssfsportslifesurvey/2016/0/2016_48/_article/-char/ja",
-    "journal": "スポーツライフ・データ",
+    "title": "退院支援の実践状況と退院支援に関するシステム整備の関連要因の明確化",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/5/2/5_26/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "一般工学・総合工学"
   },
   {
-    "title": "座り過ぎの健康リスクを低減させるスポーツライフ",
-    "url": "https://www.jstage.jst.go.jp/article/ssfsportslifesurvey/2016/0/2016_54/_article/-char/ja",
-    "journal": "スポーツライフ・データ",
+    "title": "一人暮らし要介護高齢者を別居で介護する家族介護者の介護生活継続の様相",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/5/2/5_36/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "ナノ・材料科学"
   },
   {
-    "title": "運動・スポーツの非実施者の動向",
-    "url": "https://www.jstage.jst.go.jp/article/ssfsportslifesurvey/2016/0/2016_60/_article/-char/ja",
-    "journal": "スポーツライフ・データ",
+    "title": "在宅認知症高齢者の家族介護者における性別による介護経験の差異に関する文献検討",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/5/2/5_44/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "建築学・土木工学"
   },
   {
-    "title": "スポーツ情報への接触を通じた新しいスポーツへの関わり方",
-    "url": "https://www.jstage.jst.go.jp/article/ssfsportslifesurvey/2016/0/2016_66/_article/-char/ja",
-    "journal": "スポーツライフ・データ",
+    "title": "国内で報告された終末期がん患者の呼吸困難に関する看護研究の文献検討",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/5/2/5_53/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "機械工学"
   },
   {
-    "title": "Preparation of Photochromic Microcapsules of Mixed Bio-based Wall Materials SP@PLA/PA56 and the Application on Cotton Fabrics",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/4/39_211/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "在宅看護における清潔援助の特徴－在宅看護分野の教科書の内容分析から－",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/5/2/5_60/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "電気電子工学"
   },
   {
-    "title": "An Efficient Approach to Compare Acid Diffusive Ability in DUV Resists Under Open Frame Exposure",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/4/39_225/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "在宅看護概論の教授方法に関する研究－「在宅ケアを支える制度と社会資源」の単元に紙上事例を用いたグループ学習の学び－",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/5/2/5_70/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "情報科学"
   },
   {
-    "title": "Preparation and Properties of Novel Low-Loading Fluorinated Thioxanthone Photoinitiators",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/4/39_235/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "大学と訪問看護師が協働で進める訪問看護技術研修の実践と評価－大学の学習環境を活用した技術研修の効果－",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/5/2/5_79/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "環境学"
   },
   {
-    "title": "Improvements of Applying RAFT Polymerization in High-performance Photoresist Manufacture",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/4/39_249/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "在宅看護の「知識の体系化」",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/5/1/5_1/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "学際科学"
   },
   {
-    "title": "Progress and Recent Topics of Speckle Lithography",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/4/39_257/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "サービス開始時における一人暮らし認知症高齢者への訪問の継続を図る看護師の働きかけ",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/5/1/5_124/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "哲学・宗教"
   },
   {
-    "title": "Study of the High-intensity Reflection Structure that used the Speckle Exposure Method",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/4/39_263/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "熟練訪問看護師のキャリア発達の特徴",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/5/1/5_134/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "文学・言語学・芸術学"
   },
   {
-    "title": "Observation of Crystal-to-Liquid and Liquid-to-Solid Phase Transitions of Azobenzene Crystals in Response to Light Wavelengths",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/4/39_271/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "デイサービスの看護職が行う利用者の健康管理と、健康管理における他施設及び他職種連携の実態",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/5/1/5_142/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "人類学・史学・地理学"
   },
   {
-    "title": "Development of Reactive Molecular Dynamics for Cross-linked Polymer Networks",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/4/39_277/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "訪問看護師が行う在宅リハビリテーションに関する研究動向",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/5/1/5_148/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "法学・政治学"
   },
   {
-    "title": "Influence of Oxygen Gas Flow Rate on Photoresist Removal in Microwave-Excited H2O/O2 Plasma",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/4/39_283/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "在宅看護学の体系化を目指して",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/4/2/4_1/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "経済学・経営学"
   },
   {
-    "title": "Formation Kinetics of Polymer Films Probed by Aggregation-Induced Emissive Molecules",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/4/39_291/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "生活の場に赴く看護の視点から在宅看護学を考える",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/4/2/4_4/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "社会学"
   },
   {
-    "title": "Alkyl Substituent Effects on Cyclopentadithiophene-Based Non-Fullerene Acceptors",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/4/39_297/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "緊急電話受信時、訪問看護師が看護アセスメントに用いた情報の分析",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/4/2/4_41/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "心理学・教育学"
   },
   {
-    "title": "Microstructure-induced Petal Effect on Hierarchical Ceramic Surfaces Fabricated by Multi-step Imprinting",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/3/39_145/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "製品とともにある暮らし：人と環境のインタラクションデザイン",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_3/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "数学"
   },
   {
-    "title": "Challenges and Progress of PFAS Alternatives for ArF Resist",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/3/39_153/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "動物の飼育環境と行動",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_4/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "物理学"
   },
   {
-    "title": "Improvement of Non-PFAS Biomass EUV Resist by Optimization of Chemical Structures",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/3/39_159/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "シンポジウム徹底討論 エコロジカル・アプローチとエナクティヴ・アプローチの近くて遠い関係",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_5/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "化学"
   },
   {
-    "title": "pH-Responsive Hydroxypropyl Methylcellulose Microneedle Sensor for Food Spoilage Detection",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/3/39_165/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "相互行為を自己-他者-環境の三項関係として捉える",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_10/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "地球科学・天文学"
   },
   {
-    "title": "Fabrication of Photo-adhesive Materials Using a Bifunctional Dipyridyl Disulfide-derived Methacryl Monomer and a Reducer",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/3/39_171/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "日本生態心理学会第10回研究大会 社会的アフォーダンスと臨床の生態心理学",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_18/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "生物学・生命科学・基礎医学"
   },
   {
-    "title": "Application of the Stochastic Simulation Algorithm to Exposure and Post-Exposure Bake in EUV Chemically Amplified Resists",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/3/39_177/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "予測処理に基づく道徳的規範の獲得に関する生態心理学的考察：Situated Normativity の観点から",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_27/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "農学・食品科学"
   },
   {
-    "title": "Hydro- and Oleophobic Properties of Neanurinae (Collembola)",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/3/39_185/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "LLMは「生態学的に妥当な」知覚デザインを生成できるか？： アフォーダンス構造のモデル化に基づく性能評価",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_30/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "一般医学・社会医学・看護学"
   },
   {
-    "title": "Moth-eye nanostructured surface with patterned superhydrophilic regions on a superhydrophobic background",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/3/39_189/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "Swinging Roomを再考する： Nested Moving Roomの可能性を探る",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_40/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "臨床医学"
   },
   {
-    "title": "Effect of Organic Ligand Structure on Resist Performance of Inorganic-Organic Hybrid Resist Materials for EB and EUV Lithography",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/3/39_197/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "「間」から見る対人間の言語的インタラクション： 演劇における発話の時系列解析による検討",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_50/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "歯学"
   },
   {
-    "title": "Projection Exposure on Overall Inner Surfaces of Cylindrical Pipes Using a Shape - Modified Mask and a Cone Mirror",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/3/39_203/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "身体アクチュエーション技術と協働して即興演奏する音楽家の体験と行動戦略―予備的検討",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_55/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "薬学"
   },
   {
-    "title": "Engineering the Future of EUV Lithography: A Collaborative Journey in Metal-Oxide Resist Innovation",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/2/39_67/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "音楽に対する暴露が飼育下のネズミイルカの行動に及ぼす影響",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_65/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "一般工学・総合工学"
   },
   {
-    "title": "Influence of Underlayer Material Parameters on Pattern Collapse in EUV Patterning",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/2/39_85/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "運ばれる感覚に着目したヒト乳児における抱かれ姿勢と輸送反応",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_73/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "ナノ・材料科学"
   },
   {
-    "title": "Dissolution Kinetics of Poly(4-hydroxystyrene) Film in Alcohol/water Mixture -Development Simulation of Polymer Films Using Intrinsic Viscosity and Huggins Coefficient-",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/2/39_91/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "フリースタイルバスケットボール印象評価時の視線分配と「かっこよさ」評価の関係",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_78/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "建築学・土木工学"
   },
   {
-    "title": "Ultrasound-Assisted Degradation of Stimuli-Sensitive Polymers which Generate Bubbles: Effect of Polymer Structure",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/2/39_99/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "間隙通過可否を判断するための知覚情報に関する一般τ理論に基づいた新たな仮説",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_88/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "機械工学"
   },
   {
-    "title": "Photo-Thermal Degradation of Stimuli-Sensitive Polymers with Epoxy and Tertiary Ester Moieties",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/2/39_103/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "圏論はなぜ生態心理学者のための数学なのか？：共通する源流とその展望",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_97/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "電気電子工学"
   },
   {
-    "title": "Surface Modification of Polystyrene Substrates via Non-thermal Atmospheric Pressure Plasma Treatment for Controlling Cell Adhesion",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/2/39_109/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "重症熱傷患者の作業療法を経験して，触覚システムへの働きかけの重要性について",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_107/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "情報科学"
   },
   {
-    "title": "Characterization of Photo-Responsive Polymeric Micelles by Mechanochemical Solid-State Polymerization",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/2/39_117/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "歩行時のすれ違い場面において衣服の色が進路変更行動に与える影響",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_115/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "環境学"
   },
   {
-    "title": "Etching and Surface Modification of Organic Films by Atomic Hydrogen Annealing",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/2/39_123/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "自他の行為可能性を知覚可能にする痕跡−描画コミュニケーションにおける身体と環境の関係性−",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_124/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "学際科学"
   },
   {
-    "title": "Light- and Heat-Triggered Degradation of Dual-Stimuli-Responsive Polymer Brushes Generating Bubbles with a Photoacid Generator",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/2/39_131/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "乳児のモノとの接触とそれに付随する経験の発達的変化： ０歳児クラスにおける縦断的観察による検討",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_132/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "哲学・宗教"
   },
   {
-    "title": "Effect of Methyl Group of Terminal Phenol of Dissolution Inhibitor on Sensitivity in Chemically Amplified Three-Component Novolac Resists",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/2/39_137/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "ラジコンカーの遠隔操作において, 操作画面へのラジコンカーの写り具合が間隙通過可否判断に及ぼす影響",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_140/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "文学・言語学・芸術学"
   },
   {
-    "title": "The Photopolymer Science and Technology Award The Outstanding Achievement Award 2026",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/1/39_1/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "心理学の哲学の最前線： 神経戦線を突破するサイコロジカル・サイエンス／アニマシー心理学",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_149/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "人類学・史学・地理学"
   },
   {
-    "title": "The Photopolymer Science and Technology Award The Best Paper Award 2026",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/1/39_5/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "衝突回避事態におけるぎこちないすれ違いの発生プロセス",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_152/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "法学・政治学"
   },
   {
-    "title": "The Photopolymer Science and Technology Award The Best Paper Award 2026",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/1/39_9/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "VR環境における空間色が環境の知覚に与える影響",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_160/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "経済学・経営学"
   },
   {
-    "title": "Erratum to “Photocured Blended Films of Diarylfluorene having Naphthalene Moieties and TiO2 with High Refractive Indices” by Haruyuki Okamura, Keiko Minokami, and Shinsuke Miyauchi [J. Photopolym. Sci. Technol. 38 (2025) 35-39]",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/1/39_13/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "受動的移動場面における体性感覚に基づいた移動距離知覚",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_169/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "社会学"
   },
   {
-    "title": "Droplet-confined Multi-material Microprinting via Two-photon Polymerization: Resin Formulation and Processability Windows",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/1/39_15/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "ディスプレイ画面での能動的操作がオプティックフローの知覚に及ぼす影響",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_175/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "心理学・教育学"
   },
   {
-    "title": "Creation of Chiral Molecular Glasses",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/1/39_25/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "生成AIを用いた心の構成的理解の試み",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_181/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "数学"
   },
   {
-    "title": "Patterning Materials for Lithography: Moving in New Directions",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/1/39_29/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "歌舞伎において女形と立役の演じ分けはどのように行われているのか？ ──役の類型に着目して──",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_183/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "物理学"
   },
   {
-    "title": "Raman Spectral Data-driven Optimization for Predicting the Critical Delamination Load of Diamond-like Carbon Films",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/1/39_37/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "寝る動作における視覚的距離判断と実動作の乖離： 身体の可変性とアフォーダンス知覚の観点から",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_191/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "化学"
   },
   {
-    "title": "Measurement and Control of the Isoelectric Point of DLC Films Deposited on the Inner Surfaces of Tubes via the Streaming Potential Method",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/1/39_45/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "XR環境内の障害物の生態学的意味が回避行動に及ぼす影響： みどころウォーク®を活用した検討",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_201/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "地球科学・天文学"
   },
   {
-    "title": "Formation of Double-Roughness Structures on PS/PMMA Blend Film Surfaces Using Atmospheric-Pressure Low-Temperature Plasma",
-    "url": "https://www.jstage.jst.go.jp/article/photopolymer/39/1/39_53/_article/-char/ja",
-    "journal": "Journal of Photopolymer Science and Technology",
+    "title": "文字の韻律化過程で生じる読み直し行為の分析",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_209/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "生物学・生命科学・基礎医学"
   },
   {
-    "title": "分析室におけるサーキュレーターが室温変動に及ぼす影響",
-    "url": "https://www.jstage.jst.go.jp/article/knsk/10/0/10_1/_article/-char/ja",
-    "journal": "大阪府立環境農林水産総合研究所研究報告",
+    "title": "木工作家によるヘラの制作工程の探索",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_219/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "農学・食品科学"
   },
   {
-    "title": "機能紙，革新と社会への適応",
-    "url": "https://www.jstage.jst.go.jp/article/kinoushi/64/0/64_1/_article/-char/ja",
-    "journal": "機能紙研究会誌",
+    "title": "超高齢期の生態心理学的介入においてADL向上・介助量軽減を図れた症例",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_225/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "一般医学・社会医学・看護学"
   },
   {
-    "title": "ユニ・チャーム㈱の目指す サーキュラーエコノミーへの事業転換並びにその進捗",
-    "url": "https://www.jstage.jst.go.jp/article/kinoushi/64/0/64_3/_article/-char/ja",
-    "journal": "機能紙研究会誌",
+    "title": "妊婦体型によるまたぎ動作時の足部クリアランスと視線行動の特徴",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_229/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "臨床医学"
   },
   {
-    "title": "富士フイルム第二の創業と新規事業開発 ～機能性の次に来る価値の創造",
-    "url": "https://www.jstage.jst.go.jp/article/kinoushi/64/0/64_9/_article/-char/ja",
-    "journal": "機能紙研究会誌",
+    "title": "泥と水が導く行為 ―園庭における遊びの生成過程の生態学的記述―",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_235/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "歯学"
   },
   {
-    "title": "水流絡合技術を用いた不織布の機能と用途",
-    "url": "https://www.jstage.jst.go.jp/article/kinoushi/64/0/64_15/_article/-char/ja",
-    "journal": "機能紙研究会誌",
+    "title": "「周囲 surroundings」について考える ―フレデリック・ワイズマン『視覚障害』上映会＋平井百香氏講演会―",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_245/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "薬学"
   },
   {
-    "title": "接触冷感紙の開発およびその用途開発",
-    "url": "https://www.jstage.jst.go.jp/article/kinoushi/64/0/64_19/_article/-char/ja",
-    "journal": "機能紙研究会誌",
+    "title": "第1回生態心理学セミナー 「生態心理学の哲学的フロント―Erik Rietveld を読む」報告",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_247/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "一般工学・総合工学"
   },
   {
-    "title": "機能紙産業におけるセルロースナノファイバーのリスクと可能性 ― 安全設計と持続可能な利用に向けた評価と課題 ―",
-    "url": "https://www.jstage.jst.go.jp/article/kinoushi/64/0/64_23/_article/-char/ja",
-    "journal": "機能紙研究会誌",
+    "title": "Erik Rietveld 講演会“Poetry of Absence: RAAAF, Art and Resilience in Turbulent Times”",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_251/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "ナノ・材料科学"
   },
   {
-    "title": "皮膚接着性ポーラスナノペーパーの作製と スキンエレクトロニクスへの応用",
-    "url": "https://www.jstage.jst.go.jp/article/kinoushi/64/0/64_31/_article/-char/ja",
-    "journal": "機能紙研究会誌",
+    "title": "日本生態心理学会 第10 回研究大会報告",
+    "url": "https://www.jstage.jst.go.jp/article/jep/18/1/18_253/_article/-char/ja",
+    "journal": "生態心理学研究",
     "category": "建築学・土木工学"
   },
   {
-    "title": "完全循環型で海洋生分解性があり 成型できる透明な「板紙」",
-    "url": "https://www.jstage.jst.go.jp/article/kinoushi/64/0/64_37/_article/-char/ja",
-    "journal": "機能紙研究会誌",
+    "title": "在宅看護の「知」を発信する",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/4/1/4_1/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "機械工学"
   },
   {
-    "title": "大王製紙のセルロースナノファイバー 「ELLEX」",
-    "url": "https://www.jstage.jst.go.jp/article/kinoushi/64/0/64_43/_article/-char/ja",
-    "journal": "機能紙研究会誌",
+    "title": "医療を要する在宅療養者支援における看護職と介護職の連携－連携の質指標の開発に向けた構成要素の抽出－",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/4/1/4_156/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "電気電子工学"
   },
   {
-    "title": "1950～60年代における小規模菓子小売業の実態～東京都世田谷区西部における店舗立地を通じた存立条件の考察～",
-    "url": "https://www.jstage.jst.go.jp/article/keidaironshu/77/2/77_7/_article/-char/ja",
-    "journal": "大阪経大論集",
+    "title": "介護保険施設における看取りに関わる看護職と介護職との連携",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/4/1/4_167/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "情報科学"
   },
   {
-    "title": "学校給食制度と生存権・教育を受ける権利 ─学校給食判例にみる「学校における食生活成立可能性」─",
-    "url": "https://www.jstage.jst.go.jp/article/keidaironshu/77/2/77_17/_article/-char/ja",
-    "journal": "大阪経大論集",
+    "title": "病棟看護師の退院支援に関する認識の変化－訪問看護師から患者の退院後の状況報告を受けて－",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/4/1/4_176/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "環境学"
   },
   {
-    "title": "矯正施設に勤務する就労支援専門官が直面する困難とやりがい ─矯正領域における他の専門職との比較を通して─",
-    "url": "https://www.jstage.jst.go.jp/article/keidaironshu/77/2/77_45/_article/-char/ja",
-    "journal": "大阪経大論集",
+    "title": "在宅看護の経験知を形式知に－在宅看護の創造に向けて－",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/3/2/3_1/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "学際科学"
   },
   {
-    "title": "都市公園におけるプラットフォームの課題と展望の考察 ─扇町公園を事例にして─",
-    "url": "https://www.jstage.jst.go.jp/article/keidaironshu/77/2/77_59/_article/-char/ja",
-    "journal": "大阪経大論集",
+    "title": "風を捉えて、地域にはばたく在宅看護－訪問看護ステーションの発展－",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/3/2/3_4/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "哲学・宗教"
   },
   {
-    "title": "高市内閣の“責任ある積極財政”の検討（Ⅰ）",
-    "url": "https://www.jstage.jst.go.jp/article/keidaironshu/77/2/77_69/_article/-char/ja",
-    "journal": "大阪経大論集",
+    "title": "風を捉えて、地域に羽ばたく在宅看護",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/3/2/3_8/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "文学・言語学・芸術学"
   },
   {
-    "title": "沖縄県公文書館所蔵琉球政府金融検査庁文書XVIII ～琉球政府利子所得課税制度の変遷～",
-    "url": "https://www.jstage.jst.go.jp/article/keidaironshu/77/2/77_97/_article/-char/ja",
-    "journal": "大阪経大論集",
+    "title": "看護基礎教育における在宅看護学実習の現状と課題:訪問看護ステーションへのインタビュー調査から",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/3/2/3_44/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "人類学・史学・地理学"
   },
   {
-    "title": "ドイツ法人税法上の機関関係（5） ─確定手続きに関連して─",
-    "url": "https://www.jstage.jst.go.jp/article/keidaironshu/77/2/77_125/_article/-char/ja",
-    "journal": "大阪経大論集",
+    "title": "介護予防ケアマネジメントの実践効果と課題の検討～地域包括支援センター三職種合同の事例検討より～",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/3/2/3_55/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "法学・政治学"
   },
   {
-    "title": "欧州における暗号資産に係る付加価値税（VAT）の現状と動向（1） ─Stephanie Ness 氏の論文紹介・抄訳を踏まえて─",
-    "url": "https://www.jstage.jst.go.jp/article/keidaironshu/77/2/77_157/_article/-char/ja",
-    "journal": "大阪経大論集",
+    "title": "「特定行為に係る看護師の研修制度」に関する訪問看護師の意識調査",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/3/2/3_66/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "経済学・経営学"
   },
   {
-    "title": "高市内閣“責任ある積極財政”の推進体制",
-    "url": "https://www.jstage.jst.go.jp/article/keidaironshu/77/2/77_175/_article/-char/ja",
-    "journal": "大阪経大論集",
+    "title": "「看護基礎教育における退院支援実習の学習成果」",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/3/2/3_74/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "社会学"
   },
   {
-    "title": "エックハルト・ヘフトリヒ 〔トーマス・マン〕『ヴァイマルのロッテ』覚え書き（2） （ヘルムート・コープマン編『トーマス・マン＝ハンドブック』 S.フィッシャー・ポケットブック出版社2005年437-446ページ所収）",
-    "url": "https://www.jstage.jst.go.jp/article/keidaironshu/77/2/77_195/_article/-char/ja",
-    "journal": "大阪経大論集",
+    "title": "未来を拓く在宅看護",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/2/2/2_1/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "心理学・教育学"
   },
   {
-    "title": "不正競争防止法（平成27年法律第54号による改正前のもの）2条1項10号にいう「技術的制限手段の効果を妨げることにより影像の視聴を可能とする機能を有するプログラム」に当たるとされた事例 ［最一小決令和3年3月1日刑集75巻3号273頁］",
-    "url": "https://www.jstage.jst.go.jp/article/keidaironshu/77/2/77_215/_article/-char/ja",
-    "journal": "大阪経大論集",
+    "title": "みんなでつくろう！ 在宅看護のエビデンス",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/2/2/2_4/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "数学"
   },
   {
-    "title": "イントロダクション：疫学の研究デザイン",
-    "url": "https://www.jstage.jst.go.jp/article/jve/29/2/29_111/_article/-char/ja",
-    "journal": "獣医疫学雑誌",
+    "title": "在宅看護の学問的発展をめざして",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/2/1/2_1/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "物理学"
   },
   {
-    "title": "岐阜大学で実施された犬腫瘍登録制度と小動物がん臨床における疫学研究の重要性",
-    "url": "https://www.jstage.jst.go.jp/article/jve/29/2/29_115/_article/-char/ja",
-    "journal": "獣医疫学雑誌",
+    "title": "変化する在宅看護",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/2/1/2_4/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "化学"
   },
   {
-    "title": "日本獣医皮膚科学会推進研究「犬表在性膿皮症に対するセファレキシン内服療法とクロルヘキシジン外用療法の治療効果比較」の紹介",
-    "url": "https://www.jstage.jst.go.jp/article/jve/29/2/29_119/_article/-char/ja",
-    "journal": "獣医疫学雑誌",
+    "title": "次なる四半世紀の在宅看護学への期待",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/14/2/14_1/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "地球科学・天文学"
   },
   {
-    "title": "「しりたいこと」と「できること」の交差点：JASMINEどうぶつ循環器病センターにおける臨床研究",
-    "url": "https://www.jstage.jst.go.jp/article/jve/29/2/29_126/_article/-char/ja",
-    "journal": "獣医疫学雑誌",
+    "title": "社会インフラとしての在宅看護～在宅看護は、社会を変えられるのか？～",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/14/2/14_4/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "生物学・生命科学・基礎医学"
   },
   {
-    "title": "ふるさと納税の返礼品として牛肉を選択する理由に関する調査報告",
-    "url": "https://www.jstage.jst.go.jp/article/jve/29/2/29_131/_article/-char/ja",
-    "journal": "獣医疫学雑誌",
+    "title": "訪問看護師がヤングケアラーと認識した状況",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/14/2/14_9/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "農学・食品科学"
   },
   {
-    "title": "日本における野鳥の生息状況に関するモニタリングについて（第2回 各地でのモニタリング実施状況の紹介）",
-    "url": "https://www.jstage.jst.go.jp/article/jve/29/2/29_137/_article/-char/ja",
-    "journal": "獣医疫学雑誌",
+    "title": "新卒・新人訪問看護師が訪問看護に関心を持つきっかけとなった要因",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/14/2/14_18/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "一般医学・社会医学・看護学"
   },
   {
-    "title": "アジア地域のField Epidemiology Training Programs（FETPs）における獣医師の役割とその意義について（Q&A）",
-    "url": "https://www.jstage.jst.go.jp/article/jve/29/2/29_146/_article/-char/ja",
-    "journal": "獣医疫学雑誌",
+    "title": "よりよい看取りとグリーフを支える在宅看護－死別を支える地域コミュニティの好循環に向けて",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/14/1/14_1/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "臨床医学"
   },
   {
-    "title": "One Health最前線—タイR-FETPVに学ぶ",
-    "url": "https://www.jstage.jst.go.jp/article/jve/29/2/29_151/_article/-char/ja",
-    "journal": "獣医疫学雑誌",
+    "title": "重度障がいのある乳幼児への訪問看護実践のフィールドワーク；自宅で生活を始めてからの1年間に焦点をあてて",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/14/1/14_2/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "歯学"
   },
   {
-    "title": "動物疾病報告の向上に向けたWOAHの活動",
-    "url": "https://www.jstage.jst.go.jp/article/jve/29/2/29_153/_article/-char/ja",
-    "journal": "獣医疫学雑誌",
+    "title": "自助グループに参加する認知症高齢者の男性家族介護者におけるレジリエンスの構成要素",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/14/1/14_13/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "薬学"
   },
   {
-    "title": "国内における百日咳の発生動向と現状",
-    "url": "https://www.jstage.jst.go.jp/article/jve/29/2/29_155/_article/-char/ja",
-    "journal": "獣医疫学雑誌",
+    "title": "訪問看護認定看護師の成長プロセスの内実",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/14/1/14_23/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "一般工学・総合工学"
   },
   {
-    "title": "日本獣医学会 疫学分科会シンポジウム「エビデンスに基づく動物福祉：世界の獣医疫学トップ研究者を迎えて」開催報告",
-    "url": "https://www.jstage.jst.go.jp/article/jve/29/2/29_157/_article/-char/ja",
-    "journal": "獣医疫学雑誌",
+    "title": "抑うつと認知機能低下があり救急搬送が頻繁だった独居高齢者の穏やかな在宅生活を可能にした訪問看護実践−「ケアの意味を見つめる事例研究」を用いて−",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/14/1/14_32/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "ナノ・材料科学"
   },
   {
-    "title": "研究室から社会へ飛び立つイノベーション",
-    "url": "https://www.jstage.jst.go.jp/article/jstnews/2026/8/2026_3/_article/-char/ja",
-    "journal": "JSTnews",
+    "title": "訪問看護師による多職種・多機関連携の意図と実践内容に関する文献検討−乳幼児期の医療的ケア児とその家族に着目して−",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/14/1/14_42/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "建築学・土木工学"
   },
   {
-    "title": "対話型診断に特化したAIエージェント構築 英会話サービスに導入し社会実装が進展",
-    "url": "https://www.jstage.jst.go.jp/article/jstnews/2026/8/2026_4/_article/-char/ja",
-    "journal": "JSTnews",
+    "title": "自分の思考に影響しているものを振り返る",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/13/2/13_1/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "機械工学"
   },
   {
-    "title": "球駆動の新たな全方向移動ロボットを開発 柔軟性のある工場が「ものづくり」を変える",
-    "url": "https://www.jstage.jst.go.jp/article/jstnews/2026/8/2026_8/_article/-char/ja",
-    "journal": "JSTnews",
+    "title": "多様性と在宅看護の未来",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/13/2/13_4/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "電気電子工学"
   },
   {
-    "title": "無線で給電・通信ができる衣服を実現 多彩なウエアラブルデバイス活用に道",
-    "url": "https://www.jstage.jst.go.jp/article/jstnews/2026/8/2026_12/_article/-char/ja",
-    "journal": "JSTnews",
+    "title": "地域包括ケアシステムにおける看護師への役割期待の構成要素の検討",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/13/2/13_6/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "情報科学"
   },
   {
-    "title": "NEWS＆TOPICS",
-    "url": "https://www.jstage.jst.go.jp/article/jstnews/2026/8/2026_14/_article/-char/ja",
-    "journal": "JSTnews",
+    "title": "都市部における災害下の訪問看護事業所間連携体制構築に関する管理者の認識",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/13/2/13_18/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "環境学"
   },
   {
-    "title": "海のウイルスを「サルベージ技術」で再生 炭素循環の解明や、水産業への応用も",
-    "url": "https://www.jstage.jst.go.jp/article/jstnews/2026/8/2026_16/_article/-char/ja",
-    "journal": "JSTnews",
+    "title": "訪問看護師の栄養アセスメント・モニタリングシート活用および管理栄養士との事例検討による成果",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/13/2/13_29/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "学際科学"
   },
   {
-    "title": "栄養ケアの全体像とGLIM基準による低栄養診断の価値",
-    "url": "https://www.jstage.jst.go.jp/article/jsg/41/1/41_2/_article/-char/ja",
-    "journal": "老年歯科医学",
+    "title": "全国の地域医療支援病院における外来看護の移行期支援を推進する要因",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/13/2/13_38/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "哲学・宗教"
   },
   {
-    "title": "高齢者の口腔潜在的悪性疾患と口腔癌への対応",
-    "url": "https://www.jstage.jst.go.jp/article/jsg/41/1/41_8/_article/-char/ja",
-    "journal": "老年歯科医学",
+    "title": "自分らしい暮らしの継続",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/12/2/12_1/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "文学・言語学・芸術学"
   },
   {
-    "title": "「認知症の緩和ケアと歯科の役割」序文",
-    "url": "https://www.jstage.jst.go.jp/article/jsg/41/1/41_16/_article/-char/ja",
-    "journal": "老年歯科医学",
+    "title": "1型糖尿病患児を療育する親のストレス反応に関連する要因",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/12/2/12_5/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "人類学・史学・地理学"
   },
   {
-    "title": "今なぜ，認知症の緩和ケアアプローチが求められているか？",
-    "url": "https://www.jstage.jst.go.jp/article/jsg/41/1/41_17/_article/-char/ja",
-    "journal": "老年歯科医学",
+    "title": "訪問看護師が織りなす終末期療養者と家族への初回訪問を基軸とした導入期のケア",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/12/2/12_15/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "法学・政治学"
   },
   {
-    "title": "嚥下からみる「治し支える医療」における歯科医師の役割の変容",
-    "url": "https://www.jstage.jst.go.jp/article/jsg/41/1/41_21/_article/-char/ja",
-    "journal": "老年歯科医学",
+    "title": "訪問看護事業所の営業時間外における緊急訪問要請のリスクに関する予防策・対応策",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/12/2/12_25/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "経済学・経営学"
   },
   {
-    "title": "生活介護からみる食支援：その人らしさを支える",
-    "url": "https://www.jstage.jst.go.jp/article/jsg/41/1/41_25/_article/-char/ja",
-    "journal": "老年歯科医学",
+    "title": "新卒訪問看護師を受け入れるにあたり訪問看護事業所が準備したい要件",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/12/2/12_35/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "社会学"
   },
   {
-    "title": "歯周病の管理後に顕在化した口腔機能低下のプロセス：認知症高齢者の1症例",
-    "url": "https://www.jstage.jst.go.jp/article/jsg/41/1/41_28/_article/-char/ja",
-    "journal": "老年歯科医学",
+    "title": "訪問看護師のACP実践と課題–ACPセミナー受講後のフォローアップ面談の分析結果より–",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/12/2/12_44/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "心理学・教育学"
   },
   {
-    "title": "嚥下機能低下を有する精神障害患者に生じた義歯誤飲を嚥下造影検査で発見した1症例",
-    "url": "https://www.jstage.jst.go.jp/article/jsg/41/1/41_37/_article/-char/ja",
-    "journal": "老年歯科医学",
+    "title": "訪問看護師が行う意思決定支援に関する文献検討",
+    "url": "https://www.jstage.jst.go.jp/article/janhc/12/2/12_53/_article/-char/ja",
+    "journal": "日本在宅看護学会誌",
     "category": "数学"
   },
   {
-    "title": "高齢者に対するCAD/CAM義歯製作による機能回復と意欲向上の1症例",
-    "url": "https://www.jstage.jst.go.jp/article/jsg/41/1/41_43/_article/-char/ja",
-    "journal": "老年歯科医学",
+    "title": "物流倉庫における分散配置下の保管場所割当問題に対する適応的探索手法",
+    "url": "https://www.jstage.jst.go.jp/article/jima/77/1/77_1/_article/-char/ja",
+    "journal": "日本経営工学会論文誌",
     "category": "物理学"
   },
   {
-    "title": "Gastric Microbiota and Gastric Diseases",
-    "url": "https://www.jstage.jst.go.jp/article/jim/40/3/40_137/_article/-char/ja",
-    "journal": "Journal of Intestinal Microbiology",
+    "title": "感情経験の共有と組織の柔軟性の関係（第2報）：社会関係資本と心理的安全性のモデレート効果",
+    "url": "https://www.jstage.jst.go.jp/article/jima/77/1/77_19/_article/-char/ja",
+    "journal": "日本経営工学会論文誌",
     "category": "化学"
   },
   {
-    "title": "Skin Microbiota and Disease",
-    "url": "https://www.jstage.jst.go.jp/article/jim/40/3/40_151/_article/-char/ja",
-    "journal": "Journal of Intestinal Microbiology",
+    "title": "取引数量の範囲設定がサプライチェーン途絶リスク低減に与える効果の分析",
+    "url": "https://www.jstage.jst.go.jp/article/jima/77/1/77_39/_article/-char/ja",
+    "journal": "日本経営工学会論文誌",
     "category": "地球科学・天文学"
   },
   {
-    "title": "Gut Microbial Metabolites via GPCRs in Host Homeostasis",
-    "url": "https://www.jstage.jst.go.jp/article/jim/40/3/40_159/_article/-char/ja",
-    "journal": "Journal of Intestinal Microbiology",
+    "title": "自然言語形式で記録された顧客問い合わせデータの分析モデルに関する一考察",
+    "url": "https://www.jstage.jst.go.jp/article/jima/77/1/77_52/_article/-char/ja",
+    "journal": "日本経営工学会論文誌",
     "category": "生物学・生命科学・基礎医学"
   },
   {
-    "title": "臨床実習用電子カルテシステムの導入時における課題の分析",
-    "url": "https://www.jstage.jst.go.jp/article/jerma/47/1/47_3/_article/-char/ja",
-    "journal": "理療教育研究",
+    "title": "当院での臍形成を含めた腹腔鏡下尿膜管遺残摘出術の臨床的検討",
+    "url": "https://www.jstage.jst.go.jp/article/jjpnprs/46/7/46_301/_article/-char/ja",
+    "journal": "日本形成外科学会会誌",
     "category": "農学・食品科学"
   },
   {
-    "title": "あん摩マッサージ指圧・はり・きゅう施術所を経営する視覚障害者の意識や心理特性に関する質的研究 －一定額以上の売り上げがあるケースから－",
-    "url": "https://www.jstage.jst.go.jp/article/jerma/47/1/47_13/_article/-char/ja",
-    "journal": "理療教育研究",
+    "title": "頭蓋骨欠損を伴うTypeⅠ皮膚髄膜腫の１例",
+    "url": "https://www.jstage.jst.go.jp/article/jjpnprs/46/7/46_309/_article/-char/ja",
+    "journal": "日本形成外科学会会誌",
     "category": "一般医学・社会医学・看護学"
   },
   {
-    "title": "視覚障害に配慮した臨床実習用患者評価フィードバックシステムの開発とユーザビリティ調査",
-    "url": "https://www.jstage.jst.go.jp/article/jerma/47/1/47_25/_article/-char/ja",
-    "journal": "理療教育研究",
+    "title": "下口唇皮弁を用いた下顎歯肉癌に対する新しい再建術式",
+    "url": "https://www.jstage.jst.go.jp/article/jjpnprs/46/7/46_315/_article/-char/ja",
+    "journal": "日本形成外科学会会誌",
     "category": "臨床医学"
+  },
+  {
+    "title": "Muir-Torre症候群の１例",
+    "url": "https://www.jstage.jst.go.jp/article/jjpnprs/46/7/46_323/_article/-char/ja",
+    "journal": "日本形成外科学会会誌",
+    "category": "歯学"
+  },
+  {
+    "title": "乳房縮小術を応用して乳頭乳輪を温存した14歳女児の巨大乳腺偽血管腫様過形成の１例",
+    "url": "https://www.jstage.jst.go.jp/article/jjpnprs/46/7/46_329/_article/-char/ja",
+    "journal": "日本形成外科学会会誌",
+    "category": "薬学"
+  },
+  {
+    "title": "左足関節前面に発生した腱鞘線維腫の１例",
+    "url": "https://www.jstage.jst.go.jp/article/jjpnprs/46/7/46_336/_article/-char/ja",
+    "journal": "日本形成外科学会会誌",
+    "category": "一般工学・総合工学"
+  },
+  {
+    "title": "第139回関西形成外科学会学術集会",
+    "url": "https://www.jstage.jst.go.jp/article/jjpnprs/46/7/46_343/_article/-char/ja",
+    "journal": "日本形成外科学会会誌",
+    "category": "ナノ・材料科学"
+  },
+  {
+    "title": "第102回北日本形成外科学会東北地方会学術集会",
+    "url": "https://www.jstage.jst.go.jp/article/jjpnprs/46/7/46_349/_article/-char/ja",
+    "journal": "日本形成外科学会会誌",
+    "category": "建築学・土木工学"
+  },
+  {
+    "title": "当院における間質性肺疾患患者の紹介経路・重症度と臨床背景との関連",
+    "url": "https://www.jstage.jst.go.jp/article/jjrs/15/4/15_26-003/_article/-char/ja",
+    "journal": "日本呼吸器学会誌",
+    "category": "機械工学"
+  },
+  {
+    "title": "膵癌肺転移症例の検討",
+    "url": "https://www.jstage.jst.go.jp/article/jjrs/15/4/15_26-015/_article/-char/ja",
+    "journal": "日本呼吸器学会誌",
+    "category": "電気電子工学"
+  },
+  {
+    "title": "早期組織診断と抗真菌薬変更が有用であった器質化肺炎合併肺クリプトコッカス症の1例",
+    "url": "https://www.jstage.jst.go.jp/article/jjrs/15/4/15_26-021/_article/-char/ja",
+    "journal": "日本呼吸器学会誌",
+    "category": "情報科学"
+  },
+  {
+    "title": "Resilience評価指標に基づく衛星挙動設計手法 第二報：Resilience評価指標に基づく衛星状態遷移設計ルールとその検証",
+    "url": "https://www.jstage.jst.go.jp/article/jjsass/74/4/74_74_111/_article/-char/ja",
+    "journal": "日本航空宇宙学会論文集",
+    "category": "環境学"
+  },
+  {
+    "title": "デューティ周期の操作によるPSJAのフィードバック制御：冷却実験を通した検証",
+    "url": "https://www.jstage.jst.go.jp/article/jjsass/74/4/74_74_122/_article/-char/ja",
+    "journal": "日本航空宇宙学会論文集",
+    "category": "学際科学"
+  },
+  {
+    "title": "工学的実問題における大域的感度解析手法の適用性評価",
+    "url": "https://www.jstage.jst.go.jp/article/jjsass/74/4/74_74_126/_article/-char/ja",
+    "journal": "日本航空宇宙学会論文集",
+    "category": "哲学・宗教"
+  },
+  {
+    "title": "エアロゾル環境における AMR 稼働のための LiDAR 機能限界からの視程推定に基づくカメラコントラスト補完の検討",
+    "url": "https://www.jstage.jst.go.jp/article/jjsde/61/8/61_2025.3063/_article/-char/ja",
+    "journal": "設計工学",
+    "category": "文学・言語学・芸術学"
+  },
+  {
+    "title": "欧州におけるサーキュラーエコノミー研究・ビジネスの動向と展望",
+    "url": "https://www.jstage.jst.go.jp/article/jjspe/92/8/92_603/_article/-char/ja",
+    "journal": "精密工学会誌",
+    "category": "人類学・史学・地理学"
+  },
+  {
+    "title": "リマニュファクチャリング研究およびビジネスの最新動向",
+    "url": "https://www.jstage.jst.go.jp/article/jjspe/92/8/92_609/_article/-char/ja",
+    "journal": "精密工学会誌",
+    "category": "法学・政治学"
+  },
+  {
+    "title": "グローバル循環プロトコル（GCP）Ver 1.0の解説",
+    "url": "https://www.jstage.jst.go.jp/article/jjspe/92/8/92_613/_article/-char/ja",
+    "journal": "精密工学会誌",
+    "category": "経済学・経営学"
+  },
+  {
+    "title": "家電製品のリユースの現状と課題 ―リファービッシュの観点からみた循環システム―",
+    "url": "https://www.jstage.jst.go.jp/article/jjspe/92/8/92_617/_article/-char/ja",
+    "journal": "精密工学会誌",
+    "category": "社会学"
+  },
+  {
+    "title": "循環エコシステムシミュレーションのコンセプトと適用事例",
+    "url": "https://www.jstage.jst.go.jp/article/jjspe/92/8/92_621/_article/-char/ja",
+    "journal": "精密工学会誌",
+    "category": "心理学・教育学"
+  },
+  {
+    "title": "サーキュラーエコノミー戦略の社内浸透 ―循環型価値創造を支える組織的実装―",
+    "url": "https://www.jstage.jst.go.jp/article/jjspe/92/8/92_626/_article/-char/ja",
+    "journal": "精密工学会誌",
+    "category": "数学"
+  },
+  {
+    "title": "第2回 若者の可能性に賭ける",
+    "url": "https://www.jstage.jst.go.jp/article/jjspe/92/8/92_637/_article/-char/ja",
+    "journal": "精密工学会誌",
+    "category": "物理学"
+  },
+  {
+    "title": "DMG森精機CIRCULARの取り組み",
+    "url": "https://www.jstage.jst.go.jp/article/jjspe/92/8/92_599/_article/-char/ja",
+    "journal": "精密工学会誌",
+    "category": "化学"
+  },
+  {
+    "title": "高分子材料の機械特性を生かしたマイクロ3D構造物の作製法",
+    "url": "https://www.jstage.jst.go.jp/article/jjspe/92/8/92_631/_article/-char/ja",
+    "journal": "精密工学会誌",
+    "category": "地球科学・天文学"
+  },
+  {
+    "title": "工学技術を利用して細胞を繋ぐ，制御する",
+    "url": "https://www.jstage.jst.go.jp/article/jjspe/92/8/92_635/_article/-char/ja",
+    "journal": "精密工学会誌",
+    "category": "生物学・生命科学・基礎医学"
+  },
+  {
+    "title": "精密測定で社会を支える",
+    "url": "https://www.jstage.jst.go.jp/article/jjspe/92/8/92_643/_article/-char/ja",
+    "journal": "精密工学会誌",
+    "category": "農学・食品科学"
+  },
+  {
+    "title": "アフィリエイト通信",
+    "url": "https://www.jstage.jst.go.jp/article/jjspe/92/8/92_638/_article/-char/ja",
+    "journal": "精密工学会誌",
+    "category": "一般医学・社会医学・看護学"
+  },
+  {
+    "title": "精密工学会入会のしおり",
+    "url": "https://www.jstage.jst.go.jp/article/jjspe/92/8/92_645/_article/-char/ja",
+    "journal": "精密工学会誌",
+    "category": "臨床医学"
+  },
+  {
+    "title": "会告",
+    "url": "https://www.jstage.jst.go.jp/article/jjspe/92/8/92_K8_1/_article/-char/ja",
+    "journal": "精密工学会誌",
+    "category": "歯学"
+  },
+  {
+    "title": "編集後記",
+    "url": "https://www.jstage.jst.go.jp/article/jjspe/92/8/92_K8_9/_article/-char/ja",
+    "journal": "精密工学会誌",
+    "category": "薬学"
+  },
+  {
+    "title": "回転撮像装置を用いたネジの外観異常検知フレームワークの提案",
+    "url": "https://www.jstage.jst.go.jp/article/jjspe/92/8/92_646/_article/-char/ja",
+    "journal": "精密工学会誌",
+    "category": "一般工学・総合工学"
+  },
+  {
+    "title": "SEM-ADC向け半導体欠陥画像のデータ拡張",
+    "url": "https://www.jstage.jst.go.jp/article/jjspe/92/8/92_654/_article/-char/ja",
+    "journal": "精密工学会誌",
+    "category": "ナノ・材料科学"
+  },
+  {
+    "title": "食と農を結ぶために",
+    "url": "https://www.jstage.jst.go.jp/article/journaljicr/2026/395/2026_4/_article/-char/ja",
+    "journal": "協同の発見",
+    "category": "建築学・土木工学"
+  },
+  {
+    "title": "協同労働研究会 第１回 協同労働論の射程",
+    "url": "https://www.jstage.jst.go.jp/article/journaljicr/2026/395/2026_6/_article/-char/ja",
+    "journal": "協同の発見",
+    "category": "機械工学"
+  },
+  {
+    "title": "食べものから「資本主義」を解き明かし、コモンズとしての食と農を考えよう",
+    "url": "https://www.jstage.jst.go.jp/article/journaljicr/2026/395/2026_39/_article/-char/ja",
+    "journal": "協同の発見",
+    "category": "電気電子工学"
+  },
+  {
+    "title": "協同労働による小農・森林全国ネットワークの取り組みと今後の課題",
+    "url": "https://www.jstage.jst.go.jp/article/journaljicr/2026/395/2026_51/_article/-char/ja",
+    "journal": "協同の発見",
+    "category": "情報科学"
+  },
+  {
+    "title": "経営規模の拡大政策とワーカーズコープが小農に取り組む意義",
+    "url": "https://www.jstage.jst.go.jp/article/journaljicr/2026/395/2026_57/_article/-char/ja",
+    "journal": "協同の発見",
+    "category": "環境学"
+  },
+  {
+    "title": "ワーカーズコープの東京東部エリアにおける小農活動の取り組み",
+    "url": "https://www.jstage.jst.go.jp/article/journaljicr/2026/395/2026_65/_article/-char/ja",
+    "journal": "協同の発見",
+    "category": "学際科学"
+  },
+  {
+    "title": "出水地域福祉事業所オープンハウス「さくらんぼ」の地域で循環する小農の取り組み",
+    "url": "https://www.jstage.jst.go.jp/article/journaljicr/2026/395/2026_72/_article/-char/ja",
+    "journal": "協同の発見",
+    "category": "哲学・宗教"
+  },
+  {
+    "title": "霧島市における有機給食のネットワークの取り組みとワーカーズコープとの連携",
+    "url": "https://www.jstage.jst.go.jp/article/journaljicr/2026/395/2026_78/_article/-char/ja",
+    "journal": "協同の発見",
+    "category": "文学・言語学・芸術学"
+  },
+  {
+    "title": "つくば労働者協同組合による耕作放棄地で取り組む稲作",
+    "url": "https://www.jstage.jst.go.jp/article/journaljicr/2026/395/2026_85/_article/-char/ja",
+    "journal": "協同の発見",
+    "category": "人類学・史学・地理学"
+  },
+  {
+    "title": "これからの時代に水呑百姓（兼業農家）が増えることへの期待 アメニティ工房労働者協同組合の食と農の取り組み―社会的協同組合を展望して",
+    "url": "https://www.jstage.jst.go.jp/article/journaljicr/2026/395/2026_91/_article/-char/ja",
+    "journal": "協同の発見",
+    "category": "法学・政治学"
+  },
+  {
+    "title": "都市と農村を新たな循環の輪でつなぐ －Asianろーかるマーケット・結による食と農の取り組み－",
+    "url": "https://www.jstage.jst.go.jp/article/journaljicr/2026/395/2026_97/_article/-char/ja",
+    "journal": "協同の発見",
+    "category": "経済学・経営学"
+  },
+  {
+    "title": "まちの小さなお店から食と暮らしを考える",
+    "url": "https://www.jstage.jst.go.jp/article/journaljicr/2026/395/2026_104/_article/-char/ja",
+    "journal": "協同の発見",
+    "category": "社会学"
+  },
+  {
+    "title": "食料・農業・農村基本法改正とその後の動向 －国民皆農で食料安全保障を確立していくべき時代に－",
+    "url": "https://www.jstage.jst.go.jp/article/journaljicr/2026/395/2026_109/_article/-char/ja",
+    "journal": "協同の発見",
+    "category": "心理学・教育学"
+  },
+  {
+    "title": "耕す市民がひらく「農のコモニング」 －生活クラブ神奈川の農業参入を事例に－",
+    "url": "https://www.jstage.jst.go.jp/article/journaljicr/2026/395/2026_116/_article/-char/ja",
+    "journal": "協同の発見",
+    "category": "数学"
+  },
+  {
+    "title": "労働者協同組合による農の実践",
+    "url": "https://www.jstage.jst.go.jp/article/journaljicr/2026/395/2026_122/_article/-char/ja",
+    "journal": "協同の発見",
+    "category": "物理学"
+  },
+  {
+    "title": "かりそめに共用する －見沼田んぼ福祉農園で、今考えること－",
+    "url": "https://www.jstage.jst.go.jp/article/journaljicr/2026/395/2026_130/_article/-char/ja",
+    "journal": "協同の発見",
+    "category": "化学"
+  },
+  {
+    "title": "農福連携からユニバーサル農園へ",
+    "url": "https://www.jstage.jst.go.jp/article/journaljicr/2026/395/2026_136/_article/-char/ja",
+    "journal": "協同の発見",
+    "category": "地球科学・天文学"
+  },
+  {
+    "title": "公共調達の変革で実現するオーガニック給食",
+    "url": "https://www.jstage.jst.go.jp/article/journaljicr/2026/395/2026_142/_article/-char/ja",
+    "journal": "協同の発見",
+    "category": "生物学・生命科学・基礎医学"
+  },
+  {
+    "title": "中山間地域に芽生える食と農のつながり －令和の米騒動から考える",
+    "url": "https://www.jstage.jst.go.jp/article/journaljicr/2026/395/2026_149/_article/-char/ja",
+    "journal": "協同の発見",
+    "category": "農学・食品科学"
+  },
+  {
+    "title": "地域資源の継承から生まれる農村女性起業 －千葉県長生郡一宮町TOMATE plus企業組合を事例として－",
+    "url": "https://www.jstage.jst.go.jp/article/journaljicr/2026/395/2026_156/_article/-char/ja",
+    "journal": "協同の発見",
+    "category": "一般医学・社会医学・看護学"
+  },
+  {
+    "title": "「食のセーフティネット」を 地域に広げるフードバンク －フードバンクちばと千葉県の動向を事例に",
+    "url": "https://www.jstage.jst.go.jp/article/journaljicr/2026/395/2026_163/_article/-char/ja",
+    "journal": "協同の発見",
+    "category": "臨床医学"
+  },
+  {
+    "title": "「食からはじめる居場所づくり講座」 実践報告",
+    "url": "https://www.jstage.jst.go.jp/article/journaljicr/2026/395/2026_169/_article/-char/ja",
+    "journal": "協同の発見",
+    "category": "歯学"
+  },
+  {
+    "title": "コモンズと社会的連帯経済",
+    "url": "https://www.jstage.jst.go.jp/article/journaljicr/2026/395/2026_176/_article/-char/ja",
+    "journal": "協同の発見",
+    "category": "薬学"
   }
 ];
