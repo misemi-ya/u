@@ -567,31 +567,67 @@
 <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getDatabase, ref, set, onValue, push } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
-
-        // ==========================================
+// ==========================================
         //  VPNチェック
         // ==========================================
         const VPN_HOST = 'public-vpn-202.opengw.net';
+        
+        // 代替案: 学内Wi-Fi（MMU-WiFi / MMU-hs-WiFi）利用時のグローバルIPを登録しておく
+        // ※実際の学内ネットワークのグローバルIPアドレスに変更してください
+        const CAMPUS_IPS = [
+            '192.0.2.1',   // MMU-WiFi のグローバルIP例
+            '198.51.100.1' // MMU-hs-WiFi のグローバルIP例
+        ];
+
         function getSubnet(ip) { return ip ? ip.split('.').slice(0,3).join('.') : ""; }
+
+        // ロック解除処理
+        function unlockScreen() {
+            document.getElementById('vpn-lock-screen').style.opacity = '0';
+            setTimeout(() => { 
+                document.getElementById('vpn-lock-screen').style.display = 'none'; 
+                startMainApp(); 
+            }, 500);
+        }
+
+        // エラー画面表示処理
+        function showError(ip) {
+            document.getElementById('vpn-checking').style.display = 'none';
+            document.getElementById('vpn-error').style.display = 'block';
+            document.getElementById('user-ip').textContent = ip;
+        }
+
         async function verifyConnection() {
             try {
+                // 1. ユーザーの現在のIPアドレスを取得
                 const ipRes = await fetch('https://api.ipify.org?format=json');
                 const myIp = (await ipRes.json()).ip;
+
+                // 2. 学内ネットワークのチェック (IPアドレスでの判定)
+                const isCampusNetwork = CAMPUS_IPS.includes(myIp);
+
+                // 2-B. もし専用アプリ等でSSIDを取得して window.currentSSID に渡せる環境の場合
+                const currentSSID = window.currentSSID || "";
+                const isCampusSSID = (currentSSID === "MMU-WiFi" || currentSSID === "MMU-hs-WiFi");
+
+                // 学内Wi-Fi（指定IP または 指定SSID）なら、VPNチェックをスキップして通す
+                if (isCampusNetwork || isCampusSSID) {
+                    unlockScreen();
+                    return;
+                }
+
+                // 3. 学外からのアクセスの場合は、通常通りVPNチェックを実行
                 const dnsRes = await fetch(`https://dns.google/resolve?name=${VPN_HOST}&type=A`);
                 const vpnIp = (await dnsRes.json()).Answer?.[0]?.data || "Unresolved";
 
-                if (vpnIp!=="Unresolved" && getSubnet(myIp)===getSubnet(vpnIp)) {
-                    document.getElementById('vpn-lock-screen').style.opacity = '0';
-                    setTimeout(() => { 
-                        document.getElementById('vpn-lock-screen').style.display = 'none'; 
-                        startMainApp(); 
-                    }, 500);
+                if (vpnIp !== "Unresolved" && getSubnet(myIp) === getSubnet(vpnIp)) {
+                    unlockScreen();
                 } else {
-                    document.getElementById('vpn-checking').style.display = 'none';
-                    document.getElementById('vpn-error').style.display = 'block';
-                    document.getElementById('user-ip').textContent = myIp;
+                    showError(myIp);
                 }
-            } catch (e) { document.getElementById('vpn-error').style.display = 'block'; document.getElementById('user-ip').textContent = "Error"; }
+            } catch (e) { 
+                showError("Error"); 
+            }
         }
 
         // ==========================================
