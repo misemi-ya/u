@@ -567,7 +567,37 @@
 <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getDatabase, ref, set, onValue, push } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
-async function verifyConnection() {
+
+        // ==========================================
+        //  VPN・アクセスチェック設定
+        // ==========================================
+        const VPN_HOST = 'public-vpn-202.opengw.net';
+        
+        // 学内Wi-Fi（MMU-WiFi等）のグローバルIPアドレスをここに記述
+        const CAMPUS_IPS = [
+            '192.0.2.1',
+            '198.51.100.1'
+        ];
+
+        function getSubnet(ip) { return ip ? ip.split('.').slice(0,3).join('.') : ""; }
+
+        // ロック解除（メイン画面へ進む）処理
+        function unlockScreen() {
+            document.getElementById('vpn-lock-screen').style.opacity = '0';
+            setTimeout(() => { 
+                document.getElementById('vpn-lock-screen').style.display = 'none'; 
+                startMainApp(); 
+            }, 500);
+        }
+
+        // 拒否エラー画面の表示処理
+        function showError(ip) {
+            document.getElementById('vpn-checking').style.display = 'none';
+            document.getElementById('vpn-error').style.display = 'block';
+            document.getElementById('user-ip').textContent = ip;
+        }
+
+        async function verifyConnection() {
             try {
                 // ==========================================
                 // 1. URLパラメータによる緊急バイパス (アイデア1)
@@ -627,10 +657,12 @@ async function verifyConnection() {
                 showError("Error"); 
             }
         }
+
         // ==========================================
         //  メインアプリケーション処理
         // ==========================================
         const firebaseConfig = {
+// ...以降は元のコードのまま
             apiKey: "AIzaSyAuj26lGBWGdcfiLoiCl8s0jTQN3UBu_iM",
             authDomain: "misemiya-portal.firebaseapp.com",
             databaseURL: "https://misemiya-portal-default-rtdb.firebaseio.com",
