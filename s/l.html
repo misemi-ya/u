@@ -267,11 +267,92 @@
         .admin-badge { background: #dc3545; color: white; padding: 2px 6px; border-radius: 10px; font-size: 0.65rem; margin-left: 5px; white-space: nowrap; }
 
         /* 管理者コンソール タブ */
-        .admin-tabs { display: flex; gap: 5px; border-bottom: 2px solid #ddd; margin-bottom: 20px; overflow-x: auto; }
-        .admin-tab-btn { padding: 10px 14px; border: none; background: none; font-size: 0.85rem; font-weight: bold; cursor: pointer; color: #666; border-bottom: 3px solid transparent; white-space: nowrap; }
-        .admin-tab-btn.active { color: #ff0055; border-bottom-color: #ff0055; background: #fff0f5; border-radius: 8px 8px 0 0; }
-        .admin-tab-content { display: none; }
-        .admin-tab-content.active { display: block; }
+/* ★ 管理者コンソールモーダル（コンパクト・スリム化修正） ★ */
+        #adminConsoleModal .edit-panel {
+            width: 800px !important;
+            max-width: 90vw !important;
+            max-height: 85vh !important;
+            padding: 20px !important;
+            font-size: 0.82rem !important;
+            overflow-y: auto !important;
+        }
+
+        .admin-tabs {
+            display: flex;
+            gap: 4px;
+            border-bottom: 2px solid #ddd;
+            margin-bottom: 12px;
+            overflow-x: auto;
+            padding-bottom: 2px;
+        }
+
+        .admin-tab-btn {
+            padding: 6px 12px !important;
+            font-size: 0.8rem !important;
+            border: none;
+            background: none;
+            font-weight: bold;
+            cursor: pointer;
+            color: #666;
+            white-space: nowrap;
+        }
+
+        .admin-tab-btn.active {
+            color: #ff0055 !important;
+            border-bottom: 3px solid #ff0055 !important;
+            background: #fff0f5 !important;
+            border-radius: 6px 6px 0 0;
+        }
+
+        .setting-card {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 10px 12px;
+            margin-bottom: 10px;
+        }
+
+        .setting-card-title {
+            font-weight: bold;
+            font-size: 0.85rem;
+            color: #003366;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* フォームの格子配置をコンパクト化 */
+        .setting-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 8px;
+        }
+
+        .setting-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .setting-item label {
+            font-size: 0.72rem;
+            color: #555;
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .panel-input {
+            width: 100%;
+            padding: 4px 8px !important;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 0.8rem !important;
+            height: 28px !important;
+            box-sizing: border-box;
+        }
 
         /* 設定フォーム グリッドカード */
         .setting-card { background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px 15px; margin-bottom: 12px; }
@@ -652,143 +733,84 @@
         </div>
     </div>
 
-    <!-- ★ 超強力・全200項目 管理者専用コンソールモーダル ★ -->
+<!-- ★ 管理者専用コンソールモーダル (コンパクト版) ★ -->
     <div class="modal-overlay" id="adminConsoleModal">
-        <div class="edit-panel" style="width: 1100px; max-width: 95%;">
-            <h2 style="margin-top:0; color:#ff0055; border-bottom:2px solid #ff0055; padding-bottom:10px; display:flex; justify-content:space-between; align-items:center;">
-                <span><i class="fa-solid fa-user-shield"></i> 全権限 設定コンソール (全200設定項目・即時反映)</span>
-                <button class="panel-btn" style="width:auto; margin:0; padding:6px 16px; background:#ff0055;" onclick="saveAll50Settings()"><i class="fa-solid fa-floppy-disk"></i> 全設定を一括同期保存</button>
-            </h2>
+        <div class="edit-panel">
+            <h3 style="margin-top:0; color:#ff0055; border-bottom:2px solid #ff0055; padding-bottom:8px; display:flex; justify-content:space-between; align-items:center; font-size:1.05rem;">
+                <span><i class="fa-solid fa-user-shield"></i> システム設定コンソール (全200項目・即時反映)</span>
+                <button class="panel-btn" style="width:auto; margin:0; padding:4px 12px; background:#ff0055; font-size:0.75rem;" onclick="saveAll50Settings()"><i class="fa-solid fa-floppy-disk"></i> 全設定を一括保存</button>
+            </h3>
 
             <div class="admin-tabs">
-                <button class="admin-tab-btn active" onclick="switchAdminTab('tabSecurity')"><i class="fa-solid fa-shield-halved"></i> 1. セキュリティ (1〜25)</button>
-                <button class="admin-tab-btn" onclick="switchAdminTab('tabHR')"><i class="fa-solid fa-user-clock"></i> 2. 勤務・勤怠 (26〜50)</button>
-                <button class="admin-tab-btn" onclick="switchAdminTab('tabPayrollList')"><i class="fa-solid fa-money-bill-wave"></i> 3. 給与・控除 (51〜75)</button>
-                <button class="admin-tab-btn" onclick="switchAdminTab('tabFinance')"><i class="fa-solid fa-calculator"></i> 4. 経費・決裁 (76〜100)</button>
-                <button class="admin-tab-btn" onclick="switchAdminTab('tabAcademic')"><i class="fa-solid fa-graduation-cap"></i> 5. 教務・成績 (101〜125)</button>
-                <button class="admin-tab-btn" onclick="switchAdminTab('tabFacility')"><i class="fa-solid fa-building"></i> 6. 施設・図書 (126〜150)</button>
-                <button class="admin-tab-btn" onclick="switchAdminTab('tabSystemUI')"><i class="fa-solid fa-palette"></i> 7. UI・デザイン (151〜175)</button>
-                <button class="admin-tab-btn" onclick="switchAdminTab('tabDev')"><i class="fa-solid fa-code"></i> 8. システム統合 (176〜200)</button>
+                <button class="admin-tab-btn active" onclick="switchAdminTab('tabSecurity')"><i class="fa-solid fa-shield-halved"></i> セキュリティ (1〜25)</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tabHR')"><i class="fa-solid fa-user-clock"></i> 勤務・勤怠 (26〜50)</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tabPayrollList')"><i class="fa-solid fa-money-bill-wave"></i> 給与・控除 (51〜75)</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tabFinance')"><i class="fa-solid fa-calculator"></i> 経費・決裁 (76〜100)</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tabAcademic')"><i class="fa-solid fa-graduation-cap"></i> 教務・成績 (101〜125)</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tabFacility')"><i class="fa-solid fa-building"></i> 施設・図書 (126〜150)</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tabSystemUI')"><i class="fa-solid fa-palette"></i> UI・デザイン (151〜175)</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tabDev')"><i class="fa-solid fa-code"></i> システム統合 (176〜200)</button>
             </div>
 
-            <!-- TAB 1: セキュリティ (1〜25) -->
             <div id="tabSecurity" class="admin-tab-content active">
                 <div class="setting-card">
                     <div class="setting-card-title"><i class="fa-solid fa-lock"></i> セキュリティ・認証パラメータ (25項目)</div>
                     <div class="setting-grid" id="grid_sec"></div>
                 </div>
-                <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px; margin-top:10px;">
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px;">
                     <div>
-                        <h4><i class="fa-solid fa-user-slash"></i> アカウント凍結 (ブラックリスト)</h4>
-                        <div style="display:flex; gap:10px; margin-bottom:10px;">
+                        <h5 style="margin:0 0 5px 0;"><i class="fa-solid fa-user-slash"></i> アカウント凍結 (ブラックリスト)</h5>
+                        <div style="display:flex; gap:6px; margin-bottom:6px;">
                             <input type="email" id="blockEmailInput" class="panel-input" placeholder="拒否するメールアドレス">
-                            <button class="panel-btn" style="width:120px; margin:0; background:#dc3545;" onclick="addBlacklist()">凍結</button>
+                            <button class="panel-btn" style="width:90px; margin:0; padding:2px 8px; background:#dc3545; font-size:0.75rem;" onclick="addBlacklist()">凍結</button>
                         </div>
-                        <table class="app-table" style="font-size:0.8rem;">
+                        <table class="app-table" style="font-size:0.75rem;">
                             <thead><tr><th>凍結対象メール</th><th>操作</th></tr></thead>
                             <tbody id="blacklistTable"></tbody>
                         </table>
                     </div>
                     <div>
-                        <h4><i class="fa-solid fa-toggle-on"></i> 全学メンテナンス制御</h4>
-                        <label style="display:flex; align-items:center; gap:10px; cursor:pointer; background:#fff; padding:10px; border-radius:6px; border:1px solid #ddd;">
-                            <input type="checkbox" id="maintModeToggle" style="width:20px; height:20px;" onchange="toggleMaintenanceMode()">
-                            <strong style="color:#d9534f;">全学メンテナンスモードを有効化 (一般全アクセス遮断)</strong>
+                        <h5 style="margin:0 0 5px 0;"><i class="fa-solid fa-toggle-on"></i> 全学メンテナンス制御</h5>
+                        <label style="display:flex; align-items:center; gap:8px; cursor:pointer; background:#fff; padding:6px 10px; border-radius:4px; border:1px solid #ddd; font-size:0.75rem;">
+                            <input type="checkbox" id="maintModeToggle" style="width:16px; height:16px;" onchange="toggleMaintenanceMode()">
+                            <strong style="color:#d9534f;">全学メンテナンスモード無効/有効</strong>
                         </label>
-                        <h5 style="margin-top:15px;">直近アクセスログ</h5>
-                        <div style="height:120px; overflow-y:auto; background:#fff; padding:8px; border:1px solid #ddd; border-radius:6px; font-size:0.75rem;">
+                        <h5 style="margin:10px 0 3px 0;">直近アクセスログ</h5>
+                        <div style="height:90px; overflow-y:auto; background:#fff; padding:6px; border:1px solid #ddd; border-radius:4px; font-size:0.7rem;">
                             <ul id="adminAccessLogsList" style="list-style:none; padding:0; margin:0;"></ul>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- TAB 2: 勤務・勤怠 (26〜50) -->
             <div id="tabHR" class="admin-tab-content">
                 <div class="setting-card">
                     <div class="setting-card-title"><i class="fa-solid fa-user-clock"></i> 勤怠・就業ルールパラメータ (25項目)</div>
                     <div class="setting-grid" id="grid_hr"></div>
                 </div>
-                <div style="margin-top:10px;">
-                    <h4 style="margin:0 0 5px 0;">職員勤怠打刻ログの手修正</h4>
-                    <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr auto; gap:6px;">
-                        <input type="email" id="attEmailInput" class="panel-input" placeholder="職員メール">
-                        <input type="text" id="attDateInput" class="panel-input" placeholder="日付 (2026-08-13)">
-                        <select id="attTypeInput" class="panel-input"><option value="出勤">出勤</option><option value="退勤">退勤</option></select>
-                        <input type="text" id="attTimeInput" class="panel-input" placeholder="時刻 (08:55:00)">
-                        <button class="panel-btn" style="margin:0; background:#28a745;" onclick="saveAdminAttendance()">打刻修正保存</button>
-                    </div>
-                </div>
             </div>
 
-            <!-- TAB 3: 給与・控除 (51〜75) -->
             <div id="tabPayrollList" class="admin-tab-content">
                 <div class="setting-card">
                     <div class="setting-card-title"><i class="fa-solid fa-money-bill-wave"></i> 給与計算・手当・控除パラメータ (25項目)</div>
                     <div class="setting-grid" id="grid_pay"></div>
                 </div>
-                <div style="margin-top:10px;">
-                    <h4 style="margin:0 0 5px 0;">職員給与データの個別上書き設定</h4>
-                    <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1fr auto; gap:6px; margin-bottom:10px;">
-                        <input type="email" id="payEmailInput" class="panel-input" placeholder="職員メール">
-                        <input type="text" id="payMonthInput" class="panel-input" placeholder="年月 (例: 2026-08)">
-                        <input type="number" id="payBaseInput" class="panel-input" placeholder="基本給(円)">
-                        <input type="number" id="payAllowInput" class="panel-input" placeholder="手当(円)">
-                        <input type="number" id="payDeductInput" class="panel-input" placeholder="控除(円)">
-                        <button class="panel-btn" style="margin:0; background:#00838f;" onclick="saveAdminPayroll()">給与反映</button>
-                    </div>
-                    <div style="max-height:150px; overflow-y:auto;">
-                        <table class="app-table" style="font-size:0.8rem;">
-                            <thead><tr><th>メール</th><th>年月</th><th>基本給</th><th>手当</th><th>控除</th><th>削除</th></tr></thead>
-                            <tbody id="adminPayrollsTable"></tbody>
-                        </table>
-                    </div>
-                </div>
             </div>
 
-            <!-- TAB 4: 経費・決裁 (76〜100) -->
             <div id="tabFinance" class="admin-tab-content">
                 <div class="setting-card">
                     <div class="setting-card-title"><i class="fa-solid fa-calculator"></i> 経費精算・ワークフロー制御パラメータ (25項目)</div>
                     <div class="setting-grid" id="grid_fin"></div>
                 </div>
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
-                    <h4 style="margin:0;">全経費データ強制修正 & 電子決裁一括制御</h4>
-                    <button class="panel-btn" style="width:auto; margin:0; padding:6px 16px; background:#28a745;" onclick="batchApprove('approvals')"><i class="fa-solid fa-check-double"></i> 全電子決裁を一括承認</button>
-                </div>
-                <table class="app-table" style="font-size:0.8rem;">
-                    <thead><tr><th>申請日</th><th>申請者</th><th>区分</th><th>金額(円)</th><th>ステータス</th><th>操作</th></tr></thead>
-                    <tbody id="adminExpenseTable"></tbody>
-                </table>
             </div>
 
-            <!-- TAB 5: 教務・成績 (101〜125) -->
             <div id="tabAcademic" class="admin-tab-content">
                 <div class="setting-card">
                     <div class="setting-card-title"><i class="fa-solid fa-book-open"></i> 教務・シラバス・成績試験パラメータ (25項目)</div>
                     <div class="setting-grid" id="grid_aca"></div>
                 </div>
-                <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px; margin-top:10px;">
-                    <div>
-                        <h4 style="margin:0 0 5px 0;">新規講義・時間割の登録</h4>
-                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
-                            <select id="newClassDay" class="panel-input"><option>月</option><option>火</option><option>水</option><option>木</option><option>金</option></select>
-                            <select id="newClassPeriod" class="panel-input"><option>1限</option><option>2限</option><option>3限</option><option>4限</option></select>
-                            <input type="text" id="newClassTitle" class="panel-input" placeholder="講義名">
-                            <input type="text" id="newClassProf" class="panel-input" placeholder="教員名">
-                            <button class="panel-btn" style="margin:0; grid-column:span 2;" onclick="addNewClass()">時間割に登録</button>
-                        </div>
-                    </div>
-                    <div>
-                        <h4 style="margin:0 0 5px 0;">図書購入リクエスト処理</h4>
-                        <div style="max-height:120px; overflow-y:auto; background:#fff; padding:5px; border:1px solid #ddd; border-radius:6px;">
-                            <ul id="adminLibReqList" style="list-style:none; padding:0; margin:0; font-size:0.8rem;"></ul>
-                        </div>
-                    </div>
-                </div>
             </div>
 
-            <!-- TAB 6: 施設・図書 (126〜150) -->
             <div id="tabFacility" class="admin-tab-content">
                 <div class="setting-card">
                     <div class="setting-card-title"><i class="fa-solid fa-building"></i> 施設予約・図書備品 & BCP危機管理パラメータ (25項目)</div>
@@ -796,22 +818,13 @@
                 </div>
             </div>
 
-            <!-- TAB 7: UI・デザイン (151〜175) -->
             <div id="tabSystemUI" class="admin-tab-content">
                 <div class="setting-card">
                     <div class="setting-card-title"><i class="fa-solid fa-palette"></i> ポータル表示UI & テーマカラーパラメータ (25項目)</div>
                     <div class="setting-grid" id="grid_ui"></div>
                 </div>
-                <div style="margin-top:10px;">
-                    <h4 style="margin:0 0 5px 0;"><i class="fa-solid fa-bullhorn"></i> 全学緊急お知らせバナー投稿</h4>
-                    <div style="display:flex; gap:10px;">
-                        <input type="text" id="adminNewsInput" class="panel-input" placeholder="全学へ緊急配信するお知らせ本文...">
-                        <button class="panel-btn" style="width:140px; margin:0; background:#28a745;" onclick="addAdminNews()">即時配信</button>
-                    </div>
-                </div>
             </div>
 
-            <!-- TAB 8: システム統合 (176〜200) -->
             <div id="tabDev" class="admin-tab-content">
                 <div class="setting-card">
                     <div class="setting-card-title"><i class="fa-solid fa-code"></i> API統合・開発デバッグ & 通知フックパラメータ (25項目)</div>
@@ -819,7 +832,7 @@
                 </div>
             </div>
 
-            <button class="panel-btn" style="background:#555; margin-top:15px;" onclick="closeAdminConsole()">管理者コンソールを閉じる</button>
+            <button class="panel-btn" style="background:#555; margin-top:10px; padding:6px; font-size:0.8rem;" onclick="closeAdminConsole()">閉じる</button>
         </div>
     </div>
 
@@ -889,53 +902,226 @@
         // ==========================================
         //  ★ 全200項目の自動初期化 & Firebase同期生成 ★
         // ==========================================
+// ==========================================
+        //  ★ 全200項目の具体的な大学ポータル設定定義 ★
+        // ==========================================
         const settingDefinitions = [
-            // 1~25: セキュリティ
-            { id: "cfg_vpnForced", label: "1. VPN強制アクセスモード", type: "select", options: ["true:有効", "false:無効"], group: "grid_sec" },
+            // 1〜25: セキュリティ & 認証
+            { id: "cfg_vpnForced", label: "1. VPN強制接続モード", type: "select", options: ["true:有効", "false:無効"], group: "grid_sec" },
             { id: "cfg_bypassCode", label: "2. 緊急バイパスコード", type: "text", val: "mmu2026", group: "grid_sec" },
             { id: "cfg_mfaForced", label: "3. MFA多要素認証強制", type: "select", options: ["true:有効", "false:任意"], group: "grid_sec" },
-            { id: "cfg_sessionTimeout", label: "4. 自動タイムアウト(分)", type: "number", val: 30, group: "grid_sec" },
-            { id: "cfg_maxLoginAttempts", label: "5. 失敗制限ロック閾値", type: "number", val: 5, group: "grid_sec" },
-            { id: "cfg_tlsForced", label: "6. 暗号化通信強制", type: "select", options: ["true:有効", "false:無効"], group: "grid_sec" },
-            { id: "cfg_blockGlobalIP", label: "7. 海外IPアクセス遮断", type: "select", options: ["true:遮断", "false:許可"], group: "grid_sec" },
+            { id: "cfg_sessionTimeout", label: "4. セッション切断時間(分)", type: "number", val: 30, group: "grid_sec" },
+            { id: "cfg_maxLoginAttempts", label: "5. 失敗時アカウントロック", type: "number", val: 5, group: "grid_sec" },
+            { id: "cfg_tlsForced", label: "6. SSL/TLS暗号化強制", type: "select", options: ["true:有効", "false:無効"], group: "grid_sec" },
+            { id: "cfg_blockGlobalIP", label: "7. 海外IPアドレス遮断", type: "select", options: ["true:遮断", "false:許可"], group: "grid_sec" },
             { id: "cfg_passExpireDays", label: "8. パスワード有効期限(日)", type: "number", val: 90, group: "grid_sec" },
-            { id: "cfg_auditLogEnabled", label: "9. 監査ログ自動保存", type: "select", options: ["true:有効", "false:無効"], group: "grid_sec" },
+            { id: "cfg_auditLogEnabled", label: "9. 操作監査ログ自動記録", type: "select", options: ["true:有効", "false:無効"], group: "grid_sec" },
             { id: "cfg_allowedIPs", label: "10. 許可IPアドレスリスト", type: "text", val: "192.0.2.1, 198.51.100.1", group: "grid_sec" },
-        ];
+            { id: "cfg_minPassLength", label: "11. 最小パスワード桁数", type: "number", val: 8, group: "grid_sec" },
+            { id: "cfg_requireSymbol", label: "12. 記号文字必須フラグ", type: "select", options: ["true:必須", "false:不要"], group: "grid_sec" },
+            { id: "cfg_maxConcurrentLogin", label: "13. 同時ログイン最大数", type: "number", val: 2, group: "grid_sec" },
+            { id: "cfg_lockoutDuration", label: "14. 凍結解除待ち時間(分)", type: "number", val: 15, group: "grid_sec" },
+            { id: "cfg_ssoSyncEnabled", label: "15. SSO統合認証連携", type: "select", options: ["true:有効", "false:無効"], group: "grid_sec" },
+            { id: "cfg_cookieSameSite", label: "16. クッキーSameSite設定", type: "select", options: ["Strict:Strict", "Lax:Lax"], group: "grid_sec" },
+            { id: "cfg_corsDomain", label: "17. CORS許可ドメイン", type: "text", val: "*.misemi-ya.net", group: "grid_sec" },
+            { id: "cfg_notifyUnauthorized", label: "18. 不正検知メール通知", type: "select", options: ["true:通知する", "false:オフ"], group: "grid_sec" },
+            { id: "cfg_apiRateLimit", label: "19. API速度制限(req/分)", type: "number", val: 100, group: "grid_sec" },
+            { id: "cfg_tokenExpireHours", label: "20. OAuthトークン有効時間", type: "number", val: 24, group: "grid_sec" },
+            { id: "cfg_doubleCheckAdmin", label: "21. 管理者操作二重確認", type: "select", options: ["true:必要", "false:不要"], group: "grid_sec" },
+            { id: "cfg_autoLockInactivity", label: "22. 離脱時自動画面ロック", type: "select", options: ["true:有効", "false:無効"], group: "grid_sec" },
+            { id: "cfg_ipGeoCheck", label: "23. IP地理位置検証", type: "select", options: ["true:有効", "false:無効"], group: "grid_sec" },
+            { id: "cfg_securityLevel", label: "24. セキュリティ警戒レベル", type: "select", options: ["High:高", "Medium:中", "Low:低"], group: "grid_sec" },
+            { id: "cfg_csrfProtection", label: "25. CSRFトークン検証", type: "select", options: ["true:検証する", "false:スキップ"], group: "grid_sec" },
 
-        // 11〜200 項目を自動プログラム拡張生成
-        const categories = [
-            { prefix: "sec", group: "grid_sec", start: 11, count: 15, name: "セキュリティ補足" },
-            { prefix: "hr", group: "grid_hr", start: 26, count: 25, name: "勤怠・就業" },
-            { prefix: "pay", group: "grid_pay", start: 51, count: 25, name: "給与・控除" },
-            { prefix: "fin", group: "grid_fin", start: 76, count: 25, name: "経費・決裁" },
-            { prefix: "aca", group: "grid_aca", start: 101, count: 25, name: "教務・成績" },
-            { prefix: "fac", group: "grid_fac", start: 126, count: 25, name: "施設・図書" },
-            { prefix: "ui", group: "grid_ui", start: 151, count: 25, name: "UI・デザイン" },
-            { prefix: "dev", group: "grid_dev", start: 176, count: 25, name: "システム統合" },
-        ];
+            // 26〜50: 勤務・勤怠
+            { id: "cfg_workStartTime", label: "26. 標準始業時刻", type: "text", val: "08:30", group: "grid_hr" },
+            { id: "cfg_workEndTime", label: "27. 標準終業時刻", type: "text", val: "17:15", group: "grid_hr" },
+            { id: "cfg_overtimeLimit", label: "28. 残業時間自動警告(h)", type: "number", val: 30, group: "grid_hr" },
+            { id: "cfg_timeRound", label: "29. 打刻端数処理(分)", type: "select", options: ["0:1分単位", "5:5分丸め", "15:15分丸め"], group: "grid_hr" },
+            { id: "cfg_paidLeaveDays", label: "30. 有休年間自動付与数", type: "number", val: 20, group: "grid_hr" },
+            { id: "cfg_commuteLimit", label: "31. 交通費支給上限(円)", type: "number", val: 50000, group: "grid_hr" },
+            { id: "cfg_lunchBreakMin", label: "32. 昼休憩規定時間(分)", type: "number", val: 60, group: "grid_hr" },
+            { id: "cfg_nightShiftStart", label: "33. 深夜勤務開始時刻", type: "text", val: "22:00", group: "grid_hr" },
+            { id: "cfg_leaveReqNoticeDays", label: "34. 休暇申請事前締切(日前)", type: "number", val: 1, group: "grid_hr" },
+            { id: "cfg_subHolidayDays", label: "35. 振替休日有効期限(日)", type: "number", val: 60, group: "grid_hr" },
+            { id: "cfg_clockForgetAlert", label: "36. 打刻忘れ自動通知", type: "select", options: ["true:通知する", "false:オフ"], group: "grid_hr" },
+            { id: "cfg_flexTimeEnabled", label: "37. フレックスタイム制", type: "select", options: ["true:適用", "false:固定時間"], group: "grid_hr" },
+            { id: "cfg_coreTimeStart", label: "38. コアタイム開始時刻", type: "text", val: "10:00", group: "grid_hr" },
+            { id: "cfg_coreTimeEnd", label: "39. コアタイム終了時刻", type: "text", val: "15:00", group: "grid_hr" },
+            { id: "cfg_36AgreementAlert", label: "40. 36協定超過アラート", type: "number", val: 45, group: "grid_hr" },
+            { id: "cfg_teleworkLimitDays", label: "41. 在宅勤務最大日数/週", type: "number", val: 3, group: "grid_hr" },
+            { id: "cfg_specialLeaveDays", label: "42. 慶弔特別休暇規定日数", type: "number", val: 5, group: "grid_hr" },
+            { id: "cfg_healthCheckMonth", label: "43. 定期健診対象月", type: "select", options: ["9:9月", "10:10月", "11:11月"], group: "grid_hr" },
+            { id: "cfg_overtimeApprovalReq", label: "44. 残業事前許可制", type: "select", options: ["true:必要", "false:不要"], group: "grid_hr" },
+            { id: "cfg_holidayWorkApproval", label: "45. 休日出勤事前申請", type: "select", options: ["true:必要", "false:不要"], group: "grid_hr" },
+            { id: "cfg_shiftPatternCount", label: "46. シフトパターン登録数", type: "number", val: 4, group: "grid_hr" },
+            { id: "cfg_attendanceExportFormat", label: "47. 勤怠データCSV形式", type: "select", options: ["UTF-8:UTF-8", "Shift-JIS:Shift-JIS"], group: "grid_hr" },
+            { id: "cfg_partTimeMinRate", label: "48. 非常勤時給基準(円)", type: "number", val: 1200, group: "grid_hr" },
+            { id: "cfg_retireAge", label: "49. 定年退職基準年齢", type: "number", val: 65, group: "grid_hr" },
+            { id: "cfg_nurseLeaveLimit", label: "50. 看護・介護休業可能日数", type: "number", val: 93, group: "grid_hr" },
 
-        categories.forEach(cat => {
-            for(let i=0; i<cat.count; i++) {
-                const idx = cat.start + i;
-                if (idx === 151) {
-                    settingDefinitions.push({ id: "cfgUnivName", label: `${idx}. 大学表示名称`, type: "text", val: "店魅偉屋大学", group: cat.group });
-                } else if (idx === 152) {
-                    settingDefinitions.push({ id: "cfgPrimaryColor", label: `${idx}. メインカラー`, type: "color", val: "#003366", group: cat.group });
-                } else if (idx === 153) {
-                    settingDefinitions.push({ id: "cfgAccentColor", label: `${idx}. アクセントカラー`, type: "color", val: "#c9a346", group: cat.group });
-                } else {
-                    settingDefinitions.push({
-                        id: `cfg_${cat.prefix}_${idx}`,
-                        label: `${idx}. ${cat.name}設定パラメータ #${idx}`,
-                        type: (idx % 3 === 0) ? "select" : (idx % 2 === 0 ? "number" : "text"),
-                        options: ["true:有効", "false:無効"],
-                        val: (idx % 2 === 0) ? idx * 10 : `設定値_${idx}`,
-                        group: cat.group
-                    });
-                }
-            }
-        });
+            // 51〜75: 給与・控除
+            { id: "cfg_payPublishDay", label: "51. 給与明細Web公開日", type: "select", options: ["20:毎月20日", "25:毎月25日", "30:毎月30日"], group: "grid_pay" },
+            { id: "cfg_taxDocEnabled", label: "52. 源泉徴収票Web表示", type: "select", options: ["true:許可", "false:停止中"], group: "grid_pay" },
+            { id: "cfg_summerBonusMonth", label: "53. 夏季賞与支給月", type: "select", options: ["6:6月", "7:7月"], group: "grid_pay" },
+            { id: "cfg_winterBonusMonth", label: "54. 冬季賞与支給月", type: "select", options: ["12:12月", "1:1月"], group: "grid_pay" },
+            { id: "cfg_housingAllowanceMax", label: "55. 住宅手当最大額(円)", type: "number", val: 27000, group: "grid_pay" },
+            { id: "cfg_familyAllowanceSpouse", label: "56. 家族手当(配偶者)", type: "number", val: 13000, group: "grid_pay" },
+            { id: "cfg_familyAllowanceChild", label: "57. 家族手当(1人あたり)", type: "number", val: 6500, group: "grid_pay" },
+            { id: "cfg_profAllowanceRate", label: "58. 役職手当(教授率%)", type: "number", val: 15, group: "grid_pay" },
+            { id: "cfg_overtimeRateNormal", label: "59. 時間外割増賃金率(%)", type: "number", val: 125, group: "grid_pay" },
+            { id: "cfg_overtimeRateNight", label: "60. 深夜割増賃金率(%)", type: "number", val: 150, group: "grid_pay" },
+            { id: "cfg_overtimeRateHoliday", label: "61. 休日出勤割増率(%)", type: "number", val: 135, group: "grid_pay" },
+            { id: "cfg_healthInsRate", label: "62. 健康保険料折半率(%)", type: "number", val: 5, group: "grid_pay" },
+            { id: "cfg_pensionRate", label: "63. 厚生年金保険料率(%)", type: "number", val: 9, group: "grid_pay" },
+            { id: "cfg_unemploymentInsRate", label: "64. 雇用保険料率(%)", type: "number", val: 0.6, group: "grid_pay" },
+            { id: "cfg_payBankCode", label: "65. 指定振込金融機関コード", type: "text", val: "0001", group: "grid_pay" },
+            { id: "cfg_payPdfPassEnc", label: "66. 明細PDFパスワード化", type: "select", options: ["true:保護", "false:なし"], group: "grid_pay" },
+            { id: "cfg_retireBonusRate", label: "67. 退職金積立倍率", type: "number", val: 1.2, group: "grid_pay" },
+            { id: "cfg_payRoundMethod", label: "68. 端数四捨五入区分", type: "select", options: ["round:四捨五入", "floor:切り捨て"], group: "grid_pay" },
+            { id: "cfg_commuteTaxFreeLimit", label: "69. 通勤非課税限度額", type: "number", val: 150000, group: "grid_pay" },
+            { id: "cfg_yearEndTaxAuto", label: "70. 年末調整Web申告", type: "select", options: ["true:有効", "false:紙手続"], group: "grid_pay" },
+            { id: "cfg_researchGrantBonus", label: "71. 研究インセンティブ手当", type: "number", val: 50000, group: "grid_pay" },
+            { id: "cfg_paySlipMailNotify", label: "72. 支給日メール自動通知", type: "select", options: ["true:送信", "false:なし"], group: "grid_pay" },
+            { id: "cfg_payHistoryKeepYears", label: "73. 給与履歴保持年数", type: "number", val: 7, group: "grid_pay" },
+            { id: "cfg_executiveBonusRate", label: "74. 役員報酬特別調整", type: "number", val: 1.5, group: "grid_pay" },
+            { id: "cfg_payFormatType", label: "75. 給与振込全銀データ種別", type: "select", options: ["Zengin:全銀フォーマット", "CSV:汎用CSV"], group: "grid_pay" },
+
+            // 76〜100: 経費・決裁
+            { id: "cfg_autoApproveLimit", label: "76. 経費自動承認上限(円)", type: "number", val: 10000, group: "grid_fin" },
+            { id: "cfg_receiptReqLimit", label: "77. 領収書添付必須額(円)", type: "number", val: 3000, group: "grid_fin" },
+            { id: "cfg_meetingExpLimit", label: "78. 会議費一人上限(円)", type: "number", val: 5000, group: "grid_fin" },
+            { id: "cfg_businessTripAllowance", label: "79. 国内出張日当(円/日)", type: "number", val: 4000, group: "grid_fin" },
+            { id: "cfg_grantAlertDays", label: "80. 科研費期限警告(日前)", type: "number", val: 30, group: "grid_fin" },
+            { id: "cfg_budgetBlockEnabled", label: "81. 予算超過時申請遮断", type: "select", options: ["true:強制ブロック", "false:警告のみ"], group: "grid_fin" },
+            { id: "cfg_approvalLevels", label: "82. 稟議決裁ルート階層", type: "select", options: ["1:1段階", "2:2段階", "3:3段階"], group: "grid_fin" },
+            { id: "cfg_proxyApproval", label: "83. 総務管財課 代理承認", type: "select", options: ["true:許可", "false:禁止"], group: "grid_fin" },
+            { id: "cfg_expClosingDay", label: "84. 経費精算月次締め日", type: "select", options: ["15:毎月15日", "20:毎月20日", "99:末日"], group: "grid_fin" },
+            { id: "cfg_taxCalcMethod", label: "85. 消費税計算方式", type: "select", options: ["incl:内税自動", "excl:外税別計算"], group: "grid_fin" },
+            { id: "cfg_advancePayLimit", label: "86. 立替金概算受入上限", type: "number", val: 200000, group: "grid_fin" },
+            { id: "cfg_icCardSync", label: "87. 交通費ICカード自動連携", type: "select", options: ["true:有効", "false:オフ"], group: "grid_fin" },
+            { id: "cfg_cloudPurchasingSync", label: "88. 購買Webシステム連動", type: "select", options: ["true:有効", "false:オフ"], group: "grid_fin" },
+            { id: "cfg_approvalExpireDays", label: "89. 決裁放置自動催促(日)", type: "number", val: 7, group: "grid_fin" },
+            { id: "cfg_autoReApplication", label: "90. 差戻し自動下書き保持", type: "select", options: ["true:保持", "false:削除"], group: "grid_fin" },
+            { id: "cfg_foreignCurrencyRate", label: "91. 外貨換算レート指定", type: "number", val: 155, group: "grid_fin" },
+            { id: "cfg_entertainmentLimit", label: "92. 接待交際費年間枠(円)", type: "number", val: 500000, group: "grid_fin" },
+            { id: "cfg_auditDeptCheckReq", label: "93. 監事・監査課事前精査", type: "select", options: ["true:必須", "false:不要"], group: "grid_fin" },
+            { id: "cfg_purchaseOrderLimit", label: "94. 10万円以上発注書必須", type: "select", options: ["true:必須", "false:任意"], group: "grid_fin" },
+            { id: "cfg_assetDepreciation", label: "95. 備品固定資産自動計上", type: "select", options: ["true:自動", "false:手動"], group: "grid_fin" },
+            { id: "cfg_budgetTransferAllow", label: "96. 費目間予算流用許可", type: "select", options: ["true:許可", "false:禁止"], group: "grid_fin" },
+            { id: "cfg_expReceiptOcrEnabled", label: "97. 領収書AI-OCR解析", type: "select", options: ["true:有効", "false:オフ"], group: "grid_fin" },
+            { id: "cfg_hotelAllowanceMax", label: "98. 宿泊費上限定額(円/泊)", type: "number", val: 12000, group: "grid_fin" },
+            { id: "cfg_carMileageRate", label: "99. 自家用車業務利用キロ単価", type: "number", val: 30, group: "grid_fin" },
+            { id: "cfg_expExportAccountingCode", label: "100. 勘定科目コード自動付与", type: "select", options: ["true:有効", "false:手動"], group: "grid_fin" },
+
+            // 101〜125: 教務・成績
+            { id: "cfg_currentSemester", label: "101. カレント学期設定", type: "select", options: ["spring:春学期", "fall:秋学期"], group: "grid_aca" },
+            { id: "cfg_courseRegEnabled", label: "102. 履修登録・変更受付", type: "select", options: ["true:受付中", "false:期間外"], group: "grid_aca" },
+            { id: "cfg_gradeDeadline", label: "103. 成績入力締め切り", type: "text", val: "2026-09-30", group: "grid_aca" },
+            { id: "cfg_cancelClassAlert", label: "104. 休講補講自動通知", type: "select", options: ["true:自動送信", "false:手動"], group: "grid_aca" },
+            { id: "cfg_syllabusPublic", label: "105. シラバス外部公開", type: "select", options: ["true:公開", "false:学内限定"], group: "grid_aca" },
+            { id: "cfg_classDuration", label: "106. 1コマ授業時間(分)", type: "select", options: ["90:90分", "100:100分"], group: "grid_aca" },
+            { id: "cfg_attendWarnPercent", label: "107. 出席警告閾値(%)", type: "number", val: 70, group: "grid_aca" },
+            { id: "cfg_reExamEnabled", label: "108. 追試験申請受付", type: "select", options: ["true:受付中", "false:停止中"], group: "grid_aca" },
+            { id: "cfg_cbtExamMode", label: "109. 付属高等学部 CBTモード", type: "select", options: ["true:有効", "false:無効"], group: "grid_aca" },
+            { id: "cfg_maxCreditsPerYear", label: "110. 年間最大履修単位(CAP)", type: "number", val: 48, group: "grid_aca" },
+            { id: "cfg_gpaCalcMethod", label: "111. GPA計算評価方式", type: "select", options: ["4.0:4.0満点", "4.3:4.3満点"], group: "grid_aca" },
+            { id: "cfg_thesisDeadline", label: "112. 卒業論文提出締切日", type: "text", val: "2027-01-20", group: "grid_aca" },
+            { id: "cfg_gradeScaleType", label: "113. 5段階評価基準(秀A/B/C/F)", type: "select", options: ["秀:秀優良可不可", "S:S-A-B-C-F"], group: "grid_aca" },
+            { id: "cfg_courseCancelLimitDays", label: "114. 履修取消可能期間(日)", type: "number", val: 14, group: "grid_aca" },
+            { id: "cfg_classSurveyMonth", label: "115. 授業評価アンケート実施月", type: "select", options: ["7:7月", "1:1月"], group: "grid_aca" },
+            { id: "cfg_studentIdFormat", label: "116. 学籍番号プレフィックス", type: "text", val: "MMU2026", group: "grid_aca" },
+            { id: "cfg_absenceLimitCount", label: "117. 不可判定欠席回数(回)", type: "number", val: 5, group: "grid_aca" },
+            { id: "cfg_lmsAssignmentSync", label: "118. LMS課題採点連携", type: "select", options: ["true:連携", "false:独立"], group: "grid_aca" },
+            { id: "cfg_taHoursLimitWeek", label: "119. TA/SA最大勤務時間/週", type: "number", val: 10, group: "grid_aca" },
+            { id: "cfg_facultyMeetingDay", label: "120. 教授会定期開催曜日", type: "select", options: ["Wed:水曜日", "Thu:木曜日"], group: "grid_aca" },
+            { id: "cfg_scholarshipApplyMode", label: "121. 奨学金申請Web受付", type: "select", options: ["true:受付中", "false:締切"], group: "grid_aca" },
+            { id: "cfg_gradCreditReq", label: "122. 卒業必要単位数", type: "number", val: 124, group: "grid_aca" },
+            { id: "cfg_certPrintFee", label: "123. 在学証明書発行手数料(円)", type: "number", val: 200, group: "grid_aca" },
+            { id: "cfg_exchangeStudentMode", label: "124. 留学生単位互換判定", type: "select", options: ["true:自動換算", "false:審議"], group: "grid_aca" },
+            { id: "cfg_curriculumRevisionYear", label: "125. カリキュラム改定適用年度", type: "number", val: 2026, group: "grid_aca" },
+
+            // 126〜150: 施設・図書
+            { id: "cfg_libMaxBooks", label: "126. 図書最大貸出可能冊数", type: "number", val: 10, group: "grid_fac" },
+            { id: "cfg_libMaxDays", label: "127. 図書最大貸出期間(日)", type: "number", val: 14, group: "grid_fac" },
+            { id: "cfg_facilityMaxAdvanceDays", label: "128. 施設予約可能上限(日前)", type: "number", val: 30, group: "grid_fac" },
+            { id: "cfg_assetAutoForward", label: "129. 備品申請管財自動転送", type: "select", options: ["true:有効", "false:手動"], group: "grid_fac" },
+            { id: "cfg_bcpDrillMode", label: "130. 緊急安否一斉訓練モード", type: "select", options: ["true:訓練中", "false:通常"], group: "grid_fac" },
+            { id: "cfg_libPenaltyDays", label: "131. 図書返却延滞ペナルティ", type: "number", val: 7, group: "grid_fac" },
+            { id: "cfg_facilityMaxHoursPerBook", label: "132. 会議室1回予約最大時間", type: "number", val: 3, group: "grid_fac" },
+            { id: "cfg_facilityCancelDeadlineHours", label: "133. 予約キャンセル締切", type: "number", val: 2, group: "grid_fac" },
+            { id: "cfg_libHoldExpireDays", label: "134. 取り置き本保持期間(日)", type: "number", val: 3, group: "grid_fac" },
+            { id: "cfg_bcpAlertIntervalMin", label: "135. 安否確認再送信間隔(分)", type: "number", val: 60, group: "grid_fac" },
+            { id: "cfg_parkingPermitMax", label: "136. 学内駐車場許可証台数", type: "number", val: 150, group: "grid_fac" },
+            { id: "cfg_keyCardLockType", label: "137. 講義室ICカード鍵自動連動", type: "select", options: ["true:連動", "false:手動"], group: "grid_fac" },
+            { id: "cfg_printerPageQuotaMonth", label: "138. 教員無料印刷枚数/月", type: "number", val: 1000, group: "grid_fac" },
+            { id: "cfg_libPurchaseApproveMin", label: "139. 図書購入自動無条件承認(円)", type: "number", val: 5000, group: "grid_fac" },
+            { id: "cfg_evStationUseLimitHours", label: "140. 学内EV充電利用上限(h)", type: "number", val: 2, group: "grid_fac" },
+            { id: "cfg_bcpShelterMapUrl", label: "141. 避難経路マップURL", type: "text", val: "https://u.misemi-ya.net/bcp/map", group: "grid_fac" },
+            { id: "cfg_labSafetyInspector", label: "142. 研究室安全点検実施月", type: "select", options: ["5:5月", "11:11月"], group: "grid_fac" },
+            { id: "cfg_chemicalInventorySync", label: "143. 危険物試薬薬品管理連動", type: "select", options: ["true:有効", "false:オフ"], group: "grid_fac" },
+            { id: "cfg_wasteDisposeDate", label: "144. 産業廃棄物回収日", type: "text", val: "毎月最終金曜日", group: "grid_fac" },
+            { id: "cfg_canteenMenuSync", label: "145. 学食日替わりメニュー配信", type: "select", options: ["true:配信", "false:なし"], group: "grid_fac" },
+            { id: "cfg_guestWifiCodeExpireHours", label: "146. 来訪者WiFiパス有効時間", type: "number", val: 12, group: "grid_fac" },
+            { id: "cfg_campusShuttleTimeTable", label: "147. 学内バス時刻表運用", type: "select", options: ["平日のみ:平日ダイヤ", "毎日:全日"], group: "grid_fac" },
+            { id: "cfg_lockGymSunday", label: "148. 日曜日体育館施設閉鎖", type: "select", options: ["true:閉鎖", "false:開放"], group: "grid_fac" },
+            { id: "cfg_networkMaintenanceHour", label: "149. 定期ネットワーク保守時間", type: "text", val: "日曜 02:00-04:00", group: "grid_fac" },
+            { id: "cfg_co2MonitorAlertPpm", label: "150. 教室CO2濃度警告(ppm)", type: "number", val: 1000, group: "grid_fac" },
+
+            // 151〜175: UI・デザイン
+            { id: "cfgUnivName", label: "151. 大学表示名称", type: "text", val: "店魅偉屋大学", group: "grid_ui" },
+            { id: "cfgPrimaryColor", label: "152. プライマリテーマカラー", type: "color", val: "#003366", group: "grid_ui" },
+            { id: "cfgAccentColor", label: "153. アクセントカラー", type: "color", val: "#c9a346", group: "grid_ui" },
+            { id: "cfg_chartInterval", label: "154. ダッシュボードグラフ描画", type: "select", options: ["daily:日次更新", "realtime:リアルタイム"], group: "grid_ui" },
+            { id: "cfg_darkModeDefault", label: "155. ダークモード初期状態", type: "select", options: ["false:ライト", "true:ダーク"], group: "grid_ui" },
+            { id: "cfg_logoImageUrl", label: "156. 校章ロゴ画像URL", type: "text", val: "../校章.png", group: "grid_ui" },
+            { id: "cfg_sidebarDefaultCollapsed", label: "157. サイドバー初期畳み込み", type: "select", options: ["false:展開", "true:畳む"], group: "grid_ui" },
+            { id: "cfg_fontSizeBase", label: "158. 基準フォントサイズ(px)", type: "number", val: 14, group: "grid_ui" },
+            { id: "cfg_glassEffectBlurPx", label: "159. グラスカードぼかし(px)", type: "number", val: 12, group: "grid_ui" },
+            { id: "cfg_customCssClass", label: "160. カスタムCSSスキン", type: "select", options: ["standard:標準", "modern:モダン", "classic:クラシック"], group: "grid_ui" },
+            { id: "cfg_greetingMessageFormat", label: "161. 挨拶メッセージ表示形式", type: "select", options: ["en:英語(Good Morning)", "ja:日本語(おはようございます)"], group: "grid_ui" },
+            { id: "cfg_headerClockType", label: "162. ヘッダー時計表示", type: "select", options: ["12h:12時間表示", "24h:24時間表示"], group: "grid_ui" },
+            { id: "cfg_dashboardLayoutGrid", label: "163. ダッシュボード列数", type: "select", options: ["4:4列", "3:3列"], group: "grid_ui" },
+            { id: "cfg_newsMaxCount", label: "164. トップお知らせ表示件数", type: "number", val: 5, group: "grid_ui" },
+            { id: "cfg_shortcutIconStyle", label: "165. アイコンアニメーション", type: "select", options: ["hover:ホバー浮き上がり", "none:固定"], group: "grid_ui" },
+            { id: "cfg_footerCopyrightText", label: "166. フッター著作権表記", type: "text", val: "© 2026 Misemi-ya Univ.", group: "grid_ui" },
+            { id: "cfg_shortcutGridColumns", label: "167. ランチャーアイコン配置数", type: "number", val: 6, group: "grid_ui" },
+            { id: "cfg_showWeatherWidget", label: "168. 天気予報ウィジェット", type: "select", options: ["true:表示", "false:非表示"], group: "grid_ui" },
+            { id: "cfg_showAttendancePunchBox", label: "169. 勤怠打刻カードトップ配置", type: "select", options: ["true:最上部", "false:下部"], group: "grid_ui" },
+            { id: "cfg_cardBorderRadiusPx", label: "170. カード角丸サイズ(px)", type: "number", val: 16, group: "grid_ui" },
+            { id: "cfg_buttonStyleType", label: "171. ボタンデザイン種別", type: "select", options: ["rounded:丸み", "flat:フラット"], group: "grid_ui" },
+            { id: "cfg_portalLanguageDefault", label: "172. 標準言語表示", type: "select", options: ["ja:日本語", "en:English"], group: "grid_ui" },
+            { id: "cfg_soundEffectEnabled", label: "173. 打刻・承認効果音", type: "select", options: ["false:無音", "true:効果音あり"], group: "grid_ui" },
+            { id: "cfg_dashboardChartType", label: "174. グラフ種類", type: "select", options: ["line:折れ線", "bar:棒グラフ"], group: "grid_ui" },
+            { id: "cfg_faviconUrl", label: "175. ファビコンアイコンURL", type: "text", val: "favicon.ico", group: "grid_ui" },
+
+            // 176〜200: システム統合
+            { id: "cfg_googleApiEnabled", label: "176. Google API連携", type: "select", options: ["true:連携中", "false:停止"], group: "grid_dev" },
+            { id: "cfg_webhookEnabled", label: "177. Slack/Discord Webhook", type: "select", options: ["true:送信", "false:オフ"], group: "grid_dev" },
+            { id: "cfg_slackWebhookUrl", label: "178. Slack通知Webhook URL", type: "text", val: "https://hooks.slack.com/services/xxx", group: "grid_dev" },
+            { id: "cfg_discordWebhookUrl", label: "179. Discord通知Webhook URL", type: "text", val: "https://discord.com/api/webhooks/xxx", group: "grid_dev" },
+            { id: "cfg_dbBackupIntervalHours", label: "180. DB自動バックアップ周期(h)", type: "number", val: 24, group: "grid_dev" },
+            { id: "cfg_logLevel", label: "181. システムログ出力レベル", type: "select", options: ["INFO:INFO", "DEBUG:DEBUG", "ERROR:ERROR"], group: "grid_dev" },
+            { id: "cfg_systemMailSender", label: "182. システム自動送信元アドレス", type: "text", val: "no-reply@misemi-ya.net", group: "grid_dev" },
+            { id: "cfg_firebaseCacheTtlMin", label: "183. Firebaseキャッシュ保持(分)", type: "number", val: 60, group: "grid_dev" },
+            { id: "cfg_debugModeEnabled", label: "184. デバッグ用コンソール出力", type: "select", options: ["false:オフ", "true:有効"], group: "grid_dev" },
+            { id: "cfg_adminNotifyEmail", label: "185. 管理者障害緊急通知先", type: "text", val: "u0626241@misemi-ya.net", group: "grid_dev" },
+            { id: "cfg_sentryDsnUrl", label: "186. エラー追跡Sentry DSN", type: "text", val: "https://sentry.io/xxx", group: "grid_dev" },
+            { id: "cfg_smtpHostServer", label: "187. 内部SMTPサーバホスト", type: "text", val: "mail.misemi-ya.net", group: "grid_dev" },
+            { id: "cfg_smtpPortNumber", label: "188. SMTPポート番号", type: "number", val: 587, group: "grid_dev" },
+            { id: "cfg_redisCacheHost", label: "189. キャッシュRedisホスト", type: "text", val: "127.0.0.1:6379", group: "grid_dev" },
+            { id: "cfg_maxUploadFileMb", label: "190. 添付ファイル最大サイズ(MB)", type: "number", val: 25, group: "grid_dev" },
+            { id: "cfg_allowedFileExtensions", label: "191. 許可拡張子", type: "text", val: "pdf, docx, xlsx, png, jpg", group: "grid_dev" },
+            { id: "cfg_storageDriverType", label: "192. ストレージ格納先", type: "select", options: ["Firebase:Firebase Storage", "S3:Amazon S3"], group: "grid_dev" },
+            { id: "cfg_healthCheckPingInterval", label: "193. サーバ死活監視Ping(秒)", type: "number", val: 300, group: "grid_dev" },
+            { id: "cfg_cdnBaseUrl", label: "194. 静的アセットCDN URL", type: "text", val: "https://cdn.misemi-ya.net/", group: "grid_dev" },
+            { id: "cfg_microserviceEMR", label: "195. 電子カルテ連携API", type: "select", options: ["true:有効", "false:無効"], group: "grid_dev" },
+            { id: "cfg_microserviceExam", label: "196. CBT試験コンソール連携", type: "select", options: ["true:有効", "false:無効"], group: "grid_dev" },
+            { id: "cfg_microserviceHW", label: "197. 宿題管理システム連携", type: "select", options: ["true:有効", "false:無効"], group: "grid_dev" },
+            { id: "cfg_pdfGeneratorEngine", label: "198. PDF帳票生成エンジン", type: "select", options: ["pdfmake:PDFMake", "puppeteer:Puppeteer"], group: "grid_dev" },
+            { id: "cfg_apiSecretKeyVersion", label: "199. APIシークレットキー世代", type: "number", val: 2, group: "grid_dev" },
+            { id: "cfg_systemVersionName", label: "200. ポータルシステムビルド", type: "text", val: "v2026.08.13-RELEASE", group: "grid_dev" }
+        ];
 
         // 200項目のUI要素生成 & リアルタイム保存イベントバインド
         function render200SettingsUI() {
@@ -955,12 +1141,12 @@
                         }).join('')}
                     </select>`;
                 } else if(def.type === 'color') {
-                    inputHtml = `<input type="color" id="${def.id}" class="panel-input" style="height:36px; cursor:pointer;" value="${def.val}" onchange="autoSaveSingleSetting('${def.id}')">`;
+                    inputHtml = `<input type="color" id="${def.id}" class="panel-input" style="height:28px; cursor:pointer;" value="${def.val}" onchange="autoSaveSingleSetting('${def.id}')">`;
                 } else {
                     inputHtml = `<input type="${def.type}" id="${def.id}" class="panel-input" value="${def.val||''}" onchange="autoSaveSingleSetting('${def.id}')">`;
                 }
 
-                div.innerHTML = `<label>${def.label}</label>${inputHtml}`;
+                div.innerHTML = `<label title="${def.label}">${def.label}</label>${inputHtml}`;
                 container.appendChild(div);
             });
         }
