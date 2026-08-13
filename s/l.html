@@ -2639,13 +2639,52 @@
                     init: () => loadBCPReports()
                 },
 
-                syllabus: {
+syllabus: {
                     t:'<i class="fa-solid fa-book-open"></i> シラバス・時間割管理システム',
                     c:`
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-                            <input type="text" id="syllabusSearchInput" class="panel-input" style="width:300px;" placeholder="講義名・教員名でリアルタイム検索" onkeyup="filterSyllabus()">
-                            <span style="font-size:0.85rem; color:#666;"><i class="fa-solid fa-circle-info"></i> 2026年度 秋学期 時間割</span>
+                            <input type="text" id="syllabusSearchInput" class="panel-input" style="width:350px;" placeholder="学部名・講義名・教員名でリアルタイム検索" onkeyup="filterSyllabus()">
+                            <span style="font-size:0.85rem; color:#666;"><i class="fa-solid fa-circle-info"></i> 2026年度 秋学期</span>
                         </div>
+                        
+                        <div style="margin-bottom:20px;">
+                            <h4 style="margin: 0 0 10px 0; border-bottom: 2px solid var(--primary-color); padding-bottom: 5px; color: var(--primary-color);">
+                                <i class="fa-solid fa-building-columns"></i> 学部からシラバスを探す
+                            </h4>
+                            <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap:10px; max-height: 250px; overflow-y: auto; padding: 5px;">
+                                ${[
+                                    {name: "医学部", desc: "臨床と研究を往還しながら次世代医療人を育成します。"},
+                                    {name: "法学部", desc: "法制度、公共政策、社会課題を多角的に学びます。"},
+                                    {name: "教育学部", desc: "教育実践と学習支援の理論を往還しながら学びます。"},
+                                    {name: "工学部", desc: "医工連携や社会実装も視野に入れた工学教育を行います。"},
+                                    {name: "農学部", desc: "生命・環境・食の未来を支える学びを展開します。"},
+                                    {name: "理学部", desc: "自然科学の基礎を探究し、研究力を育てます。"},
+                                    {name: "経済学部", desc: "経済、政策、地域社会の課題を多面的に考えます。"},
+                                    {name: "教養学部", desc: "分野横断の学びを通じて広い視野と分析力を培います。"},
+                                    {name: "薬学部", desc: "創薬、薬物治療、薬学研究の基盤を学びます。"},
+                                    {name: "情報学部", desc: "AI、データサイエンス、情報基盤を実践的に学びます。"},
+                                    {name: "国際学部", desc: "国際社会の多様な課題を言語と文化の両面から考えます。"},
+                                    {name: "海洋学部", desc: "海洋資源、海洋環境、海洋生命科学を探究します。"},
+                                    {name: "観光学部", desc: "観光政策、地域振興、サービスデザインを学びます。"},
+                                    {name: "健康学部", desc: "健康増進、予防、地域支援に関する実践知を身につけます。"},
+                                    {name: "文化社会学部", desc: "文化と社会の関係を読み解き、現代社会を考察します。"},
+                                    {name: "体育学部", desc: "スポーツ科学、身体教育、健康支援を総合的に学びます。"},
+                                    {name: "国際文化学部", desc: "多文化理解と国際協働の力を育てます。"},
+                                    {name: "文理融合学部", desc: "人文社会と自然科学を横断し、複合課題に挑みます。"},
+                                    {name: "経営学部", desc: "経営戦略、組織、会計、事業創造を実践的に学びます。"},
+                                    {name: "店魅偉屋学部", desc: "本学独自の学際テーマに取り組む特色ある学びの場です。"}
+                                ].map(f => `
+                                    <div class="syllabus-item" style="background:#f8f9fa; border:1px solid #ddd; border-radius:8px; padding:10px; cursor:pointer; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--accent-color)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)';" onmouseout="this.style.borderColor='#ddd'; this.style.boxShadow='none';" onclick="customAlert('『${f.name}』のシラバス一覧・科目検索システムを開きます。', 'シラバス検索', 'fa-book-open')">
+                                        <div style="font-weight:bold; color:var(--primary-color); font-size:0.95rem; margin-bottom:4px;">${f.name}</div>
+                                        <div style="font-size:0.75rem; color:#666; line-height:1.3;">${f.desc}</div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <h4 style="margin: 0 0 10px 0; border-bottom: 2px solid var(--primary-color); padding-bottom: 5px; color: var(--primary-color);">
+                            <i class="fa-solid fa-calendar-days"></i> 個人の登録時間割
+                        </h4>
                         <table class="timetable-table">
                             <thead>
                                 <tr><th>時限</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th></tr>
