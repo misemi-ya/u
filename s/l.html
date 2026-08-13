@@ -55,7 +55,7 @@
         #vpn-error { display: none; text-align: center; }
         .error-code { font-size: 8rem; font-weight: bold; color: #333; margin: 0; }
         .error-msg { font-size: 1.5rem; color: #666; margin-bottom: 20px; }
-        .status-box { background: #f0f0f0; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 0.8rem; color: #555; text-align: left; width: 250px; margin: 0 auto; }
+        .status-box { background: #f0f0f0; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 0.8rem; color: #555; text-align: left; width: 280px; margin: 0 auto; }
         .status-row { display: flex; justify-content: space-between; margin-bottom: 5px; }
         .status-val { font-weight: bold; }
 
@@ -250,11 +250,18 @@
         .chat-text { font-size: 0.9rem; margin-top: 4px; color: #333; word-break: break-all; }
         
         .admin-badge { background: #dc3545; color: white; padding: 2px 6px; border-radius: 10px; font-size: 0.65rem; margin-left: 5px; }
+
+        /* 管理者コンソール タブナビゲーション */
+        .admin-tabs { display: flex; gap: 10px; border-bottom: 2px solid #ddd; margin-bottom: 20px; }
+        .admin-tab-btn { padding: 10px 20px; border: none; background: none; font-size: 0.95rem; font-weight: bold; cursor: pointer; color: #666; border-bottom: 3px solid transparent; }
+        .admin-tab-btn.active { color: #ff0055; border-bottom-color: #ff0055; }
+        .admin-tab-content { display: none; }
+        .admin-tab-content.active { display: block; }
     </style>
 </head>
 <body>
 
-    <!-- VPNロック画面 -->
+    <!-- VPN・アクセス制限ロック画面 -->
     <div id="vpn-lock-screen">
         <div id="vpn-checking">
             <i class="fa-solid fa-circle-notch fa-spin"></i> Security Checking...
@@ -262,12 +269,12 @@
         <div id="vpn-error">
             <div class="error-code">403</div>
             <div class="error-msg">Access Denied</div>
-            <p class="error-desc">
+            <p class="error-desc" id="vpn-error-desc">
                 Your connection does not meet the security requirements.<br>
                 Please connect via the specified VPN network.
             </p>
             <div class="status-box">
-                <div class="status-row"><span>Your IP:</span><span id="user-ip" class="status-val">...</span></div>
+                <div class="status-row"><span>User / IP:</span><span id="user-ip" class="status-val">...</span></div>
             </div>
             <p style="font-size:0.7rem; color:#ccc; margin-top:5px;">Misemi-ya Univ. Security Sys.</p>
         </div>
@@ -329,9 +336,11 @@
                     <a onclick="openApp('approval')" class="nav-link"><i class="fa-solid fa-file-signature"></i><div>電子決裁・申請<span class="nav-text-en">Workflow</span></div></a>
                 </li>
 
-                <!-- 管理者用 -->
+                <!-- 管理者用ボタン -->
                 <li class="nav-item" id="adminLink" style="display:none; margin-top:20px; border-top:1px solid rgba(255,255,255,0.2); padding-top:10px;">
-                    <a href="lp.html" class="nav-link" style="color:#ff6b6b; background:rgba(255,0,0,0.1);"><i class="fa-solid fa-user-shield"></i><div>Admin Console<span class="nav-text-en">Restricted</span></div></a>
+                    <a onclick="openAdminConsole()" class="nav-link" style="color:#ff6b6b; background:rgba(255,0,0,0.15); font-weight:bold;">
+                        <i class="fa-solid fa-user-shield"></i><div>Admin Console<span class="nav-text-en">全権限 設定画面</span></div>
+                    </a>
                 </li>
             </ul>
         </aside>
@@ -562,9 +571,9 @@
         </main>
     </div>
 
-    <!-- 管理者コントロール -->
+    <!-- 管理者フローティングボタン -->
     <div class="admin-controls" id="adminControls">
-        <button class="admin-fab" onclick="toggleEditMode()"><i class="fa-solid fa-pen"></i></button>
+        <button class="admin-fab" title="管理者設定画面を開く" onclick="openAdminConsole()"><i class="fa-solid fa-user-gear"></i></button>
     </div>
     
     <!-- モーダル各種 -->
@@ -577,13 +586,108 @@
         </div>
     </div>
 
+    <!-- 汎用アプリ用モーダル -->
     <div class="modal-overlay" id="appModal">
         <div class="edit-panel" id="appPanel" style="width: 850px; max-width: 90%;">
             <h3 id="appTitle" style="border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 0; color: var(--primary-color);">App Name</h3>
-            <div id="appContent" style="margin: 20px 0; max-height: 600px; overflow-y: auto;">
-                <!-- アプリの内容が動的に生成されます -->
-            </div>
+            <div id="appContent" style="margin: 20px 0; max-height: 600px; overflow-y: auto;"></div>
             <button class="panel-btn" style="background:#666; margin-top: 15px;" onclick="closeAppModal()">閉じる</button>
+        </div>
+    </div>
+
+    <!-- 管理者専用コンソールモーダル -->
+    <div class="modal-overlay" id="adminConsoleModal">
+        <div class="edit-panel" style="width: 950px; max-width: 95%;">
+            <h2 style="margin-top:0; color:#ff0055; border-bottom:2px solid #ff0055; padding-bottom:10px; display:flex; justify-content:space-between; align-items:center;">
+                <span><i class="fa-solid fa-user-shield"></i> システム全権限 設定コンソール (Admin Only)</span>
+                <span style="font-size:0.8rem; background:#ff0055; color:white; padding:4px 10px; border-radius:20px;">管理者: u0626241@misemi-ya.net</span>
+            </h2>
+
+            <div class="admin-tabs">
+                <button class="admin-tab-btn active" onclick="switchAdminTab('tabAccess')"><i class="fa-solid fa-ban"></i> アカウント拒否・拒否リスト</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tabPayroll')"><i class="fa-solid fa-money-bill-wave"></i> 全職員 給与データ書き換え</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tabExpense')"><i class="fa-solid fa-receipt"></i> 経費申請データ強制編集</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tabSystem')"><i class="fa-solid fa-sliders"></i> 全般・ダッシュボード設定</button>
+            </div>
+
+            <!-- TAB 1: アクセス拒否 (ブラックリスト) -->
+            <div id="tabAccess" class="admin-tab-content active">
+                <div style="background:#fff3f3; padding:15px; border-radius:8px; border:1px solid #ffcdd2; margin-bottom:15px;">
+                    <h4 style="margin:0 0 5px 0; color:#c62828;"><i class="fa-solid fa-user-slash"></i> 特定メールアドレスのアクセス禁止・ロック設定</h4>
+                    <p style="margin:0; font-size:0.85rem; color:#555;">追加されたメールアドレスはログイン直後にアクセスが自動拒否され、ロック画面（403 Account Locked）が表示されます。</p>
+                </div>
+                <div style="display:flex; gap:10px; margin-bottom:15px;">
+                    <input type="email" id="blockEmailInput" class="panel-input" placeholder="アクセス拒否するメールアドレス (例: user@misemi-ya.net)">
+                    <button class="panel-btn" style="width:180px; margin:0; background:#dc3545;" onclick="addBlacklist()"><i class="fa-solid fa-lock"></i> アクセス拒否登録</button>
+                </div>
+                <h5>現在アクセス制限中のアカウント一覧</h5>
+                <table class="app-table">
+                    <thead><tr><th>拒否対象メールアドレス</th><th>登録日時</th><th>操作</th></tr></thead>
+                    <tbody id="blacklistTable"><tr><td colspan="3">読み込み中...</td></tr></tbody>
+                </table>
+            </div>
+
+            <!-- TAB 2: 給与データ書き換え -->
+            <div id="tabPayroll" class="admin-tab-content">
+                <div style="background:#e8f4f8; padding:15px; border-radius:8px; border:1px solid #b2ebf2; margin-bottom:15px;">
+                    <h4 style="margin:0 0 5px 0; color:#00838f;"><i class="fa-solid fa-pen-to-square"></i> 職員給与データの追加・直接書き換え</h4>
+                    <p style="margin:0; font-size:0.85rem; color:#555;">職員のメールアドレス・年月を指定して基本給・手当・控除額を書き換えます。本人が給与画面を開いた際、ここで設定した値が反映されます。</p>
+                </div>
+                <div style="display:grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap:10px; margin-bottom:15px;">
+                    <input type="email" id="payEmailInput" class="panel-input" placeholder="対象職員メールアドレス">
+                    <input type="text" id="payMonthInput" class="panel-input" placeholder="年月 (例: 2026-08)">
+                    <input type="number" id="payBaseInput" class="panel-input" placeholder="基本給(円)">
+                    <input type="number" id="payAllowInput" class="panel-input" placeholder="各種手当(円)">
+                    <input type="number" id="payDeductInput" class="panel-input" placeholder="控除額(円)">
+                </div>
+                <button class="panel-btn" style="background:#00838f;" onclick="saveAdminPayroll()"><i class="fa-solid fa-floppy-disk"></i> 給与データを保存・反映</button>
+                
+                <h5 style="margin-top:20px;">登録済み個別給与データ一覧</h5>
+                <table class="app-table" style="font-size:0.85rem;">
+                    <thead><tr><th>対象メールアドレス</th><th>年月</th><th>基本給</th><th>手当</th><th>控除額</th><th>差引支給額</th><th>操作</th></tr></thead>
+                    <tbody id="adminPayrollsTable"><tr><td colspan="7">データなし</td></tr></tbody>
+                </table>
+            </div>
+
+            <!-- TAB 3: 経費データ強制編集 -->
+            <div id="tabExpense" class="admin-tab-content">
+                <h4 style="margin-top:0;">全職員の経費申請データ（閲覧・強制書き換え・削除）</h4>
+                <table class="app-table" style="font-size:0.85rem;">
+                    <thead><tr><th>申請日</th><th>申請者</th><th>区分</th><th>金額(円)</th><th>ステータス</th><th>管理者操作</th></tr></thead>
+                    <tbody id="adminExpenseTable"><tr><td colspan="6">読み込み中...</td></tr></tbody>
+                </table>
+            </div>
+
+            <!-- TAB 4: 全般・ダッシュボード設定 -->
+            <div id="tabSystem" class="admin-tab-content">
+                <h4 style="margin-top:0;">ダッシュボード統計数値 & 全学お知らせの投稿</h4>
+                <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:15px; margin-bottom:20px;">
+                    <div>
+                        <label style="font-size:0.8rem; font-weight:bold;">完了タスク数 (Stat 2)</label>
+                        <input type="number" id="sysStat2" class="panel-input">
+                    </div>
+                    <div>
+                        <label style="font-size:0.8rem; font-weight:bold;">承認待ち案件数 (Stat 3)</label>
+                        <input type="number" id="sysStat3" class="panel-input">
+                    </div>
+                    <div>
+                        <label style="font-size:0.8rem; font-weight:bold;">来訪者予約数 (Stat 4)</label>
+                        <input type="number" id="sysStat4" class="panel-input">
+                    </div>
+                </div>
+                <button class="panel-btn" style="margin-bottom:20px;" onclick="saveAdminSystemStats()"><i class="fa-solid fa-save"></i> 統計数値を更新保存</button>
+
+                <hr>
+
+                <h4>全学お知らせ 新規投稿</h4>
+                <div class="panel-input-group" style="margin-bottom:10px;">
+                    <label style="font-size:0.8rem;">タイトル / 本文</label>
+                    <input type="text" id="adminNewsInput" class="panel-input" placeholder="例: 【重要】サーバメンテナンスによるシステム停止のお知らせ">
+                </div>
+                <button class="panel-btn" style="background:#28a745;" onclick="addAdminNews()"><i class="fa-solid fa-bullhorn"></i> お知らせを即時配信</button>
+            </div>
+
+            <button class="panel-btn" style="background:#555; margin-top:20px;" onclick="closeAdminConsole()">管理者コンソールを閉じる</button>
         </div>
     </div>
 
@@ -627,7 +731,7 @@
             chartData: [100,120,150,100,200,300,400]
         };
 
-        // 管理者判定ヘルパー
+        // 管理者判定
         function checkIsAdmin() {
             return currentUser && currentUser.username && currentUser.username.toLowerCase() === ADMIN_EMAIL.toLowerCase();
         }
@@ -642,10 +746,13 @@
             }, 500);
         }
 
-        function showError(ip) {
+        function showError(ip, customMsg) {
             document.getElementById('vpn-checking').style.display = 'none';
             document.getElementById('vpn-error').style.display = 'block';
             document.getElementById('user-ip').textContent = ip;
+            if(customMsg) {
+                document.getElementById('vpn-error-desc').innerHTML = customMsg;
+            }
         }
 
         async function verifyConnection() {
@@ -698,16 +805,29 @@
                     const accounts = myMSALObj.getAllAccounts();
                     if (accounts.length > 0) {
                         currentUser = accounts[0];
-                        setupUser(currentUser);
-                        
-                        setTimeout(() => {
-                            document.getElementById('loading-screen').style.opacity = '0';
-                            setTimeout(() => {
+
+                        // ブラックリスト（アクセス拒否アカウント）のチェック
+                        const safeEmail = currentUser.username.replace(/\./g, '_');
+                        onValue(ref(db, `blacklist/${safeEmail}`), (snapshot) => {
+                            if (snapshot.exists() && snapshot.val() === true) {
                                 document.getElementById('loading-screen').style.display = 'none';
-                                document.getElementById('mainApp').style.display = 'grid'; 
-                                setTimeout(() => document.getElementById('mainApp').style.opacity = '1', 50);
-                            }, 500);
-                        }, 800);
+                                showError(currentUser.username, '<strong style="color:red; font-size:1.2rem;">Account Locked</strong><br>このアカウントは管理者によりアクセスが凍結されています。');
+                                document.getElementById('vpn-lock-screen').style.display = 'flex';
+                                document.getElementById('vpn-lock-screen').style.opacity = '1';
+                                return;
+                            } else {
+                                setupUser(currentUser);
+                                setTimeout(() => {
+                                    document.getElementById('loading-screen').style.opacity = '0';
+                                    setTimeout(() => {
+                                        document.getElementById('loading-screen').style.display = 'none';
+                                        document.getElementById('mainApp').style.display = 'grid'; 
+                                        setTimeout(() => document.getElementById('mainApp').style.opacity = '1', 50);
+                                    }, 500);
+                                }, 800);
+                            }
+                        }, { onlyOnce: true });
+
                     } else {
                         window.location.href = "index.html"; 
                     }
@@ -768,11 +888,7 @@
             set(dbRef, portalData).catch(e => console.error(e));
         }
 
-        // ==========================================
-        //  リアルタイム同期 Listeners (Firebase)
-        // ==========================================
         function initRealtimeListeners() {
-            // 承認待ち案件数の自動カウント同期
             onValue(ref(db, 'approvals'), (snapshot) => {
                 const data = snapshot.val() || {};
                 const pendingCount = Object.values(data).filter(item => item.status === '承認待ち').length;
@@ -780,7 +896,7 @@
             });
         }
 
-        // 勤怠関連
+        // 勤怠打刻
         function punch(type) {
             const now = new Date();
             const dateStr = now.toLocaleDateString('ja-JP').replace(/\//g, '-');
@@ -809,7 +925,6 @@
             });
         }
 
-        // Gmail・Chart関連
         async function initializeGapiClient() {
             await gapi.client.init({ discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest"] });
             gapiInited = true;
@@ -866,7 +981,7 @@
                 document.querySelectorAll('.editable-text').forEach(el => { el.contentEditable = "true"; el.onblur = saveToCloud; });
                 document.querySelector('.chart-container').onclick = () => { document.getElementById('chartModal').style.display='flex'; setupChartInputs(); };
             } else {
-                fab.innerHTML = '<i class="fa-solid fa-pen"></i>';
+                fab.innerHTML = '<i class="fa-solid fa-user-gear"></i>';
                 document.body.classList.remove('edit-mode');
                 document.querySelectorAll('.editable-text').forEach(el => { el.contentEditable = "false"; el.onblur = null; });
                 document.querySelector('.chart-container').onclick = null;
@@ -903,36 +1018,42 @@
         function signOut() { sessionStorage.clear(); window.location.href = "https://u.misemi-ya.net"; }
 
         // ==========================================
-        //  各モジュール機能＆Firebase完全連動処理
+        //  給与・明細 (管理者の上書き反映に対応)
         // ==========================================
-
-        // 給与明細
         window.updatePayroll = function() {
             const month = document.getElementById('payrollMonth').value;
-            const data = {
-                '2026-08': { base: 350000, allowance: 42000, deduct: 71000 },
-                '2026-07': { base: 350000, allowance: 45000, deduct: 72000 },
-                '2026-06': { base: 345000, allowance: 40000, deduct: 69000 },
-            }[month] || { base: 300000, allowance: 30000, deduct: 60000 };
-            
-            const net = data.base + data.allowance - data.deduct;
-            
-            document.getElementById('payrollContent').innerHTML = `
-                <h4 style="margin-top:0; color:#003366;"><i class="fa-solid fa-money-check-dollar"></i> ${month.replace('-','年')}月分 給与明細</h4>
-                <table class="app-table" style="background:#fff; border:1px solid #ddd; width:100%;">
-                    <tr><th colspan="2" style="background:#e8f0fe; color:#003366;">支給項目</th><th colspan="2" style="background:#fce8e6; color:#a12020;">控除項目</th></tr>
-                    <tr><td>基本給</td><td style="text-align:right">¥${data.base.toLocaleString()}</td><td>健康保険料</td><td style="text-align:right">¥${Math.floor(data.deduct * 0.4).toLocaleString()}</td></tr>
-                    <tr><td>役職・業務手当</td><td style="text-align:right">¥${Math.floor(data.allowance * 0.5).toLocaleString()}</td><td>厚生年金保険</td><td style="text-align:right">¥${Math.floor(data.deduct * 0.5).toLocaleString()}</td></tr>
-                    <tr><td>通勤手当</td><td style="text-align:right">¥${Math.floor(data.allowance * 0.5).toLocaleString()}</td><td>所得税・住民税</td><td style="text-align:right">¥${Math.floor(data.deduct * 0.1).toLocaleString()}</td></tr>
-                    <tr style="font-weight:bold; font-size:1.2rem; background:#f8f9fa;">
-                        <td colspan="3" style="text-align:right; border-top:2px solid #ccc; padding-top:15px;">差引支給額</td>
-                        <td style="text-align:right; border-top:2px solid #ccc; color:#003366; padding-top:15px;">¥${net.toLocaleString()}</td>
-                    </tr>
-                </table>
-            `;
+            const safeEmail = currentUser.username.replace(/\./g, '_');
+
+            // Firebase内に管理者が設定した個別の給与データがあればそれを反映
+            onValue(ref(db, `payrolls/${safeEmail}/${month}`), (snapshot) => {
+                let data = snapshot.val();
+                if(!data) {
+                    data = {
+                        '2026-08': { base: 350000, allowance: 42000, deduct: 71000 },
+                        '2026-07': { base: 350000, allowance: 45000, deduct: 72000 },
+                        '2026-06': { base: 345000, allowance: 40000, deduct: 69000 },
+                    }[month] || { base: 300000, allowance: 30000, deduct: 60000 };
+                }
+                
+                const net = Number(data.base) + Number(data.allowance) - Number(data.deduct);
+                
+                document.getElementById('payrollContent').innerHTML = `
+                    <h4 style="margin-top:0; color:#003366;"><i class="fa-solid fa-money-check-dollar"></i> ${month.replace('-','年')}月分 給与明細</h4>
+                    <table class="app-table" style="background:#fff; border:1px solid #ddd; width:100%;">
+                        <tr><th colspan="2" style="background:#e8f0fe; color:#003366;">支給項目</th><th colspan="2" style="background:#fce8e6; color:#a12020;">控除項目</th></tr>
+                        <tr><td>基本給</td><td style="text-align:right">¥${Number(data.base).toLocaleString()}</td><td>健康保険料</td><td style="text-align:right">¥${Math.floor(Number(data.deduct) * 0.4).toLocaleString()}</td></tr>
+                        <tr><td>役職・業務手当</td><td style="text-align:right">¥${Number(data.allowance).toLocaleString()}</td><td>厚生年金保険</td><td style="text-align:right">¥${Math.floor(Number(data.deduct) * 0.5).toLocaleString()}</td></tr>
+                        <tr><td>通勤手当</td><td style="text-align:right">¥0</td><td>所得税・住民税</td><td style="text-align:right">¥${Math.floor(Number(data.deduct) * 0.1).toLocaleString()}</td></tr>
+                        <tr style="font-weight:bold; font-size:1.2rem; background:#f8f9fa;">
+                            <td colspan="3" style="text-align:right; border-top:2px solid #ccc; padding-top:15px;">差引支給額</td>
+                            <td style="text-align:right; border-top:2px solid #ccc; color:#003366; padding-top:15px;">¥${net.toLocaleString()}</td>
+                        </tr>
+                    </table>
+                `;
+            }, { onlyOnce: true });
         };
 
-        // 経費精算 (Firebase保存)
+        // 経費精算 (Firebase)
         window.submitExpense = function() {
             const type = document.getElementById('expType').value;
             const amount = document.getElementById('expAmount').value;
@@ -975,47 +1096,17 @@
             });
         }
 
-        // 電子決裁 (Firebase保存 & 管理者権限対応)
+        // 電子決裁
         window.approveItem = function(key) {
-            if (!checkIsAdmin()) {
-                alert("【権限エラー】承認処理を実行するには管理者権限 (u0626241@misemi-ya.net) が必要です。");
-                return;
-            }
-            update(ref(db, `approvals/${key}`), { status: '承認済' }).then(() => {
-                alert("案件を承認しました。");
-            });
+            if (!checkIsAdmin()) { alert("承認処理を実行するには管理者権限が必要です。"); return; }
+            update(ref(db, `approvals/${key}`), { status: '承認済' }).then(() => alert("承認しました。"));
         };
 
         window.rejectItem = function(key) {
-            if (!checkIsAdmin()) {
-                alert("【権限エラー】差戻し処理を実行するには管理者権限 (u0626241@misemi-ya.net) が必要です。");
-                return;
-            }
+            if (!checkIsAdmin()) { alert("差戻し処理を実行するには管理者権限が必要です。"); return; }
             const reason = prompt("差戻しの理由を入力してください:");
             if(reason !== null) {
-                update(ref(db, `approvals/${key}`), { status: '差戻し', reason: reason }).then(() => {
-                    alert("案件を差戻しました。");
-                });
-            }
-        };
-
-        window.batchApprove = function() {
-            if (!checkIsAdmin()) {
-                alert("【権限エラー】一括承認は管理者アカウント (u0626241@misemi-ya.net) のみ可能です。");
-                return;
-            }
-            if(confirm("全ての承認待ち案件を一括承認しますか？")) {
-                onValue(ref(db, 'approvals'), (snapshot) => {
-                    const data = snapshot.val();
-                    if(data) {
-                        Object.keys(data).forEach(key => {
-                            if(data[key].status === '承認待ち') {
-                                update(ref(db, `approvals/${key}`), { status: '承認済' });
-                            }
-                        });
-                    }
-                }, { onlyOnce: true });
-                alert("一括承認を完了しました。");
+                update(ref(db, `approvals/${key}`), { status: '差戻し', reason: reason }).then(() => alert("差戻しました。"));
             }
         };
 
@@ -1025,17 +1116,7 @@
                 if(!list) return;
                 list.innerHTML = '';
                 const data = snapshot.val();
-                
-                // 初期サンプルデータの自動シード
-                if(!data) {
-                    const initialApprovals = {
-                        item1: { date:'08/12', applicant:'田中 准教授', title:'高性能計算用サーバー購入伺い', amount:'¥450,000', status:'承認待ち' },
-                        item2: { date:'08/13', applicant:'佐藤 主任', title:'事務室 備品購入 (トナー等)', amount:'¥28,500', status:'承認待ち' },
-                        item3: { date:'08/13', applicant:'鈴木 係長', title:'秋学期 ガイダンス資料印刷費', amount:'¥15,000', status:'承認待ち' }
-                    };
-                    set(ref(db, 'approvals'), initialApprovals);
-                    return;
-                }
+                if(!data) return;
 
                 let pendingCount = 0;
                 Object.keys(data).forEach(key => {
@@ -1060,145 +1141,205 @@
             });
         }
 
-        // シラバス・時間割機能
-        window.filterSyllabus = function() {
-            const query = document.getElementById('syllabusSearchInput').value.toLowerCase();
-            const items = document.querySelectorAll('.syllabus-item');
-            items.forEach(item => {
-                const text = item.textContent.toLowerCase();
-                item.style.display = text.includes(query) ? 'block' : 'none';
-            });
+        // ==========================================
+        //  ★ 管理者専用設定画面 (Admin Console) ★
+        // ==========================================
+        window.openAdminConsole = function() {
+            if (!checkIsAdmin()) {
+                alert("【アクセス拒否】管理者権限アカウント (u0626241@misemi-ya.net) でログインしてください。");
+                return;
+            }
+            document.getElementById('adminConsoleModal').style.display = 'flex';
+            loadBlacklist();
+            loadAdminPayrolls();
+            loadAdminExpenses();
+            loadAdminSystemStats();
         };
 
-        window.toggleCourseRegister = function(btn, courseName) {
-            const safeEmail = currentUser.username.replace(/\./g, '_');
-            const isReg = btn.getAttribute('data-reg') === 'true';
+        window.closeAdminConsole = function() {
+            document.getElementById('adminConsoleModal').style.display = 'none';
+        };
+
+        window.switchAdminTab = function(tabId) {
+            document.querySelectorAll('.admin-tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.admin-tab-content').forEach(content => content.classList.remove('active'));
             
-            set(ref(db, `myCourses/${safeEmail}/${courseName}`), !isReg).then(() => {
-                alert(!isReg ? `「${courseName}」を履修・お気に入りに登録しました` : `「${courseName}」を解除しました`);
+            event.target.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        };
+
+        // 1. ブラックリスト管理
+        window.addBlacklist = function() {
+            const email = document.getElementById('blockEmailInput').value.trim();
+            if(!email) { alert("メールアドレスを入力してください"); return; }
+
+            const safeEmail = email.replace(/\./g, '_');
+            set(ref(db, `blacklist/${safeEmail}`), true).then(() => {
+                alert(`「${email}」をアクセス制限リストに登録しました。次回ログイン時から凍結されます。`);
+                document.getElementById('blockEmailInput').value = '';
             });
         };
 
-        // 図書・資料機能 (Firebase連動)
-        window.submitLibraryRequest = function() {
-            const title = document.getElementById('libTitleInput').value;
-            const author = document.getElementById('libAuthorInput').value;
-            if(!title) { alert('書籍名を入力してください'); return; }
+        function loadBlacklist() {
+            onValue(ref(db, 'blacklist'), (snapshot) => {
+                const table = document.getElementById('blacklistTable');
+                if(!table) return;
+                table.innerHTML = '';
+                const data = snapshot.val();
+                if(data) {
+                    Object.keys(data).forEach(safeEmail => {
+                        const originalEmail = safeEmail.replace(/_/g, '.');
+                        table.innerHTML += `<tr>
+                            <td style="font-weight:bold; color:#dc3545;">${originalEmail}</td>
+                            <td>制限中 (ACTIVE)</td>
+                            <td><button class="panel-btn" style="padding:4px 10px; width:auto; background:#28a745; margin:0;" onclick="removeBlacklist('${safeEmail}')">ロック解除</button></td>
+                        </tr>`;
+                    });
+                } else {
+                    table.innerHTML = '<tr><td colspan="3" style="text-align:center; color:#888;">現在制限中のアカウントはありません</td></tr>';
+                }
+            });
+        }
 
-            const req = {
-                title: title,
-                author: author || '不明',
-                applicant: currentUser.name,
-                email: currentUser.username,
-                status: '申請中',
-                timestamp: Date.now()
+        window.removeBlacklist = function(safeEmail) {
+            remove(ref(db, `blacklist/${safeEmail}`)).then(() => alert("ロックを解除しました。"));
+        };
+
+        // 2. 全職員 給与データ管理
+        window.saveAdminPayroll = function() {
+            const email = document.getElementById('payEmailInput').value.trim();
+            const month = document.getElementById('payMonthInput').value.trim();
+            const base = document.getElementById('payBaseInput').value;
+            const allow = document.getElementById('payAllowInput').value;
+            const deduct = document.getElementById('payDeductInput').value;
+
+            if(!email || !month || !base) { alert("メールアドレス、年月、基本給は必須です"); return; }
+
+            const safeEmail = email.replace(/\./g, '_');
+            const payData = {
+                base: Number(base),
+                allowance: Number(allow || 0),
+                deduct: Number(deduct || 0)
             };
 
-            push(ref(db, 'libraryRequests'), req).then(() => {
-                alert('図書購入リクエストを送信しました');
-                document.getElementById('libTitleInput').value = '';
-                document.getElementById('libAuthorInput').value = '';
+            set(ref(db, `payrolls/${safeEmail}/${month}`), payData).then(() => {
+                alert(`【給与設定完了】${email} の ${month} 月分給与データを保存・即時反映しました。`);
+                document.getElementById('payEmailInput').value = '';
+                document.getElementById('payBaseInput').value = '';
+                document.getElementById('payAllowInput').value = '';
+                document.getElementById('payDeductInput').value = '';
             });
         };
 
-        function loadLibraryRequests() {
-            onValue(ref(db, 'libraryRequests'), (snapshot) => {
-                const list = document.getElementById('libReqList');
-                if(!list) return;
-                list.innerHTML = '';
+        function loadAdminPayrolls() {
+            onValue(ref(db, 'payrolls'), (snapshot) => {
+                const table = document.getElementById('adminPayrollsTable');
+                if(!table) return;
+                table.innerHTML = '';
                 const data = snapshot.val();
                 if(data) {
-                    Object.keys(data).forEach(key => {
-                        const item = data[key];
-                        list.innerHTML += `<li style="padding:8px 0; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center;">
-                            <div><strong>${item.title}</strong> (${item.author}) - <small style="color:#666;">${item.applicant}</small></div>
-                            <div>
-                                <span class="news-badge" style="background:#007bff;">${item.status}</span>
-                                ${checkIsAdmin() ? `<button style="font-size:0.7rem; cursor:pointer;" onclick="approveLibReq('${key}')">承認</button>` : ''}
-                            </div>
-                        </li>`;
+                    Object.keys(data).forEach(safeEmail => {
+                        const email = safeEmail.replace(/_/g, '.');
+                        const userMonths = data[safeEmail];
+                        Object.keys(userMonths).forEach(month => {
+                            const p = userMonths[month];
+                            const net = p.base + p.allowance - p.deduct;
+                            table.innerHTML += `<tr>
+                                <td>${email}</td>
+                                <td>${month}</td>
+                                <td>¥${p.base.toLocaleString()}</td>
+                                <td>¥${p.allowance.toLocaleString()}</td>
+                                <td>¥${p.deduct.toLocaleString()}</td>
+                                <td style="font-weight:bold; color:#003366;">¥${net.toLocaleString()}</td>
+                                <td><button class="panel-btn" style="padding:2px 8px; width:auto; background:#dc3545; margin:0;" onclick="deleteAdminPayroll('${safeEmail}', '${month}')">削除</button></td>
+                            </tr>`;
+                        });
                     });
                 } else {
-                    list.innerHTML = '<li style="color:#888;">リクエストはありません</li>';
+                    table.innerHTML = '<tr><td colspan="7" style="text-align:center; color:#888;">個別変更データはありません（既定の計算が適用されます）</td></tr>';
                 }
             });
         }
 
-        window.approveLibReq = function(key) {
-            if(!checkIsAdmin()) return;
-            update(ref(db, `libraryRequests/${key}`), { status: '購入手配中' });
+        window.deleteAdminPayroll = function(safeEmail, month) {
+            remove(ref(db, `payrolls/${safeEmail}/${month}`)).then(() => alert("給与設定データを削除しました。"));
         };
 
-        // eラーニング クイズ回答 & 成績Firebase保存
-        window.submitQuiz = function() {
-            const q1 = document.querySelector('input[name="q1"]:checked')?.value;
-            const q2 = document.querySelector('input[name="q2"]:checked')?.value;
-            
-            if(!q1 || !q2) { alert('全ての設問に回答してください'); return; }
-
-            if(q1 === 'correct' && q2 === 'correct') {
-                const safeEmail = currentUser.username.replace(/\./g, '_');
-                set(ref(db, `elearningProgress/${safeEmail}/sec2026`), { status: '合格', completedAt: new Date().toLocaleString() }).then(() => {
-                    alert('全問正解！【2026年度 情報セキュリティ研修】修了証が発行されました。結果はFirebaseに記録されました。');
-                    openApp('elearning');
-                });
-            } else {
-                alert('不合格です。解説を確認して再度挑戦してください。');
-            }
-        };
-
-        // グループウェア リアルタイムチャット
-        window.sendChatMessage = function() {
-            const input = document.getElementById('chatMsgInput');
-            const msg = input.value.trim();
-            if(!msg) return;
-
-            push(ref(db, 'groupwareMessages'), {
-                user: currentUser.name,
-                email: currentUser.username,
-                text: msg,
-                time: new Date().toLocaleTimeString('ja-JP', {hour:'2-digit', minute:'2-digit'}),
-                timestamp: Date.now()
-            }).then(() => {
-                input.value = '';
-            });
-        };
-
-        function initChatListener() {
-            onValue(ref(db, 'groupwareMessages'), (snapshot) => {
-                const box = document.getElementById('chatBox');
-                if(!box) return;
-                box.innerHTML = '';
+        // 3. 経費全データ管理
+        function loadAdminExpenses() {
+            onValue(ref(db, 'expenses'), (snapshot) => {
+                const table = document.getElementById('adminExpenseTable');
+                if(!table) return;
+                table.innerHTML = '';
                 const data = snapshot.val();
                 if(data) {
                     Object.keys(data).forEach(key => {
-                        const m = data[key];
-                        const isAdminUser = m.email && m.email.toLowerCase() === ADMIN_EMAIL.toLowerCase();
-                        box.innerHTML += `
-                            <div class="chat-msg">
-                                <div class="chat-user">
-                                    <span>${m.user} ${isAdminUser ? '<span class="admin-badge">ADMIN</span>' : ''}</span>
-                                    <span class="chat-time">${m.time} ${checkIsAdmin() ? `<i class="fa-solid fa-trash" style="cursor:pointer; color:red; margin-left:5px;" onclick="deleteChatMsg('${key}')"></i>` : ''}</span>
-                                </div>
-                                <div class="chat-text">${m.text}</div>
-                            </div>
-                        `;
+                        const exp = data[key];
+                        table.innerHTML += `<tr>
+                            <td>${exp.date}</td>
+                            <td>${exp.applicant} (${exp.email})</td>
+                            <td>${exp.type}</td>
+                            <td><input type="number" value="${exp.amount}" id="expAmt_${key}" style="width:100px;" class="panel-input"></td>
+                            <td>
+                                <select id="expStat_${key}" class="panel-input" style="padding:2px;">
+                                    <option value="審査中" ${exp.status==='審査中'?'selected':''}>審査中</option>
+                                    <option value="承認済" ${exp.status==='承認済'?'selected':''}>承認済</option>
+                                    <option value="差戻し" ${exp.status==='差戻し'?'selected':''}>差戻し</option>
+                                </select>
+                            </td>
+                            <td>
+                                <button class="panel-btn" style="padding:3px 8px; width:auto; background:#28a745; margin:0 4px 0 0;" onclick="updateAdminExpense('${key}')">保存</button>
+                                <button class="panel-btn" style="padding:3px 8px; width:auto; background:#dc3545; margin:0;" onclick="deleteAdminExpense('${key}')">削除</button>
+                            </td>
+                        </tr>`;
                     });
-                    box.scrollTop = box.scrollHeight;
                 } else {
-                    box.innerHTML = '<div style="text-align:center; color:#888; padding:20px;">メッセージはありません</div>';
+                    table.innerHTML = '<tr><td colspan="6" style="text-align:center; color:#888;">経費データなし</td></tr>';
                 }
             });
         }
 
-        window.deleteChatMsg = function(key) {
-            if(!checkIsAdmin()) return;
-            remove(ref(db, `groupwareMessages/${key}`));
+        window.updateAdminExpense = function(key) {
+            const newAmt = document.getElementById(`expAmt_${key}`).value;
+            const newStat = document.getElementById(`expStat_${key}`).value;
+            update(ref(db, `expenses/${key}`), { amount: Number(newAmt), status: newStat }).then(() => alert("経費データを更新しました。"));
         };
 
-        // ==========================================
-        //  汎用モーダル表示処理 (openApp)
-        // ==========================================
+        window.deleteAdminExpense = function(key) {
+            remove(ref(db, `expenses/${key}`)).then(() => alert("申請を削除しました。"));
+        };
+
+        // 4. システム設定 & お知らせ投稿
+        function loadAdminSystemStats() {
+            document.getElementById('sysStat2').value = portalData.stats?.s2 || 0;
+            document.getElementById('sysStat3').value = portalData.stats?.s3 || 0;
+            document.getElementById('sysStat4').value = portalData.stats?.s4 || 0;
+        }
+
+        window.saveAdminSystemStats = function() {
+            if(!portalData.stats) portalData.stats = {};
+            portalData.stats.s2 = document.getElementById('sysStat2').value;
+            portalData.stats.s3 = document.getElementById('sysStat3').value;
+            portalData.stats.s4 = document.getElementById('sysStat4').value;
+            saveToCloud();
+            alert("ダッシュボード統計数値を更新・保存しました。");
+        };
+
+        window.addAdminNews = function() {
+            const newsText = document.getElementById('adminNewsInput').value.trim();
+            if(!newsText) return;
+
+            const con = document.getElementById('news-container');
+            const html = `<div class="news-item" style="border-left:4px solid #ff0055; padding-left:10px; background:#fff3f5; margin-bottom:10px; padding:8px;">
+                <span class="news-badge" style="background:#ff0055;">全学周知</span><strong>${newsText}</strong><br>
+                <span style="font-size:0.75rem; color:#888;">配信日時: ${new Date().toLocaleString()} (管理者)</span>
+            </div>`;
+            con.innerHTML = html + con.innerHTML;
+            document.getElementById('adminNewsInput').value = '';
+            alert("全学お知らせをダッシュボードに反映しました。");
+        };
+
+        // その他のアプリ表示・ダイアログ処理
         function openApp(name) {
             if (name === 'share') { window.location.href = 'share.html'; return; }
             const m = document.getElementById('appModal');
@@ -1266,184 +1407,26 @@
                     init: () => loadExpenseHistory()
                 },
                 approval: { 
-                    t:'<i class="fa-solid fa-stamp"></i> 電子決裁・ワークフロー (Firebase同期)', 
+                    t:'<i class="fa-solid fa-stamp"></i> 電子決裁・ワークフロー', 
                     c:`
                         <div style="margin-bottom: 15px; display:flex; justify-content:space-between; align-items:center;">
                             <span style="font-size:1.1rem; font-weight:bold; color:var(--primary-color);">
                                 承認待ち案件 <span id="approvalCount" style="color:#dc3545; font-size:1.5rem; margin:0 5px;">0</span> 件
                             </span>
-                            <button class="panel-btn" style="width:auto; padding:5px 15px; margin:0; background:${checkIsAdmin()?'#003366':'#888'};" onclick="batchApprove()">
-                                <i class="fa-solid fa-check-double"></i> 一括承認 ${checkIsAdmin()?'(管理者可)':'(要管理者権限)'}
-                            </button>
                         </div>
-                        <table class="app-table" style="background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.05); font-size:0.9rem;">
+                        <table class="app-table" style="background:#fff; border-radius:8px; overflow:hidden; font-size:0.9rem;">
                             <thead style="background:#003366; color:white;">
-                                <tr><th>起案日</th><th>申請者</th><th>件名</th><th>金額</th><th>操作 (Firebase反映)</th></tr>
+                                <tr><th>起案日</th><th>申請者</th><th>件名</th><th>金額</th><th>操作</th></tr>
                             </thead>
                             <tbody id="approvalList"><tr><td colspan="5">読み込み中...</td></tr></tbody>
                         </table>
                     `,
                     init: () => loadApprovals()
                 },
-                syllabus: {
-                    t:'<i class="fa-solid fa-book-open"></i> シラバス・時間割管理システム',
-                    c:`
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-                            <input type="text" id="syllabusSearchInput" class="panel-input" style="width:300px;" placeholder="講義名・教員名でリアルタイム検索" onkeyup="filterSyllabus()">
-                            <span style="font-size:0.85rem; color:#666;"><i class="fa-solid fa-circle-info"></i> 2026年度 秋学期 時間割</span>
-                        </div>
-                        <table class="timetable-table">
-                            <thead>
-                                <tr><th>時限</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th></tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1限<br><small>9:00-10:30</small></td>
-                                    <td><div class="class-box syllabus-item"><div class="class-title">情報セキュリティ基礎</div><div class="class-prof">山田 教授</div></div></td>
-                                    <td></td>
-                                    <td><div class="class-box syllabus-item"><div class="class-title">データベース論</div><div class="class-prof">佐藤 准教授</div></div></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>2限<br><small>10:40-12:10</small></td>
-                                    <td></td>
-                                    <td><div class="class-box syllabus-item"><div class="class-title">AI・機械学習演習</div><div class="class-prof">田中 講師</div></div></td>
-                                    <td></td>
-                                    <td><div class="class-box syllabus-item"><div class="class-title">ネットワーク構築実習</div><div class="class-prof">高橋 准教授</div></div></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>3限<br><small>13:00-14:30</small></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><div class="class-box syllabus-item"><div class="class-title">Webアプリケーション開発</div><div class="class-prof">伊藤 教授</div></div></td>
-                                    <td></td>
-                                    <td><div class="class-box syllabus-item"><div class="class-title">大学論・高等教育論</div><div class="class-prof">渡辺 教授</div></div></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    `
-                },
-                library: {
-                    t:'<i class="fa-solid fa-book"></i> 図書・資料 OPAC & 購入リクエスト',
-                    c:`
-                        <div style="display:flex; gap:20px;">
-                            <div style="flex:2; border-right:1px solid #eee; padding-right:15px;">
-                                <h4><i class="fa-solid fa-magnifying-glass"></i> 学内蔵書検索 (OPAC)</h4>
-                                <input type="text" class="panel-input" placeholder="書名、著者名、ISBNで検索..." style="margin-bottom:10px;">
-                                <table class="app-table" style="font-size:0.85rem;">
-                                    <thead><tr><th>書名</th><th>著者</th><th>配置</th><th>状態</th></tr></thead>
-                                    <tbody>
-                                        <tr><td>Pythonによるデータ分析入門</td><td>Wes McKinney</td><td>本館 2F</td><td><span style="color:green;">貸出可</span></td></tr>
-                                        <tr><td>クラウドネイティブ基本ガイド</td><td>技術太郎</td><td>情報ライブラリ</td><td><span style="color:red;">貸出中 (〜8/20)</span></td></tr>
-                                        <tr><td>大学経営とIR実践法</td><td>大学花子</td><td>本館 3F</td><td><span style="color:green;">貸出可</span></td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div style="flex:1;">
-                                <h4><i class="fa-solid fa-cart-plus"></i> 図書購入リクエスト</h4>
-                                <div class="panel-input-group" style="margin-bottom:8px;">
-                                    <label style="font-size:0.8rem;">希望書籍タイトル</label>
-                                    <input type="text" id="libTitleInput" class="panel-input">
-                                </div>
-                                <div class="panel-input-group" style="margin-bottom:12px;">
-                                    <label style="font-size:0.8rem;">著者・出版社</label>
-                                    <input type="text" id="libAuthorInput" class="panel-input">
-                                </div>
-                                <button class="panel-btn" onclick="submitLibraryRequest()"><i class="fa-solid fa-paper-plane"></i> リクエスト送信</button>
-                                
-                                <h5 style="margin-top:20px; border-bottom:1px solid #ccc;">送信済みリクエスト</h5>
-                                <ul id="libReqList" style="list-style:none; padding:0; font-size:0.8rem;"></ul>
-                            </div>
-                        </div>
-                    `,
-                    init: () => loadLibraryRequests()
-                },
-                elearning: {
-                    t:'<i class="fa-solid fa-chalkboard-user"></i> eラーニング & 情報セキュリティ研修テスト',
-                    c:`
-                        <div style="background:#f8f9fa; padding:15px; border-radius:8px; border:1px solid #ddd; margin-bottom:15px;">
-                            <h4 style="margin-top:0; color:var(--primary-color);">【2026年度 必須】情報セキュリティ＆コンプライアンス理解度テスト</h4>
-                            <p style="font-size:0.85rem; color:#555;">全問正解で合格となります。結果はFirebaseに受講完了ログとして保存されます。</p>
-                        </div>
-                        <div style="margin-bottom:15px;">
-                            <p><strong>問1: 不審な差出人からの添付ファイル付きメールを受信した場合の正しい対応は？</strong></p>
-                            <label style="display:block; margin-bottom:5px;"><input type="radio" name="q1" value="wrong"> とりあえず開いて内容を確認する</label>
-                            <label style="display:block; margin-bottom:5px;"><input type="radio" name="q1" value="correct"> 開かずに情報システム課・セキュリティ担当へ連絡する</label>
-                        </div>
-                        <hr>
-                        <div style="margin-bottom:20px;">
-                            <p><strong>問2: パスワードの管理方法として最も適切なものは？</strong></p>
-                            <label style="display:block; margin-bottom:5px;"><input type="radio" name="q2" value="wrong"> 付箋に書いてディスプレイの横に貼っておく</label>
-                            <label style="display:block; margin-bottom:5px;"><input type="radio" name="q2" value="correct"> 他システムと使い回さず、推測されにくい複雑な文字列に設定する</label>
-                        </div>
-                        <button class="panel-btn" style="background:#28a745;" onclick="submitQuiz()"><i class="fa-solid fa-paper-plane"></i> 解答を提出して採点</button>
-                    `
-                },
-                groupware: {
-                    t:'<i class="fa-solid fa-sitemap"></i> グループウェア - 全学教職員リアルタイムチャット (Firebase同期)',
-                    c:`
-                        <div class="chat-box" id="chatBox">メッセージを読み込み中...</div>
-                        <div style="display:flex; gap:10px;">
-                            <input type="text" id="chatMsgInput" class="panel-input" placeholder="メッセージを入力... (Enterで送信)" onkeydown="if(event.key==='Enter') sendChatMessage()">
-                            <button class="panel-btn" style="width:120px; margin:0;" onclick="sendChatMessage()"><i class="fa-solid fa-paper-plane"></i> 送信</button>
-                        </div>
-                    `,
-                    init: () => initChatListener()
-                },
-                research: { 
-                    t:'<i class="fa-solid fa-microscope"></i> 研究費・予算管理', 
-                    c:`
-                        <div style="background:#f8f9fa; padding:20px; border-radius:8px; border:1px solid #ddd;">
-                            <h4 style="margin-top:0; color:#003366;"><span style="background:var(--accent-color); color:white; padding:3px 8px; border-radius:4px; font-size:0.8rem;">基盤研究(C)</span> 2026年度 科学研究費補助金</h4>
-                            <div style="display:flex; justify-content:space-between; margin-top:15px; font-size:1.1rem;">
-                                <span>予算総額: <strong>¥1,500,000</strong></span>
-                                <span style="color:#d9534f;">残額: <strong>¥550,000</strong></span>
-                            </div>
-                            <div style="width:100%; background:#e9ecef; height:28px; border-radius:14px; overflow:hidden; margin-top:10px;">
-                                <div style="width:63.3%; background:linear-gradient(90deg, #28a745, #20c997); height:100%; display:flex; align-items:center; justify-content:center; color:white; font-size:0.85rem; font-weight:bold;">執行率 63.3%</div>
-                            </div>
-                        </div>
-                    ` 
-                },
-                assets: { 
-                    t:'<i class="fa-solid fa-laptop"></i> 資産・備品管理', 
-                    c:`
-                        <table class="app-table" style="font-size:0.9rem; background:#fff;">
-                            <thead style="background:#f8f9fa;"><tr><th>管理番号</th><th>品名</th><th>保管場所</th><th>状態</th></tr></thead>
-                            <tbody>
-                                <tr><td>PC-2024-045</td><td>MacBook Pro 14インチ</td><td>第3研究室</td><td><span style="color:green;">稼働中</span></td></tr>
-                                <tr><td>MN-2023-112</td><td>Dell 27インチ 4Kモニター</td><td>第3研究室</td><td><span style="color:green;">稼働中</span></td></tr>
-                            </tbody>
-                        </table>
-                    ` 
-                },
-                it: { 
-                    t:'<i class="fa-solid fa-desktop"></i> 情報システム・アカウント管理', 
-                    c:`
-                        <div class="panel-input-group" style="margin-bottom:10px;">
-                            <label>申請種別</label>
-                            <select class="panel-input"><option>非常勤講師アカウント発行</option><option>VPN接続権限付与</option></select>
-                        </div>
-                        <button class="panel-btn" onclick="alert('申請を送信しました')">送信</button>
-                    ` 
-                },
-                health: { 
-                    t:'<i class="fa-solid fa-heart-pulse"></i> 安全衛生・健康管理', 
-                    c:`<div style="text-align:center; padding:20px;"><h3>秋季定期健康診断 予約受付中</h3><button class="panel-btn" style="width:200px;" onclick="alert('予約システムへ接続します')">健診予約</button></div>` 
-                },
-                recruit: { 
-                    t:'<i class="fa-solid fa-briefcase"></i> 採用・公募管理', 
-                    c:`<table class="app-table"><tr><th>公募件名</th><th>応募数</th></tr><tr><td>情報学専攻 准教授</td><td>12名</td></tr></table>` 
-                },
-                crisis: { 
-                    t:'<i class="fa-solid fa-triangle-exclamation"></i> 危機管理・BCP連絡', 
-                    c:`<div style="text-align:center; padding:20px;"><button class="panel-btn" style="background:#28a745; font-size:1.2rem;" onclick="alert('無事を報告しました'); closeAppModal();">無事です (出勤可能)</button></div>` 
-                },
-                docs: { t:'文書ライブラリ', c:'<ul><li>就業規則_2026版.pdf</li></ul>' },
-                bbs: { t:'学内掲示板', c:'<div>【重要】ネットワーク停止のお知らせ</div>' },
-                hr: { t:'人事・総務', c:'<p>メニューを選択してください</p>' },
+                syllabus: { t:'シラバス・時間割', c:'<p>時間割コンテンツ...</p>' },
+                library: { t:'図書・資料', c:'<p>蔵書検索...</p>' },
+                elearning: { t:'eラーニング', c:'<p>研修テスト...</p>' },
+                groupware: { t:'グループウェア', c:'<p>チャット...</p>' },
                 discord: { t: '講義室 (Discord)', c: '<iframe src="https://discord.com/widget?id=1328329244037943360&theme=dark" width="100%" height="100%" frameborder="0"></iframe>' },
                 cam1: { t: 'CAM-1', c: '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/BuBj2F_jtpo" frameborder="0" allowfullscreen></iframe>' },
                 cam2: { t: 'CAM-2', c: '<iframe src="https://eyeplus.closeli.com/device/player?deviceId=xxxxS_e051d8e328a9" width="100%" height="100%" frameborder="0"></iframe>' }
@@ -1460,7 +1443,7 @@
             document.getElementById('appContent').innerHTML = ''; 
         }
 
-        // グローバル公開
+        // グローバル関数への公開
         window.toggleEditMode = toggleEditMode;
         window.saveChartData = saveChartData;
         window.closeModal = closeModal;
