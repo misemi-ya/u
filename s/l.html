@@ -49,22 +49,22 @@
         body.dark-mode .app-table th { background: #2d3748; color: #e2e8f0; }
         body.dark-mode .app-table td { background: #1a202c; color: #e2e8f0; border-color: #4a5568; }
 
-/* 画面全体のスクロールをロック */
+        /* 画面全体のスクロールをロック */
         body {
             margin: 0; padding: 0;
             font-family: 'Roboto', 'Noto Serif JP', sans-serif;
             background: var(--bg-gradient);
-            height: 100vh; /* 変更 */
+            height: 100vh;
             color: var(--text-main);
-            overflow: hidden; /* 追加: 画面全体はスクロールさせない */
+            overflow: hidden;
             transition: font-size 0.3s ease, background 0.5s ease;
         }
 
         /* 画面をサイドバーとメインコンテンツに分割 */
         .app-container {
             display: grid; grid-template-columns: 280px 1fr;
-            height: 100vh; /* 追加 */
-            overflow: hidden; /* 追加 */
+            height: 100vh;
+            overflow: hidden;
             opacity: 0; transition: opacity 0.8s ease, grid-template-columns 0.3s ease;
         }
 
@@ -73,9 +73,15 @@
             background: var(--primary-color); color: white;
             padding: 2rem 1.5rem; display: flex; flex-direction: column;
             box-shadow: 4px 0 20px rgba(0,0,0,0.2); z-index: 10;
-            overflow-y: auto; height: 100vh; position: sticky; top: 0;
-            transition: background 0.5s ease;
+            overflow-y: auto; overflow-x: hidden; height: 100vh; position: sticky; top: 0;
+            transition: all 0.3s ease;
         }
+
+        /* サイドバー折りたたみ時 */
+        .sidebar.collapsed { width: 80px !important; padding: 2rem 0.5rem; align-items: center; }
+        .sidebar.collapsed .brand-text, .sidebar.collapsed .brand-sub, .sidebar.collapsed .nav-text-en, .sidebar.collapsed .nav-category, .sidebar.collapsed .nav-link div { display: none; }
+        .sidebar.collapsed .nav-link { padding: 10px; justify-content: center; }
+        .sidebar.collapsed .brand img { width: 50px; }
 
         /* サイドバーの文字がくっつくのを防止し、縦に並べる */
         .nav-link div {
@@ -87,9 +93,9 @@
         /* メインコンテンツの個別スクロール */
         .main-content { 
             padding: 2rem 3rem; 
-            overflow-y: auto; /* ここでメイン画面だけをスクロールさせる */
-            height: 100vh; /* 追加 */
-            box-sizing: border-box; /* 追加 */
+            overflow-y: auto;
+            height: 100vh;
+            box-sizing: border-box;
         }
 
         .en-sub { display: block; font-size: 0.6em; color: var(--text-sub); font-family: 'Roboto', sans-serif; font-weight: 300; letter-spacing: 1px; margin-top: 2px; text-transform: uppercase; }
@@ -112,16 +118,6 @@
         .status-box { background: #f0f0f0; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 0.8rem; color: #555; text-align: left; width: 320px; margin: 0 auto; }
         .status-row { display: flex; justify-content: space-between; margin-bottom: 5px; }
 
-        /* レイアウト＆サイドバーアニメーション */
-        .app-container { display: grid; grid-template-columns: 280px 1fr; min-height: 100vh; opacity: 0; transition: opacity 0.8s ease, grid-template-columns 0.3s ease; }
-        .sidebar { background: var(--primary-color); color: white; padding: 2rem 1.5rem; display: flex; flex-direction: column; box-shadow: 4px 0 20px rgba(0,0,0,0.2); z-index: 10; overflow-y: auto; overflow-x: hidden; height: 100vh; position: sticky; top: 0; transition: all 0.3s ease; }
-        
-        /* サイドバー折りたたみ時 */
-        .sidebar.collapsed { width: 80px !important; padding: 2rem 0.5rem; align-items: center; }
-        .sidebar.collapsed .brand-text, .sidebar.collapsed .brand-sub, .sidebar.collapsed .nav-text-en, .sidebar.collapsed .nav-category, .sidebar.collapsed .nav-link div { display: none; }
-        .sidebar.collapsed .nav-link { padding: 10px; justify-content: center; }
-        .sidebar.collapsed .brand img { width: 50px; }
-
         .brand { display: flex; flex-direction: column; align-items: center; margin-bottom: 2rem; text-align: center; }
         .brand img { width: 80px; height: auto; margin-bottom: 10px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); transition: width 0.3s; }
         .brand-text { font-size: 1.2rem; font-weight: 700; letter-spacing: 1px; }
@@ -133,8 +129,6 @@
         .nav-link { display: flex; align-items: center; gap: 15px; padding: 10px 15px; text-decoration: none; color: rgba(255,255,255,0.8); border-radius: 8px; transition: all 0.2s ease; font-size: 0.9rem; cursor: pointer; }
         .nav-link:hover, .nav-link.active { background: rgba(255,255,255,0.15); color: #fff; transform: translateX(3px); }
 
-        /* メインコンテンツ */
-        .main-content { padding: 2rem 3rem; overflow-y: auto; }
         .header-area { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
         .greeting h1 { margin: 0; font-size: 2rem; color: var(--primary-color); transition: color 0.5s; }
         .user-profile { display: flex; align-items: center; gap: 15px; background: var(--glass-bg); padding: 8px 20px; border-radius: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid rgba(255,255,255,0.8); }
@@ -148,14 +142,17 @@
         .attendance-section { grid-column: span 4; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border-left: 5px solid var(--primary-color); transition: border-color 0.5s, grid-column 0.4s; }
         .time-box { display: flex; align-items: baseline; gap: 15px; }
         .live-time { font-size: 2.5rem; font-weight: 700; color: #333; font-family: 'Roboto', monospace; }
+        .live-date { font-size: 1rem; color: var(--text-sub); }
         .btn-attend, .btn-leave { padding: 10px 30px; border-radius: var(--btn-radius); font-weight: bold; border: none; cursor: pointer; transition: all 0.3s; }
         .btn-attend { background: #28a745; color: white; box-shadow: 0 4px 10px rgba(40,167,69,0.3); }
         .btn-leave { background: #dc3545; color: white; box-shadow: 0 4px 10px rgba(220,53,69,0.3); }
+        .attendance-log { margin-top: 15px; padding-top: 10px; border-top: 1px dashed #eee; font-size: 0.9rem; color: #666; }
         .log-tag { display: inline-block; background: #f0f2f5; padding: 2px 8px; border-radius: 4px; margin-right: 10px; font-size: 0.8rem; border: 1px solid #ddd; }
 
         .stat-card { grid-column: span 1; display: flex; align-items: center; gap: 15px; height: 100px; }
         .stat-icon-box { width: 50px; height: 50px; background: rgba(0, 51, 102, 0.1); border-radius: 12px; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; color: var(--primary-color); transition: color 0.5s; }
         .stat-value { font-size: 2rem; font-weight: 700; line-height: 1; color: var(--primary-color); transition: color 0.5s; }
+        .stat-label { font-size: 0.85rem; color: var(--text-sub); }
 
         .services-section { grid-column: span 4; transition: grid-column 0.4s; }
         .section-title { font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem; color: var(--text-main); border-left: 4px solid var(--accent-color); padding-left: 10px; transition: border-color 0.5s; }
@@ -272,10 +269,11 @@
                 <li class="nav-item"><a onclick="openApp('hr')" class="nav-link"><i class="fa-solid fa-user-tie"></i><div>人事・総務<span class="nav-text-en">HR & Admin</span></div></a></li>
                 <li class="nav-item"><a href="students.html" class="nav-link"><i class="fa-solid fa-graduation-cap"></i><div>教務・学生支援<span class="nav-text-en">Academic</span></div></a></li>
                 <li class="nav-item"><a onclick="openApp('approval')" class="nav-link"><i class="fa-solid fa-file-signature"></i><div>電子決裁・申請<span class="nav-text-en">Workflow</span></div></a></li>
+            </ul>
         </aside>
 
         <main class="main-content">
-<div class="header-area">
+            <div class="header-area">
                 <div style="display:flex; align-items:center; gap:20px;">
                     <button onclick="toggleSidebar()" style="background:none; border:none; font-size:1.5rem; color:var(--primary-color); cursor:pointer; transition:transform 0.2s;"><i class="fa-solid fa-bars"></i></button>
                     <div class="greeting">
@@ -286,8 +284,7 @@
                 
                 <!-- プロフィールと管理者ボタンを並べるエリア -->
                 <div style="display:flex; align-items:center; gap:15px;">
-                    
-                    <!-- ★ ここに移動・デザインを一新しました ★ -->
+                    <!-- 管理者ボタン -->
                     <button id="adminLink" onclick="openAdminConsole()" style="display:none; background:#ff0055; color:white; border:none; padding:10px 20px; border-radius:30px; font-weight:bold; font-size:0.9rem; cursor:pointer; box-shadow:0 4px 10px rgba(255,0,85,0.3); transition:all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';" onmouseout="this.style.transform='none';">
                         <i class="fa-solid fa-user-shield"></i> Admin Console
                     </button>
@@ -428,7 +425,7 @@
             <div class="admin-tabs">
                 <button class="admin-tab-btn active" onclick="switchAdminTab('tabSecurity', this)"><i class="fa-solid fa-shield-halved"></i> セキュリティ</button>
                 <button class="admin-tab-btn" onclick="switchAdminTab('tabHR', this)"><i class="fa-solid fa-user-clock"></i> 勤務・勤怠</button>
-                <button class="admin-tab-btn" onclick="switchAdminTab('tabAllRequests', this)"><i class="fa-solid fa-layer-group"></i> 申請統合管理・学部設定</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tabAllRequests', this)"><i class="fa-solid fa-layer-group"></i> 申請統合管理・ユーザー設定</button>
                 <button class="admin-tab-btn" onclick="switchAdminTab('tabPayrollList', this)"><i class="fa-solid fa-money-bill-wave"></i> 給与・控除</button>
                 <button class="admin-tab-btn" onclick="switchAdminTab('tabFinance', this)"><i class="fa-solid fa-calculator"></i> 経費・決裁</button>
                 <button class="admin-tab-btn" onclick="switchAdminTab('tabAcademic', this)"><i class="fa-solid fa-graduation-cap"></i> 教務・成績</button>
@@ -864,7 +861,7 @@
 
             // 176〜200: システム統合
             { id: "cfg_googleApiEnabled", label: "176. Google API連携", type: "select", options: ["true:連携中", "false:停止"], group: "grid_dev" },
-            { id: "cfg_webhookEnabled", label: "177. Slack/Discord Webhook", type: "select", options: ["true:送信", "false:オフ"], group: "grid_dev" },
+            { id: "cfg_webhookEnabled", label: "177. Webhook通知", type: "select", options: ["true:送信", "false:オフ"], group: "grid_dev" },
             { id: "cfg_slackWebhookUrl", label: "178. Slack通知Webhook URL", type: "text", val: "https://hooks.slack.com/services/xxx", group: "grid_dev" },
             { id: "cfg_discordWebhookUrl", label: "179. Discord通知Webhook URL", type: "text", val: "https://discord.com/api/webhooks/xxx", group: "grid_dev" },
             { id: "cfg_dbBackupIntervalHours", label: "180. DB自動バックアップ周期(h)", type: "number", val: 24, group: "grid_dev" },
@@ -890,6 +887,7 @@
             { id: "cfg_systemVersionName", label: "200. ポータルシステムビルド", type: "text", val: "v2026.08.13-RELEASE", group: "grid_dev" }
         ];
 
+        // 200項目のUI要素生成 & リアルタイム保存イベントバインド
         function render200SettingsUI() {
             settingDefinitions.forEach(def => {
                 const container = document.getElementById(def.group);
@@ -919,7 +917,11 @@
             update(ref(db, 'systemConfig'), { [id]: el.value });
         };
 
+        // ==========================================
+        //  ★ Office 365風 カスタムモーダル API ★
+        // ==========================================
         let dialogResolve = null;
+
         window.customAlert = function(message, title = "システム通知", icon = "fa-circle-info") {
             return new Promise((resolve) => {
                 document.getElementById('officeDialogTitle').textContent = title;
@@ -1014,12 +1016,15 @@
             gapi.load('client', initializeGapiClient);
             render200SettingsUI();
             
+            // ★ 全200項目のFirebaseリアルタイムUI連動 ★
             onValue(ref(db, 'systemConfig'), (snapshot) => {
                 const cfg = snapshot.val();
                 if(cfg) {
                     window.sysCfg = cfg;
+
                     if(cfg.cfgUnivName) document.getElementById('displayUnivName').textContent = cfg.cfgUnivName;
                     if(cfg.cfg_logoImageUrl) { const logo = document.getElementById('portalLogo'); if(logo) logo.src = cfg.cfg_logoImageUrl; }
+                    
                     if(cfg.cfgPrimaryColor) document.documentElement.style.setProperty('--primary-color', cfg.cfgPrimaryColor);
                     if(cfg.cfgAccentColor) document.documentElement.style.setProperty('--accent-color', cfg.cfgAccentColor);
                     if(cfg.cfg_glassEffectBlurPx) document.documentElement.style.setProperty('--glass-blur', cfg.cfg_glassEffectBlurPx + 'px');
@@ -1120,7 +1125,8 @@
             if (isAdmin) {
                 roleTag.innerHTML = 'ADMINISTRATOR <span class="admin-badge">ADMIN</span>';
                 document.getElementById("adminControls").style.display = "block";
-                document.getElementById("adminLink").style.display = "block";
+                const adminBtn = document.getElementById("adminLink");
+                if(adminBtn) adminBtn.style.display = "block";
             } else {
                 roleTag.textContent = "STAFF ACCOUNT";
             }
