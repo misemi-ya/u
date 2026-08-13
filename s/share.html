@@ -73,7 +73,7 @@
 
         <div id="auth-request" style="display:none;">
             <h2>Drive Authentication</h2>
-            <p>VPN接続を確認しました。<br>ファイルを表示するにはGoogleドライブへのアクセスを許可してください。</p>
+            <p>ネットワークの安全を確認しました。<br>ファイルを表示するにはGoogleドライブへのアクセスを許可してください。</p>
             <button class="google-btn" onclick="handleAuth()">
                 <i class="fa-brands fa-google" style="color:#DB4437;"></i> Google Driveに接続
             </button>
@@ -126,6 +126,10 @@
         //  設定エリア
         // ==========================================
         const VPN_HOST = 'public-vpn-129.opengw.net';
+        const CAMPUS_IPS = [
+            '192.0.2.1',
+            '198.51.100.1'
+        ];
         
         // ▼▼▼ Google Client ID をここに入れてください ▼▼▼
         const CLIENT_ID = '385803166778-kg041ijpug65vf8ir68tubl8v804ncef.apps.googleusercontent.com';
@@ -153,13 +157,57 @@
             return ip;
         }
 
-        // VPNチェック
+        // VPNチェックをパスした時の処理
+        function passVpnCheck(saveTrusted = false) {
+            if (saveTrusted) {
+                const expireMs = Date.now() + (30 * 24 * 60 * 60 * 1000); // 30日後
+                localStorage.setItem('trusted_device_until', expireMs.toString());
+            }
+            // 認証画面(Drive接続画面)へ進む
+            document.getElementById('vpn-checking').style.display = 'none';
+            document.getElementById('auth-request').style.display = 'block';
+            loadGoogleApi();
+        }
+
+        // エラー画面表示処理
+        function showError(ip) {
+            document.getElementById('vpn-checking').style.display = 'none';
+            document.getElementById('vpn-error').style.display = 'block';
+            document.getElementById('user-ip').textContent = ip;
+        }
+
+        // VPNチェック (バイパス機能付き)
         async function verifyConnection() {
             try {
+                // 1. 緊急バイパス
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.get('bypass') === 'mmu2026') {
+                    passVpnCheck(false);
+                    return;
+                }
+
+                // 2. 登録済みデバイスのバイパス
+                const trustedUntil = localStorage.getItem('trusted_device_until');
+                if (trustedUntil && Date.now() < parseInt(trustedUntil)) {
+                    passVpnCheck(false);
+                    return;
+                }
+
+                // 3. ネットワークベースのチェック
                 const ipRes = await fetch('https://api.ipify.org?format=json');
                 const ipData = await ipRes.json();
                 const myIp = ipData.ip;
 
+                const isCampusNetwork = CAMPUS_IPS.includes(myIp);
+                const currentSSID = window.currentSSID || "";
+                const isCampusSSID = (currentSSID === "MMU-WiFi" || currentSSID === "MMU-hs-WiFi");
+
+                if (isCampusNetwork || isCampusSSID) {
+                    passVpnCheck(true);
+                    return;
+                }
+
+                // 4. 通常のVPNチェック
                 const dnsRes = await fetch(`https://dns.google/resolve?name=${VPN_HOST}&type=A`);
                 const dnsData = await dnsRes.json();
                 
@@ -170,21 +218,13 @@
                 const vpnSubnet = getSubnet(vpnIp);
 
                 if (vpnIp !== "Unresolved" && mySubnet === vpnSubnet) {
-                    // VPN OK -> Google認証準備
-                    document.getElementById('vpn-checking').style.display = 'none';
-                    document.getElementById('auth-request').style.display = 'block';
-                    loadGoogleApi();
+                    passVpnCheck(true);
                 } else {
-                    // VPN NG
-                    document.getElementById('vpn-checking').style.display = 'none';
-                    document.getElementById('vpn-error').style.display = 'block';
-                    document.getElementById('user-ip').textContent = myIp;
+                    showError(myIp);
                 }
             } catch (error) {
                 console.error(error);
-                document.getElementById('vpn-checking').style.display = 'none';
-                document.getElementById('vpn-error').style.display = 'block';
-                document.getElementById('user-ip').textContent = "Error";
+                showError("Error");
             }
         }
 
@@ -306,5 +346,3 @@
 </body>
 
 </html>
-
-
