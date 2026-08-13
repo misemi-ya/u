@@ -18,9 +18,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     
     <style>
+        /* ★ 動的CSS変数（Firebase設定でリアルタイムに書き換わります） ★ */
         :root {
             --primary-color: #003366;
             --accent-color: #c9a346;
+            --glass-blur: 12px;
+            --card-radius: 16px;
+            --btn-radius: 30px;
             --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             --glass-bg: rgba(255, 255, 255, 0.90);
             --glass-border: 1px solid rgba(255, 255, 255, 0.6);
@@ -29,6 +33,24 @@
             --text-sub: #666;
         }
 
+        /* ★ ダークモード対応 ★ */
+        body.dark-mode {
+            --bg-gradient: linear-gradient(135deg, #121212 0%, #2d3748 100%);
+            --glass-bg: rgba(30, 30, 30, 0.85);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+            --text-main: #e2e8f0;
+            --text-sub: #a0aec0;
+            background: var(--bg-gradient);
+            color: var(--text-main);
+        }
+        body.dark-mode .sidebar { background: #1a202c; }
+        body.dark-mode .attendance-section, body.dark-mode .service-card {
+            background: #2d3748; color: #e2e8f0; border-color: #4a5568;
+        }
+        body.dark-mode .attendance-section .live-time { color: #fff; }
+        body.dark-mode .app-table th { background: #2d3748; color: #e2e8f0; }
+        body.dark-mode .app-table td { background: #1a202c; color: #e2e8f0; border-color: #4a5568; }
+
         body {
             margin: 0; padding: 0;
             font-family: 'Roboto', 'Noto Serif JP', sans-serif;
@@ -36,6 +58,7 @@
             min-height: 100vh;
             color: var(--text-main);
             overflow-x: hidden;
+            transition: font-size 0.3s ease, background 0.5s ease;
         }
 
         .en-sub {
@@ -44,7 +67,7 @@
             margin-top: 2px; text-transform: uppercase;
         }
 
-        /* VPN・アクセス制限・メンテナンス表示用 ロック画面 */
+        /* VPN・ロック画面 */
         #vpn-lock-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: white; z-index: 10000;
@@ -74,10 +97,10 @@
         }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* レイアウト */
+        /* レイアウト（折りたたみアニメーション対応） */
         .app-container {
             display: grid; grid-template-columns: 280px 1fr;
-            min-height: 100vh; opacity: 0; transition: opacity 0.8s ease;
+            min-height: 100vh; opacity: 0; transition: opacity 0.8s ease, grid-template-columns 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         /* サイドバー */
@@ -86,13 +109,19 @@
             padding: 2rem 1.5rem; display: flex; flex-direction: column;
             box-shadow: 4px 0 20px rgba(0,0,0,0.2); z-index: 10;
             overflow-y: auto; height: 100vh; position: sticky; top: 0;
-            transition: background 0.3s ease;
+            transition: background 0.5s ease;
         }
+        .sidebar.collapsed .brand-text, .sidebar.collapsed .brand-sub, .sidebar.collapsed .nav-text-en, .sidebar.collapsed .nav-link div {
+            display: none;
+        }
+        .sidebar.collapsed .nav-link { justify-content: center; padding: 15px; }
+        .sidebar.collapsed .brand img { width: 50px; }
+
         .brand {
             display: flex; flex-direction: column; align-items: center;
             margin-bottom: 2rem; text-align: center;
         }
-        .brand img { width: 80px; height: auto; margin-bottom: 10px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
+        .brand img { width: 80px; height: auto; margin-bottom: 10px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); transition: width 0.3s; }
         .brand-text { font-size: 1.2rem; font-weight: 700; letter-spacing: 1px; }
         .brand-sub { font-size: 0.7rem; opacity: 0.7; letter-spacing: 2px; }
 
@@ -109,13 +138,12 @@
             background: rgba(255,255,255,0.15); color: #fff;
             transform: translateX(3px);
         }
-        .nav-text-en { font-size: 0.7rem; display: block; opacity: 0.6; margin-top: 2px; }
 
         /* メインコンテンツ */
         .main-content { padding: 2rem 3rem; overflow-y: auto; }
 
         .header-area { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
-        .greeting h1 { margin: 0; font-size: 2rem; color: var(--primary-color); }
+        .greeting h1 { margin: 0; font-size: 2rem; color: var(--primary-color); transition: color 0.5s; }
         .user-profile {
             display: flex; align-items: center; gap: 15px;
             background: var(--glass-bg); padding: 8px 20px;
@@ -125,44 +153,41 @@
         .avatar-circle {
             width: 40px; height: 40px; background: var(--primary-color); color: white;
             border-radius: 50%; display: flex; justify-content: center; align-items: center;
-            font-size: 1.1rem;
+            font-size: 1.1rem; transition: background 0.5s;
         }
-        .btn-logout {
-            background: none; border: none; color: #d9534f; cursor: pointer;
-            font-size: 1.2rem; transition: transform 0.2s;
-        }
+        .btn-logout { background: none; border: none; color: #d9534f; cursor: pointer; font-size: 1.2rem; transition: transform 0.2s; }
 
         /* グラスカード共通 */
         .glass-card {
-            background: var(--glass-bg); border-radius: 16px; padding: 1.5rem;
+            background: var(--glass-bg); border-radius: var(--card-radius); padding: 1.5rem;
             box-shadow: var(--shadow); border: var(--glass-border);
-            backdrop-filter: blur(12px); position: relative;
+            backdrop-filter: blur(var(--glass-blur)); position: relative;
+            transition: all 0.3s ease;
         }
         
-        /* ダッシュボードグリッド */
+        /* ダッシュボードグリッド (リアルタイム列数変更対応) */
         .dashboard-grid {
             display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
-            margin-bottom: 2rem;
+            margin-bottom: 2rem; transition: grid-template-columns 0.4s ease;
         }
         
         /* 勤怠エリア */
         .attendance-section {
             grid-column: span 4; display: flex; align-items: center; justify-content: space-between;
-            background: white; padding: 1.5rem; border-radius: 16px;
+            padding: 1.5rem;
             box-shadow: 0 5px 20px rgba(0,0,0,0.05); border-left: 5px solid var(--primary-color);
+            transition: border-color 0.5s, grid-column 0.4s;
         }
         .time-box { display: flex; align-items: baseline; gap: 15px; }
         .live-time { font-size: 2.5rem; font-weight: 700; color: #333; font-family: 'Roboto', monospace; }
-        .live-date { font-size: 1rem; color: #666; }
+        .live-date { font-size: 1rem; color: var(--text-sub); }
         .btn-attend, .btn-leave {
-            padding: 10px 30px; border-radius: 30px; font-weight: bold; border: none; cursor: pointer; transition: transform 0.2s;
+            padding: 10px 30px; border-radius: var(--btn-radius); font-weight: bold; border: none; cursor: pointer; transition: all 0.3s;
         }
         .btn-attend { background: #28a745; color: white; box-shadow: 0 4px 10px rgba(40,167,69,0.3); }
         .btn-leave { background: #dc3545; color: white; box-shadow: 0 4px 10px rgba(220,53,69,0.3); }
         
-        .attendance-log {
-            margin-top: 15px; padding-top: 10px; border-top: 1px dashed #eee; font-size: 0.9rem; color: #666;
-        }
+        .attendance-log { margin-top: 15px; padding-top: 10px; border-top: 1px dashed #eee; font-size: 0.9rem; color: #666; }
         .log-tag { display: inline-block; background: #f0f2f5; padding: 2px 8px; border-radius: 4px; margin-right: 10px; font-size: 0.8rem; border: 1px solid #ddd; }
 
         /* ステータスカード */
@@ -170,53 +195,36 @@
         .stat-icon-box {
             width: 50px; height: 50px; background: rgba(0, 51, 102, 0.1);
             border-radius: 12px; display: flex; justify-content: center; align-items: center;
-            font-size: 1.5rem; color: var(--primary-color);
+            font-size: 1.5rem; color: var(--primary-color); transition: color 0.5s;
         }
-        .stat-value { font-size: 2rem; font-weight: 700; line-height: 1; color: var(--primary-color); }
-        .stat-label { font-size: 0.85rem; color: #666; }
+        .stat-value { font-size: 2rem; font-weight: 700; line-height: 1; color: var(--primary-color); transition: color 0.5s; }
+        .stat-label { font-size: 0.85rem; color: var(--text-sub); }
 
         /* サービスランチャー */
-        .services-section { grid-column: span 4; }
-        .section-title { font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem; color: #444; border-left: 4px solid var(--accent-color); padding-left: 10px; }
+        .services-section { grid-column: span 4; transition: grid-column 0.4s; }
+        .section-title { font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem; color: var(--text-main); border-left: 4px solid var(--accent-color); padding-left: 10px; transition: border-color 0.5s; }
         
-        .services-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem;
-        }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
         .service-card {
             background: white; padding: 1.2rem; border-radius: 12px;
             display: flex; flex-direction: column; align-items: center; text-align: center;
-            text-decoration: none; color: #333; transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none; color: var(--text-main); transition: transform 0.2s, box-shadow 0.2s;
             border: 1px solid #eee; cursor: pointer;
         }
         .service-card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.08); border-color: var(--accent-color); }
-        .service-icon { font-size: 2rem; margin-bottom: 10px; color: var(--primary-color); }
+        .service-icon { font-size: 2rem; margin-bottom: 10px; color: var(--primary-color); transition: color 0.5s; }
         .service-name { font-weight: bold; font-size: 0.95rem; }
-        .service-desc { font-size: 0.75rem; color: #888; margin-top: 5px; }
+        .service-desc { font-size: 0.75rem; color: var(--text-sub); margin-top: 5px; }
 
         /* グラフとニュース */
         .chart-section { grid-column: span 3; min-height: 400px; }
         .news-section { grid-column: span 1; min-height: 400px; }
         .news-item { padding: 12px 0; border-bottom: 1px dashed #ddd; font-size: 0.9rem; }
         
-        /* バッジ表示の文字切れ・改行崩れ防止修正 */
         .news-badge {
-            background: var(--accent-color);
-            color: white;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            margin-right: 5px;
-            white-space: nowrap;
-            display: inline-block;
-            line-height: 1.2;
-            vertical-align: middle;
-        }
-
-        .gmail-connect-btn {
-            margin-top: 10px; font-size: 0.8rem; cursor: pointer;
-            color: #d93025; background: rgba(217, 48, 37, 0.1);
-            border: 1px solid #d93025; padding: 5px 10px; border-radius: 20px;
-            display: inline-flex; align-items: center; gap: 5px;
+            background: var(--accent-color); color: white; padding: 3px 8px; border-radius: 4px;
+            font-size: 0.75rem; margin-right: 5px; white-space: nowrap; display: inline-block;
+            transition: background 0.5s;
         }
 
         /* 管理者コントロール */
@@ -229,175 +237,57 @@
             cursor: pointer; transition: all 0.3s;
             display: flex; justify-content: center; align-items: center;
         }
-        .edit-mode .editable-text { border: 2px dashed #ff5500; background: rgba(255, 85, 0, 0.05); cursor: text; padding: 2px 5px; border-radius: 4px; }
         
         /* 汎用モーダル */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; display: none; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
-        .edit-panel { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .edit-panel { background: white; padding: 30px; border-radius: var(--card-radius); box-shadow: 0 20px 50px rgba(0,0,0,0.3); animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         .panel-input { width: 100%; padding: 8px 10px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 0.85rem; }
-        .panel-btn { width: 100%; padding: 10px; background: var(--primary-color); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; margin-top: 10px; font-size: 0.9rem; white-space: nowrap; }
+        .panel-btn { width: 100%; padding: 10px; background: var(--primary-color); color: white; border: none; border-radius: var(--btn-radius); cursor: pointer; font-weight: bold; margin-top: 10px; font-size: 0.9rem; white-space: nowrap; transition: background 0.5s, border-radius 0.3s; }
         
-        /* テーブルの文字切れ・改行崩れ自動可変調整 */
+        /* テーブル (文字切れ防止) */
         .app-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        .app-table th, .app-table td {
-            border-bottom: 1px solid #eee;
-            padding: 10px 12px;
-            text-align: left;
-            vertical-align: middle;
-            white-space: nowrap; /* 勝手な途中の文字化け・折り返しを防止 */
-        }
+        .app-table th, .app-table td { border-bottom: 1px solid #eee; padding: 10px 12px; text-align: left; vertical-align: middle; white-space: nowrap; }
         .app-table th { background: #f8f9fa; color: #555; font-size: 0.85rem; font-weight: bold; }
-        
-        /* 時間割テーブル */
-        .timetable-table { width: 100%; border-collapse: collapse; margin-top: 10px; text-align: center; }
-        .timetable-table th { background: var(--primary-color); color: white; padding: 8px; font-size: 0.85rem; }
-        .timetable-table td { border: 1px solid #e0e0e0; height: 60px; vertical-align: top; padding: 5px; font-size: 0.8rem; background: #fff; }
-        .class-box { background: #e3f2fd; border-left: 3px solid #1976d2; padding: 4px; border-radius: 4px; text-align: left; height: 100%; box-sizing: border-box; }
-        .class-title { font-weight: bold; color: #0d47a1; font-size: 0.8rem; }
-        .class-prof { font-size: 0.7rem; color: #555; }
-        
-        /* チャット */
-        .chat-box { height: 300px; overflow-y: auto; border: 1px solid #e0e0e0; padding: 15px; border-radius: 8px; background: #fafafa; margin-bottom: 10px; }
-        .chat-msg { margin-bottom: 12px; background: #fff; padding: 10px 12px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); border: 1px solid #eee; }
-        .chat-user { font-weight: bold; font-size: 0.8rem; color: var(--primary-color); display: flex; justify-content: space-between; }
-        .chat-time { font-size: 0.7rem; color: #999; font-weight: normal; }
-        .chat-text { font-size: 0.9rem; margin-top: 4px; color: #333; word-break: break-all; }
         
         .admin-badge { background: #dc3545; color: white; padding: 2px 6px; border-radius: 10px; font-size: 0.65rem; margin-left: 5px; white-space: nowrap; }
 
-        /* 管理者コンソール タブ */
-        /* ★ 管理者コンソール タブボタンデザイン（モダン・スタイリッシュ復元） ★ */
+        /* ★ 管理者コンソール タブボタンデザイン（モダン・スタイリッシュ） ★ */
         .admin-tabs {
-            display: flex;
-            gap: 8px;
-            border-bottom: 2px solid #e2e8f0;
-            margin-bottom: 15px;
-            overflow-x: auto;
-            padding-bottom: 2px;
+            display: flex; gap: 8px; border-bottom: 2px solid #e2e8f0; margin-bottom: 15px; overflow-x: auto; padding-bottom: 2px;
         }
-
         .admin-tab-btn {
-            padding: 8px 16px !important;
-            font-size: 0.85rem !important;
-            border: 1px solid #e2e8f0 !important;
-            border-bottom: none !important;
-            background: #f8f9fa !important;
-            font-weight: 600;
-            cursor: pointer;
-            color: #4a5568 !important;
-            white-space: nowrap;
-            border-radius: 8px 8px 0 0 !important;
-            transition: all 0.2s ease !important;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
+            padding: 8px 16px !important; font-size: 0.85rem !important; border: 1px solid #e2e8f0 !important; border-bottom: none !important;
+            background: #f8f9fa !important; font-weight: 600; cursor: pointer; color: #4a5568 !important; white-space: nowrap;
+            border-radius: 8px 8px 0 0 !important; transition: all 0.2s ease !important; display: inline-flex; align-items: center; gap: 6px;
         }
-
-        .admin-tab-btn:hover {
-            color: #ff0055 !important;
-            background: #fff0f5 !important;
-            border-color: #ffccd5 !important;
-        }
-
+        .admin-tab-btn:hover { color: #ff0055 !important; background: #fff0f5 !important; border-color: #ffccd5 !important; }
         .admin-tab-btn.active {
-            color: #ff0055 !important;
-            background: #ffffff !important;
-            border-color: #ffccd5 !important;
-            border-bottom: 3px solid #ff0055 !important;
-            box-shadow: 0 -2px 8px rgba(255, 0, 85, 0.1) !important;
+            color: #ff0055 !important; background: #ffffff !important; border-color: #ffccd5 !important;
+            border-bottom: 3px solid #ff0055 !important; box-shadow: 0 -2px 8px rgba(255, 0, 85, 0.1) !important;
         }
-/* 管理者コンソールの縦長解消 ＆ コンパクト3列レイアウト */
+
+        /* ★ 管理者コンソールの縦長解消 ＆ コンパクト3列レイアウト ★ */
         #adminConsoleModal .edit-panel {
-            width: 820px !important;
-            max-width: 92vw !important;
-            max-height: 82vh !important;
-            padding: 18px !important;
-            font-size: 0.82rem !important;
-            overflow: hidden !important; /* 全体はスクロールさせず、各タブ内だけスクロール */
-            display: flex;
-            flex-direction: column;
+            width: 820px !important; max-width: 92vw !important; max-height: 82vh !important; padding: 18px !important;
+            font-size: 0.82rem !important; overflow: hidden !important; display: flex; flex-direction: column;
         }
-
-        .admin-tab-content {
-            display: none;
-            max-height: 60vh;
-            overflow-y: auto; /* タブ内コンテンツをスクロール可能に */
-            padding-right: 5px;
-        }
+        .admin-tab-content { display: none; max-height: 60vh; overflow-y: auto; padding-right: 5px; }
         .admin-tab-content.active { display: block; }
-
-        .setting-card {
-            background: #f8f9fa;
-            border: 1px solid #e0e0e0;
-            border-radius: 6px;
-            padding: 10px;
-            margin-bottom: 8px;
-        }
-
-        /* 25項目が縦長にならずスッキリ納まる3列均等グリッド */
-        .setting-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr) !important; /* 横3列均等 */
-            gap: 6px 10px !important;
-        }
-
-        .setting-item {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .setting-item label {
-            font-size: 0.7rem;
-            color: #444;
-            font-weight: bold;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .panel-input {
-            width: 100%;
-            padding: 3px 6px !important;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 0.78rem !important;
-            height: 26px !important;
-            box-sizing: border-box;
-        }
-
-        /* 設定フォーム グリッドカード */
-        .setting-card { background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px 15px; margin-bottom: 12px; }
-        .setting-card-title { font-weight: bold; font-size: 0.9rem; color: #003366; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
-        .setting-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; }
-        .setting-item { display: flex; flex-direction: column; gap: 4px; }
-        .setting-item label { font-size: 0.75rem; color: #555; font-weight: bold; }
+        .setting-card { background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 6px; padding: 10px; margin-bottom: 8px; }
+        .setting-card-title { font-weight: bold; font-size: 0.85rem; color: var(--primary-color); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+        .setting-grid { display: grid; grid-template-columns: repeat(3, 1fr) !important; gap: 6px 10px !important; }
+        .setting-item { display: flex; flex-direction: column; gap: 2px; }
+        .setting-item label { font-size: 0.7rem; color: #444; font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        #adminConsoleModal .panel-input { width: 100%; padding: 3px 6px !important; border: 1px solid #ccc; border-radius: 4px; font-size: 0.78rem !important; height: 26px !important; box-sizing: border-box; }
 
         /* Microsoft Office 365 風 カスタムモーダル */
         .office-dialog {
-            background: #ffffff;
-            width: 450px;
-            max-width: 90%;
-            border-radius: 8px;
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
-            border: 1px solid #d2d0ce;
-            overflow: hidden;
-            font-family: 'Segoe UI', 'Roboto', sans-serif;
-            animation: dialogPop 0.2s cubic-bezier(0.1, 0.9, 0.2, 1);
+            background: #ffffff; width: 450px; max-width: 90%; border-radius: 8px; box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+            border: 1px solid #d2d0ce; overflow: hidden; font-family: 'Segoe UI', 'Roboto', sans-serif; animation: dialogPop 0.2s cubic-bezier(0.1, 0.9, 0.2, 1);
         }
-        @keyframes dialogPop {
-            from { transform: scale(0.92); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-        .office-dialog-header {
-            background: #faf9f8;
-            padding: 14px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #edebe9;
-        }
+        @keyframes dialogPop { from { transform: scale(0.92); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .office-dialog-header { background: #faf9f8; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #edebe9; }
         .office-dialog-title-box { display: flex; align-items: center; gap: 10px; }
         .office-dialog-icon { font-size: 1.25rem; color: #0078d4; }
         .office-dialog-title { font-weight: 600; font-size: 1rem; color: #323130; }
@@ -444,7 +334,7 @@
     <div class="app-container" id="mainApp" style="display:none;">
         <aside class="sidebar">
             <div class="brand">
-                <img src="../校章.png" alt="Misemi-ya Logo" onerror="this.style.display='none'">
+                <img id="portalLogo" src="../校章.png" alt="Misemi-ya Logo" onerror="this.style.display='none'">
                 <div class="brand-text" id="displayUnivName">店魅偉屋大学</div>
                 <div class="brand-sub">Misemi-ya University</div>
             </div>
@@ -455,38 +345,19 @@
                 </li>
                 
                 <div class="nav-category">Applications</div>
-                <li class="nav-item">
-                    <a href="mail.html" class="nav-link"><i class="fa-solid fa-envelope"></i><div>Webメール<span class="nav-text-en">Web Mail</span></div></a>
-                </li>
-                <li class="nav-item">
-                    <a href="reserve.html" class="nav-link"><i class="fa-solid fa-calendar-check"></i><div>施設予約・カレンダー<span class="nav-text-en">Reserve</span></div></a>
-                </li>
-                <li class="nav-item">
-                    <a onclick="openApp('share')" class="nav-link"><i class="fa-solid fa-share-nodes"></i><div>Share Portal<span class="nav-text-en">Secure Files</span></div></a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://u-share.misemi-ya.net/" class="nav-link">
-                        <i class="fa-solid fa-cloud"></i>
-                        <div>U-Share Portal<span class="nav-text-en">File Storage</span></div>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a onclick="openApp('groupware')" class="nav-link"><i class="fa-solid fa-sitemap"></i><div>グループウェア<span class="nav-text-en">Groupware</span></div></a>
-                </li>
+                <li class="nav-item"><a href="mail.html" class="nav-link"><i class="fa-solid fa-envelope"></i><div>Webメール<span class="nav-text-en">Web Mail</span></div></a></li>
+                <li class="nav-item"><a href="reserve.html" class="nav-link"><i class="fa-solid fa-calendar-check"></i><div>施設予約・カレンダー<span class="nav-text-en">Reserve</span></div></a></li>
+                <li class="nav-item"><a onclick="openApp('share')" class="nav-link"><i class="fa-solid fa-share-nodes"></i><div>Share Portal<span class="nav-text-en">Secure Files</span></div></a></li>
+                <li class="nav-item"><a href="https://u-share.misemi-ya.net/" class="nav-link"><i class="fa-solid fa-cloud"></i><div>U-Share Portal<span class="nav-text-en">File Storage</span></div></a></li>
+                <li class="nav-item"><a onclick="openApp('groupware')" class="nav-link"><i class="fa-solid fa-sitemap"></i><div>グループウェア<span class="nav-text-en">Groupware</span></div></a></li>
                 
                 <li class="nav-item"><a onclick="openApp('discord')" class="nav-link"><i class="fa-brands fa-discord"></i><div>講義室 (Discord)<span class="nav-text-en">Chat Room</span></div></a></li>
                 <li class="nav-item"><a onclick="window.open('https://slack.com/signin','_blank')" class="nav-link"><i class="fa-brands fa-slack"></i><div>業務連絡 (Slack)<span class="nav-text-en">Communication</span></div></a></li>
 
                 <div class="nav-category">Management</div>
-                <li class="nav-item">
-                    <a onclick="openApp('hr')" class="nav-link"><i class="fa-solid fa-user-tie"></i><div>人事・総務<span class="nav-text-en">HR & Admin</span></div></a>
-                </li>
-                <li class="nav-item">
-                    <a href="students.html" class="nav-link"><i class="fa-solid fa-graduation-cap"></i><div>教務・学生支援<span class="nav-text-en">Academic</span></div></a>
-                </li>
-                <li class="nav-item">
-                    <a onclick="openApp('approval')" class="nav-link"><i class="fa-solid fa-file-signature"></i><div>電子決裁・申請<span class="nav-text-en">Workflow</span></div></a>
-                </li>
+                <li class="nav-item"><a onclick="openApp('hr')" class="nav-link"><i class="fa-solid fa-user-tie"></i><div>人事・総務<span class="nav-text-en">HR & Admin</span></div></a></li>
+                <li class="nav-item"><a href="students.html" class="nav-link"><i class="fa-solid fa-graduation-cap"></i><div>教務・学生支援<span class="nav-text-en">Academic</span></div></a></li>
+                <li class="nav-item"><a onclick="openApp('approval')" class="nav-link"><i class="fa-solid fa-file-signature"></i><div>電子決裁・申請<span class="nav-text-en">Workflow</span></div></a></li>
 
                 <!-- 管理者用ボタン -->
                 <li class="nav-item" id="adminLink" style="display:none; margin-top:20px; border-top:1px solid rgba(255,255,255,0.2); padding-top:10px;">
@@ -501,7 +372,7 @@
             <div class="header-area">
                 <div class="greeting">
                     <h1 id="greetingText">Welcome back</h1>
-                    <div style="font-size:0.9rem; color:#666; margin-top:5px;">
+                    <div style="font-size:0.9rem; color:var(--text-sub); margin-top:5px;">
                         <span id="clockDisplay">Checking time...</span>
                     </div>
                 </div>
@@ -509,9 +380,7 @@
                     <img src="../校章.png" alt="logo" style="height:30px; opacity:0.8; margin-right:5px;">
                     <div class="avatar-circle" id="userInitial">U</div>
                     <div style="line-height:1.2;">
-                        <div style="font-weight:bold; font-size:0.9rem; display:flex; align-items:center;" id="userName">
-                            User
-                        </div>
+                        <div style="font-weight:bold; font-size:0.9rem; display:flex; align-items:center;" id="userName">User</div>
                         <div class="en-sub" id="userRoleTag">STAFF ACCOUNT</div>
                     </div>
                     <button class="btn-logout" onclick="signOut()" title="Sign Out"><i class="fa-solid fa-right-from-bracket"></i></button>
@@ -519,7 +388,7 @@
             </div>
 
             <!-- 勤怠打刻エリア -->
-            <div class="attendance-section" style="margin-bottom: 2rem;">
+            <div class="glass-card attendance-section" style="margin-bottom: 2rem;">
                 <div style="width:100%">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
                         <div style="font-weight:bold; color:var(--primary-color); margin-bottom:5px;">
@@ -540,22 +409,25 @@
             </div>
 
             <div class="dashboard-grid">
-                <!-- Stat 1: Gmail -->
+                <!-- 天気ウィジェット (設定でトグル) -->
+                <div class="glass-card stat-card" id="weatherWidget" style="display:none; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color:white; border:none;">
+                    <div class="stat-icon-box" style="color:white; background:rgba(255,255,255,0.2);"><i class="fa-solid fa-cloud-sun"></i></div>
+                    <div>
+                        <div class="stat-value" style="color:white;">28°C</div>
+                        <div class="stat-label" style="color:rgba(255,255,255,0.8);">会津若松市 / 晴れ</div>
+                    </div>
+                </div>
+
                 <div class="glass-card stat-card">
                     <div class="stat-icon-box"><i class="fa-solid fa-inbox"></i></div>
                     <div>
                         <div class="stat-value" id="stat1-val">...</div>
                         <div class="stat-label">Gmail未読数</div>
-                        <button id="gmailAuthBtn" class="gmail-connect-btn" onclick="handleGmailAuth()">
-                            <i class="fa-brands fa-google"></i> 連携する
-                        </button>
-                        <button id="gmailLogoutBtn" class="gmail-connect-btn" onclick="handleGmailLogout()" style="display: none; color: #555; border-color: #999; background: rgba(0,0,0,0.05);">
-                            <i class="fa-solid fa-right-from-bracket"></i> 連携解除
-                        </button>
+                        <button id="gmailAuthBtn" class="gmail-connect-btn" onclick="handleGmailAuth()"><i class="fa-brands fa-google"></i> 連携する</button>
+                        <button id="gmailLogoutBtn" class="gmail-connect-btn" onclick="handleGmailLogout()" style="display: none; color: #555; border-color: #999; background: rgba(0,0,0,0.05);"><i class="fa-solid fa-right-from-bracket"></i> 連携解除</button>
                     </div>
                 </div>
 
-                <!-- Stat 2: Tasks -->
                 <div class="glass-card stat-card">
                     <div class="stat-icon-box" style="color:#28a745; background:rgba(40,167,69,0.1);"><i class="fa-solid fa-check-double"></i></div>
                     <div>
@@ -564,7 +436,6 @@
                     </div>
                 </div>
                 
-                <!-- Stat 3: Urgent -->
                 <div class="glass-card stat-card">
                     <div class="stat-icon-box" style="color:#dc3545; background:rgba(220,53,69,0.1);"><i class="fa-solid fa-file-pen"></i></div>
                     <div>
@@ -573,7 +444,6 @@
                     </div>
                 </div>
                 
-                <!-- Stat 4: Visitors -->
                 <div class="glass-card stat-card">
                     <div class="stat-icon-box" style="color:var(--accent-color); background:rgba(201,163,70,0.1);"><i class="fa-solid fa-users"></i></div>
                     <div>
@@ -586,123 +456,28 @@
                 <div class="services-section">
                     <div class="section-title">業務システム・リンク</div>
                     <div class="services-grid">
-                        <a onclick="openApp('payroll')" class="service-card">
-                            <i class="fa-solid fa-file-invoice-dollar service-icon"></i>
-                            <div class="service-name">給与・明細</div>
-                            <div class="service-desc">明細確認・源泉徴収</div>
-                        </a>
-                        <a onclick="openApp('expense')" class="service-card">
-                            <i class="fa-solid fa-receipt service-icon"></i>
-                            <div class="service-name">経費精算</div>
-                            <div class="service-desc">旅費・立替経費申請</div>
-                        </a>
-                        <a onclick="openApp('recruit')" class="service-card">
-                            <i class="fa-solid fa-briefcase service-icon"></i>
-                            <div class="service-name">採用・公募</div>
-                            <div class="service-desc">教員公募・採用管理</div>
-                        </a>
-                        <a onclick="openApp('research')" class="service-card">
-                            <i class="fa-solid fa-microscope service-icon"></i>
-                            <div class="service-name">研究費管理</div>
-                            <div class="service-desc">科研費・予算執行</div>
-                        </a>
-                        <a onclick="openApp('assets')" class="service-card">
-                            <i class="fa-solid fa-laptop service-icon"></i>
-                            <div class="service-name">資産・備品</div>
-                            <div class="service-desc">物品登録・廃棄</div>
-                        </a>
-                        <a onclick="openApp('it')" class="service-card">
-                            <i class="fa-solid fa-desktop service-icon"></i>
-                            <div class="service-name">情報システム</div>
-                            <div class="service-desc">アカウント・権限申請</div>
-                        </a>
-                        <a onclick="openApp('health')" class="service-card">
-                            <i class="fa-solid fa-heart-pulse service-icon"></i>
-                            <div class="service-name">安全衛生</div>
-                            <div class="service-desc">健診・ストレスチェック</div>
-                        </a>
-                        <a onclick="openApp('library')" class="service-card">
-                            <i class="fa-solid fa-book service-icon"></i>
-                            <div class="service-name">図書・資料</div>
-                            <div class="service-desc">蔵書検索・購入申請</div>
-                        </a>
-                        <a onclick="openApp('crisis')" class="service-card" style="border-color:#dc3545;">
-                            <i class="fa-solid fa-triangle-exclamation service-icon" style="color:#dc3545;"></i>
-                            <div class="service-name">危機管理・BCP</div>
-                            <div class="service-desc">安否確認・緊急連絡</div>
-                        </a>
-                        <a onclick="openApp('syllabus')" class="service-card">
-                            <i class="fa-solid fa-book-open service-icon"></i>
-                            <div class="service-name">シラバス・時間割</div>
-                            <div class="service-desc">授業情報・履修管理</div>
-                        </a>
-                        <a href="students.html" class="service-card">
-                            <i class="fa-solid fa-address-card service-icon"></i>
-                            <div class="service-name">学籍管理</div>
-                            <div class="service-desc">休退学・成績処理</div>
-                        </a>
-                        <a onclick="openApp('approval')" class="service-card">
-                            <i class="fa-solid fa-stamp service-icon"></i>
-                            <div class="service-name">電子決裁</div>
-                            <div class="service-desc">稟議・購入申請</div>
-                        </a>
-                        <a onclick="openApp('docs')" class="service-card">
-                            <i class="fa-solid fa-folder-open service-icon"></i>
-                            <div class="service-name">文書ライブラリ</div>
-                            <div class="service-desc">規程集・様式DL</div>
-                        </a>
-                        <a onclick="openApp('elearning')" class="service-card">
-                            <i class="fa-solid fa-chalkboard-user service-icon"></i>
-                            <div class="service-name">eラーニング</div>
-                            <div class="service-desc">研修・FD/SDテスト</div>
-                        </a>
-                        <a onclick="openApp('bbs')" class="service-card">
-                            <i class="fa-solid fa-comments service-icon"></i>
-                            <div class="service-name">学内掲示板</div>
-                            <div class="service-desc">全学周知・連絡</div>
-                        </a>
-
-                        <a href="https://u.misemi-ya.net/s/r.html" class="service-card">
-                            <i class="fa-solid fa-file-lines service-icon"></i>
-                            <div class="service-name">論文掲載</div>
-                            <div class="service-desc">学内論文・研究発表</div>
-                        </a>
-
-                        <a href="https://cf890473.cloudfree.jp/emr" class="service-card">
-                            <i class="fa-solid fa-file-lines service-icon"></i>
-                            <div class="service-name">電子カルテシステム</div>
-                            <div class="service-desc">店魅偉屋大学 - 電子カルテ</div>
-                        </a>
-
-                        <a href="https://cf890473.cloudfree.jp/hwm/host.php" class="service-card">
-                            <i class="fa-solid fa-file-lines service-icon"></i>
-                            <div class="service-name">宿題管理システム</div>
-                            <div class="service-desc">宿題管理</div>
-                        </a>
-
-                        <a onclick="openApp('cam1')" class="service-card">
-                          <i class="fa-solid fa-video service-icon" style="color: var(--accent-color);"></i>
-                          <div class="service-name">店魅偉屋大学 CAM-1</div>
-                          <div class="service-desc">YouTube ライブ</div>
-                        </a>
-
-                        <a onclick="openApp('cam2')" class="service-card">
-                          <i class="fa-solid fa-camera service-icon" style="color: var(--accent-color);"></i>
-                            <div class="service-name">店魅偉屋大学 CAM-2</div>
-                            <div class="service-desc">学内カメラシステム</div>
-                        </a>
-
-                        <a href="https://u.misemi-ya.net/s/exam.html" target="_blank" class="service-card">
-                          <i class="fa-solid fa-file-signature service-icon" style="color: var(--accent-color);"></i>
-                          <div class="service-name">付属高等学部 - 試験サイト</div>
-                          <div class="service-desc">学内試験用サイト</div>
-                        </a>
-
-                        <a href="https://cf890473.cloudfree.jp/exam/admin.html" target="_blank" class="service-card">
-                          <i class="fa-solid fa-file-signature service-icon" style="color: var(--accent-color);"></i>
-                          <div class="service-name">付属高等学部 - CBT管理者</div>
-                          <div class="service-desc">CBT試験管理者コンソール</div>
-                        </a>
+                        <a onclick="openApp('payroll')" class="service-card"><i class="fa-solid fa-file-invoice-dollar service-icon"></i><div class="service-name">給与・明細</div><div class="service-desc">明細確認・源泉徴収</div></a>
+                        <a onclick="openApp('expense')" class="service-card"><i class="fa-solid fa-receipt service-icon"></i><div class="service-name">経費精算</div><div class="service-desc">旅費・立替経費申請</div></a>
+                        <a onclick="openApp('recruit')" class="service-card"><i class="fa-solid fa-briefcase service-icon"></i><div class="service-name">採用・公募</div><div class="service-desc">教員公募・採用管理</div></a>
+                        <a onclick="openApp('research')" class="service-card"><i class="fa-solid fa-microscope service-icon"></i><div class="service-name">研究費管理</div><div class="service-desc">科研費・予算執行</div></a>
+                        <a onclick="openApp('assets')" class="service-card"><i class="fa-solid fa-laptop service-icon"></i><div class="service-name">資産・備品</div><div class="service-desc">物品登録・廃棄</div></a>
+                        <a onclick="openApp('it')" class="service-card"><i class="fa-solid fa-desktop service-icon"></i><div class="service-name">情報システム</div><div class="service-desc">アカウント・権限申請</div></a>
+                        <a onclick="openApp('health')" class="service-card"><i class="fa-solid fa-heart-pulse service-icon"></i><div class="service-name">安全衛生</div><div class="service-desc">健診・ストレスチェック</div></a>
+                        <a onclick="openApp('library')" class="service-card"><i class="fa-solid fa-book service-icon"></i><div class="service-name">図書・資料</div><div class="service-desc">蔵書検索・購入申請</div></a>
+                        <a onclick="openApp('crisis')" class="service-card" style="border-color:#dc3545;"><i class="fa-solid fa-triangle-exclamation service-icon" style="color:#dc3545;"></i><div class="service-name">危機管理・BCP</div><div class="service-desc">安否確認・緊急連絡</div></a>
+                        <a onclick="openApp('syllabus')" class="service-card"><i class="fa-solid fa-book-open service-icon"></i><div class="service-name">シラバス・時間割</div><div class="service-desc">授業情報・履修管理</div></a>
+                        <a href="students.html" class="service-card"><i class="fa-solid fa-address-card service-icon"></i><div class="service-name">学籍管理</div><div class="service-desc">休退学・成績処理</div></a>
+                        <a onclick="openApp('approval')" class="service-card"><i class="fa-solid fa-stamp service-icon"></i><div class="service-name">電子決裁</div><div class="service-desc">稟議・購入申請</div></a>
+                        <a onclick="openApp('docs')" class="service-card"><i class="fa-solid fa-folder-open service-icon"></i><div class="service-name">文書ライブラリ</div><div class="service-desc">規程集・様式DL</div></a>
+                        <a onclick="openApp('elearning')" class="service-card"><i class="fa-solid fa-chalkboard-user service-icon"></i><div class="service-name">eラーニング</div><div class="service-desc">研修・FD/SDテスト</div></a>
+                        <a onclick="openApp('bbs')" class="service-card"><i class="fa-solid fa-comments service-icon"></i><div class="service-name">学内掲示板</div><div class="service-desc">全学周知・連絡</div></a>
+                        <a href="https://u.misemi-ya.net/s/r.html" class="service-card"><i class="fa-solid fa-file-lines service-icon"></i><div class="service-name">論文掲載</div><div class="service-desc">学内論文・研究発表</div></a>
+                        <a href="https://cf890473.cloudfree.jp/emr" class="service-card"><i class="fa-solid fa-file-lines service-icon"></i><div class="service-name">電子カルテ</div><div class="service-desc">店魅偉屋大学 - 電子カルテ</div></a>
+                        <a href="https://cf890473.cloudfree.jp/hwm/host.php" class="service-card"><i class="fa-solid fa-file-lines service-icon"></i><div class="service-name">宿題管理システム</div><div class="service-desc">宿題管理</div></a>
+                        <a onclick="openApp('cam1')" class="service-card"><i class="fa-solid fa-video service-icon" style="color: var(--accent-color);"></i><div class="service-name">店魅偉屋大学 CAM-1</div><div class="service-desc">YouTube ライブ</div></a>
+                        <a onclick="openApp('cam2')" class="service-card"><i class="fa-solid fa-camera service-icon" style="color: var(--accent-color);"></i><div class="service-name">店魅偉屋大学 CAM-2</div><div class="service-desc">学内カメラシステム</div></a>
+                        <a href="https://u.misemi-ya.net/s/exam.html" target="_blank" class="service-card"><i class="fa-solid fa-file-signature service-icon" style="color: var(--accent-color);"></i><div class="service-name">付属高等学部 試験サイト</div><div class="service-desc">学内試験用サイト</div></a>
+                        <a href="https://cf890473.cloudfree.jp/exam/admin.html" target="_blank" class="service-card"><i class="fa-solid fa-file-signature service-icon" style="color: var(--accent-color);"></i><div class="service-name">付属高等学部 CBT管理者</div><div class="service-desc">CBT試験管理者コンソール</div></a>
                     </div>
                 </div>
 
@@ -746,14 +521,15 @@
         </div>
     </div>
 
-<!-- ★ 管理者専用コンソールモーダル (コンパクト版) ★ -->
+    <!-- ★ 管理者専用コンソールモーダル (コンパクト版) ★ -->
     <div class="modal-overlay" id="adminConsoleModal">
         <div class="edit-panel">
             <h3 style="margin-top:0; color:#ff0055; border-bottom:2px solid #ff0055; padding-bottom:8px; display:flex; justify-content:space-between; align-items:center; font-size:1.05rem;">
                 <span><i class="fa-solid fa-user-shield"></i> システム設定コンソール (全200項目・即時反映)</span>
                 <button class="panel-btn" style="width:auto; margin:0; padding:4px 12px; background:#ff0055; font-size:0.75rem;" onclick="saveAll50Settings()"><i class="fa-solid fa-floppy-disk"></i> 全設定を一括保存</button>
             </h3>
-<div class="admin-tabs">
+
+            <div class="admin-tabs">
                 <button class="admin-tab-btn active" onclick="switchAdminTab('tabSecurity', this)"><i class="fa-solid fa-shield-halved"></i> セキュリティ (1〜25)</button>
                 <button class="admin-tab-btn" onclick="switchAdminTab('tabHR', this)"><i class="fa-solid fa-user-clock"></i> 勤務・勤怠 (26〜50)</button>
                 <button class="admin-tab-btn" onclick="switchAdminTab('tabPayrollList', this)"><i class="fa-solid fa-money-bill-wave"></i> 給与・控除 (51〜75)</button>
@@ -904,6 +680,7 @@
         let isEditMode = false;
         let currentUser = null;
         let myChartInstance = null;
+        window.sysCfg = {};
 
         let portalData = { 
             stats: { s2:0, s3:0, s4:0 }, 
@@ -912,9 +689,6 @@
         };
 
         // ==========================================
-        //  ★ 全200項目の自動初期化 & Firebase同期生成 ★
-        // ==========================================
-// ==========================================
         //  ★ 全200項目の具体的な大学ポータル設定定義 ★
         // ==========================================
         const settingDefinitions = [
@@ -1082,57 +856,57 @@
 
             // 151〜175: UI・デザイン
             { id: "cfgUnivName", label: "151. 大学表示名称", type: "text", val: "店魅偉屋大学", group: "grid_ui" },
-            { id: "cfgPrimaryColor", label: "152. プライマリテーマカラー", type: "color", val: "#003366", group: "grid_ui" },
+            { id: "cfgPrimaryColor", label: "152. プライマリカラー", type: "color", val: "#003366", group: "grid_ui" },
             { id: "cfgAccentColor", label: "153. アクセントカラー", type: "color", val: "#c9a346", group: "grid_ui" },
-            { id: "cfg_chartInterval", label: "154. ダッシュボードグラフ描画", type: "select", options: ["daily:日次更新", "realtime:リアルタイム"], group: "grid_ui" },
+            { id: "cfg_chartInterval", label: "154. グラフ描画頻度", type: "select", options: ["daily:日次更新", "realtime:リアルタイム"], group: "grid_ui" },
             { id: "cfg_darkModeDefault", label: "155. ダークモード初期状態", type: "select", options: ["false:ライト", "true:ダーク"], group: "grid_ui" },
             { id: "cfg_logoImageUrl", label: "156. 校章ロゴ画像URL", type: "text", val: "../校章.png", group: "grid_ui" },
             { id: "cfg_sidebarDefaultCollapsed", label: "157. サイドバー初期畳み込み", type: "select", options: ["false:展開", "true:畳む"], group: "grid_ui" },
             { id: "cfg_fontSizeBase", label: "158. 基準フォントサイズ(px)", type: "number", val: 14, group: "grid_ui" },
             { id: "cfg_glassEffectBlurPx", label: "159. グラスカードぼかし(px)", type: "number", val: 12, group: "grid_ui" },
             { id: "cfg_customCssClass", label: "160. カスタムCSSスキン", type: "select", options: ["standard:標準", "modern:モダン", "classic:クラシック"], group: "grid_ui" },
-            { id: "cfg_greetingMessageFormat", label: "161. 挨拶メッセージ表示形式", type: "select", options: ["en:英語(Good Morning)", "ja:日本語(おはようございます)"], group: "grid_ui" },
-            { id: "cfg_headerClockType", label: "162. ヘッダー時計表示", type: "select", options: ["12h:12時間表示", "24h:24時間表示"], group: "grid_ui" },
+            { id: "cfg_greetingMessageFormat", label: "161. 挨拶メッセージ言語", type: "select", options: ["en:英語", "ja:日本語"], group: "grid_ui" },
+            { id: "cfg_headerClockType", label: "162. 時計表示方式", type: "select", options: ["24h:24時間", "12h:12時間"], group: "grid_ui" },
             { id: "cfg_dashboardLayoutGrid", label: "163. ダッシュボード列数", type: "select", options: ["4:4列", "3:3列"], group: "grid_ui" },
-            { id: "cfg_newsMaxCount", label: "164. トップお知らせ表示件数", type: "number", val: 5, group: "grid_ui" },
-            { id: "cfg_shortcutIconStyle", label: "165. アイコンアニメーション", type: "select", options: ["hover:ホバー浮き上がり", "none:固定"], group: "grid_ui" },
+            { id: "cfg_newsMaxCount", label: "164. お知らせ表示件数", type: "number", val: 5, group: "grid_ui" },
+            { id: "cfg_shortcutIconStyle", label: "165. アイコンアニメーション", type: "select", options: ["hover:ホバー", "none:固定"], group: "grid_ui" },
             { id: "cfg_footerCopyrightText", label: "166. フッター著作権表記", type: "text", val: "© 2026 Misemi-ya Univ.", group: "grid_ui" },
-            { id: "cfg_shortcutGridColumns", label: "167. ランチャーアイコン配置数", type: "number", val: 6, group: "grid_ui" },
-            { id: "cfg_showWeatherWidget", label: "168. 天気予報ウィジェット", type: "select", options: ["true:表示", "false:非表示"], group: "grid_ui" },
-            { id: "cfg_showAttendancePunchBox", label: "169. 勤怠打刻カードトップ配置", type: "select", options: ["true:最上部", "false:下部"], group: "grid_ui" },
-            { id: "cfg_cardBorderRadiusPx", label: "170. カード角丸サイズ(px)", type: "number", val: 16, group: "grid_ui" },
-            { id: "cfg_buttonStyleType", label: "171. ボタンデザイン種別", type: "select", options: ["rounded:丸み", "flat:フラット"], group: "grid_ui" },
+            { id: "cfg_shortcutGridColumns", label: "167. ランチャー列数", type: "number", val: 6, group: "grid_ui" },
+            { id: "cfg_showWeatherWidget", label: "168. 天気ウィジェット", type: "select", options: ["true:表示", "false:非表示"], group: "grid_ui" },
+            { id: "cfg_showAttendancePunchBox", label: "169. 勤怠打刻カード配置", type: "select", options: ["true:最上部", "false:下部"], group: "grid_ui" },
+            { id: "cfg_cardBorderRadiusPx", label: "170. 角丸サイズ(px)", type: "number", val: 16, group: "grid_ui" },
+            { id: "cfg_buttonStyleType", label: "171. ボタンデザイン", type: "select", options: ["rounded:丸み", "flat:フラット"], group: "grid_ui" },
             { id: "cfg_portalLanguageDefault", label: "172. 標準言語表示", type: "select", options: ["ja:日本語", "en:English"], group: "grid_ui" },
-            { id: "cfg_soundEffectEnabled", label: "173. 打刻・承認効果音", type: "select", options: ["false:無音", "true:効果音あり"], group: "grid_ui" },
+            { id: "cfg_soundEffectEnabled", label: "173. 操作効果音", type: "select", options: ["false:無音", "true:あり"], group: "grid_ui" },
             { id: "cfg_dashboardChartType", label: "174. グラフ種類", type: "select", options: ["line:折れ線", "bar:棒グラフ"], group: "grid_ui" },
-            { id: "cfg_faviconUrl", label: "175. ファビコンアイコンURL", type: "text", val: "favicon.ico", group: "grid_ui" },
+            { id: "cfg_faviconUrl", label: "175. ファビコンURL", type: "text", val: "favicon.ico", group: "grid_ui" },
 
             // 176〜200: システム統合
             { id: "cfg_googleApiEnabled", label: "176. Google API連携", type: "select", options: ["true:連携中", "false:停止"], group: "grid_dev" },
-            { id: "cfg_webhookEnabled", label: "177. Slack/Discord Webhook", type: "select", options: ["true:送信", "false:オフ"], group: "grid_dev" },
-            { id: "cfg_slackWebhookUrl", label: "178. Slack通知Webhook URL", type: "text", val: "https://hooks.slack.com/services/xxx", group: "grid_dev" },
-            { id: "cfg_discordWebhookUrl", label: "179. Discord通知Webhook URL", type: "text", val: "https://discord.com/api/webhooks/xxx", group: "grid_dev" },
-            { id: "cfg_dbBackupIntervalHours", label: "180. DB自動バックアップ周期(h)", type: "number", val: 24, group: "grid_dev" },
-            { id: "cfg_logLevel", label: "181. システムログ出力レベル", type: "select", options: ["INFO:INFO", "DEBUG:DEBUG", "ERROR:ERROR"], group: "grid_dev" },
-            { id: "cfg_systemMailSender", label: "182. システム自動送信元アドレス", type: "text", val: "no-reply@misemi-ya.net", group: "grid_dev" },
-            { id: "cfg_firebaseCacheTtlMin", label: "183. Firebaseキャッシュ保持(分)", type: "number", val: 60, group: "grid_dev" },
-            { id: "cfg_debugModeEnabled", label: "184. デバッグ用コンソール出力", type: "select", options: ["false:オフ", "true:有効"], group: "grid_dev" },
-            { id: "cfg_adminNotifyEmail", label: "185. 管理者障害緊急通知先", type: "text", val: "u0626241@misemi-ya.net", group: "grid_dev" },
-            { id: "cfg_sentryDsnUrl", label: "186. エラー追跡Sentry DSN", type: "text", val: "https://sentry.io/xxx", group: "grid_dev" },
-            { id: "cfg_smtpHostServer", label: "187. 内部SMTPサーバホスト", type: "text", val: "mail.misemi-ya.net", group: "grid_dev" },
-            { id: "cfg_smtpPortNumber", label: "188. SMTPポート番号", type: "number", val: 587, group: "grid_dev" },
-            { id: "cfg_redisCacheHost", label: "189. キャッシュRedisホスト", type: "text", val: "127.0.0.1:6379", group: "grid_dev" },
-            { id: "cfg_maxUploadFileMb", label: "190. 添付ファイル最大サイズ(MB)", type: "number", val: 25, group: "grid_dev" },
+            { id: "cfg_webhookEnabled", label: "177. Webhook通知", type: "select", options: ["true:送信", "false:オフ"], group: "grid_dev" },
+            { id: "cfg_slackWebhookUrl", label: "178. Slack通知URL", type: "text", val: "https://hooks.slack.com/services/xxx", group: "grid_dev" },
+            { id: "cfg_discordWebhookUrl", label: "179. Discord通知URL", type: "text", val: "https://discord.com/api/webhooks/xxx", group: "grid_dev" },
+            { id: "cfg_dbBackupIntervalHours", label: "180. DBバックアップ周期(h)", type: "number", val: 24, group: "grid_dev" },
+            { id: "cfg_logLevel", label: "181. ログ出力レベル", type: "select", options: ["INFO:INFO", "DEBUG:DEBUG", "ERROR:ERROR"], group: "grid_dev" },
+            { id: "cfg_systemMailSender", label: "182. システム送信元アドレス", type: "text", val: "no-reply@misemi-ya.net", group: "grid_dev" },
+            { id: "cfg_firebaseCacheTtlMin", label: "183. キャッシュ保持(分)", type: "number", val: 60, group: "grid_dev" },
+            { id: "cfg_debugModeEnabled", label: "184. デバッグコンソール", type: "select", options: ["false:オフ", "true:有効"], group: "grid_dev" },
+            { id: "cfg_adminNotifyEmail", label: "185. 障害通知先", type: "text", val: "u0626241@misemi-ya.net", group: "grid_dev" },
+            { id: "cfg_sentryDsnUrl", label: "186. Sentry DSN", type: "text", val: "https://sentry.io/xxx", group: "grid_dev" },
+            { id: "cfg_smtpHostServer", label: "187. SMTPサーバ", type: "text", val: "mail.misemi-ya.net", group: "grid_dev" },
+            { id: "cfg_smtpPortNumber", label: "188. SMTPポート", type: "number", val: 587, group: "grid_dev" },
+            { id: "cfg_redisCacheHost", label: "189. Redisホスト", type: "text", val: "127.0.0.1:6379", group: "grid_dev" },
+            { id: "cfg_maxUploadFileMb", label: "190. 最大ファイルサイズ(MB)", type: "number", val: 25, group: "grid_dev" },
             { id: "cfg_allowedFileExtensions", label: "191. 許可拡張子", type: "text", val: "pdf, docx, xlsx, png, jpg", group: "grid_dev" },
-            { id: "cfg_storageDriverType", label: "192. ストレージ格納先", type: "select", options: ["Firebase:Firebase Storage", "S3:Amazon S3"], group: "grid_dev" },
-            { id: "cfg_healthCheckPingInterval", label: "193. サーバ死活監視Ping(秒)", type: "number", val: 300, group: "grid_dev" },
-            { id: "cfg_cdnBaseUrl", label: "194. 静的アセットCDN URL", type: "text", val: "https://cdn.misemi-ya.net/", group: "grid_dev" },
-            { id: "cfg_microserviceEMR", label: "195. 電子カルテ連携API", type: "select", options: ["true:有効", "false:無効"], group: "grid_dev" },
-            { id: "cfg_microserviceExam", label: "196. CBT試験コンソール連携", type: "select", options: ["true:有効", "false:無効"], group: "grid_dev" },
+            { id: "cfg_storageDriverType", label: "192. ストレージ先", type: "select", options: ["Firebase:Firebase Storage", "S3:Amazon S3"], group: "grid_dev" },
+            { id: "cfg_healthCheckPingInterval", label: "193. 死活監視Ping(秒)", type: "number", val: 300, group: "grid_dev" },
+            { id: "cfg_cdnBaseUrl", label: "194. CDN URL", type: "text", val: "https://cdn.misemi-ya.net/", group: "grid_dev" },
+            { id: "cfg_microserviceEMR", label: "195. 電子カルテ連携", type: "select", options: ["true:有効", "false:無効"], group: "grid_dev" },
+            { id: "cfg_microserviceExam", label: "196. CBTコンソール連携", type: "select", options: ["true:有効", "false:無効"], group: "grid_dev" },
             { id: "cfg_microserviceHW", label: "197. 宿題管理システム連携", type: "select", options: ["true:有効", "false:無効"], group: "grid_dev" },
-            { id: "cfg_pdfGeneratorEngine", label: "198. PDF帳票生成エンジン", type: "select", options: ["pdfmake:PDFMake", "puppeteer:Puppeteer"], group: "grid_dev" },
-            { id: "cfg_apiSecretKeyVersion", label: "199. APIシークレットキー世代", type: "number", val: 2, group: "grid_dev" },
-            { id: "cfg_systemVersionName", label: "200. ポータルシステムビルド", type: "text", val: "v2026.08.13-RELEASE", group: "grid_dev" }
+            { id: "cfg_pdfGeneratorEngine", label: "198. PDF生成エンジン", type: "select", options: ["pdfmake:PDFMake", "puppeteer:Puppeteer"], group: "grid_dev" },
+            { id: "cfg_apiSecretKeyVersion", label: "199. APIキー世代", type: "number", val: 2, group: "grid_dev" },
+            { id: "cfg_systemVersionName", label: "200. システムビルド", type: "text", val: "v2026.08.13-RELEASE", group: "grid_dev" }
         ];
 
         // 200項目のUI要素生成 & リアルタイム保存イベントバインド
@@ -1170,7 +944,6 @@
             const val = el.value;
             update(ref(db, 'systemConfig'), { [id]: val });
         };
-
 
         // ==========================================
         //  ★ Office 365風 カスタムモーダル API ★
@@ -1295,20 +1068,77 @@
             gapi.load('client', initializeGapiClient);
             render200SettingsUI();
             
-            // 全システム設定＆テーマカラーリアルタイム同期
+            // ★ 全200項目のFirebaseリアルタイムUI連動 ★
             onValue(ref(db, 'systemConfig'), (snapshot) => {
                 const cfg = snapshot.val();
                 if(cfg) {
+                    window.sysCfg = cfg; // グローバル保持（ロジック用）
+
+                    // 1. 大学名とロゴ
                     if(cfg.cfgUnivName) document.getElementById('displayUnivName').textContent = cfg.cfgUnivName;
+                    if(cfg.cfg_logoImageUrl) {
+                        const logo = document.getElementById('portalLogo');
+                        if(logo) logo.src = cfg.cfg_logoImageUrl;
+                    }
+                    
+                    // 2. カラーとUI変数
                     if(cfg.cfgPrimaryColor) document.documentElement.style.setProperty('--primary-color', cfg.cfgPrimaryColor);
                     if(cfg.cfgAccentColor) document.documentElement.style.setProperty('--accent-color', cfg.cfgAccentColor);
-                    
-                    // UI入力項目への同期反映
+                    if(cfg.cfg_glassEffectBlurPx) document.documentElement.style.setProperty('--glass-blur', cfg.cfg_glassEffectBlurPx + 'px');
+                    if(cfg.cfg_cardBorderRadiusPx) document.documentElement.style.setProperty('--card-radius', cfg.cfg_cardBorderRadiusPx + 'px');
+                    if(cfg.cfg_buttonStyleType) document.documentElement.style.setProperty('--btn-radius', cfg.cfg_buttonStyleType === 'flat' ? '4px' : '30px');
+                    if(cfg.cfg_fontSizeBase) document.body.style.fontSize = cfg.cfg_fontSizeBase + 'px';
+
+                    // 3. ダークモード
+                    if(cfg.cfg_darkModeDefault === 'true') {
+                        document.body.classList.add('dark-mode');
+                    } else {
+                        document.body.classList.remove('dark-mode');
+                    }
+
+                    // 4. サイドバー折りたたみ
+                    if(cfg.cfg_sidebarDefaultCollapsed === 'true') {
+                        document.querySelector('.sidebar').classList.add('collapsed');
+                        document.querySelector('.app-container').style.gridTemplateColumns = '80px 1fr';
+                    } else {
+                        document.querySelector('.sidebar').classList.remove('collapsed');
+                        document.querySelector('.app-container').style.gridTemplateColumns = '280px 1fr';
+                    }
+
+                    // 5. グリッドレイアウト可変
+                    if(cfg.cfg_dashboardLayoutGrid) {
+                        const grid = document.querySelector('.dashboard-grid');
+                        if(grid) grid.style.gridTemplateColumns = `repeat(${cfg.cfg_dashboardLayoutGrid}, 1fr)`;
+                        const attSec = document.querySelector('.attendance-section');
+                        if(attSec) attSec.style.gridColumn = `span ${cfg.cfg_dashboardLayoutGrid}`;
+                        const srvSec = document.querySelector('.services-section');
+                        if(srvSec) srvSec.style.gridColumn = `span ${cfg.cfg_dashboardLayoutGrid}`;
+                    }
+
+                    // 6. 天気ウィジェット表示
+                    const weatherWidget = document.getElementById('weatherWidget');
+                    if(weatherWidget) {
+                        weatherWidget.style.display = (cfg.cfg_showWeatherWidget === 'true') ? 'flex' : 'none';
+                    }
+
+                    // 7. チャート種類変更
+                    if(cfg.cfg_dashboardChartType && myChartInstance) {
+                        if(myChartInstance.config.type !== cfg.cfg_dashboardChartType) {
+                            myChartInstance.config.type = cfg.cfg_dashboardChartType;
+                            myChartInstance.update();
+                        }
+                    }
+
+                    // 8. 挨拶再描画
+                    if(currentUser) updateGreeting(currentUser.name);
+
+                    // UI入力項目への同期反映（他管理者が変更した場合の追従）
                     Object.keys(cfg).forEach(k => {
                         const el = document.getElementById(k);
-                        if(el) el.value = cfg[k];
+                        if(el && document.activeElement !== el) el.value = cfg[k]; // フォーカス中は上書きしない
                     });
 
+                    // メンテナンスモード（一般ユーザー強制遮断）
                     if(cfg.maintenanceMode && !checkIsAdmin()) {
                         document.getElementById('loading-screen').style.display = 'none';
                         showError(currentUser?.username || "Guest", "503", "Maintenance", "<strong style='color:red;'>全学システムメンテナンス中</strong><br>只今、管理者がメンテナンスを行っております。");
@@ -1389,7 +1219,13 @@
 
         function updateGreeting(name) {
             const h = new Date().getHours();
-            const g = h<12 ? "Good Morning" : (h<18 ? "Good Afternoon" : "Good Evening");
+            const isEn = window.sysCfg?.cfg_greetingMessageFormat !== 'ja';
+            let g = "";
+            if (isEn) {
+                g = h<12 ? "Good Morning" : (h<18 ? "Good Afternoon" : "Good Evening");
+            } else {
+                g = h<12 ? "おはようございます" : (h<18 ? "こんにちは" : "こんばんは");
+            }
             document.getElementById('greetingText').innerHTML = `${g} <span style="color:var(--primary-color)">${name}</span><span class="en-sub" style="font-size:0.5em; margin-top:5px;">MISEMI-YA UNIVERSITY STAFF PORTAL</span>`;
         }
 
@@ -1538,8 +1374,9 @@
 
         setInterval(() => {
             const now = new Date();
-            document.getElementById('clockDisplay').innerText = now.toLocaleString('ja-JP');
-            document.getElementById('liveTimeDisplay').innerText = now.toLocaleTimeString('ja-JP');
+            const is12h = window.sysCfg?.cfg_headerClockType === '12h';
+            document.getElementById('clockDisplay').innerText = now.toLocaleString('ja-JP', { hour12: is12h });
+            document.getElementById('liveTimeDisplay').innerText = now.toLocaleTimeString('ja-JP', { hour12: is12h });
             document.getElementById('liveDateDisplay').innerText = now.toLocaleDateString('ja-JP');
         }, 1000);
 
@@ -1567,15 +1404,15 @@
                 const net = Number(data.base) + Number(data.allowance) - Number(data.deduct);
                 
                 document.getElementById('payrollContent').innerHTML = `
-                    <h4 style="margin-top:0; color:#003366;"><i class="fa-solid fa-money-check-dollar"></i> ${month.replace('-','年')}月分 給与明細</h4>
+                    <h4 style="margin-top:0; color:var(--primary-color);"><i class="fa-solid fa-money-check-dollar"></i> ${month.replace('-','年')}月分 給与明細</h4>
                     <table class="app-table" style="background:#fff; border:1px solid #ddd; width:100%;">
-                        <tr><th colspan="2" style="background:#e8f0fe; color:#003366;">支給項目</th><th colspan="2" style="background:#fce8e6; color:#a12020;">控除項目</th></tr>
+                        <tr><th colspan="2" style="background:#e8f0fe; color:var(--primary-color);">支給項目</th><th colspan="2" style="background:#fce8e6; color:#a12020;">控除項目</th></tr>
                         <tr><td>基本給</td><td style="text-align:right">¥${Number(data.base).toLocaleString()}</td><td>健康保険料</td><td style="text-align:right">¥${Math.floor(Number(data.deduct) * 0.4).toLocaleString()}</td></tr>
                         <tr><td>役職・業務手当</td><td style="text-align:right">¥${Number(data.allowance).toLocaleString()}</td><td>厚生年金保険</td><td style="text-align:right">¥${Math.floor(Number(data.deduct) * 0.5).toLocaleString()}</td></tr>
                         <tr><td>通勤手当</td><td style="text-align:right">¥0</td><td>所得税・住民税</td><td style="text-align:right">¥${Math.floor(Number(data.deduct) * 0.1).toLocaleString()}</td></tr>
                         <tr style="font-weight:bold; font-size:1.2rem; background:#f8f9fa;">
                             <td colspan="3" style="text-align:right; border-top:2px solid #ccc; padding-top:15px;">差引支給額</td>
-                            <td style="text-align:right; border-top:2px solid #ccc; color:#003366; padding-top:15px;">¥${net.toLocaleString()}</td>
+                            <td style="text-align:right; border-top:2px solid #ccc; color:var(--primary-color); padding-top:15px;">¥${net.toLocaleString()}</td>
                         </tr>
                     </table>
                 `;
@@ -1588,18 +1425,27 @@
             const amount = document.getElementById('expAmount').value;
             if(!amount) { await customAlert('申請金額を入力してください', "入力エラー", "fa-circle-exclamation"); return; }
 
+            // 自動承認・領収書必須チェック (リアルタイム設定値連動)
+            const autoApproveLimit = Number(window.sysCfg?.cfg_autoApproveLimit || 10000);
+            const requireReceipt = Number(window.sysCfg?.cfg_receiptReqLimit || 3000);
+
+            if(Number(amount) >= requireReceipt) {
+                const confirmReq = await customConfirm(`申請額が ${requireReceipt}円 を超えているため領収書が必要です。添付して提出しますか？`, "領収書確認", "fa-receipt");
+                if(!confirmReq) return;
+            }
+
             const expData = {
                 type: type,
                 amount: Number(amount),
                 applicant: currentUser.name || "一般職員",
                 email: currentUser.username,
-                status: "審査中",
+                status: (Number(amount) <= autoApproveLimit) ? "承認済" : "審査中",
                 date: new Date().toLocaleDateString('ja-JP')
             };
 
             await push(ref(db, 'expenses'), expData);
             document.getElementById('expAmount').value = '';
-            await customAlert('経費申請をFirebaseに送信・保存しました。', "申請完了", "fa-paper-plane");
+            await customAlert(`経費申請を送信しました。<br>状態: <strong>${expData.status}</strong>`, "申請完了", "fa-paper-plane");
         };
 
         function loadExpenseHistory() {
