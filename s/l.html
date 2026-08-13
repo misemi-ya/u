@@ -2317,7 +2317,8 @@
                 cam2: { t: 'CAM-2', c: '<iframe src="https://eyeplus.closeli.com/device/player?deviceId=xxxxS_e051d8e328a9" width="100%" height="100%" frameborder="0"></iframe>' }
             };
             
-            const item = apps[name] || {t:'Info', c:'準備中'};
+            const item = apps[name] || {t:'<i class="fa-solid fa-circle-info"></i> Info', c:'<div style="padding:20px; text-align:center;">現在準備中です</div>'};
+            
             t.innerHTML = item.t; 
             c.innerHTML = item.c;
             if (item.init) item.init();
