@@ -267,6 +267,46 @@
         .admin-badge { background: #dc3545; color: white; padding: 2px 6px; border-radius: 10px; font-size: 0.65rem; margin-left: 5px; white-space: nowrap; }
 
         /* 管理者コンソール タブ */
+        /* ★ 管理者コンソール タブボタンデザイン（モダン・スタイリッシュ復元） ★ */
+        .admin-tabs {
+            display: flex;
+            gap: 8px;
+            border-bottom: 2px solid #e2e8f0;
+            margin-bottom: 15px;
+            overflow-x: auto;
+            padding-bottom: 2px;
+        }
+
+        .admin-tab-btn {
+            padding: 8px 16px !important;
+            font-size: 0.85rem !important;
+            border: 1px solid #e2e8f0 !important;
+            border-bottom: none !important;
+            background: #f8f9fa !important;
+            font-weight: 600;
+            cursor: pointer;
+            color: #4a5568 !important;
+            white-space: nowrap;
+            border-radius: 8px 8px 0 0 !important;
+            transition: all 0.2s ease !important;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .admin-tab-btn:hover {
+            color: #ff0055 !important;
+            background: #fff0f5 !important;
+            border-color: #ffccd5 !important;
+        }
+
+        .admin-tab-btn.active {
+            color: #ff0055 !important;
+            background: #ffffff !important;
+            border-color: #ffccd5 !important;
+            border-bottom: 3px solid #ff0055 !important;
+            box-shadow: 0 -2px 8px rgba(255, 0, 85, 0.1) !important;
+        }
 /* 管理者コンソールの縦長解消 ＆ コンパクト3列レイアウト */
         #adminConsoleModal .edit-panel {
             width: 820px !important;
