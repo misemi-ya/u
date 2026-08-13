@@ -1421,7 +1421,7 @@
         function signOut() { sessionStorage.clear(); window.location.href = "https://u.misemi-ya.net"; }
 
         // ==========================================
-        //  各アプリ機能の実装＆Firebase連動
+        //  ★ 各アプリ機能の実装＆Firebase動的連動 ★
         // ==========================================
 
         // 給与明細
@@ -1499,7 +1499,29 @@
             });
         }
 
-        // 電子決裁
+        // 1. 電子決裁 (動的入力・承認・差戻し)
+        window.submitNewApproval = async function() {
+            const title = document.getElementById('appTitleInput').value.trim();
+            const dept = document.getElementById('appDeptInput').value.trim();
+            const amount = document.getElementById('appAmountInput').value;
+
+            if(!title || !amount) { await customAlert("件名と金額を入力してください", "入力エラー", "fa-circle-exclamation"); return; }
+
+            const approvalData = {
+                date: new Date().toLocaleDateString('ja-JP', {month:'2-digit', day:'2-digit'}),
+                applicant: `${dept} ${currentUser.name}`,
+                title: title,
+                amount: `¥${Number(amount).toLocaleString()}`,
+                status: '承認待ち',
+                timestamp: Date.now()
+            };
+
+            await push(ref(db, 'approvals'), approvalData);
+            document.getElementById('appTitleInput').value = '';
+            document.getElementById('appAmountInput').value = '';
+            await customAlert("稟議決裁申請を正常に起案・送信しました。", "起案完了", "fa-file-signature");
+        };
+
         window.approveItem = async function(key) {
             if (!checkIsAdmin()) { await customAlert("承認処理を実行するには管理者権限が必要です。", "権限エラー", "fa-shield-halved"); return; }
             await update(ref(db, `approvals/${key}`), { status: '承認済' });
@@ -1524,7 +1546,7 @@
                 if(!data) return;
 
                 let pendingCount = 0;
-                Object.keys(data).forEach(key => {
+                Object.keys(data).reverse().forEach(key => {
                     const item = data[key];
                     if(item.status === '承認待ち') pendingCount++;
                     list.innerHTML += `<tr>
@@ -1546,7 +1568,254 @@
             });
         }
 
-        // シラバス・時間割
+        // 2. 採用・公募 (動的入力・登録)
+        window.submitNewRecruit = async function() {
+            const title = document.getElementById('recTitleInput').value.trim();
+            const dept = document.getElementById('recDeptInput').value.trim();
+            const count = document.getElementById('recCountInput').value;
+            const deadline = document.getElementById('recDeadlineInput').value;
+
+            if(!title || !count) { await customAlert("職名と募集人数を入力してください", "入力エラー", "fa-circle-exclamation"); return; }
+
+            const recruitData = {
+                title: title,
+                dept: dept,
+                count: count,
+                applicants: 0,
+                deadline: deadline || '随時受付',
+                status: '募集中'
+            };
+
+            await push(ref(db, 'jobRecruits'), recruitData);
+            document.getElementById('recTitleInput').value = '';
+            document.getElementById('recCountInput').value = '';
+            await customAlert(`新規公募【${title}】をFirebaseに公開登録しました。`, "公募登録", "fa-briefcase");
+        };
+
+        function loadRecruits() {
+            onValue(ref(db, 'jobRecruits'), (snapshot) => {
+                const list = document.getElementById('recruitList');
+                if(!list) return;
+                list.innerHTML = '';
+                const data = snapshot.val();
+                if(data) {
+                    Object.keys(data).reverse().forEach(key => {
+                        const item = data[key];
+                        list.innerHTML += `<tr>
+                            <td style="font-weight:bold;">${item.title}</td>
+                            <td>${item.dept}</td>
+                            <td style="text-align:center; font-weight:bold; color:var(--primary-color);">${item.applicants || 0}名 (${item.count}名枠)</td>
+                            <td>${item.deadline}</td>
+                            <td><span class="news-badge" style="background:#28a745;">${item.status}</span></td>
+                        </tr>`;
+                    });
+                }
+            });
+        }
+
+        // 3. 研究費管理 (動的計算・執行申請)
+        window.submitResearchExpense = async function() {
+            const category = document.getElementById('resCategoryInput').value;
+            const amount = document.getElementById('resAmountInput').value;
+            const title = document.getElementById('resTitleInput').value.trim();
+
+            if(!amount || !title) { await customAlert("費目内容と執行金額を入力してください", "入力エラー", "fa-circle-exclamation"); return; }
+
+            const expenseItem = {
+                date: new Date().toLocaleDateString('ja-JP', {month:'2-digit', day:'2-digit'}),
+                category: category,
+                title: title,
+                amount: Number(amount)
+            };
+
+            await push(ref(db, 'researchExpenses'), expenseItem);
+            document.getElementById('resTitleInput').value = '';
+            document.getElementById('resAmountInput').value = '';
+            await customAlert(`研究費 ¥${Number(amount).toLocaleString()} の執行申請を登録しました。`, "研究費執行", "fa-microscope");
+        };
+
+        function loadResearchExpenses() {
+            onValue(ref(db, 'researchExpenses'), (snapshot) => {
+                const list = document.getElementById('researchExpList');
+                if(!list) return;
+                list.innerHTML = '';
+                const data = snapshot.val();
+                let totalSpent = 0;
+                const totalBudget = 1500000; // 150万円
+
+                if(data) {
+                    Object.keys(data).reverse().forEach(key => {
+                        const item = data[key];
+                        totalSpent += item.amount;
+                        list.innerHTML += `<tr>
+                            <td>${item.date}</td>
+                            <td>${item.category} (${item.title})</td>
+                            <td style="font-weight:bold;">¥${item.amount.toLocaleString()}</td>
+                        </tr>`;
+                    });
+                }
+
+                const remain = totalBudget - totalSpent;
+                const percent = Math.min(100, ((totalSpent / totalBudget) * 100).toFixed(1));
+
+                const spentEl = document.getElementById('resTotalSpent');
+                const remainEl = document.getElementById('resTotalRemain');
+                const barEl = document.getElementById('resProgressBar');
+
+                if(spentEl) spentEl.textContent = `¥${totalSpent.toLocaleString()}`;
+                if(remainEl) remainEl.textContent = `¥${remain.toLocaleString()}`;
+                if(barEl) {
+                    barEl.style.width = `${percent}%`;
+                    barEl.textContent = `執行率 ${percent}%`;
+                }
+            });
+        }
+
+        // 4. 資産・備品 (動的追加・台帳)
+        window.submitNewAsset = async function() {
+            const assetCode = document.getElementById('assetCodeInput').value.trim();
+            const name = document.getElementById('assetNameInput').value.trim();
+            const location = document.getElementById('assetLocInput').value.trim();
+            const status = document.getElementById('assetStatusInput').value;
+
+            if(!assetCode || !name) { await customAlert("管理番号と品名を入力してください", "入力エラー", "fa-circle-exclamation"); return; }
+
+            const asset = {
+                code: assetCode,
+                name: name,
+                location: location || "未指定",
+                status: status,
+                date: new Date().toLocaleDateString('ja-JP')
+            };
+
+            await push(ref(db, 'campusAssets'), asset);
+            document.getElementById('assetCodeInput').value = '';
+            document.getElementById('assetNameInput').value = '';
+            await customAlert(`備品【${name}】を台帳に新規登録しました。`, "資産登録", "fa-laptop");
+        };
+
+        function loadAssets() {
+            onValue(ref(db, 'campusAssets'), (snapshot) => {
+                const list = document.getElementById('assetList');
+                if(!list) return;
+                list.innerHTML = '';
+                const data = snapshot.val();
+                if(data) {
+                    Object.keys(data).reverse().forEach(key => {
+                        const item = data[key];
+                        list.innerHTML += `<tr>
+                            <td style="font-weight:bold;">${item.code}</td>
+                            <td>${item.name}</td>
+                            <td>${item.location}</td>
+                            <td><span style="color:${item.status==='稼働中'?'green':'red'}; font-weight:bold;">${item.status}</span></td>
+                        </tr>`;
+                    });
+                }
+            });
+        }
+
+        // 5. 情報システム (申請送信)
+        window.submitITRequest = async function() {
+            const type = document.getElementById('itReqTypeInput').value;
+            const reason = document.getElementById('itReasonInput').value.trim();
+
+            if(!reason) { alert("申請理由・対象者を入力してください"); return; }
+
+            const reqNumber = `IT-${Date.now().toString().slice(-6)}`;
+            const itReq = {
+                reqNumber: reqNumber,
+                type: type,
+                reason: reason,
+                applicant: currentUser.name,
+                status: '受付済',
+                date: new Date().toLocaleDateString('ja-JP')
+            };
+
+            await push(ref(db, 'itRequests'), itReq);
+            document.getElementById('itReasonInput').value = '';
+            await customAlert(`情報システム課への申請を受付ました。<br>受付番号: <strong>${reqNumber}</strong>`, "申請完了", "fa-desktop");
+        };
+
+        function loadITRequests() {
+            onValue(ref(db, 'itRequests'), (snapshot) => {
+                const list = document.getElementById('itReqList');
+                if(!list) return;
+                list.innerHTML = '';
+                const data = snapshot.val();
+                if(data) {
+                    Object.keys(data).reverse().forEach(key => {
+                        const item = data[key];
+                        list.innerHTML += `<tr>
+                            <td>${item.reqNumber}</td>
+                            <td>${item.type}</td>
+                            <td>${item.applicant}</td>
+                            <td><span class="news-badge" style="background:#007bff;">${item.status}</span></td>
+                        </tr>`;
+                    });
+                }
+            });
+        }
+
+        // 6. 安全衛生 (健診予約・ストレスチェック)
+        window.submitHealthReservation = async function() {
+            const date = document.getElementById('healthDateInput').value;
+            const course = document.getElementById('healthCourseInput').value;
+
+            if(!date) { await customAlert("希望受診日を選択してください", "入力エラー", "fa-circle-exclamation"); return; }
+
+            const reservation = {
+                date: date,
+                course: course,
+                applicant: currentUser.name,
+                email: currentUser.username,
+                timestamp: Date.now()
+            };
+
+            const safeEmail = currentUser.username.replace(/\./g, '_');
+            await set(ref(db, `healthReservations/${safeEmail}`), reservation);
+            await customAlert(`秋季定期健康診断の予約を完了しました。<br>受診日: <strong>${date}</strong> (${course})`, "健診予約完了", "fa-calendar-check");
+            openApp('health');
+        };
+
+        // 7. 危機管理・BCP (安否報告送信)
+        window.submitBCPReport = async function() {
+            const status = document.getElementById('bcpStatusInput').value;
+            const attend = document.getElementById('bcpAttendInput').value;
+            const memo = document.getElementById('bcpMemoInput').value.trim();
+
+            const bcpData = {
+                user: currentUser.name,
+                email: currentUser.username,
+                status: status,
+                attend: attend,
+                memo: memo || '特記事項なし',
+                time: new Date().toLocaleString('ja-JP')
+            };
+
+            const safeEmail = currentUser.username.replace(/\./g, '_');
+            await set(ref(db, `bcpReports/${safeEmail}`), bcpData);
+            await customAlert("緊急安否報告を全学BCPデータベースに送信しました。ご協力ありがとうございます。", "安否報告完了", "fa-shield-heart");
+            openApp('crisis');
+        };
+
+        function loadBCPReports() {
+            onValue(ref(db, 'bcpReports'), (snapshot) => {
+                const list = document.getElementById('bcpReportsList');
+                if(!list) return;
+                list.innerHTML = '';
+                const data = snapshot.val();
+                if(data) {
+                    Object.keys(data).reverse().forEach(key => {
+                        const item = data[key];
+                        list.innerHTML += `<li style="padding:8px; border-bottom:1px solid #eee;">
+                            <strong>${item.user}</strong>: <span class="news-badge" style="background:${item.status==='無事'?'#28a745':'#dc3545'};">${item.status} / ${item.attend}</span> (${item.memo}) <small style="color:#888;">${item.time}</small>
+                        </li>`;
+                    });
+                }
+            });
+        }
+
+        // シラバス検索
         window.filterSyllabus = function() {
             const query = document.getElementById('syllabusSearchInput').value.toLowerCase();
             const items = document.querySelectorAll('.syllabus-item');
@@ -1556,7 +1825,7 @@
             });
         };
 
-        // 図書購入リクエスト
+        // 図書リクエスト
         window.submitLibraryRequest = async function() {
             const title = document.getElementById('libTitleInput').value;
             const author = document.getElementById('libAuthorInput').value;
@@ -1616,7 +1885,7 @@
             }
         };
 
-        // グループウェア（チャット）
+        // チャット
         window.sendChatMessage = async function() {
             const input = document.getElementById('chatMsgInput');
             const msg = input.value.trim();
@@ -1666,11 +1935,6 @@
                 }
             });
         }
-
-        // 汎用アクション
-        window.genericAction = async function(message, title, icon) {
-            await customAlert(message, title, icon);
-        };
 
 
         // ==========================================
@@ -2060,7 +2324,7 @@
             await customAlert("全学お知らせをダッシュボードに緊急配信しました。", "お知らせ配信", "fa-bullhorn");
         };
 
-        // アプリダイアログ処理 (全16アプリの完全版コンテンツ)
+        // アプリダイアログ処理 (全完全動的アプリコンテンツ)
         function openApp(name) {
             if (name === 'share') { window.location.href = 'share.html'; return; }
             const m = document.getElementById('appModal');
@@ -2095,7 +2359,7 @@
                     init: () => window.updatePayroll()
                 },
                 expense: { 
-                    t:'<i class="fa-solid fa-receipt"></i> 経費精算システム (Firebase連動)', 
+                    t:'<i class="fa-solid fa-receipt"></i> 経費精算システム (Firebase動的連動)', 
                     c:`
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                             <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid #ddd;">
@@ -2128,22 +2392,267 @@
                     init: () => loadExpenseHistory()
                 },
                 approval: { 
-                    t:'<i class="fa-solid fa-stamp"></i> 電子決裁・ワークフロー', 
+                    t:'<i class="fa-solid fa-stamp"></i> 電子決裁・ワークフロー (新規起案 & 承認)', 
                     c:`
-                        <div style="margin-bottom: 15px; display:flex; justify-content:space-between; align-items:center;">
-                            <span style="font-size:1.1rem; font-weight:bold; color:var(--primary-color);">
-                                承認待ち案件 <span id="approvalCount" style="color:#dc3545; font-size:1.5rem; margin:0 5px;">0</span> 件
-                            </span>
+                        <div style="display:grid; grid-template-columns: 1fr 1.5fr; gap:20px;">
+                            <div style="background:#f8f9fa; padding:15px; border-radius:8px; border:1px solid #ddd;">
+                                <h4 style="margin-top:0; border-bottom:2px solid var(--primary-color); padding-bottom:5px;">新規稟議・決裁起案</h4>
+                                <div style="margin-bottom:10px;">
+                                    <label style="font-size:0.8rem;">件名</label>
+                                    <input type="text" id="appTitleInput" class="panel-input" placeholder="例: 実験用サーバ購入伺い">
+                                </div>
+                                <div style="margin-bottom:10px;">
+                                    <label style="font-size:0.8rem;">起案部署・役職</label>
+                                    <input type="text" id="appDeptInput" class="panel-input" value="情報学専攻">
+                                </div>
+                                <div style="margin-bottom:15px;">
+                                    <label style="font-size:0.8rem;">申請金額 (円)</label>
+                                    <input type="number" id="appAmountInput" class="panel-input" placeholder="例: 150000">
+                                </div>
+                                <button class="panel-btn" style="margin:0; background:#28a745;" onclick="submitNewApproval()"><i class="fa-solid fa-paper-plane"></i> 決裁案件を起案</button>
+                            </div>
+                            
+                            <div>
+                                <div style="margin-bottom: 10px; display:flex; justify-content:space-between; align-items:center;">
+                                    <span style="font-size:1rem; font-weight:bold; color:var(--primary-color);">
+                                        承認待ち案件 <span id="approvalCount" style="color:#dc3545; font-size:1.3rem;">0</span> 件
+                                    </span>
+                                </div>
+                                <table class="app-table" style="background:#fff; border-radius:8px; overflow:hidden; font-size:0.85rem;">
+                                    <thead style="background:#003366; color:white;">
+                                        <tr><th>起案日</th><th>申請者</th><th>件名</th><th>金額</th><th>操作</th></tr>
+                                    </thead>
+                                    <tbody id="approvalList"><tr><td colspan="5">読み込み中...</td></tr></tbody>
+                                </table>
+                            </div>
                         </div>
-                        <table class="app-table" style="background:#fff; border-radius:8px; overflow:hidden; font-size:0.9rem;">
-                            <thead style="background:#003366; color:white;">
-                                <tr><th>起案日</th><th>申請者</th><th>件名</th><th>金額</th><th>操作</th></tr>
-                            </thead>
-                            <tbody id="approvalList"><tr><td colspan="5">読み込み中...</td></tr></tbody>
-                        </table>
                     `,
                     init: () => loadApprovals()
                 },
+                recruit: { 
+                    t:'<i class="fa-solid fa-briefcase"></i> 採用・教員公募管理システム', 
+                    c:`
+                        <div style="display:grid; grid-template-columns: 1fr 1.5fr; gap:20px;">
+                            <div style="background:#f8f9fa; padding:15px; border-radius:8px; border:1px solid #ddd;">
+                                <h4 style="margin-top:0; border-bottom:2px solid var(--primary-color); padding-bottom:5px;">新規教員・職員公募の登録</h4>
+                                <div style="margin-bottom:10px;">
+                                    <label style="font-size:0.8rem;">公募職名</label>
+                                    <input type="text" id="recTitleInput" class="panel-input" placeholder="例: 准教授 (AI・データサイエンス)">
+                                </div>
+                                <div style="margin-bottom:10px;">
+                                    <label style="font-size:0.8rem;">配属専攻・課</label>
+                                    <input type="text" id="recDeptInput" class="panel-input" value="情報工学科">
+                                </div>
+                                <div style="margin-bottom:10px;">
+                                    <label style="font-size:0.8rem;">募集人数 (名)</label>
+                                    <input type="number" id="recCountInput" class="panel-input" value="1">
+                                </div>
+                                <div style="margin-bottom:15px;">
+                                    <label style="font-size:0.8rem;">応募締切日</label>
+                                    <input type="date" id="recDeadlineInput" class="panel-input" value="2026-10-31">
+                                </div>
+                                <button class="panel-btn" style="margin:0;" onclick="submitNewRecruit()"><i class="fa-solid fa-plus-circle"></i> 公募案件を公開登録</button>
+                            </div>
+
+                            <div>
+                                <h4 style="margin-top:0; border-bottom:2px solid #ccc; padding-bottom:5px;">公開中・進行中の公募案件</h4>
+                                <table class="app-table" style="font-size:0.85rem; background:#fff;">
+                                    <thead style="background:#f8f9fa;">
+                                        <tr><th>職名</th><th>部署</th><th>応募者数</th><th>締切日</th><th>状態</th></tr>
+                                    </thead>
+                                    <tbody id="recruitList"><tr><td colspan="5">読み込み中...</td></tr></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    `,
+                    init: () => loadRecruits()
+                },
+                research: { 
+                    t:'<i class="fa-solid fa-microscope"></i> 研究費・科研費 予算執行申請', 
+                    c:`
+                        <div style="display:grid; grid-template-columns: 1fr 1.5fr; gap:20px;">
+                            <div style="background:#f8f9fa; padding:15px; border-radius:8px; border:1px solid #ddd;">
+                                <h4 style="margin-top:0; border-bottom:2px solid var(--primary-color); padding-bottom:5px;">研究費 執行・購入申請</h4>
+                                <div style="margin-bottom:10px;">
+                                    <label style="font-size:0.8rem;">費目区分</label>
+                                    <select id="resCategoryInput" class="panel-input">
+                                        <option>物品費 (機器・試薬)</option>
+                                        <option>旅費 (学会出張)</option>
+                                        <option>人件費・謝金</option>
+                                        <option>その他 (論文投稿料等)</option>
+                                    </select>
+                                </div>
+                                <div style="margin-bottom:10px;">
+                                    <label style="font-size:0.8rem;">購入・品名内容</label>
+                                    <input type="text" id="resTitleInput" class="panel-input" placeholder="例: 解析用グラフィックボード">
+                                </div>
+                                <div style="margin-bottom:15px;">
+                                    <label style="font-size:0.8rem;">執行金額 (円)</label>
+                                    <input type="number" id="resAmountInput" class="panel-input" placeholder="例: 120000">
+                                </div>
+                                <button class="panel-btn" style="margin:0; background:#17a2b8;" onclick="submitResearchExpense()"><i class="fa-solid fa-calculator"></i> 研究費を執行申請</button>
+                            </div>
+
+                            <div>
+                                <div style="background:#fff; padding:15px; border-radius:8px; border:1px solid #ddd; margin-bottom:15px;">
+                                    <h4 style="margin-top:0; color:#003366;"><span style="background:var(--accent-color); color:white; padding:3px 8px; border-radius:4px; font-size:0.8rem;">基盤研究(C)</span> 2026年度 科学研究費補助金</h4>
+                                    <div style="display:flex; justify-content:space-between; margin-top:10px; font-size:0.95rem;">
+                                        <span>執行済: <strong id="resTotalSpent" style="color:#003366;">¥0</strong></span>
+                                        <span>予算残額: <strong id="resTotalRemain" style="color:#d9534f;">¥1,500,000</strong></span>
+                                    </div>
+                                    <div style="width:100%; background:#e9ecef; height:24px; border-radius:12px; overflow:hidden; margin-top:8px;">
+                                        <div id="resProgressBar" style="width:0%; background:linear-gradient(90deg, #28a745, #20c997); height:100%; display:flex; align-items:center; justify-content:center; color:white; font-size:0.75rem; font-weight:bold;">0%</div>
+                                    </div>
+                                </div>
+
+                                <h5 style="margin:0 0 5px 0;">直近の執行履歴</h5>
+                                <table class="app-table" style="font-size:0.8rem; background:#fff;">
+                                    <thead><tr><th>日付</th><th>区分 (品名)</th><th>金額</th></tr></thead>
+                                    <tbody id="researchExpList"><tr><td colspan="3">履歴なし</td></tr></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    `,
+                    init: () => loadResearchExpenses()
+                },
+                assets: { 
+                    t:'<i class="fa-solid fa-laptop"></i> 資産・物品備品 登録＆管理台帳', 
+                    c:`
+                        <div style="display:grid; grid-template-columns: 1fr 1.5fr; gap:20px;">
+                            <div style="background:#f8f9fa; padding:15px; border-radius:8px; border:1px solid #ddd;">
+                                <h4 style="margin-top:0; border-bottom:2px solid var(--primary-color); padding-bottom:5px;">新規備品・機器の登録</h4>
+                                <div style="margin-bottom:10px;">
+                                    <label style="font-size:0.8rem;">管理番号</label>
+                                    <input type="text" id="assetCodeInput" class="panel-input" placeholder="例: PC-2026-088">
+                                </div>
+                                <div style="margin-bottom:10px;">
+                                    <label style="font-size:0.8rem;">品名・スペック</label>
+                                    <input type="text" id="assetNameInput" class="panel-input" placeholder="例: iPad Pro 11インチ">
+                                </div>
+                                <div style="margin-bottom:10px;">
+                                    <label style="font-size:0.8rem;">保管場所・研究室</label>
+                                    <input type="text" id="assetLocInput" class="panel-input" value="第3研究室">
+                                </div>
+                                <div style="margin-bottom:15px;">
+                                    <label style="font-size:0.8rem;">状態</label>
+                                    <select id="assetStatusInput" class="panel-input"><option>稼働中</option><option>修理中</option><option>廃棄予定</option></select>
+                                </div>
+                                <button class="panel-btn" style="margin:0; background:#28a745;" onclick="submitNewAsset()"><i class="fa-solid fa-plus-circle"></i> 備品を新規登録</button>
+                            </div>
+
+                            <div>
+                                <h4 style="margin-top:0; border-bottom:2px solid #ccc; padding-bottom:5px;">資産管理台帳</h4>
+                                <table class="app-table" style="font-size:0.85rem; background:#fff;">
+                                    <thead style="background:#f8f9fa;"><tr><th>管理番号</th><th>品名</th><th>保管場所</th><th>状態</th></tr></thead>
+                                    <tbody id="assetList"><tr><td colspan="4">読み込み中...</td></tr></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    `,
+                    init: () => loadAssets()
+                },
+                it: { 
+                    t:'<i class="fa-solid fa-desktop"></i> 情報システム・アカウント権限申請', 
+                    c:`
+                        <div style="display:flex; gap:20px;">
+                            <div style="flex:1; border:1px solid #ddd; padding:15px; border-radius:8px; background:#fff;">
+                                <h4 style="margin-top:0; border-bottom:2px solid var(--primary-color); padding-bottom:5px;">新規アカウント / 権限申請</h4>
+                                <div class="panel-input-group" style="margin-bottom:10px;">
+                                    <label style="font-size:0.8rem; display:block; margin-bottom:3px; color:#555;">申請種別</label>
+                                    <select id="itReqTypeInput" class="panel-input">
+                                        <option>非常勤講師アカウント発行</option>
+                                        <option>VPN接続権限付与</option>
+                                        <option>メーリングリスト作成</option>
+                                        <option>共有フォルダアクセス権</option>
+                                    </select>
+                                </div>
+                                <div class="panel-input-group" style="margin-bottom:15px;">
+                                    <label style="font-size:0.8rem; display:block; margin-bottom:3px; color:#555;">対象者名・詳細理由</label>
+                                    <textarea id="itReasonInput" class="panel-input" rows="4" placeholder="例: 秋学期からの非常勤講師 (山田太郎氏) のアカウント発行をお願いします。"></textarea>
+                                </div>
+                                <button class="panel-btn" onclick="submitITRequest()"><i class="fa-solid fa-paper-plane"></i> 申請を送信</button>
+                            </div>
+                            
+                            <div style="flex:1;">
+                                <h4 style="margin-top:0; border-bottom:2px solid #ccc; padding-bottom:5px;">送信済みIT申請ステータス</h4>
+                                <table class="app-table" style="font-size:0.85rem; background:#fff;">
+                                    <thead><tr><th>受付番号</th><th>種別</th><th>申請者</th><th>状態</th></tr></thead>
+                                    <tbody id="itReqList"><tr><td colspan="4">読み込み中...</td></tr></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    `,
+                    init: () => loadITRequests()
+                },
+                health: { 
+                    t:'<i class="fa-solid fa-heart-pulse"></i> 安全衛生・定期健康診断予約', 
+                    c:`
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+                            <div style="background:#e8f4f8; padding:20px; border-radius:8px; border:1px solid #b2ebf2;">
+                                <h3 style="color:#00796b; margin-top:0;"><i class="fa-solid fa-stethoscope"></i> 秋季定期健康診断の予約</h3>
+                                <div style="margin-bottom:10px;">
+                                    <label style="font-size:0.8rem;">受診希望日</label>
+                                    <input type="date" id="healthDateInput" class="panel-input" value="2026-09-15">
+                                </div>
+                                <div style="margin-bottom:15px;">
+                                    <label style="font-size:0.8rem;">受診コース</label>
+                                    <select id="healthCourseInput" class="panel-input">
+                                        <option>一般定期健診コース</option>
+                                        <option>生活習慣病予防健診コース</option>
+                                        <option>人間ドックコース</option>
+                                    </select>
+                                </div>
+                                <button class="panel-btn" style="background:#00796b;" onclick="submitHealthReservation()"><i class="fa-solid fa-calendar-check"></i> 健診日時を確定予約</button>
+                            </div>
+
+                            <div style="background:#fff0f6; padding:20px; border-radius:8px; border:1px solid #ffdeeb;">
+                                <h3 style="color:#c2185b; margin-top:0;"><i class="fa-solid fa-brain"></i> ストレスチェック受検</h3>
+                                <p style="font-size:0.85rem; color:#555;">年1回の受検が義務付けられています。（所要時間: 約3分）</p>
+                                <button class="panel-btn" style="background:#c2185b;" onclick="openApp('elearning')"><i class="fa-solid fa-pen-to-square"></i> ストレスチェックを開始</button>
+                            </div>
+                        </div>
+                    ` 
+                },
+                crisis: { 
+                    t:'<i class="fa-solid fa-triangle-exclamation"></i> 危機管理・BCP 緊急安否確認', 
+                    c:`
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+                            <div style="padding:20px; background:#fff3f3; border:2px solid #dc3545; border-radius:12px;">
+                                <h3 style="color:#dc3545; margin-top:0;"><i class="fa-solid fa-tower-broadcast"></i> 緊急安否状況 報告フォーム</h3>
+                                <div style="margin-bottom:10px;">
+                                    <label style="font-size:0.8rem;">本人の安否状況</label>
+                                    <select id="bcpStatusInput" class="panel-input">
+                                        <option value="無事">無事 (問題なし)</option>
+                                        <option value="軽傷">軽傷あり</option>
+                                        <option value="重傷/救護要">重傷 / 救護が必要</option>
+                                    </select>
+                                </div>
+                                <div style="margin-bottom:10px;">
+                                    <label style="font-size:0.8rem;">出勤可否</label>
+                                    <select id="bcpAttendInput" class="panel-input">
+                                        <option value="出勤可能">出勤可能</option>
+                                        <option value="自宅待機">自宅待機中</option>
+                                        <option value="出勤不可">出勤不可</option>
+                                    </select>
+                                </div>
+                                <div style="margin-bottom:15px;">
+                                    <label style="font-size:0.8rem;">連絡事項・詳細メモ</label>
+                                    <input type="text" id="bcpMemoInput" class="panel-input" placeholder="例: 自宅に被害なし。明日より出勤可能。">
+                                </div>
+                                <button class="panel-btn" style="background:#dc3545; font-size:1rem;" onclick="submitBCPReport()"><i class="fa-solid fa-paper-plane"></i> 安否報告を送信</button>
+                            </div>
+
+                            <div>
+                                <h4 style="margin-top:0; border-bottom:2px solid #ccc; padding-bottom:5px;">全学安否報告 集計ログ</h4>
+                                <div style="height:250px; overflow-y:auto; background:#fff; border:1px solid #ddd; padding:10px; border-radius:8px;">
+                                    <ul id="bcpReportsList" style="list-style:none; padding:0; margin:0; font-size:0.85rem;"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    init: () => loadBCPReports()
+                },
+
                 syllabus: {
                     t:'<i class="fa-solid fa-book-open"></i> シラバス・時間割管理システム',
                     c:`
@@ -2250,55 +2759,6 @@
                         </div>
                     `,
                     init: () => initChatListener()
-                },
-                research: { 
-                    t:'<i class="fa-solid fa-microscope"></i> 研究費・予算管理', 
-                    c:`
-                        <div style="background:#f8f9fa; padding:20px; border-radius:8px; border:1px solid #ddd;">
-                            <h4 style="margin-top:0; color:#003366;"><span style="background:var(--accent-color); color:white; padding:3px 8px; border-radius:4px; font-size:0.8rem;">基盤研究(C)</span> 2026年度 科学研究費補助金</h4>
-                            <div style="display:flex; justify-content:space-between; margin-top:15px; font-size:1.1rem;">
-                                <span>予算総額: <strong>¥1,500,000</strong></span>
-                                <span style="color:#d9534f;">残額: <strong>¥550,000</strong></span>
-                            </div>
-                            <div style="width:100%; background:#e9ecef; height:28px; border-radius:14px; overflow:hidden; margin-top:10px;">
-                                <div style="width:63.3%; background:linear-gradient(90deg, #28a745, #20c997); height:100%; display:flex; align-items:center; justify-content:center; color:white; font-size:0.85rem; font-weight:bold;">執行率 63.3%</div>
-                            </div>
-                        </div>
-                    ` 
-                },
-                assets: { 
-                    t:'<i class="fa-solid fa-laptop"></i> 資産・備品管理', 
-                    c:`
-                        <table class="app-table" style="font-size:0.9rem; background:#fff;">
-                            <thead style="background:#f8f9fa;"><tr><th>管理番号</th><th>品名</th><th>保管場所</th><th>状態</th></tr></thead>
-                            <tbody>
-                                <tr><td>PC-2024-045</td><td>MacBook Pro 14インチ</td><td>第3研究室</td><td><span style="color:green;">稼働中</span></td></tr>
-                                <tr><td>MN-2023-112</td><td>Dell 27インチ 4Kモニター</td><td>第3研究室</td><td><span style="color:green;">稼働中</span></td></tr>
-                            </tbody>
-                        </table>
-                    ` 
-                },
-                it: { 
-                    t:'<i class="fa-solid fa-desktop"></i> 情報システム・アカウント管理', 
-                    c:`
-                        <div class="panel-input-group" style="margin-bottom:10px;">
-                            <label>申請種別</label>
-                            <select class="panel-input"><option>非常勤講師アカウント発行</option><option>VPN接続権限付与</option></select>
-                        </div>
-                        <button class="panel-btn" onclick="genericAction('IT課に申請を送信しました', '申請完了', 'fa-paper-plane')">送信</button>
-                    ` 
-                },
-                health: { 
-                    t:'<i class="fa-solid fa-heart-pulse"></i> 安全衛生・健康管理', 
-                    c:`<div style="text-align:center; padding:20px;"><h3>秋季定期健康診断 予約受付中</h3><button class="panel-btn" style="width:200px;" onclick="genericAction('健診予約システムへ接続します', '予約', 'fa-stethoscope')">健診予約</button></div>` 
-                },
-                recruit: { 
-                    t:'<i class="fa-solid fa-briefcase"></i> 採用・公募管理', 
-                    c:`<table class="app-table"><tr><th>公募件名</th><th>応募数</th></tr><tr><td>情報学専攻 准教授</td><td>12名</td></tr></table>` 
-                },
-                crisis: { 
-                    t:'<i class="fa-solid fa-triangle-exclamation"></i> 危機管理・BCP連絡', 
-                    c:`<div style="text-align:center; padding:20px;"><button class="panel-btn" style="background:#28a745; font-size:1.2rem;" onclick="genericAction('無事・出勤可能として報告しました', '安否確認', 'fa-check'); closeAppModal();">無事です (出勤可能)</button></div>` 
                 },
                 docs: { 
                     t:'<i class="fa-solid fa-folder-open"></i> 文書ライブラリ・規程集', 
