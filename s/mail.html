@@ -30,6 +30,21 @@
             display: flex; flex-direction: column;
         }
 
+        /* VPNロック画面 */
+        #vpn-lock-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: white; z-index: 10000;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            font-family: sans-serif; transition: opacity 0.5s;
+        }
+        #vpn-checking { font-size: 1.2rem; color: #555; }
+        #vpn-error { display: none; text-align: center; }
+        .error-code { font-size: 8rem; font-weight: bold; color: #333; margin: 0; }
+        .error-msg { font-size: 1.5rem; color: #666; margin-bottom: 20px; }
+        .status-box { background: #f0f0f0; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 0.8rem; color: #555; text-align: left; width: 250px; margin: 0 auto; }
+        .status-row { display: flex; justify-content: space-between; margin-bottom: 5px; }
+        .status-val { font-weight: bold; }
+
         /* ヘッダー */
         header {
             height: var(--header-height); background: white;
@@ -147,8 +162,27 @@
 </head>
 <body>
 
+    <!-- VPNロック画面 -->
+    <div id="vpn-lock-screen">
+        <div id="vpn-checking">
+            <i class="fa-solid fa-circle-notch fa-spin"></i> Security Checking...
+        </div>
+        <div id="vpn-error">
+            <div class="error-code">403</div>
+            <div class="error-msg">Access Denied</div>
+            <p class="error-desc">
+                Your connection does not meet the security requirements.<br>
+                Please connect via the specified VPN network.
+            </p>
+            <div class="status-box">
+                <div class="status-row"><span>Your IP:</span><span id="user-ip" class="status-val">...</span></div>
+            </div>
+            <p style="font-size:0.7rem; color:#ccc; margin-top:5px;">Misemi-ya Univ. Security Sys.</p>
+        </div>
+    </div>
+
     <!-- 認証オーバーレイ -->
-    <div id="auth-overlay">
+    <div id="auth-overlay" style="display: none;">
         <h2>Webメールへようこそ</h2>
         <p>Gmailアカウントと連携して、メールの送受信を行います。</p>
         <button class="google-btn" onclick="handleAuth()">
@@ -228,18 +262,96 @@
     </div>
 
     <script>
-        // ▼▼▼ s/l.html と同じGoogleクライアントIDを入れてください ▼▼▼
+        // ==========================================
+        //  VPN・アクセスチェック設定
+        // ==========================================
+        const VPN_HOST = 'public-vpn-202.opengw.net';
+        const CAMPUS_IPS = [
+            '192.0.2.1',
+            '198.51.100.1'
+        ];
+
+        function getSubnet(ip) { return ip ? ip.split('.').slice(0,3).join('.') : ""; }
+
+        function unlockScreen() {
+            document.getElementById('vpn-lock-screen').style.opacity = '0';
+            setTimeout(() => { 
+                document.getElementById('vpn-lock-screen').style.display = 'none'; 
+                initMailApp(); // パスしたらメールアプリを起動
+            }, 500);
+        }
+
+        function showError(ip) {
+            document.getElementById('vpn-checking').style.display = 'none';
+            document.getElementById('vpn-error').style.display = 'block';
+            document.getElementById('user-ip').textContent = ip;
+        }
+
+        async function verifyConnection() {
+            try {
+                // 1. 緊急バイパス
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.get('bypass') === 'mmu2026') {
+                    unlockScreen();
+                    return;
+                }
+
+                // 2. 登録済みデバイスのバイパス
+                const trustedUntil = localStorage.getItem('trusted_device_until');
+                if (trustedUntil && Date.now() < parseInt(trustedUntil)) {
+                    unlockScreen();
+                    return;
+                }
+
+                // 3. ネットワークベースのチェック
+                const ipRes = await fetch('https://api.ipify.org?format=json');
+                const myIp = (await ipRes.json()).ip;
+
+                const isCampusNetwork = CAMPUS_IPS.includes(myIp);
+                const currentSSID = window.currentSSID || "";
+                const isCampusSSID = (currentSSID === "MMU-WiFi" || currentSSID === "MMU-hs-WiFi");
+
+                if (isCampusNetwork || isCampusSSID) {
+                    const expireMs = Date.now() + (30 * 24 * 60 * 60 * 1000); // 30日後
+                    localStorage.setItem('trusted_device_until', expireMs.toString());
+                    unlockScreen();
+                    return;
+                }
+
+                // 4. VPNチェック
+                const dnsRes = await fetch(`https://dns.google/resolve?name=${VPN_HOST}&type=A`);
+                const vpnIp = (await dnsRes.json()).Answer?.[0]?.data || "Unresolved";
+
+                if (vpnIp !== "Unresolved" && getSubnet(myIp) === getSubnet(vpnIp)) {
+                    const expireMs = Date.now() + (30 * 24 * 60 * 60 * 1000); // 30日後
+                    localStorage.setItem('trusted_device_until', expireMs.toString());
+                    unlockScreen();
+                } else {
+                    showError(myIp);
+                }
+            } catch (e) { 
+                showError("Error"); 
+            }
+        }
+
+        // ==========================================
+        //  Webメール アプリケーション処理
+        // ==========================================
         const CLIENT_ID = '385803166778-kg041ijpug65vf8ir68tubl8v804ncef.apps.googleusercontent.com';
-        
-        // 権限：メールの読み取り、変更、送信
         const SCOPES = 'https://www.googleapis.com/auth/gmail.modify';
 
         let tokenClient;
         let gapiInited = false;
         let gisInited = false;
 
-        // 初期化
+        // ページ読み込み時にVPNチェックを実行
         window.onload = function() {
+            verifyConnection();
+        };
+
+        // VPNチェックをパスした後に呼ばれる初期化関数
+        function initMailApp() {
+            document.getElementById('auth-overlay').style.display = 'flex';
             gapi.load('client', initializeGapiClient);
             google.accounts.oauth2.initTokenClient({
                 client_id: CLIENT_ID,
@@ -257,7 +369,7 @@
                 callback: '', // 定義時に指定
             });
             gisInited = true;
-        };
+        }
 
         async function initializeGapiClient() {
             await gapi.client.init({
