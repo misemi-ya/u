@@ -272,17 +272,10 @@
                 <li class="nav-item"><a onclick="openApp('hr')" class="nav-link"><i class="fa-solid fa-user-tie"></i><div>人事・総務<span class="nav-text-en">HR & Admin</span></div></a></li>
                 <li class="nav-item"><a href="students.html" class="nav-link"><i class="fa-solid fa-graduation-cap"></i><div>教務・学生支援<span class="nav-text-en">Academic</span></div></a></li>
                 <li class="nav-item"><a onclick="openApp('approval')" class="nav-link"><i class="fa-solid fa-file-signature"></i><div>電子決裁・申請<span class="nav-text-en">Workflow</span></div></a></li>
-<!-- 管理者用ボタン -->
-                <li class="nav-item" id="adminLink" style="display:none; margin-top:20px; border-top:1px solid rgba(255,255,255,0.2); padding-top:10px;">
-                    <a onclick="openAdminConsole()" class="nav-link" style="color:#ff6b6b; background:rgba(255,0,0,0.2); font-weight:bold;">
-                        <i class="fa-solid fa-user-shield"></i><div>Admin Console<span class="nav-text-en">System Settings</span></div>
-                    </a>
-                </li>
-            </ul>
         </aside>
 
         <main class="main-content">
-            <div class="header-area">
+<div class="header-area">
                 <div style="display:flex; align-items:center; gap:20px;">
                     <button onclick="toggleSidebar()" style="background:none; border:none; font-size:1.5rem; color:var(--primary-color); cursor:pointer; transition:transform 0.2s;"><i class="fa-solid fa-bars"></i></button>
                     <div class="greeting">
@@ -290,6 +283,26 @@
                         <div style="font-size:0.9rem; color:#666; margin-top:5px;"><span id="clockDisplay">Checking time...</span></div>
                     </div>
                 </div>
+                
+                <!-- プロフィールと管理者ボタンを並べるエリア -->
+                <div style="display:flex; align-items:center; gap:15px;">
+                    
+                    <!-- ★ ここに移動・デザインを一新しました ★ -->
+                    <button id="adminLink" onclick="openAdminConsole()" style="display:none; background:#ff0055; color:white; border:none; padding:10px 20px; border-radius:30px; font-weight:bold; font-size:0.9rem; cursor:pointer; box-shadow:0 4px 10px rgba(255,0,85,0.3); transition:all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';" onmouseout="this.style.transform='none';">
+                        <i class="fa-solid fa-user-shield"></i> Admin Console
+                    </button>
+                    
+                    <div class="user-profile">
+                        <img src="../校章.png" alt="logo" style="height:30px; opacity:0.8; margin-right:5px;">
+                        <div class="avatar-circle" id="userInitial">U</div>
+                        <div style="line-height:1.2;">
+                            <div style="font-weight:bold; font-size:0.9rem; display:flex; align-items:center;" id="userName">User</div>
+                            <div class="en-sub" id="userRoleTag">STAFF ACCOUNT</div>
+                        </div>
+                        <button class="btn-logout" onclick="signOut()" title="Sign Out"><i class="fa-solid fa-right-from-bracket"></i></button>
+                    </div>
+                </div>
+            </div>
                 <div class="user-profile">
                     <img src="../校章.png" alt="logo" style="height:30px; opacity:0.8; margin-right:5px;">
                     <div class="avatar-circle" id="userInitial">U</div>
