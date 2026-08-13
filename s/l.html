@@ -403,10 +403,6 @@
         </main>
     </div>
 
-    <!-- 管理者コントロール -->
-    <div class="admin-controls" id="adminControls">
-        <button class="admin-fab" title="システム全権限 管理コンソール" onclick="openAdminConsole()"><i class="fa-solid fa-user-gear"></i></button>
-    </div>
     
     <!-- 汎用モーダル -->
     <div class="modal-overlay" id="chartModal">
@@ -1128,7 +1124,7 @@
             } catch (e) { window.location.href = "index.html"; }
         }
 
-        function setupUser(user) {
+function setupUser(user) {
             document.getElementById("userName").textContent = user.name || "職員";
             document.getElementById("userInitial").textContent = (user.name || "U").charAt(0);
             
@@ -1136,9 +1132,9 @@
             const roleTag = document.getElementById("userRoleTag");
             if (isAdmin) {
                 roleTag.innerHTML = 'ADMINISTRATOR <span class="admin-badge">ADMIN</span>';
-                document.getElementById("adminControls").style.display = "block";
+                // ヘッダー右上の管理者ボタンだけを表示
                 const adminBtn = document.getElementById("adminLink");
-                if(adminBtn) adminBtn.style.display = "block";
+                if (adminBtn) adminBtn.style.display = "inline-block";
             } else {
                 roleTag.textContent = "STAFF ACCOUNT";
             }
