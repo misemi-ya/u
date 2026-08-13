@@ -63,7 +63,7 @@
         #loading-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(255,255,255,0.95); z-index: 9999;
-            display: none; /* 初期は非表示(VPNチェックが先) */
+            display: none;
             justify-content: center; align-items: center; flex-direction: column;
             backdrop-filter: blur(10px); transition: opacity 0.5s ease;
         }
@@ -153,7 +153,6 @@
         .time-box { display: flex; align-items: baseline; gap: 15px; }
         .live-time { font-size: 2.5rem; font-weight: 700; color: #333; font-family: 'Roboto', monospace; }
         .live-date { font-size: 1rem; color: #666; }
-        .attendance-btns { display: flex; gap: 15px; }
         .btn-attend, .btn-leave {
             padding: 10px 30px; border-radius: 30px; font-weight: bold; border: none; cursor: pointer; transition: transform 0.2s;
         }
@@ -233,6 +232,24 @@
         .app-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
         .app-table th, .app-table td { border-bottom: 1px solid #eee; padding: 10px; text-align: left; }
         .app-table th { background: #f8f9fa; color: #555; font-size: 0.9rem; }
+        
+        /* 時間割テーブルスタイル */
+        .timetable-table { width: 100%; border-collapse: collapse; margin-top: 10px; text-align: center; }
+        .timetable-table th { background: var(--primary-color); color: white; padding: 8px; font-size: 0.85rem; }
+        .timetable-table td { border: 1px solid #e0e0e0; height: 60px; vertical-align: top; padding: 5px; font-size: 0.8rem; background: #fff; cursor: pointer; transition: background 0.2s; }
+        .timetable-table td:hover { background: #e8f4f8; }
+        .class-box { background: #e3f2fd; border-left: 3px solid #1976d2; padding: 4px; border-radius: 4px; text-align: left; height: 100%; box-sizing: border-box; }
+        .class-title { font-weight: bold; color: #0d47a1; font-size: 0.8rem; }
+        .class-prof { font-size: 0.7rem; color: #555; }
+        
+        /* チャットスタイル */
+        .chat-box { height: 300px; overflow-y: auto; border: 1px solid #e0e0e0; padding: 15px; border-radius: 8px; background: #fafafa; margin-bottom: 10px; }
+        .chat-msg { margin-bottom: 12px; background: #fff; padding: 10px 12px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); border: 1px solid #eee; }
+        .chat-user { font-weight: bold; font-size: 0.8rem; color: var(--primary-color); display: flex; justify-content: space-between; }
+        .chat-time { font-size: 0.7rem; color: #999; font-weight: normal; }
+        .chat-text { font-size: 0.9rem; margin-top: 4px; color: #333; word-break: break-all; }
+        
+        .admin-badge { background: #dc3545; color: white; padding: 2px 6px; border-radius: 10px; font-size: 0.65rem; margin-left: 5px; }
     </style>
 </head>
 <body>
@@ -288,7 +305,7 @@
                 <li class="nav-item">
                     <a onclick="openApp('share')" class="nav-link"><i class="fa-solid fa-share-nodes"></i><div>Share Portal<span class="nav-text-en">Secure Files</span></div></a>
                 </li>
-<li class="nav-item">
+                <li class="nav-item">
                     <a href="https://u-share.misemi-ya.net/" class="nav-link">
                         <i class="fa-solid fa-cloud"></i>
                         <div>U-Share Portal<span class="nav-text-en">File Storage</span></div>
@@ -298,7 +315,6 @@
                     <a onclick="openApp('groupware')" class="nav-link"><i class="fa-solid fa-sitemap"></i><div>グループウェア<span class="nav-text-en">Groupware</span></div></a>
                 </li>
                 
-                <!-- 新機能 -->
                 <li class="nav-item"><a onclick="openApp('discord')" class="nav-link"><i class="fa-brands fa-discord"></i><div>講義室 (Discord)<span class="nav-text-en">Chat Room</span></div></a></li>
                 <li class="nav-item"><a onclick="window.open('https://slack.com/signin','_blank')" class="nav-link"><i class="fa-brands fa-slack"></i><div>業務連絡 (Slack)<span class="nav-text-en">Communication</span></div></a></li>
 
@@ -332,8 +348,10 @@
                     <img src="../校章.png" alt="logo" style="height:30px; opacity:0.8; margin-right:5px;">
                     <div class="avatar-circle" id="userInitial">U</div>
                     <div style="line-height:1.2;">
-                        <div style="font-weight:bold; font-size:0.9rem;" id="userName">User</div>
-                        <div class="en-sub">STAFF ACCOUNT</div>
+                        <div style="font-weight:bold; font-size:0.9rem; display:flex; align-items:center;" id="userName">
+                            User
+                        </div>
+                        <div class="en-sub" id="userRoleTag">STAFF ACCOUNT</div>
                     </div>
                     <button class="btn-logout" onclick="signOut()" title="Sign Out"><i class="fa-solid fa-right-from-bracket"></i></button>
                 </div>
@@ -356,19 +374,18 @@
                         <div class="live-time" id="liveTimeDisplay">00:00:00</div>
                         <div class="live-date" id="liveDateDisplay">YYYY/MM/DD</div>
                     </div>
-                    <!-- 履歴 -->
                     <div id="attendance-log" class="attendance-log">本日の履歴を読み込み中...</div>
                 </div>
             </div>
 
             <div class="dashboard-grid">
-                <!-- Stat 1: Gmail (Google連携) -->
+                <!-- Stat 1: Gmail -->
                 <div class="glass-card stat-card">
                     <div class="stat-icon-box"><i class="fa-solid fa-inbox"></i></div>
                     <div>
                         <div class="stat-value" id="stat1-val">...</div>
                         <div class="stat-label">Gmail未読数</div>
-<button id="gmailAuthBtn" class="gmail-connect-btn" onclick="handleGmailAuth()">
+                        <button id="gmailAuthBtn" class="gmail-connect-btn" onclick="handleGmailAuth()">
                             <i class="fa-brands fa-google"></i> 連携する
                         </button>
                         <button id="gmailLogoutBtn" class="gmail-connect-btn" onclick="handleGmailLogout()" style="display: none; color: #555; border-color: #999; background: rgba(0,0,0,0.05);">
@@ -377,7 +394,7 @@
                     </div>
                 </div>
 
-                <!-- Stat 2: Tasks (保存対象) -->
+                <!-- Stat 2: Tasks -->
                 <div class="glass-card stat-card">
                     <div class="stat-icon-box" style="color:#28a745; background:rgba(40,167,69,0.1);"><i class="fa-solid fa-check-double"></i></div>
                     <div>
@@ -386,7 +403,7 @@
                     </div>
                 </div>
                 
-                <!-- Stat 3: Urgent (保存対象) -->
+                <!-- Stat 3: Urgent -->
                 <div class="glass-card stat-card">
                     <div class="stat-icon-box" style="color:#dc3545; background:rgba(220,53,69,0.1);"><i class="fa-solid fa-file-pen"></i></div>
                     <div>
@@ -395,7 +412,7 @@
                     </div>
                 </div>
                 
-                <!-- Stat 4: Visitors (保存対象) -->
+                <!-- Stat 4: Visitors -->
                 <div class="glass-card stat-card">
                     <div class="stat-icon-box" style="color:var(--accent-color); background:rgba(201,163,70,0.1);"><i class="fa-solid fa-users"></i></div>
                     <div>
@@ -446,7 +463,7 @@
                         <a onclick="openApp('library')" class="service-card">
                             <i class="fa-solid fa-book service-icon"></i>
                             <div class="service-name">図書・資料</div>
-                            <div class="service-desc">学内DB・購入依頼</div>
+                            <div class="service-desc">蔵書検索・購入申請</div>
                         </a>
                         <a onclick="openApp('crisis')" class="service-card" style="border-color:#dc3545;">
                             <i class="fa-solid fa-triangle-exclamation service-icon" style="color:#dc3545;"></i>
@@ -456,7 +473,7 @@
                         <a onclick="openApp('syllabus')" class="service-card">
                             <i class="fa-solid fa-book-open service-icon"></i>
                             <div class="service-name">シラバス・時間割</div>
-                            <div class="service-desc">授業情報管理</div>
+                            <div class="service-desc">授業情報・履修管理</div>
                         </a>
                         <a href="students.html" class="service-card">
                             <i class="fa-solid fa-address-card service-icon"></i>
@@ -476,15 +493,14 @@
                         <a onclick="openApp('elearning')" class="service-card">
                             <i class="fa-solid fa-chalkboard-user service-icon"></i>
                             <div class="service-name">eラーニング</div>
-                            <div class="service-desc">研修・FD/SD</div>
+                            <div class="service-desc">研修・FD/SDテスト</div>
                         </a>
-<a onclick="openApp('bbs')" class="service-card">
+                        <a onclick="openApp('bbs')" class="service-card">
                             <i class="fa-solid fa-comments service-icon"></i>
                             <div class="service-name">学内掲示板</div>
                             <div class="service-desc">全学周知・連絡</div>
                         </a>
 
-                        <!-- ここから追加：論文掲載 -->
                         <a href="https://u.misemi-ya.net/s/r.html" class="service-card">
                             <i class="fa-solid fa-file-lines service-icon"></i>
                             <div class="service-name">論文掲載</div>
@@ -497,42 +513,39 @@
                             <div class="service-desc">店魅偉屋大学 - 電子カルテ</div>
                         </a>
 
-                        
                         <a href="https://cf890473.cloudfree.jp/hwm/host.php" class="service-card">
                             <i class="fa-solid fa-file-lines service-icon"></i>
                             <div class="service-name">宿題管理システム</div>
                             <div class="service-desc">宿題管理</div>
                         </a>
 
-                        <!-- ここから追加：店魅偉屋大学 CAM-1 -->
                         <a onclick="openApp('cam1')" class="service-card">
                           <i class="fa-solid fa-video service-icon" style="color: #c9a346;"></i>
                           <div class="service-name">店魅偉屋大学 CAM-1</div>
                           <div class="service-desc">YouTube ライブ</div>
                         </a>
 
-                        <!-- ここから追加：店魅偉屋大学 CAM-2 -->
                         <a onclick="openApp('cam2')" class="service-card">
                           <i class="fa-solid fa-camera service-icon" style="color: #c9a346;"></i>
                             <div class="service-name">店魅偉屋大学 CAM-2</div>
                             <div class="service-desc">学内カメラシステム</div>
                         </a>
 
-<a href="https://u.misemi-ya.net/s/exam.html" target="_blank" class="service-card">
-  <i class="fa-solid fa-file-signature service-icon" style="color: #c9a346;"></i>
-  <div class="service-name">店魅偉屋大学付属幼小中高一貫教育校高等学部 - 試験サイト</div>
-  <div class="service-desc">学内試験用サイト</div>
-</a>
+                        <a href="https://u.misemi-ya.net/s/exam.html" target="_blank" class="service-card">
+                          <i class="fa-solid fa-file-signature service-icon" style="color: #c9a346;"></i>
+                          <div class="service-name">付属高等学部 - 試験サイト</div>
+                          <div class="service-desc">学内試験用サイト</div>
+                        </a>
 
                         <a href="https://cf890473.cloudfree.jp/exam/admin.html" target="_blank" class="service-card">
-  <i class="fa-solid fa-file-signature service-icon" style="color: #c9a346;"></i>
-  <div class="service-name">店魅偉屋大学付属幼小中高一貫教育校高等学部 - CBT試験管理者コンソール</div>
-  <div class="service-desc">CBT試験管理者コンソール</div>
-</a>
+                          <i class="fa-solid fa-file-signature service-icon" style="color: #c9a346;"></i>
+                          <div class="service-name">付属高等学部 - CBT管理者</div>
+                          <div class="service-desc">CBT試験管理者コンソール</div>
+                        </a>
                     </div>
                 </div>
 
-                <!-- グラフ (保存対象) -->
+                <!-- グラフ -->
                 <div class="glass-card chart-section">
                     <h3 class="editable-text" id="chart-title">学内システム アクセス状況</h3>
                     <div class="chart-container" style="height: 350px; width: 100%;">
@@ -554,7 +567,7 @@
         <button class="admin-fab" onclick="toggleEditMode()"><i class="fa-solid fa-pen"></i></button>
     </div>
     
-    <!-- グラフ編集モーダル (兼・汎用アプリモーダル) -->
+    <!-- モーダル各種 -->
     <div class="modal-overlay" id="chartModal">
         <div class="edit-panel" style="width: 400px;">
             <h3>グラフデータを編集</h3>
@@ -564,118 +577,31 @@
         </div>
     </div>
 
-    <!-- 汎用アプリ用モーダル -->
     <div class="modal-overlay" id="appModal">
-        <div class="edit-panel" id="appPanel" style="width: 700px; max-width: 90%;">
+        <div class="edit-panel" id="appPanel" style="width: 850px; max-width: 90%;">
             <h3 id="appTitle" style="border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 0; color: var(--primary-color);">App Name</h3>
-            <div id="appContent" style="margin: 20px 0; max-height: 500px; overflow-y: auto;">
-                <!-- アプリの内容がここに挿入されます -->
+            <div id="appContent" style="margin: 20px 0; max-height: 600px; overflow-y: auto;">
+                <!-- アプリの内容が動的に生成されます -->
             </div>
-            <button class="panel-btn" style="background:#666; margin-top: 20px;" onclick="closeAppModal()">閉じる</button>
+            <button class="panel-btn" style="background:#666; margin-top: 15px;" onclick="closeAppModal()">閉じる</button>
         </div>
     </div>
 
     <script src="msal-config.js"></script>
 
-<script type="module">
+    <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getDatabase, ref, set, onValue, push } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+        import { getDatabase, ref, set, onValue, push, remove, update } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
         // ==========================================
-        //  VPN・アクセスチェック設定
+        //  設定 & 定数
         // ==========================================
         const VPN_HOST = 'public-vpn-202.opengw.net';
-        
-        // 学内Wi-Fi（MMU-WiFi等）のグローバルIPアドレスをここに記述
-        const CAMPUS_IPS = [
-            '192.0.2.1',
-            '198.51.100.1'
-        ];
+        const CAMPUS_IPS = ['192.0.2.1', '198.51.100.1'];
+        const ADMIN_EMAIL = "u0626241@misemi-ya.net";
+        const GOOGLE_CLIENT_ID = "385803166778-kg041ijpug65vf8ir68tubl8v804ncef.apps.googleusercontent.com"; 
 
-        function getSubnet(ip) { return ip ? ip.split('.').slice(0,3).join('.') : ""; }
-
-        // ロック解除（メイン画面へ進む）処理
-        function unlockScreen() {
-            document.getElementById('vpn-lock-screen').style.opacity = '0';
-            setTimeout(() => { 
-                document.getElementById('vpn-lock-screen').style.display = 'none'; 
-                startMainApp(); 
-            }, 500);
-        }
-
-        // 拒否エラー画面の表示処理
-        function showError(ip) {
-            document.getElementById('vpn-checking').style.display = 'none';
-            document.getElementById('vpn-error').style.display = 'block';
-            document.getElementById('user-ip').textContent = ip;
-        }
-
-        async function verifyConnection() {
-            try {
-                // ==========================================
-                // 1. URLパラメータによる緊急バイパス (アイデア1)
-                // ==========================================
-                const urlParams = new URLSearchParams(window.location.search);
-                if (urlParams.get('bypass') === 'mmu2026') {
-                    // ?bypass=mmu2026 が付いていたら無条件でパス
-                    unlockScreen();
-                    return;
-                }
-
-                // ==========================================
-                // 2. 登録済みデバイスのバイパス (アイデア2)
-                // ==========================================
-                // 信頼済み有効期限（例: 30日間）をチェック
-                const trustedUntil = localStorage.getItem('trusted_device_until');
-                if (trustedUntil && Date.now() < parseInt(trustedUntil)) {
-                    unlockScreen();
-                    return;
-                }
-
-                // ==========================================
-                // 3. ネットワークベースのチェック (通常の処理)
-                // ==========================================
-                const ipRes = await fetch('https://api.ipify.org?format=json');
-                const myIp = (await ipRes.json()).ip;
-
-                const isCampusNetwork = CAMPUS_IPS.includes(myIp);
-                const currentSSID = window.currentSSID || "";
-                const isCampusSSID = (currentSSID === "MMU-WiFi" || currentSSID === "MMU-hs-WiFi");
-
-                if (isCampusNetwork || isCampusSSID) {
-                    // 学内から正常にアクセスできたので、この端末を「30日間信頼する」設定にする
-                    const expireMs = Date.now() + (30 * 24 * 60 * 60 * 1000); // 30日後
-                    localStorage.setItem('trusted_device_until', expireMs.toString());
-                    
-                    unlockScreen();
-                    return;
-                }
-
-                // ==========================================
-                // 4. VPNチェック (最終関門)
-                // ==========================================
-                const dnsRes = await fetch(`https://dns.google/resolve?name=${VPN_HOST}&type=A`);
-                const vpnIp = (await dnsRes.json()).Answer?.[0]?.data || "Unresolved";
-
-                if (vpnIp !== "Unresolved" && getSubnet(myIp) === getSubnet(vpnIp)) {
-                    // VPNから正常にアクセスできた場合も、この端末を「30日間信頼する」設定にする
-                    const expireMs = Date.now() + (30 * 24 * 60 * 60 * 1000); // 30日後
-                    localStorage.setItem('trusted_device_until', expireMs.toString());
-
-                    unlockScreen();
-                } else {
-                    showError(myIp);
-                }
-            } catch (e) { 
-                showError("Error"); 
-            }
-        }
-
-        // ==========================================
-        //  メインアプリケーション処理
-        // ==========================================
         const firebaseConfig = {
-// ...以降は元のコードのまま
             apiKey: "AIzaSyAuj26lGBWGdcfiLoiCl8s0jTQN3UBu_iM",
             authDomain: "misemiya-portal.firebaseapp.com",
             databaseURL: "https://misemiya-portal-default-rtdb.firebaseio.com",
@@ -689,33 +615,71 @@
         const db = getDatabase(app);
         const dbRef = ref(db, 'portalData');
 
-        const GOOGLE_CLIENT_ID = "385803166778-kg041ijpug65vf8ir68tubl8v804ncef.apps.googleusercontent.com"; 
-        const ADMIN_EMAIL = "u0626241@misemi-ya.net";
-
         let tokenClient;
         let gapiInited = false, gisInited = false;
         let isEditMode = false;
-        
+        let currentUser = null;
+        let myChartInstance = null;
+
         let portalData = { 
             stats: { s2:0, s3:0, s4:0 }, 
             chartTitle: "学内システム アクセス状況",
-            chartData: [100,120,150,100,200,300,400], 
-            news: [] 
+            chartData: [100,120,150,100,200,300,400]
         };
-        let myChartInstance = null;
-        let currentUser = null;
 
-        window.toggleEditMode = toggleEditMode;
-        window.saveChartData = saveChartData;
-        window.closeModal = closeModal;
-window.signOut = signOut;
-        window.handleGmailAuth = handleGmailAuth;
-        window.handleGmailLogout = handleGmailLogout;
-        window.punch = punch;
-        window.openApp = openApp;
-        window.closeAppModal = closeAppModal;
+        // 管理者判定ヘルパー
+        function checkIsAdmin() {
+            return currentUser && currentUser.username && currentUser.username.toLowerCase() === ADMIN_EMAIL.toLowerCase();
+        }
 
-        window.addEventListener('load', () => { verifyConnection(); });
+        function getSubnet(ip) { return ip ? ip.split('.').slice(0,3).join('.') : ""; }
+
+        function unlockScreen() {
+            document.getElementById('vpn-lock-screen').style.opacity = '0';
+            setTimeout(() => { 
+                document.getElementById('vpn-lock-screen').style.display = 'none'; 
+                startMainApp(); 
+            }, 500);
+        }
+
+        function showError(ip) {
+            document.getElementById('vpn-checking').style.display = 'none';
+            document.getElementById('vpn-error').style.display = 'block';
+            document.getElementById('user-ip').textContent = ip;
+        }
+
+        async function verifyConnection() {
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.get('bypass') === 'mmu2026') { unlockScreen(); return; }
+
+                const trustedUntil = localStorage.getItem('trusted_device_until');
+                if (trustedUntil && Date.now() < parseInt(trustedUntil)) { unlockScreen(); return; }
+
+                const ipRes = await fetch('https://api.ipify.org?format=json');
+                const myIp = (await ipRes.json()).ip;
+
+                const isCampusNetwork = CAMPUS_IPS.includes(myIp);
+                const currentSSID = window.currentSSID || "";
+                const isCampusSSID = (currentSSID === "MMU-WiFi" || currentSSID === "MMU-hs-WiFi");
+
+                if (isCampusNetwork || isCampusSSID) {
+                    localStorage.setItem('trusted_device_until', (Date.now() + 30 * 24 * 3600 * 1000).toString());
+                    unlockScreen();
+                    return;
+                }
+
+                const dnsRes = await fetch(`https://dns.google/resolve?name=${VPN_HOST}&type=A`);
+                const vpnIp = (await dnsRes.json()).Answer?.[0]?.data || "Unresolved";
+
+                if (vpnIp !== "Unresolved" && getSubnet(myIp) === getSubnet(vpnIp)) {
+                    localStorage.setItem('trusted_device_until', (Date.now() + 30 * 24 * 3600 * 1000).toString());
+                    unlockScreen();
+                } else {
+                    showError(myIp);
+                }
+            } catch (e) { showError("Error"); }
+        }
 
         async function startMainApp() {
             document.getElementById('loading-screen').style.display = 'flex';
@@ -733,9 +697,8 @@ window.signOut = signOut;
                     await myMSALObj.handleRedirectPromise();
                     const accounts = myMSALObj.getAllAccounts();
                     if (accounts.length > 0) {
-                        const user = accounts[0];
-                        currentUser = user;
-                        setupUser(user);
+                        currentUser = accounts[0];
+                        setupUser(currentUser);
                         
                         setTimeout(() => {
                             document.getElementById('loading-screen').style.opacity = '0';
@@ -744,7 +707,7 @@ window.signOut = signOut;
                                 document.getElementById('mainApp').style.display = 'grid'; 
                                 setTimeout(() => document.getElementById('mainApp').style.opacity = '1', 50);
                             }, 500);
-                        }, 1000);
+                        }, 800);
                     } else {
                         window.location.href = "index.html"; 
                     }
@@ -755,87 +718,26 @@ window.signOut = signOut;
             }
         }
 
-async function initializeGapiClient() {
-            await gapi.client.init({ discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest"] });
-            gapiInited = true;
-            tokenClient = google.accounts.oauth2.initTokenClient({
-                client_id: GOOGLE_CLIENT_ID,
-                scope: 'https://www.googleapis.com/auth/gmail.readonly',
-                callback: async (resp) => {
-                    if (resp.error) return;
-                    const tokenData = {
-                        access_token: resp.access_token,
-                        expires_at: Date.now() + (resp.expires_in * 1000)
-                    };
-                    localStorage.setItem('gapi_token_data', JSON.stringify(tokenData));
-                    await listGmailMessages();
-                },
-            });
-            gisInited = true;
-
-            const storedToken = localStorage.getItem('gapi_token_data');
-            if (storedToken) {
-                const tokenData = JSON.parse(storedToken);
-                if (Date.now() < tokenData.expires_at) {
-                    gapi.client.setToken({ access_token: tokenData.access_token });
-                    await listGmailMessages();
-                } else {
-                    localStorage.removeItem('gapi_token_data');
-                }
-            }
-        }
-
-        function handleGmailAuth() { tokenClient.requestAccessToken({prompt: 'consent'}); }
-
-        function handleGmailLogout() {
-            const storedToken = localStorage.getItem('gapi_token_data');
-            if (storedToken) {
-                const tokenData = JSON.parse(storedToken);
-                google.accounts.oauth2.revoke(tokenData.access_token, () => {
-                    localStorage.removeItem('gapi_token_data');
-                    gapi.client.setToken(null);
-                    document.getElementById('stat1-val').textContent = '...';
-                    document.getElementById('gmailAuthBtn').style.display = 'inline-flex';
-                    document.getElementById('gmailLogoutBtn').style.display = 'none';
-                });
-            }
-        }
-
-        async function listGmailMessages() {
-            try {
-                const labels = await gapi.client.gmail.users.labels.get({ userId: 'me', id: 'INBOX' });
-                document.getElementById('stat1-val').textContent = labels.result.messagesUnread;
-                document.getElementById('gmailAuthBtn').style.display = 'none';
-                document.getElementById('gmailLogoutBtn').style.display = 'inline-flex';
-                const msgs = await gapi.client.gmail.users.messages.list({ userId: 'me', maxResults: 3 });
-                if (msgs.result.messages) {
-                    const con = document.getElementById('news-container');
-                    if(con.innerHTML.includes('最新のGmail')) return;
-                    let html = '<h4 style="margin:10px 0 5px 0; color:#d93025;"><i class="fa-brands fa-google"></i> 最新のGmail</h4><ul style="list-style:none; padding:0;">';
-                    for (const m of msgs.result.messages) {
-                        const d = await gapi.client.gmail.users.messages.get({ userId: 'me', id: m.id });
-                        const h = d.result.payload.headers;
-                        html += `<li class="news-item" style="border-left:3px solid #d93025; padding-left:10px;"><b>${h.find(x=>x.name==='Subject')?.value||'(無題)'}</b></li>`;
-                    }
-                    con.innerHTML = html + '</ul><hr>' + con.innerHTML;
-                }
-            } catch (e) {}
-        }
-
         function setupUser(user) {
             document.getElementById("userName").textContent = user.name || "職員";
             document.getElementById("userInitial").textContent = (user.name || "U").charAt(0);
-            updateGreeting(user.name);
-            if (user.username && user.username.toLowerCase() === ADMIN_EMAIL.toLowerCase()) {
+            
+            const isAdmin = checkIsAdmin();
+            const roleTag = document.getElementById("userRoleTag");
+            if (isAdmin) {
+                roleTag.innerHTML = 'ADMINISTRATOR <span class="admin-badge">ADMIN</span>';
                 document.getElementById("adminControls").style.display = "block";
                 document.getElementById("adminLink").style.display = "block";
+            } else {
+                roleTag.textContent = "STAFF ACCOUNT";
             }
-            const safeEmail = user.username.replace(/\./g, '_');
-            const now = new Date();
+            
+            updateGreeting(user.name);
             push(ref(db, 'accessLogs'), {
-                user: user.name, email: user.username, action: "LOGIN", timestamp: Date.now(), timeString: now.toLocaleString('ja-JP')
+                user: user.name, email: user.username, action: "LOGIN", timestamp: Date.now(), timeString: new Date().toLocaleString('ja-JP')
             });
             loadPunchHistory();
+            initRealtimeListeners();
         }
 
         function updateGreeting(name) {
@@ -866,6 +768,19 @@ async function initializeGapiClient() {
             set(dbRef, portalData).catch(e => console.error(e));
         }
 
+        // ==========================================
+        //  リアルタイム同期 Listeners (Firebase)
+        // ==========================================
+        function initRealtimeListeners() {
+            // 承認待ち案件数の自動カウント同期
+            onValue(ref(db, 'approvals'), (snapshot) => {
+                const data = snapshot.val() || {};
+                const pendingCount = Object.values(data).filter(item => item.status === '承認待ち').length;
+                document.getElementById('stat3-val').textContent = pendingCount;
+            });
+        }
+
+        // 勤怠関連
         function punch(type) {
             const now = new Date();
             const dateStr = now.toLocaleDateString('ja-JP').replace(/\//g, '-');
@@ -894,7 +809,55 @@ async function initializeGapiClient() {
             });
         }
 
+        // Gmail・Chart関連
+        async function initializeGapiClient() {
+            await gapi.client.init({ discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest"] });
+            gapiInited = true;
+            tokenClient = google.accounts.oauth2.initTokenClient({
+                client_id: GOOGLE_CLIENT_ID,
+                scope: 'https://www.googleapis.com/auth/gmail.readonly',
+                callback: async (resp) => {
+                    if (resp.error) return;
+                    localStorage.setItem('gapi_token_data', JSON.stringify({ access_token: resp.access_token, expires_at: Date.now() + (resp.expires_in * 1000) }));
+                    await listGmailMessages();
+                },
+            });
+            gisInited = true;
+            const storedToken = localStorage.getItem('gapi_token_data');
+            if (storedToken) {
+                const tokenData = JSON.parse(storedToken);
+                if (Date.now() < tokenData.expires_at) {
+                    gapi.client.setToken({ access_token: tokenData.access_token });
+                    await listGmailMessages();
+                }
+            }
+        }
+
+        function handleGmailAuth() { tokenClient.requestAccessToken({prompt: 'consent'}); }
+        function handleGmailLogout() {
+            const storedToken = localStorage.getItem('gapi_token_data');
+            if (storedToken) {
+                google.accounts.oauth2.revoke(JSON.parse(storedToken).access_token, () => {
+                    localStorage.removeItem('gapi_token_data');
+                    gapi.client.setToken(null);
+                    document.getElementById('stat1-val').textContent = '...';
+                    document.getElementById('gmailAuthBtn').style.display = 'inline-flex';
+                    document.getElementById('gmailLogoutBtn').style.display = 'none';
+                });
+            }
+        }
+
+        async function listGmailMessages() {
+            try {
+                const labels = await gapi.client.gmail.users.labels.get({ userId: 'me', id: 'INBOX' });
+                document.getElementById('stat1-val').textContent = labels.result.messagesUnread;
+                document.getElementById('gmailAuthBtn').style.display = 'none';
+                document.getElementById('gmailLogoutBtn').style.display = 'inline-flex';
+            } catch (e) {}
+        }
+
         function toggleEditMode() {
+            if (!checkIsAdmin()) { alert("編集モードの起動には管理者権限が必要です。"); return; }
             isEditMode = !isEditMode;
             const fab = document.querySelector('.admin-fab');
             if (isEditMode) {
@@ -924,12 +887,12 @@ async function initializeGapiClient() {
         }
 
         function closeModal() { document.getElementById('chartModal').style.display='none'; }
-        
+
         function initChart() {
             const ctx = document.getElementById('myChart').getContext('2d');
             myChartInstance = new Chart(ctx, { type: 'line', data: { labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'], datasets: [{ data: [], borderColor: '#003366', backgroundColor: 'rgba(0,51,102,0.1)', fill: true }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } } });
         }
-        
+
         setInterval(() => {
             const now = new Date();
             document.getElementById('clockDisplay').innerText = now.toLocaleString('ja-JP');
@@ -939,15 +902,18 @@ async function initializeGapiClient() {
 
         function signOut() { sessionStorage.clear(); window.location.href = "https://u.misemi-ya.net"; }
 
-// ===== アプリケーション動的UI用関数（新機能） =====
+        // ==========================================
+        //  各モジュール機能＆Firebase完全連動処理
+        // ==========================================
+
+        // 給与明細
         window.updatePayroll = function() {
             const month = document.getElementById('payrollMonth').value;
-            // ダミーの給与データ
             const data = {
                 '2026-08': { base: 350000, allowance: 42000, deduct: 71000 },
                 '2026-07': { base: 350000, allowance: 45000, deduct: 72000 },
                 '2026-06': { base: 345000, allowance: 40000, deduct: 69000 },
-            }[month];
+            }[month] || { base: 300000, allowance: 30000, deduct: 60000 };
             
             const net = data.base + data.allowance - data.deduct;
             
@@ -955,18 +921,9 @@ async function initializeGapiClient() {
                 <h4 style="margin-top:0; color:#003366;"><i class="fa-solid fa-money-check-dollar"></i> ${month.replace('-','年')}月分 給与明細</h4>
                 <table class="app-table" style="background:#fff; border:1px solid #ddd; width:100%;">
                     <tr><th colspan="2" style="background:#e8f0fe; color:#003366;">支給項目</th><th colspan="2" style="background:#fce8e6; color:#a12020;">控除項目</th></tr>
-                    <tr>
-                        <td>基本給</td><td style="text-align:right">¥${data.base.toLocaleString()}</td>
-                        <td>健康保険料</td><td style="text-align:right">¥${(data.deduct * 0.4).toLocaleString()}</td>
-                    </tr>
-                    <tr>
-                        <td>役職手当</td><td style="text-align:right">¥${(data.allowance * 0.5).toLocaleString()}</td>
-                        <td>厚生年金保険</td><td style="text-align:right">¥${(data.deduct * 0.5).toLocaleString()}</td>
-                    </tr>
-                    <tr>
-                        <td>通勤手当</td><td style="text-align:right">¥${(data.allowance * 0.5).toLocaleString()}</td>
-                        <td>所得税・住民税</td><td style="text-align:right">¥${(data.deduct * 0.1).toLocaleString()}</td>
-                    </tr>
+                    <tr><td>基本給</td><td style="text-align:right">¥${data.base.toLocaleString()}</td><td>健康保険料</td><td style="text-align:right">¥${Math.floor(data.deduct * 0.4).toLocaleString()}</td></tr>
+                    <tr><td>役職・業務手当</td><td style="text-align:right">¥${Math.floor(data.allowance * 0.5).toLocaleString()}</td><td>厚生年金保険</td><td style="text-align:right">¥${Math.floor(data.deduct * 0.5).toLocaleString()}</td></tr>
+                    <tr><td>通勤手当</td><td style="text-align:right">¥${Math.floor(data.allowance * 0.5).toLocaleString()}</td><td>所得税・住民税</td><td style="text-align:right">¥${Math.floor(data.deduct * 0.1).toLocaleString()}</td></tr>
                     <tr style="font-weight:bold; font-size:1.2rem; background:#f8f9fa;">
                         <td colspan="3" style="text-align:right; border-top:2px solid #ccc; padding-top:15px;">差引支給額</td>
                         <td style="text-align:right; border-top:2px solid #ccc; color:#003366; padding-top:15px;">¥${net.toLocaleString()}</td>
@@ -975,58 +932,273 @@ async function initializeGapiClient() {
             `;
         };
 
+        // 経費精算 (Firebase保存)
         window.submitExpense = function() {
             const type = document.getElementById('expType').value;
             const amount = document.getElementById('expAmount').value;
             if(!amount) { alert('申請金額を入力してください'); return; }
-            
-            // テーブルに行を動的に追加
-            const tr = document.createElement('tr');
-            const today = new Date().toLocaleDateString('ja-JP');
-            tr.innerHTML = `<td>${today}</td><td>${type}</td><td style="font-weight:bold;">¥${Number(amount).toLocaleString()}</td><td><span class="news-badge" style="background:#ffc107; color:#000;">審査中</span></td>`;
-            document.getElementById('expenseList').prepend(tr);
-            
-            // フォームをリセット
-            document.getElementById('expAmount').value = '';
-            alert('経費申請システムにデータを送信しました。');
+
+            const expData = {
+                type: type,
+                amount: Number(amount),
+                applicant: currentUser.name || "一般職員",
+                email: currentUser.username,
+                status: "審査中",
+                date: new Date().toLocaleDateString('ja-JP')
+            };
+
+            push(ref(db, 'expenses'), expData).then(() => {
+                document.getElementById('expAmount').value = '';
+                alert('経費申請をFirebaseに送信・保存しました。');
+            });
         };
 
-        window.approveItem = function(btn) {
-            const tr = btn.closest('tr');
-            tr.style.opacity = '0.3';
-            tr.style.transform = 'translateX(30px)';
-            tr.style.transition = 'all 0.3s ease';
-            setTimeout(() => {
-                tr.remove();
-                updateApprovalCount();
-            }, 300);
-        };
-
-        window.rejectItem = function(btn) {
-            const reason = prompt("差戻しの理由を入力してください (申請者に通知されます):");
-            if(reason !== null) {
-                const tr = btn.closest('tr');
-                tr.style.opacity = '0.3';
-                tr.style.transform = 'translateX(-30px)';
-                tr.style.transition = 'all 0.3s ease';
-                setTimeout(() => {
-                    tr.remove();
-                    updateApprovalCount();
-                }, 300);
-            }
-        };
-        
-        function updateApprovalCount() {
-            const count = document.querySelectorAll('#approvalList tr').length;
-            document.getElementById('approvalCount').textContent = count;
-            document.getElementById('stat3-val').textContent = count; // ダッシュボードの数字も同期
-            if (count === 0) {
-                document.getElementById('approvalList').innerHTML = '<tr><td colspan="5" style="text-align:center; padding:30px; color:#888;"><i class="fa-solid fa-mug-hot" style="font-size:2rem; margin-bottom:10px; display:block;"></i>現在、承認待ちの案件はありません。</td></tr>';
-            }
-            saveToCloud();
+        function loadExpenseHistory() {
+            onValue(ref(db, 'expenses'), (snapshot) => {
+                const list = document.getElementById('expenseList');
+                if(!list) return;
+                list.innerHTML = '';
+                const data = snapshot.val();
+                if(data) {
+                    Object.keys(data).reverse().forEach(key => {
+                        const item = data[key];
+                        list.innerHTML += `<tr>
+                            <td>${item.date}</td>
+                            <td>${item.type}</td>
+                            <td style="font-weight:bold;">¥${item.amount.toLocaleString()}</td>
+                            <td><span class="news-badge" style="background:${item.status==='承認済'?'#28a745':'#ffc107'}; color:${item.status==='承認済'?'#fff':'#000'};">${item.status}</span></td>
+                        </tr>`;
+                    });
+                } else {
+                    list.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#888;">申請履歴はありません</td></tr>';
+                }
+            });
         }
 
-        // ===== アプリケーション モーダル展開処理 =====
+        // 電子決裁 (Firebase保存 & 管理者権限対応)
+        window.approveItem = function(key) {
+            if (!checkIsAdmin()) {
+                alert("【権限エラー】承認処理を実行するには管理者権限 (u0626241@misemi-ya.net) が必要です。");
+                return;
+            }
+            update(ref(db, `approvals/${key}`), { status: '承認済' }).then(() => {
+                alert("案件を承認しました。");
+            });
+        };
+
+        window.rejectItem = function(key) {
+            if (!checkIsAdmin()) {
+                alert("【権限エラー】差戻し処理を実行するには管理者権限 (u0626241@misemi-ya.net) が必要です。");
+                return;
+            }
+            const reason = prompt("差戻しの理由を入力してください:");
+            if(reason !== null) {
+                update(ref(db, `approvals/${key}`), { status: '差戻し', reason: reason }).then(() => {
+                    alert("案件を差戻しました。");
+                });
+            }
+        };
+
+        window.batchApprove = function() {
+            if (!checkIsAdmin()) {
+                alert("【権限エラー】一括承認は管理者アカウント (u0626241@misemi-ya.net) のみ可能です。");
+                return;
+            }
+            if(confirm("全ての承認待ち案件を一括承認しますか？")) {
+                onValue(ref(db, 'approvals'), (snapshot) => {
+                    const data = snapshot.val();
+                    if(data) {
+                        Object.keys(data).forEach(key => {
+                            if(data[key].status === '承認待ち') {
+                                update(ref(db, `approvals/${key}`), { status: '承認済' });
+                            }
+                        });
+                    }
+                }, { onlyOnce: true });
+                alert("一括承認を完了しました。");
+            }
+        };
+
+        function loadApprovals() {
+            onValue(ref(db, 'approvals'), (snapshot) => {
+                const list = document.getElementById('approvalList');
+                if(!list) return;
+                list.innerHTML = '';
+                const data = snapshot.val();
+                
+                // 初期サンプルデータの自動シード
+                if(!data) {
+                    const initialApprovals = {
+                        item1: { date:'08/12', applicant:'田中 准教授', title:'高性能計算用サーバー購入伺い', amount:'¥450,000', status:'承認待ち' },
+                        item2: { date:'08/13', applicant:'佐藤 主任', title:'事務室 備品購入 (トナー等)', amount:'¥28,500', status:'承認待ち' },
+                        item3: { date:'08/13', applicant:'鈴木 係長', title:'秋学期 ガイダンス資料印刷費', amount:'¥15,000', status:'承認待ち' }
+                    };
+                    set(ref(db, 'approvals'), initialApprovals);
+                    return;
+                }
+
+                let pendingCount = 0;
+                Object.keys(data).forEach(key => {
+                    const item = data[key];
+                    if(item.status === '承認待ち') pendingCount++;
+                    list.innerHTML += `<tr>
+                        <td>${item.date}</td>
+                        <td>${item.applicant}</td>
+                        <td style="font-weight:bold;">${item.title}</td>
+                        <td>${item.amount}</td>
+                        <td>
+                            ${item.status === '承認待ち' ? `
+                                <button class="panel-btn" style="padding:4px 10px; width:auto; background:#28a745; margin-right:4px;" onclick="approveItem('${key}')"><i class="fa-solid fa-check"></i> 承認</button>
+                                <button class="panel-btn" style="padding:4px 10px; width:auto; background:#dc3545;" onclick="rejectItem('${key}')"><i class="fa-solid fa-reply"></i> 差戻</button>
+                            ` : `<span class="news-badge" style="background:${item.status==='承認済'?'#28a745':'#dc3545'}">${item.status}</span>`}
+                        </td>
+                    </tr>`;
+                });
+
+                const countEl = document.getElementById('approvalCount');
+                if(countEl) countEl.textContent = pendingCount;
+            });
+        }
+
+        // シラバス・時間割機能
+        window.filterSyllabus = function() {
+            const query = document.getElementById('syllabusSearchInput').value.toLowerCase();
+            const items = document.querySelectorAll('.syllabus-item');
+            items.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                item.style.display = text.includes(query) ? 'block' : 'none';
+            });
+        };
+
+        window.toggleCourseRegister = function(btn, courseName) {
+            const safeEmail = currentUser.username.replace(/\./g, '_');
+            const isReg = btn.getAttribute('data-reg') === 'true';
+            
+            set(ref(db, `myCourses/${safeEmail}/${courseName}`), !isReg).then(() => {
+                alert(!isReg ? `「${courseName}」を履修・お気に入りに登録しました` : `「${courseName}」を解除しました`);
+            });
+        };
+
+        // 図書・資料機能 (Firebase連動)
+        window.submitLibraryRequest = function() {
+            const title = document.getElementById('libTitleInput').value;
+            const author = document.getElementById('libAuthorInput').value;
+            if(!title) { alert('書籍名を入力してください'); return; }
+
+            const req = {
+                title: title,
+                author: author || '不明',
+                applicant: currentUser.name,
+                email: currentUser.username,
+                status: '申請中',
+                timestamp: Date.now()
+            };
+
+            push(ref(db, 'libraryRequests'), req).then(() => {
+                alert('図書購入リクエストを送信しました');
+                document.getElementById('libTitleInput').value = '';
+                document.getElementById('libAuthorInput').value = '';
+            });
+        };
+
+        function loadLibraryRequests() {
+            onValue(ref(db, 'libraryRequests'), (snapshot) => {
+                const list = document.getElementById('libReqList');
+                if(!list) return;
+                list.innerHTML = '';
+                const data = snapshot.val();
+                if(data) {
+                    Object.keys(data).forEach(key => {
+                        const item = data[key];
+                        list.innerHTML += `<li style="padding:8px 0; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center;">
+                            <div><strong>${item.title}</strong> (${item.author}) - <small style="color:#666;">${item.applicant}</small></div>
+                            <div>
+                                <span class="news-badge" style="background:#007bff;">${item.status}</span>
+                                ${checkIsAdmin() ? `<button style="font-size:0.7rem; cursor:pointer;" onclick="approveLibReq('${key}')">承認</button>` : ''}
+                            </div>
+                        </li>`;
+                    });
+                } else {
+                    list.innerHTML = '<li style="color:#888;">リクエストはありません</li>';
+                }
+            });
+        }
+
+        window.approveLibReq = function(key) {
+            if(!checkIsAdmin()) return;
+            update(ref(db, `libraryRequests/${key}`), { status: '購入手配中' });
+        };
+
+        // eラーニング クイズ回答 & 成績Firebase保存
+        window.submitQuiz = function() {
+            const q1 = document.querySelector('input[name="q1"]:checked')?.value;
+            const q2 = document.querySelector('input[name="q2"]:checked')?.value;
+            
+            if(!q1 || !q2) { alert('全ての設問に回答してください'); return; }
+
+            if(q1 === 'correct' && q2 === 'correct') {
+                const safeEmail = currentUser.username.replace(/\./g, '_');
+                set(ref(db, `elearningProgress/${safeEmail}/sec2026`), { status: '合格', completedAt: new Date().toLocaleString() }).then(() => {
+                    alert('全問正解！【2026年度 情報セキュリティ研修】修了証が発行されました。結果はFirebaseに記録されました。');
+                    openApp('elearning');
+                });
+            } else {
+                alert('不合格です。解説を確認して再度挑戦してください。');
+            }
+        };
+
+        // グループウェア リアルタイムチャット
+        window.sendChatMessage = function() {
+            const input = document.getElementById('chatMsgInput');
+            const msg = input.value.trim();
+            if(!msg) return;
+
+            push(ref(db, 'groupwareMessages'), {
+                user: currentUser.name,
+                email: currentUser.username,
+                text: msg,
+                time: new Date().toLocaleTimeString('ja-JP', {hour:'2-digit', minute:'2-digit'}),
+                timestamp: Date.now()
+            }).then(() => {
+                input.value = '';
+            });
+        };
+
+        function initChatListener() {
+            onValue(ref(db, 'groupwareMessages'), (snapshot) => {
+                const box = document.getElementById('chatBox');
+                if(!box) return;
+                box.innerHTML = '';
+                const data = snapshot.val();
+                if(data) {
+                    Object.keys(data).forEach(key => {
+                        const m = data[key];
+                        const isAdminUser = m.email && m.email.toLowerCase() === ADMIN_EMAIL.toLowerCase();
+                        box.innerHTML += `
+                            <div class="chat-msg">
+                                <div class="chat-user">
+                                    <span>${m.user} ${isAdminUser ? '<span class="admin-badge">ADMIN</span>' : ''}</span>
+                                    <span class="chat-time">${m.time} ${checkIsAdmin() ? `<i class="fa-solid fa-trash" style="cursor:pointer; color:red; margin-left:5px;" onclick="deleteChatMsg('${key}')"></i>` : ''}</span>
+                                </div>
+                                <div class="chat-text">${m.text}</div>
+                            </div>
+                        `;
+                    });
+                    box.scrollTop = box.scrollHeight;
+                } else {
+                    box.innerHTML = '<div style="text-align:center; color:#888; padding:20px;">メッセージはありません</div>';
+                }
+            });
+        }
+
+        window.deleteChatMsg = function(key) {
+            if(!checkIsAdmin()) return;
+            remove(ref(db, `groupwareMessages/${key}`));
+        };
+
+        // ==========================================
+        //  汎用モーダル表示処理 (openApp)
+        // ==========================================
         function openApp(name) {
             if (name === 'share') { window.location.href = 'share.html'; return; }
             const m = document.getElementById('appModal');
@@ -1034,21 +1206,12 @@ async function initializeGapiClient() {
             const c = document.getElementById('appContent');
             const p = document.getElementById('appPanel');
             
-            // カメラやDiscordの時は、枠の高さを強制的に広げて中身をフィットさせる
             if(name==='discord' || name==='cam1' || name==='cam2') { 
-                p.style.width = '90%'; 
-                p.style.height = '85vh'; 
-                p.style.display = 'flex';
-                p.style.flexDirection = 'column';
-                c.style.maxHeight = 'none'; 
-                c.style.flexGrow = '1';
-                c.style.height = '100%';
+                p.style.width = '90%'; p.style.height = '85vh'; p.style.display = 'flex'; p.style.flexDirection = 'column';
+                c.style.maxHeight = 'none'; c.style.flexGrow = '1'; c.style.height = '100%';
             } else { 
-                p.style.width = '850px'; // 業務システムは少し広めにする
-                p.style.height = 'auto'; 
-                p.style.display = 'block';
-                c.style.maxHeight = '650px';
-                c.style.height = 'auto';
+                p.style.width = '850px'; p.style.height = 'auto'; p.style.display = 'block';
+                c.style.maxHeight = '600px'; c.style.height = 'auto';
             }
 
             m.style.display = 'flex';
@@ -1063,14 +1226,14 @@ async function initializeGapiClient() {
                                 <option value="2026-07">2026年 7月分</option>
                                 <option value="2026-06">2026年 6月分</option>
                             </select>
-                            <button class="panel-btn" style="width:auto; margin:0; padding:8px 15px; background:#17a2b8;" onclick="alert('給与明細のPDF生成を開始しました。')"><i class="fa-solid fa-download"></i> 明細PDF出力</button>
+                            <button class="panel-btn" style="width:auto; margin:0; padding:8px 15px; background:#17a2b8;" onclick="alert('給与明細のPDF出力処理を開始しました')"><i class="fa-solid fa-download"></i> 明細PDF出力</button>
                         </div>
                         <div id="payrollContent" style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 15px; background: #fafafa; min-height: 250px;"></div>
                     `,
-                    init: () => window.updatePayroll() // 開いた瞬間に8月分を描画
+                    init: () => window.updatePayroll()
                 },
                 expense: { 
-                    t:'<i class="fa-solid fa-receipt"></i> 経費精算システム', 
+                    t:'<i class="fa-solid fa-receipt"></i> 経費精算システム (Firebase動的連動)', 
                     c:`
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                             <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid #ddd;">
@@ -1088,115 +1251,170 @@ async function initializeGapiClient() {
                                     <label style="font-size:0.85rem; color:#666; display:block; margin-bottom:5px;">申請金額 (円)</label>
                                     <input type="number" id="expAmount" class="panel-input" placeholder="例: 5000">
                                 </div>
-                                <div class="panel-input-group" style="margin-bottom:20px;">
-                                    <label style="font-size:0.85rem; color:#666; display:block; margin-bottom:5px;">領収書データ (PDF / 画像)</label>
-                                    <input type="file" class="panel-input" style="padding: 5px; background:#fff;">
-                                </div>
-                                <button class="panel-btn" style="margin:0;" onclick="submitExpense()"><i class="fa-solid fa-paper-plane"></i> 申請を提出する</button>
+                                <button class="panel-btn" style="margin:0;" onclick="submitExpense()"><i class="fa-solid fa-paper-plane"></i> Firebaseへ申請送信</button>
                             </div>
                             
                             <div>
-                                <h4 style="margin-top:0; border-bottom:2px solid #ccc; padding-bottom:5px;">最近の申請履歴</h4>
+                                <h4 style="margin-top:0; border-bottom:2px solid #ccc; padding-bottom:5px;">リアルタイム申請履歴</h4>
                                 <table class="app-table" style="font-size:0.85rem;">
                                     <thead><tr><th>申請日</th><th>区分</th><th>金額</th><th>状態</th></tr></thead>
-                                    <tbody id="expenseList">
-                                        <tr><td>2026/08/10</td><td>交通費・宿泊費</td><td>¥12,400</td><td><span class="news-badge" style="background:#28a745;">承認済</span></td></tr>
-                                        <tr><td>2026/08/02</td><td>消耗品費</td><td>¥4,800</td><td><span class="news-badge" style="background:#28a745;">承認済</span></td></tr>
-                                        <tr><td>2026/07/25</td><td>会議費</td><td>¥3,000</td><td><span class="news-badge" style="background:#dc3545;">差戻し</span></td></tr>
-                                    </tbody>
+                                    <tbody id="expenseList"><tr><td colspan="4">読み込み中...</td></tr></tbody>
                                 </table>
                             </div>
                         </div>
-                    ` 
+                    `,
+                    init: () => loadExpenseHistory()
                 },
                 approval: { 
-                    t:'<i class="fa-solid fa-stamp"></i> 電子決裁・ワークフロー', 
+                    t:'<i class="fa-solid fa-stamp"></i> 電子決裁・ワークフロー (Firebase同期)', 
                     c:`
                         <div style="margin-bottom: 15px; display:flex; justify-content:space-between; align-items:center;">
                             <span style="font-size:1.1rem; font-weight:bold; color:var(--primary-color);">
-                                承認待ち案件 <span id="approvalCount" style="color:#dc3545; font-size:1.5rem; margin:0 5px;">3</span> 件
+                                承認待ち案件 <span id="approvalCount" style="color:#dc3545; font-size:1.5rem; margin:0 5px;">0</span> 件
                             </span>
-                            <button class="panel-btn" style="width:auto; padding:5px 15px; margin:0; background:#6c757d;" onclick="alert('全件一括承認は管理者権限が必要です。')">一括承認</button>
+                            <button class="panel-btn" style="width:auto; padding:5px 15px; margin:0; background:${checkIsAdmin()?'#003366':'#888'};" onclick="batchApprove()">
+                                <i class="fa-solid fa-check-double"></i> 一括承認 ${checkIsAdmin()?'(管理者可)':'(要管理者権限)'}
+                            </button>
                         </div>
                         <table class="app-table" style="background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.05); font-size:0.9rem;">
                             <thead style="background:#003366; color:white;">
-                                <tr><th>起案日</th><th>申請者</th><th>件名</th><th>金額</th><th>アクション</th></tr>
+                                <tr><th>起案日</th><th>申請者</th><th>件名</th><th>金額</th><th>操作 (Firebase反映)</th></tr>
                             </thead>
-                            <tbody id="approvalList">
+                            <tbody id="approvalList"><tr><td colspan="5">読み込み中...</td></tr></tbody>
+                        </table>
+                    `,
+                    init: () => loadApprovals()
+                },
+                syllabus: {
+                    t:'<i class="fa-solid fa-book-open"></i> シラバス・時間割管理システム',
+                    c:`
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+                            <input type="text" id="syllabusSearchInput" class="panel-input" style="width:300px;" placeholder="講義名・教員名でリアルタイム検索" onkeyup="filterSyllabus()">
+                            <span style="font-size:0.85rem; color:#666;"><i class="fa-solid fa-circle-info"></i> 2026年度 秋学期 時間割</span>
+                        </div>
+                        <table class="timetable-table">
+                            <thead>
+                                <tr><th>時限</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th></tr>
+                            </thead>
+                            <tbody>
                                 <tr>
-                                    <td>08/12</td><td>情報学専攻<br><small style="color:#888;">田中 准教授</small></td><td style="font-weight:bold;">高性能計算用サーバー購入伺い</td><td>¥450,000</td>
-                                    <td style="min-width:140px;">
-                                        <button class="panel-btn" style="padding:5px 10px; width:auto; background:#28a745; margin-right:5px;" onclick="approveItem(this)"><i class="fa-solid fa-check"></i></button>
-                                        <button class="panel-btn" style="padding:5px 10px; width:auto; background:#dc3545;" onclick="rejectItem(this)"><i class="fa-solid fa-reply"></i></button>
-                                    </td>
+                                    <td>1限<br><small>9:00-10:30</small></td>
+                                    <td><div class="class-box syllabus-item"><div class="class-title">情報セキュリティ基礎</div><div class="class-prof">山田 教授</div></div></td>
+                                    <td></td>
+                                    <td><div class="class-box syllabus-item"><div class="class-title">データベース論</div><div class="class-prof">佐藤 准教授</div></div></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                                 <tr>
-                                    <td>08/13</td><td>総務課<br><small style="color:#888;">佐藤 主任</small></td><td style="font-weight:bold;">事務室 備品購入 (トナー等)</td><td>¥28,500</td>
-                                    <td>
-                                        <button class="panel-btn" style="padding:5px 10px; width:auto; background:#28a745; margin-right:5px;" onclick="approveItem(this)"><i class="fa-solid fa-check"></i></button>
-                                        <button class="panel-btn" style="padding:5px 10px; width:auto; background:#dc3545;" onclick="rejectItem(this)"><i class="fa-solid fa-reply"></i></button>
-                                    </td>
+                                    <td>2限<br><small>10:40-12:10</small></td>
+                                    <td></td>
+                                    <td><div class="class-box syllabus-item"><div class="class-title">AI・機械学習演習</div><div class="class-prof">田中 講師</div></div></td>
+                                    <td></td>
+                                    <td><div class="class-box syllabus-item"><div class="class-title">ネットワーク構築実習</div><div class="class-prof">高橋 准教授</div></div></td>
+                                    <td></td>
                                 </tr>
                                 <tr>
-                                    <td>08/13</td><td>教務課<br><small style="color:#888;">鈴木 係長</small></td><td style="font-weight:bold;">秋学期 ガイダンス資料印刷費</td><td>¥15,000</td>
-                                    <td>
-                                        <button class="panel-btn" style="padding:5px 10px; width:auto; background:#28a745; margin-right:5px;" onclick="approveItem(this)"><i class="fa-solid fa-check"></i></button>
-                                        <button class="panel-btn" style="padding:5px 10px; width:auto; background:#dc3545;" onclick="rejectItem(this)"><i class="fa-solid fa-reply"></i></button>
-                                    </td>
+                                    <td>3限<br><small>13:00-14:30</small></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><div class="class-box syllabus-item"><div class="class-title">Webアプリケーション開発</div><div class="class-prof">伊藤 教授</div></div></td>
+                                    <td></td>
+                                    <td><div class="class-box syllabus-item"><div class="class-title">大学論・高等教育論</div><div class="class-prof">渡辺 教授</div></div></td>
                                 </tr>
                             </tbody>
                         </table>
-                    ` 
+                    `
+                },
+                library: {
+                    t:'<i class="fa-solid fa-book"></i> 図書・資料 OPAC & 購入リクエスト',
+                    c:`
+                        <div style="display:flex; gap:20px;">
+                            <div style="flex:2; border-right:1px solid #eee; padding-right:15px;">
+                                <h4><i class="fa-solid fa-magnifying-glass"></i> 学内蔵書検索 (OPAC)</h4>
+                                <input type="text" class="panel-input" placeholder="書名、著者名、ISBNで検索..." style="margin-bottom:10px;">
+                                <table class="app-table" style="font-size:0.85rem;">
+                                    <thead><tr><th>書名</th><th>著者</th><th>配置</th><th>状態</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>Pythonによるデータ分析入門</td><td>Wes McKinney</td><td>本館 2F</td><td><span style="color:green;">貸出可</span></td></tr>
+                                        <tr><td>クラウドネイティブ基本ガイド</td><td>技術太郎</td><td>情報ライブラリ</td><td><span style="color:red;">貸出中 (〜8/20)</span></td></tr>
+                                        <tr><td>大学経営とIR実践法</td><td>大学花子</td><td>本館 3F</td><td><span style="color:green;">貸出可</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div style="flex:1;">
+                                <h4><i class="fa-solid fa-cart-plus"></i> 図書購入リクエスト</h4>
+                                <div class="panel-input-group" style="margin-bottom:8px;">
+                                    <label style="font-size:0.8rem;">希望書籍タイトル</label>
+                                    <input type="text" id="libTitleInput" class="panel-input">
+                                </div>
+                                <div class="panel-input-group" style="margin-bottom:12px;">
+                                    <label style="font-size:0.8rem;">著者・出版社</label>
+                                    <input type="text" id="libAuthorInput" class="panel-input">
+                                </div>
+                                <button class="panel-btn" onclick="submitLibraryRequest()"><i class="fa-solid fa-paper-plane"></i> リクエスト送信</button>
+                                
+                                <h5 style="margin-top:20px; border-bottom:1px solid #ccc;">送信済みリクエスト</h5>
+                                <ul id="libReqList" style="list-style:none; padding:0; font-size:0.8rem;"></ul>
+                            </div>
+                        </div>
+                    `,
+                    init: () => loadLibraryRequests()
+                },
+                elearning: {
+                    t:'<i class="fa-solid fa-chalkboard-user"></i> eラーニング & 情報セキュリティ研修テスト',
+                    c:`
+                        <div style="background:#f8f9fa; padding:15px; border-radius:8px; border:1px solid #ddd; margin-bottom:15px;">
+                            <h4 style="margin-top:0; color:var(--primary-color);">【2026年度 必須】情報セキュリティ＆コンプライアンス理解度テスト</h4>
+                            <p style="font-size:0.85rem; color:#555;">全問正解で合格となります。結果はFirebaseに受講完了ログとして保存されます。</p>
+                        </div>
+                        <div style="margin-bottom:15px;">
+                            <p><strong>問1: 不審な差出人からの添付ファイル付きメールを受信した場合の正しい対応は？</strong></p>
+                            <label style="display:block; margin-bottom:5px;"><input type="radio" name="q1" value="wrong"> とりあえず開いて内容を確認する</label>
+                            <label style="display:block; margin-bottom:5px;"><input type="radio" name="q1" value="correct"> 開かずに情報システム課・セキュリティ担当へ連絡する</label>
+                        </div>
+                        <hr>
+                        <div style="margin-bottom:20px;">
+                            <p><strong>問2: パスワードの管理方法として最も適切なものは？</strong></p>
+                            <label style="display:block; margin-bottom:5px;"><input type="radio" name="q2" value="wrong"> 付箋に書いてディスプレイの横に貼っておく</label>
+                            <label style="display:block; margin-bottom:5px;"><input type="radio" name="q2" value="correct"> 他システムと使い回さず、推測されにくい複雑な文字列に設定する</label>
+                        </div>
+                        <button class="panel-btn" style="background:#28a745;" onclick="submitQuiz()"><i class="fa-solid fa-paper-plane"></i> 解答を提出して採点</button>
+                    `
+                },
+                groupware: {
+                    t:'<i class="fa-solid fa-sitemap"></i> グループウェア - 全学教職員リアルタイムチャット (Firebase同期)',
+                    c:`
+                        <div class="chat-box" id="chatBox">メッセージを読み込み中...</div>
+                        <div style="display:flex; gap:10px;">
+                            <input type="text" id="chatMsgInput" class="panel-input" placeholder="メッセージを入力... (Enterで送信)" onkeydown="if(event.key==='Enter') sendChatMessage()">
+                            <button class="panel-btn" style="width:120px; margin:0;" onclick="sendChatMessage()"><i class="fa-solid fa-paper-plane"></i> 送信</button>
+                        </div>
+                    `,
+                    init: () => initChatListener()
                 },
                 research: { 
                     t:'<i class="fa-solid fa-microscope"></i> 研究費・予算管理', 
                     c:`
-                        <div style="display:flex; gap:20px;">
-                            <div style="flex:1; background:#f8f9fa; padding:20px; border-radius:8px; border:1px solid #ddd;">
-                                <h4 style="margin-top:0; color:#003366; display:flex; align-items:center; gap:10px;">
-                                    <span style="background:var(--accent-color); color:white; padding:3px 8px; border-radius:4px; font-size:0.8rem;">基盤研究(C)</span> 2026年度 科学研究費補助金
-                                </h4>
-                                <div style="display:flex; justify-content:space-between; margin-top:15px; font-size:1.1rem;">
-                                    <span style="color:#444;">予算総額: <strong>¥1,500,000</strong></span>
-                                    <span style="color:#d9534f;">残額: <strong>¥550,000</strong></span>
-                                </div>
-                                <p style="font-size:0.9rem; color:#666; text-align:right; margin:5px 0 10px 0;">執行済: ¥950,000</p>
-                                
-                                <div style="width:100%; background:#e9ecef; height:28px; border-radius:14px; overflow:hidden; position:relative; box-shadow:inset 0 1px 3px rgba(0,0,0,0.2);">
-                                    <div style="width:63.3%; background:linear-gradient(90deg, #28a745, #20c997); height:100%; display:flex; align-items:center; justify-content:center; color:white; font-size:0.85rem; font-weight:bold;">執行率 63.3%</div>
-                                </div>
-                                
-                                <h5 style="margin-top:25px; border-bottom:1px solid #ccc; padding-bottom:5px;">直近の執行履歴</h5>
-                                <table class="app-table" style="font-size:0.9rem;">
-                                    <tr><td>08/01</td><td>物品費 (計算用ノートPC)</td><td style="font-weight:bold;">¥185,000</td></tr>
-                                    <tr><td>07/15</td><td>旅費 (人工知能学会 出張費)</td><td style="font-weight:bold;">¥45,000</td></tr>
-                                    <tr><td>06/20</td><td>消耗品費 (実験用センサー部品)</td><td style="font-weight:bold;">¥32,000</td></tr>
-                                </table>
+                        <div style="background:#f8f9fa; padding:20px; border-radius:8px; border:1px solid #ddd;">
+                            <h4 style="margin-top:0; color:#003366;"><span style="background:var(--accent-color); color:white; padding:3px 8px; border-radius:4px; font-size:0.8rem;">基盤研究(C)</span> 2026年度 科学研究費補助金</h4>
+                            <div style="display:flex; justify-content:space-between; margin-top:15px; font-size:1.1rem;">
+                                <span>予算総額: <strong>¥1,500,000</strong></span>
+                                <span style="color:#d9534f;">残額: <strong>¥550,000</strong></span>
                             </div>
-                        </div>
-                        <div style="margin-top:15px; text-align:right;">
-                            <button class="panel-btn" style="width:auto; background:#17a2b8;" onclick="alert('物品購入システム(Web購買)へ遷移します')"><i class="fa-solid fa-cart-shopping"></i> 物品購入システムへ</button>
+                            <div style="width:100%; background:#e9ecef; height:28px; border-radius:14px; overflow:hidden; margin-top:10px;">
+                                <div style="width:63.3%; background:linear-gradient(90deg, #28a745, #20c997); height:100%; display:flex; align-items:center; justify-content:center; color:white; font-size:0.85rem; font-weight:bold;">執行率 63.3%</div>
+                            </div>
                         </div>
                     ` 
                 },
                 assets: { 
                     t:'<i class="fa-solid fa-laptop"></i> 資産・備品管理', 
                     c:`
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-                            <div class="panel-input-group" style="display:flex; gap:10px; width:350px; margin:0;">
-                                <input type="text" class="panel-input" placeholder="管理番号や品名で検索 (例: PC-2026)">
-                                <button class="panel-btn" style="margin:0; width:auto;" onclick="alert('該当する備品はありません')"><i class="fa-solid fa-magnifying-glass"></i></button>
-                            </div>
-                            <button class="panel-btn" style="margin:0; width:auto; background:#28a745;" onclick="alert('新規備品登録フォームを開きます')"><i class="fa-solid fa-plus"></i> 新規登録</button>
-                        </div>
                         <table class="app-table" style="font-size:0.9rem; background:#fff;">
-                            <thead style="background:#f8f9fa;">
-                                <tr><th>管理番号</th><th>品名</th><th>取得日</th><th>保管場所</th><th>状態</th><th>操作</th></tr>
-                            </thead>
+                            <thead style="background:#f8f9fa;"><tr><th>管理番号</th><th>品名</th><th>保管場所</th><th>状態</th></tr></thead>
                             <tbody>
-                                <tr><td>PC-2024-045</td><td>MacBook Pro 14インチ</td><td>2024/04/10</td><td>第3研究室</td><td><span style="color:green; font-weight:bold;"><i class="fa-solid fa-circle-check"></i> 稼働中</span></td><td><button style="border:none;background:none;color:#007bff;cursor:pointer;text-decoration:underline;">詳細</button></td></tr>
-                                <tr><td>MN-2023-112</td><td>Dell 27インチ 4Kモニター</td><td>2023/11/05</td><td>第3研究室</td><td><span style="color:green; font-weight:bold;"><i class="fa-solid fa-circle-check"></i> 稼働中</span></td><td><button style="border:none;background:none;color:#007bff;cursor:pointer;text-decoration:underline;">詳細</button></td></tr>
-                                <tr><td>PR-2020-008</td><td>カラーレーザープリンタ</td><td>2020/05/20</td><td>学部事務室</td><td><span style="color:#dc3545; font-weight:bold;"><i class="fa-solid fa-triangle-exclamation"></i> 修理中</span></td><td><button style="border:none;background:none;color:#007bff;cursor:pointer;text-decoration:underline;">詳細</button></td></tr>
+                                <tr><td>PC-2024-045</td><td>MacBook Pro 14インチ</td><td>第3研究室</td><td><span style="color:green;">稼働中</span></td></tr>
+                                <tr><td>MN-2023-112</td><td>Dell 27インチ 4Kモニター</td><td>第3研究室</td><td><span style="color:green;">稼働中</span></td></tr>
                             </tbody>
                         </table>
                     ` 
@@ -1204,136 +1422,56 @@ async function initializeGapiClient() {
                 it: { 
                     t:'<i class="fa-solid fa-desktop"></i> 情報システム・アカウント管理', 
                     c:`
-                        <div style="display:flex; gap:15px;">
-                            <div style="flex:1; border:1px solid #ddd; padding:15px; border-radius:8px; background:#fff;">
-                                <h4 style="margin-top:0; border-bottom:2px solid var(--primary-color); padding-bottom:5px;">新規アカウント / 権限申請</h4>
-                                <div class="panel-input-group" style="margin-bottom:10px;">
-                                    <label style="font-size:0.85rem; display:block; margin-bottom:3px; color:#555;">申請種別</label>
-                                    <select class="panel-input">
-                                        <option>非常勤講師アカウント発行</option>
-                                        <option>VPN接続権限付与</option>
-                                        <option>メーリングリスト作成</option>
-                                        <option>共有フォルダアクセス権</option>
-                                    </select>
-                                </div>
-                                <div class="panel-input-group" style="margin-bottom:10px;">
-                                    <label style="font-size:0.85rem; display:block; margin-bottom:3px; color:#555;">対象者・詳細理由</label>
-                                    <textarea class="panel-input" rows="4" placeholder="例: 秋学期からの非常勤講師 (山田太郎氏) のアカウント発行をお願いします。"></textarea>
-                                </div>
-                                <button class="panel-btn" onclick="alert('情報システム課に申請を送信しました。受付番号: IT-20260813-01')"><i class="fa-solid fa-paper-plane"></i> 申請を送信</button>
-                            </div>
-                            <div style="flex:1; border:1px solid #ddd; padding:15px; border-radius:8px; background:#f8f9fa;">
-                                <h4 style="margin-top:0; border-bottom:2px solid #ccc; padding-bottom:5px;">現在のシステム稼働状況</h4>
-                                <ul style="list-style:none; padding:0; margin:0; font-size:0.95rem;">
-                                    <li style="margin-bottom:12px; display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-circle-check" style="color:#28a745; font-size:1.2rem;"></i> 基幹ネットワーク (正常)</li>
-                                    <li style="margin-bottom:12px; display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-circle-check" style="color:#28a745; font-size:1.2rem;"></i> 教務システム (正常)</li>
-                                    <li style="margin-bottom:12px; display:flex; align-items:center; gap:10px; background:#fff3cd; padding:5px 8px; border-radius:4px; border-left:3px solid #ffc107;"><i class="fa-solid fa-circle-exclamation" style="color:#ffc107; font-size:1.2rem;"></i> LMSサーバー (アクセス集中・遅延)</li>
-                                    <li style="margin-bottom:12px; display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-circle-check" style="color:#28a745; font-size:1.2rem;"></i> 認証基盤 SSO (正常)</li>
-                                </ul>
-                            </div>
+                        <div class="panel-input-group" style="margin-bottom:10px;">
+                            <label>申請種別</label>
+                            <select class="panel-input"><option>非常勤講師アカウント発行</option><option>VPN接続権限付与</option></select>
                         </div>
+                        <button class="panel-btn" onclick="alert('申請を送信しました')">送信</button>
                     ` 
                 },
                 health: { 
                     t:'<i class="fa-solid fa-heart-pulse"></i> 安全衛生・健康管理', 
-                    c:`
-                        <div style="text-align:center; padding:15px; background:#e8f4f8; border-radius:8px; margin-bottom:20px;">
-                            <h3 style="color:#00796b; margin:0 0 5px 0;"><i class="fa-solid fa-stethoscope"></i> 2026年度 秋季定期健康診断</h3>
-                            <p style="color:#555; margin:0; font-size:0.95rem;">予約受付期間: 8/1(土) ～ 8/31(火)</p>
-                        </div>
-                        <div style="display:flex; justify-content:center; gap:30px; margin-bottom:20px;">
-                            <div style="border:2px solid #17a2b8; border-radius:12px; padding:25px; width:220px; text-align:center; cursor:pointer; transition:all 0.2s; background:#fff;" onmouseover="this.style.background='#f0f9fa'; this.style.transform='translateY(-5px)';" onmouseout="this.style.background='#fff'; this.style.transform='translateY(0)';" onclick="alert('健診予約システム(別窓)に遷移します')">
-                                <i class="fa-solid fa-calendar-check" style="font-size:2.5rem; color:#17a2b8; margin-bottom:15px;"></i>
-                                <div style="font-weight:bold; font-size:1.1rem; color:#333;">健診を予約する</div>
-                                <div style="font-size:0.8rem; color:#666; margin-top:5px;">空き状況の確認・予約</div>
-                            </div>
-                            <div style="border:2px solid #e83e8c; border-radius:12px; padding:25px; width:220px; text-align:center; cursor:pointer; transition:all 0.2s; background:#fff;" onmouseover="this.style.background='#fff0f6'; this.style.transform='translateY(-5px)';" onmouseout="this.style.background='#fff'; this.style.transform='translateY(0)';" onclick="alert('ストレスチェック受検ページ(別窓)を開きます')">
-                                <i class="fa-solid fa-brain" style="font-size:2.5rem; color:#e83e8c; margin-bottom:15px;"></i>
-                                <div style="font-weight:bold; font-size:1.1rem; color:#333;">ストレスチェック</div>
-                                <div style="font-size:0.8rem; color:#666; margin-top:5px;">年1回の義務付け(5分程度)</div>
-                            </div>
-                        </div>
-                        <div style="background:#f8f9fa; padding:15px; border-radius:8px; font-size:0.9rem; border-left:4px solid var(--accent-color);">
-                            <strong>産業医面談について</strong><br>
-                            健康上の不安やメンタルヘルスに関する相談は、産業医面談をご利用ください。（完全予約制・秘密厳守）<br>
-                            <a href="#" style="color:#007bff; text-decoration:none; font-weight:bold; display:inline-block; margin-top:5px;" onclick="alert('面談希望のメールフォームを開きます')"><i class="fa-solid fa-envelope"></i> 面談を申し込む</a>
-                        </div>
-                    ` 
+                    c:`<div style="text-align:center; padding:20px;"><h3>秋季定期健康診断 予約受付中</h3><button class="panel-btn" style="width:200px;" onclick="alert('予約システムへ接続します')">健診予約</button></div>` 
                 },
                 recruit: { 
                     t:'<i class="fa-solid fa-briefcase"></i> 採用・公募管理', 
-                    c:`
-                        <h4 style="margin-top:0; border-bottom:2px solid var(--primary-color); padding-bottom:5px;">現在進行中の公募案件</h4>
-                        <table class="app-table" style="font-size:0.9rem; background:#fff;">
-                            <thead style="background:#f8f9fa;">
-                                <tr><th>職名</th><th>所属・専攻分野</th><th>応募者数</th><th>書類審査</th><th>面接選考</th><th>締切日</th></tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td style="font-weight:bold;">准教授 または 専任講師</td><td>情報学専攻 (AI・データサイエンス)</td>
-                                    <td style="text-align:center; font-weight:bold; color:var(--primary-color); font-size:1.2rem;">12名</td>
-                                    <td><progress value="12" max="12" style="width:60px; accent-color:#28a745;"></progress> 完了</td>
-                                    <td><progress value="3" max="5" style="width:60px;"></progress> 進行中</td>
-                                    <td>2026/01/31</td>
-                                </tr>
-                                <tr>
-                                    <td style="font-weight:bold;">事務補佐員 (パート)</td><td>総務課</td>
-                                    <td style="text-align:center; font-weight:bold; color:var(--primary-color); font-size:1.2rem;">5名</td>
-                                    <td><progress value="2" max="5" style="width:60px;"></progress> 進行中</td>
-                                    <td><progress value="0" max="5" style="width:60px;"></progress> 未着手</td>
-                                    <td>2026/02/10</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div style="margin-top:15px; text-align:right;">
-                            <button class="panel-btn" style="width:auto;"><i class="fa-solid fa-file-circle-plus"></i> 新規公募を登録</button>
-                        </div>
-                    ` 
+                    c:`<table class="app-table"><tr><th>公募件名</th><th>応募数</th></tr><tr><td>情報学専攻 准教授</td><td>12名</td></tr></table>` 
                 },
                 crisis: { 
                     t:'<i class="fa-solid fa-triangle-exclamation"></i> 危機管理・BCP連絡', 
-                    c:`
-                        <div style="text-align:center; padding:30px; background:#fff3f3; border:2px solid #dc3545; border-radius:12px;">
-                            <h2 style="color:#dc3545; margin-top:0;"><i class="fa-solid fa-tower-broadcast"></i> 緊急時 安否確認システム</h2>
-                            <p style="margin-bottom:20px; font-size:1.1rem; color:#555;">現在、全学一斉安否確認の<strong>訓練</strong>を実施中です。<br>現在の状況を報告してください。</p>
-                            
-                            <div style="display:flex; justify-content:center; gap:20px;">
-                                <button class="panel-btn" style="background:#28a745; font-size:1.2rem; padding:15px 30px; box-shadow:0 4px 10px rgba(40,167,69,0.3); border-radius:30px;" onclick="alert('「無事・出勤可能」として報告しました。ご協力ありがとうございます。'); closeAppModal();">
-                                    <i class="fa-solid fa-person-circle-check"></i> 無事です (出勤可)
-                                </button>
-                                <button class="panel-btn" style="background:#ffc107; color:black; font-size:1.2rem; padding:15px 30px; box-shadow:0 4px 10px rgba(255,193,7,0.3); border-radius:30px;" onclick="prompt('状況を入力してください (例: 自宅待機中、負傷あり等)'); alert('報告を完了しました。'); closeAppModal();">
-                                    <i class="fa-solid fa-person-circle-exclamation"></i> 被害あり / 出勤不可
-                                </button>
-                            </div>
-                        </div>
-                    ` 
+                    c:`<div style="text-align:center; padding:20px;"><button class="panel-btn" style="background:#28a745; font-size:1.2rem;" onclick="alert('無事を報告しました'); closeAppModal();">無事です (出勤可能)</button></div>` 
                 },
-                
-                // --- 既存のアプリ群（アイコンやデザインを少し微調整） ---
-                syllabus: { t:'<i class="fa-solid fa-book-open"></i> シラバス・時間割', c:'<div style="padding:40px; text-align:center;"><i class="fa-solid fa-spinner fa-spin fa-3x" style="color:var(--primary-color); margin-bottom:15px;"></i><p>教務システム (時間割・シラバス) へセキュア接続を確立しています...</p></div>' },
-                docs: { t:'<i class="fa-solid fa-folder-open"></i> 文書ライブラリ・規程集', c:'<div class="panel-input-group"><input type="text" class="panel-input" placeholder="規程名や様式名で検索"></div><ul style="list-style:none; padding:0; margin-top:15px;"> <li style="padding:10px; border-bottom:1px solid #eee; cursor:pointer;" onmouseover="this.style.background=\'#f8f9fa\'" onmouseout="this.style.background=\'#fff\'"><i class="fa-regular fa-file-pdf" style="color:#dc3545; font-size:1.2rem; margin-right:5px;"></i> 店魅偉屋大学 就業規則_2026版.pdf</li> <li style="padding:10px; border-bottom:1px solid #eee; cursor:pointer;" onmouseover="this.style.background=\'#f8f9fa\'" onmouseout="this.style.background=\'#fff\'"><i class="fa-regular fa-file-word" style="color:#0056b3; font-size:1.2rem; margin-right:5px;"></i> 兼業許可申請書_様式.docx</li> </ul>' },
-                elearning: { t:'<i class="fa-solid fa-chalkboard-user"></i> eラーニング (研修・FD/SD)', c:'<div style="display:flex; justify-content:space-between; align-items:center; border:1px solid #ddd; padding:15px; border-radius:8px; background:#fff;"><div><strong>【必須】情報セキュリティ研修 2026</strong><br><span style="font-size:0.8rem; color:red;"><i class="fa-regular fa-clock"></i> 受講期限: 2026/08/31</span></div><button class="panel-btn" style="width:auto; margin:0; background:#28a745;" onclick="alert(\'研修動画プレイヤーを起動します\')"><i class="fa-solid fa-play"></i> 受講開始</button></div>' },
-                bbs: { t:'<i class="fa-solid fa-comments"></i> 学内掲示板', c:'<div class="news-item" style="border-left:4px solid red; padding-left:10px; background:#fff9f9; padding:10px;"><strong>【重要】夏季休業期間中のネットワーク停止について</strong><br><span style="font-size:0.85rem; color:#666;">8/15(土) 9:00〜17:00 の間、全学ネットワークが停止します。</span></div><div class="news-item" style="border-left:4px solid var(--primary-color); padding-left:10px; margin-top:10px; padding:10px; background:#f8f9fa;"><strong>学長メッセージ: 新学期の開始にあたって</strong><br><span style="font-size:0.85rem; color:#666;">教職員の皆様へ... 本年度の抱負と教育方針について。</span></div>' },
-                hr: { t:'<i class="fa-solid fa-user-tie"></i> 人事・総務メニュー', c:'<div class="services-grid"><div class="service-card" onclick="openApp(\'payroll\')"><i class="fa-solid fa-file-invoice-dollar service-icon"></i><div class="service-name">給与・明細</div></div><div class="service-card" onclick="openApp(\'expense\')"><i class="fa-solid fa-receipt service-icon"></i><div class="service-name">経費精算</div></div><div class="service-card" onclick="openApp(\'health\')"><i class="fa-solid fa-heart-pulse service-icon"></i><div class="service-name">安全衛生</div></div><div class="service-card" onclick="openApp(\'recruit\')"><i class="fa-solid fa-briefcase service-icon"></i><div class="service-name">採用管理</div></div></div>' },
-                groupware: { t:'<i class="fa-solid fa-sitemap"></i> グループウェア', c:'<div style="padding:40px; text-align:center;"><i class="fa-brands fa-microsoft fa-3x" style="color:#0078d4; margin-bottom:15px;"></i><p>Office 365 / Microsoft Teams にシングルサインオンで接続中...</p></div>' },
-                discord: { t: '講義室・チャット (Discord)', c: '<iframe src="https://discord.com/widget?id=1328329244037943360&theme=dark" width="100%" height="100%" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" style="border-radius: 8px;"></iframe>' },
-                cam1: { t: '店魅偉屋大学 CAM-1 (YouTube)', c: '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/BuBj2F_jtpo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 8px;"></iframe>' },
-                cam2: { t: '店魅偉屋大学 CAM-2 (Live Camera)', c: '<iframe src="https://eyeplus.closeli.com/device/player?deviceId=xxxxS_e051d8e328a9" width="100%" height="100%" frameborder="0" allowfullscreen style="border-radius: 8px;"></iframe>' },
+                docs: { t:'文書ライブラリ', c:'<ul><li>就業規則_2026版.pdf</li></ul>' },
+                bbs: { t:'学内掲示板', c:'<div>【重要】ネットワーク停止のお知らせ</div>' },
+                hr: { t:'人事・総務', c:'<p>メニューを選択してください</p>' },
+                discord: { t: '講義室 (Discord)', c: '<iframe src="https://discord.com/widget?id=1328329244037943360&theme=dark" width="100%" height="100%" frameborder="0"></iframe>' },
+                cam1: { t: 'CAM-1', c: '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/BuBj2F_jtpo" frameborder="0" allowfullscreen></iframe>' },
+                cam2: { t: 'CAM-2', c: '<iframe src="https://eyeplus.closeli.com/device/player?deviceId=xxxxS_e051d8e328a9" width="100%" height="100%" frameborder="0"></iframe>' }
             };
             
-            const item = apps[name] || {t:'<i class="fa-solid fa-circle-info"></i> Info', c:'<div style="padding:20px; text-align:center;">現在準備中です</div>'};
-            
+            const item = apps[name] || {t:'Info', c:'準備中'};
             t.innerHTML = item.t; 
             c.innerHTML = item.c;
-            
-            // アプリ特有の初期化処理（給与明細の初期描画など）
             if (item.init) item.init();
         }
-        
+
         function closeAppModal() { 
             document.getElementById('appModal').style.display = 'none'; 
-            document.getElementById('appContent').innerHTML = ''; // 閉じた時にIframeなどを停止
+            document.getElementById('appContent').innerHTML = ''; 
         }
+
+        // グローバル公開
+        window.toggleEditMode = toggleEditMode;
+        window.saveChartData = saveChartData;
+        window.closeModal = closeModal;
+        window.signOut = signOut;
+        window.handleGmailAuth = handleGmailAuth;
+        window.handleGmailLogout = handleGmailLogout;
+        window.punch = punch;
+        window.openApp = openApp;
+        window.closeAppModal = closeAppModal;
+
+        window.addEventListener('load', () => { verifyConnection(); });
     </script>
 </body>
 </html>
