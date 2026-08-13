@@ -98,10 +98,27 @@
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
         /* レイアウト（折りたたみアニメーション対応） */
-        .app-container {
-            display: grid; grid-template-columns: 280px 1fr;
-            min-height: 100vh; opacity: 0; transition: opacity 0.8s ease, grid-template-columns 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+/* ★ サイドバーのスライド(折りたたみ)アニメーション ★ */
+        .app-container { transition: grid-template-columns 0.3s ease; }
+        .sidebar { transition: all 0.3s ease; overflow-x: hidden; }
+        .sidebar.collapsed { width: 80px !important; padding: 2rem 0.5rem; align-items: center; }
+        .sidebar.collapsed .brand-text, .sidebar.collapsed .brand-sub, .sidebar.collapsed .nav-text-en, .sidebar.collapsed .nav-category { display: none; }
+        .sidebar.collapsed .nav-link { padding: 10px; justify-content: center; }
+        .sidebar.collapsed .nav-link div { display: none; }
+
+        /* ★ 時間割セルのデザイン改善（立体的で見やすく） ★ */
+        .class-box {
+            background: #eef2f5 !important;
+            border: 1px solid #cdd4dc !important;
+            border-left: 5px solid #0056b3 !important;
+            padding: 8px !important;
+            border-radius: 6px !important;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            color: #333;
         }
+        .class-title { font-weight: 700; color: #003366; font-size: 0.85rem; margin-bottom: 4px; }
+        .class-prof { font-size: 0.75rem; color: #555; background: #fff; display: inline-block; padding: 2px 6px; border-radius: 4px; border: 1px solid #ddd; }
+        .timetable-table td { height: 80px !important; vertical-align: top; }
 
         /* サイドバー */
         .sidebar {
@@ -369,11 +386,15 @@
         </aside>
 
         <main class="main-content">
-            <div class="header-area">
-                <div class="greeting">
-                    <h1 id="greetingText">Welcome back</h1>
-                    <div style="font-size:0.9rem; color:var(--text-sub); margin-top:5px;">
-                        <span id="clockDisplay">Checking time...</span>
+<div class="header-area">
+                <div style="display:flex; align-items:center; gap:20px;">
+                    <!-- スライド（折りたたみ）ボタン -->
+                    <button onclick="toggleSidebar()" style="background:none; border:none; font-size:1.5rem; color:var(--primary-color); cursor:pointer; transition:transform 0.2s;"><i class="fa-solid fa-bars"></i></button>
+                    <div class="greeting">
+                        <h1 id="greetingText">Welcome back</h1>
+                        <div style="font-size:0.9rem; color:#666; margin-top:5px;">
+                            <span id="clockDisplay">Checking time...</span>
+                        </div>
                     </div>
                 </div>
                 <div class="user-profile">
@@ -530,14 +551,15 @@
             </h3>
 
             <div class="admin-tabs">
-                <button class="admin-tab-btn active" onclick="switchAdminTab('tabSecurity', this)"><i class="fa-solid fa-shield-halved"></i> セキュリティ (1〜25)</button>
-                <button class="admin-tab-btn" onclick="switchAdminTab('tabHR', this)"><i class="fa-solid fa-user-clock"></i> 勤務・勤怠 (26〜50)</button>
-                <button class="admin-tab-btn" onclick="switchAdminTab('tabPayrollList', this)"><i class="fa-solid fa-money-bill-wave"></i> 給与・控除 (51〜75)</button>
-                <button class="admin-tab-btn" onclick="switchAdminTab('tabFinance', this)"><i class="fa-solid fa-calculator"></i> 経費・決裁 (76〜100)</button>
-                <button class="admin-tab-btn" onclick="switchAdminTab('tabAcademic', this)"><i class="fa-solid fa-graduation-cap"></i> 教務・成績 (101〜125)</button>
-                <button class="admin-tab-btn" onclick="switchAdminTab('tabFacility', this)"><i class="fa-solid fa-building"></i> 施設・図書 (126〜150)</button>
-                <button class="admin-tab-btn" onclick="switchAdminTab('tabSystemUI', this)"><i class="fa-solid fa-palette"></i> UI・デザイン (151〜175)</button>
-                <button class="admin-tab-btn" onclick="switchAdminTab('tabDev', this)"><i class="fa-solid fa-code"></i> システム統合 (176〜200)</button>
+                <button class="admin-tab-btn active" onclick="switchAdminTab('tabSecurity', this)"><i class="fa-solid fa-shield-halved"></i> セキュリティ</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tabHR', this)"><i class="fa-solid fa-user-clock"></i> 勤務・勤怠</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tabAllRequests', this)"><i class="fa-solid fa-layer-group"></i> 申請総合管理・ユーザー設定</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tabPayrollList', this)"><i class="fa-solid fa-money-bill-wave"></i> 給与・控除</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tabFinance', this)"><i class="fa-solid fa-calculator"></i> 経費・決裁</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tabAcademic', this)"><i class="fa-solid fa-graduation-cap"></i> 教務・成績</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tabFacility', this)"><i class="fa-solid fa-building"></i> 施設・図書</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tabSystemUI', this)"><i class="fa-solid fa-palette"></i> UI・デザイン</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tabDev', this)"><i class="fa-solid fa-code"></i> システム統合</button>
             </div>
 
             <div id="tabSecurity" class="admin-tab-content active">
@@ -619,7 +641,39 @@
                     <div class="setting-grid" id="grid_dev"></div>
                 </div>
             </div>
-
+<!-- TAB 9: 申請総合管理・ユーザー設定 -->
+            <div id="tabAllRequests" class="admin-tab-content">
+                <div style="display:grid; grid-template-columns: 1fr 1.5fr; gap:20px;">
+                    <!-- 学部設定 -->
+                    <div class="setting-card">
+                        <div class="setting-card-title"><i class="fa-solid fa-user-graduate"></i> ユーザー所属学部設定 (時間割自動反映)</div>
+                        <div style="display:flex; flex-direction:column; gap:10px;">
+                            <input type="email" id="facultyEmailInput" class="panel-input" placeholder="対象ユーザーのメールアドレス">
+                            <select id="facultySelectInput" class="panel-input">
+                                <option value="医学部">医学部</option><option value="法学部">法学部</option><option value="教育学部">教育学部</option>
+                                <option value="工学部">工学部</option><option value="農学部">農学部</option><option value="理学部">理学部</option>
+                                <option value="経済学部">経済学部</option><option value="教養学部">教養学部</option><option value="薬学部">薬学部</option>
+                                <option value="情報学部">情報学部</option><option value="国際学部">国際学部</option><option value="海洋学部">海洋学部</option>
+                                <option value="観光学部">観光学部</option><option value="健康学部">健康学部</option><option value="文化社会学部">文化社会学部</option>
+                                <option value="体育学部">体育学部</option><option value="国際文化学部">国際文化学部</option><option value="文理融合学部">文理融合学部</option>
+                                <option value="経営学部">経営学部</option><option value="店魅偉屋学部">店魅偉屋学部</option>
+                            </select>
+                            <button class="panel-btn" style="margin:0; background:#6f42c1;" onclick="saveUserFaculty()"><i class="fa-solid fa-floppy-disk"></i> 学部を設定・更新</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 総合申請ダッシュボード -->
+                    <div class="setting-card">
+                        <div class="setting-card-title"><i class="fa-solid fa-inbox"></i> 全システム 承認待ち申請一覧 (統合ダッシュボード)</div>
+                        <div style="max-height: 250px; overflow-y: auto;">
+                            <table class="app-table" style="font-size:0.8rem;">
+                                <thead><tr><th>システム</th><th>申請日</th><th>申請者</th><th>内容</th><th>操作</th></tr></thead>
+                                <tbody id="allRequestsTable"><tr><td colspan="5">読み込み中...</td></tr></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <button class="panel-btn" style="background:#555; margin-top:10px; padding:6px; font-size:0.8rem;" onclick="closeAdminConsole()">閉じる</button>
         </div>
     </div>
@@ -1932,7 +1986,145 @@
         window.closeAdminConsole = function() {
             document.getElementById('adminConsoleModal').style.display = 'none';
         };
+// ==========================================
+        //  ★ 新機能用関数群 (サイドバー / 統合管理 / シラバス・時間割連動)
+        // ==========================================
 
+        // サイドバーのトグル（スライド折りたたみ）
+        window.toggleSidebar = function() {
+            const sidebar = document.querySelector('.sidebar');
+            const container = document.querySelector('.app-container');
+            sidebar.classList.toggle('collapsed');
+            if (sidebar.classList.contains('collapsed')) {
+                container.style.gridTemplateColumns = '80px 1fr';
+            } else {
+                container.style.gridTemplateColumns = '280px 1fr';
+            }
+        };
+
+        // ユーザーの学部設定を保存
+        window.saveUserFaculty = async function() {
+            const email = document.getElementById('facultyEmailInput').value.trim();
+            const faculty = document.getElementById('facultySelectInput').value;
+            if(!email) { await customAlert('メールアドレスを入力してください', 'エラー', 'fa-circle-exclamation'); return; }
+            
+            const safeEmail = email.replace(/\./g, '_');
+            await update(ref(db, `userProfiles/${safeEmail}`), { faculty: faculty });
+            await customAlert(`${email} の所属学部を「${faculty}」に設定しました。`, '設定完了', 'fa-user-check');
+            document.getElementById('facultyEmailInput').value = '';
+        };
+
+        // 申請総合ダッシュボードの読み込み
+        window.loadAllRequests = function() {
+            const table = document.getElementById('allRequestsTable');
+            if(!table) return;
+            table.innerHTML = '';
+            let count = 0;
+
+            // 経費精算
+            onValue(ref(db, 'expenses'), (s) => {
+                const d = s.val();
+                if(d) Object.keys(d).forEach(k => {
+                    if(d[k].status === '審査中') {
+                        count++;
+                        table.innerHTML += `<tr><td><span class="news-badge" style="background:#28a745">経費</span></td><td>${d[k].date}</td><td>${d[k].applicant}</td><td>${d[k].type} (¥${d[k].amount.toLocaleString()})</td><td><button class="panel-btn" style="padding:4px 8px; margin:0;" onclick="switchAdminTab('tabFinance');">確認</button></td></tr>`;
+                    }
+                });
+            }, { onlyOnce: true });
+
+            // 電子決裁
+            onValue(ref(db, 'approvals'), (s) => {
+                const d = s.val();
+                if(d) Object.keys(d).forEach(k => {
+                    if(d[k].status === '承認待ち') {
+                        count++;
+                        table.innerHTML += `<tr><td><span class="news-badge" style="background:#003366">決裁</span></td><td>${d[k].date}</td><td>${d[k].applicant}</td><td>${d[k].title}</td><td><button class="panel-btn" style="padding:4px 8px; margin:0;" onclick="switchAdminTab('tabFinance');">確認</button></td></tr>`;
+                    }
+                });
+            }, { onlyOnce: true });
+
+            // 図書
+            onValue(ref(db, 'libraryRequests'), (s) => {
+                const d = s.val();
+                if(d) Object.keys(d).forEach(k => {
+                    if(d[k].status === '申請中') {
+                        count++;
+                        table.innerHTML += `<tr><td><span class="news-badge" style="background:#17a2b8">図書</span></td><td>-</td><td>${d[k].applicant}</td><td>${d[k].title}</td><td><button class="panel-btn" style="padding:4px 8px; margin:0;" onclick="switchAdminTab('tabAcademic');">確認</button></td></tr>`;
+                    }
+                });
+            }, { onlyOnce: true });
+
+            setTimeout(() => { if(count === 0) table.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#888;">承認待ちの申請はありません。</td></tr>'; }, 1000);
+        };
+
+        // openAdminConsoleを拡張（開いたときに統合申請もロードする）
+        const originalOpenAdmin = window.openAdminConsole;
+        window.openAdminConsole = async function() {
+            await originalOpenAdmin();
+            loadAllRequests();
+        };
+
+        // シラバス: 学部クリックで詳細表示
+        window.showFacultySyllabus = function(facultyName) {
+            document.getElementById('syllabusMainView').style.display = 'none';
+            document.getElementById('syllabusDetailView').style.display = 'block';
+            document.getElementById('detailFacultyName').textContent = facultyName + " 開講科目一覧";
+            
+            // 学部に応じたダミー科目の自動生成
+            let html = "";
+            const prefixes = ["基礎", "応用", "実践", "比較", "特論"];
+            for(let i=1; i<=6; i++) {
+                html += `<tr>
+                    <td>${facultyName.substring(0,1)}${2000 + i}</td>
+                    <td style="font-weight:bold;">${facultyName.replace('学部','')} ${prefixes[i%5]}論 ${i}</td>
+                    <td>担当教員 ${i}</td>
+                    <td>2</td>
+                    <td><button style="border:1px solid #ddd; background:#fff; padding:4px 8px; border-radius:4px; cursor:pointer;" onclick="customAlert('シラバス詳細データ(PDF)を表示します。', 'シラバス', 'fa-file-pdf')">閲覧</button></td>
+                </tr>`;
+            }
+            document.getElementById('detailFacultyClasses').innerHTML = html;
+        };
+
+        window.hideFacultySyllabus = function() {
+            document.getElementById('syllabusDetailView').style.display = 'none';
+            document.getElementById('syllabusMainView').style.display = 'block';
+        };
+
+        // シラバス: ユーザーの学部設定に基づく「1〜5限」時間割自動生成
+        window.loadUserTimetable = function() {
+            const safeEmail = currentUser.username.replace(/\./g, '_');
+            onValue(ref(db, `userProfiles/${safeEmail}/faculty`), (snapshot) => {
+                const myFaculty = snapshot.val() || "医学部"; // デフォルトは医学部
+                
+                const lbl = document.getElementById('myFacultyLabel');
+                if(lbl) lbl.textContent = myFaculty;
+
+                const body = document.getElementById('myTimetableBody');
+                if(!body) return;
+
+                const times = ["9:00-10:30", "10:40-12:10", "13:00-14:30", "14:40-16:10", "16:20-17:50"];
+                const subjects = ["解剖学", "生理学", "病理学", "薬理学", "免疫学", "公衆衛生学", "内科学", "外科学", "小児科学", "精神医学"];
+                
+                // 所属学部名に合わせて科目名をそれっぽくトランスフォーム
+                const subjectPrefix = myFaculty.replace('学部', '');
+
+                let html = "";
+                for(let period = 0; period < 5; period++) {
+                    html += `<tr><td>${period + 1}限<br><small>${times[period]}</small></td>`;
+                    for(let day = 0; day < 5; day++) {
+                        // ランダムに空きコマを作る（1/3の確率で空きコマ）
+                        if ((period + day) % 3 === 0) {
+                            html += `<td></td>`;
+                        } else {
+                            const subj = myFaculty === "医学部" ? subjects[(period * 5 + day) % 10] : `${subjectPrefix} ${subjects[(period + day) % 5]}`;
+                            html += `<td><div class="class-box"><div class="class-title">${subj}</div><div class="class-prof">教員${day+1}</div></div></td>`;
+                        }
+                    }
+                    html += `</tr>`;
+                }
+                body.innerHTML = html;
+            }, { onlyOnce: true });
+        };
 // タブ切り替え処理（アイコンクリック時も確実に動くよう修正）
         window.switchAdminTab = function(tabId, btnElement) {
             // 全タブボタン＆コンテンツの選択解除
@@ -2642,81 +2834,69 @@
 syllabus: {
                     t:'<i class="fa-solid fa-book-open"></i> シラバス・時間割管理システム',
                     c:`
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-                            <input type="text" id="syllabusSearchInput" class="panel-input" style="width:350px;" placeholder="学部名・講義名・教員名でリアルタイム検索" onkeyup="filterSyllabus()">
-                            <span style="font-size:0.85rem; color:#666;"><i class="fa-solid fa-circle-info"></i> 2026年度 秋学期</span>
+                        <div id="syllabusMainView">
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+                                <input type="text" id="syllabusSearchInput" class="panel-input" style="width:350px;" placeholder="学部名・講義名でリアルタイム検索" onkeyup="filterSyllabus()">
+                                <span style="font-size:0.9rem; color:#333; font-weight:bold; background:#f0f2f5; padding:5px 15px; border-radius:20px;">
+                                    <i class="fa-solid fa-user-graduate"></i> 所属: <span id="myFacultyLabel" style="color:var(--primary-color);">未設定</span>
+                                </span>
+                            </div>
+                            
+                            <div style="margin-bottom:20px;">
+                                <h4 style="margin: 0 0 10px 0; border-bottom: 2px solid var(--primary-color); padding-bottom: 5px; color: var(--primary-color);">
+                                    <i class="fa-solid fa-building-columns"></i> 学部からシラバスを探す
+                                </h4>
+                                <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap:10px; max-height: 220px; overflow-y: auto; padding: 5px;">
+                                    ${[
+                                        {name: "医学部", desc: "臨床と研究を往還しながら次世代医療人を育成します。"},
+                                        {name: "法学部", desc: "法制度、公共政策、社会課題を多角的に学びます。"},
+                                        {name: "教育学部", desc: "教育実践と学習支援の理論を往還しながら学びます。"},
+                                        {name: "工学部", desc: "医工連携や社会実装も視野に入れた工学教育を行います。"},
+                                        {name: "農学部", desc: "生命・環境・食の未来を支える学びを展開します。"},
+                                        {name: "理学部", desc: "自然科学の基礎を探究し、研究力を育てます。"},
+                                        {name: "経済学部", desc: "経済、政策、地域社会の課題を多面的に考えます。"},
+                                        {name: "教養学部", desc: "分野横断の学びを通じて広い視野と分析力を培います。"},
+                                        {name: "薬学部", desc: "創薬、薬物治療、薬学研究の基盤を学びます。"},
+                                        {name: "情報学部", desc: "AI、データサイエンス、情報基盤を実践的に学びます。"},
+                                        {name: "国際学部", desc: "国際社会の多様な課題を言語と文化の両面から考えます。"},
+                                        {name: "海洋学部", desc: "海洋資源、海洋環境、海洋生命科学を探究します。"},
+                                        {name: "観光学部", desc: "観光政策、地域振興、サービスデザインを学びます。"},
+                                        {name: "健康学部", desc: "健康増進、予防、地域支援に関する実践知を身につけます。"},
+                                        {name: "文化社会学部", desc: "文化と社会の関係を読み解き、現代社会を考察します。"},
+                                        {name: "体育学部", desc: "スポーツ科学、身体教育、健康支援を総合的に学びます。"},
+                                        {name: "国際文化学部", desc: "多文化理解と国際協働の力を育てます。"},
+                                        {name: "文理融合学部", desc: "人文社会と自然科学を横断し、複合課題に挑みます。"},
+                                        {name: "経営学部", desc: "経営戦略、組織、会計、事業創造を実践的に学びます。"},
+                                        {name: "店魅偉屋学部", desc: "本学独自の学際テーマに取り組む特色ある学びの場です。"}
+                                    ].map(f => `
+                                        <div class="syllabus-item" style="background:#fff; border:1px solid #ddd; border-radius:8px; padding:10px; cursor:pointer; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--accent-color)'; this.style.boxShadow='0 4px 10px rgba(0,0,0,0.08)';" onmouseout="this.style.borderColor='#ddd'; this.style.boxShadow='none';" onclick="showFacultySyllabus('${f.name}')">
+                                            <div style="font-weight:bold; color:var(--primary-color); font-size:0.95rem; margin-bottom:4px;">${f.name}</div>
+                                            <div style="font-size:0.75rem; color:#666; line-height:1.3;">${f.desc}</div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+
+                            <h4 style="margin: 0 0 10px 0; border-bottom: 2px solid var(--primary-color); padding-bottom: 5px; color: var(--primary-color);">
+                                <i class="fa-solid fa-calendar-days"></i> 個人の登録時間割 (1限〜5限・所属学部自動連動)
+                            </h4>
+                            <table class="timetable-table">
+                                <thead><tr><th>時限</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th></tr></thead>
+                                <tbody id="myTimetableBody"><tr><td colspan="6">読み込み中...</td></tr></tbody>
+                            </table>
                         </div>
                         
-                        <div style="margin-bottom:20px;">
-                            <h4 style="margin: 0 0 10px 0; border-bottom: 2px solid var(--primary-color); padding-bottom: 5px; color: var(--primary-color);">
-                                <i class="fa-solid fa-building-columns"></i> 学部からシラバスを探す
-                            </h4>
-                            <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap:10px; max-height: 250px; overflow-y: auto; padding: 5px;">
-                                ${[
-                                    {name: "医学部", desc: "臨床と研究を往還しながら次世代医療人を育成します。"},
-                                    {name: "法学部", desc: "法制度、公共政策、社会課題を多角的に学びます。"},
-                                    {name: "教育学部", desc: "教育実践と学習支援の理論を往還しながら学びます。"},
-                                    {name: "工学部", desc: "医工連携や社会実装も視野に入れた工学教育を行います。"},
-                                    {name: "農学部", desc: "生命・環境・食の未来を支える学びを展開します。"},
-                                    {name: "理学部", desc: "自然科学の基礎を探究し、研究力を育てます。"},
-                                    {name: "経済学部", desc: "経済、政策、地域社会の課題を多面的に考えます。"},
-                                    {name: "教養学部", desc: "分野横断の学びを通じて広い視野と分析力を培います。"},
-                                    {name: "薬学部", desc: "創薬、薬物治療、薬学研究の基盤を学びます。"},
-                                    {name: "情報学部", desc: "AI、データサイエンス、情報基盤を実践的に学びます。"},
-                                    {name: "国際学部", desc: "国際社会の多様な課題を言語と文化の両面から考えます。"},
-                                    {name: "海洋学部", desc: "海洋資源、海洋環境、海洋生命科学を探究します。"},
-                                    {name: "観光学部", desc: "観光政策、地域振興、サービスデザインを学びます。"},
-                                    {name: "健康学部", desc: "健康増進、予防、地域支援に関する実践知を身につけます。"},
-                                    {name: "文化社会学部", desc: "文化と社会の関係を読み解き、現代社会を考察します。"},
-                                    {name: "体育学部", desc: "スポーツ科学、身体教育、健康支援を総合的に学びます。"},
-                                    {name: "国際文化学部", desc: "多文化理解と国際協働の力を育てます。"},
-                                    {name: "文理融合学部", desc: "人文社会と自然科学を横断し、複合課題に挑みます。"},
-                                    {name: "経営学部", desc: "経営戦略、組織、会計、事業創造を実践的に学びます。"},
-                                    {name: "店魅偉屋学部", desc: "本学独自の学際テーマに取り組む特色ある学びの場です。"}
-                                ].map(f => `
-                                    <div class="syllabus-item" style="background:#f8f9fa; border:1px solid #ddd; border-radius:8px; padding:10px; cursor:pointer; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--accent-color)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)';" onmouseout="this.style.borderColor='#ddd'; this.style.boxShadow='none';" onclick="customAlert('『${f.name}』のシラバス一覧・科目検索システムを開きます。', 'シラバス検索', 'fa-book-open')">
-                                        <div style="font-weight:bold; color:var(--primary-color); font-size:0.95rem; margin-bottom:4px;">${f.name}</div>
-                                        <div style="font-size:0.75rem; color:#666; line-height:1.3;">${f.desc}</div>
-                                    </div>
-                                `).join('')}
-                            </div>
+                        <!-- 学部シラバス詳細（JSで切り替え表示） -->
+                        <div id="syllabusDetailView" style="display:none; animation: popIn 0.3s ease;">
+                            <button class="panel-btn" style="width:auto; margin-bottom:15px; background:#666;" onclick="hideFacultySyllabus()"><i class="fa-solid fa-arrow-left"></i> 一覧に戻る</button>
+                            <h3 id="detailFacultyName" style="color:var(--primary-color); margin-top:0; border-left:5px solid var(--accent-color); padding-left:10px;">学部名</h3>
+                            <table class="app-table">
+                                <thead><tr><th>講義コード</th><th>講義名</th><th>担当教員</th><th>単位</th><th>操作</th></tr></thead>
+                                <tbody id="detailFacultyClasses"></tbody>
+                            </table>
                         </div>
-
-                        <h4 style="margin: 0 0 10px 0; border-bottom: 2px solid var(--primary-color); padding-bottom: 5px; color: var(--primary-color);">
-                            <i class="fa-solid fa-calendar-days"></i> 個人の登録時間割
-                        </h4>
-                        <table class="timetable-table">
-                            <thead>
-                                <tr><th>時限</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th></tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1限<br><small>9:00-10:30</small></td>
-                                    <td><div class="class-box syllabus-item"><div class="class-title">情報セキュリティ基礎</div><div class="class-prof">山田 教授</div></div></td>
-                                    <td></td>
-                                    <td><div class="class-box syllabus-item"><div class="class-title">データベース論</div><div class="class-prof">佐藤 准教授</div></div></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>2限<br><small>10:40-12:10</small></td>
-                                    <td></td>
-                                    <td><div class="class-box syllabus-item"><div class="class-title">AI・機械学習演習</div><div class="class-prof">田中 講師</div></div></td>
-                                    <td></td>
-                                    <td><div class="class-box syllabus-item"><div class="class-title">ネットワーク構築実習</div><div class="class-prof">高橋 准教授</div></div></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>3限<br><small>13:00-14:30</small></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><div class="class-box syllabus-item"><div class="class-title">Webアプリケーション開発</div><div class="class-prof">伊藤 教授</div></div></td>
-                                    <td></td>
-                                    <td><div class="class-box syllabus-item"><div class="class-title">大学論・高等教育論</div><div class="class-prof">渡辺 教授</div></div></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    `
+                    `,
+                    init: () => loadUserTimetable()
                 },
                 library: {
                     t:'<i class="fa-solid fa-book"></i> 図書・資料 OPAC & 購入リクエスト',
