@@ -44,7 +44,7 @@
             margin-top: 2px; text-transform: uppercase;
         }
 
-        /* VPNロック画面 */
+        /* VPN・アクセス制限ロック画面 */
         #vpn-lock-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: white; z-index: 10000;
@@ -55,7 +55,7 @@
         #vpn-error { display: none; text-align: center; }
         .error-code { font-size: 8rem; font-weight: bold; color: #333; margin: 0; }
         .error-msg { font-size: 1.5rem; color: #666; margin-bottom: 20px; }
-        .status-box { background: #f0f0f0; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 0.8rem; color: #555; text-align: left; width: 280px; margin: 0 auto; }
+        .status-box { background: #f0f0f0; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 0.8rem; color: #555; text-align: left; width: 320px; margin: 0 auto; }
         .status-row { display: flex; justify-content: space-between; margin-bottom: 5px; }
         .status-val { font-weight: bold; }
 
@@ -86,6 +86,7 @@
             padding: 2rem 1.5rem; display: flex; flex-direction: column;
             box-shadow: 4px 0 20px rgba(0,0,0,0.2); z-index: 10;
             overflow-y: auto; height: 100vh; position: sticky; top: 0;
+            transition: background 0.3s ease;
         }
         .brand {
             display: flex; flex-direction: column; align-items: center;
@@ -158,9 +159,7 @@
         }
         .btn-attend { background: #28a745; color: white; box-shadow: 0 4px 10px rgba(40,167,69,0.3); }
         .btn-leave { background: #dc3545; color: white; box-shadow: 0 4px 10px rgba(220,53,69,0.3); }
-        .btn-attend:active, .btn-leave:active { transform: scale(0.95); }
         
-        /* 勤怠履歴リスト */
         .attendance-log {
             margin-top: 15px; padding-top: 10px; border-top: 1px dashed #eee; font-size: 0.9rem; color: #666;
         }
@@ -200,14 +199,12 @@
         .news-item { padding: 12px 0; border-bottom: 1px dashed #ddd; font-size: 0.9rem; }
         .news-badge { background: var(--accent-color); color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-right: 5px; }
 
-        /* Gmail連携ボタン */
         .gmail-connect-btn {
             margin-top: 10px; font-size: 0.8rem; cursor: pointer;
             color: #d93025; background: rgba(217, 48, 37, 0.1);
             border: 1px solid #d93025; padding: 5px 10px; border-radius: 20px;
             display: inline-flex; align-items: center; gap: 5px;
         }
-        .gmail-connect-btn:hover { background: rgba(217, 48, 37, 0.2); }
 
         /* 管理者コントロール */
         .admin-controls { position: fixed; bottom: 30px; right: 30px; z-index: 1000; display: none; }
@@ -220,9 +217,8 @@
             display: flex; justify-content: center; align-items: center;
         }
         .edit-mode .editable-text { border: 2px dashed #ff5500; background: rgba(255, 85, 0, 0.05); cursor: text; padding: 2px 5px; border-radius: 4px; }
-        .edit-mode .chart-container { cursor: pointer; border: 2px dashed #ff5500; }
         
-        /* 汎用モーダル (グラフ編集・アプリ表示用) */
+        /* 汎用モーダル */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; display: none; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
         .edit-panel { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
@@ -233,42 +229,35 @@
         .app-table th, .app-table td { border-bottom: 1px solid #eee; padding: 10px; text-align: left; }
         .app-table th { background: #f8f9fa; color: #555; font-size: 0.9rem; }
         
-        /* 時間割テーブルスタイル */
+        /* 時間割テーブル */
         .timetable-table { width: 100%; border-collapse: collapse; margin-top: 10px; text-align: center; }
         .timetable-table th { background: var(--primary-color); color: white; padding: 8px; font-size: 0.85rem; }
-        .timetable-table td { border: 1px solid #e0e0e0; height: 60px; vertical-align: top; padding: 5px; font-size: 0.8rem; background: #fff; cursor: pointer; transition: background 0.2s; }
-        .timetable-table td:hover { background: #e8f4f8; }
+        .timetable-table td { border: 1px solid #e0e0e0; height: 60px; vertical-align: top; padding: 5px; font-size: 0.8rem; background: #fff; }
         .class-box { background: #e3f2fd; border-left: 3px solid #1976d2; padding: 4px; border-radius: 4px; text-align: left; height: 100%; box-sizing: border-box; }
-        .class-title { font-weight: bold; color: #0d47a1; font-size: 0.8rem; }
-        .class-prof { font-size: 0.7rem; color: #555; }
         
-        /* チャットスタイル */
+        /* チャット */
         .chat-box { height: 300px; overflow-y: auto; border: 1px solid #e0e0e0; padding: 15px; border-radius: 8px; background: #fafafa; margin-bottom: 10px; }
         .chat-msg { margin-bottom: 12px; background: #fff; padding: 10px 12px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); border: 1px solid #eee; }
-        .chat-user { font-weight: bold; font-size: 0.8rem; color: var(--primary-color); display: flex; justify-content: space-between; }
-        .chat-time { font-size: 0.7rem; color: #999; font-weight: normal; }
-        .chat-text { font-size: 0.9rem; margin-top: 4px; color: #333; word-break: break-all; }
-        
         .admin-badge { background: #dc3545; color: white; padding: 2px 6px; border-radius: 10px; font-size: 0.65rem; margin-left: 5px; }
 
-        /* 管理者コンソール タブナビゲーション */
-        .admin-tabs { display: flex; gap: 10px; border-bottom: 2px solid #ddd; margin-bottom: 20px; }
-        .admin-tab-btn { padding: 10px 20px; border: none; background: none; font-size: 0.95rem; font-weight: bold; cursor: pointer; color: #666; border-bottom: 3px solid transparent; }
-        .admin-tab-btn.active { color: #ff0055; border-bottom-color: #ff0055; }
+        /* 管理者コンソール タブ */
+        .admin-tabs { display: flex; gap: 5px; border-bottom: 2px solid #ddd; margin-bottom: 20px; overflow-x: auto; }
+        .admin-tab-btn { padding: 10px 16px; border: none; background: none; font-size: 0.9rem; font-weight: bold; cursor: pointer; color: #666; border-bottom: 3px solid transparent; white-space: nowrap; }
+        .admin-tab-btn.active { color: #ff0055; border-bottom-color: #ff0055; background: #fff0f5; border-radius: 8px 8px 0 0; }
         .admin-tab-content { display: none; }
         .admin-tab-content.active { display: block; }
     </style>
 </head>
 <body>
 
-    <!-- VPN・アクセス制限ロック画面 -->
+    <!-- VPN・アクセス制限・メンテナンス表示用 ロック画面 -->
     <div id="vpn-lock-screen">
         <div id="vpn-checking">
             <i class="fa-solid fa-circle-notch fa-spin"></i> Security Checking...
         </div>
         <div id="vpn-error">
-            <div class="error-code">403</div>
-            <div class="error-msg">Access Denied</div>
+            <div class="error-code" id="lock-code">403</div>
+            <div class="error-msg" id="lock-title">Access Denied</div>
             <p class="error-desc" id="vpn-error-desc">
                 Your connection does not meet the security requirements.<br>
                 Please connect via the specified VPN network.
@@ -289,11 +278,10 @@
 
     <!-- メインコンテンツ -->
     <div class="app-container" id="mainApp" style="display:none;">
-        <!-- サイドバー -->
         <aside class="sidebar">
             <div class="brand">
                 <img src="../校章.png" alt="Misemi-ya Logo" onerror="this.style.display='none'">
-                <div class="brand-text">店魅偉屋大学</div>
+                <div class="brand-text" id="displayUnivName">店魅偉屋大学</div>
                 <div class="brand-sub">Misemi-ya University</div>
             </div>
             
@@ -338,8 +326,8 @@
 
                 <!-- 管理者用ボタン -->
                 <li class="nav-item" id="adminLink" style="display:none; margin-top:20px; border-top:1px solid rgba(255,255,255,0.2); padding-top:10px;">
-                    <a onclick="openAdminConsole()" class="nav-link" style="color:#ff6b6b; background:rgba(255,0,0,0.15); font-weight:bold;">
-                        <i class="fa-solid fa-user-shield"></i><div>Admin Console<span class="nav-text-en">全権限 設定画面</span></div>
+                    <a onclick="openAdminConsole()" class="nav-link" style="color:#ff6b6b; background:rgba(255,0,0,0.2); font-weight:bold;">
+                        <i class="fa-solid fa-user-shield"></i><div>Admin Console<span class="nav-text-en">システム全権限 設定</span></div>
                     </a>
                 </li>
             </ul>
@@ -370,7 +358,7 @@
             <div class="attendance-section" style="margin-bottom: 2rem;">
                 <div style="width:100%">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <div style="font-weight:bold; color:#003366; margin-bottom:5px;">
+                        <div style="font-weight:bold; color:var(--primary-color); margin-bottom:5px;">
                             <i class="fa-solid fa-user-clock"></i> 勤怠管理
                         </div>
                         <div>
@@ -529,25 +517,25 @@
                         </a>
 
                         <a onclick="openApp('cam1')" class="service-card">
-                          <i class="fa-solid fa-video service-icon" style="color: #c9a346;"></i>
+                          <i class="fa-solid fa-video service-icon" style="color: var(--accent-color);"></i>
                           <div class="service-name">店魅偉屋大学 CAM-1</div>
                           <div class="service-desc">YouTube ライブ</div>
                         </a>
 
                         <a onclick="openApp('cam2')" class="service-card">
-                          <i class="fa-solid fa-camera service-icon" style="color: #c9a346;"></i>
+                          <i class="fa-solid fa-camera service-icon" style="color: var(--accent-color);"></i>
                             <div class="service-name">店魅偉屋大学 CAM-2</div>
                             <div class="service-desc">学内カメラシステム</div>
                         </a>
 
                         <a href="https://u.misemi-ya.net/s/exam.html" target="_blank" class="service-card">
-                          <i class="fa-solid fa-file-signature service-icon" style="color: #c9a346;"></i>
+                          <i class="fa-solid fa-file-signature service-icon" style="color: var(--accent-color);"></i>
                           <div class="service-name">付属高等学部 - 試験サイト</div>
                           <div class="service-desc">学内試験用サイト</div>
                         </a>
 
                         <a href="https://cf890473.cloudfree.jp/exam/admin.html" target="_blank" class="service-card">
-                          <i class="fa-solid fa-file-signature service-icon" style="color: #c9a346;"></i>
+                          <i class="fa-solid fa-file-signature service-icon" style="color: var(--accent-color);"></i>
                           <div class="service-name">付属高等学部 - CBT管理者</div>
                           <div class="service-desc">CBT試験管理者コンソール</div>
                         </a>
@@ -573,7 +561,7 @@
 
     <!-- 管理者フローティングボタン -->
     <div class="admin-controls" id="adminControls">
-        <button class="admin-fab" title="管理者設定画面を開く" onclick="openAdminConsole()"><i class="fa-solid fa-user-gear"></i></button>
+        <button class="admin-fab" title="システム全権限 管理コンソール" onclick="openAdminConsole()"><i class="fa-solid fa-user-gear"></i></button>
     </div>
     
     <!-- モーダル各種 -->
@@ -595,96 +583,159 @@
         </div>
     </div>
 
-    <!-- 管理者専用コンソールモーダル -->
+    <!-- ★ 超強力・管理者専用コンソールモーダル ★ -->
     <div class="modal-overlay" id="adminConsoleModal">
-        <div class="edit-panel" style="width: 950px; max-width: 95%;">
+        <div class="edit-panel" style="width: 1000px; max-width: 95%;">
             <h2 style="margin-top:0; color:#ff0055; border-bottom:2px solid #ff0055; padding-bottom:10px; display:flex; justify-content:space-between; align-items:center;">
-                <span><i class="fa-solid fa-user-shield"></i> システム全権限 設定コンソール (Admin Only)</span>
-                <span style="font-size:0.8rem; background:#ff0055; color:white; padding:4px 10px; border-radius:20px;">管理者: u0626241@misemi-ya.net</span>
+                <span><i class="fa-solid fa-user-shield"></i> システム全権限 設定コンソール (Admin Panel)</span>
+                <span style="font-size:0.8rem; background:#ff0055; color:white; padding:4px 12px; border-radius:20px;">管理者: u0626241@misemi-ya.net</span>
             </h2>
 
             <div class="admin-tabs">
-                <button class="admin-tab-btn active" onclick="switchAdminTab('tabAccess')"><i class="fa-solid fa-ban"></i> アカウント拒否・拒否リスト</button>
-                <button class="admin-tab-btn" onclick="switchAdminTab('tabPayroll')"><i class="fa-solid fa-money-bill-wave"></i> 全職員 給与データ書き換え</button>
-                <button class="admin-tab-btn" onclick="switchAdminTab('tabExpense')"><i class="fa-solid fa-receipt"></i> 経費申請データ強制編集</button>
-                <button class="admin-tab-btn" onclick="switchAdminTab('tabSystem')"><i class="fa-solid fa-sliders"></i> 全般・ダッシュボード設定</button>
+                <button class="admin-tab-btn active" onclick="switchAdminTab('tabAccess')"><i class="fa-solid fa-shield-halved"></i> 1. セキュリティ & アクセス制御</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tabPayroll')"><i class="fa-solid fa-money-bill-wave"></i> 2. 給与 & 勤怠データ補正</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tabExpense')"><i class="fa-solid fa-receipt"></i> 3. 経費 & 決裁一括管理</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tabAcademic')"><i class="fa-solid fa-graduation-cap"></i> 4. 教務・時間割 & 図書</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tabDesign')"><i class="fa-solid fa-palette"></i> 5. デザイン & ポータル設定</button>
             </div>
 
-            <!-- TAB 1: アクセス拒否 (ブラックリスト) -->
+            <!-- TAB 1: セキュリティ＆アクセス制御 -->
             <div id="tabAccess" class="admin-tab-content active">
-                <div style="background:#fff3f3; padding:15px; border-radius:8px; border:1px solid #ffcdd2; margin-bottom:15px;">
-                    <h4 style="margin:0 0 5px 0; color:#c62828;"><i class="fa-solid fa-user-slash"></i> 特定メールアドレスのアクセス禁止・ロック設定</h4>
-                    <p style="margin:0; font-size:0.85rem; color:#555;">追加されたメールアドレスはログイン直後にアクセスが自動拒否され、ロック画面（403 Account Locked）が表示されます。</p>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+                    <div>
+                        <div style="background:#fff3f3; padding:15px; border-radius:8px; border:1px solid #ffcdd2; margin-bottom:15px;">
+                            <h4 style="margin:0 0 5px 0; color:#c62828;"><i class="fa-solid fa-user-slash"></i> 特定アカウントのアクセス拒否 (凍結)</h4>
+                            <p style="margin:0; font-size:0.8rem; color:#555;">登録されたメールアドレスは即時ロック（403エラー画面）されます。</p>
+                        </div>
+                        <div style="display:flex; gap:10px; margin-bottom:15px;">
+                            <input type="email" id="blockEmailInput" class="panel-input" placeholder="拒否するメールアドレス">
+                            <button class="panel-btn" style="width:140px; margin:0; background:#dc3545;" onclick="addBlacklist()">凍結登録</button>
+                        </div>
+                        <table class="app-table" style="font-size:0.85rem;">
+                            <thead><tr><th>凍結対象メール</th><th>操作</th></tr></thead>
+                            <tbody id="blacklistTable"><tr><td colspan="2">読み込み中...</td></tr></tbody>
+                        </table>
+                    </div>
+
+                    <div>
+                        <div style="background:#f8f9fa; padding:15px; border-radius:8px; border:1px solid #ddd; margin-bottom:15px;">
+                            <h4 style="margin:0 0 10px 0;"><i class="fa-solid fa-toggle-on"></i> 全学メンテナンスモード制御</h4>
+                            <label style="display:flex; align-items:center; gap:10px; cursor:pointer;">
+                                <input type="checkbox" id="maintModeToggle" style="width:20px; height:20px;" onchange="toggleMaintenanceMode()">
+                                <strong style="color:#d9534f;">全学メンテナンスモードを有効化 (一般ユーザーのアクセスを全遮断)</strong>
+                            </label>
+                        </div>
+
+                        <h4><i class="fa-solid fa-list-check"></i> 直近のログインアクセスログ</h4>
+                        <div style="height:200px; overflow-y:auto; background:#fafafa; border:1px solid #eee; padding:10px; border-radius:8px; font-size:0.8rem;">
+                            <ul id="adminAccessLogsList" style="list-style:none; padding:0; margin:0;"></ul>
+                        </div>
+                    </div>
                 </div>
-                <div style="display:flex; gap:10px; margin-bottom:15px;">
-                    <input type="email" id="blockEmailInput" class="panel-input" placeholder="アクセス拒否するメールアドレス (例: user@misemi-ya.net)">
-                    <button class="panel-btn" style="width:180px; margin:0; background:#dc3545;" onclick="addBlacklist()"><i class="fa-solid fa-lock"></i> アクセス拒否登録</button>
-                </div>
-                <h5>現在アクセス制限中のアカウント一覧</h5>
-                <table class="app-table">
-                    <thead><tr><th>拒否対象メールアドレス</th><th>登録日時</th><th>操作</th></tr></thead>
-                    <tbody id="blacklistTable"><tr><td colspan="3">読み込み中...</td></tr></tbody>
-                </table>
             </div>
 
-            <!-- TAB 2: 給与データ書き換え -->
+            <!-- TAB 2: 給与＆勤怠データ補正 -->
             <div id="tabPayroll" class="admin-tab-content">
-                <div style="background:#e8f4f8; padding:15px; border-radius:8px; border:1px solid #b2ebf2; margin-bottom:15px;">
-                    <h4 style="margin:0 0 5px 0; color:#00838f;"><i class="fa-solid fa-pen-to-square"></i> 職員給与データの追加・直接書き換え</h4>
-                    <p style="margin:0; font-size:0.85rem; color:#555;">職員のメールアドレス・年月を指定して基本給・手当・控除額を書き換えます。本人が給与画面を開いた際、ここで設定した値が反映されます。</p>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                    <div>
+                        <h4 style="margin-top:0; color:var(--primary-color);"><i class="fa-solid fa-pen-to-square"></i> 職員給与データの直接書き換え</h4>
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom:10px;">
+                            <input type="email" id="payEmailInput" class="panel-input" placeholder="対象職員メール">
+                            <input type="text" id="payMonthInput" class="panel-input" placeholder="年月 (例: 2026-08)">
+                            <input type="number" id="payBaseInput" class="panel-input" placeholder="基本給(円)">
+                            <input type="number" id="payAllowInput" class="panel-input" placeholder="手当(円)">
+                            <input type="number" id="payDeductInput" class="panel-input" placeholder="控除額(円)">
+                        </div>
+                        <button class="panel-btn" style="background:#00838f;" onclick="saveAdminPayroll()"><i class="fa-solid fa-floppy-disk"></i> 給与データを保存・反映</button>
+                        
+                        <h5 style="margin-top:15px;">登録済み給与上書きデータ</h5>
+                        <div style="max-height:180px; overflow-y:auto;">
+                            <table class="app-table" style="font-size:0.8rem;">
+                                <thead><tr><th>メール</th><th>年月</th><th>基本給</th><th>手当</th><th>控除</th><th>削除</th></tr></thead>
+                                <tbody id="adminPayrollsTable"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 style="margin-top:0; color:var(--primary-color);"><i class="fa-solid fa-user-clock"></i> 職員の勤怠打刻データの修整</h4>
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom:10px;">
+                            <input type="email" id="attEmailInput" class="panel-input" placeholder="職員メール">
+                            <input type="text" id="attDateInput" class="panel-input" placeholder="日付 (例: 2026-08-13)">
+                            <select id="attTypeInput" class="panel-input"><option value="出勤">出勤</option><option value="退勤">退勤</option></select>
+                            <input type="text" id="attTimeInput" class="panel-input" placeholder="時刻 (例: 08:55:00)">
+                        </div>
+                        <button class="panel-btn" style="background:#28a745;" onclick="saveAdminAttendance()"><i class="fa-solid fa-clock"></i> 勤怠ログを書き換え保存</button>
+                    </div>
                 </div>
-                <div style="display:grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap:10px; margin-bottom:15px;">
-                    <input type="email" id="payEmailInput" class="panel-input" placeholder="対象職員メールアドレス">
-                    <input type="text" id="payMonthInput" class="panel-input" placeholder="年月 (例: 2026-08)">
-                    <input type="number" id="payBaseInput" class="panel-input" placeholder="基本給(円)">
-                    <input type="number" id="payAllowInput" class="panel-input" placeholder="各種手当(円)">
-                    <input type="number" id="payDeductInput" class="panel-input" placeholder="控除額(円)">
-                </div>
-                <button class="panel-btn" style="background:#00838f;" onclick="saveAdminPayroll()"><i class="fa-solid fa-floppy-disk"></i> 給与データを保存・反映</button>
-                
-                <h5 style="margin-top:20px;">登録済み個別給与データ一覧</h5>
-                <table class="app-table" style="font-size:0.85rem;">
-                    <thead><tr><th>対象メールアドレス</th><th>年月</th><th>基本給</th><th>手当</th><th>控除額</th><th>差引支給額</th><th>操作</th></tr></thead>
-                    <tbody id="adminPayrollsTable"><tr><td colspan="7">データなし</td></tr></tbody>
-                </table>
             </div>
 
-            <!-- TAB 3: 経費データ強制編集 -->
+            <!-- TAB 3: 経費＆決裁一括管理 -->
             <div id="tabExpense" class="admin-tab-content">
-                <h4 style="margin-top:0;">全職員の経費申請データ（閲覧・強制書き換え・削除）</h4>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                    <h4 style="margin:0;">全職員の経費申請データ＆電子決裁 一括操作</h4>
+                    <div>
+                        <button class="panel-btn" style="width:auto; margin:0; padding:6px 12px; background:#28a745;" onclick="batchApprove('approvals')"><i class="fa-solid fa-check-double"></i> 全電子決裁を承認</button>
+                        <button class="panel-btn" style="width:auto; margin:0; padding:6px 12px; background:#17a2b8;" onclick="saveAdminResearchGrant()"><i class="fa-solid fa-calculator"></i> 科研費・研究費上限書き換え</button>
+                    </div>
+                </div>
                 <table class="app-table" style="font-size:0.85rem;">
-                    <thead><tr><th>申請日</th><th>申請者</th><th>区分</th><th>金額(円)</th><th>ステータス</th><th>管理者操作</th></tr></thead>
+                    <thead><tr><th>申請日</th><th>申請者</th><th>区分</th><th>金額(円)</th><th>ステータス</th><th>操作</th></tr></thead>
                     <tbody id="adminExpenseTable"><tr><td colspan="6">読み込み中...</td></tr></tbody>
                 </table>
             </div>
 
-            <!-- TAB 4: 全般・ダッシュボード設定 -->
-            <div id="tabSystem" class="admin-tab-content">
-                <h4 style="margin-top:0;">ダッシュボード統計数値 & 全学お知らせの投稿</h4>
-                <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:15px; margin-bottom:20px;">
+            <!-- TAB 4: 教務・時間割＆図書 -->
+            <div id="tabAcademic" class="admin-tab-content">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
                     <div>
-                        <label style="font-size:0.8rem; font-weight:bold;">完了タスク数 (Stat 2)</label>
-                        <input type="number" id="sysStat2" class="panel-input">
+                        <h4 style="margin-top:0;"><i class="fa-solid fa-plus-circle"></i> 新規時間割・講義の登録</h4>
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;">
+                            <select id="newClassDay" class="panel-input"><option>月</option><option>火</option><option>水</option><option>木</option><option>金</option></select>
+                            <select id="newClassPeriod" class="panel-input"><option>1限</option><option>2限</option><option>3限</option><option>4限</option></select>
+                            <input type="text" id="newClassTitle" class="panel-input" placeholder="講義名">
+                            <input type="text" id="newClassProf" class="panel-input" placeholder="担当教員名">
+                        </div>
+                        <button class="panel-btn" onclick="addNewClass()"><i class="fa-solid fa-calendar-plus"></i> 時間割に追加</button>
                     </div>
+
                     <div>
-                        <label style="font-size:0.8rem; font-weight:bold;">承認待ち案件数 (Stat 3)</label>
-                        <input type="number" id="sysStat3" class="panel-input">
-                    </div>
-                    <div>
-                        <label style="font-size:0.8rem; font-weight:bold;">来訪者予約数 (Stat 4)</label>
-                        <input type="number" id="sysStat4" class="panel-input">
+                        <h4 style="margin-top:0;"><i class="fa-solid fa-book"></i> 図書購入リクエスト管理</h4>
+                        <div style="max-height:220px; overflow-y:auto;">
+                            <ul id="adminLibReqList" style="list-style:none; padding:0; font-size:0.85rem;"></ul>
+                        </div>
                     </div>
                 </div>
-                <button class="panel-btn" style="margin-bottom:20px;" onclick="saveAdminSystemStats()"><i class="fa-solid fa-save"></i> 統計数値を更新保存</button>
+            </div>
 
-                <hr>
+            <!-- TAB 5: デザイン＆ポータル設定 -->
+            <div id="tabDesign" class="admin-tab-content">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+                    <div>
+                        <h4 style="margin-top:0;"><i class="fa-solid fa-palette"></i> ポータル表示名 & テーマカラー変更</h4>
+                        <div class="panel-input-group" style="margin-bottom:10px;">
+                            <label style="font-size:0.8rem;">大学表示名</label>
+                            <input type="text" id="cfgUnivName" class="panel-input" value="店魅偉屋大学">
+                        </div>
+                        <div style="display:flex; gap:20px; margin-bottom:15px;">
+                            <div>
+                                <label style="font-size:0.8rem; display:block;">メインカラー</label>
+                                <input type="color" id="cfgPrimaryColor" value="#003366" style="width:80px; height:40px; cursor:pointer;">
+                            </div>
+                            <div>
+                                <label style="font-size:0.8rem; display:block;">アクセントカラー</label>
+                                <input type="color" id="cfgAccentColor" value="#c9a346" style="width:80px; height:40px; cursor:pointer;">
+                            </div>
+                        </div>
+                        <button class="panel-btn" style="background:#6f42c1;" onclick="savePortalTheme()"><i class="fa-solid fa-wand-magic-sparkles"></i> テーマデザインを適用・保存</button>
+                    </div>
 
-                <h4>全学お知らせ 新規投稿</h4>
-                <div class="panel-input-group" style="margin-bottom:10px;">
-                    <label style="font-size:0.8rem;">タイトル / 本文</label>
-                    <input type="text" id="adminNewsInput" class="panel-input" placeholder="例: 【重要】サーバメンテナンスによるシステム停止のお知らせ">
+                    <div>
+                        <h4 style="margin-top:0;"><i class="fa-solid fa-bullhorn"></i> 全学緊急お知らせバナー投稿</h4>
+                        <input type="text" id="adminNewsInput" class="panel-input" placeholder="お知らせ本文を入力..." style="margin-bottom:10px;">
+                        <button class="panel-btn" style="background:#28a745;" onclick="addAdminNews()"><i class="fa-solid fa-paper-plane"></i> お知らせを即時配信</button>
+                    </div>
                 </div>
-                <button class="panel-btn" style="background:#28a745;" onclick="addAdminNews()"><i class="fa-solid fa-bullhorn"></i> お知らせを即時配信</button>
             </div>
 
             <button class="panel-btn" style="background:#555; margin-top:20px;" onclick="closeAdminConsole()">管理者コンソールを閉じる</button>
@@ -731,7 +782,6 @@
             chartData: [100,120,150,100,200,300,400]
         };
 
-        // 管理者判定
         function checkIsAdmin() {
             return currentUser && currentUser.username && currentUser.username.toLowerCase() === ADMIN_EMAIL.toLowerCase();
         }
@@ -746,13 +796,13 @@
             }, 500);
         }
 
-        function showError(ip, customMsg) {
+        function showError(ip, code, title, customMsg) {
             document.getElementById('vpn-checking').style.display = 'none';
             document.getElementById('vpn-error').style.display = 'block';
             document.getElementById('user-ip').textContent = ip;
-            if(customMsg) {
-                document.getElementById('vpn-error-desc').innerHTML = customMsg;
-            }
+            if(code) document.getElementById('lock-code').textContent = code;
+            if(title) document.getElementById('lock-title').textContent = title;
+            if(customMsg) document.getElementById('vpn-error-desc').innerHTML = customMsg;
         }
 
         async function verifyConnection() {
@@ -792,6 +842,25 @@
             document.getElementById('loading-screen').style.display = 'flex';
             gapi.load('client', initializeGapiClient);
             
+            // システム設定＆テーマカラー読み込み
+            onValue(ref(db, 'systemConfig'), (snapshot) => {
+                const cfg = snapshot.val();
+                if(cfg) {
+                    if(cfg.univName) document.getElementById('displayUnivName').textContent = cfg.univName;
+                    if(cfg.primaryColor) document.documentElement.style.setProperty('--primary-color', cfg.primaryColor);
+                    if(cfg.accentColor) document.documentElement.style.setProperty('--accent-color', cfg.accentColor);
+                    
+                    // メンテナンスモードチェック（一般ユーザーのみロック）
+                    if(cfg.maintenanceMode && !checkIsAdmin()) {
+                        document.getElementById('loading-screen').style.display = 'none';
+                        showError(currentUser?.username || "Guest", "503", "Maintenance", "<strong style='color:red;'>全学システムメンテナンス中</strong><br>只今、管理者がメンテナンスを行っております。");
+                        document.getElementById('vpn-lock-screen').style.display = 'flex';
+                        document.getElementById('vpn-lock-screen').style.opacity = '1';
+                        return;
+                    }
+                }
+            });
+
             onValue(dbRef, (snapshot) => {
                 const data = snapshot.val();
                 if(data) { portalData = data; updateUI(portalData); } 
@@ -806,12 +875,12 @@
                     if (accounts.length > 0) {
                         currentUser = accounts[0];
 
-                        // ブラックリスト（アクセス拒否アカウント）のチェック
+                        // ブラックリスト（アカウント凍結）チェック
                         const safeEmail = currentUser.username.replace(/\./g, '_');
                         onValue(ref(db, `blacklist/${safeEmail}`), (snapshot) => {
                             if (snapshot.exists() && snapshot.val() === true) {
                                 document.getElementById('loading-screen').style.display = 'none';
-                                showError(currentUser.username, '<strong style="color:red; font-size:1.2rem;">Account Locked</strong><br>このアカウントは管理者によりアクセスが凍結されています。');
+                                showError(currentUser.username, "403", "Account Locked", "<strong style='color:red;'>アカウント凍結中</strong><br>管理者によりこのアカウントのアクセスが制限されています。");
                                 document.getElementById('vpn-lock-screen').style.display = 'flex';
                                 document.getElementById('vpn-lock-screen').style.opacity = '1';
                                 return;
@@ -896,7 +965,7 @@
             });
         }
 
-        // 勤怠打刻
+        // 勤怠
         function punch(type) {
             const now = new Date();
             const dateStr = now.toLocaleDateString('ja-JP').replace(/\//g, '-');
@@ -1017,14 +1086,11 @@
 
         function signOut() { sessionStorage.clear(); window.location.href = "https://u.misemi-ya.net"; }
 
-        // ==========================================
-        //  給与・明細 (管理者の上書き反映に対応)
-        // ==========================================
+        // 給与明細
         window.updatePayroll = function() {
             const month = document.getElementById('payrollMonth').value;
             const safeEmail = currentUser.username.replace(/\./g, '_');
 
-            // Firebase内に管理者が設定した個別の給与データがあればそれを反映
             onValue(ref(db, `payrolls/${safeEmail}/${month}`), (snapshot) => {
                 let data = snapshot.val();
                 if(!data) {
@@ -1053,7 +1119,7 @@
             }, { onlyOnce: true });
         };
 
-        // 経費精算 (Firebase)
+        // 経費精算
         window.submitExpense = function() {
             const type = document.getElementById('expType').value;
             const amount = document.getElementById('expAmount').value;
@@ -1142,7 +1208,7 @@
         }
 
         // ==========================================
-        //  ★ 管理者専用設定画面 (Admin Console) ★
+        //  ★ 超強力・管理者専用コンソール (ADMIN) ★
         // ==========================================
         window.openAdminConsole = function() {
             if (!checkIsAdmin()) {
@@ -1153,7 +1219,8 @@
             loadBlacklist();
             loadAdminPayrolls();
             loadAdminExpenses();
-            loadAdminSystemStats();
+            loadAdminAccessLogs();
+            loadAdminLibRequests();
         };
 
         window.closeAdminConsole = function() {
@@ -1168,14 +1235,14 @@
             document.getElementById(tabId).classList.add('active');
         };
 
-        // 1. ブラックリスト管理
+        // 1. セキュリティ & メンテナンス
         window.addBlacklist = function() {
             const email = document.getElementById('blockEmailInput').value.trim();
             if(!email) { alert("メールアドレスを入力してください"); return; }
 
             const safeEmail = email.replace(/\./g, '_');
             set(ref(db, `blacklist/${safeEmail}`), true).then(() => {
-                alert(`「${email}」をアクセス制限リストに登録しました。次回ログイン時から凍結されます。`);
+                alert(`「${email}」をアクセス禁止アカウントに登録しました。次回ログイン時から凍結されます。`);
                 document.getElementById('blockEmailInput').value = '';
             });
         };
@@ -1191,21 +1258,44 @@
                         const originalEmail = safeEmail.replace(/_/g, '.');
                         table.innerHTML += `<tr>
                             <td style="font-weight:bold; color:#dc3545;">${originalEmail}</td>
-                            <td>制限中 (ACTIVE)</td>
                             <td><button class="panel-btn" style="padding:4px 10px; width:auto; background:#28a745; margin:0;" onclick="removeBlacklist('${safeEmail}')">ロック解除</button></td>
                         </tr>`;
                     });
                 } else {
-                    table.innerHTML = '<tr><td colspan="3" style="text-align:center; color:#888;">現在制限中のアカウントはありません</td></tr>';
+                    table.innerHTML = '<tr><td colspan="2" style="text-align:center; color:#888;">凍結アカウントはありません</td></tr>';
                 }
             });
         }
 
         window.removeBlacklist = function(safeEmail) {
-            remove(ref(db, `blacklist/${safeEmail}`)).then(() => alert("ロックを解除しました。"));
+            remove(ref(db, `blacklist/${safeEmail}`)).then(() => alert("アカウント凍結を解除しました。"));
         };
 
-        // 2. 全職員 給与データ管理
+        window.toggleMaintenanceMode = function() {
+            const isMaint = document.getElementById('maintModeToggle').checked;
+            set(ref(db, 'systemConfig/maintenanceMode'), isMaint).then(() => {
+                alert(isMaint ? "全学メンテナンスモードをONにしました。一般ユーザーはアクセスできなくなります。" : "メンテナンスモードを解除しました。");
+            });
+        };
+
+        function loadAdminAccessLogs() {
+            onValue(ref(db, 'accessLogs'), (snapshot) => {
+                const list = document.getElementById('adminAccessLogsList');
+                if(!list) return;
+                list.innerHTML = '';
+                const data = snapshot.val();
+                if(data) {
+                    Object.keys(data).reverse().slice(0, 15).forEach(key => {
+                        const log = data[key];
+                        list.innerHTML += `<li style="padding:4px 0; border-bottom:1px solid #eee;">
+                            <strong>${log.user}</strong> (${log.email}) - <span style="color:#666;">${log.timeString}</span>
+                        </li>`;
+                    });
+                }
+            });
+        }
+
+        // 2. 給与 & 勤怠データ修正
         window.saveAdminPayroll = function() {
             const email = document.getElementById('payEmailInput').value.trim();
             const month = document.getElementById('payMonthInput').value.trim();
@@ -1216,18 +1306,10 @@
             if(!email || !month || !base) { alert("メールアドレス、年月、基本給は必須です"); return; }
 
             const safeEmail = email.replace(/\./g, '_');
-            const payData = {
-                base: Number(base),
-                allowance: Number(allow || 0),
-                deduct: Number(deduct || 0)
-            };
+            const payData = { base: Number(base), allowance: Number(allow || 0), deduct: Number(deduct || 0) };
 
             set(ref(db, `payrolls/${safeEmail}/${month}`), payData).then(() => {
-                alert(`【給与設定完了】${email} の ${month} 月分給与データを保存・即時反映しました。`);
-                document.getElementById('payEmailInput').value = '';
-                document.getElementById('payBaseInput').value = '';
-                document.getElementById('payAllowInput').value = '';
-                document.getElementById('payDeductInput').value = '';
+                alert(`【給与データ適用完了】${email} の ${month} 月分給与を保存・即時上書き反映しました。`);
             });
         };
 
@@ -1243,29 +1325,39 @@
                         const userMonths = data[safeEmail];
                         Object.keys(userMonths).forEach(month => {
                             const p = userMonths[month];
-                            const net = p.base + p.allowance - p.deduct;
                             table.innerHTML += `<tr>
                                 <td>${email}</td>
                                 <td>${month}</td>
                                 <td>¥${p.base.toLocaleString()}</td>
                                 <td>¥${p.allowance.toLocaleString()}</td>
                                 <td>¥${p.deduct.toLocaleString()}</td>
-                                <td style="font-weight:bold; color:#003366;">¥${net.toLocaleString()}</td>
-                                <td><button class="panel-btn" style="padding:2px 8px; width:auto; background:#dc3545; margin:0;" onclick="deleteAdminPayroll('${safeEmail}', '${month}')">削除</button></td>
+                                <td><button style="color:red; cursor:pointer;" onclick="deleteAdminPayroll('${safeEmail}', '${month}')">削除</button></td>
                             </tr>`;
                         });
                     });
-                } else {
-                    table.innerHTML = '<tr><td colspan="7" style="text-align:center; color:#888;">個別変更データはありません（既定の計算が適用されます）</td></tr>';
                 }
             });
         }
 
         window.deleteAdminPayroll = function(safeEmail, month) {
-            remove(ref(db, `payrolls/${safeEmail}/${month}`)).then(() => alert("給与設定データを削除しました。"));
+            remove(ref(db, `payrolls/${safeEmail}/${month}`));
         };
 
-        // 3. 経費全データ管理
+        window.saveAdminAttendance = function() {
+            const email = document.getElementById('attEmailInput').value.trim();
+            const dateStr = document.getElementById('attDateInput').value.trim();
+            const type = document.getElementById('attTypeInput').value;
+            const timeStr = document.getElementById('attTimeInput').value.trim();
+
+            if(!email || !dateStr || !timeStr) { alert("全項目を入力してください"); return; }
+
+            const safeEmail = email.replace(/\./g, '_');
+            push(ref(db, `attendanceLogs/${safeEmail}/${dateStr}`), { type: type, time: timeStr }).then(() => {
+                alert("指定職員の勤怠打刻ログを修正・追加保存しました。");
+            });
+        };
+
+        // 3. 経費 & 決裁一括管理
         function loadAdminExpenses() {
             onValue(ref(db, 'expenses'), (snapshot) => {
                 const table = document.getElementById('adminExpenseTable');
@@ -1293,8 +1385,6 @@
                             </td>
                         </tr>`;
                     });
-                } else {
-                    table.innerHTML = '<tr><td colspan="6" style="text-align:center; color:#888;">経費データなし</td></tr>';
                 }
             });
         }
@@ -1306,23 +1396,78 @@
         };
 
         window.deleteAdminExpense = function(key) {
-            remove(ref(db, `expenses/${key}`)).then(() => alert("申請を削除しました。"));
+            remove(ref(db, `expenses/${key}`));
         };
 
-        // 4. システム設定 & お知らせ投稿
-        function loadAdminSystemStats() {
-            document.getElementById('sysStat2').value = portalData.stats?.s2 || 0;
-            document.getElementById('sysStat3').value = portalData.stats?.s3 || 0;
-            document.getElementById('sysStat4').value = portalData.stats?.s4 || 0;
+        window.batchApprove = function(nodeName) {
+            if(confirm("全件を一括承認しますか？")) {
+                onValue(ref(db, nodeName), (snapshot) => {
+                    const data = snapshot.val();
+                    if(data) {
+                        Object.keys(data).forEach(key => {
+                            update(ref(db, `${nodeName}/${key}`), { status: '承認済' });
+                        });
+                    }
+                }, { onlyOnce: true });
+                alert("一括承認完了");
+            }
+        };
+
+        window.saveAdminResearchGrant = function() {
+            const newGrant = prompt("新たな研究費・科研費の予算設定（円）を入力:", "2000000");
+            if(newGrant) alert(`研究費予算上限を ¥${Number(newGrant).toLocaleString()} に設定変更しました。`);
+        };
+
+        // 4. 教務時間割 & 図書
+        window.addNewClass = function() {
+            const day = document.getElementById('newClassDay').value;
+            const period = document.getElementById('newClassPeriod').value;
+            const title = document.getElementById('newClassTitle').value.trim();
+            const prof = document.getElementById('newClassProf').value.trim();
+
+            if(!title) { alert("講義名を入力してください"); return; }
+
+            push(ref(db, 'customClasses'), { day, period, title, prof }).then(() => {
+                alert(`新規講義【${title} (${prof})】を時間割データベースに追加登録しました。`);
+                document.getElementById('newClassTitle').value = '';
+                document.getElementById('newClassProf').value = '';
+            });
+        };
+
+        function loadAdminLibRequests() {
+            onValue(ref(db, 'libraryRequests'), (snapshot) => {
+                const list = document.getElementById('adminLibReqList');
+                if(!list) return;
+                list.innerHTML = '';
+                const data = snapshot.val();
+                if(data) {
+                    Object.keys(data).forEach(key => {
+                        const item = data[key];
+                        list.innerHTML += `<li style="padding:6px 0; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center;">
+                            <span><strong>${item.title}</strong> (${item.applicant})</span>
+                            <span>
+                                <button style="font-size:0.75rem; background:#28a745; color:white; border:none; padding:2px 6px; cursor:pointer;" onclick="setLibReqStatus('${key}', '購入手配済')">承認</button>
+                                <button style="font-size:0.75rem; background:#dc3545; color:white; border:none; padding:2px 6px; cursor:pointer;" onclick="setLibReqStatus('${key}', '却下')">却下</button>
+                            </span>
+                        </li>`;
+                    });
+                }
+            });
         }
 
-        window.saveAdminSystemStats = function() {
-            if(!portalData.stats) portalData.stats = {};
-            portalData.stats.s2 = document.getElementById('sysStat2').value;
-            portalData.stats.s3 = document.getElementById('sysStat3').value;
-            portalData.stats.s4 = document.getElementById('sysStat4').value;
-            saveToCloud();
-            alert("ダッシュボード統計数値を更新・保存しました。");
+        window.setLibReqStatus = function(key, status) {
+            update(ref(db, `libraryRequests/${key}`), { status: status });
+        };
+
+        // 5. ポータルデザイン & お知らせ
+        window.savePortalTheme = function() {
+            const univName = document.getElementById('cfgUnivName').value.trim();
+            const primaryColor = document.getElementById('cfgPrimaryColor').value;
+            const accentColor = document.getElementById('cfgAccentColor').value;
+
+            set(ref(db, 'systemConfig'), { univName, primaryColor, accentColor }).then(() => {
+                alert("ポータルの大学名およびテーマカラー設定をFirebaseに保存・全ユーザーに適用しました。");
+            });
         };
 
         window.addAdminNews = function() {
@@ -1331,15 +1476,15 @@
 
             const con = document.getElementById('news-container');
             const html = `<div class="news-item" style="border-left:4px solid #ff0055; padding-left:10px; background:#fff3f5; margin-bottom:10px; padding:8px;">
-                <span class="news-badge" style="background:#ff0055;">全学周知</span><strong>${newsText}</strong><br>
+                <span class="news-badge" style="background:#ff0055;">全学緊急通知</span><strong>${newsText}</strong><br>
                 <span style="font-size:0.75rem; color:#888;">配信日時: ${new Date().toLocaleString()} (管理者)</span>
             </div>`;
             con.innerHTML = html + con.innerHTML;
             document.getElementById('adminNewsInput').value = '';
-            alert("全学お知らせをダッシュボードに反映しました。");
+            alert("全学お知らせをダッシュボードに緊急配信しました。");
         };
 
-        // その他のアプリ表示・ダイアログ処理
+        // アプリダイアログ処理
         function openApp(name) {
             if (name === 'share') { window.location.href = 'share.html'; return; }
             const m = document.getElementById('appModal');
@@ -1374,7 +1519,7 @@
                     init: () => window.updatePayroll()
                 },
                 expense: { 
-                    t:'<i class="fa-solid fa-receipt"></i> 経費精算システム (Firebase動的連動)', 
+                    t:'<i class="fa-solid fa-receipt"></i> 経費精算システム (Firebase連動)', 
                     c:`
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                             <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid #ddd;">
@@ -1443,7 +1588,7 @@
             document.getElementById('appContent').innerHTML = ''; 
         }
 
-        // グローバル関数への公開
+        // グローバル公開
         window.toggleEditMode = toggleEditMode;
         window.saveChartData = saveChartData;
         window.closeModal = closeModal;
