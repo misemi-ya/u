@@ -44,7 +44,7 @@
             margin-top: 2px; text-transform: uppercase;
         }
 
-        /* VPN・アクセス制限ロック画面 */
+        /* VPN・アクセス制限・メンテナンス表示用 ロック画面 */
         #vpn-lock-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: white; z-index: 10000;
@@ -229,23 +229,114 @@
         .app-table th, .app-table td { border-bottom: 1px solid #eee; padding: 10px; text-align: left; }
         .app-table th { background: #f8f9fa; color: #555; font-size: 0.9rem; }
         
-        /* 時間割テーブル */
-        .timetable-table { width: 100%; border-collapse: collapse; margin-top: 10px; text-align: center; }
-        .timetable-table th { background: var(--primary-color); color: white; padding: 8px; font-size: 0.85rem; }
-        .timetable-table td { border: 1px solid #e0e0e0; height: 60px; vertical-align: top; padding: 5px; font-size: 0.8rem; background: #fff; }
-        .class-box { background: #e3f2fd; border-left: 3px solid #1976d2; padding: 4px; border-radius: 4px; text-align: left; height: 100%; box-sizing: border-box; }
-        
-        /* チャット */
-        .chat-box { height: 300px; overflow-y: auto; border: 1px solid #e0e0e0; padding: 15px; border-radius: 8px; background: #fafafa; margin-bottom: 10px; }
-        .chat-msg { margin-bottom: 12px; background: #fff; padding: 10px 12px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); border: 1px solid #eee; }
-        .admin-badge { background: #dc3545; color: white; padding: 2px 6px; border-radius: 10px; font-size: 0.65rem; margin-left: 5px; }
-
         /* 管理者コンソール タブ */
         .admin-tabs { display: flex; gap: 5px; border-bottom: 2px solid #ddd; margin-bottom: 20px; overflow-x: auto; }
         .admin-tab-btn { padding: 10px 16px; border: none; background: none; font-size: 0.9rem; font-weight: bold; cursor: pointer; color: #666; border-bottom: 3px solid transparent; white-space: nowrap; }
         .admin-tab-btn.active { color: #ff0055; border-bottom-color: #ff0055; background: #fff0f5; border-radius: 8px 8px 0 0; }
         .admin-tab-content { display: none; }
         .admin-tab-content.active { display: block; }
+
+        /* ★ Microsoft Office 365 スタイル カスタムポップアップモーダル ★ */
+        .office-dialog {
+            background: #ffffff;
+            width: 450px;
+            max-width: 90%;
+            border-radius: 8px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+            border: 1px solid #d2d0ce;
+            overflow: hidden;
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            animation: dialogPop 0.2s cubic-bezier(0.1, 0.9, 0.2, 1);
+        }
+        @keyframes dialogPop {
+            from { transform: scale(0.92); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .office-dialog-header {
+            background: #faf9f8;
+            padding: 14px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #edebe9;
+        }
+        .office-dialog-title-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .office-dialog-icon {
+            font-size: 1.25rem;
+            color: #0078d4; /* Office Blue */
+        }
+        .office-dialog-title {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #323130;
+        }
+        .office-dialog-close {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: #605e5c;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .office-dialog-close:hover { color: #323130; }
+        .office-dialog-body {
+            padding: 20px;
+            font-size: 0.95rem;
+            color: #323130;
+            line-height: 1.5;
+            word-break: break-all;
+        }
+        .office-input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #8a8886;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .office-input:focus {
+            border-color: #0078d4;
+            box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.2);
+        }
+        .office-dialog-footer {
+            padding: 12px 20px;
+            background: #f3f2f1;
+            border-top: 1px solid #edebe9;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        .office-btn {
+            padding: 8px 22px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            border: 1px solid transparent;
+        }
+        .office-btn-primary {
+            background: #0078d4;
+            color: #ffffff;
+        }
+        .office-btn-primary:hover {
+            background: #106ebe;
+        }
+        .office-btn-secondary {
+            background: #ffffff;
+            color: #323130;
+            border-color: #8a8886;
+        }
+        .office-btn-secondary:hover {
+            background: #f3f2f1;
+            border-color: #323130;
+        }
     </style>
 </head>
 <body>
@@ -583,7 +674,7 @@
         </div>
     </div>
 
-    <!-- ★ 超強力・管理者専用コンソールモーダル ★ -->
+    <!-- 管理者専用コンソールモーダル -->
     <div class="modal-overlay" id="adminConsoleModal">
         <div class="edit-panel" style="width: 1000px; max-width: 95%;">
             <h2 style="margin-top:0; color:#ff0055; border-bottom:2px solid #ff0055; padding-bottom:10px; display:flex; justify-content:space-between; align-items:center;">
@@ -742,6 +833,29 @@
         </div>
     </div>
 
+    <!-- ★ Microsoft Office 365 風 カスタムポータルダイアログ ★ -->
+    <div class="modal-overlay" id="officeDialogOverlay" style="z-index: 99999;">
+        <div class="office-dialog">
+            <div class="office-dialog-header">
+                <div class="office-dialog-title-box">
+                    <i class="fa-solid fa-circle-check office-dialog-icon" id="officeDialogIcon"></i>
+                    <span class="office-dialog-title" id="officeDialogTitle">システム通知</span>
+                </div>
+                <button class="office-dialog-close" onclick="closeOfficeDialog(false)">&times;</button>
+            </div>
+            <div class="office-dialog-body" id="officeDialogBody">
+                メッセージ内容がここに表示されます。
+            </div>
+            <div class="office-dialog-input-box" id="officeDialogInputBox" style="display:none; padding:0 20px 15px 20px;">
+                <input type="text" id="officeDialogInput" class="office-input" placeholder="入力してください">
+            </div>
+            <div class="office-dialog-footer">
+                <button class="office-btn office-btn-primary" id="officeDialogOkBtn" onclick="closeOfficeDialog(true)">OK</button>
+                <button class="office-btn office-btn-secondary" id="officeDialogCancelBtn" style="display:none;" onclick="closeOfficeDialog(false)">キャンセル</button>
+            </div>
+        </div>
+    </div>
+
     <script src="msal-config.js"></script>
 
     <script type="module">
@@ -780,6 +894,68 @@
             stats: { s2:0, s3:0, s4:0 }, 
             chartTitle: "学内システム アクセス状況",
             chartData: [100,120,150,100,200,300,400]
+        };
+
+        // ==========================================
+        //  ★ Office 365風 カスタムモーダル API ★
+        // ==========================================
+        let dialogResolve = null;
+
+        window.customAlert = function(message, title = "システム通知", icon = "fa-circle-info") {
+            return new Promise((resolve) => {
+                const overlay = document.getElementById('officeDialogOverlay');
+                document.getElementById('officeDialogTitle').textContent = title;
+                document.getElementById('officeDialogBody').innerHTML = message;
+                document.getElementById('officeDialogIcon').className = `fa-solid ${icon} office-dialog-icon`;
+                document.getElementById('officeDialogInputBox').style.display = 'none';
+                document.getElementById('officeDialogCancelBtn').style.display = 'none';
+                
+                overlay.style.display = 'flex';
+                dialogResolve = resolve;
+            });
+        };
+
+        window.customConfirm = function(message, title = "処理の確認", icon = "fa-circle-question") {
+            return new Promise((resolve) => {
+                const overlay = document.getElementById('officeDialogOverlay');
+                document.getElementById('officeDialogTitle').textContent = title;
+                document.getElementById('officeDialogBody').innerHTML = message;
+                document.getElementById('officeDialogIcon').className = `fa-solid ${icon} office-dialog-icon`;
+                document.getElementById('officeDialogInputBox').style.display = 'none';
+                document.getElementById('officeDialogCancelBtn').style.display = 'inline-block';
+                
+                overlay.style.display = 'flex';
+                dialogResolve = resolve;
+            });
+        };
+
+        window.customPrompt = function(message, defaultValue = "", title = "データの入力", icon = "fa-pen-to-square") {
+            return new Promise((resolve) => {
+                const overlay = document.getElementById('officeDialogOverlay');
+                const input = document.getElementById('officeDialogInput');
+                
+                document.getElementById('officeDialogTitle').textContent = title;
+                document.getElementById('officeDialogBody').innerHTML = message;
+                document.getElementById('officeDialogIcon').className = `fa-solid ${icon} office-dialog-icon`;
+                document.getElementById('officeDialogInputBox').style.display = 'block';
+                document.getElementById('officeDialogCancelBtn').style.display = 'inline-block';
+                input.value = defaultValue;
+                
+                overlay.style.display = 'flex';
+                setTimeout(() => input.focus(), 50);
+                
+                dialogResolve = (result) => {
+                    resolve(result ? input.value : null);
+                };
+            });
+        };
+
+        window.closeOfficeDialog = function(result) {
+            document.getElementById('officeDialogOverlay').style.display = 'none';
+            if (dialogResolve) {
+                dialogResolve(result);
+                dialogResolve = null;
+            }
         };
 
         function checkIsAdmin() {
@@ -850,7 +1026,6 @@
                     if(cfg.primaryColor) document.documentElement.style.setProperty('--primary-color', cfg.primaryColor);
                     if(cfg.accentColor) document.documentElement.style.setProperty('--accent-color', cfg.accentColor);
                     
-                    // メンテナンスモードチェック（一般ユーザーのみロック）
                     if(cfg.maintenanceMode && !checkIsAdmin()) {
                         document.getElementById('loading-screen').style.display = 'none';
                         showError(currentUser?.username || "Guest", "503", "Maintenance", "<strong style='color:red;'>全学システムメンテナンス中</strong><br>只今、管理者がメンテナンスを行っております。");
@@ -965,13 +1140,14 @@
             });
         }
 
-        // 勤怠
-        function punch(type) {
+        // 勤怠打刻
+        async function punch(type) {
             const now = new Date();
             const dateStr = now.toLocaleDateString('ja-JP').replace(/\//g, '-');
             const timeStr = now.toLocaleTimeString('ja-JP');
             const safeEmail = currentUser.username.replace(/\./g, '_');
-            push(ref(db, `attendanceLogs/${safeEmail}/${dateStr}`), { type:type, time:timeStr }).then(()=>alert(`${type}しました`));
+            await push(ref(db, `attendanceLogs/${safeEmail}/${dateStr}`), { type:type, time:timeStr });
+            await customAlert(`${type}打刻を完了しました。（${timeStr}）`, "勤怠管理", "fa-user-clock");
         }
 
         function loadPunchHistory() {
@@ -1040,8 +1216,8 @@
             } catch (e) {}
         }
 
-        function toggleEditMode() {
-            if (!checkIsAdmin()) { alert("編集モードの起動には管理者権限が必要です。"); return; }
+        async function toggleEditMode() {
+            if (!checkIsAdmin()) { await customAlert("編集モードの起動には管理者権限が必要です。", "権限エラー", "fa-shield-halved"); return; }
             isEditMode = !isEditMode;
             const fab = document.querySelector('.admin-fab');
             if (isEditMode) {
@@ -1120,10 +1296,10 @@
         };
 
         // 経費精算
-        window.submitExpense = function() {
+        window.submitExpense = async function() {
             const type = document.getElementById('expType').value;
             const amount = document.getElementById('expAmount').value;
-            if(!amount) { alert('申請金額を入力してください'); return; }
+            if(!amount) { await customAlert('申請金額を入力してください', "入力エラー", "fa-circle-exclamation"); return; }
 
             const expData = {
                 type: type,
@@ -1134,10 +1310,9 @@
                 date: new Date().toLocaleDateString('ja-JP')
             };
 
-            push(ref(db, 'expenses'), expData).then(() => {
-                document.getElementById('expAmount').value = '';
-                alert('経費申請をFirebaseに送信・保存しました。');
-            });
+            await push(ref(db, 'expenses'), expData);
+            document.getElementById('expAmount').value = '';
+            await customAlert('経費申請をFirebaseに送信・保存しました。', "申請完了", "fa-paper-plane");
         };
 
         function loadExpenseHistory() {
@@ -1163,16 +1338,18 @@
         }
 
         // 電子決裁
-        window.approveItem = function(key) {
-            if (!checkIsAdmin()) { alert("承認処理を実行するには管理者権限が必要です。"); return; }
-            update(ref(db, `approvals/${key}`), { status: '承認済' }).then(() => alert("承認しました。"));
+        window.approveItem = async function(key) {
+            if (!checkIsAdmin()) { await customAlert("承認処理を実行するには管理者権限が必要です。", "権限エラー", "fa-shield-halved"); return; }
+            await update(ref(db, `approvals/${key}`), { status: '承認済' });
+            await customAlert("案件を正常に承認しました。", "電子決裁", "fa-check-double");
         };
 
-        window.rejectItem = function(key) {
-            if (!checkIsAdmin()) { alert("差戻し処理を実行するには管理者権限が必要です。"); return; }
-            const reason = prompt("差戻しの理由を入力してください:");
+        window.rejectItem = async function(key) {
+            if (!checkIsAdmin()) { await customAlert("差戻し処理を実行するには管理者権限が必要です。", "権限エラー", "fa-shield-halved"); return; }
+            const reason = await customPrompt("差戻しの理由を入力してください:", "", "差戻し処理", "fa-reply");
             if(reason !== null) {
-                update(ref(db, `approvals/${key}`), { status: '差戻し', reason: reason }).then(() => alert("差戻しました。"));
+                await update(ref(db, `approvals/${key}`), { status: '差戻し', reason: reason });
+                await customAlert("案件を差戻しました。", "電子決裁", "fa-reply");
             }
         };
 
@@ -1210,9 +1387,9 @@
         // ==========================================
         //  ★ 超強力・管理者専用コンソール (ADMIN) ★
         // ==========================================
-        window.openAdminConsole = function() {
+        window.openAdminConsole = async function() {
             if (!checkIsAdmin()) {
-                alert("【アクセス拒否】管理者権限アカウント (u0626241@misemi-ya.net) でログインしてください。");
+                await customAlert("【アクセス拒否】管理者権限アカウント (u0626241@misemi-ya.net) でログインしてください。", "権限エラー", "fa-user-slash");
                 return;
             }
             document.getElementById('adminConsoleModal').style.display = 'flex';
@@ -1236,15 +1413,14 @@
         };
 
         // 1. セキュリティ & メンテナンス
-        window.addBlacklist = function() {
+        window.addBlacklist = async function() {
             const email = document.getElementById('blockEmailInput').value.trim();
-            if(!email) { alert("メールアドレスを入力してください"); return; }
+            if(!email) { await customAlert("メールアドレスを入力してください", "入力エラー", "fa-triangle-exclamation"); return; }
 
             const safeEmail = email.replace(/\./g, '_');
-            set(ref(db, `blacklist/${safeEmail}`), true).then(() => {
-                alert(`「${email}」をアクセス禁止アカウントに登録しました。次回ログイン時から凍結されます。`);
-                document.getElementById('blockEmailInput').value = '';
-            });
+            await set(ref(db, `blacklist/${safeEmail}`), true);
+            await customAlert(`「${email}」をアクセス禁止アカウントに登録しました。次回ログイン時から凍結されます。`, "アカウント制限", "fa-user-slash");
+            document.getElementById('blockEmailInput').value = '';
         };
 
         function loadBlacklist() {
@@ -1267,15 +1443,15 @@
             });
         }
 
-        window.removeBlacklist = function(safeEmail) {
-            remove(ref(db, `blacklist/${safeEmail}`)).then(() => alert("アカウント凍結を解除しました。"));
+        window.removeBlacklist = async function(safeEmail) {
+            await remove(ref(db, `blacklist/${safeEmail}`));
+            await customAlert("アカウント凍結を解除しました。", "制限解除", "fa-user-check");
         };
 
-        window.toggleMaintenanceMode = function() {
+        window.toggleMaintenanceMode = async function() {
             const isMaint = document.getElementById('maintModeToggle').checked;
-            set(ref(db, 'systemConfig/maintenanceMode'), isMaint).then(() => {
-                alert(isMaint ? "全学メンテナンスモードをONにしました。一般ユーザーはアクセスできなくなります。" : "メンテナンスモードを解除しました。");
-            });
+            await set(ref(db, 'systemConfig/maintenanceMode'), isMaint);
+            await customAlert(isMaint ? "全学メンテナンスモードをONにしました。一般ユーザーはアクセスできなくなります。" : "メンテナンスモードを解除しました。", "システム設定", "fa-toggle-on");
         };
 
         function loadAdminAccessLogs() {
@@ -1296,21 +1472,20 @@
         }
 
         // 2. 給与 & 勤怠データ修正
-        window.saveAdminPayroll = function() {
+        window.saveAdminPayroll = async function() {
             const email = document.getElementById('payEmailInput').value.trim();
             const month = document.getElementById('payMonthInput').value.trim();
             const base = document.getElementById('payBaseInput').value;
             const allow = document.getElementById('payAllowInput').value;
             const deduct = document.getElementById('payDeductInput').value;
 
-            if(!email || !month || !base) { alert("メールアドレス、年月、基本給は必須です"); return; }
+            if(!email || !month || !base) { await customAlert("メールアドレス、年月、基本給は必須です", "入力エラー", "fa-circle-exclamation"); return; }
 
             const safeEmail = email.replace(/\./g, '_');
             const payData = { base: Number(base), allowance: Number(allow || 0), deduct: Number(deduct || 0) };
 
-            set(ref(db, `payrolls/${safeEmail}/${month}`), payData).then(() => {
-                alert(`【給与データ適用完了】${email} の ${month} 月分給与を保存・即時上書き反映しました。`);
-            });
+            await set(ref(db, `payrolls/${safeEmail}/${month}`), payData);
+            await customAlert(`【給与データ適用完了】${email} の ${month} 月分給与を保存・即時上書き反映しました。`, "給与データ更新", "fa-money-bill-wave");
         };
 
         function loadAdminPayrolls() {
@@ -1339,22 +1514,22 @@
             });
         }
 
-        window.deleteAdminPayroll = function(safeEmail, month) {
-            remove(ref(db, `payrolls/${safeEmail}/${month}`));
+        window.deleteAdminPayroll = async function(safeEmail, month) {
+            await remove(ref(db, `payrolls/${safeEmail}/${month}`));
+            await customAlert("給与設定データを削除しました。", "データ削除", "fa-trash");
         };
 
-        window.saveAdminAttendance = function() {
+        window.saveAdminAttendance = async function() {
             const email = document.getElementById('attEmailInput').value.trim();
             const dateStr = document.getElementById('attDateInput').value.trim();
             const type = document.getElementById('attTypeInput').value;
             const timeStr = document.getElementById('attTimeInput').value.trim();
 
-            if(!email || !dateStr || !timeStr) { alert("全項目を入力してください"); return; }
+            if(!email || !dateStr || !timeStr) { await customAlert("全項目を入力してください", "入力エラー", "fa-circle-exclamation"); return; }
 
             const safeEmail = email.replace(/\./g, '_');
-            push(ref(db, `attendanceLogs/${safeEmail}/${dateStr}`), { type: type, time: timeStr }).then(() => {
-                alert("指定職員の勤怠打刻ログを修正・追加保存しました。");
-            });
+            await push(ref(db, `attendanceLogs/${safeEmail}/${dateStr}`), { type: type, time: timeStr });
+            await customAlert("指定職員の勤怠打刻ログを修正・追加保存しました。", "勤怠修正", "fa-user-clock");
         };
 
         // 3. 経費 & 決裁一括管理
@@ -1389,18 +1564,21 @@
             });
         }
 
-        window.updateAdminExpense = function(key) {
+        window.updateAdminExpense = async function(key) {
             const newAmt = document.getElementById(`expAmt_${key}`).value;
             const newStat = document.getElementById(`expStat_${key}`).value;
-            update(ref(db, `expenses/${key}`), { amount: Number(newAmt), status: newStat }).then(() => alert("経費データを更新しました。"));
+            await update(ref(db, `expenses/${key}`), { amount: Number(newAmt), status: newStat });
+            await customAlert("経費データを更新しました。", "経費更新", "fa-receipt");
         };
 
-        window.deleteAdminExpense = function(key) {
-            remove(ref(db, `expenses/${key}`));
+        window.deleteAdminExpense = async function(key) {
+            await remove(ref(db, `expenses/${key}`));
+            await customAlert("申請データを削除しました。", "データ削除", "fa-trash");
         };
 
-        window.batchApprove = function(nodeName) {
-            if(confirm("全件を一括承認しますか？")) {
+        window.batchApprove = async function(nodeName) {
+            const confirmed = await customConfirm("全件を一括承認しますか？", "一括承認の確認", "fa-triangle-exclamation");
+            if(confirmed) {
                 onValue(ref(db, nodeName), (snapshot) => {
                     const data = snapshot.val();
                     if(data) {
@@ -1409,29 +1587,28 @@
                         });
                     }
                 }, { onlyOnce: true });
-                alert("一括承認完了");
+                await customAlert("全案件の一括承認が完了しました。", "一括処理完了", "fa-check-double");
             }
         };
 
-        window.saveAdminResearchGrant = function() {
-            const newGrant = prompt("新たな研究費・科研費の予算設定（円）を入力:", "2000000");
-            if(newGrant) alert(`研究費予算上限を ¥${Number(newGrant).toLocaleString()} に設定変更しました。`);
+        window.saveAdminResearchGrant = async function() {
+            const newGrant = await customPrompt("新たな研究費・科研費の予算設定（円）を入力してください:", "2000000", "予算上限設定", "fa-calculator");
+            if(newGrant) await customAlert(`研究費予算上限を ¥${Number(newGrant).toLocaleString()} に設定変更しました。`, "研究費設定", "fa-calculator");
         };
 
         // 4. 教務時間割 & 図書
-        window.addNewClass = function() {
+        window.addNewClass = async function() {
             const day = document.getElementById('newClassDay').value;
             const period = document.getElementById('newClassPeriod').value;
             const title = document.getElementById('newClassTitle').value.trim();
             const prof = document.getElementById('newClassProf').value.trim();
 
-            if(!title) { alert("講義名を入力してください"); return; }
+            if(!title) { await customAlert("講義名を入力してください", "入力エラー", "fa-circle-exclamation"); return; }
 
-            push(ref(db, 'customClasses'), { day, period, title, prof }).then(() => {
-                alert(`新規講義【${title} (${prof})】を時間割データベースに追加登録しました。`);
-                document.getElementById('newClassTitle').value = '';
-                document.getElementById('newClassProf').value = '';
-            });
+            await push(ref(db, 'customClasses'), { day, period, title, prof });
+            await customAlert(`新規講義【${title} (${prof})】を時間割データベースに追加登録しました。`, "時間割追加", "fa-calendar-plus");
+            document.getElementById('newClassTitle').value = '';
+            document.getElementById('newClassProf').value = '';
         };
 
         function loadAdminLibRequests() {
@@ -1460,17 +1637,16 @@
         };
 
         // 5. ポータルデザイン & お知らせ
-        window.savePortalTheme = function() {
+        window.savePortalTheme = async function() {
             const univName = document.getElementById('cfgUnivName').value.trim();
             const primaryColor = document.getElementById('cfgPrimaryColor').value;
             const accentColor = document.getElementById('cfgAccentColor').value;
 
-            set(ref(db, 'systemConfig'), { univName, primaryColor, accentColor }).then(() => {
-                alert("ポータルの大学名およびテーマカラー設定をFirebaseに保存・全ユーザーに適用しました。");
-            });
+            await set(ref(db, 'systemConfig'), { univName, primaryColor, accentColor });
+            await customAlert("ポータルの大学名およびテーマカラー設定をFirebaseに保存・全ユーザーに適用しました。", "テーマ更新", "fa-palette");
         };
 
-        window.addAdminNews = function() {
+        window.addAdminNews = async function() {
             const newsText = document.getElementById('adminNewsInput').value.trim();
             if(!newsText) return;
 
@@ -1481,7 +1657,7 @@
             </div>`;
             con.innerHTML = html + con.innerHTML;
             document.getElementById('adminNewsInput').value = '';
-            alert("全学お知らせをダッシュボードに緊急配信しました。");
+            await customAlert("全学お知らせをダッシュボードに緊急配信しました。", "お知らせ配信", "fa-bullhorn");
         };
 
         // アプリダイアログ処理
@@ -1512,7 +1688,7 @@
                                 <option value="2026-07">2026年 7月分</option>
                                 <option value="2026-06">2026年 6月分</option>
                             </select>
-                            <button class="panel-btn" style="width:auto; margin:0; padding:8px 15px; background:#17a2b8;" onclick="alert('給与明細のPDF出力処理を開始しました')"><i class="fa-solid fa-download"></i> 明細PDF出力</button>
+                            <button class="panel-btn" style="width:auto; margin:0; padding:8px 15px; background:#17a2b8;" onclick="customAlert('給与明細のPDF出力処理を開始しました', 'PDF出力', 'fa-file-pdf')"><i class="fa-solid fa-download"></i> 明細PDF出力</button>
                         </div>
                         <div id="payrollContent" style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 15px; background: #fafafa; min-height: 250px;"></div>
                     `,
