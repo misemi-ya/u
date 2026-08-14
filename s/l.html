@@ -470,6 +470,7 @@
             <div class="admin-tabs">
                 <button class="admin-tab-btn active" onclick="switchAdminTab('tabSecurity', this)"><i class="fa-solid fa-shield-halved"></i> セキュリティ</button>
                 <button class="admin-tab-btn" onclick="switchAdminTab('tabHR', this)"><i class="fa-solid fa-user-clock"></i> 勤務・勤怠</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tabAllDataManage', this)"><i class="fa-solid fa-database"></i> 全データ編集・削除管理</button>
                 <button class="admin-tab-btn" onclick="switchAdminTab('tabAllRequests', this)"><i class="fa-solid fa-layer-group"></i> 申請統合管理・ユーザー設定</button>
                 <button class="admin-tab-btn" onclick="switchAdminTab('tabPayrollList', this)"><i class="fa-solid fa-money-bill-wave"></i> 給与・控除</button>
                 <button class="admin-tab-btn" onclick="switchAdminTab('tabFinance', this)"><i class="fa-solid fa-calculator"></i> 経費・決裁</button>
@@ -652,7 +653,56 @@
                     <div class="setting-grid" id="grid_dev"></div>
                 </div>
             </div>
+<!-- TAB: 全データ編集・削除管理 -->
+            <div id="tabAllDataManage" class="admin-tab-content">
+                <div style="display:flex; flex-direction:column; gap:12px;">
+                    
+                    <!-- 1. 研究費データ管理 -->
+                    <div class="setting-card">
+                        <div class="setting-card-title"><i class="fa-solid fa-microscope"></i> 研究費・科研費 執行データ一覧（金額変更・品名編集・削除）</div>
+                        <div style="max-height: 160px; overflow-y: auto;">
+                            <table class="app-table" style="font-size:0.8rem;">
+                                <thead><tr><th>日付</th><th>費目区分</th><th>品名・内容</th><th>金額(円)</th><th>管理者操作</th></tr></thead>
+                                <tbody id="manageResearchExpensesTable"><tr><td colspan="5">読み込み中...</td></tr></tbody>
+                            </table>
+                        </div>
+                    </div>
 
+                    <!-- 2. 資産・備品データ管理 -->
+                    <div class="setting-card">
+                        <div class="setting-card-title"><i class="fa-solid fa-laptop"></i> 資産・備品台帳データ（内容変更・削除）</div>
+                        <div style="max-height: 160px; overflow-y: auto;">
+                            <table class="app-table" style="font-size:0.8rem;">
+                                <thead><tr><th>管理番号</th><th>品名</th><th>保管場所</th><th>状態</th><th>管理者操作</th></tr></thead>
+                                <tbody id="manageAssetsTable"><tr><td colspan="5">読み込み中...</td></tr></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- 3. 採用・公募データ管理 -->
+                    <div class="setting-card">
+                        <div class="setting-card-title"><i class="fa-solid fa-briefcase"></i> 採用・公募案件データ（募集人数・締切変更・削除）</div>
+                        <div style="max-height: 160px; overflow-y: auto;">
+                            <table class="app-table" style="font-size:0.8rem;">
+                                <thead><tr><th>公募職名</th><th>部署</th><th>募集枠</th><th>締切日</th><th>管理者操作</th></tr></thead>
+                                <tbody id="manageRecruitsTable"><tr><td colspan="5">読み込み中...</td></tr></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- 4. IT申請データ管理 -->
+                    <div class="setting-card">
+                        <div class="setting-card-title"><i class="fa-solid fa-desktop"></i> 情報システム申請データ（状態変更・削除）</div>
+                        <div style="max-height: 160px; overflow-y: auto;">
+                            <table class="app-table" style="font-size:0.8rem;">
+                                <thead><tr><th>受付番号</th><th>申請種別</th><th>申請者</th><th>状態</th><th>管理者操作</th></tr></thead>
+                                <tbody id="manageITRequestsTable"><tr><td colspan="5">読み込み中...</td></tr></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
             <button class="panel-btn" style="background:#555; margin-top:10px; padding:6px; font-size:0.8rem;" onclick="closeAdminConsole()">閉じる</button>
         </div>
     </div>
@@ -1863,7 +1913,145 @@ function setupUser(user) {
             loadAdminLibRequests();
             loadAllRequests();
         };
+// ==========================================
+        //  ★ 管理者専用 全データ一括 編集・削除ロジック ★
+        // ==========================================
 
+        // 1. 研究費データの編集・削除
+        window.editResearchExpense = async function(key, currentTitle, currentAmount) {
+            const newTitle = await customPrompt("変更後の品名・内容を入力してください:", currentTitle, "研究費データ編集", "fa-pen-to-square");
+            if(newTitle === null) return;
+            const newAmount = await customPrompt("変更後の金額(円)を入力してください:", currentAmount, "研究費金額変更", "fa-calculator");
+            if(newAmount === null || !newAmount) return;
+
+            await update(ref(db, `researchExpenses/${key}`), { title: newTitle, amount: Number(newAmount) });
+            await customAlert("研究費データを修正・更新しました。", "更新完了", "fa-check");
+        };
+
+        window.deleteResearchExpense = async function(key) {
+            const confirmDel = await customConfirm("この研究費執行データを削除しますか？", "データ削除確認", "fa-trash");
+            if (confirmDel) {
+                await remove(ref(db, `researchExpenses/${key}`));
+                await customAlert("研究費データを削除しました。", "削除完了", "fa-trash");
+            }
+        };
+
+        // 2. 備品データの編集・削除
+        window.editAsset = async function(key, currentName, currentLoc) {
+            const newName = await customPrompt("変更後の品名を入力してください:", currentName, "備品データ編集", "fa-pen-to-square");
+            if(newName === null) return;
+            const newLoc = await customPrompt("変更後の保管場所を入力してください:", currentLoc, "保管場所変更", "fa-location-dot");
+            if(newLoc === null) return;
+
+            await update(ref(db, `campusAssets/${key}`), { name: newName, location: newLoc });
+            await customAlert("備品データを修正・更新しました。", "更新完了", "fa-check");
+        };
+
+        window.deleteAsset = async function(key) {
+            const confirmDel = await customConfirm("この備品データを台帳から削除しますか？", "備品削除確認", "fa-trash");
+            if (confirmDel) {
+                await remove(ref(db, `campusAssets/${key}`));
+                await customAlert("備品データを削除しました。", "削除完了", "fa-trash");
+            }
+        };
+
+        // 3. 公募データの編集・削除
+        window.editRecruit = async function(key, currentCount, currentDeadline) {
+            const newCount = await customPrompt("変更後の募集人数(名)を入力:", currentCount, "公募データ編集", "fa-pen-to-square");
+            if(newCount === null) return;
+            const newDeadline = await customPrompt("変更後の締切日を入力 (YYYY-MM-DD):", currentDeadline, "締切日変更", "fa-calendar");
+            if(newDeadline === null) return;
+
+            await update(ref(db, `jobRecruits/${key}`), { count: Number(newCount), deadline: newDeadline });
+            await customAlert("公募案件データを修正・更新しました。", "更新完了", "fa-check");
+        };
+
+        window.deleteRecruit = async function(key) {
+            const confirmDel = await customConfirm("この公募案件を削除しますか？", "公募削除確認", "fa-trash");
+            if (confirmDel) {
+                await remove(ref(db, `jobRecruits/${key}`));
+                await customAlert("公募案件を削除しました。", "削除完了", "fa-trash");
+            }
+        };
+
+        // 管理者コンソール内の全データ一覧ロード関数
+        function loadAllDataForManagement() {
+            // 研究費
+            onValue(ref(db, 'researchExpenses'), (snapshot) => {
+                const table = document.getElementById('manageResearchExpensesTable');
+                if(!table) return;
+                table.innerHTML = '';
+                const data = snapshot.val();
+                if(data) {
+                    Object.keys(data).reverse().forEach(key => {
+                        const item = data[key];
+                        table.innerHTML += `<tr>
+                            <td>${item.date}</td>
+                            <td>${item.category}</td>
+                            <td style="font-weight:bold;">${item.title}</td>
+                            <td>¥${Number(item.amount).toLocaleString()}</td>
+                            <td>
+                                <button class="panel-btn" style="padding:2px 6px; margin:0 4px 0 0; background:#007bff; width:auto; font-size:0.75rem;" onclick="editResearchExpense('${key}', '${item.title}', ${item.amount})">編集</button>
+                                <button class="panel-btn" style="padding:2px 6px; margin:0; background:#dc3545; width:auto; font-size:0.75rem;" onclick="deleteResearchExpense('${key}')">削除</button>
+                            </td>
+                        </tr>`;
+                    });
+                } else { table.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#888;">データなし</td></tr>'; }
+            });
+
+            // 備品
+            onValue(ref(db, 'campusAssets'), (snapshot) => {
+                const table = document.getElementById('manageAssetsTable');
+                if(!table) return;
+                table.innerHTML = '';
+                const data = snapshot.val();
+                if(data) {
+                    Object.keys(data).reverse().forEach(key => {
+                        const item = data[key];
+                        table.innerHTML += `<tr>
+                            <td>${item.code}</td>
+                            <td style="font-weight:bold;">${item.name}</td>
+                            <td>${item.location}</td>
+                            <td>${item.status}</td>
+                            <td>
+                                <button class="panel-btn" style="padding:2px 6px; margin:0 4px 0 0; background:#007bff; width:auto; font-size:0.75rem;" onclick="editAsset('${key}', '${item.name}', '${item.location}')">編集</button>
+                                <button class="panel-btn" style="padding:2px 6px; margin:0; background:#dc3545; width:auto; font-size:0.75rem;" onclick="deleteAsset('${key}')">削除</button>
+                            </td>
+                        </tr>`;
+                    });
+                } else { table.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#888;">データなし</td></tr>'; }
+            });
+
+            // 公募
+            onValue(ref(db, 'jobRecruits'), (snapshot) => {
+                const table = document.getElementById('manageRecruitsTable');
+                if(!table) return;
+                table.innerHTML = '';
+                const data = snapshot.val();
+                if(data) {
+                    Object.keys(data).reverse().forEach(key => {
+                        const item = data[key];
+                        table.innerHTML += `<tr>
+                            <td style="font-weight:bold;">${item.title}</td>
+                            <td>${item.dept}</td>
+                            <td>${item.count}名枠</td>
+                            <td>${item.deadline}</td>
+                            <td>
+                                <button class="panel-btn" style="padding:2px 6px; margin:0 4px 0 0; background:#007bff; width:auto; font-size:0.75rem;" onclick="editRecruit('${key}', ${item.count}, '${item.deadline}')">編集</button>
+                                <button class="panel-btn" style="padding:2px 6px; margin:0; background:#dc3545; width:auto; font-size:0.75rem;" onclick="deleteRecruit('${key}')">削除</button>
+                            </td>
+                        </tr>`;
+                    });
+                } else { table.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#888;">データなし</td></tr>'; }
+            });
+        }
+
+        // openAdminConsoleが開かれた時に全データ管理リストも読み込むようにフック
+        const originalOpenAdminConsole = window.openAdminConsole;
+        window.openAdminConsole = async function() {
+            await originalOpenAdminConsole();
+            loadAllDataForManagement();
+        };
         window.closeAdminConsole = function() { document.getElementById('adminConsoleModal').style.display = 'none'; };
 
         window.switchAdminTab = function(tabId, btnElement) {
