@@ -1616,45 +1616,6 @@ function setupUser(user) {
             }
         };
 
-        function loadResearchExpenses() {
-            onValue(ref(db, 'researchExpenses'), (snapshot) => {
-                const list = document.getElementById('researchExpList');
-                if(!list) return;
-                list.innerHTML = '';
-                const data = snapshot.val();
-                let totalSpent = 0;
-                const totalBudget = 1500000;
-
-                if(data) {
-                    Object.keys(data).reverse().forEach(key => {
-                        const item = data[key];
-                        totalSpent += Number(item.amount);
-                        list.innerHTML += `<tr>
-                            <td>${item.date}</td>
-                            <td>${item.category} (${item.title})</td>
-                            <td style="font-weight:bold;">¥${Number(item.amount).toLocaleString()}</td>
-                            ${checkIsAdmin() ? `<td><button class="panel-btn" style="padding:2px 8px; margin:0; background:#dc3545; width:auto; font-size:0.75rem;" onclick="deleteResearchExpense('${key}')"><i class="fa-solid fa-trash"></i> 削除</button></td>` : ''}
-                        </tr>`;
-                    });
-                } else {
-                    list.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#888;">執行履歴はありません</td></tr>';
-                }
-
-                const remain = totalBudget - totalSpent;
-                const percent = Math.min(100, ((totalSpent / totalBudget) * 100).toFixed(1));
-
-                const spentEl = document.getElementById('resTotalSpent');
-                const remainEl = document.getElementById('resTotalRemain');
-                const barEl = document.getElementById('resProgressBar');
-
-                if(spentEl) spentEl.textContent = `¥${totalSpent.toLocaleString()}`;
-                if(remainEl) remainEl.textContent = `¥${remain.toLocaleString()}`;
-                if(barEl) {
-                    barEl.style.width = `${percent}%`;
-                    barEl.textContent = `執行率 ${percent}%`;
-                }
-            });
-        }
 
         // ★ 公募案件の削除 (管理者用) ★
         window.deleteRecruit = async function(key) {
