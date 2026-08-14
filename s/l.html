@@ -1027,33 +1027,62 @@
             if(title) document.getElementById('lock-title').textContent = title;
             if(customMsg) document.getElementById('vpn-error-desc').innerHTML = customMsg;
         }
+async function verifyConnection() {
+            // 1. URLパラメータ ?bypass=mmu2026 または ローカル環境の場合はスキップ
+            const urlParams = new URLSearchParams(window.location.search);
+            const isLocal = location.protocol === 'file:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1';
 
-        async function verifyConnection() {
+            if (urlParams.get('bypass') === 'mmu2026' || isLocal) {
+                unlockScreen();
+                return;
+            }
+
+            const trustedUntil = localStorage.getItem('trusted_device_until');
+            if (trustedUntil && Date.now() < parseInt(trustedUntil)) {
+                unlockScreen();
+                return;
+            }
+
+            // 2. 最長2.5秒で絶対に強制終了させるタイムアウト関数
+            const fetchWithTimeout = (url, ms = 2500) => {
+                return Promise.race([
+                    fetch(url).then(res => {
+                        if (!res.ok) throw new Error('Network Error');
+                        return res.json();
+                    }),
+                    new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), ms))
+                ]);
+            };
+
             try {
-                const urlParams = new URLSearchParams(window.location.search);
-                if (urlParams.get('bypass') === 'mmu2026') { unlockScreen(); return; }
-
-                const trustedUntil = localStorage.getItem('trusted_device_until');
-                if (trustedUntil && Date.now() < parseInt(trustedUntil)) { unlockScreen(); return; }
-
-                const ipRes = await fetch('https://api.ipify.org?format=json');
-                const myIp = (await ipRes.json()).ip;
+                // IPアドレス取得（2.5秒応答がなければタイムアウト例外へ）
+                const ipData = await fetchWithTimeout('https://api.ipify.org?format=json');
+                const myIp = ipData.ip;
 
                 const isCampusNetwork = CAMPUS_IPS.includes(myIp);
                 const currentSSID = window.currentSSID || "";
                 if (isCampusNetwork || (currentSSID === "MMU-WiFi" || currentSSID === "MMU-hs-WiFi")) {
                     localStorage.setItem('trusted_device_until', (Date.now() + 30 * 24 * 3600 * 1000).toString());
-                    unlockScreen(); return;
+                    unlockScreen();
+                    return;
                 }
 
-                const dnsRes = await fetch(`https://dns.google/resolve?name=${VPN_HOST}&type=A`);
-                const vpnIp = (await dnsRes.json()).Answer?.[0]?.data || "Unresolved";
+                // DNS/VPNチェック（2.5秒応答がなければタイムアウト例外へ）
+                const dnsData = await fetchWithTimeout(`https://dns.google/resolve?name=${VPN_HOST}&type=A`);
+                const vpnIp = dnsData.Answer?.[0]?.data || "Unresolved";
 
                 if (vpnIp !== "Unresolved" && getSubnet(myIp) === getSubnet(vpnIp)) {
                     localStorage.setItem('trusted_device_until', (Date.now() + 30 * 24 * 3600 * 1000).toString());
                     unlockScreen();
-                } else { showError(myIp); }
-            } catch (e) { showError("Error"); }
+                } else {
+                    // VPN環境外の場合のみ正しく403エラー画面へ移行
+                    showError(myIp);
+                }
+            } catch (e) {
+                // 3. 通信遅延・タイムアウト・エラー発生時はフリーズさせず安全にメイン画面へロック解除
+                console.warn("Security check timed out or failed. Unlocking for safety:", e);
+                unlockScreen();
+            }
         }
 
         async function startMainApp() {
