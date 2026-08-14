@@ -1539,26 +1539,7 @@ function setupUser(user) {
             await customAlert(`新規公募【${title}】をFirebaseに公開登録しました。`, "公募登録", "fa-briefcase");
         };
 
-        function loadRecruits() {
-            onValue(ref(db, 'jobRecruits'), (snapshot) => {
-                const list = document.getElementById('recruitList');
-                if(!list) return;
-                list.innerHTML = '';
-                const data = snapshot.val();
-                if(data) {
-                    Object.keys(data).reverse().forEach(key => {
-                        const item = data[key];
-                        list.innerHTML += `<tr>
-                            <td style="font-weight:bold;">${item.title}</td>
-                            <td>${item.dept}</td>
-                            <td style="text-align:center; font-weight:bold; color:var(--primary-color);">${item.applicants || 0}名 (${item.count}名枠)</td>
-                            <td>${item.deadline}</td>
-                            <td><span class="news-badge" style="background:#28a745;">${item.status}</span></td>
-                        </tr>`;
-                    });
-                }
-            });
-        }
+
 
         window.submitResearchExpense = async function() {
             const category = document.getElementById('resCategoryInput').value;
@@ -1656,6 +1637,7 @@ function setupUser(user) {
                 }
             });
         }
+    
 
         // ★ 備品台帳データの削除 (管理者用) ★
         window.deleteAsset = async function(key) {
