@@ -141,8 +141,45 @@
         .nav-link { display: flex; align-items: center; gap: 15px; padding: 10px 15px; text-decoration: none; color: rgba(255,255,255,0.8); border-radius: 8px; transition: all 0.2s ease; font-size: 0.9rem; cursor: pointer; }
         .nav-link:hover, .nav-link.active { background: rgba(255,255,255,0.15); color: #fff; transform: translateX(3px); }
 
-        .header-area { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
-        .greeting h1 { margin: 0; font-size: 2rem; color: var(--primary-color); transition: color 0.5s; }
+/* ★ ヘッダーエリアのレスポンシブ・文字折れ崩れ防止修正 ★ */
+        .header-area {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap; /* 画面幅が狭くても綺麗に納まる */
+            gap: 15px;
+        }
+
+        .greeting h1 {
+            margin: 0;
+            font-size: 1.4rem !important; /* フォントサイズを適正化して改行を防止 */
+            color: var(--primary-color);
+            transition: color 0.5s;
+            white-space: nowrap; /* メールアドレスが途中で折れ曲がるのを防止 */
+        }
+
+        /* タブレット・小画面向けのレイアウト自動調整 */
+        @media (max-width: 1024px) {
+            .header-area {
+                gap: 10px;
+                margin-bottom: 1.2rem;
+            }
+            .greeting h1 {
+                font-size: 1.15rem !important;
+            }
+            .main-content {
+                padding: 1.2rem 1.5rem !important;
+            }
+            .user-profile {
+                padding: 6px 12px !important;
+                gap: 8px !important;
+            }
+            #adminLink {
+                padding: 8px 14px !important;
+                font-size: 0.8rem !important;
+            }
+        }
         .user-profile { display: flex; align-items: center; gap: 15px; background: var(--glass-bg); padding: 8px 20px; border-radius: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid rgba(255,255,255,0.8); }
         .avatar-circle { width: 40px; height: 40px; background: var(--primary-color); color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.1rem; transition: background 0.5s; }
         .btn-logout { background: none; border: none; color: #d9534f; cursor: pointer; font-size: 1.2rem; transition: transform 0.2s; }
@@ -1509,6 +1546,16 @@ function setupUser(user) {
             await customAlert(`研究費 ¥${Number(amount).toLocaleString()} の執行申請を登録しました。`, "研究費執行", "fa-microscope");
         };
 
+// ★ 研究費執行データの削除 (管理者用) ★
+        window.deleteResearchExpense = async function(key) {
+            if (!checkIsAdmin()) return;
+            const confirmDel = await customConfirm("この研究費執行データを削除しますか？", "データ削除確認", "fa-trash");
+            if (confirmDel) {
+                await remove(ref(db, `researchExpenses/${key}`));
+                await customAlert("研究費執行データを削除しました。", "削除完了", "fa-trash");
+            }
+        };
+
         function loadResearchExpenses() {
             onValue(ref(db, 'researchExpenses'), (snapshot) => {
                 const list = document.getElementById('researchExpList');
@@ -1521,13 +1568,16 @@ function setupUser(user) {
                 if(data) {
                     Object.keys(data).reverse().forEach(key => {
                         const item = data[key];
-                        totalSpent += item.amount;
+                        totalSpent += Number(item.amount);
                         list.innerHTML += `<tr>
                             <td>${item.date}</td>
                             <td>${item.category} (${item.title})</td>
-                            <td style="font-weight:bold;">¥${item.amount.toLocaleString()}</td>
+                            <td style="font-weight:bold;">¥${Number(item.amount).toLocaleString()}</td>
+                            ${checkIsAdmin() ? `<td><button class="panel-btn" style="padding:2px 8px; margin:0; background:#dc3545; width:auto; font-size:0.75rem;" onclick="deleteResearchExpense('${key}')"><i class="fa-solid fa-trash"></i> 削除</button></td>` : ''}
                         </tr>`;
                     });
+                } else {
+                    list.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#888;">執行履歴はありません</td></tr>';
                 }
 
                 const remain = totalBudget - totalSpent;
@@ -1539,24 +1589,53 @@ function setupUser(user) {
 
                 if(spentEl) spentEl.textContent = `¥${totalSpent.toLocaleString()}`;
                 if(remainEl) remainEl.textContent = `¥${remain.toLocaleString()}`;
-                if(barEl) { barEl.style.width = `${percent}%`; barEl.textContent = `執行率 ${percent}%`; }
+                if(barEl) {
+                    barEl.style.width = `${percent}%`;
+                    barEl.textContent = `執行率 ${percent}%`;
+                }
             });
         }
 
-        window.submitNewAsset = async function() {
-            const assetCode = document.getElementById('assetCodeInput').value.trim();
-            const name = document.getElementById('assetNameInput').value.trim();
-            const location = document.getElementById('assetLocInput').value.trim();
-            const status = document.getElementById('assetStatusInput').value;
+        // ★ 公募案件の削除 (管理者用) ★
+        window.deleteRecruit = async function(key) {
+            if (!checkIsAdmin()) return;
+            const confirmDel = await customConfirm("この公募案件を削除しますか？", "公募削除確認", "fa-trash");
+            if (confirmDel) {
+                await remove(ref(db, `jobRecruits/${key}`));
+                await customAlert("公募案件を削除しました。", "削除完了", "fa-trash");
+            }
+        };
 
-            if(!assetCode || !name) { await customAlert("管理番号と品名を入力してください", "入力エラー", "fa-circle-exclamation"); return; }
+        function loadRecruits() {
+            onValue(ref(db, 'jobRecruits'), (snapshot) => {
+                const list = document.getElementById('recruitList');
+                if(!list) return;
+                list.innerHTML = '';
+                const data = snapshot.val();
+                if(data) {
+                    Object.keys(data).reverse().forEach(key => {
+                        const item = data[key];
+                        list.innerHTML += `<tr>
+                            <td style="font-weight:bold;">${item.title}</td>
+                            <td>${item.dept}</td>
+                            <td style="text-align:center; font-weight:bold; color:var(--primary-color);">${item.applicants || 0}名 (${item.count}名枠)</td>
+                            <td>${item.deadline}</td>
+                            <td><span class="news-badge" style="background:#28a745;">${item.status}</span></td>
+                            ${checkIsAdmin() ? `<td><button class="panel-btn" style="padding:2px 8px; margin:0; background:#dc3545; width:auto; font-size:0.75rem;" onclick="deleteRecruit('${key}')">削除</button></td>` : ''}
+                        </tr>`;
+                    });
+                }
+            });
+        }
 
-            const asset = { code: assetCode, name: name, location: location || "未指定", status: status, date: new Date().toLocaleDateString('ja-JP') };
-
-            await push(ref(db, 'campusAssets'), asset);
-            document.getElementById('assetCodeInput').value = '';
-            document.getElementById('assetNameInput').value = '';
-            await customAlert(`備品【${name}】を台帳に新規登録しました。`, "資産登録", "fa-laptop");
+        // ★ 備品台帳データの削除 (管理者用) ★
+        window.deleteAsset = async function(key) {
+            if (!checkIsAdmin()) return;
+            const confirmDel = await customConfirm("この備品データを削除しますか？", "備品削除確認", "fa-trash");
+            if (confirmDel) {
+                await remove(ref(db, `campusAssets/${key}`));
+                await customAlert("備品データを削除しました。", "削除完了", "fa-trash");
+            }
         };
 
         function loadAssets() {
@@ -1573,24 +1652,27 @@ function setupUser(user) {
                             <td>${item.name}</td>
                             <td>${item.location}</td>
                             <td><span style="color:${item.status==='稼働中'?'green':'red'}; font-weight:bold;">${item.status}</span></td>
+                            ${checkIsAdmin() ? `<td><button class="panel-btn" style="padding:2px 8px; margin:0; background:#dc3545; width:auto; font-size:0.75rem;" onclick="deleteAsset('${key}')">削除</button></td>` : ''}
                         </tr>`;
                     });
                 }
             });
         }
 
-        window.submitITRequest = async function() {
-            const type = document.getElementById('itReqTypeInput').value;
-            const reason = document.getElementById('itReasonInput').value.trim();
+        // ★ IT申請の完了更新・削除 (管理者用) ★
+        window.updateITRequestStatus = async function(key, status) {
+            if (!checkIsAdmin()) return;
+            await update(ref(db, `itRequests/${key}`), { status: status });
+            await customAlert(`申請ステータスを「${status}」に更新しました。`, "IT申請更新", "fa-desktop");
+        };
 
-            if(!reason) { await customAlert("申請理由・対象者を入力してください", "入力エラー", "fa-circle-exclamation"); return; }
-
-            const reqNumber = `IT-${Date.now().toString().slice(-6)}`;
-            const itReq = { reqNumber, type, reason, applicant: currentUser.name, status: '受付済', date: new Date().toLocaleDateString('ja-JP') };
-
-            await push(ref(db, 'itRequests'), itReq);
-            document.getElementById('itReasonInput').value = '';
-            await customAlert(`情報システム課への申請を受付ました。<br>受付番号: <strong>${reqNumber}</strong>`, "申請完了", "fa-desktop");
+        window.deleteITRequest = async function(key) {
+            if (!checkIsAdmin()) return;
+            const confirmDel = await customConfirm("このIT申請を削除しますか？", "削除確認", "fa-trash");
+            if (confirmDel) {
+                await remove(ref(db, `itRequests/${key}`));
+                await customAlert("IT申請を削除しました。", "削除完了", "fa-trash");
+            }
         };
 
         function loadITRequests() {
@@ -1606,7 +1688,11 @@ function setupUser(user) {
                             <td>${item.reqNumber}</td>
                             <td>${item.type}</td>
                             <td>${item.applicant}</td>
-                            <td><span class="news-badge" style="background:#007bff;">${item.status}</span></td>
+                            <td><span class="news-badge" style="background:${item.status==='完了'?'#28a745':'#007bff'};">${item.status}</span></td>
+                            ${checkIsAdmin() ? `<td>
+                                <button class="panel-btn" style="padding:2px 6px; margin:0; background:#28a745; width:auto; font-size:0.75rem;" onclick="updateITRequestStatus('${key}', '完了')">完了</button>
+                                <button class="panel-btn" style="padding:2px 6px; margin:0; background:#dc3545; width:auto; font-size:0.75rem;" onclick="deleteITRequest('${key}')">削除</button>
+                            </td>` : ''}
                         </tr>`;
                     });
                 }
