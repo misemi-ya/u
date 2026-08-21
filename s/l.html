@@ -66,14 +66,15 @@
             height: 100vh;
             overflow: hidden;
             opacity: 0; transition: opacity 0.8s ease, grid-template-columns 0.3s ease;
+            position: relative;
         }
 
-        /* ★ 左サイドバーのスクロール下部余白拡張 ★ */
+        /* ★ 左サイドバー ★ */
         .sidebar {
             background: var(--primary-color); color: white;
             padding: 2rem 1.5rem 8rem 1.5rem !important;
             display: flex; flex-direction: column;
-            box-shadow: 4px 0 20px rgba(0,0,0,0.2); z-index: 10;
+            box-shadow: 4px 0 20px rgba(0,0,0,0.2); z-index: 100;
             overflow-y: auto;
             overflow-x: hidden;
             height: 100vh;
@@ -90,7 +91,7 @@
         }
 
         /* サイドバー折りたたみ時 */
-        .sidebar.collapsed { width: 80px !important; padding: 2rem 0.5rem; align-items: center; }
+        .sidebar.collapsed { width: 80px !important; padding: 2rem 0.5rem !important; align-items: center; }
         .sidebar.collapsed .brand-text, .sidebar.collapsed .brand-sub, .sidebar.collapsed .nav-text-en, .sidebar.collapsed .nav-category, .sidebar.collapsed .nav-link div { display: none; }
         .sidebar.collapsed .nav-link { padding: 10px; justify-content: center; }
         .sidebar.collapsed .brand img { width: 50px; }
@@ -107,6 +108,7 @@
             overflow-y: auto;
             height: 100vh;
             box-sizing: border-box;
+            -webkit-overflow-scrolling: touch;
         }
 
         .en-sub { display: block; font-size: 0.6em; color: var(--text-sub); font-family: 'Roboto', sans-serif; font-weight: 300; letter-spacing: 1px; margin-top: 2px; text-transform: uppercase; }
@@ -157,13 +159,6 @@
             white-space: nowrap;
         }
 
-        @media (max-width: 1024px) {
-            .header-area { gap: 10px; margin-bottom: 1.2rem; }
-            .greeting h1 { font-size: 1.15rem !important; }
-            .main-content { padding: 1.2rem 1.5rem !important; }
-            .user-profile { padding: 6px 12px !important; gap: 8px !important; }
-            #adminLink { padding: 8px 14px !important; font-size: 0.8rem !important; }
-        }
         .user-profile { display: flex; align-items: center; gap: 15px; background: var(--glass-bg); padding: 8px 20px; border-radius: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid rgba(255,255,255,0.8); }
         .avatar-circle { width: 40px; height: 40px; background: var(--primary-color); color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.1rem; transition: background 0.5s; }
         .btn-logout { background: none; border: none; color: #d9534f; cursor: pointer; font-size: 1.2rem; transition: transform 0.2s; }
@@ -183,7 +178,7 @@
         .log-tag { display: inline-block; background: #f0f2f5; padding: 2px 8px; border-radius: 4px; margin-right: 10px; font-size: 0.8rem; border: 1px solid #ddd; }
 
         .stat-card { grid-column: span 1; display: flex; align-items: center; gap: 15px; height: 100px; }
-        .stat-icon-box { width: 50px; height: 50px; background: rgba(0, 51, 102, 0.1); border-radius: 12px; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; color: var(--primary-color); transition: color 0.5s; }
+        .stat-icon-box { width: 50px; height: 50px; background: rgba(0, 51, 102, 0.1); border-radius: 12px; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; color: var(--primary-color); transition: color 0.5s; flex-shrink: 0; }
         .stat-value { font-size: 2rem; font-weight: 700; line-height: 1; color: var(--primary-color); transition: color 0.5s; }
         .stat-label { font-size: 0.85rem; color: var(--text-sub); }
 
@@ -202,8 +197,8 @@
         .gmail-connect-btn { margin-top: 10px; font-size: 0.8rem; cursor: pointer; color: #d93025; background: rgba(217, 48, 37, 0.1); border: 1px solid #d93025; padding: 5px 10px; border-radius: 20px; display: inline-flex; align-items: center; gap: 5px; }
 
         /* 汎用モーダル・テーブル */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; display: none; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
-        .edit-panel { background: white; padding: 30px; border-radius: var(--card-radius); box-shadow: 0 20px 50px rgba(0,0,0,0.3); animation: popIn 0.3s ease; }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; display: none; justify-content: center; align-items: center; backdrop-filter: blur(5px); padding: 10px; box-sizing: border-box; }
+        .edit-panel { background: white; padding: 30px; border-radius: var(--card-radius); box-shadow: 0 20px 50px rgba(0,0,0,0.3); animation: popIn 0.3s ease; max-height: 90vh; overflow-y: auto; box-sizing: border-box; }
         @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         .panel-input { width: 100%; padding: 8px 10px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 0.85rem; }
         .panel-btn { width: 100%; padding: 10px; background: var(--primary-color); color: white; border: none; border-radius: var(--btn-radius); cursor: pointer; font-weight: bold; margin-top: 10px; font-size: 0.9rem; white-space: nowrap; transition: background 0.5s, border-radius 0.3s; }
@@ -227,9 +222,9 @@
         .admin-badge { background: #dc3545; color: white; padding: 2px 6px; border-radius: 10px; font-size: 0.65rem; margin-left: 5px; white-space: nowrap; }
 
         /* 管理者コンソール */
-        #adminConsoleModal .edit-panel { width: 840px !important; max-width: 92vw !important; max-height: 82vh !important; padding: 18px !important; font-size: 0.82rem !important; overflow: hidden !important; display: flex; flex-direction: column; }
-        .admin-tabs { display: flex; gap: 8px; border-bottom: 2px solid #e2e8f0; margin-bottom: 15px; overflow-x: auto; padding-bottom: 2px; }
-        .admin-tab-btn { padding: 8px 16px !important; font-size: 0.85rem !important; border: 1px solid #e2e8f0 !important; border-bottom: none !important; background: #f8f9fa !important; font-weight: 600; cursor: pointer; color: #4a5568 !important; white-space: nowrap; border-radius: 8px 8px 0 0 !important; transition: all 0.2s ease !important; display: inline-flex; align-items: center; gap: 6px; }
+        #adminConsoleModal .edit-panel { width: 840px !important; max-width: 95vw !important; max-height: 85vh !important; padding: 18px !important; font-size: 0.82rem !important; overflow: hidden !important; display: flex; flex-direction: column; }
+        .admin-tabs { display: flex; gap: 8px; border-bottom: 2px solid #e2e8f0; margin-bottom: 15px; overflow-x: auto; padding-bottom: 2px; -webkit-overflow-scrolling: touch; }
+        .admin-tab-btn { padding: 8px 16px !important; font-size: 0.85rem !important; border: 1px solid #e2e8f0 !important; border-bottom: none !important; background: #f8f9fa !important; font-weight: 600; cursor: pointer; color: #4a5568 !important; white-space: nowrap; border-radius: 8px 8px 0 0 !important; transition: all 0.2s ease !important; display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; }
         .admin-tab-btn:hover { color: #ff0055 !important; background: #fff0f5 !important; border-color: #ffccd5 !important; }
         .admin-tab-btn.active { color: #ff0055 !important; background: #ffffff !important; border-color: #ffccd5 !important; border-bottom: 3px solid #ff0055 !important; box-shadow: 0 -2px 8px rgba(255, 0, 85, 0.1) !important; }
         .admin-tab-content { display: none; max-height: 60vh; overflow-y: auto; padding-right: 5px; }
@@ -243,7 +238,7 @@
         #adminConsoleModal .panel-input { width: 100%; padding: 3px 6px !important; border: 1px solid #ccc; border-radius: 4px; font-size: 0.78rem !important; height: 26px !important; box-sizing: border-box; }
 
         /* Microsoft Office 365 風 カスタムモーダル */
-        .office-dialog { background: #ffffff; width: 450px; max-width: 90%; border-radius: 8px; box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25); border: 1px solid #d2d0ce; overflow: hidden; font-family: 'Segoe UI', 'Roboto', sans-serif; animation: dialogPop 0.2s cubic-bezier(0.1, 0.9, 0.2, 1); }
+        .office-dialog { background: #ffffff; width: 450px; max-width: 95vw; border-radius: 8px; box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25); border: 1px solid #d2d0ce; overflow: hidden; font-family: 'Segoe UI', 'Roboto', sans-serif; animation: dialogPop 0.2s cubic-bezier(0.1, 0.9, 0.2, 1); box-sizing: border-box; }
         @keyframes dialogPop { from { transform: scale(0.92); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         .office-dialog-header { background: #faf9f8; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #edebe9; }
         .office-dialog-title-box { display: flex; align-items: center; gap: 10px; }
@@ -258,6 +253,211 @@
         .office-btn-primary { background: #0078d4; color: #ffffff; }
         .office-btn-primary:hover { background: #106ebe; }
         .office-btn-secondary { background: #ffffff; color: #323130; border-color: #8a8886; }
+
+        /* モバイル用サイドバー背景オーバーレイ */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(3px);
+            z-index: 90;
+        }
+
+        /* =======================================================
+           ★ スマートフォン・iPhone SE (幅768px以下) 完全対応レスポンシブ ★
+           ======================================================= */
+        @media (max-width: 768px) {
+            .app-container {
+                grid-template-columns: 1fr !important;
+                height: 100vh;
+                overflow: hidden;
+            }
+
+            /* サイドバーをスライドイン (ドロワー) 形式に変更 */
+            .sidebar {
+                position: fixed !important;
+                top: 0;
+                left: -280px;
+                width: 280px !important;
+                height: 100vh !important;
+                z-index: 1000 !important;
+                transition: transform 0.3s ease, left 0.3s ease !important;
+                box-shadow: 5px 0 25px rgba(0,0,0,0.3) !important;
+            }
+            .sidebar.mobile-open {
+                left: 0 !important;
+                transform: translateX(0) !important;
+            }
+            .sidebar-overlay.active {
+                display: block;
+            }
+
+            /* メインコンテンツ */
+            .main-content {
+                padding: 1rem 0.8rem 4rem 0.8rem !important;
+                width: 100vw;
+                box-sizing: border-box;
+            }
+
+            /* ヘッダーエリア */
+            .header-area {
+                gap: 8px;
+                margin-bottom: 1rem;
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .header-area > div:first-child {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            .header-area > div:last-child {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 8px;
+                margin-top: 4px;
+            }
+            .greeting h1 {
+                font-size: 1.15rem !important;
+                white-space: normal;
+                line-height: 1.2;
+            }
+            .user-profile {
+                padding: 4px 10px !important;
+                gap: 8px !important;
+            }
+            .avatar-circle {
+                width: 32px;
+                height: 32px;
+                font-size: 0.9rem;
+            }
+            #adminLink {
+                padding: 6px 12px !important;
+                font-size: 0.75rem !important;
+            }
+
+            /* 勤怠セクション (iPhone SEで横幅が狭くても綺麗に収める) */
+            .attendance-section {
+                grid-column: span 1 !important;
+                padding: 1rem !important;
+            }
+            .attendance-section > div > div:first-child {
+                flex-direction: column;
+                align-items: flex-start !important;
+                gap: 8px;
+            }
+            .attendance-section > div > div:first-child > div:last-child {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 8px;
+            }
+            .btn-attend, .btn-leave {
+                padding: 8px 16px !important;
+                font-size: 0.85rem !important;
+                flex: 1;
+            }
+            .live-time {
+                font-size: 1.8rem !important;
+            }
+            .live-date {
+                font-size: 0.85rem !important;
+            }
+
+            /* ダッシュボードグリッド */
+            .dashboard-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+            .stat-card {
+                grid-column: span 1 !important;
+                height: auto !important;
+                padding: 1rem !important;
+            }
+            .stat-value {
+                font-size: 1.5rem !important;
+            }
+
+            /* サービスグリッド (iPhone SEで2列綺麗に配置) */
+            .services-section {
+                grid-column: span 1 !important;
+            }
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 0.6rem !important;
+            }
+            .service-card {
+                padding: 0.8rem 0.4rem !important;
+            }
+            .service-icon {
+                font-size: 1.4rem !important;
+                margin-bottom: 6px !important;
+            }
+            .service-name {
+                font-size: 0.8rem !important;
+            }
+            .service-desc {
+                font-size: 0.65rem !important;
+            }
+
+            /* チャート & ニュース */
+            .chart-section {
+                grid-column: span 1 !important;
+                min-height: 280px !important;
+                padding: 1rem !important;
+            }
+            .chart-container {
+                height: 220px !important;
+            }
+            .news-section {
+                grid-column: span 1 !important;
+                min-height: 200px !important;
+                padding: 1rem !important;
+            }
+
+            /* モーダル・パネル */
+            .edit-panel {
+                width: 95vw !important;
+                padding: 15px !important;
+            }
+            .setting-grid {
+                grid-template-columns: 1fr !important;
+                gap: 8px !important;
+            }
+            #adminConsoleModal .edit-panel {
+                width: 95vw !important;
+                max-height: 92vh !important;
+                padding: 12px !important;
+            }
+            #adminConsoleModal .panel-input {
+                font-size: 0.75rem !important;
+            }
+            
+            /* 2カラムレイアウトを1カラムにスタック */
+            div[style*="display: grid; grid-template-columns: 1fr 1.5fr;"],
+            div[style*="display: grid; grid-template-columns: 1fr 1fr;"],
+            div[style*="display:flex; gap:20px;"],
+            div[style*="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr auto;"],
+            div[style*="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr auto;"] {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 12px !important;
+            }
+
+            /* 横スクロール可能なテーブルラッパー */
+            .app-table, .timetable-table {
+                display: block;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .office-dialog {
+                width: 92vw !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -279,8 +479,10 @@
         <span style="font-size:0.8rem; color:#888; letter-spacing:1px;">LOGGING IN...</span>
     </div>
 
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar(false)"></div>
+
     <div class="app-container" id="mainApp" style="display:none;">
-        <aside class="sidebar">
+        <aside class="sidebar" id="sidebar">
             <div class="brand">
                 <img id="portalLogo" src="../校章.png" alt="Misemi-ya Logo" onerror="this.style.display='none'">
                 <div class="brand-text" id="displayUnivName">店魅偉屋大学</div>
@@ -306,42 +508,42 @@
 
         <main class="main-content">
             <div class="header-area">
-                <div style="display:flex; align-items:center; gap:20px;">
-                    <button onclick="toggleSidebar()" style="background:none; border:none; font-size:1.5rem; color:var(--primary-color); cursor:pointer; transition:transform 0.2s;"><i class="fa-solid fa-bars"></i></button>
+                <div style="display:flex; align-items:center; gap:15px;">
+                    <button onclick="toggleSidebar()" style="background:none; border:none; font-size:1.5rem; color:var(--primary-color); cursor:pointer; padding:5px; transition:transform 0.2s;"><i class="fa-solid fa-bars"></i></button>
                     <div class="greeting">
                         <h1 id="greetingText">Welcome back</h1>
-                        <div style="font-size:0.9rem; color:#666; margin-top:5px;"><span id="clockDisplay">Checking time...</span></div>
+                        <div style="font-size:0.85rem; color:#666; margin-top:3px;"><span id="clockDisplay">Checking time...</span></div>
                     </div>
                 </div>
                 
-                <div style="display:flex; align-items:center; gap:15px;">
-                    <button id="adminLink" onclick="openAdminConsole()" style="display:none; background:#ff0055; color:white; border:none; padding:10px 20px; border-radius:30px; font-weight:bold; font-size:0.9rem; cursor:pointer; box-shadow:0 4px 10px rgba(255,0,85,0.3); transition:all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';" onmouseout="this.style.transform='none';">
-                        <i class="fa-solid fa-user-shield"></i> Admin Console
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <button id="adminLink" onclick="openAdminConsole()" style="display:none; background:#ff0055; color:white; border:none; padding:8px 16px; border-radius:30px; font-weight:bold; font-size:0.85rem; cursor:pointer; box-shadow:0 4px 10px rgba(255,0,85,0.3); transition:all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';" onmouseout="this.style.transform='none';">
+                        <i class="fa-solid fa-user-shield"></i> Admin
                     </button>
                     
                     <div class="user-profile">
-                        <img src="../校章.png" alt="logo" style="height:30px; opacity:0.8; margin-right:5px;">
+                        <img src="../校章.png" alt="logo" style="height:26px; opacity:0.8; margin-right:2px;" onerror="this.style.display='none'">
                         <div class="avatar-circle" id="userInitial">U</div>
                         <div style="line-height:1.2;">
-                            <div style="font-weight:bold; font-size:0.9rem; display:flex; align-items:center;" id="userName">User</div>
-                            <div class="en-sub" id="userRoleTag">STAFF ACCOUNT</div>
+                            <div style="font-weight:bold; font-size:0.85rem; display:flex; align-items:center;" id="userName">User</div>
+                            <div class="en-sub" id="userRoleTag" style="font-size:0.55rem;">STAFF ACCOUNT</div>
                         </div>
                         <button class="btn-logout" onclick="signOut()" title="Sign Out"><i class="fa-solid fa-right-from-bracket"></i></button>
                     </div>
                 </div>
             </div>
 
-            <div class="glass-card attendance-section" style="margin-bottom: 2rem;">
+            <div class="glass-card attendance-section" style="margin-bottom: 1.5rem;">
                 <div style="width:100%">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
                         <div style="font-weight:bold; color:var(--primary-color); margin-bottom:5px;"><i class="fa-solid fa-user-clock"></i> 勤怠管理</div>
                         <div>
-                            <span id="attend-status" style="margin-right:15px; font-weight:bold; color:#888;">未出勤</span>
+                            <span id="attend-status" style="margin-right:10px; font-weight:bold; color:#888; font-size:0.85rem;">未出勤</span>
                             <button class="btn-attend" onclick="punch('出勤')"><i class="fa-solid fa-sun"></i> 出勤</button>
                             <button class="btn-leave" onclick="punch('退勤')"><i class="fa-solid fa-moon"></i> 退勤</button>
                         </div>
                     </div>
-                    <div class="time-box">
+                    <div class="time-box" style="margin-top:5px;">
                         <div class="live-time" id="liveTimeDisplay">00:00:00</div>
                         <div class="live-date" id="liveDateDisplay">YYYY/MM/DD</div>
                     </div>
@@ -409,12 +611,12 @@
                 </div>
 
                 <div class="glass-card chart-section">
-                    <h3 class="editable-text" id="chart-title">学内システム アクセス状況</h3>
+                    <h3 class="editable-text" id="chart-title" style="margin-top:0;">学内システム アクセス状況</h3>
                     <div class="chart-container" style="height: 350px; width: 100%;"><canvas id="myChart"></canvas></div>
                 </div>
 
                 <div class="glass-card news-section">
-                    <h3>お知らせ / Gmail</h3>
+                    <h3 style="margin-top:0;">お知らせ / Gmail</h3>
                     <div id="news-container"></div>
                 </div>
             </div>
@@ -432,7 +634,7 @@
     </div>
 
     <div class="modal-overlay" id="appModal">
-        <div class="edit-panel" id="appPanel" style="width: 850px; max-width: 90%;">
+        <div class="edit-panel" id="appPanel" style="width: 850px; max-width: 95%;">
             <h3 id="appTitle" style="border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 0; color: var(--primary-color);">App Name</h3>
             <div id="appContent" style="margin: 20px 0; max-height: 600px; overflow-y: auto;"></div>
             <button class="panel-btn" style="background:#666; margin-top: 15px;" onclick="closeAppModal()">閉じる</button>
@@ -441,14 +643,12 @@
 
     <!-- ★ 全データ編集用モーダル (全項目対応) ★ -->
     <div class="modal-overlay" id="editDataModal" style="z-index: 99998;">
-        <div class="edit-panel" style="width: 500px; max-width: 90%; animation: popIn 0.25s ease;">
-            <h3 id="editDataModalTitle" style="margin-top:0; color:var(--primary-color); border-bottom:2px solid var(--primary-color); padding-bottom:8px; display:flex; align-items:center; gap:8px;">
+        <div class="edit-panel" style="width: 500px; max-width: 95%; animation: popIn 0.25s ease;">
+            <h3 id="editDataModalTitle" style="margin-top:0; color:var(--primary-color); border-bottom:2px solid var(--primary-color); padding-bottom:8px; display:flex; align-items:center; gap:8px; font-size:1.05rem;">
                 <i class="fa-solid fa-pen-to-square"></i> データの編集
             </h3>
-            <div id="editDataFormContainer" style="display:flex; flex-direction:column; gap:12px; margin: 15px 0;">
-                <!-- JSで動的に入力フォームが生成されます -->
-            </div>
-            <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:15px;">
+            <div id="editDataFormContainer" style="display:flex; flex-direction:column; gap:12px; margin: 15px 0;"></div>
+            <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:15px; flex-wrap:wrap;">
                 <button class="panel-btn" style="background:#28a745; width:auto; padding:8px 20px; margin:0;" onclick="saveEditedData()"><i class="fa-solid fa-floppy-disk"></i> 変更を保存</button>
                 <button class="panel-btn" style="background:#888; width:auto; padding:8px 16px; margin:0;" onclick="closeEditDataModal()">キャンセル</button>
             </div>
@@ -458,7 +658,7 @@
     <!-- ★ 管理者専用コンソールモーダル ★ -->
     <div class="modal-overlay" id="adminConsoleModal">
         <div class="edit-panel">
-            <h3 style="margin-top:0; color:#ff0055; border-bottom:2px solid #ff0055; padding-bottom:8px; display:flex; justify-content:space-between; align-items:center; font-size:1.05rem;">
+            <h3 style="margin-top:0; color:#ff0055; border-bottom:2px solid #ff0055; padding-bottom:8px; display:flex; justify-content:space-between; align-items:center; font-size:1.05rem; flex-wrap:wrap; gap:8px;">
                 <span><i class="fa-solid fa-user-shield"></i> システム設定コンソール</span>
                 <button class="panel-btn" style="width:auto; margin:0; padding:4px 12px; background:#ff0055; font-size:0.75rem;" onclick="saveAll50Settings()"><i class="fa-solid fa-floppy-disk"></i> 全設定を一括保存</button>
             </h3>
@@ -633,7 +833,7 @@
                     <div class="setting-card-title"><i class="fa-solid fa-calculator"></i> 経費精算・ワークフロー制御パラメータ (25項目)</div>
                     <div class="setting-grid" id="grid_fin"></div>
                 </div>
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px; flex-wrap:wrap; gap:8px;">
                     <h4 style="margin:0;">全経費データ強制修正 & 電子決裁一括制御</h4>
                     <button class="panel-btn" style="width:auto; margin:0; padding:6px 16px; background:#28a745;" onclick="batchApprove('approvals')"><i class="fa-solid fa-check-double"></i> 全電子決裁を一括承認</button>
                 </div>
@@ -1150,21 +1350,23 @@
 
                     if(cfg.cfg_darkModeDefault === 'true') document.body.classList.add('dark-mode'); else document.body.classList.remove('dark-mode');
                     
-                    if(cfg.cfg_sidebarDefaultCollapsed === 'true') {
-                        document.querySelector('.sidebar').classList.add('collapsed');
-                        document.querySelector('.app-container').style.gridTemplateColumns = '80px 1fr';
-                    } else {
-                        document.querySelector('.sidebar').classList.remove('collapsed');
-                        document.querySelector('.app-container').style.gridTemplateColumns = '280px 1fr';
-                    }
+                    if (window.innerWidth > 768) {
+                        if(cfg.cfg_sidebarDefaultCollapsed === 'true') {
+                            document.querySelector('.sidebar').classList.add('collapsed');
+                            document.querySelector('.app-container').style.gridTemplateColumns = '80px 1fr';
+                        } else {
+                            document.querySelector('.sidebar').classList.remove('collapsed');
+                            document.querySelector('.app-container').style.gridTemplateColumns = '280px 1fr';
+                        }
 
-                    if(cfg.cfg_dashboardLayoutGrid) {
-                        const grid = document.querySelector('.dashboard-grid');
-                        if(grid) grid.style.gridTemplateColumns = `repeat(${cfg.cfg_dashboardLayoutGrid}, 1fr)`;
-                        const attSec = document.querySelector('.attendance-section');
-                        if(attSec) attSec.style.gridColumn = `span ${cfg.cfg_dashboardLayoutGrid}`;
-                        const srvSec = document.querySelector('.services-section');
-                        if(srvSec) srvSec.style.gridColumn = `span ${cfg.cfg_dashboardLayoutGrid}`;
+                        if(cfg.cfg_dashboardLayoutGrid) {
+                            const grid = document.querySelector('.dashboard-grid');
+                            if(grid) grid.style.gridTemplateColumns = `repeat(${cfg.cfg_dashboardLayoutGrid}, 1fr)`;
+                            const attSec = document.querySelector('.attendance-section');
+                            if(attSec) attSec.style.gridColumn = `span ${cfg.cfg_dashboardLayoutGrid}`;
+                            const srvSec = document.querySelector('.services-section');
+                            if(srvSec) srvSec.style.gridColumn = `span ${cfg.cfg_dashboardLayoutGrid}`;
+                        }
                     }
 
                     const weatherWidget = document.getElementById('weatherWidget');
@@ -2182,14 +2384,31 @@
             if (targetContent) targetContent.classList.add('active');
         };
 
-        window.toggleSidebar = function() {
-            const sidebar = document.querySelector('.sidebar');
+        window.toggleSidebar = function(forceState) {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
             const container = document.querySelector('.app-container');
-            sidebar.classList.toggle('collapsed');
-            if (sidebar.classList.contains('collapsed')) {
-                container.style.gridTemplateColumns = '80px 1fr';
+            
+            if (window.innerWidth <= 768) {
+                if (typeof forceState === 'boolean') {
+                    if (forceState) {
+                        sidebar.classList.add('mobile-open');
+                        overlay.classList.add('active');
+                    } else {
+                        sidebar.classList.remove('mobile-open');
+                        overlay.classList.remove('active');
+                    }
+                } else {
+                    sidebar.classList.toggle('mobile-open');
+                    overlay.classList.toggle('active');
+                }
             } else {
-                container.style.gridTemplateColumns = '280px 1fr';
+                sidebar.classList.toggle('collapsed');
+                if (sidebar.classList.contains('collapsed')) {
+                    container.style.gridTemplateColumns = '80px 1fr';
+                } else {
+                    container.style.gridTemplateColumns = '280px 1fr';
+                }
             }
         };
 
@@ -2498,7 +2717,7 @@
             const apps = {
                 payroll: { 
                     t:'<i class="fa-solid fa-file-invoice-dollar"></i> 給与・明細システム', 
-                    c: `<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;"><select id="payrollMonth" class="panel-input" style="width: 150px; font-weight:bold; cursor:pointer;" onchange="updatePayroll()"><option value="2026-08" selected>2026年 8月分</option><option value="2026-07">2026年 7月分</option><option value="2026-06">2026年 6月分</option></select><button class="panel-btn" style="width:auto; margin:0; padding:8px 15px; background:#17a2b8;" onclick="customAlert('給与明細のPDF出力処理を開始しました', 'PDF出力', 'fa-file-pdf')"><i class="fa-solid fa-download"></i> 明細PDF出力</button></div><div id="payrollContent" style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 15px; background: #fafafa; min-height: 250px;"></div>`,
+                    c: `<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 8px;"><select id="payrollMonth" class="panel-input" style="width: 150px; font-weight:bold; cursor:pointer;" onchange="updatePayroll()"><option value="2026-08" selected>2026年 8月分</option><option value="2026-07">2026年 7月分</option><option value="2026-06">2026年 6月分</option></select><button class="panel-btn" style="width:auto; margin:0; padding:8px 15px; background:#17a2b8;" onclick="customAlert('給与明細のPDF出力処理を開始しました', 'PDF出力', 'fa-file-pdf')"><i class="fa-solid fa-download"></i> 明細PDF出力</button></div><div id="payrollContent" style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 15px; background: #fafafa; min-height: 250px;"></div>`,
                     init: () => window.updatePayroll()
                 },
                 expense: { 
@@ -2544,9 +2763,9 @@
                     t:'<i class="fa-solid fa-book-open"></i> シラバス・時間割管理システム',
                     c:`
                         <div id="syllabusMainView">
-                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-                                <input type="text" id="syllabusSearchInput" class="panel-input" style="width:350px;" placeholder="学部名・講義名でリアルタイム検索">
-                                <span style="font-size:0.9rem; color:#333; font-weight:bold; background:#f0f2f5; padding:5px 15px; border-radius:20px;">
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:8px;">
+                                <input type="text" id="syllabusSearchInput" class="panel-input" style="width:250px;" placeholder="学部名・講義名で検索">
+                                <span style="font-size:0.85rem; color:#333; font-weight:bold; background:#f0f2f5; padding:4px 12px; border-radius:20px;">
                                     <i class="fa-solid fa-user-graduate"></i> 所属: <span id="myFacultyLabel" style="color:var(--primary-color);">未設定</span>
                                 </span>
                             </div>
@@ -2555,7 +2774,7 @@
                                 <h4 style="margin: 0 0 10px 0; border-bottom: 2px solid var(--primary-color); padding-bottom: 5px; color: var(--primary-color);">
                                     <i class="fa-solid fa-building-columns"></i> 学部からシラバスを探す
                                 </h4>
-                                <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap:10px; max-height: 220px; overflow-y: auto; padding: 5px;">
+                                <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap:10px; max-height: 220px; overflow-y: auto; padding: 5px;">
                                     ${[
                                         {name: "医学部", desc: "臨床と研究を往還しながら次世代医療人を育成します。"},
                                         {name: "法学部", desc: "法制度、公共政策、社会課題を多角的に学びます。"},
@@ -2589,26 +2808,30 @@
                             <h4 style="margin: 0 0 10px 0; border-bottom: 2px solid var(--primary-color); padding-bottom: 5px; color: var(--primary-color);">
                                 <i class="fa-solid fa-calendar-days"></i> 個人の登録時間割 (1限〜5限・所属学部自動連動)
                             </h4>
-                            <table class="timetable-table">
-                                <thead><tr><th>時限</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th></tr></thead>
-                                <tbody id="myTimetableBody"><tr><td colspan="6">読み込み中...</td></tr></tbody>
-                            </table>
+                            <div style="overflow-x:auto;">
+                                <table class="timetable-table">
+                                    <thead><tr><th>時限</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th></tr></thead>
+                                    <tbody id="myTimetableBody"><tr><td colspan="6">読み込み中...</td></tr></tbody>
+                                </table>
+                            </div>
                         </div>
                         
                         <div id="syllabusDetailView" style="display:none; animation: popIn 0.3s ease;">
                             <button class="panel-btn" style="width:auto; margin-bottom:15px; background:#666;" onclick="hideFacultySyllabus()"><i class="fa-solid fa-arrow-left"></i> 一覧に戻る</button>
                             <h3 id="detailFacultyName" style="color:var(--primary-color); margin-top:0; border-left:5px solid var(--accent-color); padding-left:10px;">学部名</h3>
-                            <table class="app-table">
-                                <thead><tr><th>講義コード</th><th>講義名</th><th>担当教員</th><th>単位</th><th>操作</th></tr></thead>
-                                <tbody id="detailFacultyClasses"></tbody>
-                            </table>
+                            <div style="overflow-x:auto;">
+                                <table class="app-table">
+                                    <thead><tr><th>講義コード</th><th>講義名</th><th>担当教員</th><th>単位</th><th>操作</th></tr></thead>
+                                    <tbody id="detailFacultyClasses"></tbody>
+                                </table>
+                            </div>
                         </div>
                     `,
                     init: () => loadUserTimetable()
                 },
                 library: {
                     t:'<i class="fa-solid fa-book"></i> 図書・資料 OPAC & 購入リクエスト',
-                    c:`<div style="display:flex; gap:20px;"><div style="flex:2; border-right:1px solid #eee; padding-right:15px;"><h4><i class="fa-solid fa-magnifying-glass"></i> 学内蔵書検索 (OPAC)</h4><input type="text" class="panel-input" placeholder="書名、著者名、ISBNで検索..." style="margin-bottom:10px;"><table class="app-table" style="font-size:0.85rem;"><thead><tr><th>書名</th><th>著者</th><th>配置</th><th>状態</th></tr></thead><tbody><tr><td>Pythonによるデータ分析入門</td><td>Wes McKinney</td><td>本館 2F</td><td><span style="color:green;">貸出可</span></td></tr><tr><td>クラウドネイティブ基本ガイド</td><td>技術太郎</td><td>情報ライブラリ</td><td><span style="color:red;">貸出中 (〜8/20)</span></td></tr><tr><td>大学経営とIR実践法</td><td>大学花子</td><td>本館 3F</td><td><span style="color:green;">貸出可</span></td></tr></tbody></table></div><div style="flex:1;"><h4><i class="fa-solid fa-cart-plus"></i> 図書購入リクエスト</h4><div class="panel-input-group" style="margin-bottom:8px;"><label style="font-size:0.8rem;">希望書籍タイトル</label><input type="text" id="libTitleInput" class="panel-input"></div><div class="panel-input-group" style="margin-bottom:12px;"><label style="font-size:0.8rem;">著者・出版社</label><input type="text" id="libAuthorInput" class="panel-input"></div><button class="panel-btn" onclick="submitLibraryRequest()"><i class="fa-solid fa-paper-plane"></i> リクエスト送信</button><h5 style="margin-top:20px; border-bottom:1px solid #ccc;">送信済みリクエスト</h5><ul id="libReqList" style="list-style:none; padding:0; font-size:0.8rem;"></ul></div></div>`,
+                    c:`<div style="display:flex; gap:20px;"><div style="flex:2; border-right:1px solid #eee; padding-right:15px;"><h4><i class="fa-solid fa-magnifying-glass"></i> 学内蔵書検索 (OPAC)</h4><input type="text" class="panel-input" placeholder="書名、著者名、ISBNで検索..." style="margin-bottom:10px;"><div style="overflow-x:auto;"><table class="app-table" style="font-size:0.85rem;"><thead><tr><th>書名</th><th>著者</th><th>配置</th><th>状態</th></tr></thead><tbody><tr><td>Pythonによるデータ分析入門</td><td>Wes McKinney</td><td>本館 2F</td><td><span style="color:green;">貸出可</span></td></tr><tr><td>クラウドネイティブ基本ガイド</td><td>技術太郎</td><td>情報ライブラリ</td><td><span style="color:red;">貸出中 (〜8/20)</span></td></tr><tr><td>大学経営とIR実践法</td><td>大学花子</td><td>本館 3F</td><td><span style="color:green;">貸出可</span></td></tr></tbody></table></div></div><div style="flex:1;"><h4><i class="fa-solid fa-cart-plus"></i> 図書購入リクエスト</h4><div class="panel-input-group" style="margin-bottom:8px;"><label style="font-size:0.8rem;">希望書籍タイトル</label><input type="text" id="libTitleInput" class="panel-input"></div><div class="panel-input-group" style="margin-bottom:12px;"><label style="font-size:0.8rem;">著者・出版社</label><input type="text" id="libAuthorInput" class="panel-input"></div><button class="panel-btn" onclick="submitLibraryRequest()"><i class="fa-solid fa-paper-plane"></i> リクエスト送信</button><h5 style="margin-top:20px; border-bottom:1px solid #ccc;">送信済みリクエスト</h5><ul id="libReqList" style="list-style:none; padding:0; font-size:0.8rem;"></ul></div></div>`,
                     init: () => loadLibraryRequests()
                 },
                 elearning: {
@@ -2617,7 +2840,7 @@
                 },
                 groupware: {
                     t:'<i class="fa-solid fa-sitemap"></i> グループウェア - 全学教職員リアルタイムチャット',
-                    c:`<div class="chat-box" id="chatBox">メッセージを読み込み中...</div><div style="display:flex; gap:10px;"><input type="text" id="chatMsgInput" class="panel-input" placeholder="メッセージを入力... (Enterで送信)" onkeydown="if(event.key==='Enter') sendChatMessage()"><button class="panel-btn" style="width:120px; margin:0;" onclick="sendChatMessage()"><i class="fa-solid fa-paper-plane"></i> 送信</button></div>`,
+                    c:`<div class="chat-box" id="chatBox">メッセージを読み込み中...</div><div style="display:flex; gap:10px;"><input type="text" id="chatMsgInput" class="panel-input" placeholder="メッセージを入力... (Enterで送信)" onkeydown="if(event.key==='Enter') sendChatMessage()"><button class="panel-btn" style="width:100px; margin:0;" onclick="sendChatMessage()"><i class="fa-solid fa-paper-plane"></i> 送信</button></div>`,
                     init: () => initChatListener()
                 },
                 docs: { t:'<i class="fa-solid fa-folder-open"></i> 文書ライブラリ・規程集', c:'<ul style="list-style:none; padding:0; font-size:0.9rem;"> <li style="padding:10px; border-bottom:1px solid #eee;"><i class="fa-regular fa-file-pdf" style="color:#dc3545;"></i> 就業規則_2026版.pdf</li> <li style="padding:10px; border-bottom:1px solid #eee;"><i class="fa-regular fa-file-word" style="color:#0056b3;"></i> 兼業許可申請書.docx</li> </ul>' },
