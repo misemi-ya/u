@@ -1,1532 +1,1472 @@
 window.JSTAGE_PAPERS = [
   {
-    "title": "『芥川龍之介研究』第3号表紙",
-    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/3/0/3_0/_article/-char/ja",
+    "title": "『芥川龍之介研究』第10号表紙",
+    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/10/0/10_0/_article/-char/ja",
     "journal": "芥川龍之介研究 Akutagawa REVIEW",
     "category": "数学"
   },
   {
-    "title": "『芥川龍之介研究』第13号表紙",
-    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/13/0/13_0/_article/-char/ja",
+    "title": "国際芥川龍之介学会会則",
+    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/10/0/10_242/_article/-char/ja",
     "journal": "芥川龍之介研究 Akutagawa REVIEW",
     "category": "物理学"
   },
   {
-    "title": "『芥川龍之介研究』第16号表紙",
-    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/16/0/16_0/_article/-char/ja",
+    "title": "『芥川龍之介研究』 執筆規程",
+    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/10/0/10_243/_article/-char/ja",
     "journal": "芥川龍之介研究 Akutagawa REVIEW",
     "category": "化学"
   },
   {
-    "title": "『芥川龍之介研究』第18号表紙",
-    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/18/0/18_0/_article/-char/ja",
+    "title": "『芥川龍之介研究』第10号執筆者一覧",
+    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/10/0/10_244/_article/-char/ja",
     "journal": "芥川龍之介研究 Akutagawa REVIEW",
     "category": "地球科学・天文学"
   },
   {
-    "title": "『芥川龍之介研究』第2号表紙",
-    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/2/0/2_0/_article/-char/ja",
+    "title": "『芥川龍之介研究』第10号編集後記",
+    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/10/0/10_245/_article/-char/ja",
     "journal": "芥川龍之介研究 Akutagawa REVIEW",
     "category": "生物学・生命科学・基礎医学"
   },
   {
-    "title": "ナノスケール素過程の理論解析に寄せて",
-    "url": "https://www.jstage.jst.go.jp/article/vss/69/9/69_20181779/_article/-char/ja",
-    "journal": "表面と真空",
+    "title": "国際芥川龍之介学会 創立10周年記念 東京大会 プログラム",
+    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/10/0/10_248_1/_article/-char/ja",
+    "journal": "芥川龍之介研究 Akutagawa REVIEW",
     "category": "農学・食品科学"
   },
   {
-    "title": "特集「ナノスケール素過程の理論解析Ⅰ」企画趣旨",
-    "url": "https://www.jstage.jst.go.jp/article/vss/69/9/69_20181788/_article/-char/ja",
-    "journal": "表面と真空",
+    "title": "『芥川龍之介研究』第11号表紙",
+    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/11/0/11_0/_article/-char/ja",
+    "journal": "芥川龍之介研究 Akutagawa REVIEW",
     "category": "一般医学・社会医学・看護学"
   },
   {
-    "title": "経路積分計算で探る水素の量子効果",
-    "url": "https://www.jstage.jst.go.jp/article/vss/69/9/69_20181780/_article/-char/ja",
-    "journal": "表面と真空",
+    "title": "国際芥川龍之介学会会則",
+    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/11/0/11_157/_article/-char/ja",
+    "journal": "芥川龍之介研究 Akutagawa REVIEW",
     "category": "臨床医学"
   },
   {
-    "title": "非フラーレン型有機薄膜太陽電池の電荷分離過程における振電相互作用",
-    "url": "https://www.jstage.jst.go.jp/article/vss/69/9/69_20181781/_article/-char/ja",
-    "journal": "表面と真空",
+    "title": "『芥川龍之介研究』 執筆規程",
+    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/11/0/11_158/_article/-char/ja",
+    "journal": "芥川龍之介研究 Akutagawa REVIEW",
     "category": "歯学"
   },
   {
-    "title": "実時間TDDFT法に基づく近接場光励起ダイナミクスの理論研究",
-    "url": "https://www.jstage.jst.go.jp/article/vss/69/9/69_20181782/_article/-char/ja",
-    "journal": "表面と真空",
+    "title": "『芥川龍之介研究』第11号執筆者一覧",
+    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/11/0/11_159/_article/-char/ja",
+    "journal": "芥川龍之介研究 Akutagawa REVIEW",
     "category": "薬学"
   },
   {
-    "title": "大規模第一原理計算の金属ナノ粒子触媒への展開",
-    "url": "https://www.jstage.jst.go.jp/article/vss/69/9/69_20181783/_article/-char/ja",
-    "journal": "表面と真空",
+    "title": "『芥川龍之介研究』第11号編集後記",
+    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/11/0/11_160/_article/-char/ja",
+    "journal": "芥川龍之介研究 Akutagawa REVIEW",
     "category": "一般工学・総合工学"
   },
   {
-    "title": "金属クラスターの幾何構造と反応性に関する理論的研究",
-    "url": "https://www.jstage.jst.go.jp/article/vss/69/9/69_20181784/_article/-char/ja",
-    "journal": "表面と真空",
+    "title": "第11回国際芥川龍之介学会プログラム",
+    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/11/0/11_180_1/_article/-char/ja",
+    "journal": "芥川龍之介研究 Akutagawa REVIEW",
     "category": "ナノ・材料科学"
   },
   {
-    "title": "化学気相成長法および原子層堆積法の基礎と化学物質の安全管理 第6回 化学気相成長（CVD）および原子層堆積（ALD）装置の構造と設計のコツ",
-    "url": "https://www.jstage.jst.go.jp/article/vss/69/9/69_20181785/_article/-char/ja",
-    "journal": "表面と真空",
+    "title": "『芥川龍之介研究』第12号表紙",
+    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/12/0/12_0/_article/-char/ja",
+    "journal": "芥川龍之介研究 Akutagawa REVIEW",
     "category": "建築学・土木工学"
   },
   {
-    "title": "九州支部総会特別講演会開催報告",
-    "url": "https://www.jstage.jst.go.jp/article/vss/69/9/69_20181790/_article/-char/ja",
-    "journal": "表面と真空",
+    "title": "国際芥川龍之介学会会則",
+    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/12/0/12_181/_article/-char/ja",
+    "journal": "芥川龍之介研究 Akutagawa REVIEW",
     "category": "機械工学"
   },
   {
-    "title": "総会特別講演会「温故知新―学会活動の30年を振り返って未来を探る―」",
-    "url": "https://www.jstage.jst.go.jp/article/vss/69/9/69_20181787/_article/-char/ja",
-    "journal": "表面と真空",
+    "title": "『芥川龍之介研究』 執筆規程",
+    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/12/0/12_182/_article/-char/ja",
+    "journal": "芥川龍之介研究 Akutagawa REVIEW",
     "category": "電気電子工学"
   },
   {
-    "title": "スパッタリングおよびプラズマプロセス技術部会（SP部会）第186回定例研究会開催報告",
-    "url": "https://www.jstage.jst.go.jp/article/vss/69/9/69_20181789/_article/-char/ja",
-    "journal": "表面と真空",
+    "title": "『芥川龍之介研究』第12号執筆者一覧",
+    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/12/0/12_183/_article/-char/ja",
+    "journal": "芥川龍之介研究 Akutagawa REVIEW",
     "category": "情報科学"
   },
   {
-    "title": "SISS-25開催報告",
-    "url": "https://www.jstage.jst.go.jp/article/vss/69/9/69_20181791/_article/-char/ja",
-    "journal": "表面と真空",
+    "title": "『芥川龍之介研究』第12号編集後記",
+    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/12/0/12_184/_article/-char/ja",
+    "journal": "芥川龍之介研究 Akutagawa REVIEW",
     "category": "環境学"
   },
   {
-    "title": "九州支部設立10周年記念学術講演会開催報告",
-    "url": "https://www.jstage.jst.go.jp/article/vss/69/9/69_20181792/_article/-char/ja",
-    "journal": "表面と真空",
+    "title": "第12回国際芥川龍之介学会プログラム",
+    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/12/0/12_238_1/_article/-char/ja",
+    "journal": "芥川龍之介研究 Akutagawa REVIEW",
     "category": "学際科学"
   },
   {
-    "title": "日本表面真空学会関東支部講演大会「AI 4 Surface Science」開催報告",
-    "url": "https://www.jstage.jst.go.jp/article/vss/69/9/69_20181786/_article/-char/ja",
-    "journal": "表面と真空",
+    "title": "『芥川龍之介研究』第14号表紙",
+    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/14/0/14_0/_article/-char/ja",
+    "journal": "芥川龍之介研究 Akutagawa REVIEW",
     "category": "哲学・宗教"
   },
   {
-    "title": "ライン川の街，デュッセルドルフでの研究生活",
-    "url": "https://www.jstage.jst.go.jp/article/vss/69/9/69_20181796/_article/-char/ja",
-    "journal": "表面と真空",
+    "title": "『芥川龍之介研究』第17号表紙",
+    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/17/0/17_0/_article/-char/ja",
+    "journal": "芥川龍之介研究 Akutagawa REVIEW",
     "category": "文学・言語学・芸術学"
   },
   {
-    "title": "[R-831] 表面近傍の水素の定量と位置決定：[R-832] プラズマプロセスが拓くLIBリサイクルの新潮流",
-    "url": "https://www.jstage.jst.go.jp/article/vss/69/9/69_20181793/_article/-char/ja",
-    "journal": "表面と真空",
+    "title": "『芥川龍之介研究』第7号表紙",
+    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/7/0/7_0/_article/-char/ja",
+    "journal": "芥川龍之介研究 Akutagawa REVIEW",
     "category": "人類学・史学・地理学"
   },
   {
-    "title": "ビタミンE輸送タンパク質を介する肝細胞内ビタミンE輸送機構",
-    "url": "https://www.jstage.jst.go.jp/article/vso/72/8/72_KJ00001703396/_article/-char/ja",
-    "journal": "ビタミン",
+    "title": "『芥川龍之介研究』第7号執筆者紹介",
+    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/7/0/7_113/_article/-char/ja",
+    "journal": "芥川龍之介研究 Akutagawa REVIEW",
     "category": "法学・政治学"
   },
   {
-    "title": "身体活動水準の異なる若年成人女性のビタミン栄養状態",
-    "url": "https://www.jstage.jst.go.jp/article/vso/72/8/72_KJ00001703397/_article/-char/ja",
-    "journal": "ビタミン",
+    "title": "『芥川龍之介研究』 執筆規程",
+    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/7/0/7_114/_article/-char/ja",
+    "journal": "芥川龍之介研究 Akutagawa REVIEW",
     "category": "経済学・経営学"
   },
   {
-    "title": "第1回 中日国際ビタミン学会 (The First China-Japan International Conference on Vitamins) 報告",
-    "url": "https://www.jstage.jst.go.jp/article/vso/72/8/72_KJ00001703398/_article/-char/ja",
-    "journal": "ビタミン",
+    "title": "『芥川龍之介研究』第7号編集後記",
+    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/7/0/7_115/_article/-char/ja",
+    "journal": "芥川龍之介研究 Akutagawa REVIEW",
     "category": "社会学"
   },
   {
-    "title": "(1)プロビタミンAとしての発見と研究 (<シリーズ>ビタミン研究のブレークスルー :「カロテノイド」)",
-    "url": "https://www.jstage.jst.go.jp/article/vso/72/8/72_KJ00001703399/_article/-char/ja",
-    "journal": "ビタミン",
+    "title": "第7回国際芥川龍之介学会プログラム",
+    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/7/0/7_140_1/_article/-char/ja",
+    "journal": "芥川龍之介研究 Akutagawa REVIEW",
     "category": "心理学・教育学"
   },
   {
-    "title": "(2)光合成における色素としての機能 (<シリーズ>ビタミン研究のブレークスルー :「カロテノイド」)",
-    "url": "https://www.jstage.jst.go.jp/article/vso/72/8/72_KJ00001703400/_article/-char/ja",
-    "journal": "ビタミン",
+    "title": "『芥川龍之介研究』第8号表紙",
+    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/8/0/8_0/_article/-char/ja",
+    "journal": "芥川龍之介研究 Akutagawa REVIEW",
     "category": "数学"
   },
   {
-    "title": "(3)カロテノイドによる光過敏症の治療 (<シリーズ>ビタミン研究のブレークスルー :「カロテノイド」)",
-    "url": "https://www.jstage.jst.go.jp/article/vso/72/8/72_KJ00001703401/_article/-char/ja",
-    "journal": "ビタミン",
+    "title": "『芥川龍之介研究』第8号執筆者紹介",
+    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/8/0/8_94/_article/-char/ja",
+    "journal": "芥川龍之介研究 Akutagawa REVIEW",
     "category": "物理学"
   },
   {
-    "title": "(4)カロテノイドの抗酸化研究 : ブレークスルーはどこに? (<シリーズ>ビタミン研究のブレークスルー :「カロテノイド」)",
-    "url": "https://www.jstage.jst.go.jp/article/vso/72/8/72_KJ00001703402/_article/-char/ja",
-    "journal": "ビタミン",
+    "title": "『芥川龍之介研究』 執筆規程",
+    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/8/0/8_95/_article/-char/ja",
+    "journal": "芥川龍之介研究 Akutagawa REVIEW",
     "category": "化学"
   },
   {
-    "title": "(5) カロテノイドの免疫賦活作用、抗発がん作用、黄斑変性や虚血性心疾患との関連に関する研究 : (1) 疫学的研究 (<シリーズ>ビタミン研究のブレークスルー :「カロテノイド」)",
-    "url": "https://www.jstage.jst.go.jp/article/vso/72/8/72_KJ00001703403/_article/-char/ja",
-    "journal": "ビタミン",
+    "title": "『芥川龍之介研究』第8号編集後記",
+    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/8/0/8_96/_article/-char/ja",
+    "journal": "芥川龍之介研究 Akutagawa REVIEW",
     "category": "地球科学・天文学"
   },
   {
-    "title": "(5) カロテノイドの免疫賦活作用、抗発がん作用、黄班変性や虚血性心疾患との関連に関する研究 : (2) 実験的研究 (<シリーズ>ビタミン研究のブレークスルー :「カロテノイド」)",
-    "url": "https://www.jstage.jst.go.jp/article/vso/72/8/72_KJ00001703404/_article/-char/ja",
-    "journal": "ビタミン",
+    "title": "第8回国際芥川龍之介学会プログラム",
+    "url": "https://www.jstage.jst.go.jp/article/akutagawastudies/8/0/8_136_1/_article/-char/ja",
+    "journal": "芥川龍之介研究 Akutagawa REVIEW",
     "category": "生物学・生命科学・基礎医学"
   },
   {
-    "title": "英文誌JOURNAL OF NUTRITIONAL SCIENCE AND VITAMINOLOGY Vol44, No.3掲載論文要旨",
-    "url": "https://www.jstage.jst.go.jp/article/vso/72/8/72_KJ00001703405/_article/-char/ja",
-    "journal": "ビタミン",
+    "title": "米海軍にみるAM技術の活用策 ～デジタル補給網としての積層造形",
+    "url": "https://www.jstage.jst.go.jp/article/amfuture/2/2/2_101/_article/-char/ja",
+    "journal": "AMフューチャー",
     "category": "農学・食品科学"
   },
   {
-    "title": "1. ビタミンDアナログの三次元構造と活性 : 立体配座制御アナログの合成と活性に関する研究を基盤にして (故小林正委員メモリアルシンポジウム)",
-    "url": "https://www.jstage.jst.go.jp/article/vso/72/8/72_KJ00001703406/_article/-char/ja",
-    "journal": "ビタミン",
+    "title": "AI for Science時代におけるマテリアル革新力強化へ向けて",
+    "url": "https://www.jstage.jst.go.jp/article/amfuture/2/2/2_105/_article/-char/ja",
+    "journal": "AMフューチャー",
     "category": "一般医学・社会医学・看護学"
   },
   {
-    "title": "2. ビタミンD研究の最近の進歩 : とくにその臨床応用について (故小林正委員メモリアルシンポジウム)",
-    "url": "https://www.jstage.jst.go.jp/article/vso/72/8/72_KJ00001703407/_article/-char/ja",
-    "journal": "ビタミン",
+    "title": "K Program 「高度な金属積層造形システム技術の開発・実証」への期待",
+    "url": "https://www.jstage.jst.go.jp/article/amfuture/2/2/2_107/_article/-char/ja",
+    "journal": "AMフューチャー",
     "category": "臨床医学"
   },
   {
-    "title": "3. ビタミンD代謝異常症の分子栄養学的解析 (故小林正委員メモリアルシンポジウム)",
-    "url": "https://www.jstage.jst.go.jp/article/vso/72/8/72_KJ00001703408/_article/-char/ja",
-    "journal": "ビタミン",
+    "title": "金属AM技術の現状と今後の展開",
+    "url": "https://www.jstage.jst.go.jp/article/amfuture/2/2/2_111/_article/-char/ja",
+    "journal": "AMフューチャー",
     "category": "歯学"
   },
   {
-    "title": "4. ビタミンDレセプターの高次機能 (故小林正委員メモリアルシンポジウム)",
-    "url": "https://www.jstage.jst.go.jp/article/vso/72/8/72_KJ00001703409/_article/-char/ja",
-    "journal": "ビタミン",
+    "title": "整形外科領域における積層造形（AM）の臨床応用",
+    "url": "https://www.jstage.jst.go.jp/article/amfuture/2/2/2_117/_article/-char/ja",
+    "journal": "AMフューチャー",
     "category": "薬学"
   },
   {
-    "title": "5. 25-ヒドロキシビタミンD3-1α-水酸化酵素のクローニングと発現調節 (故小林正委員メモリアルシンポジウム)",
-    "url": "https://www.jstage.jst.go.jp/article/vso/72/8/72_KJ00001703410/_article/-char/ja",
-    "journal": "ビタミン",
+    "title": "金属AMによる股関節インプラント",
+    "url": "https://www.jstage.jst.go.jp/article/amfuture/2/2/2_121/_article/-char/ja",
+    "journal": "AMフューチャー",
     "category": "一般工学・総合工学"
   },
   {
-    "title": "6. ビタミンD誘導体の構造と活性 : A環誘導体を中心に (故小林正委員メモリアルシンポジウム)",
-    "url": "https://www.jstage.jst.go.jp/article/vso/72/8/72_KJ00001703411/_article/-char/ja",
-    "journal": "ビタミン",
+    "title": "顎顔面補綴治療におけるAM駆動型プレシジョン腓骨再建",
+    "url": "https://www.jstage.jst.go.jp/article/amfuture/2/2/2_125/_article/-char/ja",
+    "journal": "AMフューチャー",
     "category": "ナノ・材料科学"
   },
   {
-    "title": "高用量投与時におけるビタミンEの筋繊維への取り込みと血漿との比較",
-    "url": "https://www.jstage.jst.go.jp/article/vso/72/8/72_KJ00001703412/_article/-char/ja",
-    "journal": "ビタミン",
+    "title": "Additive Manufacturingを用いたスマートフォン接続型眼科診療機器の開発と社会実装",
+    "url": "https://www.jstage.jst.go.jp/article/amfuture/2/2/2_129/_article/-char/ja",
+    "journal": "AMフューチャー",
     "category": "建築学・土木工学"
   },
   {
-    "title": "慢性アルコール中毒者における葉酸、ピリドキサールリン酸およびビタミンB12の潜在的な欠乏とDNAメチル化との関係",
-    "url": "https://www.jstage.jst.go.jp/article/vso/72/8/72_KJ00001703413/_article/-char/ja",
-    "journal": "ビタミン",
+    "title": "3Dプリンタの機能と可能性（作業療法） ―リハビリ分野におけるAM技術の最新動向と可能性",
+    "url": "https://www.jstage.jst.go.jp/article/amfuture/2/2/2_133/_article/-char/ja",
+    "journal": "AMフューチャー",
     "category": "機械工学"
   },
   {
-    "title": "学習・記憶に対する卵黄由来コリンとビタミンB12の併用効果",
-    "url": "https://www.jstage.jst.go.jp/article/vso/72/8/72_KJ00001703414/_article/-char/ja",
-    "journal": "ビタミン",
+    "title": "抗菌材を分散させた積層造形表面の抗バイオフィルム性",
+    "url": "https://www.jstage.jst.go.jp/article/amfuture/2/2/2_137/_article/-char/ja",
+    "journal": "AMフューチャー",
     "category": "電気電子工学"
   },
   {
-    "title": "皮膚の光障害に対するビタミンEの抑制作用",
-    "url": "https://www.jstage.jst.go.jp/article/vso/72/8/72_KJ00001703415/_article/-char/ja",
-    "journal": "ビタミン",
+    "title": "電子ビーム積層造形Ti-6Al-4V合金の疲労信頼性向上を実現する複合表面改質プロセス",
+    "url": "https://www.jstage.jst.go.jp/article/amfuture/2/2/2_141/_article/-char/ja",
+    "journal": "AMフューチャー",
     "category": "情報科学"
   },
   {
-    "title": "妊娠による母体ビオチン状態の変化",
-    "url": "https://www.jstage.jst.go.jp/article/vso/72/8/72_KJ00001703416/_article/-char/ja",
-    "journal": "ビタミン",
+    "title": "宇宙戦略基金によるAMに関する技術開発支援",
+    "url": "https://www.jstage.jst.go.jp/article/amfuture/2/2/2_147/_article/-char/ja",
+    "journal": "AMフューチャー",
     "category": "環境学"
   },
   {
-    "title": "空調機用アクティブフィルタの受電点力率制御採用時における進相コンデンサレス一次判定手法の検討",
-    "url": "https://www.jstage.jst.go.jp/article/tieiej/46/4/46_31/_article/-char/ja",
-    "journal": "電気設備学会 論文誌",
+    "title": "有人宇宙活動におけるAM技術の現状と展望",
+    "url": "https://www.jstage.jst.go.jp/article/amfuture/2/2/2_151/_article/-char/ja",
+    "journal": "AMフューチャー",
     "category": "学際科学"
   },
   {
-    "title": "長野県の棚田地域振興協議会における棚田特性と活動計画書の分析 制度の積極活用のための棚田団地類型化の提言",
-    "url": "https://www.jstage.jst.go.jp/article/tanada/27/0/27_2/_article/-char/ja",
-    "journal": "棚田学会誌",
+    "title": "宇宙分野へのAM適用と開発事例",
+    "url": "https://www.jstage.jst.go.jp/article/amfuture/2/2/2_155/_article/-char/ja",
+    "journal": "AMフューチャー",
     "category": "哲学・宗教"
   },
   {
-    "title": "新潟県上越市牧区・三和区における丘陵棚田地域から平野部にかけてのため池の水草分布の特徴",
-    "url": "https://www.jstage.jst.go.jp/article/tanada/27/0/27_17/_article/-char/ja",
-    "journal": "棚田学会誌",
+    "title": "宇宙機搭載用二液式スラスタへのAM技術適用",
+    "url": "https://www.jstage.jst.go.jp/article/amfuture/2/2/2_159/_article/-char/ja",
+    "journal": "AMフューチャー",
     "category": "文学・言語学・芸術学"
   },
   {
-    "title": "Contents",
-    "url": "https://www.jstage.jst.go.jp/article/sosj/43/1/43_C28/_article/-char/ja",
-    "journal": "Sessile Organisms",
+    "title": "ロケットエンジン向け精密部品における大型金属AM技術の適用",
+    "url": "https://www.jstage.jst.go.jp/article/amfuture/2/2/2_163/_article/-char/ja",
+    "journal": "AMフューチャー",
     "category": "人類学・史学・地理学"
   },
   {
-    "title": "外来フジツボPerforatus perforatusの大阪湾への分布拡大",
-    "url": "https://www.jstage.jst.go.jp/article/sosj/43/1/43_430102/_article/-char/ja",
-    "journal": "Sessile Organisms",
+    "title": "折り紙構造に基づく機械的メタマテリアルの積層造形",
+    "url": "https://www.jstage.jst.go.jp/article/amfuture/2/2/2_167/_article/-char/ja",
+    "journal": "AMフューチャー",
     "category": "法学・政治学"
   },
   {
-    "title": "Offshore Tech Japan 2026 での汚損対策関連展示の紹介",
-    "url": "https://www.jstage.jst.go.jp/article/sosj/43/1/43_430101/_article/-char/ja",
-    "journal": "Sessile Organisms",
+    "title": "Balancing Density and Microstructure in Electron Beam Powder Bed Fusion",
+    "url": "https://www.jstage.jst.go.jp/article/amfuture/2/2/2_171/_article/-char/ja",
+    "journal": "Bulletin of the Japanese Institute of Additive Manufacturing",
     "category": "経済学・経営学"
   },
   {
-    "title": "《第92回》モバイル脳波計が創る新しいメンタルケア",
-    "url": "https://www.jstage.jst.go.jp/article/sicejl/65/9/65_609/_article/-char/ja",
-    "journal": "計測と制御",
+    "title": "AM 技術を活用した軽量構造の創製と最適化設計",
+    "url": "https://www.jstage.jst.go.jp/article/amfuture/2/2/2_177/_article/-char/ja",
+    "journal": "AMフューチャー",
     "category": "社会学"
   },
   {
-    "title": "生物に学ぶ人工システム―現実世界で機能する知的行動主体―",
-    "url": "https://www.jstage.jst.go.jp/article/sicejl/65/9/65_611/_article/-char/ja",
-    "journal": "計測と制御",
+    "title": "レーザDED造形機LAMDAシリーズのプロセスモニタリングシステム",
+    "url": "https://www.jstage.jst.go.jp/article/amfuture/2/2/2_181/_article/-char/ja",
+    "journal": "AMフューチャー",
     "category": "心理学・教育学"
   },
   {
-    "title": "飛翔昆虫の羽ばたき運動生成過程の解明に向けた筋骨格系の解析とモデル化",
-    "url": "https://www.jstage.jst.go.jp/article/sicejl/65/9/65_617/_article/-char/ja",
-    "journal": "計測と制御",
+    "title": "L-PBFにより作製したMC炭化物強化型Co基合金の凝固偏析と析出挙動",
+    "url": "https://www.jstage.jst.go.jp/article/amfuture/2/2/2_185/_article/-char/ja",
+    "journal": "AMフューチャー",
     "category": "数学"
   },
   {
-    "title": "三次元培養骨格筋細胞を基盤としたバイオハイブリッドロボット応用に向けた研究とその展望",
-    "url": "https://www.jstage.jst.go.jp/article/sicejl/65/9/65_623/_article/-char/ja",
-    "journal": "計測と制御",
+    "title": "レーザを用いた粉末床溶融結合法でのAM部品成功事例",
+    "url": "https://www.jstage.jst.go.jp/article/amfuture/2/2/2_191/_article/-char/ja",
+    "journal": "AMフューチャー",
     "category": "物理学"
   },
   {
-    "title": "遺伝学的手法とコネクトームを駆使して紐解く昆虫の歩行回路",
-    "url": "https://www.jstage.jst.go.jp/article/sicejl/65/9/65_629/_article/-char/ja",
-    "journal": "計測と制御",
+    "title": "基幹産業からロケット部品まで広がるDED適用最前線",
+    "url": "https://www.jstage.jst.go.jp/article/amfuture/2/2/2_197/_article/-char/ja",
+    "journal": "AMフューチャー",
     "category": "化学"
   },
   {
-    "title": "身体性への介入から紐解く生物の潜在的適応能",
-    "url": "https://www.jstage.jst.go.jp/article/sicejl/65/9/65_635/_article/-char/ja",
-    "journal": "計測と制御",
+    "title": "ダイカスト金型向け金属AM粉末S-MEC®シリーズ",
+    "url": "https://www.jstage.jst.go.jp/article/amfuture/2/2/2_201/_article/-char/ja",
+    "journal": "AMフューチャー",
     "category": "地球科学・天文学"
   },
   {
-    "title": "4・5・6・7腕でも破綻しないクモヒトデの協調運動",
-    "url": "https://www.jstage.jst.go.jp/article/sicejl/65/9/65_642/_article/-char/ja",
-    "journal": "計測と制御",
+    "title": "会告",
+    "url": "https://www.jstage.jst.go.jp/article/amfuture/2/2/2_203/_article/-char/ja",
+    "journal": "AMフューチャー",
     "category": "生物学・生命科学・基礎医学"
-  },
-  {
-    "title": "ムカデから探る環境適応的な運動知能システムの設計原理",
-    "url": "https://www.jstage.jst.go.jp/article/sicejl/65/9/65_648/_article/-char/ja",
-    "journal": "計測と制御",
-    "category": "農学・食品科学"
-  },
-  {
-    "title": "蚊の配偶者定位行動を支える卓越した聴覚システム",
-    "url": "https://www.jstage.jst.go.jp/article/sicejl/65/9/65_654/_article/-char/ja",
-    "journal": "計測と制御",
-    "category": "一般医学・社会医学・看護学"
-  },
-  {
-    "title": "コウモリに学ぶ空中超音波技術",
-    "url": "https://www.jstage.jst.go.jp/article/sicejl/65/9/65_660/_article/-char/ja",
-    "journal": "計測と制御",
-    "category": "臨床医学"
-  },
-  {
-    "title": "適応的行動を生み出す嗅覚情報処理機構の解明",
-    "url": "https://www.jstage.jst.go.jp/article/sicejl/65/9/65_666/_article/-char/ja",
-    "journal": "計測と制御",
-    "category": "歯学"
-  },
-  {
-    "title": "昆虫の適応的ナビゲーション機能の解明と実世界展開",
-    "url": "https://www.jstage.jst.go.jp/article/sicejl/65/9/65_672/_article/-char/ja",
-    "journal": "計測と制御",
-    "category": "薬学"
-  },
-  {
-    "title": "デジタル検出に基づくウイルス・バイオマーカー微量計測技術に関する調査研究",
-    "url": "https://www.jstage.jst.go.jp/article/sicejl/65/9/65_679/_article/-char/ja",
-    "journal": "計測と制御",
-    "category": "一般工学・総合工学"
-  },
-  {
-    "title": "Pythonで始めるスワーム制御プログラミング",
-    "url": "https://www.jstage.jst.go.jp/article/sicejl/65/9/65_684/_article/-char/ja",
-    "journal": "計測と制御",
-    "category": "ナノ・材料科学"
   },
   {
     "title": "編集後記",
-    "url": "https://www.jstage.jst.go.jp/article/sicejl/65/9/65_685/_article/-char/ja",
-    "journal": "計測と制御",
-    "category": "建築学・土木工学"
-  },
-  {
-    "title": "飛驒山脈北部，白馬沢雪渓の氷厚と流動",
-    "url": "https://www.jstage.jst.go.jp/article/seppyo/88/5/88_365/_article/-char/ja",
-    "journal": "雪氷",
-    "category": "機械工学"
-  },
-  {
-    "title": "穂高岳涸沢における多年性雪渓の59年間（1967～2025年）の面積変動",
-    "url": "https://www.jstage.jst.go.jp/article/seppyo/88/5/88_381/_article/-char/ja",
-    "journal": "雪氷",
-    "category": "電気電子工学"
-  },
-  {
-    "title": "「駅まち空間」における「座り場」の現状及び課題 渋谷駅、姫路駅及び日向市駅を対象に",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_327/_article/-char/ja",
-    "journal": "都市計画報告集",
-    "category": "情報科学"
-  },
-  {
-    "title": "市街化調整区域におけるまちづくりの取り組みに関する考察 大阪狭山市、宇陀市、横浜市、豊田市の事例調査を通じて",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_223/_article/-char/ja",
-    "journal": "都市計画報告集",
-    "category": "環境学"
-  },
-  {
-    "title": "震災前後における社会的脆弱性の変化に関する検討 東日本大震災前後の岩手県を対象とした試行的分析",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_230/_article/-char/ja",
-    "journal": "都市計画報告集",
-    "category": "学際科学"
-  },
-  {
-    "title": "多文化化が進む地域における都市公園の利用特性と評価 新宿区戸山公園のGoogle Maps上の外国語口コミを対象として",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_232/_article/-char/ja",
-    "journal": "都市計画報告集",
-    "category": "哲学・宗教"
-  },
-  {
-    "title": "立地適正化計画における特定用途誘導地区の運用実態に関する研究 名古屋市と長岡京市をケーススタディとして",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_238/_article/-char/ja",
-    "journal": "都市計画報告集",
-    "category": "文学・言語学・芸術学"
-  },
-  {
-    "title": "API提供型推定気象データを用いた都市環境分析の適用可能性と留意点 東京都足立区における1kmメッシュ推定気温と土地被覆特性との対応関係",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_244/_article/-char/ja",
-    "journal": "都市計画報告集",
-    "category": "人類学・史学・地理学"
-  },
-  {
-    "title": "都市空間における認知プロセスの記述に関する研究 国内査読論文の整理と能動的推論の紹介",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_250/_article/-char/ja",
-    "journal": "都市計画報告集",
-    "category": "法学・政治学"
-  },
-  {
-    "title": "二地域居住促進のための要因に関する研究 二地域居住者向け支援事業の分析をとおして",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_255/_article/-char/ja",
-    "journal": "都市計画報告集",
-    "category": "経済学・経営学"
-  },
-  {
-    "title": "広域緑道の可能性とその効果に対する研究 仙台都市圏を対象として",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_262/_article/-char/ja",
-    "journal": "都市計画報告集",
-    "category": "社会学"
-  },
-  {
-    "title": "都市計画マスタープラン改定時における生成AIの活用に関する研究",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_266/_article/-char/ja",
-    "journal": "都市計画報告集",
-    "category": "心理学・教育学"
-  },
-  {
-    "title": "LRTの導入が中心市街地の駐車場整備に与える影響に関する研究",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_272/_article/-char/ja",
-    "journal": "都市計画報告集",
-    "category": "数学"
-  },
-  {
-    "title": "関西圏における公民によるエリアリノベーションの実践状況に関する調査報告 門真市及びOsaka Metroの試みを中心に",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_278/_article/-char/ja",
-    "journal": "都市計画報告集",
-    "category": "物理学"
-  },
-  {
-    "title": "立体都市公園制度の適用状況 屋上設置型立体都市公園を対象として",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_282/_article/-char/ja",
-    "journal": "都市計画報告集",
-    "category": "化学"
-  },
-  {
-    "title": "ベルギー・ヘント市におけるサーキュレーションプランの政策形成・実装過程 中心市街地における交通体系転換を可能にした要因",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_288/_article/-char/ja",
-    "journal": "都市計画報告集",
-    "category": "地球科学・天文学"
-  },
-  {
-    "title": "米国テキサス州ハリス郡における2017年ハリケーン・ハーヴィー後の不動産買い上げプログラムの変容と買い上げエリアの土地利用現況 減災復興に資する土地利用ガバナンス",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_296/_article/-char/ja",
-    "journal": "都市計画報告集",
-    "category": "生物学・生命科学・基礎医学"
-  },
-  {
-    "title": "カンタベリー地震（2010年～2011）後のレッドゾーンにおける土地利用再編と場所に紐づけた物語の継承：減災復興に資する土地利用ガバナンス 減災復興に資する土地利用ガバナンス",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_300/_article/-char/ja",
-    "journal": "都市計画報告集",
+    "url": "https://www.jstage.jst.go.jp/article/amfuture/2/2/2_209/_article/-char/ja",
+    "journal": "AMフューチャー",
     "category": "農学・食品科学"
   },
   {
-    "title": "馬事公苑前けやき広場を中心とした住民主体によるコミュニティデザインの意義と課題",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_304/_article/-char/ja",
-    "journal": "都市計画報告集",
+    "title": "Preface",
+    "url": "https://www.jstage.jst.go.jp/article/apujlr/10/0/10_ii/_article/-char/ja",
+    "journal": "APU Journal of Language Research",
     "category": "一般医学・社会医学・看護学"
   },
   {
-    "title": "広域的な立地適正化の方針による広域連携の実態に関する研究 中播都市計画区域に属する姫路市、たつの市、太子町、福崎町を対象として",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_309/_article/-char/ja",
-    "journal": "都市計画報告集",
+    "title": "Korenaga Memorial Section (Japanese)",
+    "url": "https://www.jstage.jst.go.jp/article/apujlr/10/0/10_1/_article/-char/ja",
+    "journal": "APU言語研究論叢",
     "category": "臨床医学"
   },
   {
-    "title": "都市の生活利便性評価における「選択肢の豊かさ指標」の提案 自転車で15分以内に往復可能なスーパーの数と電動アシスト自転車の効用の試算",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_315/_article/-char/ja",
-    "journal": "都市計画報告集",
+    "title": "Korenaga Memorial Section (English)",
+    "url": "https://www.jstage.jst.go.jp/article/apujlr/10/0/10_23/_article/-char/ja",
+    "journal": "APU Journal of Language Research",
     "category": "歯学"
   },
   {
-    "title": "歴史的建造物に乏しい都市部における「地割」の資源化と再開発制度の課題 神田エリアを対象としたケーススタディおよび事業者調査から",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_322/_article/-char/ja",
-    "journal": "都市計画報告集",
+    "title": "ビジュアル・ナラティブを用いた言語教育実践の考察 ― 三項関係による語りの分析から ―",
+    "url": "https://www.jstage.jst.go.jp/article/apujlr/10/0/10_38/_article/-char/ja",
+    "journal": "APU言語研究論叢",
     "category": "薬学"
   },
   {
-    "title": "災害時の医療搬送を想定したeVTOLの利用可能性に関する研究",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_335/_article/-char/ja",
-    "journal": "都市計画報告集",
+    "title": "Promoting an Inclusive Climate Through Multimodal Approaches in Higher Education English Classrooms",
+    "url": "https://www.jstage.jst.go.jp/article/apujlr/10/0/10_54/_article/-char/ja",
+    "journal": "APU Journal of Language Research",
     "category": "一般工学・総合工学"
   },
   {
-    "title": "ロンドンにおける住宅供給の仕組みに関する視察調査報告 その１ アフォーダブル住宅の供給を支える計画制度・事業採算・テニュアブラインド設計",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_342/_article/-char/ja",
-    "journal": "都市計画報告集",
+    "title": "A Critical Reflection on Undergraduate Teaching Practice: Applying Brookfield’s Four Lenses",
+    "url": "https://www.jstage.jst.go.jp/article/apujlr/10/0/10_68/_article/-char/ja",
+    "journal": "APU Journal of Language Research",
     "category": "ナノ・材料科学"
   },
   {
-    "title": "目黒区いきものみどりみらい計画における都市データ活用 緑の基本計画策定における都市データの活用事例報告",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_349/_article/-char/ja",
-    "journal": "都市計画報告集",
+    "title": "2つ以上の標準的な治療が無効又は治療後に再発した、大細胞型B細胞リンパ腫又は濾胞性リンパ腫に対するエプコリタマブの費用対効果評価",
+    "url": "https://www.jstage.jst.go.jp/article/atagrep/3/3/3_1/_article/-char/ja",
+    "journal": "Academic Technology Assessment Group (ATAG) Reports",
     "category": "建築学・土木工学"
   },
   {
-    "title": "ロンドンにおける住宅供給の仕組みに関する視察調査報告 その２ アクセシビリティ基準の運用と、必要とする世帯へ届くまでの隔たり",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_354/_article/-char/ja",
-    "journal": "都市計画報告集",
+    "title": "兵庫県でキビノダンゴゴケがみつかる",
+    "url": "https://www.jstage.jst.go.jp/article/bryologicalresearch/13/9/13_171/_article/-char/ja",
+    "journal": "蘚苔類研究",
     "category": "機械工学"
   },
   {
-    "title": "住宅と公園を繋げるゲートが人と緑を繋げることができるのだろうか? 駒沢公園への直通ゲートを持つ深沢ハウスに着目して",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_361/_article/-char/ja",
-    "journal": "都市計画報告集",
+    "title": "イワマセンボンゴケScopelophila ligulata（Spruce）Spruceを青森県から確認",
+    "url": "https://www.jstage.jst.go.jp/article/bryologicalresearch/13/9/13_175/_article/-char/ja",
+    "journal": "蘚苔類研究",
     "category": "電気電子工学"
   },
   {
-    "title": "英国におけるニューロダイバーシティを考慮した空間計画の動向 実践事例とPAS 6463からみた計画上の特徴",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_368/_article/-char/ja",
-    "journal": "都市計画報告集",
+    "title": "日本産ハイゴケ属・ミヤマハイゴケ属の分類学的取り扱いのまとめ（改訂版）",
+    "url": "https://www.jstage.jst.go.jp/article/bryologicalresearch/13/9/13_178/_article/-char/ja",
+    "journal": "蘚苔類研究",
     "category": "情報科学"
   },
   {
-    "title": "住宅団地再生に関わる公的支援制度の利用実態と課題 公的支援制度の交付事例と利用主体に関する基礎的整理",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_374/_article/-char/ja",
-    "journal": "都市計画報告集",
+    "title": "北海道大雪山国立公園，駒止湖で確認されたヒメトロイブゴケとカラフトイチョウゴケ",
+    "url": "https://www.jstage.jst.go.jp/article/bryologicalresearch/13/9/13_181/_article/-char/ja",
+    "journal": "蘚苔類研究",
     "category": "環境学"
   },
   {
-    "title": "イノベーション地区の発展における都市計画の役割に関する考察 米国ペンシルバニア州の「ピッツバーグイノベーション地区」と「オークランドプラン」のケーススタディ",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_379/_article/-char/ja",
-    "journal": "都市計画報告集",
+    "title": "公衆衛生とともに歩んだ半生から，次世代の医療者に伝えたいこと",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/39/9/39_2/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "学際科学"
   },
   {
-    "title": "From objective indicators to field observation rethinking green-space equity in Kobe City",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_387/_article/-char/ja",
-    "journal": "Reports of the City Planning Institute of Japan",
+    "title": "地域で感染症と向き合う エディトリアル",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/39/9/39_12/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "哲学・宗教"
   },
   {
-    "title": "地理空間情報のファシリテーションの必要性に関する考察 建築設計の視点から",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_391/_article/-char/ja",
-    "journal": "都市計画報告集",
+    "title": "診療所での感染症患者の診察（病歴聴取と身体所見から検査まで）－POCUS活用の実践ポイント－",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/39/9/39_13/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "文学・言語学・芸術学"
   },
   {
-    "title": "ワーカー視点で見たオフィスビルの価値 アメニティと従業員満足度に関する定量分析",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_395/_article/-char/ja",
-    "journal": "都市計画報告集",
+    "title": "診療所での感染症患者の治療",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/39/9/39_20/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "人類学・史学・地理学"
   },
   {
-    "title": "都市機能・居住誘導とLRT導入による旅客交通CO2削減効果の簡易評価 愛知県豊橋市への適用",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_399/_article/-char/ja",
-    "journal": "都市計画報告集",
+    "title": "ただちに紹介が必要な感染症",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/39/9/39_29/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "法学・政治学"
   },
   {
-    "title": "地方自治体の空き家利活用補助と除却補助に関する調査とその評価に関する考察 全国181市区町村を対象として",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_405/_article/-char/ja",
-    "journal": "都市計画報告集",
+    "title": "診療所での感染対策－PPEと動線管理，環境感染や今後の感染症危機管理への対応・備え－",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/39/9/39_36/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "経済学・経営学"
   },
   {
-    "title": "ウォーカビリティと住宅価格の関係に関する実証研究 人口規模の異なる日本の7都市を対象としたヘドニック分析",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_411/_article/-char/ja",
-    "journal": "都市計画報告集",
+    "title": "感染症患者の家族への助言",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/39/9/39_42/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "社会学"
   },
   {
-    "title": "災害リスクを踏まえたクライストチャーチ市の復興土地利用計画 減災復興に資する土地利用ガバナンスの観点から",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_415/_article/-char/ja",
-    "journal": "都市計画報告集",
+    "title": "届出が必要な感染症とサーベイランス",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/39/9/39_47/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "心理学・教育学"
   },
   {
-    "title": "都市公園における温熱環境適応策検討のための基礎調査 東綾瀬公園における空間構成の違いと微気象の状況",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_421/_article/-char/ja",
-    "journal": "都市計画報告集",
+    "title": "地域で取り組む感染症対策",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/39/9/39_53/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "数学"
   },
   {
-    "title": "産業集積が進む市街地辺縁部の住宅供給における立地と空間特性に関する研究 熊本県菊池郡菊陽町を対象として",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_431/_article/-char/ja",
-    "journal": "都市計画報告集",
+    "title": "Let’s Try！医療安全 第143回医師の“人員配置”に関わる事例発生を未然防止する！ －事例の発生要因から考える未然防止対策－",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/39/9/39_59/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "物理学"
   },
   {
-    "title": "身近な河川空間の活用に向けた社会実験の実施プロセスと利用者評価 東京都江東区大横川を対象として",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_438/_article/-char/ja",
-    "journal": "都市計画報告集",
+    "title": "ちょっと画像でCoffee Break よろずX線画像診断⑰",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/39/9/39_67/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "化学"
   },
   {
-    "title": "空家等対策計画における目標値の設定と取組の可視化の考察 千葉県内の各自治体を対象として",
-    "url": "https://www.jstage.jst.go.jp/article/reportscpij/25/2/25_443/_article/-char/ja",
-    "journal": "都市計画報告集",
+    "title": "全国の地域からリレーでつなぐ 私の地域医療48 東京の島 スタンプラリー",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/39/9/39_70/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "地球科学・天文学"
   },
   {
-    "title": "腎・透析医療における医療者－患者関係の臨床研究 ：共通の入り口としての信頼、共通のアウトカムとしてのホープ",
-    "url": "https://www.jstage.jst.go.jp/article/psychonephrology/4/0/4_1/_article/-char/ja",
-    "journal": "日本サイコネフロロジー学会雑誌",
+    "title": "これまでの活躍と今後への期待 特定ケア看護師の挑戦",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/39/9/39_74/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "生物学・生命科学・基礎医学"
   },
   {
-    "title": "生体腎移植ドナーの術後ストレスとメンタルケア",
-    "url": "https://www.jstage.jst.go.jp/article/psychonephrology/4/0/4_9/_article/-char/ja",
-    "journal": "日本サイコネフロロジー学会雑誌",
+    "title": "研修医日記 僕の私の総診日記",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/39/9/39_76/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "農学・食品科学"
   },
   {
-    "title": "第34回日本サイコネフロロジー学会学術集会・総会 移植関連委員会シンポジウム 「腎移植ドナーの術後の心のケア」を振り返って",
-    "url": "https://www.jstage.jst.go.jp/article/psychonephrology/4/0/4_15/_article/-char/ja",
-    "journal": "日本サイコネフロロジー学会雑誌",
+    "title": "「医学教育の現状と課題 前編」",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/39/9/39_79/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "一般医学・社会医学・看護学"
   },
   {
-    "title": "当院における透析療法選択外来の様々な効果について",
-    "url": "https://www.jstage.jst.go.jp/article/psychonephrology/4/0/4_20/_article/-char/ja",
-    "journal": "日本サイコネフロロジー学会雑誌",
+    "title": "ネムリユスリカの乾眠メカニズムの解明",
+    "url": "https://www.jstage.jst.go.jp/article/cryobolcryotechnol/72/1/72_3/_article/-char/ja",
+    "journal": "低温生物工学会誌",
     "category": "臨床医学"
   },
   {
-    "title": "日本における透析患者が透析生活をよりよく過ごすための心構え",
-    "url": "https://www.jstage.jst.go.jp/article/psychonephrology/4/0/4_26/_article/-char/ja",
-    "journal": "日本サイコネフロロジー学会雑誌",
+    "title": "凍結馴化における凍結耐性向上とSYT1 を介した機械ストレス耐性の関与",
+    "url": "https://www.jstage.jst.go.jp/article/cryobolcryotechnol/72/1/72_13/_article/-char/ja",
+    "journal": "低温生物工学会誌",
     "category": "歯学"
   },
   {
-    "title": "透析患者の自殺防止を目的としたワークショップ開催による看護師の意識の変化～自殺アセスメント用紙の活用をめざして～",
-    "url": "https://www.jstage.jst.go.jp/article/psychonephrology/4/0/4_35/_article/-char/ja",
-    "journal": "日本サイコネフロロジー学会雑誌",
+    "title": "Selaginella 属植物の高い乾燥耐性に寄与する 細胞壁関連メカニズムの解明",
+    "url": "https://www.jstage.jst.go.jp/article/cryobolcryotechnol/72/1/72_17/_article/-char/ja",
+    "journal": "低温生物工学会誌",
     "category": "薬学"
   },
   {
-    "title": "小笠原諸島父島のクマネズミ，グリーンアノール，オガサワラヤモリ，ホオグロヤモリの寄生蠕虫類について",
-    "url": "https://www.jstage.jst.go.jp/article/pestology/40/2/40_55/_article/-char/ja",
-    "journal": "ペストロジー",
+    "title": "トドマツ苗木の根系における凍結抵抗性の季節変化",
+    "url": "https://www.jstage.jst.go.jp/article/cryobolcryotechnol/72/1/72_23/_article/-char/ja",
+    "journal": "低温生物工学会誌",
     "category": "一般工学・総合工学"
   },
   {
-    "title": "ドッグフード包装の小哺乳類異物に見られる4通りの混入経路",
-    "url": "https://www.jstage.jst.go.jp/article/pestology/40/2/40_63/_article/-char/ja",
-    "journal": "ペストロジー",
+    "title": "Lithium and strontium isotope systematics of hot spring waters from the Noto Peninsula: Constraints on the origin of geofluids associated with the 2024 M7.6 earthquake",
+    "url": "https://www.jstage.jst.go.jp/article/geochemj/60/5/60_GJ26017/_article/-char/ja",
+    "journal": "GEOCHEMICAL JOURNAL",
     "category": "ナノ・材料科学"
   },
   {
-    "title": "2024年時点の北海道におけるヤケヤスデの分布状況と被害の記録",
-    "url": "https://www.jstage.jst.go.jp/article/pestology/40/2/40_69/_article/-char/ja",
-    "journal": "ペストロジー",
+    "title": "Cover 1",
+    "url": "https://www.jstage.jst.go.jp/article/iasme/18/1/18_18_1_i/_article/-char/ja",
+    "journal": "Journal of Strategic Management Studies",
     "category": "建築学・土木工学"
   },
   {
-    "title": "セアカゴケグモ幼体の団居形成，分散および空中移動の屋外観察",
-    "url": "https://www.jstage.jst.go.jp/article/pestology/40/2/40_73/_article/-char/ja",
-    "journal": "ペストロジー",
+    "title": "From Centrality to Engagement: Brokerage Orientations and Cluster Resilience in a Japanese Manufacturing Cluster",
+    "url": "https://www.jstage.jst.go.jp/article/iasme/18/1/18_180101/_article/-char/ja",
+    "journal": "Journal of Strategic Management Studies",
     "category": "機械工学"
   },
   {
-    "title": "抗凝血性殺鼠剤によって路上で死亡したクマネズミの事例",
-    "url": "https://www.jstage.jst.go.jp/article/pestology/40/2/40_79/_article/-char/ja",
-    "journal": "ペストロジー",
+    "title": "Influence of Group Philosophy Dissemination Rates on Management Philosophy Dissemination: Focusing on the Empathy Process as a Barrier",
+    "url": "https://www.jstage.jst.go.jp/article/iasme/18/1/18_180102/_article/-char/ja",
+    "journal": "Journal of Strategic Management Studies",
     "category": "電気電子工学"
   },
   {
-    "title": "アライグマの毛皮から発生したアカオビカツオブシムシ",
-    "url": "https://www.jstage.jst.go.jp/article/pestology/40/2/40_81/_article/-char/ja",
-    "journal": "ペストロジー",
+    "title": "Introduction to the Special Topic Forum: The Potential of a New Strategic Human Resource Management Theory Part II",
+    "url": "https://www.jstage.jst.go.jp/article/iasme/18/1/18_180103/_article/-char/ja",
+    "journal": "Journal of Strategic Management Studies",
     "category": "情報科学"
   },
   {
-    "title": "令和6年能登半島地震の被災地における蚊成虫の発生状況",
-    "url": "https://www.jstage.jst.go.jp/article/pestology/40/2/40_85/_article/-char/ja",
-    "journal": "ペストロジー",
+    "title": "Organizational Transformation and Strategic Human Resource Development in the IoT/AI Era: A Case Study of a Japanese Firm",
+    "url": "https://www.jstage.jst.go.jp/article/iasme/18/1/18_180104/_article/-char/ja",
+    "journal": "Journal of Strategic Management Studies",
     "category": "環境学"
   },
   {
-    "title": "令和6年能登半島地震の被災地におけるハエ，蚊などの発生調査報告",
-    "url": "https://www.jstage.jst.go.jp/article/pestology/40/2/40_93/_article/-char/ja",
-    "journal": "ペストロジー",
+    "title": "Introduction to the Special Topic Forum on Multifaceted Analyses of Conditions for Survival and Growth of Japanese Automakers in the CASE Age Part III: Special Empasis on the Chinese EV Market",
+    "url": "https://www.jstage.jst.go.jp/article/iasme/18/1/18_180105/_article/-char/ja",
+    "journal": "Journal of Strategic Management Studies",
     "category": "学際科学"
   },
   {
-    "title": "茨城県の食品加工施設で捕獲されたサツマゴキブリとその侵入経路",
-    "url": "https://www.jstage.jst.go.jp/article/pestology/40/2/40_101/_article/-char/ja",
-    "journal": "ペストロジー",
+    "title": "Reconfiguring Ordinary Capabilities in China’s EV Market: Toyota’s Transition from Imitator to Innovative Follower",
+    "url": "https://www.jstage.jst.go.jp/article/iasme/18/1/18_180106/_article/-char/ja",
+    "journal": "Journal of Strategic Management Studies",
     "category": "哲学・宗教"
   },
   {
-    "title": "都市屋外におけるコナナガシンクイの生息調査",
-    "url": "https://www.jstage.jst.go.jp/article/pestology/40/2/40_103/_article/-char/ja",
-    "journal": "ペストロジー",
+    "title": "多発性骨髄腫における自家造血幹細胞移植の現在地と免疫療法時代の展望",
+    "url": "https://www.jstage.jst.go.jp/article/jjtc/72/4/72_679/_article/-char/ja",
+    "journal": "日本輸血細胞治療学会誌",
     "category": "文学・言語学・芸術学"
   },
   {
-    "title": "群馬県初記録となるゴキブリ目3種を植物園温室内から発見",
-    "url": "https://www.jstage.jst.go.jp/article/pestology/40/2/40_107/_article/-char/ja",
-    "journal": "ペストロジー",
+    "title": "血液製剤の院内分割マニュアル 改訂4.0",
+    "url": "https://www.jstage.jst.go.jp/article/jjtc/72/4/72_686/_article/-char/ja",
+    "journal": "日本輸血細胞治療学会誌",
     "category": "人類学・史学・地理学"
   },
   {
-    "title": "「成人移行支援のあり方研究会」成果報告：小児発症慢性消化器疾患の成人移行支援に関する意識調査",
-    "url": "https://www.jstage.jst.go.jp/article/nisshoshi/123/9/123_569/_article/-char/ja",
-    "journal": "日本消化器病学会雑誌",
+    "title": "献血関連血管迷走神経反応（VVR）に対する気象の影響：奈良県における献血者属性別の検討",
+    "url": "https://www.jstage.jst.go.jp/article/jjtc/72/4/72_695/_article/-char/ja",
+    "journal": "日本輸血細胞治療学会誌",
     "category": "法学・政治学"
   },
   {
-    "title": "小児期に発症する慢性消化器疾患の成人移行支援",
-    "url": "https://www.jstage.jst.go.jp/article/nisshoshi/123/9/123_581/_article/-char/ja",
-    "journal": "日本消化器病学会雑誌",
+    "title": "冷蔵開始日の遅延が冷蔵血小板の機能に与える影響",
+    "url": "https://www.jstage.jst.go.jp/article/jjtc/72/4/72_702/_article/-char/ja",
+    "journal": "日本輸血細胞治療学会誌",
     "category": "経済学・経営学"
   },
   {
-    "title": "炎症性腸疾患における移行期医療",
-    "url": "https://www.jstage.jst.go.jp/article/nisshoshi/123/9/123_588/_article/-char/ja",
-    "journal": "日本消化器病学会雑誌",
+    "title": "Reevaluation of the Incremental Value of the Master Two-Step Test in Detecting Ventricular Arrhythmia During Daily Activities",
+    "url": "https://www.jstage.jst.go.jp/article/jpccs/10/2/10_24-018/_article/-char/ja",
+    "journal": "Journal of Pediatric Cardiology and Cardiac Surgery",
     "category": "社会学"
   },
   {
-    "title": "消化器外科における移行期医療",
-    "url": "https://www.jstage.jst.go.jp/article/nisshoshi/123/9/123_597/_article/-char/ja",
-    "journal": "日本消化器病学会雑誌",
+    "title": "Progress and Challenges in Fetal Diagnosis of Critical Congenital Heart Disease in Okinawa: Retrospective Study in a Decade",
+    "url": "https://www.jstage.jst.go.jp/article/jpccs/10/2/10_25-013/_article/-char/ja",
+    "journal": "Journal of Pediatric Cardiology and Cardiac Surgery",
     "category": "心理学・教育学"
   },
   {
-    "title": "肝疾患における移行期医療",
-    "url": "https://www.jstage.jst.go.jp/article/nisshoshi/123/9/123_607/_article/-char/ja",
-    "journal": "日本消化器病学会雑誌",
+    "title": "ClearSight© System in Pediatric Cardiomyopathy Goal-Directed Anesthetic Management",
+    "url": "https://www.jstage.jst.go.jp/article/jpccs/10/2/10_25-015/_article/-char/ja",
+    "journal": "Journal of Pediatric Cardiology and Cardiac Surgery",
     "category": "数学"
   },
   {
-    "title": "胆膵疾患における移行期医療",
-    "url": "https://www.jstage.jst.go.jp/article/nisshoshi/123/9/123_614/_article/-char/ja",
-    "journal": "日本消化器病学会雑誌",
+    "title": "Outpatient Parenteral Antimicrobial Therapy for Possible Infective Endocarditis in a Fontan Patient with Protein-Losing Enteropathy",
+    "url": "https://www.jstage.jst.go.jp/article/jpccs/10/2/10_25-022/_article/-char/ja",
+    "journal": "Journal of Pediatric Cardiology and Cardiac Surgery",
     "category": "物理学"
   },
   {
-    "title": "肝細胞癌の完全自然壊死を認めた原発性胆汁性胆管炎の1切除例",
-    "url": "https://www.jstage.jst.go.jp/article/nisshoshi/123/9/123_620/_article/-char/ja",
-    "journal": "日本消化器病学会雑誌",
+    "title": "Rapidly Progressive External Outflow Graft Obstruction in a Patient with ccTGA and a Left Ventricular Assist Device",
+    "url": "https://www.jstage.jst.go.jp/article/jpccs/10/2/10_25-014/_article/-char/ja",
+    "journal": "Journal of Pediatric Cardiology and Cardiac Surgery",
     "category": "化学"
   },
   {
-    "title": "胆囊原発びまん性大細胞型B細胞リンパ腫の1例",
-    "url": "https://www.jstage.jst.go.jp/article/nisshoshi/123/9/123_628/_article/-char/ja",
-    "journal": "日本消化器病学会雑誌",
+    "title": "Successful Repair of Anomalous Origin of the Right Coronary Artery from the Pulmonary Artery Coexisting with PAPVC",
+    "url": "https://www.jstage.jst.go.jp/article/jpccs/10/2/10_26-001/_article/-char/ja",
+    "journal": "Journal of Pediatric Cardiology and Cardiac Surgery",
     "category": "地球科学・天文学"
   },
   {
-    "title": "クローン病術後の貧血",
-    "url": "https://www.jstage.jst.go.jp/article/nisshoshi/123/9/123_636/_article/-char/ja",
-    "journal": "日本消化器病学会雑誌",
+    "title": "Intracardiac Extramedullary Lesions in Acute Lymphoblastic Leukemia with Silent Pulmonary Embolism",
+    "url": "https://www.jstage.jst.go.jp/article/jpccs/10/2/10_25-019/_article/-char/ja",
+    "journal": "Journal of Pediatric Cardiology and Cardiac Surgery",
     "category": "生物学・生命科学・基礎医学"
   },
   {
-    "title": "胆石性膵炎治療後に発熱，腹痛が再燃した高齢男性",
-    "url": "https://www.jstage.jst.go.jp/article/nisshoshi/123/9/123_639/_article/-char/ja",
-    "journal": "日本消化器病学会雑誌",
+    "title": "Efficacy of Cyclosporine A as Adjunctive Treatment for Indolent Kawasaki Disease: A Case Series",
+    "url": "https://www.jstage.jst.go.jp/article/jpccs/10/2/10_25-021/_article/-char/ja",
+    "journal": "Journal of Pediatric Cardiology and Cardiac Surgery",
     "category": "農学・食品科学"
   },
   {
-    "title": "アセロラ（Malpighia emarginata DC.）およびMalpighia属植物におけるネコブセンチュウ抵抗性系統の探索ならびに台木特性",
-    "url": "https://www.jstage.jst.go.jp/article/nettai/18/2/18_63/_article/-char/ja",
-    "journal": "熱帯農業研究",
+    "title": "Hemodynamics of Anomalous Systemic Arterial Supply to the Normal Basal Segments of the Lower Lobe",
+    "url": "https://www.jstage.jst.go.jp/article/jpccs/10/2/10_26-007/_article/-char/ja",
+    "journal": "Journal of Pediatric Cardiology and Cardiac Surgery",
     "category": "一般医学・社会医学・看護学"
   },
   {
-    "title": "亜熱帯域に分布する植物病原菌および一般病原細菌に対する数種精油および主成分の抗菌活性",
-    "url": "https://www.jstage.jst.go.jp/article/nettai/18/2/18_73/_article/-char/ja",
-    "journal": "熱帯農業研究",
+    "title": "ゼロエミッションに向けたパワートレーン技術開発（第１報） －触媒反応における排出ガス浄化と圧力損失のトレードオフ改善－",
+    "url": "https://www.jstage.jst.go.jp/article/jsaeronbun/57/5/57_20264594/_article/-char/ja",
+    "journal": "自動車技術会論文集",
     "category": "臨床医学"
   },
   {
-    "title": "生育初期の高地温がサツマイモ（Ipomoea batatas (L.) Lam.）の塊根形成と肥大に及ぼす影響",
-    "url": "https://www.jstage.jst.go.jp/article/nettai/18/2/18_83/_article/-char/ja",
-    "journal": "熱帯農業研究",
+    "title": "モーターサイクル用直噴水素エンジンにおける二方向筒内直接同時撮影法を用いた筒内燃焼現象の研究",
+    "url": "https://www.jstage.jst.go.jp/article/jsaeronbun/57/5/57_20264595/_article/-char/ja",
+    "journal": "自動車技術会論文集",
     "category": "歯学"
   },
   {
-    "title": "内科学会NEWS",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_News9/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
+    "title": "表面微細加工を活用した吸収液の液滴衝突/微粒化制御による排ガス中のCO2吸収手法 (第二報) ‐化学吸収法と物理吸着法の組み合わせによる CO 2 吸収効率の可能性‐",
+    "url": "https://www.jstage.jst.go.jp/article/jsaeronbun/57/5/57_20264596/_article/-char/ja",
+    "journal": "自動車技術会論文集",
     "category": "薬学"
+  },
+  {
+    "title": "オキシメチレンジメチルエーテル (OME) の燃料特性を活かした燃焼系の検討",
+    "url": "https://www.jstage.jst.go.jp/article/jsaeronbun/57/5/57_20264597/_article/-char/ja",
+    "journal": "自動車技術会論文集",
+    "category": "一般工学・総合工学"
+  },
+  {
+    "title": "MBD (Model-Based Development) によるパワーユニット開発プロセスの進化 －(第 12 報) パワーユニットトランジェントベンチを活用したドライバビリティ性能検証－",
+    "url": "https://www.jstage.jst.go.jp/article/jsaeronbun/57/5/57_20264598/_article/-char/ja",
+    "journal": "自動車技術会論文集",
+    "category": "ナノ・材料科学"
+  },
+  {
+    "title": "車載太陽光発電システムの車両日射量推定手法の構築",
+    "url": "https://www.jstage.jst.go.jp/article/jsaeronbun/57/5/57_20264599/_article/-char/ja",
+    "journal": "自動車技術会論文集",
+    "category": "建築学・土木工学"
+  },
+  {
+    "title": "電磁界と構造の連携による永久磁石同期モータの電磁振動・騒音解析",
+    "url": "https://www.jstage.jst.go.jp/article/jsaeronbun/57/5/57_20264600/_article/-char/ja",
+    "journal": "自動車技術会論文集",
+    "category": "機械工学"
+  },
+  {
+    "title": "xEV の評価試験に用いるシャシダイナモメータシステム要件の検討（第２報） ―4WD シャシダイナモメータ性能要件の電費影響を考慮した評価パラメータの検討―",
+    "url": "https://www.jstage.jst.go.jp/article/jsaeronbun/57/5/57_20264601/_article/-char/ja",
+    "journal": "自動車技術会論文集",
+    "category": "電気電子工学"
+  },
+  {
+    "title": "MBD (Model-Based Development) によるパワーユニット開発プロセスの進化 －(第 11 報) パワーユニットトランジェントベンチの標準化による高効率化－",
+    "url": "https://www.jstage.jst.go.jp/article/jsaeronbun/57/5/57_20264602/_article/-char/ja",
+    "journal": "自動車技術会論文集",
+    "category": "情報科学"
+  },
+  {
+    "title": "グラフニューラルネットワークを用いた歩行者頭部保護の低傷害領域推定",
+    "url": "https://www.jstage.jst.go.jp/article/jsaeronbun/57/5/57_20264603/_article/-char/ja",
+    "journal": "自動車技術会論文集",
+    "category": "環境学"
+  },
+  {
+    "title": "エネルギー伝達に基づく衝突概念設計における薄肉曲り管部材屈曲区間の等価粘性減衰係数の整理",
+    "url": "https://www.jstage.jst.go.jp/article/jsaeronbun/57/5/57_20264604/_article/-char/ja",
+    "journal": "自動車技術会論文集",
+    "category": "学際科学"
+  },
+  {
+    "title": "長基線長ステレオカメラを用いた夜間遠方認識向け教師データ自動生成技術",
+    "url": "https://www.jstage.jst.go.jp/article/jsaeronbun/57/5/57_20264605/_article/-char/ja",
+    "journal": "自動車技術会論文集",
+    "category": "哲学・宗教"
+  },
+  {
+    "title": "自動車整備分野における制度改正と教育体系の再編",
+    "url": "https://www.jstage.jst.go.jp/article/jsaeronbun/57/5/57_20264606/_article/-char/ja",
+    "journal": "自動車技術会論文集",
+    "category": "文学・言語学・芸術学"
+  },
+  {
+    "title": "操舵系と車両運動の連成構造に関する基礎的考察",
+    "url": "https://www.jstage.jst.go.jp/article/jsaeronbun/57/5/57_20264607/_article/-char/ja",
+    "journal": "自動車技術会論文集",
+    "category": "人類学・史学・地理学"
+  },
+  {
+    "title": "対人援助職は自傷行為をどのように捉えているか",
+    "url": "https://www.jstage.jst.go.jp/article/jscpdata/5/1/5_1/_article/-char/ja",
+    "journal": "自殺総合政策研究",
+    "category": "法学・政治学"
+  },
+  {
+    "title": "社会的養育における自立支援と、回復に向けたケア実践",
+    "url": "https://www.jstage.jst.go.jp/article/jscpdata/5/1/5_13/_article/-char/ja",
+    "journal": "自殺総合政策研究",
+    "category": "経済学・経営学"
+  },
+  {
+    "title": "名古屋市子ども・若者総合相談センターから見る、 若年の自殺につながる要因と対策 ネットワーク支援と、コミュニティが生み出す「リカバリー」の機能",
+    "url": "https://www.jstage.jst.go.jp/article/jscpdata/5/1/5_24/_article/-char/ja",
+    "journal": "自殺総合政策研究",
+    "category": "社会学"
+  },
+  {
+    "title": "薬剤師主導のポリファーマシーカンファレンスが高齢入院患者の減薬および抗コリン薬リスクの低減に与える影響",
+    "url": "https://www.jstage.jst.go.jp/article/jsgp/9/2/9_41/_article/-char/ja",
+    "journal": "日本老年薬学会雑誌",
+    "category": "心理学・教育学"
+  },
+  {
+    "title": "在宅医療および高齢者施設における薬剤投与の適正化に向けたPoint of Care Testing（POCT）機器の有用性",
+    "url": "https://www.jstage.jst.go.jp/article/jsgp/9/2/9_48/_article/-char/ja",
+    "journal": "日本老年薬学会雑誌",
+    "category": "数学"
+  },
+  {
+    "title": "牛におけるSalmonella enterica serovar Dublinによる農場汚染度評価のための間接ELISA法の検討",
+    "url": "https://www.jstage.jst.go.jp/article/jvma/79/9/79_e206/_article/-char/ja",
+    "journal": "日本獣医師会雑誌",
+    "category": "物理学"
+  },
+  {
+    "title": "乳用牛，肉用牛，養豚農場における農場HACCP導入後の家畜・畜産物の安全性と生産性",
+    "url": "https://www.jstage.jst.go.jp/article/jvma/79/9/79_e211/_article/-char/ja",
+    "journal": "日本獣医師会雑誌",
+    "category": "化学"
+  },
+  {
+    "title": "ワクチン接種後約90日を経た肥育豚群における豚熱感染の病態と農場内ウイルス伝播の特徴",
+    "url": "https://www.jstage.jst.go.jp/article/jvma/79/9/79_e221/_article/-char/ja",
+    "journal": "日本獣医師会雑誌",
+    "category": "地球科学・天文学"
+  },
+  {
+    "title": "と畜検査で発見された牛の悪性褐色細胞腫及び褐色細胞腫の病理学的特徴",
+    "url": "https://www.jstage.jst.go.jp/article/jvma/79/9/79_e231/_article/-char/ja",
+    "journal": "日本獣医師会雑誌",
+    "category": "生物学・生命科学・基礎医学"
+  },
+  {
+    "title": "ノットレスアンカーを用いた新しい手法の鏡視下バンカート修復術の短期成績",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_1/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "農学・食品科学"
+  },
+  {
+    "title": "烏口突起後方への骨孔作成に向けた肩甲上切痕と円錐靭帯付着部の検討",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_4/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "一般医学・社会医学・看護学"
+  },
+  {
+    "title": "直視下Latarjet法における関節包修復の有無での術後臨床成績比較",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_9/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "臨床医学"
+  },
+  {
+    "title": "Bankart-Bristow法術後の関節包関節唇複合体のMR評価",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_13/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "歯学"
+  },
+  {
+    "title": "骨性Bankart病変の経時的形態変化の特徴",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_17/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "薬学"
+  },
+  {
+    "title": "鏡視下Bankart & Bristow変法術後筋力の検討―術後1 年までの経時的変化―",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_21/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "一般工学・総合工学"
+  },
+  {
+    "title": "上腕骨近位端骨折術後の肩関節拘縮における滑液包側の癒着の影響",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_27/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "ナノ・材料科学"
+  },
+  {
+    "title": "上腕骨近位端骨折に対するRSAの臨床成績 -術前因子から考える-",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_31/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "建築学・土木工学"
+  },
+  {
+    "title": "上腕骨近位部骨折症例の骨粗鬆症調査",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_36/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "機械工学"
+  },
+  {
+    "title": "鏡視下TAFF法による肩甲骨関節窩前縁骨折の治療成績",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_40/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "電気電子工学"
+  },
+  {
+    "title": "上腕骨近位端骨折におけるMODE®とA.L.P.S.®プレートの比較",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_45/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "情報科学"
+  },
+  {
+    "title": "高齢者の上腕骨近位端骨折に対するRSAの治療成績",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_51/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "環境学"
+  },
+  {
+    "title": "delaminationを伴う腱板断裂に対する鏡視下腱板修復術の治療成績",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_56/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "学際科学"
+  },
+  {
+    "title": "フットプリントを内方化し低緊張で修復した鏡視下腱板修復術の術後1年の筋力評価",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_60/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "哲学・宗教"
+  },
+  {
+    "title": "術後再断裂症例に対する筋前進術併用鏡視下腱板修復術の検討",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_64/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "文学・言語学・芸術学"
+  },
+  {
+    "title": "鏡視下腱板修復術におけるスーチャーアンカーの刺入角度の違いによる合併症発生率の変化",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_68/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "人類学・史学・地理学"
+  },
+  {
+    "title": "当院における鏡視下腱板修復術後再断裂に対する術前予測スコア～術前の上腕骨大結節部CT値測定の意義～",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_73/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "法学・政治学"
+  },
+  {
+    "title": "腱板断裂に伴った上腕二頭筋長頭腱病変に関する病理組織学的検討",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_78/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "経済学・経営学"
+  },
+  {
+    "title": "単純X線による骨質指標を用いた関節鏡下腱板修復術後再断裂リスクの予測",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_86/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "社会学"
+  },
+  {
+    "title": "拘縮を有する腱板断裂患者に対する鏡視下腱板修復術の術後成績の経時的推移",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_92/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "心理学・教育学"
+  },
+  {
+    "title": "一次修復可能な腱板断裂患者に対するARCRの治療成績",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_97/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "数学"
+  },
+  {
+    "title": "広範囲腱板断裂における肩峰骨頭間距離の狭小化が腱板部分修復術の術後成績に与える影響",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_102/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "物理学"
+  },
+  {
+    "title": "肩甲骨位置が腱板断裂患者の肩関節機能に及ぼす影響",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_107/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "化学"
+  },
+  {
+    "title": "腱板断裂患者における棘下筋萎縮の形態的特徴",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_111/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "地球科学・天文学"
+  },
+  {
+    "title": "一次修復不能な大・広範囲腱板断裂に対する全鏡視下筋前進術の成績とStump分類に基づく再断裂率の検討",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_116/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "生物学・生命科学・基礎医学"
+  },
+  {
+    "title": "一次修復不能な腱板断裂に対するPatch法の術後再断裂因子の検討",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_120/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "農学・食品科学"
+  },
+  {
+    "title": "肩甲下筋腱断裂は高率に上方関節唇(SLAP)損傷を合併する",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_125/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "一般医学・社会医学・看護学"
+  },
+  {
+    "title": "鏡視下腱板修復術後の再断裂の有無による臨床成績の違い",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_128/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "臨床医学"
+  },
+  {
+    "title": "中高年者の一次修復困難な腱板断裂に対するEx-medializationと大腿筋膜移植術の比較検討",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_134/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "歯学"
+  },
+  {
+    "title": "棘下筋回転移行術の術後再断裂因子の検討",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_138/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "薬学"
+  },
+  {
+    "title": "化膿性肩関節炎に対する持続性局所抗菌薬灌流の効果",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_142/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "一般工学・総合工学"
+  },
+  {
+    "title": "肩関節周囲の骨軟部腫瘍に対する手術例の調査",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_147/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "ナノ・材料科学"
+  },
+  {
+    "title": "肩関節拘縮に対する非観血的関節授動術後の破局的思考の変化",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_151/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "建築学・土木工学"
+  },
+  {
+    "title": "肩関節拘縮に対する非観血的授動術の術後成績における慢性腎不全の影響",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_156/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "機械工学"
+  },
+  {
+    "title": "術前外転可動域が鏡視下肩峰下除圧術後成績に与える影響",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_160/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "電気電子工学"
+  },
+  {
+    "title": "楔型移植骨とナビゲーションを用いたBIO-RSA術後1年評価",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_164/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "情報科学"
+  },
+  {
+    "title": "リバース型人工肩関節術後の良好な屈曲可動域獲得に寄与するインプラント設置位置：回転中心から肩峰・大結節までの距離比の検討",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_169/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "環境学"
+  },
+  {
+    "title": "高度関節窩変形症例に対するカスタムメイドインプラントを用いたリバース型人工肩関節全置換術の治療経験",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_174/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "学際科学"
+  },
+  {
+    "title": "リバース型人工肩関節置換術後の人工関節周囲感染に対するリスク因子の評価：75例の後ろ向きコホート研究",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_180/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "哲学・宗教"
+  },
+  {
+    "title": "リバース型人工肩関節置換術後における日常生活動作スコアの経時的変化および関連因子の検討",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_184/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "文学・言語学・芸術学"
+  },
+  {
+    "title": "肩甲上腕関節に後方から関節鏡が入らない理由とその対策",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_189/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "人類学・史学・地理学"
+  },
+  {
+    "title": "小中断裂に対する鏡視下腱板修復術において腱板footprint内方化が術後1年成績に与える影響",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_193/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "法学・政治学"
+  },
+  {
+    "title": "骨頭骨片が残存した肩関節脱臼骨折3例における骨頭摘出法の検討",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_198/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "経済学・経営学"
+  },
+  {
+    "title": "Rapid Destructive Arthrosis of the Shoulder（RDAS）を呈した高齢女性に対しRSAを施行した1例",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_202/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "社会学"
+  },
+  {
+    "title": "上腕骨転移性骨腫瘍に対し反転型人工肩関節置換術を行った3例",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_206/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "心理学・教育学"
+  },
+  {
+    "title": "散弾銃による肩関節銃創の1例",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_210/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "数学"
+  },
+  {
+    "title": "骨内病変を伴った化膿性肩関節炎に対し治療に難渋したラグビー選手の一例",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_215/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "物理学"
+  },
+  {
+    "title": "骨嚢腫を合併した腱板断裂に対し腱板修復と人工骨移植を併用した1例",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_220/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "化学"
+  },
+  {
+    "title": "上腕骨近位端骨折内反変形治癒に対して変形矯正手術を施行した1例",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_224/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "地球科学・天文学"
+  },
+  {
+    "title": "6年前受傷の陳旧性大胸筋胸骨枝断裂の一例",
+    "url": "https://www.jstage.jst.go.jp/article/katakansetsu/50/1/50_228/_article/-char/ja",
+    "journal": "肩関節",
+    "category": "生物学・生命科学・基礎医学"
   },
   {
     "title": "目次",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_Contents9/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
-    "category": "一般工学・総合工学"
-  },
-  {
-    "title": "肝臓病学の変遷と今後の展望",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1499/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
-    "category": "ナノ・材料科学"
-  },
-  {
-    "title": "生命を捉えなおす―動的平衡の視点から―",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1510/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
-    "category": "建築学・土木工学"
-  },
-  {
-    "title": "1．血液がんに対する細胞療法",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1515/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
-    "category": "機械工学"
-  },
-  {
-    "title": "2．非結核性抗酸菌症の診療―最新の知見と今後の展望―",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1526/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
-    "category": "電気電子工学"
-  },
-  {
-    "title": "3．Clinical remissionを目指す実践的喘息診療",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1534/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
-    "category": "情報科学"
-  },
-  {
-    "title": "4．腎病学の進歩と課題",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1544/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
-    "category": "環境学"
-  },
-  {
-    "title": "5．消化器がん検診の現状と将来",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1554/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
-    "category": "学際科学"
-  },
-  {
-    "title": "司会のことば",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1563/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
-    "category": "哲学・宗教"
-  },
-  {
-    "title": "1）なぜ内科学にがん関連学際領域が必要か",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1564/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
-    "category": "文学・言語学・芸術学"
-  },
-  {
-    "title": "2）OncoNephrology Update：腎臓内科医はがん患者さんに何ができるのか",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1569/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
-    "category": "人類学・史学・地理学"
-  },
-  {
-    "title": "3）がん治療継続に向けた循環器内科医の視点～Onco-Cardiologyの概念～",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1576/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
-    "category": "法学・政治学"
-  },
-  {
-    "title": "4）腫瘍内分泌学・糖尿病学",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1583/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
-    "category": "経済学・経営学"
-  },
-  {
-    "title": "5）がん高齢化時代を支える：老年腫瘍学と臨床腫瘍学の協奏",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1589/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
-    "category": "社会学"
-  },
-  {
-    "title": "司会者のことば",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1595/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
-    "category": "心理学・教育学"
-  },
-  {
-    "title": "1）医療DXの取組について",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1596/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
-    "category": "数学"
-  },
-  {
-    "title": "2）かかりつけ医における生活習慣指導のDX化～世界初保険適用された高血圧治療補助アプリを事例に～",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1603/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
-    "category": "物理学"
-  },
-  {
-    "title": "3）医療DX：Personal Health Recordの実現に向けて",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1607/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
-    "category": "化学"
-  },
-  {
-    "title": "4）医療全体のDXを先導する人材の育成",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1613/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
-    "category": "地球科学・天文学"
-  },
-  {
-    "title": "司会者のことば",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1619/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
-    "category": "生物学・生命科学・基礎医学"
-  },
-  {
-    "title": "1）日本の高齢化社会とAMRの現状",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1620/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
+    "url": "https://www.jstage.jst.go.jp/article/keieijournal/58/0/58_1/_article/-char/ja",
+    "journal": "日本経営学会誌",
     "category": "農学・食品科学"
   },
   {
-    "title": "2）高齢者肺炎における薬剤耐性と治療戦略",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1624/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
+    "title": "統一論題趣旨",
+    "url": "https://www.jstage.jst.go.jp/article/keieijournal/58/0/58_3/_article/-char/ja",
+    "journal": "日本経営学会誌",
     "category": "一般医学・社会医学・看護学"
   },
   {
-    "title": "3）腸内細菌叢制御による CD関連腸炎治療の展望",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1630/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
+    "title": "脱グローバル化の中での国際ビジネス研究",
+    "url": "https://www.jstage.jst.go.jp/article/keieijournal/58/0/58_5/_article/-char/ja",
+    "journal": "日本経営学会誌",
     "category": "臨床医学"
   },
   {
-    "title": "4）薬剤耐性菌対策としての新規治療の展望",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1635/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
+    "title": "国際人的資源管理研究の発展経緯と今後の研究課題 ―2000年から2024年を対象とした分析―",
+    "url": "https://www.jstage.jst.go.jp/article/keieijournal/58/0/58_15/_article/-char/ja",
+    "journal": "日本経営学会誌",
     "category": "歯学"
   },
   {
-    "title": "5）高齢者・介護施設での薬剤耐性菌対策",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1639/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
+    "title": "研究の面白さとリサーチ・メソッドの多様性",
+    "url": "https://www.jstage.jst.go.jp/article/keieijournal/58/0/58_19/_article/-char/ja",
+    "journal": "日本経営学会誌",
     "category": "薬学"
   },
   {
-    "title": "司会者のことば",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1644/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
+    "title": "進化を続けるアクション・サイエンス ―アクション・サイエンスは変化する多様な現実の理解にどのように貢献してきたのか？―",
+    "url": "https://www.jstage.jst.go.jp/article/keieijournal/58/0/58_27/_article/-char/ja",
+    "journal": "日本経営学会誌",
     "category": "一般工学・総合工学"
   },
   {
-    "title": "1．肝疾患の病態を進展させる肝微小環境",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1645/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
+    "title": "起業家的パートナーシップの生成過程の語りと画家による視覚イメージの生成",
+    "url": "https://www.jstage.jst.go.jp/article/keieijournal/58/0/58_35/_article/-char/ja",
+    "journal": "日本経営学会誌",
     "category": "ナノ・材料科学"
   },
   {
-    "title": "2．微小環境が生み出す内分泌腫瘍の不均一性と臨床的意義",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1651/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
+    "title": "CSRの変容とコーポレート・ソーシャル・アントレプレナーシップ",
+    "url": "https://www.jstage.jst.go.jp/article/keieijournal/58/0/58_45/_article/-char/ja",
+    "journal": "日本経営学会誌",
     "category": "建築学・土木工学"
   },
   {
-    "title": "3．組織微小環境による循環器・加齢関連疾患の病態制御",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1656/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
+    "title": "経営責任の変容と言説の蓄積 ― CSR概念の類型化とSDG経営への適用 ―",
+    "url": "https://www.jstage.jst.go.jp/article/keieijournal/58/0/58_56/_article/-char/ja",
+    "journal": "日本経営学会誌",
     "category": "機械工学"
   },
   {
-    "title": "4．腫瘍領域の微小環境",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1661/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
+    "title": "組織構成員の外向性と組織内孤立の関係性 ― 今後の孤立研究の展望 ―",
+    "url": "https://www.jstage.jst.go.jp/article/keieijournal/58/0/58_66/_article/-char/ja",
+    "journal": "日本経営学会誌",
     "category": "電気電子工学"
   },
   {
-    "title": "5．悪性リンパ腫における腫瘍微小環境",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1667/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
+    "title": "英文要旨",
+    "url": "https://www.jstage.jst.go.jp/article/keieijournal/58/0/58_69/_article/-char/ja",
+    "journal": "日本経営学会誌",
     "category": "情報科学"
   },
   {
-    "title": "1．骨髄異形成症候群",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1672/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
+    "title": "第98回大会を振り返って",
+    "url": "https://www.jstage.jst.go.jp/article/keieijournal/58/0/58_75/_article/-char/ja",
+    "journal": "日本経営学会誌",
     "category": "環境学"
   },
   {
-    "title": "2．弁膜症治療の最前線",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1678/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
+    "title": "日本経営学会第98回大会プログラム",
+    "url": "https://www.jstage.jst.go.jp/article/keieijournal/58/0/58_77/_article/-char/ja",
+    "journal": "日本経営学会誌",
     "category": "学際科学"
   },
   {
-    "title": "3．全身性エリテマトーデスの最新の治療戦略",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1685/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
+    "title": "第58号（経営学論集第95集）の編集を終えて",
+    "url": "https://www.jstage.jst.go.jp/article/keieijournal/58/0/58_89/_article/-char/ja",
+    "journal": "日本経営学会誌",
     "category": "哲学・宗教"
   },
   {
-    "title": "4．肺癌治療の最前線",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1690/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
+    "title": "ON DIVISIBILITY OF HECKE EIGENVALUES OF IKEDA LIFTS",
+    "url": "https://www.jstage.jst.go.jp/article/kyushujm/80/2/80_205/_article/-char/ja",
+    "journal": "Kyushu Journal of Mathematics",
     "category": "文学・言語学・芸術学"
   },
   {
-    "title": "5．高血圧と慢性腎臓病（CKD）診療の最前線",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1696/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
+    "title": "MILNOR NUMBER OF CERTAIN WEIGHTED LÊ–YOMDIN HYPERSURFACE SINGULARITIES",
+    "url": "https://www.jstage.jst.go.jp/article/kyushujm/80/2/80_223/_article/-char/ja",
+    "journal": "Kyushu Journal of Mathematics",
     "category": "人類学・史学・地理学"
   },
   {
-    "title": "6．自然災害時の感染症とその対策～DICT活動とは～",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1702/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
+    "title": "CHARACTERIZATION OF SUBORDINATE SYMMETRIC MARKOV PROCESSES",
+    "url": "https://www.jstage.jst.go.jp/article/kyushujm/80/2/80_239/_article/-char/ja",
+    "journal": "Kyushu Journal of Mathematics",
     "category": "法学・政治学"
   },
   {
-    "title": "7．てんかんの病態と治療～高齢発症てんかんの最新の知見～",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1710/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
+    "title": "WEIGHTED SECOND MAIN THEOREMS FOR MEROMORPHIC MAPPINGS ON PARABOLIC MANIFOLDS WITH MOVING TARGETS AND THEIR APPLICATION",
+    "url": "https://www.jstage.jst.go.jp/article/kyushujm/80/2/80_259/_article/-char/ja",
+    "journal": "Kyushu Journal of Mathematics",
     "category": "経済学・経営学"
   },
   {
-    "title": "8．不整脈デバイス治療の進歩",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1715/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
+    "title": "GEOMETRY OF CURVES PASSING THROUGH THE WHITNEY UMBRELLA",
+    "url": "https://www.jstage.jst.go.jp/article/kyushujm/80/2/80_281/_article/-char/ja",
+    "journal": "Kyushu Journal of Mathematics",
     "category": "社会学"
   },
   {
-    "title": "9．肝癌薬物療法の進歩",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1722/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
+    "title": "THE FOLLAND–STEIN SPECTRUM OF SOME HEISENBERG BIEBERBACH MANIFOLDS",
+    "url": "https://www.jstage.jst.go.jp/article/kyushujm/80/2/80_301/_article/-char/ja",
+    "journal": "Kyushu Journal of Mathematics",
     "category": "心理学・教育学"
   },
   {
-    "title": "10．多発性囊胞腎の診断と治療",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1727/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
+    "title": "ADAPTED TRANSFORMATIONS OF ORDER ONE AND QUADRATIC FORMS ON WIENER SPACES",
+    "url": "https://www.jstage.jst.go.jp/article/kyushujm/80/2/80_327/_article/-char/ja",
+    "journal": "Kyushu Journal of Mathematics",
     "category": "数学"
   },
   {
-    "title": "11．骨転移の内科治療",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1732/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
+    "title": "THE SECOND INTEGRAL HOMOLOGY OF EVEN ARTIN GROUPS",
+    "url": "https://www.jstage.jst.go.jp/article/kyushujm/80/2/80_351/_article/-char/ja",
+    "journal": "Kyushu Journal of Mathematics",
     "category": "物理学"
   },
   {
-    "title": "12．糖尿病の食事療法",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1738/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
+    "title": "GELFAND HYPERGEOMETRIC FUNCTIONS AS SOLUTIONS TO THE TWO-DIMENSIONAL TODA–HIROTA EQUATION, II",
+    "url": "https://www.jstage.jst.go.jp/article/kyushujm/80/2/80_363/_article/-char/ja",
+    "journal": "Kyushu Journal of Mathematics",
     "category": "化学"
   },
   {
-    "title": "13．内科医がみる骨粗鬆症",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1745/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
+    "title": "GEORGE KELLY'S PERSONAL CONSTRUCT THEORY: SOME COMPARISONS WITH FREUDIAN THEORY.",
+    "url": "https://www.jstage.jst.go.jp/article/psysoc/33/2/33_1990.73/_article/-char/ja",
+    "journal": "PSYCHOLOGIA",
     "category": "地球科学・天文学"
   },
   {
-    "title": "14．COPDの診断と治療",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1751/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
+    "title": "HEMISPHERIC FUNCTION OF JAPANESE ABACUS MASTERS: AN EXAMINATION BY ELECTROENCEPHALOGRAPH",
+    "url": "https://www.jstage.jst.go.jp/article/psysoc/33/2/33_1990.84/_article/-char/ja",
+    "journal": "PSYCHOLOGIA",
     "category": "生物学・生命科学・基礎医学"
   },
   {
-    "title": "15．急性骨髄性白血病の治療の進歩",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1759/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
+    "title": "THE EFFECTS OF TASK RELEVANCY ON EVENT-RELATED BRAIN POTENTIALS ELICITED BY INFREQUENTLY PRESENTED NONWORDS AND SEMANTICALLY DEVIANT WORDS",
+    "url": "https://www.jstage.jst.go.jp/article/psysoc/33/2/33_1990.91/_article/-char/ja",
+    "journal": "PSYCHOLOGIA",
     "category": "農学・食品科学"
   },
   {
-    "title": "16．胆膵疾患に対する超音波内視鏡診療の進歩",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1766/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
+    "title": "MATERNAL RESPONSES TO EXPRESSED DISTRESS OF CHINESE CHILDREN HOSPITALISED FOR ELECTIVE SURGERY",
+    "url": "https://www.jstage.jst.go.jp/article/psysoc/33/2/33_1990.100/_article/-char/ja",
+    "journal": "PSYCHOLOGIA",
     "category": "一般医学・社会医学・看護学"
   },
   {
-    "title": "17．血管炎診療の進歩",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1776/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
+    "title": "MORAL DEVELOPMENT AND THE ABILITY TO FAKE IN A MORAL JUDGMENT TEST AMONG CHINESE ADOLESCENTS",
+    "url": "https://www.jstage.jst.go.jp/article/psysoc/33/2/33_1990.106/_article/-char/ja",
+    "journal": "PSYCHOLOGIA",
     "category": "臨床医学"
   },
   {
-    "title": "18．末梢神経疾患の臨床",
-    "url": "https://www.jstage.jst.go.jp/article/naika/114/9/114_1782/_article/-char/ja",
-    "journal": "日本内科学会雑誌",
+    "title": "FACTORS UNDERLYING PRESCHOOL CHILDREN'S TASK CHOICES",
+    "url": "https://www.jstage.jst.go.jp/article/psysoc/33/2/33_1990.112/_article/-char/ja",
+    "journal": "PSYCHOLOGIA",
     "category": "歯学"
   },
   {
-    "title": "■ 第33回大会報告 ■ チャリティと教育―今日におけるチャリティの意義を考える 趣旨説明と総括",
-    "url": "https://www.jstage.jst.go.jp/article/juef/29/0/29_007/_article/-char/ja",
-    "journal": "日英教育研究フォーラム",
+    "title": "PHYSICAL FACTORS OF MATE SELECTION: TESTING ASSORTATIVE MATING THEORY",
+    "url": "https://www.jstage.jst.go.jp/article/psysoc/33/2/33_1990.118/_article/-char/ja",
+    "journal": "PSYCHOLOGIA",
     "category": "薬学"
   },
   {
-    "title": "チャリティの歴史から見たイギリスの教育",
-    "url": "https://www.jstage.jst.go.jp/article/juef/29/0/29_13/_article/-char/ja",
-    "journal": "日英教育研究フォーラム",
+    "title": "SOME ANTECEDENTS OF MATE SELECTION: AN EXPERIMENTAL STUDY ON PERCEPTION OF SPOUSE",
+    "url": "https://www.jstage.jst.go.jp/article/psysoc/33/2/33_1990.123/_article/-char/ja",
+    "journal": "PSYCHOLOGIA",
     "category": "一般工学・総合工学"
   },
   {
-    "title": "英国の教養教育の視点から ―19 世紀におけるオックスブリッジの変質― 指定討論",
-    "url": "https://www.jstage.jst.go.jp/article/juef/29/0/29_23/_article/-char/ja",
-    "journal": "日英教育研究フォーラム",
+    "title": "A JAPANESE PERSPECTIVE ON CROWDING: HOW WELL HAVE THE JAPANESE ADJUSTED TO HIGH DENSITY?",
+    "url": "https://www.jstage.jst.go.jp/article/psysoc/33/2/33_1990.128/_article/-char/ja",
+    "journal": "PSYCHOLOGIA",
     "category": "ナノ・材料科学"
   },
   {
-    "title": "イングランドの「ポスト 1992 大学」における教育のアウトカム ―ラッセル・グループ大学との比較",
-    "url": "https://www.jstage.jst.go.jp/article/juef/29/0/29_31/_article/-char/ja",
-    "journal": "日英教育研究フォーラム",
+    "title": "第158回理学療法科学学会 学術大会 抄録集",
+    "url": "https://www.jstage.jst.go.jp/article/rika/41/Suppl.3/41_S3_1/_article/-char/ja",
+    "journal": "理学療法科学",
     "category": "建築学・土木工学"
   },
   {
-    "title": "20 世紀中葉イングランドにおける病気療養児教育に関する 教育省と医療界の認識の相違",
-    "url": "https://www.jstage.jst.go.jp/article/juef/29/0/29_47/_article/-char/ja",
-    "journal": "日英教育研究フォーラム",
+    "title": "特集にあたって",
+    "url": "https://www.jstage.jst.go.jp/article/suizo/41/4/41_103/_article/-char/ja",
+    "journal": "膵臓",
     "category": "機械工学"
   },
   {
-    "title": "A. S.ニイルの女性解放思想とサマーヒル•スクールにおける 女子教育的側面",
-    "url": "https://www.jstage.jst.go.jp/article/juef/29/0/29_61/_article/-char/ja",
-    "journal": "日英教育研究フォーラム",
+    "title": "脂肪膵の疫学と病態",
+    "url": "https://www.jstage.jst.go.jp/article/suizo/41/4/41_104/_article/-char/ja",
+    "journal": "膵臓",
     "category": "電気電子工学"
   },
   {
-    "title": "【研究会報告•1】 英国の若者政策における「教育•訓練•雇用への参加」の問題 -これまでのNEETに関わる政策とスコットランドにおける新たな展開-",
-    "url": "https://www.jstage.jst.go.jp/article/juef/29/0/29_76/_article/-char/ja",
-    "journal": "日英教育研究フォーラム",
+    "title": "肥満による膵の免疫環境の変化と炎症",
+    "url": "https://www.jstage.jst.go.jp/article/suizo/41/4/41_111/_article/-char/ja",
+    "journal": "膵臓",
     "category": "情報科学"
   },
   {
-    "title": "【研究会報告• 2】 スコッ ト フノ ドにおける Community Learning and Developmentとしてのユースワークの展開",
-    "url": "https://www.jstage.jst.go.jp/article/juef/29/0/29_81/_article/-char/ja",
-    "journal": "日英教育研究フォーラム",
+    "title": "画像疫学が示す膵内脂肪沈着の臨床的意義",
+    "url": "https://www.jstage.jst.go.jp/article/suizo/41/4/41_119/_article/-char/ja",
+    "journal": "膵臓",
     "category": "環境学"
   },
   {
-    "title": "イギリスの教育動向 ─2024年3月から2025年5月まで─",
-    "url": "https://www.jstage.jst.go.jp/article/juef/29/0/29_85/_article/-char/ja",
-    "journal": "日英教育研究フォーラム",
+    "title": "脂肪膵の検査・診断",
+    "url": "https://www.jstage.jst.go.jp/article/suizo/41/4/41_127/_article/-char/ja",
+    "journal": "膵臓",
     "category": "学際科学"
   },
   {
-    "title": "【書評】橋田慈子 『障害の問題への「当事者性」を獲得する学び --日英の教育改革運動の展開から』 (明石書店、2024年)",
-    "url": "https://www.jstage.jst.go.jp/article/juef/29/0/29_101/_article/-char/ja",
-    "journal": "日英教育研究フォーラム",
+    "title": "脂肪膵と膵癌",
+    "url": "https://www.jstage.jst.go.jp/article/suizo/41/4/41_134/_article/-char/ja",
+    "journal": "膵臓",
     "category": "哲学・宗教"
   },
   {
-    "title": "【図書紹介】 長谷川貴彦編 『サッチャリズム前夜の〈民衆的個人主義〉 ——福祉国家と新自由主義のはざまで』 (岩波書店、2025年)",
-    "url": "https://www.jstage.jst.go.jp/article/juef/29/0/29_105/_article/-char/ja",
-    "journal": "日英教育研究フォーラム",
+    "title": "肥満関連膵障害と膵疾患",
+    "url": "https://www.jstage.jst.go.jp/article/suizo/41/4/41_141/_article/-char/ja",
+    "journal": "膵臓",
     "category": "文学・言語学・芸術学"
   },
   {
-    "title": "Influences of Drought and Salinity Stress on Seed Germination of Four Plant Species in Different Sowing Substrates",
-    "url": "https://www.jstage.jst.go.jp/article/jsta/70/1/70_1/_article/-char/ja",
-    "journal": "Tropical Agriculture and Development",
+    "title": "肥満関連膵障害の治療",
+    "url": "https://www.jstage.jst.go.jp/article/suizo/41/4/41_146/_article/-char/ja",
+    "journal": "膵臓",
     "category": "人類学・史学・地理学"
   },
   {
-    "title": "Physiological Responses to Aluminum Stress in Interspecific Hybrid Rice between O. sativa and O. glaberrima",
-    "url": "https://www.jstage.jst.go.jp/article/jsta/70/1/70_9/_article/-char/ja",
-    "journal": "Tropical Agriculture and Development",
+    "title": "減量・代謝改善手術の現状と効果 ―とくに糖尿病改善効果―",
+    "url": "https://www.jstage.jst.go.jp/article/suizo/41/4/41_153/_article/-char/ja",
+    "journal": "膵臓",
     "category": "法学・政治学"
   },
   {
-    "title": "The Potential for Producing Aquaculture Feed Mixed with Rice Bran Available in Rural Tanzania",
-    "url": "https://www.jstage.jst.go.jp/article/jsta/70/1/70_17/_article/-char/ja",
-    "journal": "Tropical Agriculture and Development",
+    "title": "電子トレーシングレポートシステムの導入とその有用性評価",
+    "url": "https://www.jstage.jst.go.jp/article/jjphcs/52/9/52_597/_article/-char/ja",
+    "journal": "医療薬学",
     "category": "経済学・経営学"
   },
   {
-    "title": "Long-term Effects of Sludge-derived Compost on the Growth and Yield of Pot-grown Rice (Oryza sativa L.) over 9 Years",
-    "url": "https://www.jstage.jst.go.jp/article/jsta/69/4/69_115/_article/-char/ja",
-    "journal": "Tropical Agriculture and Development",
+    "title": "結腸・直腸がんに対するベバシズマブ投与において蛋白尿の評価基準としてUPC比を用いた場合の薬剤継続可否および忍容性の検討",
+    "url": "https://www.jstage.jst.go.jp/article/jjphcs/52/9/52_607/_article/-char/ja",
+    "journal": "医療薬学",
     "category": "社会学"
   },
   {
-    "title": "Growth Characteristics and Response of Newly-Planted Itobasho (Musa balbisiana) to Fertilizer Application from Initial Growth to Community Formation",
-    "url": "https://www.jstage.jst.go.jp/article/jsta/69/4/69_127/_article/-char/ja",
-    "journal": "Tropical Agriculture and Development",
+    "title": "炭酸リチウム誘発性腎機能障害の発症予測因子の解析：多施設後ろ向きコホート研究",
+    "url": "https://www.jstage.jst.go.jp/article/jjphcs/52/9/52_615/_article/-char/ja",
+    "journal": "医療薬学",
     "category": "心理学・教育学"
   },
   {
-    "title": "Effect of Salt Stress to Main Root or Adventitious Root on the Growth of Salt Sensitive and Salt Tolerant Accessions in Vigna vexillata",
-    "url": "https://www.jstage.jst.go.jp/article/jsta/69/4/69_137/_article/-char/ja",
-    "journal": "Tropical Agriculture and Development",
+    "title": "抗菌薬適正使用支援チームの薬剤師による継続的な治療支援が奏功した脳膿瘍の1例",
+    "url": "https://www.jstage.jst.go.jp/article/jjphcs/52/9/52_623/_article/-char/ja",
+    "journal": "医療薬学",
     "category": "数学"
   },
   {
-    "title": "Use of Sugar Mill By-Products as a Substitute for Chemical Fertilizers and Soil-Specific Impacts on Early Sugarcane Growth",
-    "url": "https://www.jstage.jst.go.jp/article/jsta/69/4/69_143/_article/-char/ja",
-    "journal": "Tropical Agriculture and Development",
+    "title": "薬剤業務向上加算に基づく薬剤師出向と病棟薬剤業務体制の整備および医療移行期における薬剤情報連携の課題",
+    "url": "https://www.jstage.jst.go.jp/article/jjphcs/52/9/52_630/_article/-char/ja",
+    "journal": "医療薬学",
     "category": "物理学"
   },
   {
-    "title": "Prediction of Panicle Initiation Stage by Expansion of “Remarkably Long Leaves” of Upland Rice Cultivars (NERICA 3) under Rainfed Conditions",
-    "url": "https://www.jstage.jst.go.jp/article/jsta/69/3/69_87/_article/-char/ja",
-    "journal": "Tropical Agriculture and Development",
+    "title": "ケア移行で薬局薬剤師により回避されたメディケーションエラーの特徴",
+    "url": "https://www.jstage.jst.go.jp/article/jjphcs/52/9/52_638/_article/-char/ja",
+    "journal": "医療薬学",
     "category": "化学"
   },
   {
-    "title": "The Exploitation of Rice Seed Procurement Practices among Farmers in the Rain-fed and Irrigated Areas of Northwestern Lao PDR",
-    "url": "https://www.jstage.jst.go.jp/article/jsta/69/3/69_95/_article/-char/ja",
-    "journal": "Tropical Agriculture and Development",
+    "title": "eGFR 30 mL/min/1.73m2未満患者におけるレムデシビル減量投与と標準量投与の臨床的検討：有効性および安全性",
+    "url": "https://www.jstage.jst.go.jp/article/jjphcs/52/9/52_645/_article/-char/ja",
+    "journal": "医療薬学",
     "category": "地球科学・天文学"
   },
   {
-    "title": "A Comprehensive Study of the Ganja Society Post Prohibition of Legal Cannabis Cultivation and Manufacture in Bangladesh: Regulatory Transformation and Social Dynamics",
-    "url": "https://www.jstage.jst.go.jp/article/jsta/69/3/69_104/_article/-char/ja",
-    "journal": "Tropical Agriculture and Development",
+    "title": "入職時に必要な「基本的な社会的スキル」のルーブリック評価の開発と実務実習での使用評価",
+    "url": "https://www.jstage.jst.go.jp/article/jjphcs/52/9/52_654/_article/-char/ja",
+    "journal": "医療薬学",
     "category": "生物学・生命科学・基礎医学"
   },
   {
-    "title": "Understanding Upland Rice Yield Variability in Central Cameroon: A Comparative Study with Central Madagascar",
-    "url": "https://www.jstage.jst.go.jp/article/jsta/69/3/69_109/_article/-char/ja",
-    "journal": "Tropical Agriculture and Development",
+    "title": "入院統合失調症患者における抗精神病薬の個別的かつ安全な減薬・減量に関する提案：名古屋大学医学部附属病院における処方の実態調査",
+    "url": "https://www.jstage.jst.go.jp/article/jjphcs/52/9/52_666/_article/-char/ja",
+    "journal": "医療薬学",
     "category": "農学・食品科学"
   },
   {
-    "title": "救急救命士養成課程学生がもつ職業的価値観の実態―Z世代学生736名のデータを使用した横断的観察研究―",
-    "url": "https://www.jstage.jst.go.jp/article/jsels/6/3/6_6.3_160/_article/-char/ja",
-    "journal": "救急救命士ジャーナル",
+    "title": "職業としての法務教官 その特質と変化",
+    "url": "https://www.jstage.jst.go.jp/article/jcorrectionres/8/0/8_1/_article/-char/ja",
+    "journal": "矯正研究",
     "category": "一般医学・社会医学・看護学"
   },
   {
-    "title": "スキルスラボ運営を担う院内救急救命士による教育支援の実態―急性期総合病院における後ろ向き調査―",
-    "url": "https://www.jstage.jst.go.jp/article/jsels/6/3/6_6.3_167/_article/-char/ja",
-    "journal": "救急救命士ジャーナル",
+    "title": "日本動機づけ面接学会について 矯正との関わりと今後の展望",
+    "url": "https://www.jstage.jst.go.jp/article/jcorrectionres/8/0/8_10/_article/-char/ja",
+    "journal": "矯正研究",
     "category": "臨床医学"
   },
   {
-    "title": "消防機関に所属する救急救命士のリアリティショックの検討",
-    "url": "https://www.jstage.jst.go.jp/article/jsels/6/3/6_6.3_174/_article/-char/ja",
-    "journal": "救急救命士ジャーナル",
+    "title": "一般社団法人 日本フォレンジック看護学会",
+    "url": "https://www.jstage.jst.go.jp/article/jcorrectionres/8/0/8_11/_article/-char/ja",
+    "journal": "矯正研究",
     "category": "歯学"
   },
   {
-    "title": "「未来の食とロボットⅠ」特集について",
-    "url": "https://www.jstage.jst.go.jp/article/jrsj/44/7/44_44_642/_article/-char/ja",
-    "journal": "日本ロボット学会誌",
+    "title": "動的保安の実施の正しい理解と効果的実施方法の考察 考察結果から考える刑務官の在り方",
+    "url": "https://www.jstage.jst.go.jp/article/jcorrectionres/8/0/8_2/_article/-char/ja",
+    "journal": "矯正研究",
     "category": "薬学"
   },
   {
-    "title": "嚥下動作を再現する等倍ロボット",
-    "url": "https://www.jstage.jst.go.jp/article/jrsj/44/7/44_44_647/_article/-char/ja",
-    "journal": "日本ロボット学会誌",
+    "title": "受刑者に対する職業訓練が就労に与える影響についての検証 性差を踏まえた傾向スコアマッチングによる検討",
+    "url": "https://www.jstage.jst.go.jp/article/jcorrectionres/8/0/8_3/_article/-char/ja",
+    "journal": "矯正研究",
     "category": "一般工学・総合工学"
   },
   {
-    "title": "ロボットを食べる",
-    "url": "https://www.jstage.jst.go.jp/article/jrsj/44/7/44_44_653/_article/-char/ja",
-    "journal": "日本ロボット学会誌",
+    "title": "「工場」をめぐる刑務官の指導・処遇技術とは何か 刑務官の実践知に関する試論",
+    "url": "https://www.jstage.jst.go.jp/article/jcorrectionres/8/0/8_4/_article/-char/ja",
+    "journal": "矯正研究",
     "category": "ナノ・材料科学"
   },
   {
-    "title": "味覚メディアによる食体験の再構築 —味覚・嗅覚・食感・栄養を記録・編集・再生する—",
-    "url": "https://www.jstage.jst.go.jp/article/jrsj/44/7/44_44_659/_article/-char/ja",
-    "journal": "日本ロボット学会誌",
+    "title": "元刑務所長ｲﾝﾀﾋﾞｭｰ記録 刑務官のオーラル・ヒストリー",
+    "url": "https://www.jstage.jst.go.jp/article/jcorrectionres/8/0/8_5/_article/-char/ja",
+    "journal": "矯正研究",
     "category": "建築学・土木工学"
   },
   {
-    "title": "食卓にロボットが座るとき：共食場面における共在と対話の心理的影響",
-    "url": "https://www.jstage.jst.go.jp/article/jrsj/44/7/44_44_663/_article/-char/ja",
-    "journal": "日本ロボット学会誌",
+    "title": "現職刑務官インタビュー記録 刑務所の工場担当が語る処遇の要諦",
+    "url": "https://www.jstage.jst.go.jp/article/jcorrectionres/8/0/8_6/_article/-char/ja",
+    "journal": "矯正研究",
     "category": "機械工学"
   },
   {
-    "title": "蠕動運動で食品を混ぜて，運んで，発酵させる！ —腸管運動に学ぶ革新的な食品プロセス技術—",
-    "url": "https://www.jstage.jst.go.jp/article/jrsj/44/7/44_44_669/_article/-char/ja",
-    "journal": "日本ロボット学会誌",
+    "title": "刑務所に関する一般市民の認識調査 厳罰支持、あるいは教育支持の背景",
+    "url": "https://www.jstage.jst.go.jp/article/jcorrectionres/8/0/8_7/_article/-char/ja",
+    "journal": "矯正研究",
     "category": "電気電子工学"
   },
   {
-    "title": "味覚の計測・提示技術とロボティクスへの展開",
-    "url": "https://www.jstage.jst.go.jp/article/jrsj/44/7/44_44_675/_article/-char/ja",
-    "journal": "日本ロボット学会誌",
+    "title": "矯正施設と被害者支援団体との関わりの現状と課題",
+    "url": "https://www.jstage.jst.go.jp/article/jcorrectionres/8/0/8_8/_article/-char/ja",
+    "journal": "矯正研究",
     "category": "情報科学"
   },
   {
-    "title": "OSSで動作するUAVの悪用防止プロセッサによる侵入禁止区域での強制軟着陸の基礎検証",
-    "url": "https://www.jstage.jst.go.jp/article/jrsj/44/7/44_44_687/_article/-char/ja",
-    "journal": "日本ロボット学会誌",
+    "title": "フィンランド共和国における動的保安とオープンダイアローグ 「対話」を巡って",
+    "url": "https://www.jstage.jst.go.jp/article/jcorrectionres/8/0/8_9/_article/-char/ja",
+    "journal": "矯正研究",
     "category": "環境学"
   },
   {
-    "title": "軌道上サービスを実現するためのカラーマーカを用いた相対位置姿勢計測",
-    "url": "https://www.jstage.jst.go.jp/article/jrsj/44/7/44_44_691/_article/-char/ja",
-    "journal": "日本ロボット学会誌",
+    "title": "Effects of Molecular Hydrogen Inhalation on Primary Dysmenorrhea: A Single-Group Time-Series Pilot Study",
+    "url": "https://www.jstage.jst.go.jp/article/jcam/23/1/23_1/_article/-char/ja",
+    "journal": "Japanese Journal of Complementary and Alternative Medicine",
     "category": "学際科学"
   },
   {
-    "title": "熱溶融積層方式による樹脂部材の強化に関する研究 —金属薄肉パイプ挿入による曲げ剛性の向上検討—",
-    "url": "https://www.jstage.jst.go.jp/article/jrsj/44/7/44_44_695/_article/-char/ja",
-    "journal": "日本ロボット学会誌",
+    "title": "Experiences of Healthcare Professionals Providing Virtual Reality-Based Care to Terminally ill Patients Under COVID-19-Related Visitation Restrictions",
+    "url": "https://www.jstage.jst.go.jp/article/jcam/23/1/23_9/_article/-char/ja",
+    "journal": "Japanese Journal of Complementary and Alternative Medicine",
     "category": "哲学・宗教"
   },
   {
-    "title": "ロボット開発のための研究倫理審査システム",
-    "url": "https://www.jstage.jst.go.jp/article/jrsj/44/7/44_44_699/_article/-char/ja",
-    "journal": "日本ロボット学会誌",
+    "title": "心音レインボートレーニングが高齢者の認知機能に及ぼす効果―高齢者施設における検証―",
+    "url": "https://www.jstage.jst.go.jp/article/jcam/23/1/23_19/_article/-char/ja",
+    "journal": "日本補完代替医療学会誌",
     "category": "文学・言語学・芸術学"
-  },
-  {
-    "title": "次行動を見据えた動作中認識に基づく高効率かつロバストなPick-and-Placeシステムの開発",
-    "url": "https://www.jstage.jst.go.jp/article/jrsj/44/7/44_44_703/_article/-char/ja",
-    "journal": "日本ロボット学会誌",
-    "category": "人類学・史学・地理学"
-  },
-  {
-    "title": "ロボットの身体性と光投影が人の歩行にもたらす影響",
-    "url": "https://www.jstage.jst.go.jp/article/jrsj/44/7/44_44_707/_article/-char/ja",
-    "journal": "日本ロボット学会誌",
-    "category": "法学・政治学"
-  },
-  {
-    "title": "防水と吸着機能を搭載したロボットハンドの開発",
-    "url": "https://www.jstage.jst.go.jp/article/jrsj/44/7/44_44_711/_article/-char/ja",
-    "journal": "日本ロボット学会誌",
-    "category": "経済学・経営学"
-  },
-  {
-    "title": "小型磁気センサを用いたプロペラ変形量計測に基づく推力推定手法の提案",
-    "url": "https://www.jstage.jst.go.jp/article/jrsj/44/7/44_44_714/_article/-char/ja",
-    "journal": "日本ロボット学会誌",
-    "category": "社会学"
-  },
-  {
-    "title": "ペプチドミクス―方法と生理活性ペプチド解析への応用",
-    "url": "https://www.jstage.jst.go.jp/article/jpros/11/1/11_1/_article/-char/ja",
-    "journal": "日本プロテオーム学会誌",
-    "category": "心理学・教育学"
-  },
-  {
-    "title": "SWATH-MSを用いたANCA関連血管炎におけるミエロペルオキシダーゼの翻訳後修飾の網羅的解析",
-    "url": "https://www.jstage.jst.go.jp/article/jpros/11/1/11_15/_article/-char/ja",
-    "journal": "日本プロテオーム学会誌",
-    "category": "数学"
-  },
-  {
-    "title": "グライコプロテオミクスによるがん関連糖鎖変化の解析 ―細胞・組織・血清を対象とした研究展開―",
-    "url": "https://www.jstage.jst.go.jp/article/jpros/11/1/11_23/_article/-char/ja",
-    "journal": "日本プロテオーム学会誌",
-    "category": "物理学"
-  },
-  {
-    "title": "Antiviral mechanism of Lactobacillus in aquaculture: A minireview",
-    "url": "https://www.jstage.jst.go.jp/article/jmc/31/3/31_73/_article/-char/ja",
-    "journal": "Journal of Microorganism Control",
-    "category": "化学"
-  },
-  {
-    "title": "Halophilic lactic acid bacteria: A minireview of their prospects in marine aquaculture health management",
-    "url": "https://www.jstage.jst.go.jp/article/jmc/31/3/31_81/_article/-char/ja",
-    "journal": "Journal of Microorganism Control",
-    "category": "地球科学・天文学"
-  },
-  {
-    "title": "Sporicidal activity of sodium linear alkylbenzene sulfonate against Bacillus spores under acidic and high-temperature conditions",
-    "url": "https://www.jstage.jst.go.jp/article/jmc/31/3/31_89/_article/-char/ja",
-    "journal": "Journal of Microorganism Control",
-    "category": "生物学・生命科学・基礎医学"
-  },
-  {
-    "title": "Effect of preheating on high hydrostatic pressure-induced germination of Bacillus subtilis spores",
-    "url": "https://www.jstage.jst.go.jp/article/jmc/31/3/31_97/_article/-char/ja",
-    "journal": "Journal of Microorganism Control",
-    "category": "農学・食品科学"
-  },
-  {
-    "title": "Endophytic fungi isolated from coffee plants promote Arabidopsis thaliana growth and suppress soil-borne fungal pathogens",
-    "url": "https://www.jstage.jst.go.jp/article/jmc/31/3/31_105/_article/-char/ja",
-    "journal": "Journal of Microorganism Control",
-    "category": "一般医学・社会医学・看護学"
-  },
-  {
-    "title": "Measurement of dead fungal counts on window frames via real-time PCR",
-    "url": "https://www.jstage.jst.go.jp/article/jmc/31/3/31_115/_article/-char/ja",
-    "journal": "Journal of Microorganism Control",
-    "category": "臨床医学"
-  },
-  {
-    "title": "Microbiological analysis of the antibacterial effects of sprays applied to non-woven fabric masks",
-    "url": "https://www.jstage.jst.go.jp/article/jmc/31/3/31_123/_article/-char/ja",
-    "journal": "Journal of Microorganism Control",
-    "category": "歯学"
-  },
-  {
-    "title": "高気圧酸素治療中の火災事故について",
-    "url": "https://www.jstage.jst.go.jp/article/jjshum/24/4/24_185/_article/-char/ja",
-    "journal": "日本高気圧環境・潜水医学会雑誌",
-    "category": "薬学"
-  },
-  {
-    "title": "飽和潜水時の利尿現象",
-    "url": "https://www.jstage.jst.go.jp/article/jjshum/24/4/24_201/_article/-char/ja",
-    "journal": "日本高気圧環境・潜水医学会雑誌",
-    "category": "一般工学・総合工学"
-  },
-  {
-    "title": "脳梗塞に対する高気圧酸素治療の効果",
-    "url": "https://www.jstage.jst.go.jp/article/jjshum/24/4/24_209/_article/-char/ja",
-    "journal": "日本高気圧環境・潜水医学会雑誌",
-    "category": "ナノ・材料科学"
-  },
-  {
-    "title": "壊疽性軟部組織感染症に対する高気圧酸素治療",
-    "url": "https://www.jstage.jst.go.jp/article/jjshum/24/4/24_217/_article/-char/ja",
-    "journal": "日本高気圧環境・潜水医学会雑誌",
-    "category": "建築学・土木工学"
-  },
-  {
-    "title": "医療ガスの安全性について",
-    "url": "https://www.jstage.jst.go.jp/article/jjshum/24/4/24_227/_article/-char/ja",
-    "journal": "日本高気圧環境・潜水医学会雑誌",
-    "category": "機械工学"
-  },
-  {
-    "title": "脳外科的疾患に対する高気圧酸素治療",
-    "url": "https://www.jstage.jst.go.jp/article/jjshum/24/3/24_125/_article/-char/ja",
-    "journal": "日本高気圧環境・潜水医学会雑誌",
-    "category": "電気電子工学"
-  },
-  {
-    "title": "高気圧治療装置内における輸液ポンプおよびシリンジポンプの安全性と正確性について",
-    "url": "https://www.jstage.jst.go.jp/article/jjshum/24/3/24_139/_article/-char/ja",
-    "journal": "日本高気圧環境・潜水医学会雑誌",
-    "category": "情報科学"
-  },
-  {
-    "title": "骨，関節感染症に対する高気圧酸素療法",
-    "url": "https://www.jstage.jst.go.jp/article/jjshum/24/3/24_145/_article/-char/ja",
-    "journal": "日本高気圧環境・潜水医学会雑誌",
-    "category": "環境学"
-  },
-  {
-    "title": "SCUBAによるTRIMIX混合ガス潜水",
-    "url": "https://www.jstage.jst.go.jp/article/jjshum/24/3/24_153/_article/-char/ja",
-    "journal": "日本高気圧環境・潜水医学会雑誌",
-    "category": "学際科学"
-  },
-  {
-    "title": "脳梗塞に対する高気圧酸素療法とSEP（somato sensory evoked potentials）",
-    "url": "https://www.jstage.jst.go.jp/article/jjshum/24/3/24_161/_article/-char/ja",
-    "journal": "日本高気圧環境・潜水医学会雑誌",
-    "category": "哲学・宗教"
-  },
-  {
-    "title": "脳虚血に対する高気圧酸素治療 ―その適応と限界について―",
-    "url": "https://www.jstage.jst.go.jp/article/jjshum/24/3/24_169/_article/-char/ja",
-    "journal": "日本高気圧環境・潜水医学会雑誌",
-    "category": "文学・言語学・芸術学"
-  },
-  {
-    "title": "Budd-Chiari症候群による難治性潰瘍に対する植皮術と高圧酸素療法の併用療法",
-    "url": "https://www.jstage.jst.go.jp/article/jjshum/24/3/24_177/_article/-char/ja",
-    "journal": "日本高気圧環境・潜水医学会雑誌",
-    "category": "人類学・史学・地理学"
-  },
-  {
-    "title": "虚血性脳血管障害に対する高気圧酸素療法の有効性と限界",
-    "url": "https://www.jstage.jst.go.jp/article/jjshum/24/2/24_65/_article/-char/ja",
-    "journal": "日本高気圧環境・潜水医学会雑誌",
-    "category": "法学・政治学"
-  },
-  {
-    "title": "101ATAヘリウム酸素環境下のネコにおける相対高圧徐脈",
-    "url": "https://www.jstage.jst.go.jp/article/jjshum/24/2/24_75/_article/-char/ja",
-    "journal": "日本高気圧環境・潜水医学会雑誌",
-    "category": "経済学・経営学"
-  },
-  {
-    "title": "イヌの18分間完全全脳虚血におよぼす高気圧酸素治療の効果",
-    "url": "https://www.jstage.jst.go.jp/article/jjshum/24/2/24_83/_article/-char/ja",
-    "journal": "日本高気圧環境・潜水医学会雑誌",
-    "category": "社会学"
-  },
-  {
-    "title": "高圧環境下の呼吸動態に関する研究 ―体熱損失測定―",
-    "url": "https://www.jstage.jst.go.jp/article/jjshum/24/2/24_91/_article/-char/ja",
-    "journal": "日本高気圧環境・潜水医学会雑誌",
-    "category": "心理学・教育学"
-  },
-  {
-    "title": "潜水漁業者の難聴について",
-    "url": "https://www.jstage.jst.go.jp/article/jjshum/24/2/24_101/_article/-char/ja",
-    "journal": "日本高気圧環境・潜水医学会雑誌",
-    "category": "数学"
-  },
-  {
-    "title": "原発性肺高血圧症に対する高圧療法の有効性",
-    "url": "https://www.jstage.jst.go.jp/article/jjshum/24/2/24_111/_article/-char/ja",
-    "journal": "日本高気圧環境・潜水医学会雑誌",
-    "category": "物理学"
-  },
-  {
-    "title": "千葉大学医学部附属病院に新設された第2種高気圧治療装置 ―操作性，機能性，経済性について―",
-    "url": "https://www.jstage.jst.go.jp/article/jjshum/24/2/24_117/_article/-char/ja",
-    "journal": "日本高気圧環境・潜水医学会雑誌",
-    "category": "化学"
-  },
-  {
-    "title": "エネルギー消費統計調査個票データに基づく事務所ビルストックのエネルギー消費量推計",
-    "url": "https://www.jstage.jst.go.jp/article/jjser/47/5/47_175/_article/-char/ja",
-    "journal": "エネルギー・資源学会論文誌",
-    "category": "地球科学・天文学"
-  },
-  {
-    "title": "送電接続方式とリードタイムが洋上風力発電コストに与える影響：欧州主要国における要因分解分析",
-    "url": "https://www.jstage.jst.go.jp/article/jjser/47/5/47_185/_article/-char/ja",
-    "journal": "エネルギー・資源学会論文誌",
-    "category": "生物学・生命科学・基礎医学"
   }
 ];
