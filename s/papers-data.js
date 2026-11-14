@@ -1,2240 +1,2378 @@
 window.JSTAGE_PAPERS = [
   {
-    "title": "Dactylospora mangrovei sp. nov. (Discomycetes, Ascomycota) from mangrove wood",
-    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/4/40_MYC40317/_article/-char/ja",
-    "journal": "Mycoscience",
+    "title": "高齢在宅療養者 3 症例を対象とした訪問歯科診療における多職種連携の実践",
+    "url": "https://www.jstage.jst.go.jp/article/healthsciences/42/3/42_129/_article/-char/ja",
+    "journal": "日本健康科学学会誌",
     "category": "数学"
   },
   {
-    "title": "Phylogenetic relationships of Pythium species based on ITS and 5.8S sequences of the ribosomal DNA",
-    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/4/40_MYC40321/_article/-char/ja",
-    "journal": "Mycoscience",
+    "title": "指定演題",
+    "url": "https://www.jstage.jst.go.jp/article/clinicalneurol/66/Supplement/66_66_supplement_S1/_article/-char/ja",
+    "journal": "臨床神経学",
     "category": "物理学"
   },
   {
-    "title": "How do Japanese isolates of Verticillium dahliae correspond with standardized VCG testers?",
-    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/4/40_MYC40333/_article/-char/ja",
-    "journal": "Mycoscience",
+    "title": "一般演題優秀演題賞候補セッション",
+    "url": "https://www.jstage.jst.go.jp/article/clinicalneurol/66/Supplement/66_66_supplement_S227/_article/-char/ja",
+    "journal": "臨床神経学",
     "category": "化学"
   },
   {
-    "title": "A new basidiomycetous anamorph genus with cruciform conidia",
-    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/4/40_MYC40345/_article/-char/ja",
-    "journal": "Mycoscience",
+    "title": "一般演題（口演）",
+    "url": "https://www.jstage.jst.go.jp/article/clinicalneurol/66/Supplement/66_66_supplement_S234/_article/-char/ja",
+    "journal": "臨床神経学",
     "category": "地球科学・天文学"
   },
   {
-    "title": "Light-induced fruit body formation of an entomogenous fungus Paecilomyces tenuipes",
-    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/4/40_MYC40349/_article/-char/ja",
-    "journal": "Mycoscience",
+    "title": "一般演題（ポスター）",
+    "url": "https://www.jstage.jst.go.jp/article/clinicalneurol/66/Supplement/66_66_supplement_S276/_article/-char/ja",
+    "journal": "臨床神経学",
     "category": "生物学・生命科学・基礎医学"
   },
   {
-    "title": "Macrocyst formation in three dictyostelid species, Dictyostelium monochasioides, Polysphondylium candidum, and P. pseudo-candidum",
-    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/4/40_MYC40359/_article/-char/ja",
-    "journal": "Mycoscience",
+    "title": "メディカルスタッフ演題",
+    "url": "https://www.jstage.jst.go.jp/article/clinicalneurol/66/Supplement/66_66_supplement_S426/_article/-char/ja",
+    "journal": "臨床神経学",
     "category": "農学・食品科学"
   },
   {
-    "title": "Suppression and reactivation of UV-induced sporulation by blue light in Bipolaris oryzae",
-    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/4/40_MYC40363/_article/-char/ja",
-    "journal": "Mycoscience",
+    "title": "学生・研修医演題",
+    "url": "https://www.jstage.jst.go.jp/article/clinicalneurol/66/Supplement/66_66_supplement_S440/_article/-char/ja",
+    "journal": "臨床神経学",
     "category": "一般医学・社会医学・看護学"
   },
   {
-    "title": "Germination and growth of Erythrorchis ochobiensis (Orchidaceae) accelerated by monokaryons and dikaryons of Lenzites betulinus and Trametes hirsuta",
-    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/4/40_MYC40367/_article/-char/ja",
-    "journal": "Mycoscience",
+    "title": "年頭にあたって",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/26/1/26_2/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "臨床医学"
   },
   {
-    "title": "Change in isolation frequency of Typhula ishikariensis from turfgrass under snow cover on golf courses",
-    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/4/40_MYC40373/_article/-char/ja",
-    "journal": "Mycoscience",
+    "title": "日本の地域を支援するという大きな目的のために",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/26/1/26_4/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "歯学"
   },
   {
-    "title": "New observations on Monotosporella rhizoidea",
-    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/4/40_MYC40377/_article/-char/ja",
-    "journal": "Mycoscience",
+    "title": "地域医療とまちづくり イントロダクション",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/26/1/26_10/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "薬学"
   },
   {
-    "title": "Notes on Ordus chiayionsis in Tsukuba",
-    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/4/40_MYC40383/_article/-char/ja",
-    "journal": "Mycoscience",
+    "title": "震災復興とまちづくりのグランドデザイン",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/26/1/26_13/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "一般工学・総合工学"
   },
   {
-    "title": "Analysis of mushroom diversity in successional young forests and equilibrium evergreen broad-leaved forests",
-    "url": "https://www.jstage.jst.go.jp/article/mycosci/35/1/35_MYC35001/_article/-char/ja",
-    "journal": "Mycoscience",
+    "title": "高齢者福祉とまちづくり－「地域でねばる」20年間の実践－",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/26/1/26_18/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "ナノ・材料科学"
   },
   {
-    "title": "Morphological and physiological comparisons of Helicobasidium mompa and H. purpureum",
-    "url": "https://www.jstage.jst.go.jp/article/mycosci/35/1/35_MYC35015/_article/-char/ja",
-    "journal": "Mycoscience",
+    "title": "在宅医療とまちづくり",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/26/1/26_23/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "建築学・土木工学"
   },
   {
-    "title": "Notes on three Japanese Agaricales",
-    "url": "https://www.jstage.jst.go.jp/article/mycosci/35/1/35_MYC35021/_article/-char/ja",
-    "journal": "Mycoscience",
+    "title": "地域医療が要となった教育，福祉と連携したまちづくり",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/26/1/26_28/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "機械工学"
   },
   {
-    "title": "Fungal succession on pine needles in Germany",
-    "url": "https://www.jstage.jst.go.jp/article/mycosci/35/1/35_MYC35029/_article/-char/ja",
-    "journal": "Mycoscience",
+    "title": "住民主体のまちづくりの進め方－目指すは住民の生活？－",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/26/1/26_36/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "電気電子工学"
   },
   {
-    "title": "Biological species and morphological characteristics of Armillaria mellea complex in Hokkaido: A. sinapina and two new species, A. jezoensis and A. singula",
-    "url": "https://www.jstage.jst.go.jp/article/mycosci/35/1/35_MYC35039/_article/-char/ja",
-    "journal": "Mycoscience",
+    "title": "ハワイ大学関連施設救急部，ハワイ大学老年病学教室視察に関する報告 第1部 ハワイ大学関連施設クイーンズメディカルセンター（The Queenʼs Medical Center）救急部門視察について",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/26/1/26_42/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "情報科学"
   },
   {
-    "title": "Colonization of Retama raetam seeds by fungi and their significance in seed germination",
-    "url": "https://www.jstage.jst.go.jp/article/mycosci/35/1/35_MYC35053/_article/-char/ja",
-    "journal": "Mycoscience",
+    "title": "第１回 伊東温泉緩和ケア研修会開催報告",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/26/1/26_45/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "環境学"
   },
   {
-    "title": "The genus Savoryella from freshwater habitats, including S. grandispora sp. nov.",
-    "url": "https://www.jstage.jst.go.jp/article/mycosci/35/1/35_MYC35059/_article/-char/ja",
-    "journal": "Mycoscience",
+    "title": "Mahidol大学でのマラリアマネジメントコースに参加して",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/26/1/26_49/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "学際科学"
   },
   {
-    "title": "A new variety of Talaromyces wortmannii and some observation on Talaromyces assiutensis",
-    "url": "https://www.jstage.jst.go.jp/article/mycosci/35/1/35_MYC35063/_article/-char/ja",
-    "journal": "Mycoscience",
+    "title": "地域のエンド・オブ・ライフケア（2）人と人とのつながりで築く地域ケア 実践ヘルスプロモーション",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/26/1/26_56/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "哲学・宗教"
   },
   {
-    "title": "Ecological roles of arbuscular mycorrhizal fungi in two wild legume plants",
-    "url": "https://www.jstage.jst.go.jp/article/mycosci/35/1/35_MYC35069/_article/-char/ja",
-    "journal": "Mycoscience",
+    "title": "自主的なグループ活動の運営に求められる力 実践ヘルスプロモーション",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/26/1/26_60/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "文学・言語学・芸術学"
   },
   {
-    "title": "Fusarium crookwellense, a newly isolated fungus from wheat in Japan: Its mycotoxin production and pathogenicity to wheat and barley",
-    "url": "https://www.jstage.jst.go.jp/article/mycosci/35/1/35_MYC35077/_article/-char/ja",
-    "journal": "Mycoscience",
+    "title": "平成23年度 へき地医療セミナー",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/26/1/26_62/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "人類学・史学・地理学"
   },
   {
-    "title": "Some cultural characteristics of mycelia of a mycorrhizal fungus, Lyophyllum shimeji",
-    "url": "https://www.jstage.jst.go.jp/article/mycosci/35/1/35_MYC35083/_article/-char/ja",
-    "journal": "Mycoscience",
+    "title": "第19回 地域医療外科系連合会総会報告",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/26/1/26_66/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "法学・政治学"
   },
   {
-    "title": "Electron microscopy of infection of nematodes by Dactylaria haptotyla",
-    "url": "https://www.jstage.jst.go.jp/article/mycosci/35/1/35_MYC35089/_article/-char/ja",
-    "journal": "Mycoscience",
+    "title": "へき地離島周産期医療フォーラム in 種子島産声は地域の宝 －守れ!!へき地離島の周産期－ BLSO 種子島コース",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/26/1/26_68/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "経済学・経営学"
   },
   {
-    "title": "Radiation and fermentation treatment of cellulosic wastes",
-    "url": "https://www.jstage.jst.go.jp/article/mycosci/35/1/35_MYC35095/_article/-char/ja",
-    "journal": "Mycoscience",
+    "title": "離島交換日記 中安先生へ",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/26/1/26_72/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "社会学"
   },
   {
-    "title": "Lagenidium myophilum infection in the coonstripe shrimp, Pandalus hypsinotus",
-    "url": "https://www.jstage.jst.go.jp/article/mycosci/35/1/35_MYC35099/_article/-char/ja",
-    "journal": "Mycoscience",
+    "title": "「心に残る医療人に思いをはせて」 看護・介護の視点から",
+    "url": "https://www.jstage.jst.go.jp/article/chiikiigaku/26/1/26_74/_article/-char/ja",
+    "journal": "月刊地域医学",
     "category": "心理学・教育学"
   },
   {
-    "title": "Irpicomyces cornicola sp. nov. from Comus florida in Japan",
-    "url": "https://www.jstage.jst.go.jp/article/mycosci/35/1/35_MYC35105/_article/-char/ja",
-    "journal": "Mycoscience",
+    "title": "鳥取市湖山池津生島で確認された脊椎動物",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/2/0/2_1/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "数学"
   },
   {
-    "title": "Ascomycete phylogenetics: Morphology and molecules",
-    "url": "https://www.jstage.jst.go.jp/article/mycosci/35/1/35_MYC35109/_article/-char/ja",
-    "journal": "Mycoscience",
+    "title": "水田におけるタカサブロウ Eclipta thermalis (Linn.) Linn. とアメリカタカサブロウ E. alba Hassk. の生態分布—鳥取平野と松山平野との比較—",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/2/0/2_5/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "物理学"
   },
   {
-    "title": "Microcycle conidiation–A review",
-    "url": "https://www.jstage.jst.go.jp/article/mycosci/35/1/35_MYC35113/_article/-char/ja",
-    "journal": "Mycoscience",
+    "title": "隠岐島前の中ノ島および西ノ島におけるオオゴキブリの記録",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/2/0/2_12/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "化学"
   },
   {
-    "title": "司書教諭と社会科教諭による地理分野における探究学習の設計 フィールドワークに基づく分析",
-    "url": "https://www.jstage.jst.go.jp/article/mslis/95/0/95_1/_article/-char/ja",
-    "journal": "Library and Information Science",
+    "title": "島根県のハナアブ科",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/2/0/2_13/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "地球科学・天文学"
   },
   {
-    "title": "目次",
-    "url": "https://www.jstage.jst.go.jp/article/kokaken/57/2/57_00/_article/-char/ja",
-    "journal": "交通科学",
+    "title": "鳥取県日野郡日野町葦池における水生昆虫および水草の記録",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/2/0/2_18/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "生物学・生命科学・基礎医学"
   },
   {
-    "title": "大阪・関西万博が示した交通・モビリティと環境・空間デザインの新展開",
-    "url": "https://www.jstage.jst.go.jp/article/kokaken/57/2/57_01/_article/-char/ja",
-    "journal": "交通科学",
+    "title": "鳥取県米子市内におけるコオイムシの記録",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/2/0/2_20/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "農学・食品科学"
   },
   {
-    "title": "大阪・関西万博 輸送実績報告",
-    "url": "https://www.jstage.jst.go.jp/article/kokaken/57/2/57_02/_article/-char/ja",
-    "journal": "交通科学",
+    "title": "鳥取県中・西部7河川におけるオオサンショウウオの生息状況",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/2/0/2_21/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "一般医学・社会医学・看護学"
   },
   {
-    "title": "大阪・関西万博における路車協調システムを用いた自動運転走行支援の実現",
-    "url": "https://www.jstage.jst.go.jp/article/kokaken/57/2/57_03/_article/-char/ja",
-    "journal": "交通科学",
+    "title": "島根県隠岐の島町蛸木海岸に漂着したアカイカ",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/2/0/2_29/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "臨床医学"
   },
   {
-    "title": "大阪・関西万博に関するバス輸送サービス －神姫バスの事例－",
-    "url": "https://www.jstage.jst.go.jp/article/kokaken/57/2/57_04/_article/-char/ja",
-    "journal": "交通科学",
+    "title": "鳥取県西伯郡南部町におけるシロマダラの初記録",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/2/0/2_32_2/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "歯学"
   },
   {
-    "title": "大阪・関西万博における人流統制 －ナッジとアフォーダンスに基づく統合的環境設計の分析－",
-    "url": "https://www.jstage.jst.go.jp/article/kokaken/57/2/57_05/_article/-char/ja",
-    "journal": "交通科学",
+    "title": "米子水鳥公園におけるアオタテハモドキの記録",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/2/0/2_32_1/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "薬学"
   },
   {
-    "title": "万博探検イベントの実施報告 －大阪・関西万博における移動支援技術と空間デザインの実証－",
-    "url": "https://www.jstage.jst.go.jp/article/kokaken/57/2/57_06/_article/-char/ja",
-    "journal": "交通科学",
+    "title": "ミズラモグラの鳥取県三朝町からの初記録",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/2/0/2_33/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "一般工学・総合工学"
   },
   {
-    "title": "大阪・関西万博における障害当事者参画の取り組み",
-    "url": "https://www.jstage.jst.go.jp/article/kokaken/57/2/57_07/_article/-char/ja",
-    "journal": "交通科学",
+    "title": "智頭町 (暖温帯低標高) におけるヤマネ (げっ歯目ヤマネ科) の記録",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/2/0/2_34_2/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "ナノ・材料科学"
   },
   {
-    "title": "大規模イベントにおける車いす利用者のアクセシビリティ評価に関する考察 －大阪・関西万博を事例として－",
-    "url": "https://www.jstage.jst.go.jp/article/kokaken/57/2/57_08/_article/-char/ja",
-    "journal": "交通科学",
+    "title": "鳥取県におけるカサネシタラガイの記録",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/2/0/2_34_1/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "建築学・土木工学"
   },
   {
-    "title": "西田哲学への問い －〈純粋経験〉とは何か－",
-    "url": "https://www.jstage.jst.go.jp/article/kitasatoclas/31/0/31_1/_article/-char/ja",
-    "journal": "北里大学一般教育紀要",
+    "title": "スズサイコ (ガガイモ科) の新産地",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/2/0/2_36_2/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "機械工学"
   },
   {
-    "title": "Beyond Plagiarism: Understanding Student Motivation and Perceptions of AI Writing Tools in Higher Education",
-    "url": "https://www.jstage.jst.go.jp/article/kitasatoclas/31/0/31_19/_article/-char/ja",
-    "journal": "KITASATO REVIEW Annual Report of Studies in Liberal Arts and Sciences",
+    "title": "隠岐島後初記録のヨツバコガネ",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/2/0/2_36/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "電気電子工学"
   },
   {
-    "title": "句構造規則に基づくコンピュータによる言語獲得シミュレーション",
-    "url": "https://www.jstage.jst.go.jp/article/kitasatoclas/31/0/31_31/_article/-char/ja",
-    "journal": "北里大学一般教育紀要",
+    "title": "ヤマカガシの死体を食うオオサンショウウオを目撃",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/2/0/2_38/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "情報科学"
   },
   {
-    "title": "櫻井義秀、横山聖美編著『ウェルダイングの臨床社会学－生老病死と宗教－』",
-    "url": "https://www.jstage.jst.go.jp/article/kitasatoclas/31/0/31_63/_article/-char/ja",
-    "journal": "北里大学一般教育紀要",
+    "title": "氷ノ山におけるヒナコウモリの初記録",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/2/0/2_39/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "環境学"
   },
   {
-    "title": "常瀟琳『道理と風俗－水戸学と文明論の十九世紀－』",
-    "url": "https://www.jstage.jst.go.jp/article/kitasatoclas/31/0/31_71/_article/-char/ja",
-    "journal": "北里大学一般教育紀要",
+    "title": "鳥取県日南町大倉山からのカスミサンショウウオ高地型の記録",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/2/0/2_40/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "学際科学"
   },
   {
-    "title": "執筆者紹介",
-    "url": "https://www.jstage.jst.go.jp/article/kitasatoclas/31/0/31_81/_article/-char/ja",
-    "journal": "北里大学一般教育紀要",
+    "title": "氷ノ山からのコイチヨウラン (ラン科) の記録",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/2/0/2_42/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "哲学・宗教"
   },
   {
-    "title": "投稿規程",
-    "url": "https://www.jstage.jst.go.jp/article/kitasatoclas/31/0/31_82/_article/-char/ja",
-    "journal": "北里大学一般教育紀要",
+    "title": "鳥取県における植物6種の採集記録",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/2/0/2_43/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "文学・言語学・芸術学"
   },
   {
-    "title": "はじめに",
-    "url": "https://www.jstage.jst.go.jp/article/jsoi/39/3/39_167/_article/-char/ja",
-    "journal": "日本口腔インプラント学会誌",
+    "title": "鳥取県初記録の帰化植物ダイコンモドキ (=アレチガラシ Hirschfeldia incana) とその消長",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/2/0/2_45/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "人類学・史学・地理学"
   },
   {
-    "title": "広範囲顎骨支持型装置の長期安定に向けたメインテナンス",
-    "url": "https://www.jstage.jst.go.jp/article/jsoi/39/3/39_168/_article/-char/ja",
-    "journal": "日本口腔インプラント学会誌",
+    "title": "GPSを利用したホンドタヌキの移動行動の解析",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/1/0/1_1/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "法学・政治学"
   },
   {
-    "title": "広範囲顎骨支持型装置および補綴治療とメインテナンス",
-    "url": "https://www.jstage.jst.go.jp/article/jsoi/39/3/39_175/_article/-char/ja",
-    "journal": "日本口腔インプラント学会誌",
+    "title": "鳥取県産陸生等脚目甲殻類",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/1/0/1_5/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "経済学・経営学"
   },
   {
-    "title": "広範囲顎骨支持型装置および補綴治療の現在と長期管理：保険収載されたインプラント治療",
-    "url": "https://www.jstage.jst.go.jp/article/jsoi/39/3/39_183/_article/-char/ja",
-    "journal": "日本口腔インプラント学会誌",
+    "title": "鳥取県におけるナガレホトケドジョウの初記録",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/1/0/1_10/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "社会学"
   },
   {
-    "title": "はじめに",
-    "url": "https://www.jstage.jst.go.jp/article/jsoi/39/3/39_188/_article/-char/ja",
-    "journal": "日本口腔インプラント学会誌",
+    "title": "鳥取県東・中部を中心とした道路沿いのスミレ類の観察",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/1/0/1_13/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "心理学・教育学"
   },
   {
-    "title": "インプラント周囲に生じる薬剤関連顎骨壊死の予防",
-    "url": "https://www.jstage.jst.go.jp/article/jsoi/39/3/39_189/_article/-char/ja",
-    "journal": "日本口腔インプラント学会誌",
+    "title": "帝釈峡で得られた中国地方2個体目のコウモリマダニ (ダニ目: マダニ科)",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/1/0/1_17/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "数学"
   },
   {
-    "title": "インプラントに関連した薬剤関連顎骨壊死（MRONJ）の実態と治療戦略",
-    "url": "https://www.jstage.jst.go.jp/article/jsoi/39/3/39_197/_article/-char/ja",
-    "journal": "日本口腔インプラント学会誌",
+    "title": "隠岐島前の中ノ島と知夫里島におけるニホンヤモリの記録",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/1/0/1_18/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "物理学"
   },
   {
-    "title": "がん治療とインプラント：放射線療法，非吸収性骨補填材で考慮すべき顎骨壊死のリスク",
-    "url": "https://www.jstage.jst.go.jp/article/jsoi/39/3/39_206/_article/-char/ja",
-    "journal": "日本口腔インプラント学会誌",
+    "title": "隠岐島前の中ノ島で撮影されたニホンアカガエル",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/1/0/1_19/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "化学"
   },
   {
-    "title": "光反応性2-メタクリロイルオキシエチルホスホリルコリン（MPC）ポリマーコーティングによる全顎固定性インプラント補綴装置のプラーク蓄積抑制効果：無作為化二重盲検スプリットマウス臨床試験",
-    "url": "https://www.jstage.jst.go.jp/article/jsoi/39/3/39_213/_article/-char/ja",
-    "journal": "日本口腔インプラント学会誌",
+    "title": "隠岐諸島初記録のコカブトムシ",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/1/0/1_20/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "地球科学・天文学"
   },
   {
-    "title": "咬合荷重下における傾斜埋入ジルコニア製インプラント周囲骨組織の反応",
-    "url": "https://www.jstage.jst.go.jp/article/jsoi/39/3/39_222/_article/-char/ja",
-    "journal": "日本口腔インプラント学会誌",
+    "title": "氷ノ山で採集された2種のマダニ (ダニ目: マダニ科)",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/1/0/1_21/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "生物学・生命科学・基礎医学"
   },
   {
-    "title": "ビスホスホネート製剤投与開始が関与したと思われたインプラント周囲薬剤関連顎骨壊死の1 例：病理組織学的検討",
-    "url": "https://www.jstage.jst.go.jp/article/jsoi/39/3/39_231/_article/-char/ja",
-    "journal": "日本口腔インプラント学会誌",
+    "title": "天神川水系でスナヤツメを採集",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/1/0/1_21_2/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "農学・食品科学"
   },
   {
-    "title": "CAD／CAM法による下顎再建後に広範囲顎骨支持型補綴装置を用いて咬合回復を行った1例",
-    "url": "https://www.jstage.jst.go.jp/article/jsoi/39/3/39_239/_article/-char/ja",
-    "journal": "日本口腔インプラント学会誌",
+    "title": "打吹山周辺におけるシロマダラの記録",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/1/0/1_22/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "一般医学・社会医学・看護学"
   },
   {
-    "title": "目次",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_406/_article/-char/ja",
-    "journal": "神経治療学",
+    "title": "湖山池周辺におけるアオモンイトトンボの初記録",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/1/0/1_22_2/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "臨床医学"
   },
   {
-    "title": "師，荒木淑郎先生―日本神経学，アミロイドーシス研究・診療のパイオニア",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_411/_article/-char/ja",
-    "journal": "神経治療学",
+    "title": "鳥取県中山町水田でヌマガエルを捕獲する",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/1/0/1_23/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "歯学"
   },
   {
-    "title": "治療につながる抗体測定とは",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_413/_article/-char/ja",
-    "journal": "神経治療学",
+    "title": "扇ノ山 (鳥取県国府町) におけるヤマネ (齧歯目ヤマネ科) の記録",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/1/0/1_26_2/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "薬学"
   },
   {
-    "title": "自分流不随意運動のみかた",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_414/_article/-char/ja",
-    "journal": "神経治療学",
+    "title": "氷ノ山におけるミズラモグラの新記録",
+    "url": "https://www.jstage.jst.go.jp/article/sanin/1/0/1_26/_article/-char/ja",
+    "journal": "山陰自然史研究",
     "category": "一般工学・総合工学"
   },
   {
-    "title": "MSとNMOSDにおける脳萎縮：最新の縦断研究をふまえて",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_415/_article/-char/ja",
-    "journal": "神経治療学",
+    "title": "獣医療従事者を対象とした抗がん剤曝露に関する意識調査",
+    "url": "https://www.jstage.jst.go.jp/article/jvma/79/11/79_e300/_article/-char/ja",
+    "journal": "日本獣医師会雑誌",
     "category": "ナノ・材料科学"
   },
   {
-    "title": "今，改めて考える神経感染症：細菌性髄膜炎・ウイルス性中枢神経感染症の診断治療戦略",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_418/_article/-char/ja",
-    "journal": "神経治療学",
+    "title": "オーストラリアの花崗岩ドーム・ボールドロック",
+    "url": "https://www.jstage.jst.go.jp/article/jgeography/135/5/135_135.Cover05_01/_article/-char/ja",
+    "journal": "地学雑誌",
     "category": "建築学・土木工学"
   },
   {
-    "title": "Parkinson病診療におけるcontinuous dopaminergic stimulation（CDS）の理論と現実",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_422/_article/-char/ja",
-    "journal": "神経治療学",
+    "title": "赤石山地におけるヒプソメトリーに基づく地形的定常状態の検討",
+    "url": "https://www.jstage.jst.go.jp/article/jgeography/135/5/135_135.389/_article/-char/ja",
+    "journal": "地学雑誌",
     "category": "機械工学"
   },
   {
-    "title": "抗体陰性の神経筋接合部疾患の診断と治療",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_426/_article/-char/ja",
-    "journal": "神経治療学",
+    "title": "戦後日本の地学（昭和20年～昭和40年）〈その9〉 ─「日本地学史」稿抄─",
+    "url": "https://www.jstage.jst.go.jp/article/jgeography/135/5/135_135.407/_article/-char/ja",
+    "journal": "地学雑誌",
     "category": "電気電子工学"
-  },
-  {
-    "title": "Alzheimer病診療の現状と将来展望",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_427/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "情報科学"
-  },
-  {
-    "title": "一人の患者から始まる薬：N–of–1創薬とは何か",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_432/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "環境学"
-  },
-  {
-    "title": "世界との競争のための産学共創：創薬に活かすレジストリ構築",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_437/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "学際科学"
-  },
-  {
-    "title": "神経筋電気診断とは？ ―その醍醐味",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_438/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "哲学・宗教"
-  },
-  {
-    "title": "進行性穿通枝梗塞の治療戦略",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_446/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "文学・言語学・芸術学"
-  },
-  {
-    "title": "FND：近年のイノベーション",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_447/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "人類学・史学・地理学"
-  },
-  {
-    "title": "神経変性疾患鑑別の要諦―画像病理連関を通して―",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_451/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "法学・政治学"
-  },
-  {
-    "title": "神経内科医がみるべき頸椎症の診断と治療",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_452/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "経済学・経営学"
-  },
-  {
-    "title": "圧迫性ニューロパチー：診断のコツと電気生理検査の解釈",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_457/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "社会学"
-  },
-  {
-    "title": "脳と血管のクロストーク：神経血管ユニットの理解と応用",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_462/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "心理学・教育学"
-  },
-  {
-    "title": "脳神経疾患の再生医療の最前線と更なる推進に向けて 司会の言葉",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_468/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "数学"
-  },
-  {
-    "title": "iPS細胞技術を用いた筋疾患に対する細胞治療法の開発",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_469/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "物理学"
-  },
-  {
-    "title": "Parkinson病に対する人工多能性幹細胞を用いた治療の臨床応用",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_470/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "化学"
-  },
-  {
-    "title": "iPS細胞を用いた再生医療等製品の創製に向けた取り組み",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_477/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "地球科学・天文学"
-  },
-  {
-    "title": "行政・規制当局からみる再生医療の制度と支援について",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_478/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "生物学・生命科学・基礎医学"
-  },
-  {
-    "title": "多職種で考える神経領域の臨床試験・臨床研究 ～餅は餅屋にまかせろ～ 司会の言葉",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_479/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "農学・食品科学"
-  },
-  {
-    "title": "PIに任せろ！どう考えて，どう動くか？",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_480/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "一般医学・社会医学・看護学"
-  },
-  {
-    "title": "CRCの視点で変わる臨床試験 ―設計段階から考える現場のリアル―",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_481/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "臨床医学"
-  },
-  {
-    "title": "マスタープロトコル試験と多職種連携",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_484/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "歯学"
-  },
-  {
-    "title": "Fitness for Purpose dataを意識し臨床開発を効率化する ―神経希少疾患の臨床データマネジメント―",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_485/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "薬学"
-  },
-  {
-    "title": "多職種で考える神経領域の臨床試験・臨床研究 ～モニターの立場から～",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_490/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "一般工学・総合工学"
-  },
-  {
-    "title": "移り行く脳梗塞の抗血栓療法ストラテジー 司会の言葉",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_494/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "ナノ・材料科学"
-  },
-  {
-    "title": "新たな血栓溶解薬tenecteplaseは我が国で使用可能となるのか？",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_495/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "建築学・土木工学"
-  },
-  {
-    "title": "心原性脳塞栓症へのDOAC導入：1–2–3–4–day ruleと無作為化比較試験から考える最適時期",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_499/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "機械工学"
-  },
-  {
-    "title": "非心原性脳梗塞への抗凝固薬の活用（argatroban，heparin）",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_503/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "電気電子工学"
-  },
-  {
-    "title": "保険者レセプトデータベースを用いた非心原性脳梗塞と虚血性心疾患に対する抗血小板療法の経時的動向",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_506/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "情報科学"
-  },
-  {
-    "title": "脳神経内科医が直面する臨床倫理の最前線―終末期・遺伝・治療選択をめぐって― 司会の言葉",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_510/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "環境学"
-  },
-  {
-    "title": "神経疾患における治療差し控え・中止をめぐる倫理的課題と意思決定支援",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_511/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "学際科学"
-  },
-  {
-    "title": "小児神経領域における倫理的課題の現状とこれから",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_514/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "哲学・宗教"
-  },
-  {
-    "title": "認知症新規治療における倫理（APOE遺伝子検査も含めて）",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_518/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "文学・言語学・芸術学"
-  },
-  {
-    "title": "遺伝性神経筋疾患の着床前診断に関する倫理",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_522/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "人類学・史学・地理学"
-  },
-  {
-    "title": "機能性神経障害における倫理的課題とその対応",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_527/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "法学・政治学"
-  },
-  {
-    "title": "ATTRvアミロイドーシス診療の進化：神経内科医が担う最前線 司会の言葉",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_528/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "経済学・経営学"
-  },
-  {
-    "title": "ATTRvアミロイドーシス診断と治療の最前線",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_529/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "社会学"
-  },
-  {
-    "title": "発症前診断と早期治療導入：at–risk者への臨床遺伝学的アプローチ",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_530/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "心理学・教育学"
-  },
-  {
-    "title": "非集積地におけるATTRvアミロイドーシス診療の変遷と課題",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_536/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "数学"
-  },
-  {
-    "title": "ATTRvアミロイドーシスの診療体制と連携",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_537/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "物理学"
-  },
-  {
-    "title": "産官学で取り組む脳神経疾患のPPI 司会の言葉",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_538/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "化学"
-  },
-  {
-    "title": "ALSにおけるPPIとPatient Advocacy",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_539/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "地球科学・天文学"
-  },
-  {
-    "title": "産官学で取り組む脳神経内科のPPI",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_543/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "生物学・生命科学・基礎医学"
-  },
-  {
-    "title": "一般社団法人ピー・ピー・アイ・ジャパンの活動，ならびに産業界におけるPPIの取組みのご紹介",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_547/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "農学・食品科学"
-  },
-  {
-    "title": "AMEDにおける患者・市民参画（PPI）：医療研究開発の「社会共創」に向けて",
-    "url": "https://www.jstage.jst.go.jp/article/jsnt/43/4/43_552/_article/-char/ja",
-    "journal": "神経治療学",
-    "category": "一般医学・社会医学・看護学"
-  },
-  {
-    "title": "多指ロボットハンドと触覚を用いた模倣学習の実応用への可能性",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_1/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "臨床医学"
-  },
-  {
-    "title": "確率校正および空間誤差を考慮した機械学習による地震時の斜面崩壊発生確率評価",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_14/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "歯学"
-  },
-  {
-    "title": "舗装を対象としたAIの利活用に関する国内の研究活動の分析",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_26/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "薬学"
-  },
-  {
-    "title": "建築物テクスチャ付き高精度LOD 3外部・内部のモデル作成手法と浸水・誘導灯配置・救助袋展開シミュレーション",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_40/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "一般工学・総合工学"
-  },
-  {
-    "title": "エダマメ莢のカラー画像および蛍光画像を入力とした2入力CNNによる熟度関連成分の推定",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_49/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "ナノ・材料科学"
-  },
-  {
-    "title": "マルチバンド蛍光画像と機械学習を用いた大豆の化学成分組成の推定",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_63/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "建築学・土木工学"
-  },
-  {
-    "title": "生成AIを活用した質的データ分析による知識構造化および動的モデリングの迅速化",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_75/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "機械工学"
-  },
-  {
-    "title": "既設CCTV画像に基づく地震後の土木構造物の異常検知手法の構築",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_84/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "電気電子工学"
-  },
-  {
-    "title": "事前学習を必要としないニューラルネットワークによる2次元含水比分布補間と不確実性評価",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_96/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "情報科学"
-  },
-  {
-    "title": "石垣BIM作成のための石材境界抽出アプリケーションの開発",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_110/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "環境学"
-  },
-  {
-    "title": "斜面崩壊の早期把握に向けたGANによる災害後SAR画像生成の基礎的検証",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_120/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "学際科学"
-  },
-  {
-    "title": "河川氾濫時の大都市における地下街浸水のデジタルツインによる減災対策の研究",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_128/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "哲学・宗教"
-  },
-  {
-    "title": "地下鋼製管路の切断試験片に基づく実測減肉量データを用いた管内表面画像からの減肉量推定",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_140/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "文学・言語学・芸術学"
-  },
-  {
-    "title": "撮影画像のみから土の粒度分布を推定可能なＡＩモデルとアプリの開発",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_149/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "人類学・史学・地理学"
-  },
-  {
-    "title": "エージェント型AIによるコーディング支援を活用したインフラDXの実践",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_158/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "法学・政治学"
-  },
-  {
-    "title": "転移学習を用いた土の含水比評価における事前学習済みモデルの精度比較",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_172/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "経済学・経営学"
-  },
-  {
-    "title": "FNO/PINOを用いたブシネスク型波浪モデルのサロゲート構築と内部変数の識別可能性",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_180/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "社会学"
-  },
-  {
-    "title": "暗所環境における動画データを用いた鉄道コンクリート構造物のひび割れ検出に関する研究",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_199/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "心理学・教育学"
-  },
-  {
-    "title": "迂回シミュレーションに基づく市町村管理橋梁の通行止め影響評価と自治体間比較",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_208/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "数学"
-  },
-  {
-    "title": "土の突固め時のランマー加速度応答から推定する盛土材の含水比",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_219/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "物理学"
-  },
-  {
-    "title": "ClaimFrame:学術論文の枠組みと主張構造を分離する三層構造表現の設計と評価",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_234/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "化学"
-  },
-  {
-    "title": "プロンプト制約条件がLLM生成DEM入力ファイルのモデル化手順の一貫性と実行可能性に与える影響の評価",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_280/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "地球科学・天文学"
-  },
-  {
-    "title": "TabPFNを用いたSRC断面の曲げモーメント推定および影響因子分析",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_290/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "生物学・生命科学・基礎医学"
-  },
-  {
-    "title": "埋め込みベースモデルを用いたレーザー超音波可視化検査のための異常検知および位置推定",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_305/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "農学・食品科学"
-  },
-  {
-    "title": "多層パーセプトロンによる河川水位予測における特徴量の寄与度評価",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_318/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "一般医学・社会医学・看護学"
-  },
-  {
-    "title": "盛土内の水抜きボーリング工の排水効果をスパースな観測データから評価する試み",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_326/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "臨床医学"
-  },
-  {
-    "title": "観察データによるダンプトラック運行支援アプリの効果推定と未観測交絡に対する頑健性評価",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_339/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "歯学"
-  },
-  {
-    "title": "深層学習を活用したPCまくらぎの凍害検知に関する基礎的検討",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_346/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "薬学"
-  },
-  {
-    "title": "領域抽出を用いた赤外線サーモグラフィー法による橋梁用塩化ビニル管の漏水判定システムの構築",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_354/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "一般工学・総合工学"
-  },
-  {
-    "title": "実運用を見据えた橋梁診断所見の自動生成― 所見作成時に入手可能な情報に基づくIn-context Learningの再設計 ―",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_364/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "ナノ・材料科学"
-  },
-  {
-    "title": "スマートフォンを用いた橋梁点検向け 3D モデル再構築手法の性能比較",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_376/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "建築学・土木工学"
-  },
-  {
-    "title": "次元圧縮とTCNを用いたリアルタイム浸水域予測の高速化",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_386/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "機械工学"
-  },
-  {
-    "title": "道路橋の地震時非線形応答を対象としたサロゲートモデルによるFORMの適用性検証",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_397/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "電気電子工学"
-  },
-  {
-    "title": "オートエンコーダと簡易振動試験によるコンクリート壁の健全性診断",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_409/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "情報科学"
-  },
-  {
-    "title": "生成AIによる災害調査・検証報告書の分析評価に関する研究",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_422/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "環境学"
-  },
-  {
-    "title": "機械学習を用いた地下ダム貯水量予測における特徴量選択と予測結果の解釈",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_432/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "学際科学"
-  },
-  {
-    "title": "AIエージェントにより報酬を自己改善するダム操作強化学習",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_441/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "哲学・宗教"
-  },
-  {
-    "title": "耐火試験における高温試験体表面と3Dレーザスキャナ間に生じる空気屈折率分布を考慮した点群位置補正手法",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_452/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "文学・言語学・芸術学"
-  },
-  {
-    "title": "異常検知における正常状態の定義方法の違いが検知結果に及ぼす影響-運転挙動データを用いた実証分析-",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_462/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "人類学・史学・地理学"
-  },
-  {
-    "title": "物体追跡技術を活用した都市空間におけるにぎわい測定指標の推定",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_481/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "法学・政治学"
-  },
-  {
-    "title": "人流データを用いた交通結節点の候補抽出に関する分析",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_489/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "経済学・経営学"
-  },
-  {
-    "title": "入力構造の不均一性を考慮した時系列基盤モデルによる未学習流域の河川水位予測",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_495/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "社会学"
-  },
-  {
-    "title": "3D Gaussian Splattingを用いた河川管理施設の写実的三次元化と実務利用に向けた基礎的検討",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_504/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "心理学・教育学"
-  },
-  {
-    "title": "LiDAR点群を用いた深度画像の形状整合によるカメラ位置・姿勢推定",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_514/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "数学"
-  },
-  {
-    "title": "数理最適化モデルによる鉄道のレール交換区間選択モデルの開発と検証",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_523/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "物理学"
-  },
-  {
-    "title": "走行撮影画像から抽出した色・テクスチャ特徴量に基づくトンネルケーブルラックの劣化度分類",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_533/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "化学"
-  },
-  {
-    "title": "機械学習を活用した鉄道の軌道検測データにおける光飛び検知の精度向上に関する研究",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_542/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "地球科学・天文学"
-  },
-  {
-    "title": "橋梁点検調書の自由記述における健全度分類への寄与語の探索―LightGBMとSHAPによる記述特性の分析―",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_551/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "生物学・生命科学・基礎医学"
-  },
-  {
-    "title": "SfM/MVSを活用した高速道路伸縮装置の非接触3次元計測手法の提案と評価",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_564/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "農学・食品科学"
-  },
-  {
-    "title": "デジタルツインを活用した津波発生時の避難行動支援ツールの提案",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiii/7/3/7_574/_article/-char/ja",
-    "journal": "AI・データサイエンス論文集",
-    "category": "一般医学・社会医学・看護学"
-  },
-  {
-    "title": "Semantic segmentation of urban road point clouds including underground roads acquired by mobile mapping systems",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiiai/7/3/7_1/_article/-char/ja",
-    "journal": "Intelligence, Informatics and Infrastructure",
-    "category": "臨床医学"
-  },
-  {
-    "title": "Approximation methods for three-dimensional rail alignment using terrestrial laser scanner point clouds",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiiai/7/3/7_15/_article/-char/ja",
-    "journal": "Intelligence, Informatics and Infrastructure",
-    "category": "歯学"
-  },
-  {
-    "title": "Development of a restaurant genre diversity index and the impact on staying population",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiiai/7/3/7_29/_article/-char/ja",
-    "journal": "Intelligence, Informatics and Infrastructure",
-    "category": "薬学"
-  },
-  {
-    "title": "CNN-Based drift estimation from crack images of mortar-rendered timber walls",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiiai/7/3/7_38/_article/-char/ja",
-    "journal": "Intelligence, Informatics and Infrastructure",
-    "category": "一般工学・総合工学"
-  },
-  {
-    "title": "Ferry operation prediction using machine learning with land-based meteorological data",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiiai/7/3/7_53/_article/-char/ja",
-    "journal": "Intelligence, Informatics and Infrastructure",
-    "category": "ナノ・材料科学"
-  },
-  {
-    "title": "Fundamental evaluation of deep learning-based subsurface object detection in ground-penetrating radar images under heterogeneous media conditions",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiiai/7/3/7_62/_article/-char/ja",
-    "journal": "Intelligence, Informatics and Infrastructure",
-    "category": "建築学・土木工学"
-  },
-  {
-    "title": "Predicting konjac pH via fluorescence spectroscopy and deep learning",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiiai/7/3/7_70/_article/-char/ja",
-    "journal": "Intelligence, Informatics and Infrastructure",
-    "category": "機械工学"
-  },
-  {
-    "title": "D-BEX: Dynamic basis extraction for uncertainty quantification and sequential observation design in geotechnical engineering",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiiai/7/3/7_83/_article/-char/ja",
-    "journal": "Intelligence, Informatics and Infrastructure",
-    "category": "電気電子工学"
-  },
-  {
-    "title": "Robust tunnel lining displacement reconstruction from unordered and incomplete contours using set-based learning",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiiai/7/3/7_97/_article/-char/ja",
-    "journal": "Intelligence, Informatics and Infrastructure",
-    "category": "情報科学"
-  },
-  {
-    "title": "Towards universal concrete inspection: an adaptive deep learning approach with minimal calibration",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiiai/7/3/7_107/_article/-char/ja",
-    "journal": "Intelligence, Informatics and Infrastructure",
-    "category": "環境学"
-  },
-  {
-    "title": "Structure-aware bridge inspection using SegFormer, YOLOv8, and spatial superimpose: A framework and educational guide",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiiai/7/3/7_134/_article/-char/ja",
-    "journal": "Intelligence, Informatics and Infrastructure",
-    "category": "学際科学"
-  },
-  {
-    "title": "Smart radar: an edge-AI-integrated Doppler radar architecture for adaptive tornado-vortex detection and human-in-the-loop model improvement",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiiai/7/3/7_145/_article/-char/ja",
-    "journal": "Intelligence, Informatics and Infrastructure",
-    "category": "哲学・宗教"
-  },
-  {
-    "title": "Smartphone impact-sound inspection support for retaining walls: multi-hit aggregation and abstention under operator variability",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiiai/7/3/7_173/_article/-char/ja",
-    "journal": "Intelligence, Informatics and Infrastructure",
-    "category": "文学・言語学・芸術学"
-  },
-  {
-    "title": "Heteroscedastic Deep Ensembles for Probabilistic Short-Term Flood Forecasting",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiiai/7/3/7_192/_article/-char/ja",
-    "journal": "Intelligence, Informatics and Infrastructure",
-    "category": "人類学・史学・地理学"
-  },
-  {
-    "title": "NDVI-informed representation of spatially heterogeneous vegetation roughness in hydrodynamic modeling using WorldView-3 imagery",
-    "url": "https://www.jstage.jst.go.jp/article/jsceiiai/7/3/7_202/_article/-char/ja",
-    "journal": "Intelligence, Informatics and Infrastructure",
-    "category": "法学・政治学"
-  },
-  {
-    "title": "一点注視が体幹安定性に及ぼす影響について",
-    "url": "https://www.jstage.jst.go.jp/article/jsatj/12/1/12_31/_article/-char/ja",
-    "journal": "日本アスレティックトレーニング学会誌",
-    "category": "経済学・経営学"
-  },
-  {
-    "title": "Change of direction ability across developmental stages and its related factors in junior soccer players",
-    "url": "https://www.jstage.jst.go.jp/article/jsatj/12/1/12_37/_article/-char/ja",
-    "journal": "Japanese Journal of Athletic Training",
-    "category": "社会学"
-  },
-  {
-    "title": "Effective Therapeutic Exercises for Male Athletes with Chronic Groin Pain: A Systematic Review",
-    "url": "https://www.jstage.jst.go.jp/article/jsatj/12/1/12_53/_article/-char/ja",
-    "journal": "Japanese Journal of Athletic Training",
-    "category": "心理学・教育学"
-  },
-  {
-    "title": "野球現場で実践している僧帽筋下部トレーニングが上肢柔軟性に及ぼす効果",
-    "url": "https://www.jstage.jst.go.jp/article/jsatj/12/1/12_65/_article/-char/ja",
-    "journal": "日本アスレティックトレーニング学会誌",
-    "category": "数学"
-  },
-  {
-    "title": "戦術的な「語り」と受傷場面の「描写」から考える神経認知エラー—女子バレーボール選手における膝前十字靱帯損傷の事例報告—",
-    "url": "https://www.jstage.jst.go.jp/article/jsatj/12/1/12_71/_article/-char/ja",
-    "journal": "日本アスレティックトレーニング学会誌",
-    "category": "物理学"
-  },
-  {
-    "title": "Qwik VBTは，パワー系エクササイズのVelocity Based Trainingに利用可能か？—スマートフォンアプリQwik VBTの実践的使用条件下での一致度と一貫性—",
-    "url": "https://www.jstage.jst.go.jp/article/jsatj/12/1/12_81/_article/-char/ja",
-    "journal": "日本アスレティックトレーニング学会誌",
-    "category": "化学"
-  },
-  {
-    "title": "一次救命処置のVRを用いたシナリオベースドトレーニングが学生トレーナーの学習内容に及ぼす影響",
-    "url": "https://www.jstage.jst.go.jp/article/jsatj/12/1/12_89/_article/-char/ja",
-    "journal": "日本アスレティックトレーニング学会誌",
-    "category": "地球科学・天文学"
-  },
-  {
-    "title": "会話と身体動作の判断を分担し、自己内省を行う人型ロボット店長システム",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_01/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "生物学・生命科学・基礎医学"
-  },
-  {
-    "title": "全二重 Speech-to-Speech 音声対話技術を用いた業務対話と身体動作を統合したロボットシステム DREMN の開発",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_07/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "農学・食品科学"
-  },
-  {
-    "title": "対話システムライブコンペティション8",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_19/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "一般医学・社会医学・看護学"
-  },
-  {
-    "title": "KOMATalk：先取り発話生成を組み込んだ状態遷移型ターンテイキングとユーザシミュレータの構築",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_26/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "臨床医学"
-  },
-  {
-    "title": "LLMを用いた空間移動を伴う説得対話型ヒューマノイドロボット店長の開発",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_32/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "歯学"
-  },
-  {
-    "title": "リアルタイム音声対話モデルのFunction Callingによる対話フェーズとロボット動作の制御",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_37/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "薬学"
-  },
-  {
-    "title": "感情支援対話における品質と感情リスクのトレードオフを考慮した応答再順位付け手法の比較検討",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_48/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "一般工学・総合工学"
-  },
-  {
-    "title": "LLMエージェント間の対話における表出パーソナリティのカップリング",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_54/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "ナノ・材料科学"
-  },
-  {
-    "title": "カウンセリング対話における最小限の応答 — データセット間比較とLLMによる生成・評価 —",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_62/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "建築学・土木工学"
-  },
-  {
-    "title": "層別変調による対話属性識別",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_68/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "機械工学"
-  },
-  {
-    "title": "エージェントAIとの対話を通した制御システムの適応",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_74/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "電気電子工学"
-  },
-  {
-    "title": "多人数対話における連続的グループ感情認識のためのマルチモーダル時系列モデリング",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_78/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "情報科学"
-  },
-  {
-    "title": "Scene-Aware Live Football Commentary Generation with Structured Spatiotemporal Context",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_84/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "環境学"
-  },
-  {
-    "title": "Onset Proximity を用いた音声対話における発話開始時刻の予測",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_89/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "学際科学"
-  },
-  {
-    "title": "マルチモーダル大規模言語モデルによる音声対話における相槌予測",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_95/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "哲学・宗教"
-  },
-  {
-    "title": "推薦根拠を考慮した対話型観光地推薦",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_99/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "文学・言語学・芸術学"
-  },
-  {
-    "title": "Full-duplex音声対話モデルを用いた対話文脈に適した笑い声合成の予備的検討",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_104/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "人類学・史学・地理学"
-  },
-  {
-    "title": "「会話したいわけではない」ユーザのための対話技術： 現場観察から考える、究極の Tier 1 Support",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_110/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "法学・政治学"
-  },
-  {
-    "title": "長期対話チャットボットの開発と対話意欲に寄与する構成要素の分析",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_111/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "経済学・経営学"
-  },
-  {
-    "title": "音響イベント先読みに基づくプロアクティブ対話システムとその評価",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_119/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "社会学"
-  },
-  {
-    "title": "分人型対話エージェントにおける相手に応じた発話スタイルの評価",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_125/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "心理学・教育学"
-  },
-  {
-    "title": "人生体験の物語によるLLMの性格・価値観形成と変容の再現",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_131/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "数学"
-  },
-  {
-    "title": "Big Five特性に基づく多様な性格を表現可能な日本語生成モデルの構築",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_136/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "物理学"
-  },
-  {
-    "title": "音声対話エージェント間の自己対話による話者交代戦略の獲得",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_140/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "化学"
-  },
-  {
-    "title": "身体動作の観察を伴う評価対話における柔軟な対話管理に向けて—簡易嚥下評価を題材として—",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_146/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "地球科学・天文学"
-  },
-  {
-    "title": "ローカルVLMを用いた協働インタラクション動画からのポジティブ・フィードバック生成",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_151/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "生物学・生命科学・基礎医学"
-  },
-  {
-    "title": "日本語全二重音声対話モデルの学習に向けた合成対話音声の生成とその利用方法の比較",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_157/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "農学・食品科学"
-  },
-  {
-    "title": "対話状況を反映できる笑い声合成におけるlaughableの根拠ラベルの有効性",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_163/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "一般医学・社会医学・看護学"
-  },
-  {
-    "title": "対話システムによる独り言識別に向けた参与者行動のモデリング",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_168/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "臨床医学"
-  },
-  {
-    "title": "対人インタラクションに特化した視覚エンコーダの検討",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_173/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "歯学"
-  },
-  {
-    "title": "逐次推薦におけるデモンストレーションユーザ選択の最適化手法の検討",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_177/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "薬学"
-  },
-  {
-    "title": "テキストカウンセリングにおけるカウンセラーの対話戦略と品質の分析",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_183/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "一般工学・総合工学"
-  },
-  {
-    "title": "手話対話におけるSigning Activity Projectionに向けた検討",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_189/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "ナノ・材料科学"
-  },
-  {
-    "title": "自己認識と他者への配慮を育てる文章教育の実践",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_195/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "建築学・土木工学"
-  },
-  {
-    "title": "生成AIへのフィードバックから探る日本語会話試験のロールプレイ実施技能記述の試み",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_200/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "機械工学"
-  },
-  {
-    "title": "段階的な自己開示を実現するための操舵ベクトルを用いた質問生成手法についての検討",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_206/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "電気電子工学"
-  },
-  {
-    "title": "過去から未来へつながる生活を語るチャットボットの開発",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_211/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "情報科学"
-  },
-  {
-    "title": "ストレス負荷の高い場面における自己開示支援陪席エージェントの検討",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_219/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "環境学"
-  },
-  {
-    "title": "アバター対話システムにおける運動パラメータ予測に基づくリアルタイム頷き生成",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_226/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "学際科学"
-  },
-  {
-    "title": "LinkoMem: 多人数対話を扱うLLMのための参照関係を保持する発話グラフを用いた長期記憶",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_232/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "哲学・宗教"
-  },
-  {
-    "title": "話者移行適格場の段階的アノテーションの分析",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_238/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "文学・言語学・芸術学"
-  },
-  {
-    "title": "日本語大規模言語モデルを起点とした全二重音声対話モデルの構築と学習方法の検討",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_244/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "人類学・史学・地理学"
-  },
-  {
-    "title": "複数の活動における共同関与への移行—先行する非言語行為と相手の応答に着目して—",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_250/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "法学・政治学"
-  },
-  {
-    "title": "多人数対話における対話構造の推定と分析",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_256/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "経済学・経営学"
-  },
-  {
-    "title": "多人数対話における相槌と笑いのリアルタイム予測",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_262/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "社会学"
-  },
-  {
-    "title": "部分発話からの複数応答生成による音声対話システムの応答遅延削減に向けた多言語分析",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_268/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "心理学・教育学"
-  },
-  {
-    "title": "EMIP：人と身体化AIエージェントの協力研究のためのマルチパーティ・インタラクション・プラットフォーム",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_274/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "数学"
-  },
-  {
-    "title": "人とAIの共同行為に向けた仮想空間音声対話強化学習環境の構築",
-    "url": "https://www.jstage.jst.go.jp/article/jsaislud/108/0/108_282/_article/-char/ja",
-    "journal": "J-STAGE掲載論文",
-    "category": "物理学"
-  },
-  {
-    "title": "肝腫瘤・超音波診断基準 第3版",
-    "url": "https://www.jstage.jst.go.jp/article/jjmu/53/6/53_345/_article/-char/ja",
-    "journal": "超音波医学",
-    "category": "化学"
-  },
-  {
-    "title": "胎児超音波計測の新たな参照値の公表（JSUM2025）",
-    "url": "https://www.jstage.jst.go.jp/article/jjmu/53/6/53_365/_article/-char/ja",
-    "journal": "超音波医学",
-    "category": "地球科学・天文学"
-  },
-  {
-    "title": "ファロー四徴症類似像を呈した両大血管右室起始症：70代高齢において感染性心内膜炎を契機に初めて診断された1例と診断のピットフォール",
-    "url": "https://www.jstage.jst.go.jp/article/jjmu/53/6/53_JJMU.A.279/_article/-char/ja",
-    "journal": "超音波医学",
-    "category": "生物学・生命科学・基礎医学"
-  },
-  {
-    "title": "多発脳塞栓症を契機に発見された僧帽弁前尖の粘液腫の1例",
-    "url": "https://www.jstage.jst.go.jp/article/jjmu/53/6/53_JJMU.A.280/_article/-char/ja",
-    "journal": "超音波医学",
-    "category": "農学・食品科学"
-  },
-  {
-    "title": "定期超音波検査にて診断し得た外傷性腎嚢胞破裂の1例",
-    "url": "https://www.jstage.jst.go.jp/article/jjmu/53/6/53_JJMU.A.282/_article/-char/ja",
-    "journal": "超音波医学",
-    "category": "一般医学・社会医学・看護学"
-  },
-  {
-    "title": "経胸壁心エコー図検査により描出された，下大静脈を経由して右室に進展した肝膿瘍関連腫瘍血栓を合併した胆管細胞がんの1例",
-    "url": "https://www.jstage.jst.go.jp/article/jjmu/53/6/53_JJMU.I.297/_article/-char/ja",
-    "journal": "超音波医学",
-    "category": "臨床医学"
-  },
-  {
-    "title": "胞状奇胎と鑑別を要した帝王切開瘢痕部妊娠流産後のvascular RPOC",
-    "url": "https://www.jstage.jst.go.jp/article/jjmu/53/6/53_JJMU.I.295/_article/-char/ja",
-    "journal": "超音波医学",
-    "category": "歯学"
-  },
-  {
-    "title": "腎細胞癌の皮膚転移に対する超音波検査およびダーモスコピーによる術前診断の有用性について",
-    "url": "https://www.jstage.jst.go.jp/article/jjmu/53/6/53_JJMU.I.296/_article/-char/ja",
-    "journal": "超音波医学",
-    "category": "薬学"
-  },
-  {
-    "title": "新規発症した肝複雑性嚢胞の1例",
-    "url": "https://www.jstage.jst.go.jp/article/jjmu/53/6/53_JJMU.I.307/_article/-char/ja",
-    "journal": "超音波医学",
-    "category": "一般工学・総合工学"
-  },
-  {
-    "title": "日本のスポーツ振興政策と地域活性化に関する変遷： 余暇政策を踏まえた検討",
-    "url": "https://www.jstage.jst.go.jp/article/jjls/23/1/23_2026-13/_article/-char/ja",
-    "journal": "生涯スポーツ学研究",
-    "category": "ナノ・材料科学"
-  },
-  {
-    "title": "地域スポーツクラブの組織能力に関する系統的レビュー",
-    "url": "https://www.jstage.jst.go.jp/article/jjls/23/1/23_2026-9/_article/-char/ja",
-    "journal": "生涯スポーツ学研究",
-    "category": "建築学・土木工学"
-  },
-  {
-    "title": "ピックルボール参加者における構造的制約が継続意図および実施頻度に与える影響",
-    "url": "https://www.jstage.jst.go.jp/article/jjls/23/1/23_2026-10/_article/-char/ja",
-    "journal": "生涯スポーツ学研究",
-    "category": "機械工学"
-  },
-  {
-    "title": "スポーツ・健康まちづくりにおける自治体政策文書の可視化と類型化： 行政文書を用いた政策実施の計量テキスト分析",
-    "url": "https://www.jstage.jst.go.jp/article/jjls/23/1/23_2026-8/_article/-char/ja",
-    "journal": "生涯スポーツ学研究",
-    "category": "電気電子工学"
-  },
-  {
-    "title": "プロスポーツ選手の推し活継続性に影響を及ぼす要因： プロ野球キャンプ観戦者に焦点を当てて",
-    "url": "https://www.jstage.jst.go.jp/article/jjls/23/1/23_2026-7/_article/-char/ja",
-    "journal": "生涯スポーツ学研究",
-    "category": "情報科学"
-  },
-  {
-    "title": "ベルギー・フランダース地方におけるアクティブモビリティ推進を支えるサイクリングインフラ戦略",
-    "url": "https://www.jstage.jst.go.jp/article/jjls/23/1/23_2026-6/_article/-char/ja",
-    "journal": "生涯スポーツ学研究",
-    "category": "環境学"
-  },
-  {
-    "title": "中学校運動部活動の地域移行における町道場の受け入れ条件： 剣道道場を事例とした運営課題の検討",
-    "url": "https://www.jstage.jst.go.jp/article/jjls/23/1/23_2026-12/_article/-char/ja",
-    "journal": "生涯スポーツ学研究",
-    "category": "学際科学"
-  },
-  {
-    "title": "大学体育テニス授業における低反発ボール活用の実践的検討： 学生の扱いやすさと学修経験に着目して",
-    "url": "https://www.jstage.jst.go.jp/article/jjls/23/1/23_2026-11/_article/-char/ja",
-    "journal": "生涯スポーツ学研究",
-    "category": "哲学・宗教"
-  },
-  {
-    "title": "座長解題／食品ロス削減のこれまでとこれから",
-    "url": "https://www.jstage.jst.go.jp/article/jfsr/33/2/33_001/_article/-char/ja",
-    "journal": "フードシステム研究",
-    "category": "文学・言語学・芸術学"
-  },
-  {
-    "title": "研究会報告・論文／自治体の家庭系食品ロス削減施策が住民の行動に及ぼす影響の検討",
-    "url": "https://www.jstage.jst.go.jp/article/jfsr/33/2/33_002/_article/-char/ja",
-    "journal": "フードシステム研究",
-    "category": "人類学・史学・地理学"
-  },
-  {
-    "title": "研究会報告／食品ロスをめぐる状況 −食品ロスの現状と削減に向けた政府の取組−",
-    "url": "https://www.jstage.jst.go.jp/article/jfsr/33/2/33_003/_article/-char/ja",
-    "journal": "フードシステム研究",
-    "category": "法学・政治学"
-  },
-  {
-    "title": "研究会報告／mottECO（モッテコ）を通じた官民連携による飲食店発の食品ロス削減 −デニーズ事例を中心に−",
-    "url": "https://www.jstage.jst.go.jp/article/jfsr/33/2/33_004/_article/-char/ja",
-    "journal": "フードシステム研究",
-    "category": "経済学・経営学"
-  },
-  {
-    "title": "研究会報告／食品ロス削減における多主体間需給調整の構造 −「デパ地下」を対象とした機能的価値と情緒的価値の統合モデル−",
-    "url": "https://www.jstage.jst.go.jp/article/jfsr/33/2/33_005/_article/-char/ja",
-    "journal": "フードシステム研究",
-    "category": "社会学"
-  },
-  {
-    "title": "シンポジウム報告／持続可能な海業の実現を求めて",
-    "url": "https://www.jstage.jst.go.jp/article/jfsr/33/2/33_006/_article/-char/ja",
-    "journal": "フードシステム研究",
-    "category": "心理学・教育学"
-  },
-  {
-    "title": "シンポジウム報告／海業の発展と中間支援組織 −阿納体験民宿組合の取組−",
-    "url": "https://www.jstage.jst.go.jp/article/jfsr/33/2/33_007/_article/-char/ja",
-    "journal": "フードシステム研究",
-    "category": "数学"
-  },
-  {
-    "title": "シンポジウム報告／海業の発展と域内利益循環システム −日間賀島の取り組み−",
-    "url": "https://www.jstage.jst.go.jp/article/jfsr/33/2/33_008/_article/-char/ja",
-    "journal": "フードシステム研究",
-    "category": "物理学"
-  },
-  {
-    "title": "中村哲也著／『パインアップルの産業史：沖縄からたどる果実と人の500年』",
-    "url": "https://www.jstage.jst.go.jp/article/jfsr/33/2/33_009/_article/-char/ja",
-    "journal": "フードシステム研究",
-    "category": "化学"
-  },
-  {
-    "title": "表紙",
-    "url": "https://www.jstage.jst.go.jp/article/jfsr/33/2/33_2_cover/_article/-char/ja",
-    "journal": "フードシステム研究",
-    "category": "地球科学・天文学"
-  },
-  {
-    "title": "裏表紙",
-    "url": "https://www.jstage.jst.go.jp/article/jfsr/33/2/33_2_news/_article/-char/ja",
-    "journal": "フードシステム研究",
-    "category": "生物学・生命科学・基礎医学"
-  },
-  {
-    "title": "棚卸資産会計・付加価値会計・三井大元方勘定目録・環境会計の研究 これまでの私の研究の道程をたどって",
-    "url": "https://www.jstage.jst.go.jp/article/jcsara/18/0/18_1/_article/-char/ja",
-    "journal": "社会関連会計研究",
-    "category": "農学・食品科学"
-  },
-  {
-    "title": "食の安全性・環境保全に関する農業リスクマネジメントと環境会計",
-    "url": "https://www.jstage.jst.go.jp/article/jcsara/18/0/18_5/_article/-char/ja",
-    "journal": "社会関連会計研究",
-    "category": "一般医学・社会医学・看護学"
-  },
-  {
-    "title": "ステイクホルダー・エンゲージメントの意義と課題",
-    "url": "https://www.jstage.jst.go.jp/article/jcsara/18/0/18_17/_article/-char/ja",
-    "journal": "社会関連会計研究",
-    "category": "臨床医学"
-  },
-  {
-    "title": "企業による包括的な情報開示活動の効果 コーポレート・レピュテーションとの関連",
-    "url": "https://www.jstage.jst.go.jp/article/jcsara/18/0/18_31/_article/-char/ja",
-    "journal": "社会関連会計研究",
-    "category": "歯学"
-  },
-  {
-    "title": "社会関連会計の再構築（最終報告）",
-    "url": "https://www.jstage.jst.go.jp/article/jcsara/18/0/18_45/_article/-char/ja",
-    "journal": "社会関連会計研究",
-    "category": "薬学"
-  },
-  {
-    "title": "中国における社会関連会計の現状と動向についての研究（中間報告）",
-    "url": "https://www.jstage.jst.go.jp/article/jcsara/18/0/18_57/_article/-char/ja",
-    "journal": "社会関連会計研究",
-    "category": "一般工学・総合工学"
-  },
-  {
-    "title": "CSRと会計 その意義と課題",
-    "url": "https://www.jstage.jst.go.jp/article/jcsara/17/0/17_1/_article/-char/ja",
-    "journal": "社会関連会計研究",
-    "category": "ナノ・材料科学"
-  },
-  {
-    "title": "環境・CSR報告と付加価値環境会計",
-    "url": "https://www.jstage.jst.go.jp/article/jcsara/17/0/17_9/_article/-char/ja",
-    "journal": "社会関連会計研究",
-    "category": "建築学・土木工学"
-  },
-  {
-    "title": "企業実務にみるエコ効率指標とその動向 エコ効率における三つの視点から",
-    "url": "https://www.jstage.jst.go.jp/article/jcsara/17/0/17_19/_article/-char/ja",
-    "journal": "社会関連会計研究",
-    "category": "機械工学"
-  },
-  {
-    "title": "日本企業の環境報告書における情報開示と規定要因 2003年発行の環境報告書分析を中心に",
-    "url": "https://www.jstage.jst.go.jp/article/jcsara/17/0/17_29/_article/-char/ja",
-    "journal": "社会関連会計研究",
-    "category": "電気電子工学"
-  },
-  {
-    "title": "バランスト・スコアカードにおける環境配慮",
-    "url": "https://www.jstage.jst.go.jp/article/jcsara/17/0/17_39/_article/-char/ja",
-    "journal": "社会関連会計研究",
-    "category": "情報科学"
-  },
-  {
-    "title": "社会福祉法人会計基準に関する一考察",
-    "url": "https://www.jstage.jst.go.jp/article/jcsara/17/0/17_49/_article/-char/ja",
-    "journal": "社会関連会計研究",
-    "category": "環境学"
-  },
-  {
-    "title": "社会関連会計の再構築（中間報告）",
-    "url": "https://www.jstage.jst.go.jp/article/jcsara/17/0/17_59/_article/-char/ja",
-    "journal": "社会関連会計研究",
-    "category": "学際科学"
-  },
-  {
-    "title": "環境経営の研究方法について",
-    "url": "https://www.jstage.jst.go.jp/article/jcsara/16/0/16_1/_article/-char/ja",
-    "journal": "社会関連会計研究",
-    "category": "哲学・宗教"
-  },
-  {
-    "title": "社会環境情報開示におけるステイクホルダーの人間観に関する一考察",
-    "url": "https://www.jstage.jst.go.jp/article/jcsara/16/0/16_13/_article/-char/ja",
-    "journal": "社会関連会計研究",
-    "category": "文学・言語学・芸術学"
-  },
-  {
-    "title": "複式簿記による環境会計の実践 環境負荷の期間的計算",
-    "url": "https://www.jstage.jst.go.jp/article/jcsara/16/0/16_19/_article/-char/ja",
-    "journal": "社会関連会計研究",
-    "category": "人類学・史学・地理学"
-  },
-  {
-    "title": "環境報告書の利用者と利用目的 「環境情報開示目的に関する調査」を中心に",
-    "url": "https://www.jstage.jst.go.jp/article/jcsara/16/0/16_31/_article/-char/ja",
-    "journal": "社会関連会計研究",
-    "category": "法学・政治学"
-  },
-  {
-    "title": "国立大学法人の会計制度の特徴",
-    "url": "https://www.jstage.jst.go.jp/article/jcsara/16/0/16_47/_article/-char/ja",
-    "journal": "社会関連会計研究",
-    "category": "経済学・経営学"
-  },
-  {
-    "title": "環境管理会計における環境コストの考察",
-    "url": "https://www.jstage.jst.go.jp/article/jcsara/16/0/16_57/_article/-char/ja",
-    "journal": "社会関連会計研究",
-    "category": "社会学"
-  },
-  {
-    "title": "非営利情報に基づく裁量的利益調整行動の分析",
-    "url": "https://www.jstage.jst.go.jp/article/jcsara/16/0/16_69/_article/-char/ja",
-    "journal": "社会関連会計研究",
-    "category": "心理学・教育学"
-  },
-  {
-    "title": "環境パフォーマンス情報における比較可能性 大手建設業の廃棄物情報に注目して",
-    "url": "https://www.jstage.jst.go.jp/article/jcsara/16/0/16_81/_article/-char/ja",
-    "journal": "社会関連会計研究",
-    "category": "数学"
-  },
-  {
-    "title": "非営利組織体の会計 介護施設を例として（第2年度：最終報告）",
-    "url": "https://www.jstage.jst.go.jp/article/jcsara/16/0/16_89/_article/-char/ja",
-    "journal": "社会関連会計研究",
-    "category": "物理学"
-  },
-  {
-    "title": "介護ケアの担い手を考える−デンマークの政策と実践現場から",
-    "url": "https://www.jstage.jst.go.jp/article/janes/22/0/22_1/_article/-char/ja",
-    "journal": "北ヨーロッパ研究",
-    "category": "化学"
-  },
-  {
-    "title": "北欧福祉モデルと北欧諸国のケア・介護の持続性をめぐる課題",
-    "url": "https://www.jstage.jst.go.jp/article/janes/22/0/22_13/_article/-char/ja",
-    "journal": "北ヨーロッパ研究",
-    "category": "地球科学・天文学"
-  },
-  {
-    "title": "コペアレンティングにおけるソーシャル・サポートの国際比較：フィンランドと日本の母親から見たインフォーマルな子育て資源の質的分析",
-    "url": "https://www.jstage.jst.go.jp/article/janes/22/0/22_27/_article/-char/ja",
-    "journal": "北ヨーロッパ研究",
-    "category": "生物学・生命科学・基礎医学"
-  },
-  {
-    "title": "難民背景を持つ若者に支えられるスウェーデンの介護現場−事業管理者とケアワーカーへのインタビューから浮かび上がる構造的課題−",
-    "url": "https://www.jstage.jst.go.jp/article/janes/22/0/22_39/_article/-char/ja",
-    "journal": "北ヨーロッパ研究",
-    "category": "農学・食品科学"
-  },
-  {
-    "title": "スウェーデン援助評価制度改革の歴史的再編 −独立性・政策接続性・成果観の交錯−",
-    "url": "https://www.jstage.jst.go.jp/article/janes/22/0/22_51/_article/-char/ja",
-    "journal": "北ヨーロッパ研究",
-    "category": "一般医学・社会医学・看護学"
-  },
-  {
-    "title": "障害者雇用における法定雇用率制度の課題と支援型政策の制度的含意−日本・スウェーデン比較からの示唆−",
-    "url": "https://www.jstage.jst.go.jp/article/janes/22/0/22_63/_article/-char/ja",
-    "journal": "北ヨーロッパ研究",
-    "category": "臨床医学"
-  },
-  {
-    "title": "福祉社会に向けたスウェーデンにおけるSocial Pedagogyの「復活」−「ケア」の教育的側面に着目して−",
-    "url": "https://www.jstage.jst.go.jp/article/janes/22/0/22_77/_article/-char/ja",
-    "journal": "北ヨーロッパ研究",
-    "category": "歯学"
-  },
-  {
-    "title": "資本主義とユートピアのあいだの狭い道−福祉国家フィンランドにおける仕事拒否運動の分析−",
-    "url": "https://www.jstage.jst.go.jp/article/janes/22/0/22_87/_article/-char/ja",
-    "journal": "北ヨーロッパ研究",
-    "category": "薬学"
-  },
-  {
-    "title": "What is \"folk'ish\"? On Danish nation-building and the folk'ish heritage",
-    "url": "https://www.jstage.jst.go.jp/article/janes/22/0/22_99/_article/-char/ja",
-    "journal": "Japanese Journal of Northern European Studies",
-    "category": "一般工学・総合工学"
-  },
-  {
-    "title": "鈴木賢志著『ラーゴムが描く社会 スウェーデンの「ちょうどよい」国づくり』新評論、2025年",
-    "url": "https://www.jstage.jst.go.jp/article/janes/22/0/22_109/_article/-char/ja",
-    "journal": "北ヨーロッパ研究",
-    "category": "ナノ・材料科学"
-  },
-  {
-    "title": "北欧の安全保障の変容と継続−『平和国家』と軍事的安全保障の狭間で−ノルウェーを中心に",
-    "url": "https://www.jstage.jst.go.jp/article/janes/21/0/21_1/_article/-char/ja",
-    "journal": "北ヨーロッパ研究",
-    "category": "建築学・土木工学"
-  },
-  {
-    "title": "スウェーデンの脅威認識 —ロシア、中国、イラン—",
-    "url": "https://www.jstage.jst.go.jp/article/janes/21/0/21_11/_article/-char/ja",
-    "journal": "北ヨーロッパ研究",
-    "category": "機械工学"
-  },
-  {
-    "title": "フィンランドの安全保障政策の変遷 —対ロシア（ソ連）、EU、NATO—",
-    "url": "https://www.jstage.jst.go.jp/article/janes/21/0/21_21/_article/-char/ja",
-    "journal": "北ヨーロッパ研究",
-    "category": "電気電子工学"
-  },
-  {
-    "title": "フィンランドにおける放射性廃棄物処分場立地問題 —ロヴィーサ運動に注目して",
-    "url": "https://www.jstage.jst.go.jp/article/janes/21/0/21_31/_article/-char/ja",
-    "journal": "北ヨーロッパ研究",
-    "category": "情報科学"
-  },
-  {
-    "title": "スウェーデンのテロ対策の法整備とNATO加盟をめぐるトルコとの交渉、 —2027-2013—",
-    "url": "https://www.jstage.jst.go.jp/article/janes/21/0/21_43/_article/-char/ja",
-    "journal": "北ヨーロッパ研究",
-    "category": "環境学"
-  },
-  {
-    "title": "フィンランドの法学者 マティアス・カロニウス（1738-1817）の生涯と功績",
-    "url": "https://www.jstage.jst.go.jp/article/janes/21/0/21_55/_article/-char/ja",
-    "journal": "北ヨーロッパ研究",
-    "category": "学際科学"
-  },
-  {
-    "title": "Norio Tokumaru, Chino Yabunaga, and Yuriko Shibayama, eds., 2024. Creative Co-evolution of the Economies and Welfare States in the Nordic Countries.（『 北欧諸国における経済と福祉国家の創造的共進化』）Springer.",
-    "url": "https://www.jstage.jst.go.jp/article/janes/21/0/21_65/_article/-char/ja",
-    "journal": "北ヨーロッパ研究",
-    "category": "哲学・宗教"
-  },
-  {
-    "title": "松田弥花著『スウェーデンにおける「あたたかい教育」』東京大学出版会（2024年）",
-    "url": "https://www.jstage.jst.go.jp/article/janes/21/0/21_70/_article/-char/ja",
-    "journal": "北ヨーロッパ研究",
-    "category": "文学・言語学・芸術学"
-  },
-  {
-    "title": "坂口緑著『多文化化するデンマークの社会統合：生涯学習が果たす役割とその可能出』花伝社（2024年）",
-    "url": "https://www.jstage.jst.go.jp/article/janes/21/0/21_72/_article/-char/ja",
-    "journal": "北ヨーロッパ研究",
-    "category": "人類学・史学・地理学"
-  },
-  {
-    "title": "日本環境共生学会会長「退任」挨拶 2026",
-    "url": "https://www.jstage.jst.go.jp/article/jahes/42/2/42_129/_article/-char/ja",
-    "journal": "環境共生",
-    "category": "法学・政治学"
-  },
-  {
-    "title": "日本環境共生学会会長「就任」挨拶 2026",
-    "url": "https://www.jstage.jst.go.jp/article/jahes/42/2/42_130/_article/-char/ja",
-    "journal": "環境共生",
-    "category": "経済学・経営学"
-  },
-  {
-    "title": "施設園芸における脱炭素化の経済性評価とGHG削減 ポテンシャルの地域特性－線形混合モデルを用いた 炭素クレジット制度の感度分析と共生の制度設計－",
-    "url": "https://www.jstage.jst.go.jp/article/jahes/42/2/42_131/_article/-char/ja",
-    "journal": "環境共生",
-    "category": "社会学"
-  },
-  {
-    "title": "熱中症警戒アラート導入前後における 高齢者の熱中症対策行動とその規定要因の変化 -2019年度と2023年度のアンケート調査の比較-",
-    "url": "https://www.jstage.jst.go.jp/article/jahes/42/2/42_144/_article/-char/ja",
-    "journal": "環境共生",
-    "category": "心理学・教育学"
-  },
-  {
-    "title": "官民連携型資源回収ステーションに対する住民選好の規定要因：北九州市・神戸市・大刀洗町を対象としたコンジョイント分析から",
-    "url": "https://www.jstage.jst.go.jp/article/jahes/42/2/42_156/_article/-char/ja",
-    "journal": "環境共生",
-    "category": "数学"
-  },
-  {
-    "title": "新たな観光スタイルのライフサイクル評価における留意点",
-    "url": "https://www.jstage.jst.go.jp/article/jahes/42/2/42_166/_article/-char/ja",
-    "journal": "環境共生",
-    "category": "物理学"
-  },
-  {
-    "title": "北海道の神の子池における入域料の支払意思額にみる選好の異質性：手つかず志向に着目して",
-    "url": "https://www.jstage.jst.go.jp/article/jahes/42/2/42_177/_article/-char/ja",
-    "journal": "環境共生",
-    "category": "化学"
-  },
-  {
-    "title": "地域循環共生圏の取組拡大に向けた今後の施策展開について",
-    "url": "https://www.jstage.jst.go.jp/article/jahes/42/2/42_187/_article/-char/ja",
-    "journal": "環境共生",
-    "category": "地球科学・天文学"
-  },
-  {
-    "title": "生物多様性とWell-being -多様な生物社会から共生社会への再接続-",
-    "url": "https://www.jstage.jst.go.jp/article/jahes/42/2/42_196/_article/-char/ja",
-    "journal": "環境共生",
-    "category": "生物学・生命科学・基礎医学"
-  },
-  {
-    "title": "ウェルビーイングとネイチャーポジティブ：健康と生物多様性をめぐる国際政策の展開",
-    "url": "https://www.jstage.jst.go.jp/article/jahes/42/2/42_203/_article/-char/ja",
-    "journal": "環境共生",
-    "category": "農学・食品科学"
-  },
-  {
-    "title": "2026年度地域シンポジウム「都市内における自然と歴史的まちづくりの再考」報告",
-    "url": "https://www.jstage.jst.go.jp/article/jahes/42/2/42_211/_article/-char/ja",
-    "journal": "環境共生",
-    "category": "一般医学・社会医学・看護学"
-  },
-  {
-    "title": "関節リウマチにおけるリハビリテーション治療の新展開",
-    "url": "https://www.jstage.jst.go.jp/article/cra/38/3/38_129/_article/-char/ja",
-    "journal": "臨床リウマチ",
-    "category": "臨床医学"
-  },
-  {
-    "title": "疾患活動性を考慮した関節リウマチ運動療法の実際─病態対応型リハビリテーションの発展としてのValue-Based Rehabilitation─",
-    "url": "https://www.jstage.jst.go.jp/article/cra/38/3/38_133/_article/-char/ja",
-    "journal": "臨床リウマチ",
-    "category": "歯学"
-  },
-  {
-    "title": "SARAHエクササイズ・プログラムについて",
-    "url": "https://www.jstage.jst.go.jp/article/cra/38/3/38_140/_article/-char/ja",
-    "journal": "臨床リウマチ",
-    "category": "薬学"
-  },
-  {
-    "title": "上肢機能障害に対する作業療法的アプローチ",
-    "url": "https://www.jstage.jst.go.jp/article/cra/38/3/38_147/_article/-char/ja",
-    "journal": "臨床リウマチ",
-    "category": "一般工学・総合工学"
-  },
-  {
-    "title": "関節リウマチ患者の四肢機能障害に対する装具療法",
-    "url": "https://www.jstage.jst.go.jp/article/cra/38/3/38_154/_article/-char/ja",
-    "journal": "臨床リウマチ",
-    "category": "ナノ・材料科学"
-  },
-  {
-    "title": "関節リウマチ患者における関節保護指導～変形予防を見据えた早期介入～",
-    "url": "https://www.jstage.jst.go.jp/article/cra/38/3/38_161/_article/-char/ja",
-    "journal": "臨床リウマチ",
-    "category": "建築学・土木工学"
-  },
-  {
-    "title": "関節リウマチ患者における可溶性IFNα/β-receptor濃度の検討",
-    "url": "https://www.jstage.jst.go.jp/article/cra/38/3/38_168/_article/-char/ja",
-    "journal": "臨床リウマチ",
-    "category": "機械工学"
-  },
-  {
-    "title": "時代背景を合わせた関節リウマチにおけるトシリズマブ静注治療とサリルマブ皮下注治療の実臨床治療成績の比較",
-    "url": "https://www.jstage.jst.go.jp/article/cra/38/3/38_176/_article/-char/ja",
-    "journal": "臨床リウマチ",
-    "category": "電気電子工学"
-  },
-  {
-    "title": "がん化学療法後に増悪した小細胞肺癌患者を対象とした、三次治療以降におけるタルラタマブの費用対効果評価",
-    "url": "https://www.jstage.jst.go.jp/article/atagrep/4/8/4_1/_article/-char/ja",
-    "journal": "Academic Technology Assessment Group (ATAG) Reports",
-    "category": "情報科学"
-  },
-  {
-    "title": "ランドスケープ特徴量に基づく多峰性関数の生成 マルチモーダル多目的最適化ベンチマークへの活用",
-    "url": "https://www.jstage.jst.go.jp/article/tjpnsec/17/1/17_1/_article/-char/ja",
-    "journal": "進化計算学会論文誌",
-    "category": "環境学"
-  },
-  {
-    "title": "触媒ナノ粒子の気中造粒における結着剤の影響",
-    "url": "https://www.jstage.jst.go.jp/article/sptj/63/10/63_63.456/_article/-char/ja",
-    "journal": "粉体工学会誌",
-    "category": "学際科学"
-  },
-  {
-    "title": "宇宙探査ミッションを支える粉体ハンドリング技術の開発",
-    "url": "https://www.jstage.jst.go.jp/article/sptj/63/10/63_63.463/_article/-char/ja",
-    "journal": "粉体工学会誌",
-    "category": "哲学・宗教"
-  },
-  {
-    "title": "第2章 粉体の生成と生産プロセス 2.5 乾燥",
-    "url": "https://www.jstage.jst.go.jp/article/sptj/63/10/63_63.469/_article/-char/ja",
-    "journal": "粉体工学会誌",
-    "category": "文学・言語学・芸術学"
-  },
-  {
-    "title": "2.5.1 乾燥操作の基礎",
-    "url": "https://www.jstage.jst.go.jp/article/sptj/63/10/63_63.470/_article/-char/ja",
-    "journal": "粉体工学会誌",
-    "category": "人類学・史学・地理学"
-  },
-  {
-    "title": "世界の大学で包装はどのように学ばれているのか ― 包装学科・包装研究科の海外教育・研究調査 ―",
-    "url": "https://www.jstage.jst.go.jp/article/spstj/35/4/35_241/_article/-char/ja",
-    "journal": "日本包装学会誌",
-    "category": "法学・政治学"
-  },
-  {
-    "title": "接着性材料を臨床に生かすために",
-    "url": "https://www.jstage.jst.go.jp/article/shikahozon/69/4/69_229/_article/-char/ja",
-    "journal": "日本歯科保存学雑誌",
-    "category": "経済学・経営学"
-  },
-  {
-    "title": "医療倫理と研究倫理：基本的倫理原則と規制・ガイドライン",
-    "url": "https://www.jstage.jst.go.jp/article/shikahozon/69/4/69_235/_article/-char/ja",
-    "journal": "日本歯科保存学雑誌",
-    "category": "社会学"
-  },
-  {
-    "title": "シンポジウム概要",
-    "url": "https://www.jstage.jst.go.jp/article/shikahozon/69/4/69_241/_article/-char/ja",
-    "journal": "日本歯科保存学雑誌",
-    "category": "心理学・教育学"
-  },
-  {
-    "title": "最近の歯科保健医療の動向 ―生涯を通じた歯科健診（いわゆる国民皆歯科健診）の推進―",
-    "url": "https://www.jstage.jst.go.jp/article/shikahozon/69/4/69_243/_article/-char/ja",
-    "journal": "日本歯科保存学雑誌",
-    "category": "数学"
-  },
-  {
-    "title": "健康寿命延伸を目指した予防医学と歯科医療 ―歯周病，慢性炎症，エピジェネティクスから考える―",
-    "url": "https://www.jstage.jst.go.jp/article/shikahozon/69/4/69_250/_article/-char/ja",
-    "journal": "日本歯科保存学雑誌",
-    "category": "物理学"
-  },
-  {
-    "title": "国民皆歯科健診に向けた歯科用光干渉断層計開発の取り組み",
-    "url": "https://www.jstage.jst.go.jp/article/shikahozon/69/4/69_256/_article/-char/ja",
-    "journal": "日本歯科保存学雑誌",
-    "category": "化学"
-  },
-  {
-    "title": "国民皆歯科健診におけるう蝕マネジメントの視点 ―根面う蝕診療ガイドライン作成の経験から―",
-    "url": "https://www.jstage.jst.go.jp/article/shikahozon/69/4/69_261/_article/-char/ja",
-    "journal": "日本歯科保存学雑誌",
-    "category": "地球科学・天文学"
-  },
-  {
-    "title": "各種水酸化カルシウム根管貼薬用ペーストの流動性と注入性の評価",
-    "url": "https://www.jstage.jst.go.jp/article/shikahozon/69/4/69_264/_article/-char/ja",
-    "journal": "日本歯科保存学雑誌",
-    "category": "生物学・生命科学・基礎医学"
-  },
-  {
-    "title": "沖縄島の古風葬とオカヤドカリ類との関連について（２）",
-    "url": "https://www.jstage.jst.go.jp/article/shihen/48/0/48_1/_article/-char/ja",
-    "journal": "沖縄史料編集紀要",
-    "category": "農学・食品科学"
-  },
-  {
-    "title": "沖縄島糸満市真壁の動植物方言名とその利用",
-    "url": "https://www.jstage.jst.go.jp/article/shihen/48/0/48_13/_article/-char/ja",
-    "journal": "沖縄史料編集紀要",
-    "category": "一般医学・社会医学・看護学"
-  },
-  {
-    "title": "台湾中央研究院歴史語言研究所所蔵の琉球国王表奏文書調査報告（概報）──附：歴史語言研究所所蔵内閣大庫檔案琉球国王表奏文書目録",
-    "url": "https://www.jstage.jst.go.jp/article/shihen/48/0/48_75/_article/-char/ja",
-    "journal": "沖縄史料編集紀要",
-    "category": "臨床医学"
-  },
-  {
-    "title": "近代沖縄史料に関する調査の中間報告──高知県立牧野植物園における植物標本から得られた新聞の調査を中心に",
-    "url": "https://www.jstage.jst.go.jp/article/shihen/48/0/48_93/_article/-char/ja",
-    "journal": "沖縄史料編集紀要",
-    "category": "歯学"
-  },
-  {
-    "title": "清代越南朝貢関係略述──琉球による朝貢との初歩的な比較分析を兼ねて",
-    "url": "https://www.jstage.jst.go.jp/article/shihen/48/0/48_111/_article/-char/ja",
-    "journal": "沖縄史料編集紀要",
-    "category": "薬学"
-  },
-  {
-    "title": "中琉歴史檔案を絆として双方の文化交流の新たな出発点を切り開く",
-    "url": "https://www.jstage.jst.go.jp/article/shihen/48/0/48_117/_article/-char/ja",
-    "journal": "沖縄史料編集紀要",
-    "category": "一般工学・総合工学"
-  },
-  {
-    "title": "『沖縄史料編集紀要』バックナンバー（第 34 号～第 47 号）",
-    "url": "https://www.jstage.jst.go.jp/article/shihen/48/0/48_121/_article/-char/ja",
-    "journal": "沖縄史料編集紀要",
-    "category": "ナノ・材料科学"
   },
   {
     "title": "国家債務危機 発生要因・顕在化プロセス・経済的帰結",
     "url": "https://www.jstage.jst.go.jp/article/prifr/164/0/164_4/_article/-char/ja",
     "journal": "フィナンシャル・レビュー",
-    "category": "建築学・土木工学"
+    "category": "情報科学"
   },
   {
     "title": "新興市場国と低所得国における債務再編成",
     "url": "https://www.jstage.jst.go.jp/article/prifr/164/0/164_30/_article/-char/ja",
     "journal": "フィナンシャル・レビュー",
-    "category": "機械工学"
+    "category": "環境学"
   },
   {
     "title": "経済のデジタル化と政策対応 ― 課税ルール変更と経済理論研究のレビュー―",
     "url": "https://www.jstage.jst.go.jp/article/prifr/164/0/164_57/_article/-char/ja",
     "journal": "フィナンシャル・レビュー",
-    "category": "電気電子工学"
+    "category": "学際科学"
   },
   {
     "title": "企業課税研究の近年の展開と課題 2010年代の企業課税改革",
     "url": "https://www.jstage.jst.go.jp/article/prifr/164/0/164_82/_article/-char/ja",
     "journal": "フィナンシャル・レビュー",
-    "category": "情報科学"
+    "category": "哲学・宗教"
   },
   {
     "title": "世帯に対する課税と給付 ―最適課税論からの論点整理と展望―",
     "url": "https://www.jstage.jst.go.jp/article/prifr/164/0/164_111/_article/-char/ja",
     "journal": "フィナンシャル・レビュー",
-    "category": "環境学"
+    "category": "文学・言語学・芸術学"
   },
   {
     "title": "伝統的課税理論の現代的解釈",
     "url": "https://www.jstage.jst.go.jp/article/prifr/164/0/164_135/_article/-char/ja",
     "journal": "フィナンシャル・レビュー",
-    "category": "学際科学"
+    "category": "人類学・史学・地理学"
   },
   {
     "title": "測量実習教育への工事測量の活用",
     "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/15/0/15_5/_article/-char/ja",
     "journal": "応用測量論文集",
-    "category": "哲学・宗教"
+    "category": "法学・政治学"
   },
   {
     "title": "学生感想文に見るプロジェクトX「地図のない国執念の測量１５００日」の測量教育効果",
     "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/15/0/15_13/_article/-char/ja",
     "journal": "応用測量論文集",
-    "category": "文学・言語学・芸術学"
+    "category": "経済学・経営学"
   },
   {
     "title": "テレビ放送波を面補正パラメータ（FKP）伝送に利用したネットワークRTK-GPS測位システムの開発および実験的研究",
     "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/15/0/15_21/_article/-char/ja",
     "journal": "応用測量論文集",
-    "category": "人類学・史学・地理学"
+    "category": "社会学"
   },
   {
     "title": "面補正基準点（FKP）測量の検証実験",
     "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/15/0/15_29/_article/-char/ja",
     "journal": "応用測量論文集",
-    "category": "法学・政治学"
+    "category": "心理学・教育学"
   },
   {
     "title": "レーンマーカ設置作業へのVRS-GPSの適用",
     "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/15/0/15_37/_article/-char/ja",
     "journal": "応用測量論文集",
-    "category": "経済学・経営学"
+    "category": "数学"
   },
   {
     "title": "デジタル航空測量に適した撮影手法の提案",
     "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/15/0/15_45/_article/-char/ja",
     "journal": "応用測量論文集",
-    "category": "社会学"
+    "category": "物理学"
   },
   {
     "title": "RTK-GPSによるリアルタイ厶地図更新のための大縮尺地図補正について",
     "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/15/0/15_51/_article/-char/ja",
     "journal": "応用測量論文集",
-    "category": "心理学・教育学"
+    "category": "化学"
   },
   {
     "title": "統合型GISのためのハイブリッド地図作成時における地図記号の統一化",
     "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/15/0/15_57/_article/-char/ja",
     "journal": "応用測量論文集",
-    "category": "数学"
+    "category": "地球科学・天文学"
   },
   {
     "title": "GISデータ作成のための現地計測システムの構築",
     "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/15/0/15_63/_article/-char/ja",
     "journal": "応用測量論文集",
-    "category": "物理学"
+    "category": "生物学・生命科学・基礎医学"
   },
   {
     "title": "汎用RDBMSによる空間データ検索の検証",
     "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/15/0/15_71/_article/-char/ja",
     "journal": "応用測量論文集",
-    "category": "化学"
+    "category": "農学・食品科学"
   },
   {
     "title": "赤色立体地図 －新しい地形表現手法－",
     "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/15/0/15_81/_article/-char/ja",
     "journal": "応用測量論文集",
-    "category": "地球科学・天文学"
+    "category": "一般医学・社会医学・看護学"
   },
   {
     "title": "地上型レーザースキャナーとGPS/IMUを用いた三次元形状計測システムの開発",
     "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/15/0/15_91/_article/-char/ja",
     "journal": "応用測量論文集",
-    "category": "生物学・生命科学・基礎医学"
+    "category": "臨床医学"
   },
   {
     "title": "工事測量の情報化システムの開発",
     "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/15/0/15_103/_article/-char/ja",
     "journal": "応用測量論文集",
-    "category": "農学・食品科学"
+    "category": "歯学"
   },
   {
     "title": "横断測量データおよび航空写真を用いた千曲川中流域における河道の縦横断形状の変化に関する研究",
     "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/15/0/15_109/_article/-char/ja",
     "journal": "応用測量論文集",
-    "category": "一般医学・社会医学・看護学"
+    "category": "薬学"
   },
   {
     "title": "局所地形と風および延焼速度を考慮した林野火災延焼区域予測法に関する研究 －岐阜県岐阜市および各務原市の林野火災を例として－",
     "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/15/0/15_117/_article/-char/ja",
     "journal": "応用測量論文集",
-    "category": "臨床医学"
+    "category": "一般工学・総合工学"
   },
   {
     "title": "リモートセンシング解析を通した都市環境把握に関する研究 ～TM及びIKONOSデータを利用した都市環境の把握について～",
     "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/15/0/15_125/_article/-char/ja",
     "journal": "応用測量論文集",
-    "category": "歯学"
+    "category": "ナノ・材料科学"
   },
   {
     "title": "交通バリアフリーを考慮した歩行計測に対するHVTシステムの応用",
     "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/15/0/15_131/_article/-char/ja",
     "journal": "応用測量論文集",
-    "category": "薬学"
+    "category": "建築学・土木工学"
   },
   {
     "title": "崇城大学における測量実習教育の実施例",
     "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/14/0/14_5/_article/-char/ja",
     "journal": "応用測量論文集",
-    "category": "一般工学・総合工学"
+    "category": "機械工学"
   },
   {
     "title": "測量業と不動産情報管理の関わりについての一考察",
     "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/14/0/14_13/_article/-char/ja",
     "journal": "応用測量論文集",
-    "category": "ナノ・材料科学"
+    "category": "電気電子工学"
   },
   {
     "title": "統合型GISのためのハイブリッド地図作成時におけるベクトル地図の幾何補正",
     "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/14/0/14_25/_article/-char/ja",
     "journal": "応用測量論文集",
-    "category": "建築学・土木工学"
+    "category": "情報科学"
   },
   {
     "title": "ＧＩＳを利用したＧＰＳ利用計画",
     "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/14/0/14_33/_article/-char/ja",
     "journal": "応用測量論文集",
-    "category": "機械工学"
+    "category": "環境学"
   },
   {
     "title": "ＧＰＳ仮想基準点方式による低速移動体の位置計測実験",
     "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/14/0/14_41/_article/-char/ja",
     "journal": "応用測量論文集",
-    "category": "電気電子工学"
+    "category": "学際科学"
   },
   {
     "title": "ＧＰＳと超音波による水中長距離計測システムの開発",
     "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/14/0/14_49/_article/-char/ja",
     "journal": "応用測量論文集",
-    "category": "情報科学"
+    "category": "哲学・宗教"
   },
   {
     "title": "時系列NDVIの定量的統一化評価",
     "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/14/0/14_57/_article/-char/ja",
     "journal": "応用測量論文集",
-    "category": "環境学"
+    "category": "文学・言語学・芸術学"
   },
   {
     "title": "LIDARデータからの地表面標高モデル作成手法",
     "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/14/0/14_65/_article/-char/ja",
     "journal": "応用測量論文集",
-    "category": "学際科学"
+    "category": "人類学・史学・地理学"
   },
   {
     "title": "地上据置型レーザスキャナを用いたビジュアルトラバースシステムの構築",
     "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/14/0/14_71/_article/-char/ja",
     "journal": "応用測量論文集",
-    "category": "哲学・宗教"
+    "category": "法学・政治学"
   },
   {
     "title": "車両搭載型センサを用いた３次元都市空間モデルの構築",
     "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/14/0/14_79/_article/-char/ja",
     "journal": "応用測量論文集",
-    "category": "文学・言語学・芸術学"
+    "category": "経済学・経営学"
   },
   {
     "title": "遺跡の三次元計測における解析手法の検討",
     "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/14/0/14_85/_article/-char/ja",
     "journal": "応用測量論文集",
-    "category": "人類学・史学・地理学"
+    "category": "社会学"
   },
   {
     "title": "航空レーザ計測を用いた砂防事業の基礎データ作成と河床変動状況の把握事例",
     "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/14/0/14_91/_article/-char/ja",
     "journal": "応用測量論文集",
-    "category": "法学・政治学"
+    "category": "心理学・教育学"
   },
   {
     "title": "航空機搭載型レーザスキャナと地上型レーザスキャナを用いた三次元画像作成事例",
     "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/14/0/14_99/_article/-char/ja",
     "journal": "応用測量論文集",
+    "category": "数学"
+  },
+  {
+    "title": "測量教育におけるハンディGPSレシーバの活用",
+    "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/13/0/13_5/_article/-char/ja",
+    "journal": "応用測量論文集",
+    "category": "物理学"
+  },
+  {
+    "title": "GPS/IMUによる写真測量",
+    "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/13/0/13_11/_article/-char/ja",
+    "journal": "応用測量論文集",
+    "category": "化学"
+  },
+  {
+    "title": "慣性写真測量カメラの開発研究",
+    "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/13/0/13_17/_article/-char/ja",
+    "journal": "応用測量論文集",
+    "category": "地球科学・天文学"
+  },
+  {
+    "title": "デジタル画像を用いた現況平面測量法の開発",
+    "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/13/0/13_23/_article/-char/ja",
+    "journal": "応用測量論文集",
+    "category": "生物学・生命科学・基礎医学"
+  },
+  {
+    "title": "航空レーザー測量の計測精度とディジタルカメラとの融合による利点",
+    "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/13/0/13_35/_article/-char/ja",
+    "journal": "応用測量論文集",
+    "category": "農学・食品科学"
+  },
+  {
+    "title": "都市環境の評価および計画手法に関する基礎的研究 ～ リモートセンシングによる首都圏16市区の事例を通して ～",
+    "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/13/0/13_43/_article/-char/ja",
+    "journal": "応用測量論文集",
+    "category": "一般医学・社会医学・看護学"
+  },
+  {
+    "title": "歴史的町並み（妻籠宿）の3Dモデリングと景観シミュレーションに関する研究",
+    "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/13/0/13_49/_article/-char/ja",
+    "journal": "応用測量論文集",
+    "category": "臨床医学"
+  },
+  {
+    "title": "無線インターネットにおける伝搬障害シミュレーションへの3次元地図の利用に関する研究",
+    "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/13/0/13_57/_article/-char/ja",
+    "journal": "応用測量論文集",
+    "category": "歯学"
+  },
+  {
+    "title": "CCDカメラとラインレーザによる考古遺物の効率的3D計測に関する研究",
+    "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/13/0/13_65/_article/-char/ja",
+    "journal": "応用測量論文集",
+    "category": "薬学"
+  },
+  {
+    "title": "空中写真測量と3D-CADとの融合による街づくりと景観シュミレーション",
+    "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/13/0/13_73/_article/-char/ja",
+    "journal": "応用測量論文集",
+    "category": "一般工学・総合工学"
+  },
+  {
+    "title": "汎用ＲＤＢＭＳによる地図データの同時メンテナンスに関する研究",
+    "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/13/0/13_81/_article/-char/ja",
+    "journal": "応用測量論文集",
+    "category": "ナノ・材料科学"
+  },
+  {
+    "title": "GIS等の情報技術の利用による地震時における要介護者支援システムに関する研究",
+    "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/13/0/13_89/_article/-char/ja",
+    "journal": "応用測量論文集",
+    "category": "建築学・土木工学"
+  },
+  {
+    "title": "GPSによる地すべり移動量計測の研究",
+    "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/13/0/13_97/_article/-char/ja",
+    "journal": "応用測量論文集",
+    "category": "機械工学"
+  },
+  {
+    "title": "台風に伴う風倒木被害におよぼす局所地形の影響に関する研究",
+    "url": "https://www.jstage.jst.go.jp/article/ouyousokuryo/13/0/13_105/_article/-char/ja",
+    "journal": "応用測量論文集",
+    "category": "電気電子工学"
+  },
+  {
+    "title": "日本食品科学工学会 第72回年次大会 産官学連携シンポジウム「持続可能性を高める新たなものづくり技術」総説の発刊に寄せて",
+    "url": "https://www.jstage.jst.go.jp/article/nskkk/73/11/73_NSKKK-D-26-00069/_article/-char/ja",
+    "journal": "日本食品科学工学会誌",
+    "category": "情報科学"
+  },
+  {
+    "title": "植物機能の理解と活用 ―メカニズム解明が拓く次世代食資源開発―",
+    "url": "https://www.jstage.jst.go.jp/article/nskkk/73/11/73_NSKKK-D-26-00042/_article/-char/ja",
+    "journal": "日本食品科学工学会誌",
+    "category": "環境学"
+  },
+  {
+    "title": "バイオインフォマティクスとゲノム編集の産業応用",
+    "url": "https://www.jstage.jst.go.jp/article/nskkk/73/11/73_NSKKK-D-26-00037/_article/-char/ja",
+    "journal": "日本食品科学工学会誌",
+    "category": "学際科学"
+  },
+  {
+    "title": "岩手県産ブドウの産地特性・ワインへの品種適性の解明",
+    "url": "https://www.jstage.jst.go.jp/article/nskkk/73/11/73_NSKKK-D-26-00012/_article/-char/ja",
+    "journal": "日本食品科学工学会誌",
+    "category": "哲学・宗教"
+  },
+  {
+    "title": "富山県産ベニズワイの鮮度が茹で処理後の呈味成分に及ぼす影響",
+    "url": "https://www.jstage.jst.go.jp/article/nskkk/73/11/73_NSKKK-D-25-00080/_article/-char/ja",
+    "journal": "日本食品科学工学会誌",
+    "category": "文学・言語学・芸術学"
+  },
+  {
+    "title": "完全養殖",
+    "url": "https://www.jstage.jst.go.jp/article/nskkk/73/11/73_NSKKK-D-26-00032/_article/-char/ja",
+    "journal": "日本食品科学工学会誌",
+    "category": "人類学・史学・地理学"
+  },
+  {
+    "title": "Cylindrocladium angustatum sp. nov., a new leaf spot pathogen of Tillandsia capitata from Florida, U.S.A.",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/6/41_MYC41521/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "法学・政治学"
+  },
+  {
+    "title": "Influence of vanillin on the production of cellulolytic and xylanolytic enzymes from a wood-rotting fungus, Coriolus versicolor",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/6/41_MYC41527/_article/-char/ja",
+    "journal": "Mycoscience",
     "category": "経済学・経営学"
+  },
+  {
+    "title": "A new species of Embellisia from soil with high levels of heavy metals",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/6/41_MYC41533/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "社会学"
+  },
+  {
+    "title": "Two new species of Marasmius from eastern Honshu, Japan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/6/41_MYC41539/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "心理学・教育学"
+  },
+  {
+    "title": "Two new species of Mycena from eastern Honshu, Japan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/6/41_MYC41545/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "数学"
+  },
+  {
+    "title": "Cultural properties of a luminous mushroom, Mycena chlorophos",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/6/41_MYC41551/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "物理学"
+  },
+  {
+    "title": "Fruit-body production of a luminous mushroom, Mycena chlorophos",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/6/41_MYC41559/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "化学"
+  },
+  {
+    "title": "Identification of lower fungi isolated from larvae of mangrove crab, Scylla serrata, in Indonesia",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/6/41_MYC41565/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "地球科学・天文学"
+  },
+  {
+    "title": "A new Leptographium species associated with Tomicus piniperda in south-western China",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/6/41_MYC41573/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "生物学・生命科学・基礎医学"
+  },
+  {
+    "title": "Coemansia furcata sp. nov. and its distribution in Japan and Taiwan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/6/41_MYC41579/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "農学・食品科学"
+  },
+  {
+    "title": "Molecular phylogeny of species in the genera Amylostereum and Echinodontium",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/6/41_MYC41585/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "一般医学・社会医学・看護学"
+  },
+  {
+    "title": "New Leptographium species from Indonesia and Eastern North America",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/6/41_MYC41595/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "臨床医学"
+  },
+  {
+    "title": "Purification and properties of α-glucose 1-phosphateforming trehalose phosphorylase from a basidiomycete, Pleurotus ostreatus",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/6/41_MYC41607/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "歯学"
+  },
+  {
+    "title": "A new species of Plagiostoma (Ascomycota-Diaporthales) with a Phomopsis anamorph isolated from Phragmites leaves in Japan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/6/41_MYC41615/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "薬学"
+  },
+  {
+    "title": "Induction of apoptosis in cultured cells by extracts from shiitake (Lentinula edodes) mycelial culture broth",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/6/41_MYC41623/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "一般工学・総合工学"
+  },
+  {
+    "title": "Isolation and characterization of chlorate resistant mutants from nitrate-nonutilizing fungus Phycomyces blakesleeanus",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/6/41_MYC41633/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "ナノ・材料科学"
+  },
+  {
+    "title": "Activation of intracellular and extracellular phenol oxidases in photoinduced fruit-body formation of Favolus arcularius",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/6/41_MYC41641/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "建築学・土木工学"
+  },
+  {
+    "title": "A survey of keratinophilic fungi as a tool for hen feather utilization",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/6/41_MYC41645/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "機械工学"
+  },
+  {
+    "title": "Naohide Hiratsuka (1903-2000)",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/6/41_MYC41651/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "電気電子工学"
+  },
+  {
+    "title": "English summary of papers which appeared in Nippon Kingakukai Kaiho Vol. 41 (2000)",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/6/41_MYC41653/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "情報科学"
+  },
+  {
+    "title": "Nuclear selection in oidium formation from dikaryotic mycelia of Flammulina velutipes",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/5/41_MYC41417/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "環境学"
+  },
+  {
+    "title": "Leptographium pini-densiflorae sp. nov. from Japanese red pine",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/5/41_MYC41425/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "学際科学"
+  },
+  {
+    "title": "Vertical distribution of marine fungi on Rhizophora apiculata at Morib mangrove, Selangor, Malaysia",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/5/41_MYC41431/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "哲学・宗教"
+  },
+  {
+    "title": "Molecular phylogeny and radiation time of Erysiphales inferred from the nuclear ribosomal DNA sequences",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/5/41_MYC41437/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "文学・言語学・芸術学"
+  },
+  {
+    "title": "Species of Urocystis (Ustilaginomycetes) on Anemone in Japan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/5/41_MYC41449/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "人類学・史学・地理学"
+  },
+  {
+    "title": "Effects of chelators (EGTA, EDTA) and calcium ions on nematode capture by the nematode-trapping fungus Arthrobotrys ellipsospora",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/5/41_MYC41455/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "法学・政治学"
+  },
+  {
+    "title": "Polyol metabolism in the mycelium and fruit-bodies during development of Flammulina velutipes",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/5/41_MYC41461/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "経済学・経営学"
+  },
+  {
+    "title": "Two new species of Marasmiellus from eastern Honshu, Japan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/5/41_MYC41467/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "社会学"
+  },
+  {
+    "title": "Activities of polysaccharides obtained from Grifola frondosa on insulin-dependent diabetes mellitus induced by streptozotocin in mice",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/5/41_MYC41473/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "心理学・教育学"
+  },
+  {
+    "title": "Spatial associations between actin filaments, endoplasmic reticula, mitochondria and fungal hyphae in symbiotic cells of orchid protocorms",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/5/41_MYC41481/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "数学"
+  },
+  {
+    "title": "Distopyrenis japonica (Ascomycota, Pyrenulaceae), a new lichen-allied lichenicolous fungus from Chiba-ken, central Japan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/5/41_MYC41491/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "物理学"
+  },
+  {
+    "title": "New species and records of saprophytic ascomycetes (Myxotrichaceae) from decaying logs in the boreal forest",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/5/41_MYC41495/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "化学"
+  },
+  {
+    "title": "Observations on the teleornorph of the white root rot fungus, Rosellinia necatrix, and a related fungus, Rosellinia aquila",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/5/41_MYC41503/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "地球科学・天文学"
+  },
+  {
+    "title": "Isolation and characterization of two entomopathogenic fungi attacking Diaphorina citri (Homoptera, Psylloidea) in Indonesia",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/5/41_MYC41509/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "生物学・生命科学・基礎医学"
+  },
+  {
+    "title": "Materials for the fungus flora of Japan (57)",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/5/41_MYC41515/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "農学・食品科学"
+  },
+  {
+    "title": "Errata",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/5/41_MYC41520/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "一般医学・社会医学・看護学"
+  },
+  {
+    "title": "Effects of Maitake (Grifola frondosa) glucan in HIV-infected patients",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/4/41_MYC41293/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "臨床医学"
+  },
+  {
+    "title": "Growth rate of fungi in bathrooms Experimental survey",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/4/41_MYC41297/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "歯学"
+  },
+  {
+    "title": "Taxonomic studies on new or critical fungi of non-pathogenic Onygenales 3",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/4/41_MYC41303/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "薬学"
+  },
+  {
+    "title": "Three new species of Marasmius section Sicci from eastern Honshu, Japan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/4/41_MYC41313/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "一般工学・総合工学"
+  },
+  {
+    "title": "Hemagglutinins (lectins) in fruit bodies of Japanese higher fungi",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/4/41_MYC41323/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "ナノ・材料科学"
+  },
+  {
+    "title": "Botryosphaeria spp. isolated from apple and several deciduous fruit trees are divided into three groups based on the production of warts on twigs, size of conidia, and nucleotide sequences of nuclear ribosomal DNA ITS regions",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/4/41_MYC41331/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "建築学・土木工学"
+  },
+  {
+    "title": "Type studies of the polypores described by E. J. H. Corner from Asia and the West Pacific I. Species described in Polyporus, Buglossoporus, Meripilus, Daedalea, and Flabellophora",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/4/41_MYC41339/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "機械工学"
+  },
+  {
+    "title": "A new species of Lentinula (Agaricales) from Central America",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/4/41_MYC41351/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "電気電子工学"
+  },
+  {
+    "title": "Four new species of the genus Sporobolomyces isolated from leaves in Thailand",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/4/41_MYC41357/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "情報科学"
+  },
+  {
+    "title": "Two undescribed heterobasidiomycetes from Ontario",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/4/41_MYC41371/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "環境学"
+  },
+  {
+    "title": "Three new marine ascomycetes from driftwood in Australian sand dunes",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/4/41_MYC41379/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "学際科学"
+  },
+  {
+    "title": "Rapid in vitro ectomycorrhizal infection on Pinus densiflora roots by Tricholoma matsutake",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/4/41_MYC41389/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "哲学・宗教"
+  },
+  {
+    "title": "Aseptic ectomycorrhizal synthesis between Abies firma and Cenococcum geophilum in artificial culture",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/4/41_MYC41395/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "文学・言語学・芸術学"
+  },
+  {
+    "title": "Occurrence of Hebeloma vinosophyllum on the forest ground after decomposition of crow carcass",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/4/41_MYC41401/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "人類学・史学・地理学"
+  },
+  {
+    "title": "Amanita sinensis, new to Japan and Nepal",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/4/41_MYC41403/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "法学・政治学"
+  },
+  {
+    "title": "Cortinarius purpurascens var. largusoides and Cortinarius herpeticus var. fageticola new to Japan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/4/41_MYC41407/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "経済学・経営学"
+  },
+  {
+    "title": "Materials for the fungus flora of Japan (56) Mariannaea camptospora and M. elegans var. punicea from Japan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/4/41_MYC41411/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "社会学"
+  },
+  {
+    "title": "Biology of the red yeast Xanthophyllomyces dendrorhous (Phaffia rhodozyma)",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/3/41_MYC41195/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "心理学・教育学"
+  },
+  {
+    "title": "Speciation of Botryobasidium subcoronatum (Basidiomycota) collected in Taiwan: morphology, mating tests, and molecular data",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/3/41_MYC41201/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "数学"
+  },
+  {
+    "title": "Measuring summer patterns of ascospore release by saltmarsh fungi",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/3/41_MYC41211/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "物理学"
+  },
+  {
+    "title": "Two onygenalean fungi from Russian Far East soil",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/3/41_MYC41217/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "化学"
+  },
+  {
+    "title": "Species of Anthostomella from Brunei, including A. oblongata sp. nov.",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/3/41_MYC41223/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "地球科学・天文学"
+  },
+  {
+    "title": "Ravenelia cenostigmatis, a new rust fungus from Brazil",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/3/41_MYC41227/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "生物学・生命科学・基礎医学"
+  },
+  {
+    "title": "A new species of Leptosphaerulina from decaying mangrove wood from Hong Kong",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/3/41_MYC41233/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "農学・食品科学"
+  },
+  {
+    "title": "Production of TMC-151, TMC-154 and TMC-171, a new class of antibiotics, is specific to ‘Gliocladium roseum’ group",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/3/41_MYC41239/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "一般医学・社会医学・看護学"
+  },
+  {
+    "title": "Materials for the fungus flora of Japan (53)",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/3/41_MYC41255/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "臨床医学"
+  },
+  {
+    "title": "Fungi colonizing hair-baits from three coastal beaches of Mexico",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/3/41_MYC41259/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "歯学"
+  },
+  {
+    "title": "Materials for the fungus flora of Japan (55)",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/3/41_MYC41263/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "薬学"
+  },
+  {
+    "title": "Enumeration of the genus Peziza in Japan: Peziza limnaea and Peziza rifaii",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/3/41_MYC41269/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "一般工学・総合工学"
+  },
+  {
+    "title": "Microstoma macrosporum stat. nov., a new taxonomic treatment of a vernal discomycete (Sarcoscyphaceae, Pezizales)",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/3/41_MYC41275/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "ナノ・材料科学"
+  },
+  {
+    "title": "Characterization of proteins expressed abundantly in the fruit-body of Flammulina velutipes",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/3/41_MYC41279/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "建築学・土木工学"
+  },
+  {
+    "title": "Verticillium balanoides, a nematode endoparasite associated with pine needles of collapsing Japanese red pine trees in Tsukuba",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/3/41_MYC41283/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "機械工学"
+  },
+  {
+    "title": "Enhancement of ascospore germination from Aleuria aurantia after cold storage",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/3/41_MYC41287/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "電気電子工学"
+  },
+  {
+    "title": "Papulosa amerospora accommodated in a new family (Papulosaceae, Sordariomycetes, Ascomycota) inferred from morphological and molecular data",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/2/41_MYC41097/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "情報科学"
+  },
+  {
+    "title": "Lignin-degrading ability of litter-decomposing basidiomycetes from Picea forests of Hokkaido",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/2/41_MYC41105/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "環境学"
+  },
+  {
+    "title": "Diaporthe kyushuensis sp. nov., the teleomorph of the causal fungus of grapevine swelling arm in Japan, and its anamorph Phomopsis vitimegaspora",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/2/41_MYC41111/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "学際科学"
+  },
+  {
+    "title": "Cronartium orientale, sp. nov., segregation of the pine gall rust in eastern Asia from Cronartium quercuum",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/2/41_MYC41115/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "哲学・宗教"
+  },
+  {
+    "title": "Fungal endophytes of Proteaceae, with particular emphasis on Botryosphaeria proteae",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/2/41_MYC41123/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "文学・言語学・芸術学"
+  },
+  {
+    "title": "Life-history of Ascomycetes: Two new species of Chaetosphaeria with Chloridium and Chloridium-Dictyochaeta anamorphs",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/2/41_MYC41129/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "人類学・史学・地理学"
+  },
+  {
+    "title": "Identification of a rust fungus on Pinus pumila collected in the North Kurils, Russia",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/2/41_MYC41139/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "法学・政治学"
+  },
+  {
+    "title": "Population structure of Sclerotium rolfsii in peanut fields",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/2/41_MYC41145/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "経済学・経営学"
+  },
+  {
+    "title": "Transcriptional regulation of laccase and cellulase in relation to fruit body formation in the mycelium of Lentinula edodes on a sawdust-based substrate",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/2/41_MYC41149/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "社会学"
+  },
+  {
+    "title": "Two new species of Erysiphaceae from Japan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/2/41_MYC41155/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "心理学・教育学"
+  },
+  {
+    "title": "Two new species of Inocybe, section Marginatae (Agaricales, Cortinariaceae) from Japan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/2/41_MYC41161/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "数学"
+  },
+  {
+    "title": "Ceratostomella hyalocoronata, a new pyrenomycete from a stream in southern China",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/2/41_MYC41167/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "物理学"
+  },
+  {
+    "title": "Three new species of Crinipellis found in Iriomote Island, southwestern Japan, and central Honshu, Japan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/2/41_MYC41171/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "化学"
+  },
+  {
+    "title": "Emericella qinqixianii, a new species from desert soil in China",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/2/41_MYC41183/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "地球科学・天文学"
+  },
+  {
+    "title": "Fruit body formation of Boletus reticulatus in pure culture",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/2/41_MYC41189/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "生物学・生命科学・基礎医学"
+  },
+  {
+    "title": "Ascominuta lignicola, a new Ioculoascomycete from submerged wood in Hong Kong",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/1/41_MYC41001/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "農学・食品科学"
+  },
+  {
+    "title": "Purification and characterization of extracellular laccase from Pleurotus ostreatus",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/1/41_MYC41007/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "一般医学・社会医学・看護学"
+  },
+  {
+    "title": "Two new species and one new variety of Agaricales from central Honshu, Japan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/1/41_MYC41015/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "臨床医学"
+  },
+  {
+    "title": "Addition and reexamination of Japanese species belonging to the genus Cercospora and allied genera III Species described by Japanese mycologists (2)",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/1/41_MYC41025/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "歯学"
+  },
+  {
+    "title": "Detection of the ectomycorrhizal fungus Tricholoma matsutake and some related species with specific ITS primers",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/1/41_MYC41033/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "薬学"
+  },
+  {
+    "title": "New records of the carabidicolous Laboulbeniales (Ascomycetes) of Japan (II)",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/1/41_MYC41039/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "一般工学・総合工学"
+  },
+  {
+    "title": "Germination of surface-disinfected resting spores of Plasmodiophora brassicae and their root hair infection in turnip hairy roots",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/1/41_MYC41049/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "ナノ・材料科学"
+  },
+  {
+    "title": "Mycopappus quercus sp. nov., causing frosty mildew in Quercus acutissima",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/1/41_MYC41055/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "建築学・土木工学"
+  },
+  {
+    "title": "A Multigene phylogeny of the Gibberella fujikuroi species complex: Detection of additional phylogenetically distinct species",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/1/41_MYC41061/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "機械工学"
+  },
+  {
+    "title": "Potential of an antagonistic bacterium isolate obtained from Lentinus lepideus basidiospores as a biocontrol agent",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/1/41_MYC41079/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "電気電子工学"
+  },
+  {
+    "title": "Pandanicola graminella comb. nov. from Festuca filiformis in the Canary Islands, West Africa",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/1/41_MYC41083/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "情報科学"
+  },
+  {
+    "title": "A new variety of Cortinarius elatior from Japan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/1/41_MYC41087/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "環境学"
+  },
+  {
+    "title": "Materials for the fungus flora of Japan (54). Stenella persicae, a new species from peach",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/41/1/41_MYC41091/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "学際科学"
+  },
+  {
+    "title": "Morphological characterization of Gibberella coronicola sp. nov., obtained through mating experiments of Fusarium pseudograminearum",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/6/40_MYC40443/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "哲学・宗教"
+  },
+  {
+    "title": "Ectomycorrhiza formation of Tricholoma matsutake isolates on seedlings of Pinus densiflora in vitro",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/6/40_MYC40455/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "文学・言語学・芸術学"
+  },
+  {
+    "title": "Three new species of anamorphic yeasts phenotypically and phylogenetically related to Candida mesenterica: the description of Candida fungicola sp. nov., Candida sagamina sp. nov., and Candida fukazawae sp. nov. isolated from fruit bodies of mushrooms",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/6/40_MYC40465/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "人類学・史学・地理学"
+  },
+  {
+    "title": "Marasmius brunneospermus, a new species of Marasmius section Globulares from central Honshu, Japan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/6/40_MYC40477/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "法学・政治学"
+  },
+  {
+    "title": "Phellinus setifer sp. nov. and P. acontextus, two noteworthy polypores from temperate areas of Japan, with notes on their allies",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/6/40_MYC40483/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "経済学・経営学"
+  },
+  {
+    "title": "Three new species of Bullera isolated from leaves in the Ogasawara Islands",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/6/40_MYC40491/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "社会学"
+  },
+  {
+    "title": "Puccinia carici-adenocauli, a new rust fungus on Carex, and its anamorph, Aecidium adenocauli",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/6/40_MYC40503/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "心理学・教育学"
+  },
+  {
+    "title": "Mycosphaerella chaenomelis sp. nov.: the teleomorph of Cercosporella sp., the causal fungus of frosty mildew in Chaenomeles sinensis, and its role as the primary infection source",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/6/40_MYC40509/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "数学"
+  },
+  {
+    "title": "Cloning and sequence analysis of the glyceraldehyde-3-phosphate dehydrogenase gene from the ectomycorrhizal basidiomycete Lyophyllum shimeji",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/6/40_MYC40517/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "物理学"
+  },
+  {
+    "title": "Discovery of dicephalosterol, a new testosterone 5α-reductase inhibitor, and some new mycological aspects of its producer, Dicephalospora rufocornea (Sclerotiniaceae, Discomycetes)",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/6/40_MYC40525/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "化学"
+  },
+  {
+    "title": "Identification of ectomycorrhizae formed between Tricholoma matsutake and Pinus densiflora by polymerase chain reaction (PCR) targeting retroelement coding regions",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/6/40_MYC40531/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "地球科学・天文学"
+  },
+  {
+    "title": "Amylostereum laevigatum associated with a horntail, Urocerus antennatus",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/6/40_MYC40535/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "生物学・生命科学・基礎医学"
+  },
+  {
+    "title": "English summary of papers which appeared in Nippon Kingakukai Kaiho Vol. 40 (1999)",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/6/40_MYC40541/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "農学・食品科学"
+  },
+  {
+    "title": "Saprolegnia salmonis sp. nov. isolated from sockeye salmon, Onchrhynchus nerka",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/5/40_MYC40387/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "一般医学・社会医学・看護学"
+  },
+  {
+    "title": "Factors influencing the production of sclerotia in the wild rice (Zizania aquatica) pathogen Sclerotium hydrophilum",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/5/40_MYC40393/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "臨床医学"
+  },
+  {
+    "title": "Hyaloscyphaceae in Japan (3): Venturiocistella japonica sp. nov.",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/5/40_MYC40401/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "歯学"
+  },
+  {
+    "title": "Neosartorya sublevispora, a new species of soil-borne Eurotiales",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/5/40_MYC40405/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "薬学"
+  },
+  {
+    "title": "Mating systems in the Xerulaceae (Agaricales, Basidiomy cotina): Flammulina",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/5/40_MYC40411/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "一般工学・総合工学"
+  },
+  {
+    "title": "Pathogenicity of fungi isolated from the larvae of the mangrove crab, Scylla serrata, in Indonesia",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/5/40_MYC40427/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "ナノ・材料科学"
+  },
+  {
+    "title": "Preparation and regeneration of protoplasts of three fungi of Boletaceae",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/5/40_MYC40433/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "建築学・土木工学"
+  },
+  {
+    "title": "A new rust species of Roestelia on Sorbus collected in China",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/5/40_MYC40437/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "機械工学"
+  },
+  {
+    "title": "Dactylospora mangrovei sp. nov. (Discomycetes, Ascomycota) from mangrove wood",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/4/40_MYC40317/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "電気電子工学"
+  },
+  {
+    "title": "Phylogenetic relationships of Pythium species based on ITS and 5.8S sequences of the ribosomal DNA",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/4/40_MYC40321/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "情報科学"
+  },
+  {
+    "title": "How do Japanese isolates of Verticillium dahliae correspond with standardized VCG testers?",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/4/40_MYC40333/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "環境学"
+  },
+  {
+    "title": "A new basidiomycetous anamorph genus with cruciform conidia",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/4/40_MYC40345/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "学際科学"
+  },
+  {
+    "title": "Light-induced fruit body formation of an entomogenous fungus Paecilomyces tenuipes",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/4/40_MYC40349/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "哲学・宗教"
+  },
+  {
+    "title": "Molecular cloning of glpFKRD of a mushroom-pathogenic bacterium, Pseudomonas tolaasii strain PT814: induction of an avirulent mutant carrying a single mini-Tn5km 1 insertion in glpD",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/4/40_MYC40353/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "文学・言語学・芸術学"
+  },
+  {
+    "title": "Macrocyst formation in three dictyostelid species, Dictyostelium monochasioides, Polysphondylium candidum, and P. pseudo-candidum",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/4/40_MYC40359/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "人類学・史学・地理学"
+  },
+  {
+    "title": "Suppression and reactivation of UV-induced sporulation by blue light in Bipolaris oryzae",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/4/40_MYC40363/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "法学・政治学"
+  },
+  {
+    "title": "Germination and growth of Erythrorchis ochobiensis (Orchidaceae) accelerated by monokaryons and dikaryons of Lenzites betulinus and Trametes hirsuta",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/4/40_MYC40367/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "経済学・経営学"
+  },
+  {
+    "title": "Change in isolation frequency of Typhula ishikariensis from turfgrass under snow cover on golf courses",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/4/40_MYC40373/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "社会学"
+  },
+  {
+    "title": "New observations on Monotosporella rhizoidea",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/4/40_MYC40377/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "心理学・教育学"
+  },
+  {
+    "title": "Notes on Ordus chiayionsis in Tsukuba",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/4/40_MYC40383/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "数学"
+  },
+  {
+    "title": "Ectomycorrhizal morphotypes of naturally grown Abies firma seedlings",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/3/40_MYC40217/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "物理学"
+  },
+  {
+    "title": "Isolation and characterization of developmental variants in fruiting using a homokaryotic ruiting strain of Coprinus cinereus",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/3/40_MYC40227/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "化学"
+  },
+  {
+    "title": "Atkinsiella dubia infection in the larvae of Japanese mitten crab, Eriocheir japonicus",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/3/40_MYC40235/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "地球科学・天文学"
+  },
+  {
+    "title": "Effects of amino-acid substitutions in β tubulin on benomyl sensitivity and microtubule functions in Coprinus cinereus",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/3/40_MYC40241/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "生物学・生命科学・基礎医学"
+  },
+  {
+    "title": "Molecular phylogeny of onygenalean fungi based on small subunit ribosomal DNA (SSU rDNA) sequences",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/3/40_MYC40251/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "農学・食品科学"
+  },
+  {
+    "title": "Phylogenetic relationships of Microsphaera and Erysiphe section Erysiphe (powdery mildews) inferred from the rDNA ITS sequences",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/3/40_MYC40259/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "一般医学・社会医学・看護学"
+  },
+  {
+    "title": "Addition and reexamination of Japanese species belonging to the genus Cercospora and allied genera II Species described by Japanese mycologists (1)",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/3/40_MYC40269/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "臨床医学"
+  },
+  {
+    "title": "Taxonomic studies on new or critical fungi of non-pathogenic Onygenales 1",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/3/40_MYC40277/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "歯学"
+  },
+  {
+    "title": "Taxonomic studies on new or critical fungi of non-pathogenic Onygenales 2",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/3/40_MYC40291/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "薬学"
+  },
+  {
+    "title": "Lycopene cyclization in Blakeslea trispora",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/3/40_MYC40307/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "一般工学・総合工学"
+  },
+  {
+    "title": "Assessment of Gibberella fujikuroi mating type by PCR",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/3/40_MYC40311/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "ナノ・材料科学"
+  },
+  {
+    "title": "Morphological and cytological aspects of oidium formation in a basidiomycete, Pholiota nameko",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/2/40_MYC40095/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "建築学・土木工学"
+  },
+  {
+    "title": "Effects of high-temperature treatment on two essential light processes and an intervening dark process in photoinduced pileus primordium formation of a basidiomycete, Favolus arcularius",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/2/40_MYC40103/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "機械工学"
+  },
+  {
+    "title": "Aeciospore surface structures of Gymnosporangium and Roestelia (Uredinales)",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/2/40_MYC40109/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "電気電子工学"
+  },
+  {
+    "title": "Surface structures of peridial cells of Gymnosporangium and Roestelia (Uredinales)",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/2/40_MYC40121/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "情報科学"
+  },
+  {
+    "title": "Talaromyces euchlorocarpius, a new species from soil",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/2/40_MYC40133/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "環境学"
+  },
+  {
+    "title": "Tremella occultifuroidea sp. nov., a new mycoparasite of Dacrymyces",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/2/40_MYC40137/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "学際科学"
+  },
+  {
+    "title": "Linocarpon angustatum sp. nov., and Neolinocarpon nypicola sp. nov. from petioles of Nypa fruticans, and a list of fungi from aerial parts of this host",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/2/40_MYC40145/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "哲学・宗教"
+  },
+  {
+    "title": "Studies on the Amphisphaeriales I. The Clypeosphaeriaceae",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/2/40_MYC40151/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "文学・言語学・芸術学"
+  },
+  {
+    "title": "The genera Aniptodera, Halosarpheia, Nais and Phaeonectriella from freshwater habitats",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/2/40_MYC40165/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "人類学・史学・地理学"
+  },
+  {
+    "title": "Arecophila bambusae sp. nov. and A. coronata comb. nov., from dead culms of bamboo",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/2/40_MYC40185/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "法学・政治学"
+  },
+  {
+    "title": "Cryptophiale sphaerospora sp. nov. occurring on Janetia synnematosa",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/2/40_MYC40189/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "経済学・経営学"
+  },
+  {
+    "title": "Ectomycorrhiza formation of Tricholoma matsutake on Pinus densiflora",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/2/40_MYC40193/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "社会学"
+  },
+  {
+    "title": "Nuclear selection in monokaryotic oidium formation from dikaryotic mycelia in a basidiomycete, Pholiota nameko",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/2/40_MYC40199/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "心理学・教育学"
+  },
+  {
+    "title": "A rapid identification method for aflatoxin-producing strains of Aspergillus flavus and A. parasiticus by ammonia vapor",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/2/40_MYC40205/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "数学"
+  },
+  {
+    "title": "Responses of Ganoderma lucidum to heavy metals",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/2/40_MYC40209/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "物理学"
+  },
+  {
+    "title": "Fusarium globosum from subtropical Japan and the effect of different light conditions on its conidiogenesis",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/1/40_MYC40001/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "化学"
+  },
+  {
+    "title": "Detection of protein and carbohydrate in the extracellular matrix released by Cochliobolus heterostrophus during germination",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/1/40_MYC40011/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "地球科学・天文学"
+  },
+  {
+    "title": "Phylogenetic positions of rust fungi parasitic on ferns: Evidence from 18S rDNA sequence analysis",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/1/40_MYC40021/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "生物学・生命科学・基礎医学"
+  },
+  {
+    "title": "Cloning and sequence analysis of the plasmid DNA found in Rhizoctonia solani AG-2-2 LP isolate and its potential use for fungal detection",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/1/40_MYC40029/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "農学・食品科学"
+  },
+  {
+    "title": "Grouping of isolates in AG 2 of Rhizoctonia solani by total cellular fatty acid analysis",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/1/40_MYC40035/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "一般医学・社会医学・看護学"
+  },
+  {
+    "title": "Vegetative compatibility relationships among weakly pathogenic isolates (pathotype E) of Verticillium dahliae",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/1/40_MYC40041/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "臨床医学"
+  },
+  {
+    "title": "Carbon and nitrogen utilization and acid production by mycelia of the ectomycorrhizal fungus Tricholoma bakamatsutake in vitro",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/1/40_MYC40051/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "歯学"
+  },
+  {
+    "title": "Molecular phylogeny of Japanese Amanita species based on nucleotide sequences of the internal transcribed spacer region of nuclear ribosomal DNA",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/1/40_MYC40057/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "薬学"
+  },
+  {
+    "title": "A new species of Laboulbeniales (Ascomycetes) on Diplocheila (Coleoptera, Carabidae) from Japan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/1/40_MYC40065/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "一般工学・総合工学"
+  },
+  {
+    "title": "Differential scanning calorimetric analysis of fruit-body and mycelium of Lentinula edodes",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/1/40_MYC40069/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "ナノ・材料科学"
+  },
+  {
+    "title": "Mycena auricoma, a new species of Mycena section Radiatae from Japan, and Mycena spinosissima, a new record in Japan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/1/40_MYC40073/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "建築学・土木工学"
+  },
+  {
+    "title": "Characteristics of stress response in a mushroom-pathogenic bacterium, Pseudomonas tolaasii, during the interaction with Pleurotus ostreatus and carbon/nitrogen starvation in vitro",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/1/40_MYC40081/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "機械工学"
+  },
+  {
+    "title": "Growth and fruitbody formation of Ganoderma lucidum on media supplemented with vanadium, selenium and germanium",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/40/1/40_MYC40087/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "電気電子工学"
+  },
+  {
+    "title": "Modification of cellular immune responses in experimental autoimmune hepatitis in mice by maitake (Grifola frondosa)",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/4/39_MYC39351/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "情報科学"
+  },
+  {
+    "title": "Discrimination of species and strains of basidiomycete genus Coprinus by random amplified polymorphic DNA (RAPD) analysis",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/4/39_MYC39361/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "環境学"
+  },
+  {
+    "title": "Ophiostomatoid fungi associated with Ips cembrae in Japan and their pathogenicity to Japanese larch",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/4/39_MYC39367/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "学際科学"
+  },
+  {
+    "title": "Colony patterning of Aspergillus oryzae on agar media",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/4/39_MYC39379/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "哲学・宗教"
+  },
+  {
+    "title": "Dispersal of rice sheath blight fungus, Rhizoctonia solani AG-1 (IA), and subsequent disease development in paddy fields, from survey of vegetative compatibility groups",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/4/39_MYC39391/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "文学・言語学・芸術学"
+  },
+  {
+    "title": "Variation in Sclerotium rolfsii isolates in Japan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/4/39_MYC39399/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "人類学・史学・地理学"
+  },
+  {
+    "title": "Fungal successions on pine needles fallen at different seasons: the succession of interior colonizers",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/4/39_MYC39409/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "法学・政治学"
+  },
+  {
+    "title": "Fungal successions on pine needles fallen at different seasons: the succession of surface colonizers",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/4/39_MYC39417/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "経済学・経営学"
+  },
+  {
+    "title": "Notes on Laboulbenia coneglanensis (Ascomycetes, Laboulbeniales) in Japan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/4/39_MYC39425/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "社会学"
+  },
+  {
+    "title": "Effects of vegetation change and soil disturbance on ectomycorrhizas of Betula platyphylla var. japonica: a test using seedlings planted in soils taken from various sites",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/4/39_MYC39433/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "心理学・教育学"
+  },
+  {
+    "title": "Phylogenetic analysis and predicted secondary structures of the rDNA internal transcribed spacers of the powdery mildew fungi (Erysiphaceae)",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/4/39_MYC39441/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "数学"
+  },
+  {
+    "title": "Arbuscular mycorrhizal fungi on adjacent semi-natural grasslands with different vegetation in Japan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/4/39_MYC39455/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "物理学"
+  },
+  {
+    "title": "Developmental stage-dependent response of Pilobolus crystallinus sporangiophores to gravitative and centrifugal stimulation",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/4/39_MYC39463/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "化学"
+  },
+  {
+    "title": "Purification and some properties of an isoform of metal proteinases from Hypsizygus marmoreus grown on sawdust culture",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/4/39_MYC39471/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "地球科学・天文学"
+  },
+  {
+    "title": "Mortierella isabellina and M. lignicola from decayed wood with termite nests in Yakushima, Japan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/4/39_MYC39475/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "生物学・生命科学・基礎医学"
+  },
+  {
+    "title": "Phylogenetic position of an arbuscular mycorrhizal fungus, Acaulospora gerdemannii, and its synanamorph Glomus leptotichum, based upon 18S rRNA gene sequence",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/4/39_MYC39477/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "農学・食品科学"
+  },
+  {
+    "title": "Changes in low molecular weight carbohydrates composition and chitin throughout the cultivation stages of Pleurotus ostreatus",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/4/39_MYC39481/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "一般医学・社会医学・看護学"
+  },
+  {
+    "title": "Relatedness, phylogeny, and evolution of the fungi",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/4/39_MYC39487/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "臨床医学"
+  },
+  {
+    "title": "The role of the amateur in mycology – what would we do without them!",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/4/39_MYC39513/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "歯学"
+  },
+  {
+    "title": "English summary of papers which appeared in Nippon Kingakukai Kaiho Vol. 39 (1998)",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/4/39_MYC39523/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "薬学"
+  },
+  {
+    "title": "Zoosporangium development, zoospore release and culture properties of Halophytophthora mycoparasitica",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/3/39_MYC39223/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "一般工学・総合工学"
+  },
+  {
+    "title": "Oxygen as a possible tropic factor in hyphal growth of Candida albicans",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/3/39_MYC39231/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "ナノ・材料科学"
+  },
+  {
+    "title": "The genus Brachydesmiella from submerged wood in the tropics, including a new species and a new combination",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/3/39_MYC39239/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "建築学・土木工学"
+  },
+  {
+    "title": "Some biochemical characteristics of fungi isolated from salmonid eggs",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/3/39_MYC39249/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "機械工学"
+  },
+  {
+    "title": "A new species of Clohiesia from Hong Kong",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/3/39_MYC39257/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "電気電子工学"
+  },
+  {
+    "title": "rtpA, a gene encoding a bacterial two-component sensor kinase, determines pathogenic traits of Pseudomonas tolaasii, the causal agent of brown blotch disease of a cultivated mushroom, Pleurotus ostreatus",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/3/39_MYC39261/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "情報科学"
+  },
+  {
+    "title": "Isolation of a Gram-positive bacterium effective in suppression of brown blotch disease of cultivated mushrooms, Pleurotus ostreatus and Agaricus bisporus, caused by Pseudomonas tolaasii",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/3/39_MYC39273/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "環境学"
+  },
+  {
+    "title": "Characterization of a group I intron in the nuclear rDNA differentiating Phialophora gregata f. sp. adzukicola from P. gregata f. sp. sojae",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/3/39_MYC39279/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "学際科学"
+  },
+  {
+    "title": "Three new hyphomycetes on Pandanus leaves from Mauritius",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/3/39_MYC39285/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "哲学・宗教"
+  },
+  {
+    "title": "Studies on the distribution of alkalophilic and alkali-tolerant soil fungi II: Fungal flora in two limestone caves in Japan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/3/39_MYC39293/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "文学・言語学・芸術学"
+  },
+  {
+    "title": "Three new Aspergillus species isolated from clinical sources as a causal agent of human aspergillosis",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/3/39_MYC39299/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "人類学・史学・地理学"
+  },
+  {
+    "title": "Lignicolous freshwater Ascomycota from Thailand: 1. Ascotaiwania sawada and its anamorph state Monotosporella",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/3/39_MYC39307/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "法学・政治学"
+  },
+  {
+    "title": "Three new species and a new combination in the genus Torulomyces from soil",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/3/39_MYC39313/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "経済学・経営学"
+  },
+  {
+    "title": "Lecanosticta acicola, causal fungus of brown spot needle blight in Pinus thunbergii, new to Japan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/3/39_MYC39319/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "社会学"
+  },
+  {
+    "title": "Survey of α-glucose 1-phosphate forming trehalose phosphorylase and trehalase in various fungi including basidiomycetous mushrooms",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/3/39_MYC39327/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "心理学・教育学"
+  },
+  {
+    "title": "A new species of Cortinarius Sect. Sericeocybe from Japan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/3/39_MYC39333/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "数学"
+  },
+  {
+    "title": "Notes on three species of Mycena new to Japan from Picea forests of Hokkaido",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/3/39_MYC39337/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "物理学"
+  },
+  {
+    "title": "Uredo maua, sp. nov., and Uromyces tairae: Additions to the rust flora of Hawai'i",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/3/39_MYC39343/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "化学"
+  },
+  {
+    "title": "A new Ophiostoma species isolated from Japanese oak infested by Platypus quercivorus",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/3/39_MYC39347/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "地球科学・天文学"
+  },
+  {
+    "title": "Differentiation of Melampsora rust species on willows in Japan using PCR-RFLP analysis of ITS regions of ribosomal DNA",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/2/39_MYC39105/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "生物学・生命科学・基礎医学"
+  },
+  {
+    "title": "Abundance and diversity of microfungi in three coastal beaches of Mexico",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/2/39_MYC39115/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "農学・食品科学"
+  },
+  {
+    "title": "Detection and distribution of six linear mitochondrial plasmids in the shiitake mushroom, Lentinula edodes",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/2/39_MYC39123/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "一般医学・社会医学・看護学"
+  },
+  {
+    "title": "Characterization of two morphological groups of isolates of Pythium ultimum var. ultimum in a vegetable field",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/2/39_MYC39135/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "臨床医学"
+  },
+  {
+    "title": "Non-gramineous hosts of Myriosclerotinia borealis",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/2/39_MYC39145/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "歯学"
+  },
+  {
+    "title": "Genetic analysis of Cochliobolus heterostrophus polyoxinresistant mutants",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/2/39_MYC39155/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "薬学"
+  },
+  {
+    "title": "Emericella appendiculata, a new species from Chinese soil",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/2/39_MYC39161/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "一般工学・総合工学"
+  },
+  {
+    "title": "β-Carotene inhibition of aflatoxin biosynthesis among Aspergillus flavus genotypes from Illinois corn",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/2/39_MYC39167/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "ナノ・材料科学"
+  },
+  {
+    "title": "Leaf blister of Quercus phillyraeoides caused by Taphrina caerulescens",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/2/39_MYC39173/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "建築学・土木工学"
+  },
+  {
+    "title": "Identification of Armillaria species from Hokkaido by analysis of the intergenic spacer (IGS) region of ribosomal DNA using PCR-RFLP",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/2/39_MYC39179/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "機械工学"
+  },
+  {
+    "title": "Addition and reexamination of Japanese species belonging to the genus Cercospora and allied genera I. Collections from Nansei-lslands (1)",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/2/39_MYC39185/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "電気電子工学"
+  },
+  {
+    "title": "Electrophoretic analysis of soluble proteins specifically synthesized under phosphate deficiency in the mycelia of Pholiota nameko",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/2/39_MYC39195/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "情報科学"
+  },
+  {
+    "title": "Acanthophysis-like structures from wood submerged in freshwater streams in the tropics",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/2/39_MYC39199/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "環境学"
+  },
+  {
+    "title": "Collybia biformis and C. pinastris new to Japan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/2/39_MYC39205/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "学際科学"
+  },
+  {
+    "title": "Three species of Marasmius new to Japan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/2/39_MYC39211/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "哲学・宗教"
+  },
+  {
+    "title": "Effect of the physical properties of Lentinula edodes bedlogs on fruiting body production",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/2/39_MYC39217/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "文学・言語学・芸術学"
+  },
+  {
+    "title": "Rust fungi (Uredinales) found in Marshall Islands and Pohnpei",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/2/39_MYC39221/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "人類学・史学・地理学"
+  },
+  {
+    "title": "Fusarium kyushuense sp. nov. from Japan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/1/39_MYC39001/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "法学・政治学"
+  },
+  {
+    "title": "Molecular phylogenetic study of the basidiomycetous anamorphic yeast genus Trichosporon and related taxa based on small subunit ribosomal DNA sequences",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/1/39_MYC39007/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "経済学・経営学"
+  },
+  {
+    "title": "Fruit-body production of two ectomycorrhizal fungi in the genus Hebeloma in pure culture",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/1/39_MYC39015/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "社会学"
+  },
+  {
+    "title": "Morphology and molecular phylogeny of Tretopileus sphaerophorus, a synnematous hyphomycete with basidiomycetous affinities",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/1/39_MYC39021/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "心理学・教育学"
+  },
+  {
+    "title": "On some species of Mycogloea",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/1/39_MYC39031/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "数学"
+  },
+  {
+    "title": "Vegetative compatibility of an isolate of Verticillium dahliae pathogenic to both tomato and pepper",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/1/39_MYC39037/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "物理学"
+  },
+  {
+    "title": "Cultivation characteristics of Isaria japonica",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/1/39_MYC39043/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "化学"
+  },
+  {
+    "title": "Phylogenetic and structural studies in the Thelebolaceae (Ascomycota)",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/1/39_MYC39049/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "地球科学・天文学"
+  },
+  {
+    "title": "Production of acetyl esterase during wood biodegradation by Coriolus versicolor",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/1/39_MYC39057/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "生物学・生命科学・基礎医学"
+  },
+  {
+    "title": "Didymella fagi sp. nov. and its anamorph Ascochyta fagi, causing the yellow leaf spot disease of Fagus crenata and Quercus mongolica var. grosseserrata in Japan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/1/39_MYC39063/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "農学・食品科学"
+  },
+  {
+    "title": "Conidiomatal development of Pestalotiopsis guepinii and P. neglecta on leaves of Gardenia jasminoides",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/1/39_MYC39071/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "一般医学・社会医学・看護学"
+  },
+  {
+    "title": "New records of the carabidicolous Laboulbeniales (Ascomycetes) of Japan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/1/39_MYC39077/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "臨床医学"
+  },
+  {
+    "title": "A new biological function of Shiitake mushroom, Lentinula edodes, in a myco-heterotrophic orchid, Erythrorchis ochobiensis",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/1/39_MYC39085/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "歯学"
+  },
+  {
+    "title": "Inheritance of photo-control of conidial development in the fungus Bipolaris oryzae",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/1/39_MYC39089/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "薬学"
+  },
+  {
+    "title": "Thiolavia aurantiaca, a new species from Japanese soil",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/1/39_MYC39093/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "一般工学・総合工学"
+  },
+  {
+    "title": "The order Phyllachorales: Taxonomic review",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/39/1/39_MYC39097/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "ナノ・材料科学"
+  },
+  {
+    "title": "Fungicidal effect of hydrogen peroxide on fungal infection of rainbow trout eggs",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/4/38_MYC38375/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "建築学・土木工学"
+  },
+  {
+    "title": "Assessment of vegetative compatibility of race-2 tomato wilt isolates of Verticillium dahliae in Japan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/4/38_MYC38379/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "機械工学"
+  },
+  {
+    "title": "Zygospore formation in Mortierella capitata",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/4/38_MYC38387/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "電気電子工学"
+  },
+  {
+    "title": "A new species of Appendicospora from Hong Kong",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/4/38_MYC38395/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "情報科学"
+  },
+  {
+    "title": "A new species of Chaetomium from house dust",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/4/38_MYC38399/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "環境学"
+  },
+  {
+    "title": "Ability of ectomycorrhizal fungi to utilize starch and related substrates",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/4/38_MYC38403/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "学際科学"
+  },
+  {
+    "title": "Phylogenetic relationships of the hyphomycete genera Chaetopsina and Kionochaeta based on 18S rDNA sequences",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/4/38_MYC38409/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "哲学・宗教"
+  },
+  {
+    "title": "Amylostereum laevigatum associated with the Japanese horntail, Urocerus japonicus",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/4/38_MYC38421/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "文学・言語学・芸術学"
+  },
+  {
+    "title": "Microsphaeropsis rugospora, a new species from Japanese soil",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/4/38_MYC38429/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "人類学・史学・地理学"
+  },
+  {
+    "title": "Mycotic granulomatosis found in two species of ornamental fishes imported from Singapore",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/4/38_MYC38433/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "法学・政治学"
+  },
+  {
+    "title": "Apiosordaria striatispora, an endophyte of Mesua ferrea and Prunus arborea from Thailand",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/4/38_MYC38437/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "経済学・経営学"
+  },
+  {
+    "title": "Identification and characterization of yeast isolated from Indonesian fermented food",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/4/38_MYC38441/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "社会学"
+  },
+  {
+    "title": "Hyphomycetes fungi in rainwater falling from building roofs",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/4/38_MYC38447/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "心理学・教育学"
+  },
+  {
+    "title": "Rapid detection of Rhizoctonia species, causal agents of rice sheath diseases, by PCR-RFLP analysis using an alkaline DNA extraction method",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/4/38_MYC38451/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "数学"
+  },
+  {
+    "title": "A PCR-based method for mating type determination in Cochliobolus heterostrophus",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/4/38_MYC38455/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "物理学"
+  },
+  {
+    "title": "English summary of papers which appeared in Nippon Kingakukai Kaiho Vol. 38 (1997)",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/4/38_MYC38459/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "化学"
+  },
+  {
+    "title": "Cocoicola livistonicola, sp. nov., and notes on Cocoicola cylindrospora from palms",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/3/38_MYC38255/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "地球科学・天文学"
+  },
+  {
+    "title": "Pycnidial development of Phyllosticta harai and Sphaeropsis sp.",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/3/38_MYC38259/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "生物学・生命科学・基礎医学"
+  },
+  {
+    "title": "Evolutionary relationships of members of the genera Taphrina, Protomyces, Schizosaccharomyces, and related taxa within the archiascomycetes: Integrated analysis of genotypic and phenotypic characters",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/3/38_MYC38267/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "農学・食品科学"
+  },
+  {
+    "title": "Heteroecious life cycle of two graminicolous Puccinia (Uredinales)",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/3/38_MYC38281/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "一般医学・社会医学・看護学"
+  },
+  {
+    "title": "Five interesting Ascomycetes from herbal drugs",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/3/38_MYC38287/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "臨床医学"
+  },
+  {
+    "title": "Lambertella advenula, a new combination proposed for Moellerodiscus advenulus, new to Japan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/3/38_MYC38297/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "歯学"
+  },
+  {
+    "title": "Zaragozic acids production from discomycetes",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/3/38_MYC38305/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "薬学"
+  },
+  {
+    "title": "Estimation of fungal biomass in the decaying cones of Pinus densiflora",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/3/38_MYC38313/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "一般工学・総合工学"
+  },
+  {
+    "title": "Taxonomical studies on ovariicolous ustomycetes on Caryophyllaceae I. Ustilago jehudana and Ustilago moenchiae-manticae",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/3/38_MYC38323/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "ナノ・材料科学"
+  },
+  {
+    "title": "Fusarium nisikadoi, a new species from Japan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/3/38_MYC38329/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "建築学・土木工学"
+  },
+  {
+    "title": "Formation of endomycorrhizas by an achlorophyllous orchid, Erythrorchis ochobiensis, and Auricularia polytricha",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/3/38_MYC38335/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "機械工学"
+  },
+  {
+    "title": "Ostropella luxurians sp. nov. from the Russian Far East",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/3/38_MYC38341/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "電気電子工学"
+  },
+  {
+    "title": "First record of the occurrence of Sporodiniella umbellata (Mucorales) in Taiwan",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/3/38_MYC38343/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "情報科学"
+  },
+  {
+    "title": "Acid phosphatase isozymes secreted under phosphatedeficient conditions in Pholiota nameko",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/3/38_MYC38347/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "環境学"
+  },
+  {
+    "title": "Materials for the fungus flora of Japan (51)",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/3/38_MYC38351/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "学際科学"
+  },
+  {
+    "title": "In vitro germination of Erythrorchis ochobiensis (Orchidaceae) in the presence of Lyophyllum shimeji, an ectomycorrhizal fungus",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/3/38_MYC38355/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "哲学・宗教"
+  },
+  {
+    "title": "Reflection of inside mycorrhizal status in the coloration of mycelial blocks of Tricholoma bakamatsutake",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/3/38_MYC38359/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "文学・言語学・芸術学"
+  },
+  {
+    "title": "Hydrophobins, from molecular structure to multiple functions in fungal development",
+    "url": "https://www.jstage.jst.go.jp/article/mycosci/38/3/38_MYC38363/_article/-char/ja",
+    "journal": "Mycoscience",
+    "category": "人類学・史学・地理学"
   }
 ];
