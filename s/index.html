@@ -210,7 +210,7 @@
         <div class="divider">または</div>
 
         <!-- FeliCa / IDカードタッチエリア -->
-        <div class="id-card-area" onclick="signInWithFeliCa()" title="クリックしてからカードをタッチ">
+        <div class="id-card-area" onclick="signInWithFeliCa()" title="カードをリーダーに置くだけでログインできます">
             <img src="https://u.misemi-ya.net/login/id.jpg" alt="IDカードリーダー">
             <div class="id-card-text">IDカードをかざしてください</div>
         </div>
@@ -308,10 +308,12 @@
                 const currentAccounts = myMSALObj.getAllAccounts();
                 if (currentAccounts.length > 0) {
                     redirectUser();
+                    return;
                 }
             } catch (error) {
                 console.error(error);
             }
+            startAuto();   // カードを置くだけでログインできるよう、自動で待機を開始
         });
 
         async function signIn() {
@@ -366,20 +368,88 @@
             return { idm: j.idm, sig: j.sig, challenge };
         }
 
-        // --- FeliCa ログイン ---
-        async function signInWithFeliCa() {
+        // --- FeliCa 自動ログイン(カードを置くだけ) ---
+        const sleep = ms => new Promise(r => setTimeout(r, ms));
+        let autoId = 0;
+        let hintShown = false;
+
+        function startAuto() { stopAuto(); autoLoginLoop(++autoId); }
+        function stopAuto() { autoId++; }
+        function adminOpen() { return document.getElementById("adminModal").style.display === "flex"; }
+
+        async function autoLoginLoop(myId) {
             const box = document.getElementById("errorMessage");
-            try {
-                showBox(box, "info", "職員証をリーダーにタッチしてください…");
-                const r = await api("login", await readCard());
-                sessionStorage.setItem("felica_token", r.token);
-                sessionStorage.setItem("felica_email", r.email);
-                redirectUser();
-            } catch (error) {
-                console.error(error);
-                showBox(box, "err", "FeliCa認証エラー: " + error.message);
+            const alive = () => myId === autoId;
+            let challenge = null, issuedAt = 0, blocked = false;
+
+            while (alive()) {
+                // チャレンジは約2分半ごとに取り直す(カードを検知するまで使い回す)
+                try {
+                    if (!challenge || Date.now() - issuedAt > 150000) {
+                        challenge = (await api("challenge")).challenge;
+                        issuedAt = Date.now();
+                    }
+                } catch (e) {
+                    if (!alive()) return;
+                    hintShown = true;
+                    showBox(box, "err", "サーバーに接続できません: " + e.message);
+                    challenge = null;
+                    await sleep(5000);
+                    continue;
+                }
+
+                // リーダーに「3秒だけカードを待って」と頼む
+                let res;
+                try {
+                    res = await fetch(`${READER_URL}/read?challenge=${challenge}&t=3`);
+                } catch (e) {
+                    if (!alive()) return;
+                    hintShown = true;
+                    showBox(box, "info", "読み取りツール(reader.py)が起動していません。起動するとカードを置くだけでログインできます。");
+                    await sleep(3000);
+                    continue;
+                }
+                if (!alive()) return;
+
+                let j = {};
+                try { j = await res.json(); } catch (e) {}
+                if (hintShown) { box.style.display = "none"; hintShown = false; }
+
+                if (res.status === 408) { blocked = false; continue; }   // カードなし(外れた)
+                if (!res.ok) {
+                    hintShown = true;
+                    showBox(box, "err", "読み取りツールのエラー: " + (j.error || res.status));
+                    await sleep(3000);
+                    continue;
+                }
+                if (blocked) { await sleep(800); continue; }             // 失敗したカードが置かれたまま
+
+                showBox(box, "info", "カードを確認しています…");
+                try {
+                    const r = await api("login", { idm: j.idm, sig: j.sig, challenge: challenge });
+                    sessionStorage.setItem("felica_token", r.token);
+                    sessionStorage.setItem("felica_email", r.email);
+                    redirectUser();
+                    return;
+                } catch (e) {
+                    showBox(box, "err", "FeliCa認証エラー: " + e.message);
+                    blocked = true;      // カードを一度外すまで再試行しない
+                    challenge = null;    // 使用済みなので取り直す
+                }
             }
         }
+
+        // 画像をクリックしたときは、待機をやり直すだけ
+        function signInWithFeliCa() {
+            showBox(document.getElementById("errorMessage"), "info", "カードをリーダーに置いてください…");
+            startAuto();
+        }
+
+        // タブが非表示の間・管理者パネルを開いている間は待機を止める
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) stopAuto();
+            else if (!adminOpen()) startAuto();
+        });
 
         function togglePasswordVisibility(fieldId, btnElement) {
             const inputField = document.getElementById(fieldId);
@@ -395,11 +465,14 @@
         }
 
         function openAdminModal() {
+            stopAuto();
             document.getElementById("adminModal").style.display = "flex";
         }
         function closeAdminModal() {
             document.getElementById("adminModal").style.display = "none";
             resetAdminPanel();
+            // 登録したカードがまだリーダーに置いてあっても勝手にログインしないよう、5秒待ってから再開
+            setTimeout(() => { if (!adminOpen() && !document.hidden) startAuto(); }, 5000);
         }
         function resetAdminPanel() {
             adminToken = null;
