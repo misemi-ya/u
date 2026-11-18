@@ -1,7 +1,7 @@
 // login.html のインラインスクリプトの「後」に読み込む:
 //   <script src="felica-client.js"></script>
 // 同名の関数を上書きして、PHP API + 読み取りツール方式に切り替える。
-const API_URL = "https://YOUR-SERVER.example/felica/api.php";  // ← api.php を置いたURLに変更
+const API_URL = "https://cf890473.cloudfree.jp/mmu-auth/api.php";  // ← api.php を置いたURLに変更
 const READER_URL = "http://127.0.0.1:8765";
 let adminToken = null;
 let lastReading = null;
