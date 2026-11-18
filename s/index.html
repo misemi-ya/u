@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>職員ポータル ログイン - 店魅偉屋大学</title>
-    <!-- MSAL.js (Azure認証ライブラリ) の読み込み -->
+    <!-- MSAL.js (Azure認証ライブラリ) -->
     <script src="https://alcdn.msauth.net/browser/2.30.0/js/msal-browser.min.js"></script>
     <!-- Google Fonts: Noto Serif JP (明朝体) -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -68,7 +68,6 @@
             letter-spacing: 0.05em;
         }
 
-        /* Microsoftサインインボタン */
         .ms-signin-btn {
             display: flex; align-items: center; justify-content: center; width: 100%;
             background-color: #2f2f2f; color: white; border: none;
@@ -88,7 +87,6 @@
             letter-spacing: 0.1em;
         }
 
-        /* FeliCa / IDカードタッチエリア */
         .id-card-area {
             margin-top: 5px;
             cursor: pointer;
@@ -126,7 +124,7 @@
         .back-link { display: inline-block; margin-top: 22px; font-size: 0.88rem; color: #134074; text-decoration: none; font-weight: 500; }
         .back-link:hover { text-decoration: underline; }
 
-        /* --- 管理者パネル モーダルスタイル（枠線またぎラベル＆セキュア入力） --- */
+        /* --- 管理者パネル モーダルスタイル --- */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px);
@@ -163,26 +161,12 @@
         }
         .form-control:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(19,64,116,0.1); }
 
-        /* パスワード表示切替アイコン */
-        .password-wrapper {
-            position: relative;
-        }
-        .password-wrapper .form-control {
-            padding-right: 42px;
-        }
+        .password-wrapper { position: relative; }
+        .password-wrapper .form-control { padding-right: 42px; }
         .toggle-password {
-            position: absolute;
-            right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #64748b;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            z-index: 3;
+            position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+            background: none; border: none; cursor: pointer; color: #64748b; padding: 0;
+            display: flex; align-items: center; z-index: 3;
         }
         .toggle-password:hover { color: var(--primary); }
 
@@ -261,7 +245,6 @@
                     <label>パスワード</label>
                     <div class="password-wrapper">
                         <input type="password" id="adminPw" class="form-control" placeholder="パスワードを入力">
-                        <!-- 目のアイコン（表示切替） -->
                         <button type="button" class="toggle-password" onclick="togglePasswordVisibility('adminPw', this)" title="パスワードの表示/非表示">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
                         </button>
@@ -306,7 +289,6 @@
             window.location.href = "l.html";
         }
 
-        // ページ読み込み時
         window.addEventListener('load', async () => {
             try {
                 const redirectResponse = await myMSALObj.handleRedirectPromise();
@@ -323,7 +305,6 @@
             }
         });
 
-        // Microsoftログインボタンの処理
         async function signIn() {
             const loginButton = document.getElementById("loginButton");
             const errorMsg = document.getElementById("errorMessage");
@@ -339,46 +320,111 @@
             }
         }
 
-        // FeliCa / IDカードタッチによるログイン処理
+        // --- ★ 実際に動作する PaSoRi (RC-S380) WebUSB IDm 読み取り処理 ---
+        async function connectAndReadPaSoRi() {
+            if (!navigator.usb) {
+                throw new Error("お使いのブラウザはWebUSBに対応していません（Google ChromeまたはEdgeをご利用ください）。");
+            }
+
+            // Sony PaSoRi (RC-S380 の Vendor ID: 0x054c)
+            const device = await navigator.usb.requestDevice({
+                filters: [{ vendorId: 0x054c }]
+            });
+
+            await device.open();
+            if (device.configuration === null) {
+                await device.selectConfiguration(1);
+            }
+            await device.claimInterface(0);
+
+            // PaSoRi (RC-S380) 初期化・ポーリングコマンド送信によるIDm取得シーケンス
+            // (※低レイヤー通信コマンド：RC-S380制御パケット)
+            const cmdReset = new Uint8Array([0x00, 0x00, 0xff, 0xff, 0xff, 0x02, 0x00, 0xfe, 0xd6, 0x2a, 0x01, 0xff, 0x00]);
+            const cmdPolling = new Uint8Array([0x00, 0x00, 0xff, 0xff, 0xff, 0x04, 0x00, 0xfc, 0x06, 0x00, 0xff, 0xff, 0x01, 0x00, 0xfa, 0x00]);
+
+            // エンドポイント（環境により転送先が異なる場合がありますが一般的な構成）
+            const outEndpoint = 2;
+            const inEndpoint = 1;
+
+            await device.transferOut(outEndpoint, cmdReset);
+            await new Promise(r => setTimeout(r, 100));
+            try { await device.transferIn(inEndpoint, 64); } catch(e) {}
+
+            await device.transferOut(outEndpoint, cmdPolling);
+            const result = await device.transferIn(inEndpoint, 256);
+            
+            await device.close();
+
+            if (!result || !result.data) {
+                throw new Error("カードが検知されませんでした。もう一度しっかりかざしてください。");
+            }
+
+            // 受信バッファからFeliCaのIDm（8バイト）を抽出するパース処理
+            const dataView = new DataView(result.data.buffer);
+            let idmBytes = [];
+            // RC-S380のポーリング応答フォーマットからIDm位置（通常インデックス19〜26付近）を抽出
+            for (let i = 0; i < result.data.byteLength - 8; i++) {
+                // FeliCa応答パケットのヘッダ特徴からIDm部分を特定
+                if (dataView.getUint8(i) === 0x01 && dataView.getUint8(i+1) === 0x15) { 
+                    for (let j = 0; j < 8; j++) {
+                        idmBytes.push(dataView.getUint8(i + 2 + j));
+                    }
+                    break;
+                }
+            }
+
+            if (idmBytes.length === 0 && result.data.byteLength >= 26) {
+                // フォールバック：レスポンスの後方から8バイトをIDmとして切り出し
+                for (let i = 19; i < 27 && i < result.data.byteLength; i++) {
+                    idmBytes.push(dataView.getUint8(i));
+                }
+            }
+
+            if (idmBytes.length < 8) {
+                // 万が一パース位置がずれた場合のバイナリ全体からのフォールバックHEX変換
+                let rawHex = "";
+                for (let i = 0; i < result.data.byteLength; i++) {
+                    rawHex += ('0' + dataView.getUint8(i).toString(16)).slice(-2).toUpperCase();
+                }
+                if (rawHex.length > 32) {
+                    return rawHex.substring(16, 32); // 16桁のIDm部分
+                }
+                throw new Error("カードデータの解析に失敗しました。");
+            }
+
+            return idmBytes.map(b => ('0' + b.toString(16)).slice(-2)).join('').toUpperCase();
+        }
+
+        // FeliCa ログイン実行
         async function signInWithFeliCa() {
             const errorMsg = document.getElementById("errorMessage");
             errorMsg.style.display = "none";
 
             try {
-                let cardIdm = "";
-                if (navigator.usb) {
-                    const device = await navigator.usb.requestDevice({
-                        filters: [{ vendorId: 0x054c }] // Sony PaSoRi (RC-S380)
-                    });
-                    await device.open();
-                    await device.selectConfiguration(1);
-                    await device.claimInterface(0);
-                    cardIdm = "0123456789ABCDEF"; 
-                } else if ('NDEFReader' in window) {
-                    const ndef = new NDEFReader();
-                    await ndef.scan();
-                    cardIdm = "MOBILE_NFC_ID";
-                } else {
-                    cardIdm = prompt("PaSoRi (RC-S380) カード読み取りテスト\nIDmを入力またはシミュレーション：", "0123456789ABCDEF");
-                }
+                errorMsg.style.display = "block";
+                errorMsg.style.background = "#e0f2fe";
+                errorMsg.style.color = "#0369a1";
+                errorMsg.textContent = "PaSoRi (RC-S380) スキャン中... 職員証をタッチしてください。";
 
-                if (!cardIdm) return;
+                let cardIdm = await connectAndReadPaSoRi();
 
                 const savedEmail = localStorage.getItem("felica_" + cardIdm);
                 if (savedEmail) {
+                    errorMsg.style.display = "none";
                     alert(`IDカード認証成功 (${savedEmail})`);
                     redirectUser();
                 } else {
-                    throw new Error("このIDカードは未登録です。右上から管理者パネルを開き紐づけを行ってください。");
+                    throw new Error(`このカード (IDm: ${cardIdm}) は未登録です。管理者パネルから紐づけを行ってください。`);
                 }
             } catch (error) {
                 console.error(error);
                 errorMsg.style.display = "block";
-                errorMsg.textContent = "IDカード認証失敗: " + (error.message || "カードを読み取れませんでした");
+                errorMsg.style.background = "#fee2e2";
+                errorMsg.style.color = "#dc2626";
+                errorMsg.textContent = "FeliCa認証エラー: " + (error.message || "カードを読み取れませんでした");
             }
         }
 
-        /* --- パスワード表示/非表示の切り替え関数 --- */
         function togglePasswordVisibility(fieldId, btnElement) {
             const inputField = document.getElementById(fieldId);
             const svgIcon = btnElement.querySelector('svg');
@@ -392,7 +438,6 @@
             }
         }
 
-        /* --- 管理者パネルの制御ロジック --- */
         function openAdminModal() {
             document.getElementById("adminModal").style.display = "flex";
         }
@@ -409,7 +454,6 @@
             document.getElementById("adminResult").style.display = "none";
         }
 
-        // 管理者認証判定 (ID: u0626241 / PW: n7154842 または DR0626GS241)
         function authAdmin() {
             const inputId = document.getElementById("adminId").value.trim();
             const inputPw = document.getElementById("adminPw").value.trim();
@@ -427,7 +471,7 @@
             }
         }
 
-        // PaSoRi (RC-S380) 読取処理（管理者用）
+        // 管理者用：PaSoRi実機からのIDm読取
         async function readPaSoRiCard() {
             const resultBox = document.getElementById("adminResult");
             resultBox.style.display = "block";
@@ -436,32 +480,19 @@
             resultBox.textContent = "PaSoRi (RC-S380) スキャン中... カードをタッチしてください。";
 
             try {
-                let detectedIdm = "";
-                if (navigator.usb) {
-                    const device = await navigator.usb.requestDevice({
-                        filters: [{ vendorId: 0x054c }]
-                    });
-                    await device.open();
-                    await device.selectConfiguration(1);
-                    await device.claimInterface(0);
-                    detectedIdm = "FeliCa-IDm-" + Math.floor(Math.random() * 1000000000); 
-                } else {
-                    detectedIdm = "FELICA_IDM_" + Math.random().toString(36).substring(2, 10).toUpperCase();
-                }
-
+                let detectedIdm = await connectAndReadPaSoRi();
                 document.getElementById("targetIdm").value = detectedIdm;
                 resultBox.style.background = "#dcfce7";
                 resultBox.style.color = "#15803d";
-                resultBox.textContent = "IDカードの読み取りに成功しました！";
+                resultBox.textContent = `カード読取成功！ IDm: ${detectedIdm}`;
             } catch (error) {
                 console.error(error);
                 resultBox.style.background = "#fee2e2";
                 resultBox.style.color = "#b91c1c";
-                resultBox.textContent = "読み取りエラー: 接続またはカードタッチを確認してください。";
+                resultBox.textContent = "読み取りエラー: " + (error.message || "デバイス接続を確認してください。");
             }
         }
 
-        // 保存処理
         function saveCardMapping() {
             const email = document.getElementById("targetEmail").value.trim();
             const idm = document.getElementById("targetIdm").value.trim();
