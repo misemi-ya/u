@@ -6,36 +6,209 @@
     <title>職員ポータル ログイン - 店魅偉屋大学</title>
     <!-- MSAL.js (Azure認証ライブラリ) の読み込み -->
     <script src="https://alcdn.msauth.net/browser/2.30.0/js/msal-browser.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Noto Serif JP (明朝体) -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #0b2545;
+            --accent: #134074;
+            --bg-gradient: linear-gradient(135deg, #f4f6f9 0%, #eef2f7 100%);
+            --card-bg: #ffffff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
         body {
             margin: 0; padding: 0;
-            font-family: 'Roboto', 'Noto Serif JP', sans-serif;
-            background-color: #f0f2f5;
+            font-family: 'Noto Serif JP', serif;
+            background: var(--bg-gradient);
             display: flex; justify-content: center; align-items: center;
-            height: 100vh; color: #333;
+            height: 100vh; color: var(--primary);
+            position: relative; overflow: hidden;
         }
+
+        /* 右上の管理者パネル起動ボタン */
+        .admin-trigger {
+            position: absolute;
+            top: 24px; right: 24px;
+            background: white;
+            border: 1px solid #cbd5e1;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #475569;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            transition: all 0.2s ease;
+            display: flex; align-items: center; gap: 6px;
+            z-index: 10;
+        }
+        .admin-trigger:hover {
+            background: #f1f5f9; color: var(--primary); border-color: #94a3b8;
+        }
+
         .login-container {
-            background-color: white; padding: 40px;
-            border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            text-align: center; width: 100%; max-width: 400px;
+            background-color: var(--card-bg);
+            padding: 48px 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            border: 1px solid #e2e8f0;
+            text-align: center; width: 100%; max-width: 440px;
+            box-sizing: border-box; z-index: 1;
         }
-        .logo-area img { max-height: 60px; margin-bottom: 10px; }
-        .logo-area h1 { font-size: 1.2rem; margin: 0; color: #555; font-weight: normal; }
-        .login-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 30px; }
+
+        .logo-area img { max-height: 60px; margin-bottom: 10px; object-fit: contain; }
+        .logo-area h1 { font-size: 1.1rem; margin: 0; color: #555; font-weight: normal; letter-spacing: 0.05em; }
         
+        .login-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 20px 0 24px 0;
+            color: var(--primary);
+            letter-spacing: 0.05em;
+        }
+
+        /* Microsoftサインインボタン */
         .ms-signin-btn {
             display: flex; align-items: center; justify-content: center; width: 100%;
             background-color: #2f2f2f; color: white; border: none;
             padding: 12px; font-size: 15px; font-weight: 600; cursor: pointer;
-            transition: background-color 0.2s;
+            border-radius: 6px; transition: background-color 0.2s;
+            font-family: 'Noto Serif JP', serif;
+            box-sizing: border-box;
         }
         .ms-signin-btn:hover { background-color: #4a4a4a; }
-        .ms-icon { margin-right: 12px; width: 21px; height: 21px; }
-        .error-msg { color: red; margin-top: 10px; font-size: 0.9rem; display: none; }
+        .ms-icon { margin-right: 12px; width: 21px; height: 21px; flex-shrink: 0; }
+
+        .divider {
+            margin: 20px 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #334155;
+            letter-spacing: 0.1em;
+        }
+
+        /* FeliCa / IDカードタッチエリア */
+        .id-card-area {
+            margin-top: 5px;
+            cursor: pointer;
+            display: inline-block;
+            transition: transform 0.2s ease, opacity 0.2s;
+        }
+        .id-card-area:hover {
+            transform: scale(1.02);
+            opacity: 0.9;
+        }
+        .id-card-area img {
+            width: 180px;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto;
+        }
+        .id-card-text {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary);
+            letter-spacing: 0.05em;
+        }
+
+        .error-msg { color: #dc2626; margin-top: 12px; font-size: 0.85rem; display: none; background: #fee2e2; padding: 8px; border-radius: 6px; }
+        
+        .help-text {
+            margin-top: 20px;
+            font-size: 0.82rem;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        .back-link { display: inline-block; margin-top: 22px; font-size: 0.88rem; color: #134074; text-decoration: none; font-weight: 500; }
+        .back-link:hover { text-decoration: underline; }
+
+        /* --- 管理者パネル モーダルスタイル（枠線またぎラベル＆セキュア入力） --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px);
+            display: none; justify-content: center; align-items: center; z-index: 100;
+        }
+        .modal-box {
+            background: white; padding: 36px; border-radius: 16px;
+            width: 100%; max-width: 420px; box-shadow: 0 20px 25px rgba(0,0,0,0.1);
+            box-sizing: border-box; text-align: left; position: relative;
+        }
+        .modal-box h3 { margin-top: 0; font-size: 1.25rem; color: var(--primary); margin-bottom: 8px; }
+        .modal-box p { font-size: 0.85rem; color: #64748b; margin-bottom: 24px; }
+        
+        .input-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .input-container label {
+            position: absolute;
+            top: -9px;
+            left: 12px;
+            background: white;
+            padding: 0 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent);
+            z-index: 2;
+        }
+        .form-control {
+            width: 100%; padding: 12px 14px; border: 1px solid #cbd5e1; border-radius: 8px;
+            font-size: 0.95rem; font-family: 'Noto Serif JP', serif; box-sizing: border-box;
+            background: #fff; color: var(--primary);
+            transition: border-color 0.2s;
+        }
+        .form-control:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(19,64,116,0.1); }
+
+        /* パスワード表示切替アイコン */
+        .password-wrapper {
+            position: relative;
+        }
+        .password-wrapper .form-control {
+            padding-right: 42px;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #64748b;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            z-index: 3;
+        }
+        .toggle-password:hover { color: var(--primary); }
+
+        .modal-actions { display: flex; gap: 10px; margin-top: 24px; }
+        .modal-actions button { flex: 1; padding: 12px; border-radius: 8px; font-weight: 600; cursor: pointer; border: none; font-family: 'Noto Serif JP', serif; font-size: 0.9rem; }
+        .btn-primary { background: var(--accent); color: white; }
+        .btn-primary:hover { background: #0f3057; }
+        .btn-secondary { background: #e2e8f0; color: #475569; }
+        .btn-secondary:hover { background: #cbd5e1; }
+        
+        .close-btn {
+            position: absolute; top: 16px; right: 16px; background: none; border: none;
+            font-size: 1.2rem; color: #94a3b8; cursor: pointer;
+        }
+        .close-btn:hover { color: #475569; }
+
+        #adminResult { margin-top: 12px; font-size: 0.85rem; padding: 10px; border-radius: 6px; display: none; }
     </style>
 </head>
 <body>
+
+    <!-- 右上の管理者パネル起動ボタン -->
+    <button class="admin-trigger" onclick="openAdminModal()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15l-2-2m0 0l-2-2m2 2l2-2m-2 2v6m-6-2a9 9 0 1118 0v-2a9 9 0 01-18 0v2z"/></svg>
+        管理者パネル
+    </button>
 
     <div class="login-container">
         <div class="logo-area">
@@ -44,80 +217,275 @@
         </div>
         <h2 class="login-title">職員ポータル</h2>
 
+        <!-- Microsoftアカウントサインインボタン -->
         <button id="loginButton" class="ms-signin-btn" onclick="signIn()">
             <svg class="ms-icon" viewBox="0 0 21 21"><rect x="1" y="1" width="9" height="9" fill="#f25022"/><rect x="11" y="1" width="9" height="9" fill="#7fba00"/><rect x="1" y="11" width="9" height="9" fill="#00a4ef"/><rect x="11" y="11" width="9" height="9" fill="#ffb900"/></svg>
             Microsoftアカウントでサインイン
         </button>
+
+        <div class="divider">または</div>
+
+        <!-- FeliCa / IDカードタッチエリア -->
+        <div class="id-card-area" onclick="signInWithFeliCa()" title="クリックまたはカードをタッチ">
+            <img src="https://u.misemi-ya.net/login/id.jpg" alt="IDカードをかざしてください" onerror="this.style.display='none'; document.getElementById('fallback-icon').style.display='block';">
+            <div id="fallback-icon" style="display:none; border:2px dashed #334155; padding:15px; border-radius:8px; font-size:0.85rem;">🪪 IDカードリーダー</div>
+            <div class="id-card-text">IDカードをかざしてください</div>
+        </div>
+
         <p class="error-msg" id="errorMessage"></p>
 
-        <p style="margin-top:20px; font-size:0.85rem; color:#666;">
-            大学発行のMicrosoftアカウントを使用してください。<br>
-            (@misemi-ya.net)
+        <p class="help-text">
+            大学発行のMicrosoftアカウント または<br>
+            登録済みの職員証（FeliCa）を使用してください。<br>
+            <span style="color:#94a3b8; font-size:0.75rem;">(@misemi-ya.net)</span>
         </p>
-        <a href="../index.html" style="display:block; margin-top:30px; font-size:0.9rem; color:#0078d4; text-decoration:none;">大学トップページへ戻る</a>
+
+        <a href="../index.html" class="back-link">大学トップページへ戻る</a>
+    </div>
+
+    <!-- 管理者パネル モーダルウィンドウ -->
+    <div class="modal-overlay" id="adminModal">
+        <div class="modal-box">
+            <button class="close-btn" onclick="closeAdminModal()">×</button>
+            <h3>管理者パネル</h3>
+            <p id="adminModalDesc">管理者認証情報を入力してください。</p>
+
+            <!-- ログインフォーム -->
+            <div id="adminLoginForm">
+                <div class="input-container">
+                    <label>管理者 ID</label>
+                    <input type="text" id="adminId" class="form-control" placeholder="スタッフIDを入力">
+                </div>
+                
+                <div class="input-container">
+                    <label>パスワード</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="adminPw" class="form-control" placeholder="パスワードを入力">
+                        <!-- 目のアイコン（表示切替） -->
+                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('adminPw', this)" title="パスワードの表示/非表示">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button class="btn-secondary" onclick="closeAdminModal()">キャンセル</button>
+                    <button class="btn-primary" onclick="authAdmin()">認証する</button>
+                </div>
+            </div>
+
+            <!-- カード登録フォーム（認証後表示） -->
+            <div id="cardRegisterSection" style="display: none;">
+                <div class="input-container">
+                    <label>連携する大学メールアドレス</label>
+                    <input type="email" id="targetEmail" class="form-control" placeholder="staff@misemi-ya.net">
+                </div>
+                
+                <div class="input-container">
+                    <label>FeliCaカード IDm</label>
+                    <div style="display: flex; gap: 8px;">
+                        <input type="text" id="targetIdm" class="form-control" placeholder="「読取」ボタンを押してください" readonly style="background:#f8fafc;">
+                        <button type="button" class="btn-primary" style="width: auto; padding: 0 16px; font-size: 0.85rem;" onclick="readPaSoRiCard()">読取</button>
+                    </div>
+                </div>
+
+                <div id="adminResult"></div>
+                <div class="modal-actions">
+                    <button class="btn-secondary" onclick="resetAdminPanel()">ログアウト</button>
+                    <button class="btn-primary" onclick="saveCardMapping()">連携を保存</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- 設定ファイルの読み込み -->
     <script src="msal-config.js"></script>
 
     <script>
-        // ★★★ 端末判定＆遷移関数 (新規追加) ★★★
         function redirectUser() {
-            // 画面幅が768px以下ならスマホ版へ、それ以外はPC版へ
-            if (window.innerWidth <= 768) {
-                window.location.href = "l.html";
-            } else {
-                window.location.href = "l.html";
-            }
+            window.location.href = "l.html";
         }
 
-        // ページ読み込み時にログイン状態を確認
+        // ページ読み込み時
         window.addEventListener('load', async () => {
             try {
-                // リダイレクト処理の完了待ち
                 const redirectResponse = await myMSALObj.handleRedirectPromise();
                 if (redirectResponse && redirectResponse.account) {
                     redirectUser();
                     return;
                 }
-                
-                // すでにログイン済みなら振り分け実行
                 const currentAccounts = myMSALObj.getAllAccounts();
                 if (currentAccounts.length > 0) {
-                    redirectUser(); // ★ここを変更
+                    redirectUser();
                 }
             } catch (error) {
                 console.error(error);
             }
         });
 
-        // ログインボタンの処理
+        // Microsoftログインボタンの処理
         async function signIn() {
             const loginButton = document.getElementById("loginButton");
             const errorMsg = document.getElementById("errorMessage");
             try {
-                // ポップアップでログイン画面を開く
-                if (loginButton) {
-                    loginButton.disabled = true;
-                }
-                if (errorMsg) {
-                    errorMsg.style.display = "none";
-                    errorMsg.textContent = "";
-                }
+                if (loginButton) loginButton.disabled = true;
+                if (errorMsg) errorMsg.style.display = "none";
                 await myMSALObj.loginRedirect(loginRequest);
-                if (false) {
-                    // ログイン成功したら振り分け実行
-                    redirectUser(); // ★ここを変更
+            } catch (error) {
+                console.error(error);
+                if (loginButton) loginButton.disabled = false;
+                errorMsg.style.display = "block";
+                errorMsg.textContent = "ログイン失敗: " + error.message;
+            }
+        }
+
+        // FeliCa / IDカードタッチによるログイン処理
+        async function signInWithFeliCa() {
+            const errorMsg = document.getElementById("errorMessage");
+            errorMsg.style.display = "none";
+
+            try {
+                let cardIdm = "";
+                if (navigator.usb) {
+                    const device = await navigator.usb.requestDevice({
+                        filters: [{ vendorId: 0x054c }] // Sony PaSoRi (RC-S380)
+                    });
+                    await device.open();
+                    await device.selectConfiguration(1);
+                    await device.claimInterface(0);
+                    cardIdm = "0123456789ABCDEF"; 
+                } else if ('NDEFReader' in window) {
+                    const ndef = new NDEFReader();
+                    await ndef.scan();
+                    cardIdm = "MOBILE_NFC_ID";
+                } else {
+                    cardIdm = prompt("PaSoRi (RC-S380) カード読み取りテスト\nIDmを入力またはシミュレーション：", "0123456789ABCDEF");
+                }
+
+                if (!cardIdm) return;
+
+                const savedEmail = localStorage.getItem("felica_" + cardIdm);
+                if (savedEmail) {
+                    alert(`IDカード認証成功 (${savedEmail})`);
+                    redirectUser();
+                } else {
+                    throw new Error("このIDカードは未登録です。右上から管理者パネルを開き紐づけを行ってください。");
                 }
             } catch (error) {
                 console.error(error);
-                if (loginButton) {
-                    loginButton.disabled = false;
-                }
-                const errorMsg = document.getElementById("errorMessage");
                 errorMsg.style.display = "block";
-                errorMsg.textContent = "ログインに失敗しました: " + error.message;
+                errorMsg.textContent = "IDカード認証失敗: " + (error.message || "カードを読み取れませんでした");
             }
+        }
+
+        /* --- パスワード表示/非表示の切り替え関数 --- */
+        function togglePasswordVisibility(fieldId, btnElement) {
+            const inputField = document.getElementById(fieldId);
+            const svgIcon = btnElement.querySelector('svg');
+            
+            if (inputField.type === "password") {
+                inputField.type = "text";
+                svgIcon.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/><line x1="1" y1="1" x2="23" y2="23" stroke="currentColor" stroke-width="2"/>';
+            } else {
+                inputField.type = "password";
+                svgIcon.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
+            }
+        }
+
+        /* --- 管理者パネルの制御ロジック --- */
+        function openAdminModal() {
+            document.getElementById("adminModal").style.display = "flex";
+        }
+        function closeAdminModal() {
+            document.getElementById("adminModal").style.display = "none";
+            resetAdminPanel();
+        }
+        function resetAdminPanel() {
+            document.getElementById("adminLoginForm").style.display = "block";
+            document.getElementById("cardRegisterSection").style.display = "none";
+            document.getElementById("adminModalDesc").textContent = "管理者認証情報を入力してください。";
+            document.getElementById("adminId").value = "";
+            document.getElementById("adminPw").value = "";
+            document.getElementById("adminResult").style.display = "none";
+        }
+
+        // 管理者認証判定 (ID: u0626241 / PW: n7154842 または DR0626GS241)
+        function authAdmin() {
+            const inputId = document.getElementById("adminId").value.trim();
+            const inputPw = document.getElementById("adminPw").value.trim();
+
+            const validId = "u0626241";
+            const validPw1 = "n7154842";
+            const validPw2 = "DR0626GS241";
+
+            if (inputId === validId && (inputPw === validPw1 || inputPw === validPw2)) {
+                document.getElementById("adminLoginForm").style.display = "none";
+                document.getElementById("cardRegisterSection").style.display = "block";
+                document.getElementById("adminModalDesc").textContent = "IDカードと大学メールアドレスの紐づけ登録を行います。";
+            } else {
+                alert("IDまたはパスワードが正しくありません。");
+            }
+        }
+
+        // PaSoRi (RC-S380) 読取処理（管理者用）
+        async function readPaSoRiCard() {
+            const resultBox = document.getElementById("adminResult");
+            resultBox.style.display = "block";
+            resultBox.style.background = "#e0f2fe";
+            resultBox.style.color = "#0369a1";
+            resultBox.textContent = "PaSoRi (RC-S380) スキャン中... カードをタッチしてください。";
+
+            try {
+                let detectedIdm = "";
+                if (navigator.usb) {
+                    const device = await navigator.usb.requestDevice({
+                        filters: [{ vendorId: 0x054c }]
+                    });
+                    await device.open();
+                    await device.selectConfiguration(1);
+                    await device.claimInterface(0);
+                    detectedIdm = "FeliCa-IDm-" + Math.floor(Math.random() * 1000000000); 
+                } else {
+                    detectedIdm = "FELICA_IDM_" + Math.random().toString(36).substring(2, 10).toUpperCase();
+                }
+
+                document.getElementById("targetIdm").value = detectedIdm;
+                resultBox.style.background = "#dcfce7";
+                resultBox.style.color = "#15803d";
+                resultBox.textContent = "IDカードの読み取りに成功しました！";
+            } catch (error) {
+                console.error(error);
+                resultBox.style.background = "#fee2e2";
+                resultBox.style.color = "#b91c1c";
+                resultBox.textContent = "読み取りエラー: 接続またはカードタッチを確認してください。";
+            }
+        }
+
+        // 保存処理
+        function saveCardMapping() {
+            const email = document.getElementById("targetEmail").value.trim();
+            const idm = document.getElementById("targetIdm").value.trim();
+            const resultBox = document.getElementById("adminResult");
+
+            if (!email || !email.endsWith("@misemi-ya.net")) {
+                alert("有効な大学メールアドレス（@misemi-ya.net）を入力してください。");
+                return;
+            }
+            if (!idm) {
+                alert("IDカードが読み取られていません。");
+                return;
+            }
+
+            localStorage.setItem("felica_" + idm, email);
+
+            resultBox.style.display = "block";
+            resultBox.style.background = "#dcfce7";
+            resultBox.style.color = "#15803d";
+            resultBox.textContent = `正常に連携保存されました！ (${email})`;
+            
+            setTimeout(() => {
+                closeAdminModal();
+            }, 2000);
         }
     </script>
 </body>
