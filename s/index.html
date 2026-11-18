@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>職員ポータル ログイン - 店魅偉屋大学</title>
-    <!-- MSAL.js (Azure認証ライブラリ) -->
+    <!-- MSAL.js (Azure認証ライブラリ) の読み込み -->
     <script src="https://alcdn.msauth.net/browser/2.30.0/js/msal-browser.min.js"></script>
     <!-- Google Fonts: Noto Serif JP (明朝体) -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -320,82 +320,62 @@
             }
         }
 
-        // --- ★ 実際に動作する PaSoRi (RC-S380) WebUSB IDm 読み取り処理 ---
-        async function connectAndReadPaSoRi() {
-            if (!navigator.usb) {
-                throw new Error("お使いのブラウザはWebUSBに対応していません（Google ChromeまたはEdgeをご利用ください）。");
-            }
+        // --- クロスブラウザ対応 (Firefox / Chrome 両対応) の読み込み関数 ---
+        async function getCardIdmCrossBrowser() {
+            // Chrome / Edge 等で WebUSB が使える環境の場合
+            if (navigator.usb) {
+                const device = await navigator.usb.requestDevice({
+                    filters: [{ vendorId: 0x054c }] // Sony PaSoRi (RC-S380)
+                });
+                await device.open();
+                if (device.configuration === null) {
+                    await device.selectConfiguration(1);
+                }
+                await device.claimInterface(0);
 
-            // Sony PaSoRi (RC-S380 の Vendor ID: 0x054c)
-            const device = await navigator.usb.requestDevice({
-                filters: [{ vendorId: 0x054c }]
-            });
+                const cmdReset = new Uint8Array([0x00, 0x00, 0xff, 0xff, 0xff, 0x02, 0x00, 0xfe, 0xd6, 0x2a, 0x01, 0xff, 0x00]);
+                const cmdPolling = new Uint8Array([0x00, 0x00, 0xff, 0xff, 0xff, 0x04, 0x00, 0xfc, 0x06, 0x00, 0xff, 0xff, 0x01, 0x00, 0xfa, 0x00]);
 
-            await device.open();
-            if (device.configuration === null) {
-                await device.selectConfiguration(1);
-            }
-            await device.claimInterface(0);
+                await device.transferOut(2, cmdReset);
+                await new Promise(r => setTimeout(r, 100));
+                try { await device.transferIn(1, 64); } catch(e) {}
 
-            // PaSoRi (RC-S380) 初期化・ポーリングコマンド送信によるIDm取得シーケンス
-            // (※低レイヤー通信コマンド：RC-S380制御パケット)
-            const cmdReset = new Uint8Array([0x00, 0x00, 0xff, 0xff, 0xff, 0x02, 0x00, 0xfe, 0xd6, 0x2a, 0x01, 0xff, 0x00]);
-            const cmdPolling = new Uint8Array([0x00, 0x00, 0xff, 0xff, 0xff, 0x04, 0x00, 0xfc, 0x06, 0x00, 0xff, 0xff, 0x01, 0x00, 0xfa, 0x00]);
+                await device.transferOut(2, cmdPolling);
+                const result = await device.transferIn(1, 256);
+                await device.close();
 
-            // エンドポイント（環境により転送先が異なる場合がありますが一般的な構成）
-            const outEndpoint = 2;
-            const inEndpoint = 1;
+                if (!result || !result.data) {
+                    throw new Error("カードが検知されませんでした。");
+                }
 
-            await device.transferOut(outEndpoint, cmdReset);
-            await new Promise(r => setTimeout(r, 100));
-            try { await device.transferIn(inEndpoint, 64); } catch(e) {}
-
-            await device.transferOut(outEndpoint, cmdPolling);
-            const result = await device.transferIn(inEndpoint, 256);
-            
-            await device.close();
-
-            if (!result || !result.data) {
-                throw new Error("カードが検知されませんでした。もう一度しっかりかざしてください。");
-            }
-
-            // 受信バッファからFeliCaのIDm（8バイト）を抽出するパース処理
-            const dataView = new DataView(result.data.buffer);
-            let idmBytes = [];
-            // RC-S380のポーリング応答フォーマットからIDm位置（通常インデックス19〜26付近）を抽出
-            for (let i = 0; i < result.data.byteLength - 8; i++) {
-                // FeliCa応答パケットのヘッダ特徴からIDm部分を特定
-                if (dataView.getUint8(i) === 0x01 && dataView.getUint8(i+1) === 0x15) { 
-                    for (let j = 0; j < 8; j++) {
-                        idmBytes.push(dataView.getUint8(i + 2 + j));
+                const dataView = new DataView(result.data.buffer);
+                let idmBytes = [];
+                for (let i = 0; i < result.data.byteLength - 8; i++) {
+                    if (dataView.getUint8(i) === 0x01 && dataView.getUint8(i+1) === 0x15) { 
+                        for (let j = 0; j < 8; j++) {
+                            idmBytes.push(dataView.getUint8(i + 2 + j));
+                        }
+                        break;
                     }
-                    break;
                 }
+                if (idmBytes.length < 8 && result.data.byteLength >= 26) {
+                    for (let i = 19; i < 27 && i < result.data.byteLength; i++) {
+                        idmBytes.push(dataView.getUint8(i));
+                    }
+                }
+                if (idmBytes.length < 8) throw new Error("IDmの解析に失敗しました。");
+                return idmBytes.map(b => ('0' + b.toString(16)).slice(-2)).join('').toUpperCase();
+            } 
+            
+            // Firefox など WebUSB 非対応ブラウザ用のスマートフォールバック（手動入力ダイアログ）
+            else {
+                let manualInput = prompt("お使いのブラウザは直接のUSB接続（WebUSB）をサポートしていません。\n登録済みのカードIDm（またはテスト用ID）を入力してください：", "0123456789ABCDEF");
+                if (!manualInput) throw new Error("操作がキャンセルされました。");
+                return manualInput.trim().toUpperCase();
             }
-
-            if (idmBytes.length === 0 && result.data.byteLength >= 26) {
-                // フォールバック：レスポンスの後方から8バイトをIDmとして切り出し
-                for (let i = 19; i < 27 && i < result.data.byteLength; i++) {
-                    idmBytes.push(dataView.getUint8(i));
-                }
-            }
-
-            if (idmBytes.length < 8) {
-                // 万が一パース位置がずれた場合のバイナリ全体からのフォールバックHEX変換
-                let rawHex = "";
-                for (let i = 0; i < result.data.byteLength; i++) {
-                    rawHex += ('0' + dataView.getUint8(i).toString(16)).slice(-2).toUpperCase();
-                }
-                if (rawHex.length > 32) {
-                    return rawHex.substring(16, 32); // 16桁のIDm部分
-                }
-                throw new Error("カードデータの解析に失敗しました。");
-            }
-
-            return idmBytes.map(b => ('0' + b.toString(16)).slice(-2)).join('').toUpperCase();
         }
 
-        // FeliCa ログイン実行
+        // FeliCa ログイン実行（ポップアップなしで直接遷移）
         async function signInWithFeliCa() {
             const errorMsg = document.getElementById("errorMessage");
             errorMsg.style.display = "none";
@@ -404,17 +384,16 @@
                 errorMsg.style.display = "block";
                 errorMsg.style.background = "#e0f2fe";
                 errorMsg.style.color = "#0369a1";
-                errorMsg.textContent = "PaSoRi (RC-S380) スキャン中... 職員証をタッチしてください。";
+                errorMsg.textContent = "リーダーをスキャン中... 職員証をタッチしてください。";
 
-                let cardIdm = await connectAndReadPaSoRi();
+                let cardIdm = await getCardIdmCrossBrowser();
 
                 const savedEmail = localStorage.getItem("felica_" + cardIdm);
                 if (savedEmail) {
-                    errorMsg.style.display = "none";
-                    alert(`IDカード認証成功 (${savedEmail})`);
+                    // ポップアップを出さずスムーズにリダイレクト
                     redirectUser();
                 } else {
-                    throw new Error(`このカード (IDm: ${cardIdm}) は未登録です。管理者パネルから紐づけを行ってください。`);
+                    throw new Error(`このIDカードは未登録です (IDm: ${cardIdm})。管理者パネルから紐づけを行ってください。`);
                 }
             } catch (error) {
                 console.error(error);
@@ -471,16 +450,16 @@
             }
         }
 
-        // 管理者用：PaSoRi実機からのIDm読取
+        // 管理者用：カード読取
         async function readPaSoRiCard() {
             const resultBox = document.getElementById("adminResult");
             resultBox.style.display = "block";
             resultBox.style.background = "#e0f2fe";
             resultBox.style.color = "#0369a1";
-            resultBox.textContent = "PaSoRi (RC-S380) スキャン中... カードをタッチしてください。";
+            resultBox.textContent = "リーダーをスキャン中... カードをタッチしてください。";
 
             try {
-                let detectedIdm = await connectAndReadPaSoRi();
+                let detectedIdm = await getCardIdmCrossBrowser();
                 document.getElementById("targetIdm").value = detectedIdm;
                 resultBox.style.background = "#dcfce7";
                 resultBox.style.color = "#15803d";
@@ -516,7 +495,7 @@
             
             setTimeout(() => {
                 closeAdminModal();
-            }, 2000);
+            }, 1500);
         }
     </script>
 </body>
