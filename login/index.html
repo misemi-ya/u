@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>店魅偉屋大学 医学部附属病院 ログイン</title>
     <style>
-        /* CSSは前回と同じです */
         body { margin: 0; padding: 0; font-family: "Helvetica Neue", Arial, sans-serif; background-color: #f9f9f9; display: flex; justify-content: center; align-items: center; height: 100vh; color: #333; }
         .container { text-align: center; width: 100%; max-width: 600px; padding: 20px; background-color: #fff; }
         .logo-img { margin-bottom: 20px; }
@@ -20,13 +19,16 @@
         .input-wrapper button:hover { background-color: #444; }
         .arrow-right { width: 0; height: 0; border-top: 6px solid transparent; border-bottom: 6px solid transparent; border-left: 10px solid white; }
         .divider { font-size: 16px; font-weight: bold; margin: 10px 0; }
-        .card-reader-area { display: flex; flex-direction: column; align-items: center; }
+        .card-reader-area { display: flex; flex-direction: column; align-items: center; cursor: pointer; }
         .card-img-box { width: 130px; height: 90px; border: 2px solid #000; display: flex; justify-content: center; align-items: center; margin-bottom: 10px; background-color: #fff; padding: 5px; }
         .card-img-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
         .instruction-text { font-size: 18px; font-weight: normal; }
         
         /* エラーメッセージ用の赤字 */
         #error-msg { color: red; font-size: 14px; display: none; margin-top: 5px;}
+
+        /* カードログインの状態表示 */
+        #card-msg { display: none; font-size: 14px; margin-top: 10px; padding: 8px 12px; border-radius: 6px; max-width: 320px; }
     </style>
 </head>
 <body>
@@ -54,18 +56,25 @@
 
             <div class="divider">または</div>
 
-            <div class="card-reader-area">
+            <!-- IDカード(リーダーに置くだけでログイン) -->
+            <div class="card-reader-area" onclick="signInWithFeliCa()" title="カードをリーダーに置くだけでログインできます">
                 <div class="card-img-box">
                     <img src="id.jpg" alt="IDカードリーダー">
                 </div>
                 <div class="instruction-text">IDカードをかざしてください</div>
             </div>
+            <div id="card-msg"></div>
         </form>
     </div>
 
-    <!-- ログイン判定のスクリプト -->
-<!-- ログイン判定のスクリプト -->
     <script>
+        // ========== 設定 ==========
+        const API_URL = "https://cf890473.cloudfree.jp/mmu-auth/api.php";   // 職員・在学生ポータルと同じAPI
+        const READER_URL = "http://127.0.0.1:8765";                          // PC側の reader.py(変更不要)
+        const HOME_URL = "https://u.misemi-ya.net/login/home.html";          // ログイン後の移動先
+        // ==========================
+
+        // --- パスワードでのログイン判定(元のまま) ---
         function checkLogin(event) {
             // フォームの通常送信（画面リロード）をキャンセル
             event.preventDefault();
@@ -82,7 +91,7 @@
             // 入力されたパスワードがリストの中に含まれているかチェック (includes)
             if (correctPasses.includes(inputPass)) {
                 // 正解の場合：成功ページへ移動
-                window.location.href = "https://u.misemi-ya.net/login/home.html";
+                window.location.href = HOME_URL;
             } else {
                 // 間違いの場合：エラーメッセージを表示
                 errorMsg.style.display = "block";
@@ -90,6 +99,110 @@
                 document.getElementById('passwordInput').value = "";
             }
         }
+
+        // --- 表示用ヘルパー ---
+        function showBox(el, kind, text) {
+            const c = { info: ["#e0f2fe", "#0369a1"], ok: ["#dcfce7", "#15803d"], err: ["#fee2e2", "#b91c1c"] }[kind];
+            el.style.display = "block";
+            el.style.background = c[0];
+            el.style.color = c[1];
+            el.textContent = text;
+        }
+
+        // --- サーバー(PHP API)呼び出し ---
+        async function api(action, body) {
+            const r = await fetch(`${API_URL}?a=${action}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(body || {})
+            });
+            const j = await r.json().catch(() => ({ error: "サーバーの応答が不正です" }));
+            if (!r.ok) throw new Error(j.error || "エラーが発生しました");
+            return j;
+        }
+
+        // --- FeliCa 自動ログイン(カードを置くだけ) ---
+        const sleep = ms => new Promise(r => setTimeout(r, ms));
+        let autoId = 0;
+        let hintShown = false;
+
+        function startAuto() { stopAuto(); autoLoginLoop(++autoId); }
+        function stopAuto() { autoId++; }
+
+        async function autoLoginLoop(myId) {
+            const box = document.getElementById("card-msg");
+            const alive = () => myId === autoId;
+            let challenge = null, issuedAt = 0, blocked = false;
+
+            while (alive()) {
+                // チャレンジは約2分半ごとに取り直す(カードを検知するまで使い回す)
+                try {
+                    if (!challenge || Date.now() - issuedAt > 150000) {
+                        challenge = (await api("challenge")).challenge;
+                        issuedAt = Date.now();
+                    }
+                } catch (e) {
+                    if (!alive()) return;
+                    hintShown = true;
+                    showBox(box, "err", "サーバーに接続できません: " + e.message);
+                    challenge = null;
+                    await sleep(5000);
+                    continue;
+                }
+
+                // リーダーに「3秒だけカードを待って」と頼む
+                let res;
+                try {
+                    res = await fetch(`${READER_URL}/read?challenge=${challenge}&t=3`);
+                } catch (e) {
+                    if (!alive()) return;
+                    hintShown = true;
+                    showBox(box, "info", "読み取りツール(reader.py)が起動していません。起動するとカードを置くだけでログインできます。");
+                    await sleep(3000);
+                    continue;
+                }
+                if (!alive()) return;
+
+                let j = {};
+                try { j = await res.json(); } catch (e) {}
+                if (hintShown) { box.style.display = "none"; hintShown = false; }
+
+                if (res.status === 408) { blocked = false; continue; }   // カードなし(外れた)
+                if (!res.ok) {
+                    hintShown = true;
+                    showBox(box, "err", "読み取りツールのエラー: " + (j.error || res.status));
+                    await sleep(3000);
+                    continue;
+                }
+                if (blocked) { await sleep(800); continue; }             // 失敗したカードが置かれたまま
+
+                showBox(box, "info", "カードを確認しています…");
+                try {
+                    const r = await api("login", { idm: j.idm, sig: j.sig, challenge: challenge });
+                    sessionStorage.setItem("felica_token", r.token);
+                    sessionStorage.setItem("felica_email", r.email);
+                    window.location.href = HOME_URL;
+                    return;
+                } catch (e) {
+                    showBox(box, "err", "FeliCa認証エラー: " + e.message);
+                    blocked = true;      // カードを一度外すまで再試行しない
+                    challenge = null;    // 使用済みなので取り直す
+                }
+            }
+        }
+
+        // カードの画像をクリックしたときは、待機をやり直すだけ
+        function signInWithFeliCa() {
+            showBox(document.getElementById("card-msg"), "info", "カードをリーダーに置いてください…");
+            startAuto();
+        }
+
+        // タブが非表示の間は待機を止める
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) stopAuto(); else startAuto();
+        });
+
+        window.addEventListener("load", startAuto);
     </script>
 </body>
 </html>
