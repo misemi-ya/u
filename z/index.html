@@ -188,7 +188,7 @@
 
                 showBox(box, "info", "カードを確認しています…");
                 try {
-                    const r = await api("login", { idm: j.idm, sig: j.sig, challenge: challenge });
+                    const r = await api("login", { idm: j.idm, sig: j.sig, challenge: challenge, page: "在学生" });
                     sessionStorage.setItem("felica_token", r.token);
                     sessionStorage.setItem("felica_email", r.email);
                     window.location.href = PORTAL_URL;
