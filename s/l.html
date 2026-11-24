@@ -939,6 +939,8 @@
         const VPN_HOST = 'public-vpn-202.opengw.net';
         const CAMPUS_IPS = ['192.0.2.1', '198.51.100.1'];
         const ADMIN_EMAIL = "u0626241@misemi-ya.net";
+        const CARD_API_URL = "https://cf890473.cloudfree.jp/mmu-auth/api.php";
+        const CARD_CAN_BE_ADMIN = false;
         const GOOGLE_CLIENT_ID = "385803166778-kg041ijpug65vf8ir68tubl8v804ncef.apps.googleusercontent.com"; 
 
         const firebaseConfig = {
@@ -1260,7 +1262,7 @@
             if (dialogResolve) { dialogResolve(result); dialogResolve = null; }
         };
 
-        function checkIsAdmin() { return currentUser && currentUser.username && currentUser.username.toLowerCase() === ADMIN_EMAIL.toLowerCase(); }
+        function checkIsAdmin() { return currentUser && currentUser.username && (CARD_CAN_BE_ADMIN || !currentUser.viaCard) && currentUser.username.toLowerCase() === ADMIN_EMAIL.toLowerCase(); }
         function getSubnet(ip) { return ip ? ip.split('.').slice(0,3).join('.') : ""; }
 
         function unlockScreen() {
@@ -1329,6 +1331,19 @@
             }
         }
 
+        async function verifyCardSession() {
+    const token = sessionStorage.getItem("felica_token");
+    if (!token) return null;
+    try {
+        const r = await fetch(CARD_API_URL + "?a=verify", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ token: token }) });
+        const j = await r.json();
+        if (r.ok && j.email) return { username: j.email, name: j.email.split("@")[0], viaCard: true };
+    } catch (e) { console.warn("カードのログイン確認に失敗しました", e); }
+    sessionStorage.removeItem("felica_token");
+    sessionStorage.removeItem("felica_email");
+    return null;
+}
+        
         async function startMainApp() {
             document.getElementById('loading-screen').style.display = 'flex';
             gapi.load('client', initializeGapiClient);
@@ -1407,9 +1422,9 @@
             try {
                 if (typeof myMSALObj !== 'undefined') {
                     await myMSALObj.handleRedirectPromise();
-                    const accounts = myMSALObj.getAllAccounts();
-                    if (accounts.length > 0) {
-                        currentUser = accounts[0];
+                    const accounts = myMSALObj.getAllAccounts(); const cardUser = await verifyCardSession();
+                    if (accounts.length > 0 || cardUser) {
+                        currentUser = accounts.length > 0 ? accounts[0] : cardUser;
                         const safeEmail = currentUser.username.replace(/\./g, '_');
                         onValue(ref(db, `blacklist/${safeEmail}`), (snapshot) => {
                             if (snapshot.exists() && snapshot.val() === true) {
