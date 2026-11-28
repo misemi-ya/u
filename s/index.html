@@ -361,7 +361,7 @@
             try {
                 r = await fetch(`${READER_URL}/read?challenge=${challenge}`);
             } catch (e) {
-                throw new Error("読み取りツールに接続できません。PCで reader.py を起動してください。");
+                throw new Error("読み取りソフトに接続できません。PCで 【店魅偉屋大学 ICカード認証ツール】 を起動してください。");
             }
             const j = await r.json();
             if (!r.ok) throw new Error(j.error || "読み取りに失敗しました");
